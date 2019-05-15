@@ -1,5 +1,7 @@
 ---
-output: github_document
+output:
+  github_document:
+    pandoc_args: --webtex
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -34,14 +36,20 @@ devtools::install_github('Jaimemosg/EstimationTools', force=TRUE)
 
 This is a basic example which shows you how to solve a common problem:
 
-$$X \sim N(\mu, \sigma^2)$$
+$$
+\begin{aligned} 
+X &\sim N(\mu, \:\sigma^2) \\
+\mu &= 160 \\
+\sigma &= 6
+\end{aligned}
+$$
 
 The solution for a data set generated with size $n=10000$ is showed below
 
 ```{r example}
 library(EstimationTools)
 
-x <- rnorm(n=10000, mean=160, sd=6)
-fit <- maxlogL(x=x, link=list(over=c("sd"), fun=c("log.link")))
+x <- rnorm(n = 10000, mean = 160, sd = 6)
+fit <- maxlogL(x = x, link=list(over=c("sd"), fun=c("log.link")))
 summary(fit)
 ```
