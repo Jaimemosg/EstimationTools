@@ -3,6 +3,7 @@
 
 [![Travis build
 status](https://travis-ci.org/Jaimemosg/EstimationTools.svg?branch=master)](https://travis-ci.org/Jaimemosg/EstimationTools)
+[![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 # EstimationTools <img src="man/figure/ETLogo.png" align="right" height="200" align="right"/>
 
@@ -62,10 +63,10 @@ summary(fit)
 #> Standard Error calculation: Hessian from optim 
 #> ---------------------------------------------------------------
 #>        AIC      BIC
-#>   64170.47 64166.47
+#>   64297.93 64293.93
 #> ---------------------------------------------------------------
 #>      Estimate  Std. Error
-#> mean  160.0174     0.0599
-#> sd      5.9858     0.0423
+#> mean   159.870     0.0602
+#> sd       6.024     0.0426
 #> -----
 ```
