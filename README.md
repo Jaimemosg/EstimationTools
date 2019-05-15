@@ -1,13 +1,16 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+[![Travis build
+status](https://travis-ci.org/Jaimemosg/EstimationTools.svg?branch=master)](https://travis-ci.org/Jaimemosg/EstimationTool)
+
 # EstimationTools <img src="man/figure/ETLogo.png" align="right" height="200" align="right"/>
 
 <!-- badges: start -->
 
 <!-- badges: end -->
 
-The goal of `EstimationTools` is to provide routines for parameter
+The goal of `EstimationTools` is to provide a routine for parameter
 estimation of probability density/mass functions in
 `R`.
 
@@ -15,7 +18,7 @@ estimation of probability density/mass functions in
 
 <!-- You can install the released version of EstimationTools from [CRAN](https://CRAN.R-project.org) with: -->
 
-You can install the released version of `EstimationTools` from
+You can install the last version of `EstimationTools` from
 [github](https://github.com/Jaimemosg/EstimationTools) with:
 
 ``` r
@@ -25,7 +28,8 @@ devtools::install_github('Jaimemosg/EstimationTools', force=TRUE)
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example which shows you how to solve a common maximum
+likelihood estimation problem with `EstimationTools`:
 
   
 ![
@@ -57,11 +61,11 @@ summary(fit)
 #> Optimization routine: nlminb 
 #> Standard Error calculation: Hessian from optim 
 #> ---------------------------------------------------------------
-#>       AIC     BIC
-#>   64347.3 64343.3
+#>        AIC      BIC
+#>   64236.74 64232.74
 #> ---------------------------------------------------------------
 #>      Estimate  Std. Error
-#> mean  160.0214     0.0604
-#> sd      6.0389     0.0427
+#> mean  159.9886     0.0601
+#> sd      6.0056     0.0425
 #> -----
 ```
