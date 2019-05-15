@@ -23,8 +23,8 @@ gg <- ggplot() +
 col_bg <- "#ffffff"
 col_border <- "#000000"
 col_text <- "#000000"
-fac <- 1.4
-sticker(gg, package="EstimationTools", p_size = 15, s_x = 1.03, s_y = 1.2, s_width = 2.6/fac,
-        s_height = 2.2/fac, p_color = col_text, h_fill = col_bg,
+fac <- 1.3
+sticker(gg, package="EstimationTools", p_size = 15, s_x = 1.03, s_y = 1.08, s_width = 2.6/fac,
+        s_height = 2.2/fac, p_color = col_text, h_fill = col_bg, p_family = ,
         spotlight = F, p_x = 1, p_y = 0.6, l_x = 1, l_y = 1.5, l_width = 3, l_height = 3,
         h_color = col_border, filename="ETLogo.png", u_color = col_border)

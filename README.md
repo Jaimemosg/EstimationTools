@@ -1,15 +1,15 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# EstimationTools
+# EstimationTools <img src="man/figure/ETLogo.png" align="right" height="200" align="right"/>
 
 <!-- badges: start -->
 
 <!-- badges: end -->
 
 The goal of `EstimationTools` is to provide routines for parameter
-estimation of probability density/mass
-functions.
+estimation of probability density/mass functions in
+`R`.
 
 ## Installation
 
@@ -57,11 +57,11 @@ summary(fit)
 #> Optimization routine: nlminb 
 #> Standard Error calculation: Hessian from optim 
 #> ---------------------------------------------------------------
-#>        AIC      BIC
-#>   64292.76 64288.76
+#>       AIC     BIC
+#>   64347.3 64343.3
 #> ---------------------------------------------------------------
 #>      Estimate  Std. Error
-#> mean  159.9293     0.0602
-#> sd      6.0225     0.0426
+#> mean  160.0214     0.0604
+#> sd      6.0389     0.0427
 #> -----
 ```
