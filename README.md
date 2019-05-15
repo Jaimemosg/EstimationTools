@@ -50,18 +50,18 @@ showed below
 ``` r
 library(EstimationTools)
 
-x <- rnorm(n = 10000, mean = 160, sd = 6)
-fit <- maxlogL(x = x, link=list(over=c("sd"), fun=c("log.link")))
+x <- rnorm( n = 10000, mean = 160, sd = 6 )
+fit <- maxlogL( x = x, link = list(over = "sd", fun = "log.link") )
 summary(fit)
 #> ---------------------------------------------------------------
 #> Optimization routine: nlminb 
 #> Standard Error calculation: Hessian from optim 
 #> ---------------------------------------------------------------
 #>        AIC      BIC
-#>   63963.04 63959.04
+#>   64292.76 64288.76
 #> ---------------------------------------------------------------
 #>      Estimate  Std. Error
-#> mean   159.847     0.0592
-#> sd       5.924     0.0419
+#> mean  159.9293     0.0602
+#> sd      6.0225     0.0426
 #> -----
 ```
