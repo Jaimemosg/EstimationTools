@@ -2,7 +2,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 [![Travis build
-status](https://travis-ci.org/Jaimemosg/EstimationTools.svg?branch=master)](https://travis-ci.org/Jaimemosg/EstimationTool)
+status](https://travis-ci.org/Jaimemosg/EstimationTools.svg?branch=master)](https://travis-ci.org/Jaimemosg/EstimationTools)
 
 # EstimationTools <img src="man/figure/ETLogo.png" align="right" height="200" align="right"/>
 
@@ -62,10 +62,10 @@ summary(fit)
 #> Standard Error calculation: Hessian from optim 
 #> ---------------------------------------------------------------
 #>        AIC      BIC
-#>   64236.74 64232.74
+#>   64170.47 64166.47
 #> ---------------------------------------------------------------
 #>      Estimate  Std. Error
-#> mean  159.9886     0.0601
-#> sd      6.0056     0.0425
+#> mean  160.0174     0.0599
+#> sd      5.9858     0.0423
 #> -----
 ```

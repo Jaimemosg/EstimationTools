@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 ```
-[![Travis build status](https://travis-ci.org/Jaimemosg/EstimationTools.svg?branch=master)](https://travis-ci.org/Jaimemosg/EstimationTool)
+[![Travis build status](https://travis-ci.org/Jaimemosg/EstimationTools.svg?branch=master)](https://travis-ci.org/Jaimemosg/EstimationTools)
 
 # EstimationTools <img src="man/figure/ETLogo.png" align="right" height="200" align="right"/>
 
