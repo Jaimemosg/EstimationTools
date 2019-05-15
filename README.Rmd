@@ -34,11 +34,7 @@ devtools::install_github('Jaimemosg/EstimationTools', force=TRUE)
 
 This is a basic example which shows you how to solve a common problem:
 
-\begin{align*} 
-X &\sim N(\mu, \sigma^2)
-\mu &= 160
-\sigma &= 6
-\end{align*}
+$$X \sim N(\mu, \sigma^2)$$
 
 The solution for a data set generated with size $n=10000$ is showed below
 

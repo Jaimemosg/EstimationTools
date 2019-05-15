@@ -27,11 +27,7 @@ devtools::install_github('Jaimemosg/EstimationTools', force=TRUE)
 
 This is a basic example which shows you how to solve a common problem:
 
-\begin{align*} 
-X &\sim N(\mu, \sigma^2)
-\mu &= 160
-\sigma &= 6
-\end{align*}
+\[X \sim N(\mu, \sigma^2)\]
 
 The solution for a data set generated with size \(n=10000\) is showed
 below
@@ -47,10 +43,10 @@ summary(fit)
 #> Standard Error calculation: Hessian from optim 
 #> ---------------------------------------------------------------
 #>        AIC      BIC
-#>   64281.61 64277.61
+#>   64184.44 64180.44
 #> ---------------------------------------------------------------
 #>      Estimate  Std. Error
-#> mean  160.0125     0.0602
-#> sd      6.0191     0.0426
+#> mean    160.00     0.0599
+#> sd        5.99     0.0424
 #> -----
 ```
