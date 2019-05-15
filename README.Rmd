@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of `EstimationTools` is to provide routines for parameter estimation of probability density/mass functions.
+The goal of `EstimationTools` is to provide routines for parameter estimation of probability density/mass functions in `R`.
 
 ## Installation
 
