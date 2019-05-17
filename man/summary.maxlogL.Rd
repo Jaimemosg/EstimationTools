@@ -23,12 +23,13 @@ This is a \code{summary} method for \code{\link{maxlogL}} object
 summary.maxlogL
 }
 \examples{
+\donttest{
 # One known parameter
 x <- rnorm(n = 10000, mean = 160, sd = 6)
 theta_1 <- maxlogL(x = x, dist = 'dnorm', control = list(trace = 1),
                  link = list(over = "sd", fun = "log_link"),
                  fixed = list(mean = 160))
-summary(theta_1)
+summary(theta_1)}
 
 }
 \seealso{

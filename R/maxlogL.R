@@ -37,7 +37,7 @@
 #'
 #'# Both parameters of normal distribution mapped with logarithmic function
 #' theta_2 <- maxlogL( x = x, link = list(over = c("mean","sd"),
-#'                                        fun = list("log_link","log_link")) )
+#'                                        fun = c("log_link","log_link")) )
 #' summary(theta_2)}
 #'
 #' @seealso \code{\link{summary.maxlogL}}, \code{\link{optim}}, \code{\link{nlminb}}, \code{\link{DEoptim}},
