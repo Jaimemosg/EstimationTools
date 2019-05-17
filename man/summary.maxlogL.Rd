@@ -9,7 +9,7 @@
 \arguments{
 \item{object}{an object class "\code{\link{maxlogL}}".}
 
-\item{...}{arguments passed to \code{\link[MASS]{abbey}} for estimation of stantdard error with non-parametric bootstrap.}
+\item{...}{arguments passed to \code{\link[boot]{boot}} for estimation of stantdard error with non-parametric bootstrap.}
 }
 \value{
 An object of class "summary.maxlogL".
@@ -23,7 +23,6 @@ This is a \code{summary} method for \code{\link{maxlogL}} object
 summary.maxlogL
 }
 \examples{
-
 # One known parameter
 x <- rnorm(n = 10000, mean = 160, sd = 6)
 theta_1 <- maxlogL(x = x, dist = 'dnorm', control = list(trace = 1),
@@ -31,4 +30,7 @@ theta_1 <- maxlogL(x = x, dist = 'dnorm', control = list(trace = 1),
                  fixed = list(mean = 160))
 summary(theta_1)
 
+}
+\seealso{
+\code{\link{maxlogL}}, \code{\link[boot]{boot}}
 }

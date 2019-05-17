@@ -38,7 +38,6 @@ of any distribution implemented in \code{R}.
 maxlogL
 }
 \examples{
-
 # Estimation with one fixed parameter
 x <- rnorm(n = 10000, mean = 160, sd = 6)
 theta_1 <- maxlogL(x = x, dist = 'dnorm', control = list(trace = 1),
@@ -53,7 +52,7 @@ summary(theta_2)
 
 }
 \seealso{
-\code{\link{optim}}, \code{\link{nlminb}}, \code{\link{DEoptim}},
+\code{\link{summary.maxlogL}}, \code{\link{optim}}, \code{\link{nlminb}}, \code{\link{DEoptim}},
          \code{\link{DEoptim.control}}
 }
 \author{
