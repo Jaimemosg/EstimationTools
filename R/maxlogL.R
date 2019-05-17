@@ -35,6 +35,7 @@
 #'                  fixed = list(mean = 160))
 #' summary(theta_1)
 #'
+#'\dontrun{
 #'# Both parameters of normal distribution mapped with logarithmic function
 #' theta_2 <- maxlogL(x = x, link = list(over = c("mean","sd"),
 #'                                   fun = c("log.link","log.link")))
@@ -48,7 +49,7 @@
 #'                    upper=c(Inf, Inf), lower = c(-Inf, -Inf),
 #'                    link = list(over = c("mu", "sigma"),
 #'                                fun = c("log.link","logit.link")))
-#' summary(theta_3)
+#' summary(theta_3)}
 #'
 #' @seealso \code{\link{optim}}, \code{\link{nlminb}}, \code{\link{DEoptim}},
 #'          \code{\link{DEoptim.control}}
