@@ -31,19 +31,14 @@
 #' # Estimation with one fixed parameter
 #' x <- rnorm(n = 10000, mean = 160, sd = 6)
 #' theta_1 <- maxlogL(x = x, dist = 'dnorm', control = list(trace = 1),
-#'                  link = list(over = "sd", fun = "log.link"),
+#'                  link = list(over = "sd", fun = "log_link"),
 #'                  fixed = list(mean = 160))
 #' summary(theta_1)
 #'
-#' # Optimization with "optim"
-#' library(gamlss.dist)
-#' y <- rZIP(n = 10000, mu = 6, sigma = 0.08)
-#' theta_3 <- maxlogL(x = y, dist = "dZIP",
-#'                    optimizer = "optim", start = c(0, 0),
-#'                    upper=c(Inf, Inf), lower = c(-Inf, -Inf),
-#'                    link = list(over = c("mu", "sigma"),
-#'                                fun = c("log.link","logit.link")))
-#' summary(theta_3)
+#'# Both parameters of normal distribution mapped with logarithmic function
+#' theta_2 <- maxlogL( x = x, link = list(over = c("mean","sd"),
+#'                                        fun = list("log_link","log_link")) )
+#' summary(theta_2)
 #'
 #' @seealso \code{\link{optim}}, \code{\link{nlminb}}, \code{\link{DEoptim}},
 #'          \code{\link{DEoptim.control}}
@@ -164,13 +159,14 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
     linked_params <- link_apply(over = link$over, dist_args = arguments,
                                 npar = npar)
     link_revert <- vector(mode = "list", length = length(linked_params))
-    link_revert <- lapply(1:length(linked_params), FUN =
-                            function(x) eval(parse(text = link$fun[x])))
+    link_rev <- paste0(link$fun, "()")
+    link_revert <- lapply( 1:length(linked_params), FUN =
+                             function(x) eval(parse(text = link_rev[x])) )
     for (i in 1:length(linked_params)){
       g_revert <- paste0("link_revert[[", i, "]]$g_inv")
       g_revert <- eval(parse(text = g_revert))
       fit$par[linked_params[i]] <- do.call( what = "g_revert",
-                                            args = list(x = fit$par[linked_params[i]]) )
+                                   args = list(x = fit$par[linked_params[i]]) )
     }
   }
 
@@ -253,13 +249,14 @@ minus_ll <- function(x, dist, dist_args, over, link, npar, fixed){
                                   npar = npar)
       if ( !is.null(linked_params) ){
         link_eval <- vector( mode = "list", length = length(linked_params) )
-        link_eval <- lapply(1:length(linked_params),
-                            FUN = function(x) eval( parse(text = link[x])) )
+        link <- paste0(link, "()")
+        link_eval <- lapply( 1:length(linked_params),
+                             FUN=function(x) eval(parse(text = link[x])) )
         for (i in 1:length(linked_params)){
           g_inv <- paste0("link_eval[[", i, "]]$g_inv")
-          g_inv <- eval(parse(text = g_inv))
+          g_inv <- eval(parse(text=g_inv))
           param[[linked_params[i]]] <- do.call( what = "g_inv", args = list(
-                                                x = param[[linked_params[i]]]) )
+            x=param[[linked_params[i]]]) )
         }
       }
     }
@@ -270,12 +267,37 @@ minus_ll <- function(x, dist, dist_args, over, link, npar, fixed){
   return(f)
 }
 
-## Default link functions ----
-log.link <- list(name = "Log", g = function(x) log(x),
-                 g_inv = function(x) exp(x))
-NegInv.link <- list(name = "NegInv", g = function(x) -1/x,
-                    g_inv = function(x) -x)
-InvAdd.link <- list(name = "InvAdd", g = function(x) -x,
-                    g_inv = function(x) -x)
-logit.link <- list(name = "Logit", g = function(x) log(1/(1-x)),
-                   g_inv = function(x) exp(x)/(exp(x)+1))
+#==============================================================================
+# Default link functions ------------------------------------------------------
+#==============================================================================
+
+log_link <- function(){
+  name <- "Log"
+  g <- function(x) log(x)
+  g_inv <- function(x) exp(x)
+  out <- list(name = name, g = g, g_inv = g_inv)
+  return(out)
+}
+
+NegInv_link <- function(){
+  name = "NegInv"
+  g = function(x) -1/x
+  g_inv = function(x) -x
+  out <- list(name = name, g = g, g_inv = g_inv)
+  return(out)
+}
+
+InvAdd_link <- function(){
+  name = "InvAdd"
+  g = function(x) -x
+  out <- list(name = name, g = g, g_inv = g_inv)
+  return(out)
+}
+
+logit_link <- function(){
+  name = "Logit"
+  g = function(x) log(1/(1-x))
+  g_inv = function(x) exp(x)/(exp(x)+1)
+  out <- list(name = name, g = g, g_inv = g_inv)
+  return(out)
+}
