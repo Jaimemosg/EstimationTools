@@ -40,12 +40,19 @@
 #'                                        fun = c("log_link","log_link")) )
 #' summary(theta_2)}
 #'
+#' @details
+#' \code{maxlogL} calculates computationally the likelihood function corresponding to
+#' the distribution specified in argument calls \code{dist} and maximizes it through
+#' \code{\link{optim}}, \code{\link{nlminb}} or \code{\link{DEoptim}}\code{maxlogL}
+#' generates an S3 object of class \code{maxlogL}.
+#'
 #' @seealso \code{\link{summary.maxlogL}}, \code{\link{optim}}, \code{\link{nlminb}}, \code{\link{DEoptim}},
 #'          \code{\link{DEoptim.control}}
 #'
 #==============================================================================
 # Maximization routine --------------------------------------------------------
 #==============================================================================
+
 maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
                     start = NULL, lower = NULL, upper = NULL,
                     optimizer = 'nlminb', control = NULL, ...){
