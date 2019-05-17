@@ -42,28 +42,19 @@ maxlogL
 # Estimation with one fixed parameter
 x <- rnorm(n = 10000, mean = 160, sd = 6)
 theta_1 <- maxlogL(x = x, dist = 'dnorm', control = list(trace = 1),
-                 link = list(over = "sd", fun = "log.link"),
+                 link = list(over = "sd", fun = "log_link"),
                  fixed = list(mean = 160))
 summary(theta_1)
 
 # Both parameters of normal distribution mapped with logarithmic function
-theta_2 <- maxlogL(x = x, link = list(over = c("mean","sd"),
-                                  fun = c("log.link","log.link")))
+theta_2 <- maxlogL( x = x, link = list(over = c("mean","sd"),
+                                       fun = list("log_link","log_link")) )
 summary(theta_2)
-
-# Optimization with "optim"
-library(gamlss.dist)
-y <- rZIP(n = 10000, mu = 6, sigma = 0.08)
-theta_3 <- maxlogL(x = y, dist = "dZIP",
-                   optimizer = "optim", start = c(0, 0),
-                   upper=c(Inf, Inf), lower = c(-Inf, -Inf),
-                   link = list(over = c("mu", "sigma"),
-                               fun = c("log.link","logit.link")))
-summary(theta_3)
 
 }
 \seealso{
-\code{\link{optim}}
+\code{\link{optim}}, \code{\link{nlminb}}, \code{\link{DEoptim}},
+         \code{\link{DEoptim.control}}
 }
 \author{
 Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
