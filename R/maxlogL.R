@@ -27,6 +27,7 @@
 #' @export
 #'
 #' @examples
+#' \donttest{
 #' # Estimation with one fixed parameter
 #' x <- rnorm(n = 10000, mean = 160, sd = 6)
 #' theta_1 <- maxlogL(x = x, dist = 'dnorm', control = list(trace = 1),
@@ -37,7 +38,7 @@
 #'# Both parameters of normal distribution mapped with logarithmic function
 #' theta_2 <- maxlogL( x = x, link = list(over = c("mean","sd"),
 #'                                        fun = list("log_link","log_link")) )
-#' summary(theta_2)
+#' summary(theta_2)}
 #'
 #' @seealso \code{\link{summary.maxlogL}}, \code{\link{optim}}, \code{\link{nlminb}}, \code{\link{DEoptim}},
 #'          \code{\link{DEoptim.control}}
