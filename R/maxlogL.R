@@ -42,8 +42,8 @@
 #'
 #' @details
 #' \code{maxlogL} calculates computationally the likelihood function corresponding to
-#' the distribution specified in argument calls \code{dist} and maximizes it through
-#' \code{\link{optim}}, \code{\link{nlminb}} or \code{\link{DEoptim}}\code{maxlogL}
+#' the distribution specified in argument \code{dist} and maximizes it through
+#' \code{\link{optim}}, \code{\link{nlminb}} or \code{\link{DEoptim}}. \code{maxlogL}
 #' generates an S3 object of class \code{maxlogL}.
 #'
 #' @seealso \code{\link{summary.maxlogL}}, \code{\link{optim}}, \code{\link{nlminb}}, \code{\link{DEoptim}},

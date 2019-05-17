@@ -36,6 +36,12 @@ of any distribution implemented in \code{R}.
 }
 \details{
 maxlogL
+
+
+\code{maxlogL} calculates computationally the likelihood function corresponding to
+the distribution specified in argument \code{dist} and maximizes it through
+\code{\link{optim}}, \code{\link{nlminb}} or \code{\link{DEoptim}}. \code{maxlogL}
+generates an S3 object of class \code{maxlogL}.
 }
 \examples{
 \donttest{
