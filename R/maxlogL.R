@@ -35,10 +35,15 @@
 #'                  fixed = list(mean = 160))
 #' summary(theta_1)
 #'
-#'# Both parameters of normal distribution mapped with logarithmic function
-#' theta_2 <- maxlogL(x = x, link = list(over = c("mean","sd"),
-#'                                   fun = c("log.link","log.link")))
-#' summary(theta_2)
+#' # Optimization with "optim"
+#' library(gamlss.dist)
+#' y <- rZIP(n = 10000, mu = 6, sigma = 0.08)
+#' theta_3 <- maxlogL(x = y, dist = "dZIP",
+#'                    optimizer = "optim", start = c(0, 0),
+#'                    upper=c(Inf, Inf), lower = c(-Inf, -Inf),
+#'                    link = list(over = c("mu", "sigma"),
+#'                                fun = c("log.link","logit.link")))
+#' summary(theta_3)
 #'
 #' @seealso \code{\link{optim}}, \code{\link{nlminb}}, \code{\link{DEoptim}},
 #'          \code{\link{DEoptim.control}}
