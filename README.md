@@ -3,6 +3,8 @@
 
 [![Travis build
 status](https://travis-ci.org/Jaimemosg/EstimationTools.svg?branch=master)](https://travis-ci.org/Jaimemosg/EstimationTools)
+[![AppVeyor Build
+Status](https://ci.appveyor.com/api/projects/status/github/Jaimemosg/EstimationTools?branch=master&svg=true)](https://ci.appveyor.com/project/Jaimemosg/EstimationTools)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 # EstimationTools <img src="man/figure/ETLogo.png" align="right" height="200" align="right"/>
@@ -24,7 +26,7 @@ You can install the last version of `EstimationTools` from
 
 ``` r
 if (!require('devtools')) install.packages('devtools')
-devtools::install_github('Jaimemosg/EstimationTools', force=TRUE)
+devtools::install_github('Jaimemosg/EstimationTools', force = TRUE)
 ```
 
 ## Example
@@ -56,17 +58,17 @@ showed below
 library(EstimationTools)
 
 x <- rnorm( n = 10000, mean = 160, sd = 6 )
-fit <- maxlogL( x = x, link = list(over = "sd", fun = "log.link") )
+fit <- maxlogL( x = x, link = list(over = "sd", fun = "log_link") )
 summary(fit)
 #> ---------------------------------------------------------------
 #> Optimization routine: nlminb 
 #> Standard Error calculation: Hessian from optim 
 #> ---------------------------------------------------------------
 #>        AIC      BIC
-#>   64297.93 64293.93
+#>   64313.97 64309.97
 #> ---------------------------------------------------------------
 #>      Estimate  Std. Error
-#> mean   159.870     0.0602
-#> sd       6.024     0.0426
+#> mean  159.9828     0.0603
+#> sd      6.0289     0.0426
 #> -----
 ```
