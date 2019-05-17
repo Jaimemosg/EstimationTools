@@ -11,7 +11,7 @@
 #' @aliases summary.maxlogL
 #'
 #' @param object an object class "\code{\link{maxlogL}}".
-#' @param ... arguments passed to \code{\link[MASS]{abbey}} for estimation of stantdard error with non-parametric bootstrap.
+#' @param ... arguments passed to \code{\link[boot]{boot}} for estimation of stantdard error with non-parametric bootstrap.
 #'
 #' @return An object of class "summary.maxlogL".
 #' @importFrom stats sd printCoefmat
@@ -19,13 +19,14 @@
 #' @export
 #'
 #' @examples
-#'
 #' # One known parameter
 #' x <- rnorm(n = 10000, mean = 160, sd = 6)
 #' theta_1 <- maxlogL(x = x, dist = 'dnorm', control = list(trace = 1),
 #'                  link = list(over = "sd", fun = "log_link"),
 #'                  fixed = list(mean = 160))
 #' summary(theta_1)
+#'
+#' @seealso \code{\link{maxlogL}}, \code{\link[boot]{boot}}
 #'
 #==============================================================================
 # Summary function ------------------------------------------------------------
