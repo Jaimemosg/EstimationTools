@@ -62,6 +62,9 @@ theta_3 <- maxlogL(x = y, dist = "dZIP",
 summary(theta_3)
 
 }
+\seealso{
+\code{\link{optim}}
+}
 \author{
 Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
 }

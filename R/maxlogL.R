@@ -50,7 +50,8 @@
 #'                                fun = c("log.link","logit.link")))
 #' summary(theta_3)
 #'
-#' @seealso \code{\link{optim}}
+#' @seealso \code{\link{optim}}, \code{\link{nlminb}}, \code{\link{DEoptim}},
+#'          \code{\link{DEoptim.control}}
 #'
 #==============================================================================
 # Maximization routine --------------------------------------------------------
