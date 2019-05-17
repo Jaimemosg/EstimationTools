@@ -32,7 +32,7 @@ You can install the last version of `EstimationTools` from [github](https://gith
 
 ``` r
 if (!require('devtools')) install.packages('devtools')
-devtools::install_github('Jaimemosg/EstimationTools', force=TRUE)
+devtools::install_github('Jaimemosg/EstimationTools', force = TRUE)
 ```
 
 ## Example
