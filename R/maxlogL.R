@@ -66,7 +66,7 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
   ## Common errors
   if (class(control) != 'list'){
     if (!is.null(control)){
-      stop("*control* argument must be a list \n \n")
+      stop("control argument must be a list \n \n")
     }
   }
 
@@ -80,14 +80,14 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
   if ( !is.null(link) ){
     if (length(match(link$over, names(arguments)) ) == 0)
       stop(paste0("Name(s) of linked parameter(s) do not agree with ",
-                  "arguments of *", dist, "*. \n Please, change name(s) ",
-                  "specified in argument *over* of *link* in ",
-                  "function *maxlogL*."))
+                  "arguments of ", dist, ". \n Please, change name(s) ",
+                  "specified in argument over of link in ",
+                  "function maxlogL."))
     if ( is.null(link$over) && !is.null(link$fun) ){
       warn <- paste0("You do not specify parameters to map, ",
                      "however, you specify a link function \n ",
-                     "(argument *over* is NULL but argument ",
-                     "*fun*: is not NULL)", "\n")
+                     "(argument over is NULL but argument ",
+                     "fun: is not NULL)", "\n")
       warning(warn)
     }
     if ( !is.null(link$over) && is.null(link$fun) )
@@ -97,13 +97,13 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
   if ( !is.null(fixed) ){
     if( length(match(names(fixed),names(arguments))) == 0 )
       stop(paste0("Name(s) of fixed (known) parameter(s) do not agree with ",
-                  "arguments of *", dist, "*. \n Please, change names ",
-                  "specified in argument *fixed param* in function ",
-                  "*maxlogL*", "\n"))
+                  "arguments of ", dist, ". \n Please, change names ",
+                  "specified in argument fixed param in function ",
+                  "maxlogL", "\n"))
   }
   if ( length(x)==0 || is.null(x) ){
     stop(paste0("Vector of data is needed to perform maximum likelihood ",
-                "estimation. \n Please, specify the vector x in *maxlogL* ",
+                "estimation. \n Please, specify the vector x in maxlogL ",
                 "function"))
   }
 
@@ -145,7 +145,7 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
   }
 
   if ( optimizer == 'DEoptim' ) {
-    if (is.null(lower) || is.null(upper)) stop("*lower* and *upper*
+    if (is.null(lower) || is.null(upper)) stop("lower and upper
                                                limits must be defined
                                                for DEoptim optimizer", "\n\n")
     DEoptimcontrol <- c(trace = FALSE, control)
@@ -154,7 +154,7 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
       if (length(trace_arg) == 2){
         DEoptimcontrol$trace <- NULL
       } else {
-        warn <-"DEoptim control argument *trace* has multiple definitions \n\n"
+        warn <-"DEoptim control argument trace has multiple definitions \n\n"
         warning(warn)
       }
     }
