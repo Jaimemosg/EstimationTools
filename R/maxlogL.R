@@ -27,7 +27,6 @@
 #' @export
 #'
 #' @examples
-#'
 #' # Estimation with one fixed parameter
 #' x <- rnorm(n = 10000, mean = 160, sd = 6)
 #' theta_1 <- maxlogL(x = x, dist = 'dnorm', control = list(trace = 1),
@@ -40,7 +39,7 @@
 #'                                        fun = list("log_link","log_link")) )
 #' summary(theta_2)
 #'
-#' @seealso \code{\link{optim}}, \code{\link{nlminb}}, \code{\link{DEoptim}},
+#' @seealso \code{\link{summary.maxlogL}}, \code{\link{optim}}, \code{\link{nlminb}}, \code{\link{DEoptim}},
 #'          \code{\link{DEoptim.control}}
 #'
 #==============================================================================
@@ -280,24 +279,25 @@ log_link <- function(){
 }
 
 NegInv_link <- function(){
-  name = "NegInv"
-  g = function(x) -1/x
-  g_inv = function(x) -x
+  name <- "NegInv"
+  g <- function(x) -1/x
+  g_inv <- function(x) -x
   out <- list(name = name, g = g, g_inv = g_inv)
   return(out)
 }
 
 InvAdd_link <- function(){
-  name = "InvAdd"
-  g = function(x) -x
+  name <- "InvAdd"
+  g <- function(x) -x
+  g_inv <- function(x) -x
   out <- list(name = name, g = g, g_inv = g_inv)
   return(out)
 }
 
 logit_link <- function(){
-  name = "Logit"
-  g = function(x) log(1/(1-x))
-  g_inv = function(x) exp(x)/(exp(x)+1)
+  name <- "Logit"
+  g <- function(x) log(1/(1-x))
+  g_inv <- function(x) exp(x)/(exp(x)+1)
   out <- list(name = name, g = g, g_inv = g_inv)
   return(out)
 }
