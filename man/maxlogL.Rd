@@ -11,11 +11,13 @@ maxlogL(x, dist = "dnorm", fixed = NULL, link = NULL, start = NULL,
 \arguments{
 \item{x}{a vector with data to be fitted. This argument must be a matrix with hierarchical distributions.}
 
-\item{dist}{a length-one character vector with the name of density/mass function of interest. The default value is "dnorm, to compute maximum likelihood estimators of normal distribution.}
+\item{dist}{a length-one character vector with the name of density/mass function of interest. The default value
+is "dnorm", to compute maximum likelihood estimators of normal distribution.}
 
-\item{fixed}{a list with fixed/known parameters of distribution of interest. Fixed parameters must be passed with its name.}
+\item{fixed}{a list with fixed/known parameters of distribution of interest. Fixed parameters
+must be passed with its name.}
 
-\item{link}{a list with names of parameters to be linked, and names of the link functions.}
+\item{link}{a list with names of parameters to be linked, and names of the \code{{LinkFunc}} object.}
 
 \item{start}{a numeric vector with initial values for the parameters to be estimated.}
 
@@ -23,7 +25,8 @@ maxlogL(x, dist = "dnorm", fixed = NULL, link = NULL, start = NULL,
 
 \item{upper}{a numeric vector with upper bounds, with the same lenght of argument `start` (for box-constrained optimization).}
 
-\item{optimizer}{a lenght-one character vector with the name of optimization routine. `nlminb`, `optim` and `DEoptim` are available; `nlminb` is the default.
+\item{optimizer}{a lenght-one character vector with the name of optimization routine. \code{\link{nlminb}}, \code{\link{optim}}
+and \code{\link{DEoptim}} are available; \code{\link{nlminb}} is the default.
 routine.}
 
 \item{control}{control parameters of the optimization routine.}
@@ -55,7 +58,8 @@ summary(theta_1)
 # Both parameters of normal distribution mapped with logarithmic function
 theta_2 <- maxlogL( x = x, link = list(over = c("mean","sd"),
                                        fun = c("log_link","log_link")) )
-summary(theta_2)}
+summary(theta_2)
+}
 
 }
 \seealso{
