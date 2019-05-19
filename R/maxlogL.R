@@ -9,13 +9,16 @@
 #' @author Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
 #'
 #' @param x a vector with data to be fitted. This argument must be a matrix with hierarchical distributions.
-#' @param dist a length-one character vector with the name of density/mass function of interest. The default value is "dnorm, to compute maximum likelihood estimators of normal distribution.
-#' @param fixed a list with fixed/known parameters of distribution of interest. Fixed parameters must be passed with its name.
-#' @param link a list with names of parameters to be linked, and names of the link functions.
+#' @param dist a length-one character vector with the name of density/mass function of interest. The default value
+#'             is "dnorm", to compute maximum likelihood estimators of normal distribution.
+#' @param fixed a list with fixed/known parameters of distribution of interest. Fixed parameters
+#'              must be passed with its name.
+#' @param link a list with names of parameters to be linked, and names of the \code{{LinkFunc}} object.
 #' @param start a numeric vector with initial values for the parameters to be estimated.
 #' @param lower a numeric vector with lower bounds, with the same lenght of argument `start` (for box-constrained optimization).
 #' @param upper a numeric vector with upper bounds, with the same lenght of argument `start` (for box-constrained optimization).
-#' @param optimizer a lenght-one character vector with the name of optimization routine. `nlminb`, `optim` and `DEoptim` are available; `nlminb` is the default.
+#' @param optimizer a lenght-one character vector with the name of optimization routine. \code{\link{nlminb}}, \code{\link{optim}}
+#'                  and \code{\link{DEoptim}} are available; \code{\link{nlminb}} is the default.
 #'                  routine.
 #' @param control control parameters of the optimization routine.
 #' @param ... Further arguments to be supplied to the optimizer.
@@ -38,7 +41,8 @@
 #'# Both parameters of normal distribution mapped with logarithmic function
 #' theta_2 <- maxlogL( x = x, link = list(over = c("mean","sd"),
 #'                                        fun = c("log_link","log_link")) )
-#' summary(theta_2)}
+#' summary(theta_2)
+#' }
 #'
 #' @details
 #' \code{maxlogL} calculates computationally the likelihood function corresponding to
@@ -272,40 +276,4 @@ minus_ll <- function(x, dist, dist_args, over, link, npar, fixed){
     return(-sum(logf))
   }
   return(f)
-}
-
-#==============================================================================
-# Default link functions ------------------------------------------------------
-#==============================================================================
-
-log_link <- function(){
-  name <- "Log"
-  g <- function(x) log(x)
-  g_inv <- function(x) exp(x)
-  out <- list(name = name, g = g, g_inv = g_inv)
-  return(out)
-}
-
-NegInv_link <- function(){
-  name <- "NegInv"
-  g <- function(x) -1/x
-  g_inv <- function(x) -x
-  out <- list(name = name, g = g, g_inv = g_inv)
-  return(out)
-}
-
-InvAdd_link <- function(){
-  name <- "InvAdd"
-  g <- function(x) -x
-  g_inv <- function(x) -x
-  out <- list(name = name, g = g, g_inv = g_inv)
-  return(out)
-}
-
-logit_link <- function(){
-  name <- "Logit"
-  g <- function(x) log(1/(1-x))
-  g_inv <- function(x) exp(x)/(exp(x)+1)
-  out <- list(name = name, g = g, g_inv = g_inv)
-  return(out)
 }
