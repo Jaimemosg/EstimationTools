@@ -17,7 +17,7 @@ is "dnorm", to compute maximum likelihood estimators of normal distribution.}
 \item{fixed}{a list with fixed/known parameters of distribution of interest. Fixed parameters
 must be passed with its name.}
 
-\item{link}{a list with names of parameters to be linked, and names of the \code{{LinkFunc}} object.}
+\item{link}{a list with names of parameters to be linked, and names of the link object.}
 
 \item{start}{a numeric vector with initial values for the parameters to be estimated.}
 
