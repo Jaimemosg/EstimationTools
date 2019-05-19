@@ -13,7 +13,7 @@
 #'             is "dnorm", to compute maximum likelihood estimators of normal distribution.
 #' @param fixed a list with fixed/known parameters of distribution of interest. Fixed parameters
 #'              must be passed with its name.
-#' @param link a list with names of parameters to be linked, and names of the \code{{LinkFunc}} object.
+#' @param link a list with names of parameters to be linked, and names of the link object.
 #' @param start a numeric vector with initial values for the parameters to be estimated.
 #' @param lower a numeric vector with lower bounds, with the same lenght of argument `start` (for box-constrained optimization).
 #' @param upper a numeric vector with upper bounds, with the same lenght of argument `start` (for box-constrained optimization).
