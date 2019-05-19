@@ -4,7 +4,7 @@ Title: Parameters estimation
 Version: 0.1.0
 Author: Jaime Mosquera Gutiérrez
 Maintainer: Jaime Mosquera Gutiérrez <jmosquerag@unal.edu.co>
-Imports: BBmisc, DEoptim, boot, numDeriv, gamlss.dist
+Imports: BBmisc, DEoptim, boot, numDeriv, gamlss.dist, R (>= 2.10)
 Description: This package provides some tools for parameter estimation 
     of probability distributions implemented in R.
 License: GPL-3
