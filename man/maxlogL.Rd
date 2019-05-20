@@ -63,8 +63,8 @@ summary(theta_2)
 
 }
 \seealso{
-\code{\link{summary.maxlogL}}, \code{\link{optim}}, \code{\link{nlminb}}, \code{\link{DEoptim}},
-         \code{\link{DEoptim.control}}
+\code{\link{summary.maxlogL}}, \code{\link{optim}}, \code{\link{nlminb}},
+         \code{\link{DEoptim}}, \code{\link{DEoptim.control}}
 }
 \author{
 Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}

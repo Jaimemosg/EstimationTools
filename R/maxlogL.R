@@ -23,6 +23,12 @@
 #' @param control control parameters of the optimization routine.
 #' @param ... Further arguments to be supplied to the optimizer.
 #'
+#' @details
+#' \code{maxlogL} calculates computationally the likelihood function corresponding to
+#' the distribution specified in argument \code{dist} and maximizes it through
+#' \code{\link{optim}}, \code{\link{nlminb}} or \code{\link{DEoptim}}. \code{maxlogL}
+#' generates an S3 object of class \code{maxlogL}.
+#'
 #' @importFrom stats nlminb optim pnorm
 #' @importFrom DEoptim DEoptim
 #' @importFrom BBmisc is.error
@@ -44,19 +50,11 @@
 #' summary(theta_2)
 #' }
 #'
-#' @details
-#' \code{maxlogL} calculates computationally the likelihood function corresponding to
-#' the distribution specified in argument \code{dist} and maximizes it through
-#' \code{\link{optim}}, \code{\link{nlminb}} or \code{\link{DEoptim}}. \code{maxlogL}
-#' generates an S3 object of class \code{maxlogL}.
-#'
-#' @seealso \code{\link{summary.maxlogL}}, \code{\link{optim}}, \code{\link{nlminb}}, \code{\link{DEoptim}},
-#'          \code{\link{DEoptim.control}}
-#'
+#' @seealso \code{\link{summary.maxlogL}}, \code{\link{optim}}, \code{\link{nlminb}},
+#'          \code{\link{DEoptim}}, \code{\link{DEoptim.control}}
 #==============================================================================
 # Maximization routine --------------------------------------------------------
 #==============================================================================
-
 maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
                     start = NULL, lower = NULL, upper = NULL,
                     optimizer = 'nlminb', control = NULL, ...){
@@ -207,11 +205,9 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
   class(result) <- "maxlogL"
   result
 }
-
 #==============================================================================
 # Link application ------------------------------------------------------------
 #==============================================================================
-
 link_apply <- function(over, dist_args, npar){
   if (is.null(over)){
     return(linked_params=NULL)
@@ -248,11 +244,9 @@ link_apply <- function(over, dist_args, npar){
     return(linked_params)
   }
 }
-
 #==============================================================================
 # log-likelihood function computation -----------------------------------------
 #==============================================================================
-
 minus_ll <- function(x, dist, dist_args, over, link, npar, fixed){
   f <- function(param){
     if( !is.null(link) && !is.null(over) ){
