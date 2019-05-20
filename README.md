@@ -27,6 +27,7 @@ You can install the last version of `EstimationTools` from
 ``` r
 if (!require('devtools')) install.packages('devtools')
 devtools::install_github('Jaimemosg/EstimationTools', force = TRUE)
+library(EstimationTools9
 ```
 
 ## Example
