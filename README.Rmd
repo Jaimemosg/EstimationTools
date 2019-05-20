@@ -29,11 +29,13 @@ The goal of `EstimationTools` is to provide a routine for parameter estimation o
 
 <!-- You can install the released version of EstimationTools from [CRAN](https://CRAN.R-project.org) with: -->
 
-You can install the last version of `EstimationTools` from [github](https://github.com/Jaimemosg/EstimationTools) with:
+You can install the last version of `EstimationTools` typing the following command lines
+in \code{R} console:
 
 ``` r
 if (!require('devtools')) install.packages('devtools')
 devtools::install_github('Jaimemosg/EstimationTools', force = TRUE)
+library(EstimationTools)
 ```
 
 ## Example

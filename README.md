@@ -21,12 +21,13 @@ estimation of probability density/mass functions in
 
 <!-- You can install the released version of EstimationTools from [CRAN](https://CRAN.R-project.org) with: -->
 
-You can install the last version of `EstimationTools` from
-[github](https://github.com/Jaimemosg/EstimationTools) with:
+You can install the last version of `EstimationTools` typing the
+following command lines in  console:
 
 ``` r
 if (!require('devtools')) install.packages('devtools')
 devtools::install_github('Jaimemosg/EstimationTools', force = TRUE)
+library(EstimationTools)
 ```
 
 ## Example
@@ -65,10 +66,10 @@ summary(fit)
 #> Standard Error calculation: Hessian from optim 
 #> ---------------------------------------------------------------
 #>        AIC      BIC
-#>   64313.97 64309.97
+#>   64340.65 64336.65
 #> ---------------------------------------------------------------
 #>      Estimate  Std. Error
-#> mean  159.9828     0.0603
-#> sd      6.0289     0.0426
+#> mean  160.0042     0.0604
+#> sd      6.0369     0.0427
 #> -----
 ```
