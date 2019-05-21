@@ -33,6 +33,13 @@ routine.}
 
 \item{...}{Further arguments to be supplied to the optimizer.}
 }
+\value{
+A list with class \code{"maxlogL"} containing the following
+ lists:
+\item{fit}{A list with output information about estimation and method used.}
+\item{inputs}{A list with all input arguments.}
+\item{outputs}{A list with number of parameters, sample size and standard error method.}
+}
 \description{
 Function to compute maximum likelihood estimators (MLE)
 of any distribution implemented in \code{R}.
