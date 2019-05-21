@@ -30,7 +30,7 @@ The goal of `EstimationTools` is to provide a routine for parameter estimation o
 <!-- You can install the released version of EstimationTools from [CRAN](https://CRAN.R-project.org) with: -->
 
 You can install the last version of `EstimationTools` typing the following command lines
-in \code{R} console:
+in `R` console:
 
 ``` r
 if (!require('devtools')) install.packages('devtools')
