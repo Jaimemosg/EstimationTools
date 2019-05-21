@@ -1,5 +1,3 @@
-#' maxlogL
-#'
 #' @title Maximum Likelihood Estimation
 #'
 #' @description
@@ -23,8 +21,12 @@
 #' @param control control parameters of the optimization routine.
 #' @param ... Further arguments to be supplied to the optimizer.
 #'
-#' @details
-#' \code{maxlogL} calculates computationally the likelihood function corresponding to
+#' @return A list with class \code{"maxlogL"} containing the following
+#'  lists:
+#' \item{fit}{A list with output information about estimation and method used.}
+#' \item{inputs}{A list with all input arguments.}
+#' \item{outputs}{A list with number of parameters, sample size and standard error method.}
+#' @details \code{maxlogL} calculates computationally the likelihood function corresponding to
 #' the distribution specified in argument \code{dist} and maximizes it through
 #' \code{\link{optim}}, \code{\link{nlminb}} or \code{\link{DEoptim}}. \code{maxlogL}
 #' generates an S3 object of class \code{maxlogL}.
@@ -199,9 +201,9 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
                  link = link, optimizer = optimizer,
                  start = start, lower = lower, upper = upper,
                  x = x)
-  others <- list(npar = npar - length(fixed), n = length(x),
+  outputs <- list(npar = npar - length(fixed), n = length(x),
                  StdE_Method = StdE_Method)
-  result <- list(fit = fit, inputs = inputs, others = others)
+  result <- list(fit = fit, inputs = inputs, outputs = outputs)
   class(result) <- "maxlogL"
   result
 }

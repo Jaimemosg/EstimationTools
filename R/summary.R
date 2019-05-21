@@ -1,7 +1,4 @@
-#' summary.maxlogL
-#'
-#' @title
-#' Summarize Maximum Likelihood Estimation
+#' @title Summarize Maximum Likelihood Estimation
 #'
 #' @description
 #' Displays maximum likelihood estimates computed with \code{\link{maxlogL}} with
