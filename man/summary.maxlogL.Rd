@@ -19,9 +19,6 @@ Displays maximum likelihood estimates computed with \code{\link{maxlogL}} with
 its standard errors, AIC and BIC.
 This is a \code{summary} method for \code{\link{maxlogL}} object
 }
-\details{
-summary.maxlogL
-}
 \examples{
 \donttest{
 # One known parameter
