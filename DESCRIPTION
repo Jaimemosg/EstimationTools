@@ -3,7 +3,8 @@ Type: Package
 Title: Parameters estimation
 Version: 1.0.0
 Authors@R: person("Jaime", "Mosquera", email = "jmosquerag@unal.edu.co", role = c("aut", "cre"))
-Imports: BBmisc, DEoptim, boot, numDeriv
+Imports: BBmisc, DEoptim, boot, numDeriv, Rdpack
+RdMacros: Rdpack
 Suggests: gamlss.dist
 Depends: R (>= 2.10)
 Description: This package provides some tools for parameter estimation 
