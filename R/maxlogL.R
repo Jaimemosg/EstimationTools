@@ -11,14 +11,17 @@
 #'             is "dnorm", to compute maximum likelihood estimators of normal distribution.
 #' @param fixed a list with fixed/known parameters of distribution of interest. Fixed parameters
 #'              must be passed with its name.
-#' @param link a list with names of parameters to be linked, and names of the link object.
+#' @param link a list with names of parameters to be linked, and names of the link object. For names of parameters, please
+#'            visit documentation of density function. There are three link functions available: \code{\link{log_link}},
+#'            \code{\link{logit_link}} and \code{\link{NegInv_link}}.
 #' @param start a numeric vector with initial values for the parameters to be estimated.
 #' @param lower a numeric vector with lower bounds, with the same lenght of argument `start` (for box-constrained optimization).
 #' @param upper a numeric vector with upper bounds, with the same lenght of argument `start` (for box-constrained optimization).
 #' @param optimizer a lenght-one character vector with the name of optimization routine. \code{\link{nlminb}}, \code{\link{optim}}
 #'                  and \code{\link{DEoptim}} are available; \code{\link{nlminb}} is the default.
 #'                  routine.
-#' @param control control parameters of the optimization routine.
+#' @param control control parameters of the optimization routine. Please, visit documentation of selected
+#'                optimizer for further information.
 #' @param ... Further arguments to be supplied to the optimizer.
 #'
 #' @return A list with class \code{"maxlogL"} containing the following

@@ -17,7 +17,9 @@ is "dnorm", to compute maximum likelihood estimators of normal distribution.}
 \item{fixed}{a list with fixed/known parameters of distribution of interest. Fixed parameters
 must be passed with its name.}
 
-\item{link}{a list with names of parameters to be linked, and names of the link object.}
+\item{link}{a list with names of parameters to be linked, and names of the link object. For names of parameters, please
+visit documentation of density function. There are three link functions available: \code{\link{log_link}},
+\code{\link{logit_link}} and \code{\link{NegInv_link}}.}
 
 \item{start}{a numeric vector with initial values for the parameters to be estimated.}
 
@@ -29,7 +31,8 @@ must be passed with its name.}
 and \code{\link{DEoptim}} are available; \code{\link{nlminb}} is the default.
 routine.}
 
-\item{control}{control parameters of the optimization routine.}
+\item{control}{control parameters of the optimization routine. Please, visit documentation of selected
+optimizer for further information.}
 
 \item{...}{Further arguments to be supplied to the optimizer.}
 }

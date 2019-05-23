@@ -23,16 +23,16 @@
 #' summary(phat)
 #'
 #' # Link function name
-#' fun <- log_link()$name
+#' fun <- logit_link()$name
 #' print(fun)
 #'
 #' # Link function
-#' g <- log_link()$g
+#' g <- logit_link()$g
 #' curve(g(x), from = 0, to = 1)
 #'
 #' # Inverse link function
-#' ginv <- log_link()$g_inv
-#' curve(ginv(x), from = -5, to = 5)
+#' ginv <- logit_link()$g_inv
+#' curve(ginv(x), from = -10, to = 10)
 #'}
 #'
 #' @details \code{log_link} is part of a family of generic functions with no input arguments that
@@ -89,7 +89,7 @@ logit_link <- function(){
 #' curve(ginv(x), from = -5, to = 5)
 #'}
 #'
-#' @details \code{logit_link} is part of a family of generic functions with no input arguments that
+#' @details \code{log_link} is part of a family of generic functions with no input arguments that
 #' defines and returns a list with details of the link function:
 #' \enumerate{
 #'    \item \code{name}: a character string with the name of the link function.
@@ -122,6 +122,27 @@ log_link <- function(){
 #' @return A list with negative inverse link function, its inverse and its name.
 #' @export
 #'
+#' @examples
+#' \donttest{
+#' # Estimation of rate parameter in exponential distribution
+#' T <- rexp(n = 100, rate = 1)
+#' lambda <- maxlogL(x = T, dist = 'dexp',
+#'                   link = list(over = "rate", fun = "NegInv_link"))
+#' summary(lambda)
+#'
+#' # Link function name
+#' fun <- NegInv_link()$name
+#' print(fun)
+#'
+#' # Link function
+#' g <- NegInv_link()$g
+#' curve(g(x), from = 0.1, to = 1)
+#'
+#' # Inverse link function
+#' ginv <- NegInv_link()$g_inv
+#' curve(ginv(x), from = 0.1, to = 1)
+#'}
+#'
 #' @details \code{logit_link} is part of a family of generic functions with no input arguments that
 #' defines and returns a list with details of the link function:
 #' \enumerate{
@@ -138,7 +159,7 @@ log_link <- function(){
 NegInv_link <- function(){
   name <- "NegInv"
   g <- function(x) -1/x
-  g_inv <- function(x) -x
+  g_inv <- function(x) -1/x
   out <- list(name = name, g = g, g_inv = g_inv)
   return(out)
 }
