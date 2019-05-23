@@ -29,6 +29,9 @@ theta_1 <- maxlogL(x = x, dist = 'dnorm', control = list(trace = 1),
 summary(theta_1)}
 
 }
+\references{
+\insertRef{Canty2017}{EstimationTools}
+}
 \seealso{
 \code{\link{maxlogL}}, \code{\link[boot]{boot}}
 }

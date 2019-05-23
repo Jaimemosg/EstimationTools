@@ -24,6 +24,11 @@
 #'                  fixed = list(mean = 160))
 #' summary(theta_1)}
 #'
+#' @references
+#' \insertRef{Canty2017}{EstimationTools}
+#'
+#' @importFrom Rdpack reprompt
+#'
 #' @seealso \code{\link{maxlogL}}, \code{\link[boot]{boot}}
 #'
 #==============================================================================

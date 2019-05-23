@@ -69,6 +69,15 @@ summary(theta_2)
 }
 
 }
+\references{
+\insertRef{Nelder1965}{EstimationTools}
+
+\insertRef{Fox1978}{EstimationTools}
+
+\insertRef{Nash1979}{EstimationTools}
+
+\insertRef{Dennis1981}{EstimationTools}
+}
 \seealso{
 \code{\link{summary.maxlogL}}, \code{\link{optim}}, \code{\link{nlminb}},
          \code{\link{DEoptim}}, \code{\link{DEoptim.control}}

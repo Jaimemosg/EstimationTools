@@ -29,6 +29,7 @@
 #' \item{fit}{A list with output information about estimation and method used.}
 #' \item{inputs}{A list with all input arguments.}
 #' \item{outputs}{A list with number of parameters, sample size and standard error method.}
+#'
 #' @details \code{maxlogL} calculates computationally the likelihood function corresponding to
 #' the distribution specified in argument \code{dist} and maximizes it through
 #' \code{\link{optim}}, \code{\link{nlminb}} or \code{\link{DEoptim}}. \code{maxlogL}
@@ -54,6 +55,17 @@
 #'                                        fun = c("log_link","log_link")) )
 #' summary(theta_2)
 #' }
+#'
+#' @references
+#' \insertRef{Nelder1965}{EstimationTools}
+#'
+#' \insertRef{Fox1978}{EstimationTools}
+#'
+#' \insertRef{Nash1979}{EstimationTools}
+#'
+#' \insertRef{Dennis1981}{EstimationTools}
+#'
+#' @importFrom Rdpack reprompt
 #'
 #' @seealso \code{\link{summary.maxlogL}}, \code{\link{optim}}, \code{\link{nlminb}},
 #'          \code{\link{DEoptim}}, \code{\link{DEoptim.control}}
