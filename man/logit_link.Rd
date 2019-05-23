@@ -37,16 +37,16 @@ phat <- maxlogL(x = N, dist = 'dbinom', fixed = list(size=10),
 summary(phat)
 
 # Link function name
-fun <- log_link()$name
+fun <- logit_link()$name
 print(fun)
 
 # Link function
-g <- log_link()$g
+g <- logit_link()$g
 curve(g(x), from = 0, to = 1)
 
 # Inverse link function
-ginv <- log_link()$g_inv
-curve(ginv(x), from = -5, to = 5)
+ginv <- logit_link()$g_inv
+curve(ginv(x), from = -10, to = 10)
 }
 
 }

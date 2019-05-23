@@ -27,6 +27,28 @@ defines and returns a list with details of the link function:
 
 There is a way to add new mapping functions. The user must specify the details aforesaid.
 }
+\examples{
+\donttest{
+# Estimation of rate parameter in exponential distribution
+T <- rexp(n = 100, rate = 1)
+lambda <- maxlogL(x = T, dist = 'dexp',
+                  link = list(over = "rate", fun = "NegInv_link"))
+summary(lambda)
+
+# Link function name
+fun <- NegInv_link()$name
+print(fun)
+
+# Link function
+g <- NegInv_link()$g
+curve(g(x), from = 0.1, to = 1)
+
+# Inverse link function
+ginv <- NegInv_link()$g_inv
+curve(ginv(x), from = 0.1, to = 1)
+}
+
+}
 \seealso{
 \code{\link{maxlogL}}
 

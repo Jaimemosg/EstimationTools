@@ -1,7 +1,7 @@
 Package: EstimationTools
 Type: Package
 Title: Parameters estimation
-Version: 0.9.0
+Version: 1.0.0
 Authors@R: person("Jaime", "Mosquera", email = "jmosquerag@unal.edu.co", role = c("aut", "cre"))
 Imports: BBmisc, DEoptim, boot, numDeriv
 Suggests: gamlss.dist
