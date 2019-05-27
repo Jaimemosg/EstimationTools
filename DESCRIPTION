@@ -4,7 +4,7 @@ Title: Maxmum Likelihood estimation for probability functions from data
 Version: 0.0.1
 Authors@R: person("Jaime", "Mosquera", email = "jmosquerag@unal.edu.co", role = c("aut", "cre"), 
       comment = c(ORCID = "0000-0002-1684-4756"))
-Mantainer: Jaime Mosquera <jmosquerag@unal.edu.co>
+Mantainer: Jaime Mosquera Gutiérrez <jmosquerag@unal.edu.co>
 Imports: BBmisc, DEoptim, boot, numDeriv, Rdpack
 RdMacros: Rdpack
 Suggests: gamlss.dist, knitr, rmarkdown
