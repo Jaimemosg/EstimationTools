@@ -8,7 +8,9 @@
 #' @aliases summary.maxlogL
 #'
 #' @param object an object class "\code{\link{maxlogL}}".
-#' @param ... arguments passed to \code{\link[boot]{boot}} for estimation of stantdard error with non-parametric bootstrap.
+#' @param ... arguments passed to \code{\link[boot]{boot}} for estimation of stantdard error with
+#' non-parametric bootstrap. This computation occurs when option \code{hessian = TRUE} from \code{\link{optim}}
+#' and \code{\link[numDeriv]{hessian}} fails in \code{\link{maxlogL}} routine.
 #'
 #' @return An object of class "summary.maxlogL".
 #' @importFrom stats sd printCoefmat
@@ -41,15 +43,15 @@ summary.maxlogL <- function(object, ...){
   list2env(var.list , envir = .myenv)
   estimate <- object$fit$par
   solver <- object$inputs$optimizer
-  StdE_Method <- object$others$StdE_Method
+  StdE_Method <- object$outputs$StdE_Method
 
   if( any(is.na(object$fit$hessian)) ){
     StdE_Method <- 'Bootstrap'
     stdE <- try(boot_MLE(object=object, ...), silent = TRUE)
     if( (is.na(stdE) || is.error(stdE)) || is.character(stdE) ){
-      stdE <- rep(NaN, times = object$others$npar)
-      Zvalue <- rep(NaN, times = object$others$npar)
-      pvalue <- rep(NaN, times = object$others$npar)
+      stdE <- rep(NaN, times = object$outputs$npar)
+      Zvalue <- rep(NaN, times = object$outputs$npar)
+      pvalue <- rep(NaN, times = object$outputs$npar)
     } else {
       Zvalue <- round(estimate / stdE, digits = 4)
       pvalue <- 2 * pnorm(abs(Zvalue), lower.tail = FALSE)
@@ -61,9 +63,9 @@ summary.maxlogL <- function(object, ...){
     pvalue <- 2 * pnorm(abs(Zvalue), lower.tail = FALSE)
   }
   if (any(is.na(stdE))){
-    stdE <- rep(NaN, times = object$others$npar)
-    Zvalue <- rep(NaN, times = object$others$npar)
-    pvalue <- rep(NaN, times = object$others$npar)
+    stdE <- rep(NaN, times = object$outputs$npar)
+    Zvalue <- rep(NaN, times = object$outputs$npar)
+    pvalue <- rep(NaN, times = object$outputs$npar)
   }
   res <- cbind(Estimate = estimate, stdE = stdE, Zvalue, pvalue)
   # res <- formatC(res, format = "e", digits = 3)
@@ -71,7 +73,7 @@ summary.maxlogL <- function(object, ...){
 
   colnames(res) <- c('Estimate ', 'Std. Error', 'Z value', 'Pr(>z)')
 
-  names_numeric <- rep("", times=object$others$npar)
+  names_numeric <- rep("", times=object$outputs$npar)
   dist_args <- as.list(args(object$inputs$dist))
   j <- 1
   for (i in 1:length(dist_args)){
@@ -90,8 +92,8 @@ summary.maxlogL <- function(object, ...){
   cat(paste0('Optimization routine: ', object$input$optimizer),'\n')
   cat(paste0('Standard Error calculation: ', StdE_Method),'\n')
   cat("---------------------------------------------------------------\n")
-  AIC <- 2 * object$others$npar - 2 * object$fit$objective
-  BIC <- log(length(object$others$n)) * object$others$npar - 2 * object$fit$objective
+  AIC <- 2 * object$outputs$npar - 2 * object$fit$objective
+  BIC <- log(length(object$outputs$n)) * object$outputs$npar - 2 * object$fit$objective
   table <- data.frame(AIC=round(AIC, digits = 4),
                       BIC=round(BIC, digits = 4))
   rownames(table) <- " "
