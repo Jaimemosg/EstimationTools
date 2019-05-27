@@ -7,7 +7,7 @@ Authors@R: person("Jaime", "Mosquera", email = "jmosquerag@unal.edu.co", role = 
 Mantainer: Jaime Mosquera <jmosquerag@unal.edu.co>
 Imports: BBmisc, DEoptim, boot, numDeriv, Rdpack
 RdMacros: Rdpack
-Suggests: gamlss.dist
+Suggests: gamlss.dist, knitr, rmarkdown
 Depends: R (>= 2.10)
 Description: Allows parameters estimation of any probability distribution implemented in R via 
     maximum likelihood.
