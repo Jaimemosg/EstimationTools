@@ -3,11 +3,12 @@ Type: Package
 Title: Maxmum Likelihood estimation for probability functions from data
 Version: 1.0.0
 Authors@R: person("Jaime", "Mosquera", email = "jmosquerag@unal.edu.co", role = c("aut", "cre"))
+Mantainer: Jaime Mosquera <jmosquerag@unal.edu.co>
 Imports: BBmisc, DEoptim, boot, numDeriv, Rdpack
 RdMacros: Rdpack
 Suggests: gamlss.dist
 Depends: R (>= 2.10)
-Description: Parameters estimation of any probability distribution implemented in R via 
+Description: Allows parameters estimation of any probability distribution implemented in R via 
     maximum likelihood.
 License: GPL-3
 URL: https://github.com/Jaimemosg/EstimationTools
