@@ -2,7 +2,7 @@ Submission 2
 
 ----------------------------------------------------------------
 
-## v1.0.0 : issues in submission 1:
+## v1.0.1 : Issues in submission 1:
 
 * The Title field should be in title case: fixed
 * This is way to vague: Thousands of R package do some parameter estimation: fixed

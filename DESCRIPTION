@@ -1,6 +1,6 @@
 Package: EstimationTools
 Type: Package
-Title: Maxmum Likelihood Estimation for Probability Functions from Data Sets
+Title: Maximum Likelihood Estimation for Probability Functions from Data Sets
 Version: 1.0.1
 Authors@R: person("Jaime", "Mosquera", email = "jmosquerag@unal.edu.co", role = c("aut", "cre"), 
       comment = c(ORCID = "0000-0002-1684-4756"))
@@ -9,7 +9,7 @@ Imports: BBmisc, DEoptim, boot, numDeriv, Rdpack
 RdMacros: Rdpack
 Suggests: gamlss.dist, knitr, rmarkdown
 Depends: R (>= 2.10)
-Description: A routine for parameter estimation for any probability density or 
+Description: A routine for parameter estimation for any probability density or
     mass function implemented in R via maximum likelihood given a data set.
 License: GPL-3 + file LICENSE
 URL: https://github.com/Jaimemosg/EstimationTools
