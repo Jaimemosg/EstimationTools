@@ -45,27 +45,35 @@ summary.maxlogL <- function(object, ...){
   solver <- object$inputs$optimizer
   StdE_Method <- object$outputs$StdE_Method
 
-  if( any(is.na(object$fit$hessian)) ){
-    StdE_Method <- 'Bootstrap'
-    stdE <- try(boot_MLE(object=object, ...), silent = TRUE)
-    if( (is.na(stdE) || is.error(stdE)) || is.character(stdE) ){
-      stdE <- rep(NaN, times = object$outputs$npar)
-      Zvalue <- rep(NaN, times = object$outputs$npar)
-      pvalue <- rep(NaN, times = object$outputs$npar)
+  if ( any(is.na(estimate)) || any(is.nan(estimate)) ){
+    stop(paste0("'maxlogL' computes NA or NaN estimates. ",
+                "Please, change optimization algorithm."))
+  } else {
+    if( any(is.na(object$fit$hessian)) ){
+      StdE_Method <- 'Bootstrap'
+      warn <- paste0("\n...Bootstrap computation of Standard Error. ",
+                     "Please, wait a few minutes...\n\n")
+      cat(warn)
+      stdE <- try(boot_MLE(object=object, ...), silent = TRUE)
+      if( (is.na(stdE) || is.error(stdE)) || is.character(stdE) ){
+        stdE <- rep(NA, times = object$outputs$npar)
+        Zvalue <- rep(NA, times = object$outputs$npar)
+        pvalue <- rep(NA, times = object$outputs$npar)
+      } else {
+        Zvalue <- round(estimate / stdE, digits = 4)
+        pvalue <- 2 * pnorm(abs(Zvalue), lower.tail = FALSE)
+      }
     } else {
+      # Diagonal of Hessian^-1
+      stdE <- round(sqrt(diag(solve(object$fit$hessian))), digits = 4)
       Zvalue <- round(estimate / stdE, digits = 4)
       pvalue <- 2 * pnorm(abs(Zvalue), lower.tail = FALSE)
     }
-  } else {
-    # Diagonal of Hessian^-1
-    stdE <- round(sqrt(diag(solve(object$fit$hessian))), digits = 4)
-    Zvalue <- round(estimate / stdE, digits = 4)
-    pvalue <- 2 * pnorm(abs(Zvalue), lower.tail = FALSE)
   }
   if (any(is.na(stdE))){
-    stdE <- rep(NaN, times = object$outputs$npar)
-    Zvalue <- rep(NaN, times = object$outputs$npar)
-    pvalue <- rep(NaN, times = object$outputs$npar)
+    stdE <- rep(NA, times = object$outputs$npar)
+    Zvalue <- rep(NA, times = object$outputs$npar)
+    pvalue <- rep(NA, times = object$outputs$npar)
   }
   res <- cbind(Estimate = estimate, stdE = stdE, Zvalue, pvalue)
   # res <- formatC(res, format = "e", digits = 3)
