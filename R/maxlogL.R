@@ -119,7 +119,7 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
                   "specified in argument 'fixed' in function ",
                   "maxlogL", "\n"))
   }
-  if ( length(x)==0 || is.null(x) ){
+  if ( length(x) == 0 || is.null(x) ){
     stop(paste0("Vector of data is needed to perform maximum likelihood ",
                 "estimation. \n Please, specify the vector x in maxlogL ",
                 "function. \n"))
@@ -163,7 +163,7 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
   }
 
   if ( optimizer == 'DEoptim' ) {
-    if (is.null(lower) || is.null(upper)) stop("lower and upper
+    if (is.null(lower) || is.null(upper)) stop("'lower' and 'upper'
                                                limits must be defined
                                                for 'DEoptim' optimizer", "\n\n")
     DEoptimcontrol <- c(trace = FALSE, control)
@@ -172,7 +172,7 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
       if (length(trace_arg) == 2){
         DEoptimcontrol$trace <- NULL
       } else {
-        warn <-"DEoptim control argument trace has multiple definitions \n\n"
+        warn <-"Argument 'trace' in 'DEoptim.control' has multiple definitions \n"
         warning(warn)
       }
     }
@@ -205,11 +205,11 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
                            hessian = TRUE)$hessian, silent = TRUE)
   # fit$hessian <- try(optimHess(par = fit$par, fn = ll.noLink, method = 'L-BFGS-B',
   #                              lower = lower, upper = upper), silent = TRUE)
-  StdE_Method <- 'Hessian from optim'
+  StdE_Method <- "Hessian from optim"
   if ( (is.na(fit$hessian) || is.error(fit$hessian)) ||
        is.character(fit$hessian) ){
     fit$hessian <- try(numDeriv::hessian(ll.noLink, fit$par), silent = TRUE)
-    StdE_Method <- 'numDeriv::hessian'
+    StdE_Method <- "numDeriv::hessian"
   }
   if ( is.na(fit$hessian) || is.error(fit$hessian) ||
        is.character(fit$hessian)) fit$hessian <- NA
