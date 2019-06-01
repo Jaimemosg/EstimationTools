@@ -91,19 +91,19 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
   solvers <- c('nlminb', 'optim', 'DEoptim')
   if ( !optimizer %in% solvers ){
     stop(c("Select optimizers from the following list: \n \n",
-           paste0(solvers, collapse=", ")))
+           "  --> ",paste0(solvers, collapse=", ")))
   }
   if ( !is.null(link) ){
     if (length(match(link$over, names(arguments)) ) == 0)
       stop(paste0("Name(s) of linked parameter(s) do not agree with ",
                   "arguments of ", dist, ". \n Please, change name(s) ",
-                  "specified in argument over of link in ",
-                  "function maxlogL."))
+                  "specified in the entry 'over' of 'link' argument in \n",
+                  " function maxlogL.\n"))
     if ( is.null(link$over) && !is.null(link$fun) ){
       warn <- paste0("You do not specify parameters to map, ",
                      "however, you specify a link function \n ",
-                     "(argument over is NULL but argument ",
-                     "fun: is not NULL)", "\n")
+                     "(the entry 'over' in 'link' argument is NULL ",
+                     "but the entry 'fun' is not NULL).", "\n")
       warning(warn)
     }
     if ( !is.null(link$over) && is.null(link$fun) )
@@ -120,7 +120,7 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
   if ( length(x)==0 || is.null(x) ){
     stop(paste0("Vector of data is needed to perform maximum likelihood ",
                 "estimation. \n Please, specify the vector x in maxlogL ",
-                "function"))
+                "function. \n"))
   }
 
   # Exclusion of fixed parameters from objective variables
@@ -220,7 +220,7 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
                  StdE_Method = StdE_Method)
   result <- list(fit = fit, inputs = inputs, outputs = outputs)
   class(result) <- "maxlogL"
-  result
+  return(result)
 }
 #==============================================================================
 # Link application ------------------------------------------------------------
