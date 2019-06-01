@@ -103,18 +103,20 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
       warn <- paste0("You do not specify parameters to map, ",
                      "however, you specify a link function \n ",
                      "(the entry 'over' in 'link' argument is NULL ",
-                     "but the entry 'fun' is not NULL).", "\n")
+                     "but the entry 'fun' is not NULL).\n")
       warning(warn)
     }
     if ( !is.null(link$over) && is.null(link$fun) )
-      stop(paste0("You do not specify parameters to map, ",
-                  "however, you specify a link function. \n "))
+      stop(paste0("You specify parameters to map, ",
+                  "however, you do not specify a link function \n",
+                  "(the entry 'fun' in 'link' argument is NULL ",
+                  "but the entry 'over' is not NULL).\n "))
   }
   if ( !is.null(fixed) ){
     if( length(match(names(fixed),names(arguments))) == 0 )
       stop(paste0("Name(s) of fixed (known) parameter(s) do not agree with ",
                   "arguments of ", dist, ". \n Please, change names ",
-                  "specified in argument fixed param in function ",
+                  "specified in argument 'fixed' in function ",
                   "maxlogL", "\n"))
   }
   if ( length(x)==0 || is.null(x) ){
@@ -163,7 +165,7 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
   if ( optimizer == 'DEoptim' ) {
     if (is.null(lower) || is.null(upper)) stop("lower and upper
                                                limits must be defined
-                                               for DEoptim optimizer", "\n\n")
+                                               for 'DEoptim' optimizer", "\n\n")
     DEoptimcontrol <- c(trace = FALSE, control)
     trace_arg <- which(names(DEoptimcontrol) == "trace")
     if (length(trace_arg) > 1){
