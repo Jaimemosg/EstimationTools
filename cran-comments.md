@@ -30,9 +30,6 @@ Status: OK
 
 R CMD check results
 
-0 errors | 1 warnings | 0 notes
+0 errors | 0 warnings | 0 notes
 
-Warning messages:
-1: package 'DEoptim' was built under R version 3.5.2 
-2: package 'boot' was built under R version 3.5.3 
 ----------------------------------------------------------------
