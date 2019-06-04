@@ -9,7 +9,11 @@ RdMacros: Rdpack
 Suggests: gamlss.dist, knitr, rmarkdown
 Depends: R (>= 3.3.0), stats
 Description: A routine for parameter estimation for any probability density or
-    mass function implemented in R via maximum likelihood given a data set.
+    mass function implemented in R via maximum likelihood (ML) given a data set. This
+    routine is a wrapper function specifically developed for ML estimation. There are
+    included optimization procedures such as 'nlminb' and 'optim' from base package,
+    and 'DEoptim' Mullen (2011) <doi: 10.18637/jss.v040.i06>. Standard errors are
+    estimated with 'numDeriv' Gilbert (2011) <http://CRAN.R-project.org/package=numDeriv>.
 License: GPL-3
 URL: https://github.com/Jaimemosg/EstimationTools
 Encoding: UTF-8
