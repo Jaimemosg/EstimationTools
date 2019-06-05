@@ -67,6 +67,15 @@ theta_2 <- maxlogL( x = x, dist = "dnorm",
                                 fun = c("log_link","log_link")) )
 summary(theta_2)
 
+# Parameter estimation in ZIP distribution
+library(gamlss.dist)
+z <- rZIP(n=10000, mu=6, sigma=0.08)
+theta_3  <- maxlogL( x = z, dist='dZIP', start = c(0, 0), lower = c(-Inf, -Inf),
+                     upper = c(Inf, Inf), optimizer = 'optim',
+                     link = list(over=c("mu", "sigma"),
+                     fun = c("log_link", "logit_link")) )
+summary(theta_3)
+
 }
 \references{
 \insertRef{Nelder1965}{EstimationTools}
