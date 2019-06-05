@@ -1,6 +1,9 @@
-Submission 3 in progress
+Submission 4 in progress
 
 ----------------------------------------------------------------
+## v1.0.2 : Issues in submission 3:
+
+* All your examples are wrapped in \donttest{}: fixed
 
 ## v1.0.2 : Issues in submission 2:
 
