@@ -78,7 +78,7 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
   # List of arguments of density function
   arguments <- as.list(args(dist))
 
-  ## Common errors
+  # Common errors
   if (class(control) != 'list'){
     if (!is.null(control)){
       stop("control argument must be a list \n \n")
@@ -134,19 +134,37 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
   nsym <- sapply(1:length(arguments),
                  FUN = function(x) is.symbol(arguments[[x]]))
 
-  ## x is a symbol, must be substracted
+  # x is a symbol, must be substracted
   npar <- length(nnum[nnum == TRUE]) + length(nsym[nsym == TRUE]) - 1
 
-  ##  Negative of log-Likelihood function
+  #  Negative of log-Likelihood function
   ll <- minus_ll(x = x, dist, dist_args = arguments, over = link$over,
                  link = link$fun, npar = npar, fixed = fixed)
 
-  ##  Default feasible region
+  #  Default feasible region
   if ( is.null(lower) ) lower <- rep(x = -Inf, times = npar)
   if ( is.null(upper) ) upper <- rep(x = Inf, times = npar)
   if ( is.null(start) ) start <- rep(x = 0, times = npar)
 
-  ## Optimizers
+  # Link application over initial values
+  if ( !is.null(lower) & !is.null(upper) & !is.null(start)){
+    if ( !is.null(link$over) & !is.null(link$fun) ){
+      linked_params <- link_apply(over = link$over, dist_args = arguments,
+                                  npar = npar)
+      link_start <- vector(mode = "list", length = length(linked_params))
+      link_init <- paste0(link$fun, "()")
+      link_start <- lapply( 1:length(linked_params), FUN =
+                               function(x) eval(parse(text = link_init[x])) )
+      for (i in 1:length(linked_params)){
+        g_start <- paste0("link_start[[", i, "]]$g_inv")
+        g_start <- eval(parse(text = g_start))
+        start[linked_params[i]] <- do.call( what = "g_start",
+                                              args = list(x = start[linked_params[i]]) )
+      }
+    }
+  }
+
+  # Optimizers
   if ( optimizer == 'nlminb' ) {
     nlminbcontrol <- control
     fit <- nlminb(start = start, objective = ll,
@@ -181,7 +199,7 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
     fit$objective <- -fit$optim$bestval
   }
 
-  ## Revert link mapping
+  # Revert link mapping
   if ( !is.null(link$over) & !is.null(link$fun) ){
     linked_params <- link_apply(over = link$over, dist_args = arguments,
                                 npar = npar)
@@ -204,6 +222,7 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
                            hessian = TRUE)$hessian, silent = TRUE)
   # fit$hessian <- try(optimHess(par = fit$par, fn = ll.noLink, method = 'L-BFGS-B',
   #                              lower = lower, upper = upper), silent = TRUE)
+
   StdE_Method <- "Hessian from optim"
   if ( (any(is.na(fit$hessian)) | is.error(fit$hessian)) |
        any(is.character(fit$hessian)) ){
