@@ -44,9 +44,11 @@ summary.maxlogL <- function(object, ...){
   solver <- object$inputs$optimizer
   StdE_Method <- object$outputs$StdE_Method
 
-  if ( any(is.na(estimate)) || any(is.nan(estimate)) ){
-    stop(paste0("'maxlogL' computes NA or NaN estimates. ",
-                "Please, change optimization algorithm."))
+  if ( any(is.na(estimate)) | any(is.nan(estimate)) |
+       any(is.infinite(estimate))){
+    stop(paste0("'maxlogL' computes NA ,NaN or Inf estimates. ",
+                "Please, change optimization algorithm or ",
+                "set different initial value(s)"))
   } else {
     if( any(is.na(object$fit$hessian)) ){
       StdE_Method <- 'Bootstrap'
@@ -54,7 +56,7 @@ summary.maxlogL <- function(object, ...){
                      "Please, wait a few minutes...\n\n")
       cat(warn)
       stdE <- try(boot_MLE(object=object, ...), silent = TRUE)
-      if( (is.na(stdE) || is.error(stdE)) || is.character(stdE) ){
+      if( (any(is.na(stdE)) | is.error(stdE)) | any(is.character(stdE)) ){
         stdE <- rep(NA, times = object$outputs$npar)
         Zvalue <- rep(NA, times = object$outputs$npar)
         pvalue <- rep(NA, times = object$outputs$npar)
