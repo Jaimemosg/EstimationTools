@@ -28,7 +28,6 @@ defines and returns a list with details of the link function:
 There is a way to add new mapping functions. The user must specify the details aforesaid.
 }
 \examples{
-\donttest{
 # One parameters of normal distribution mapped with logarithmic function
 x <- rnorm(n = 10000, mean = 50, sd = 4)
 theta_2 <- maxlogL( x = x, link = list(over = "sd",
@@ -46,7 +45,6 @@ curve(g(x), from = 0, to = 1)
 # Inverse link function
 ginv <- log_link()$g_inv
 curve(ginv(x), from = -5, to = 5)
-}
 
 }
 \seealso{

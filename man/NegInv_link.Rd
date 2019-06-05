@@ -30,7 +30,7 @@ There is a way to add new mapping functions. The user must specify the details a
 \examples{
 \donttest{
 # Estimation of rate parameter in exponential distribution
-T <- rexp(n = 100, rate = 1)
+T <- rexp(n = 100, rate = 0.5)
 lambda <- maxlogL(x = T, dist = 'dexp',
                   link = list(over = "rate", fun = "NegInv_link"))
 summary(lambda)
