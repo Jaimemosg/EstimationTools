@@ -98,14 +98,14 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
                   "arguments of ", dist, ". \n Please, change name(s) ",
                   "specified in the entry 'over' of 'link' argument in \n",
                   " function maxlogL.\n"))
-    if ( is.null(link$over) && !is.null(link$fun) ){
+    if ( is.null(link$over) & !is.null(link$fun) ){
       warn <- paste0("You do not specify parameters to map, ",
                      "however, you specify a link function \n ",
                      "(the entry 'over' in 'link' argument is NULL ",
                      "but the entry 'fun' is not NULL).\n")
       warning(warn)
     }
-    if ( !is.null(link$over) && is.null(link$fun) )
+    if ( !is.null(link$over) & is.null(link$fun) )
       stop(paste0("You specify parameters to map, ",
                   "however, you do not specify a link function \n",
                   "(the entry 'fun' in 'link' argument is NULL ",
@@ -118,7 +118,7 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
                   "specified in argument 'fixed' in function ",
                   "maxlogL", "\n"))
   }
-  if ( length(x) == 0 || is.null(x) ){
+  if ( length(x) == 0 | is.null(x) ){
     stop(paste0("Vector of data is needed to perform maximum likelihood ",
                 "estimation. \n Please, specify the vector x in maxlogL ",
                 "function. \n"))
@@ -162,7 +162,7 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
   }
 
   if ( optimizer == 'DEoptim' ) {
-    if (is.null(lower) || is.null(upper)) stop("'lower' and 'upper'
+    if (is.null(lower) | is.null(upper)) stop("'lower' and 'upper'
                                                limits must be defined
                                                for 'DEoptim' optimizer", "\n\n")
     DEoptimcontrol <- c(trace = FALSE, control)
@@ -182,7 +182,7 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
   }
 
   ## Revert link mapping
-  if ( !is.null(link$over) && !is.null(link$fun) ){
+  if ( !is.null(link$over) & !is.null(link$fun) ){
     linked_params <- link_apply(over = link$over, dist_args = arguments,
                                 npar = npar)
     link_revert <- vector(mode = "list", length = length(linked_params))
@@ -205,13 +205,13 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
   # fit$hessian <- try(optimHess(par = fit$par, fn = ll.noLink, method = 'L-BFGS-B',
   #                              lower = lower, upper = upper), silent = TRUE)
   StdE_Method <- "Hessian from optim"
-  if ( (is.na(fit$hessian) || is.error(fit$hessian)) ||
-       is.character(fit$hessian) ){
+  if ( (any(is.na(fit$hessian)) | is.error(fit$hessian)) |
+       any(is.character(fit$hessian)) ){
     fit$hessian <- try(numDeriv::hessian(ll.noLink, fit$par), silent = TRUE)
     StdE_Method <- "numDeriv::hessian"
   }
-  if ( is.na(fit$hessian) || is.error(fit$hessian) ||
-       is.character(fit$hessian)) fit$hessian <- NA
+  if ( (any(is.na(fit$hessian)) | is.error(fit$hessian)) |
+       any(is.character(fit$hessian)) ) fit$hessian <- NA
 
   inputs <- list(dist = dist, fixed = fixed,
                  link = link, optimizer = optimizer,
@@ -237,7 +237,7 @@ link_apply <- function(over, dist_args, npar){
     names_numeric <- rep("", times = npar + 1)
     j <- 1
     for (i in 1:length(dist_args)){
-      if (is.numeric(dist_args[[i]]) || is.symbol(dist_args[[i]])){
+      if (is.numeric(dist_args[[i]]) | is.symbol(dist_args[[i]])){
         numeric_list[[j]]<- dist_args[[i]]
         names_numeric[j] <- names(dist_args[i])
         j <- j + 1
@@ -267,7 +267,7 @@ link_apply <- function(over, dist_args, npar){
 #==============================================================================
 minus_ll <- function(x, dist, dist_args, over, link, npar, fixed){
   f <- function(param){
-    if( !is.null(link) && !is.null(over) ){
+    if( !is.null(link) & !is.null(over) ){
       linked_params <- link_apply(over = over, dist_args = dist_args,
                                   npar = npar)
       if ( !is.null(linked_params) ){
