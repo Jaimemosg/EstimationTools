@@ -54,7 +54,6 @@ the distribution specified in argument \code{dist} and maximizes it through
 generates an S3 object of class \code{maxlogL}.
 }
 \examples{
-\donttest{
 # Estimation with one fixed parameter
 x <- rnorm(n = 10000, mean = 160, sd = 6)
 theta_1 <- maxlogL(x = x, dist = 'dnorm', control = list(trace = 1),
@@ -63,10 +62,10 @@ theta_1 <- maxlogL(x = x, dist = 'dnorm', control = list(trace = 1),
 summary(theta_1)
 
 # Both parameters of normal distribution mapped with logarithmic function
-theta_2 <- maxlogL( x = x, link = list(over = c("mean","sd"),
-                                       fun = c("log_link","log_link")) )
+theta_2 <- maxlogL( x = x, dist = "dnorm",
+                    link = list(over = c("mean","sd"),
+                                fun = c("log_link","log_link")) )
 summary(theta_2)
-}
 
 }
 \references{
