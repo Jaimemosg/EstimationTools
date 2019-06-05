@@ -29,8 +29,8 @@ There is a way to add new mapping functions. The user must specify the details a
 }
 \examples{
 # Estimation of rate parameter in exponential distribution
-T <- rexp(n = 100, rate = 3)
-lambda <- maxlogL(x = T, dist = "dexp", start = -1/5,    # OJO, aplicar link al valor inicial
+T <- rexp(n = 1000, rate = 3)
+lambda <- maxlogL(x = T, dist = "dexp", start = 5,
                   link = list(over = "rate", fun = "NegInv_link"))
 summary(lambda)
 
