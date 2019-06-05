@@ -14,7 +14,6 @@
 #' @export
 #'
 #' @examples
-#' \donttest{
 #' # Estimation of proportion in binomial distribution with 'logit' function
 #' # 10 trials, probability of success equals to 30%)
 #' N <- rbinom(n = 100, size = 10, prob = 0.3)
@@ -33,7 +32,6 @@
 #' # Inverse link function
 #' ginv <- logit_link()$g_inv
 #' curve(ginv(x), from = -10, to = 10)
-#'}
 #'
 #' @details \code{log_link} is part of a family of generic functions with no input arguments that
 #' defines and returns a list with details of the link function:
@@ -69,7 +67,6 @@ logit_link <- function(){
 #' @export
 #'
 #' @examples
-#' \donttest{
 #'# One parameters of normal distribution mapped with logarithmic function
 #' x <- rnorm(n = 10000, mean = 50, sd = 4)
 #' theta_2 <- maxlogL( x = x, link = list(over = "sd",
@@ -87,7 +84,6 @@ logit_link <- function(){
 #' # Inverse link function
 #' ginv <- log_link()$g_inv
 #' curve(ginv(x), from = -5, to = 5)
-#'}
 #'
 #' @details \code{log_link} is part of a family of generic functions with no input arguments that
 #' defines and returns a list with details of the link function:
@@ -123,10 +119,9 @@ log_link <- function(){
 #' @export
 #'
 #' @examples
-#' \donttest{
 #' # Estimation of rate parameter in exponential distribution
-#' T <- rexp(n = 100, rate = 1)
-#' lambda <- maxlogL(x = T, dist = 'dexp',
+#' T <- rexp(n = 100, rate = 3)
+#' lambda <- maxlogL(x = T, dist = "dexp", start = -1/5,    # OJO, aplicar link al valor inicial
 #'                   link = list(over = "rate", fun = "NegInv_link"))
 #' summary(lambda)
 #'
@@ -141,7 +136,6 @@ log_link <- function(){
 #' # Inverse link function
 #' ginv <- NegInv_link()$g_inv
 #' curve(ginv(x), from = 0.1, to = 1)
-#'}
 #'
 #' @details \code{logit_link} is part of a family of generic functions with no input arguments that
 #' defines and returns a list with details of the link function:
