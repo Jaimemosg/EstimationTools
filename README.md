@@ -27,9 +27,8 @@ devtools::install_github('Jaimemosg/EstimationTools', force = TRUE)
 library(EstimationTools)
 ```
 
-Or you can install the released version of
-[`EstimationTools`](https://cran.r-project.org/package=EstimationTools)
-from [CRAN](https://cran.r-project.org/web/packages/index.html) if you
+Or you can install the released version from
+[CRAN](https://cran.r-project.org/package=EstimationTools) if you
 prefer. You can also type the following command lines in `R` console:
 
 ``` r
@@ -82,17 +81,17 @@ library(EstimationTools)
 #>     isFALSE
 
 x <- rnorm( n = 10000, mean = 160, sd = 6 )
-fit <- maxlogL( x = x, link = list(over = "sd", fun = "log_link") )
+fit <- maxlogL( x = x, dist = "dnorm", link = list(over = "sd", fun = "log_link") )
 summary(fit)
 #> ---------------------------------------------------------------
 #> Optimization routine: nlminb 
 #> Standard Error calculation: Hessian from optim 
 #> ---------------------------------------------------------------
 #>        AIC      BIC
-#>   64193.61 64189.61
+#>   64061.02 64057.02
 #> ---------------------------------------------------------------
 #>      Estimate  Std. Error
-#> mean  160.0423     0.0599
-#> sd      5.9927     0.0424
+#> mean  160.0387     0.0595
+#> sd      5.9531     0.0421
 #> -----
 ```
