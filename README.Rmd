@@ -35,6 +35,7 @@ if (!require('devtools')) install.packages('devtools')
 devtools::install_github('Jaimemosg/EstimationTools', force = TRUE)
 library(EstimationTools)
 ```
+
 Or you can install the released version from  [CRAN](https://cran.r-project.org/package=EstimationTools) if you prefer. You can also type the following command lines
 in `R` console:
 
