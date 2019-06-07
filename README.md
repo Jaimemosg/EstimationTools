@@ -64,23 +64,6 @@ showed below
 
 ``` r
 library(EstimationTools)
-#> Loading required package: DEoptim
-#> Warning: package 'DEoptim' was built under R version 3.5.2
-#> Loading required package: parallel
-#> 
-#> DEoptim package
-#> Differential Evolution algorithm in R
-#> Authors: D. Ardia, K. Mullen, B. Peterson and J. Ulrich
-#> Loading required package: boot
-#> Warning: package 'boot' was built under R version 3.5.3
-#> Loading required package: numDeriv
-#> Loading required package: BBmisc
-#> Warning: package 'BBmisc' was built under R version 3.5.2
-#> 
-#> Attaching package: 'BBmisc'
-#> The following object is masked from 'package:base':
-#> 
-#>     isFALSE
 
 x <- rnorm( n = 10000, mean = 160, sd = 6 )
 fit <- maxlogL( x = x, dist = "dnorm", link = list(over = "sd", fun = "log_link") )
@@ -89,11 +72,11 @@ summary(fit)
 #> Optimization routine: nlminb 
 #> Standard Error calculation: Hessian from optim 
 #> ---------------------------------------------------------------
-#>        AIC      BIC
-#>   64157.62 64153.62
+#>       AIC     BIC
+#>   63992.2 63988.2
 #> ---------------------------------------------------------------
 #>      Estimate  Std. Error
-#> mean  160.0261     0.0598
-#> sd      5.9819     0.0423
+#> mean  160.0910     0.0593
+#> sd      5.9327     0.0420
 #> -----
 ```

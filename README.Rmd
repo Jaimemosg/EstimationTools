@@ -59,7 +59,7 @@ $$
 
 The solution for a data set generated with size $n=10000$ is showed below
 
-```{r example}
+```{r example, message=FALSE, warning=FALSE}
 library(EstimationTools)
 
 x <- rnorm( n = 10000, mean = 160, sd = 6 )
