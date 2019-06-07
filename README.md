@@ -14,12 +14,9 @@ Status](https://ci.appveyor.com/api/projects/status/github/Jaimemosg/EstimationT
 <!-- badges: end -->
 
 The goal of `EstimationTools` is to provide a routine for parameter
-estimation of probability density/mass functions in
-`R`.
+estimation of probability density/mass functions in `R`.
 
 ## Installation
-
-<!-- You can install the released version of EstimationTools from [CRAN](https://CRAN.R-project.org) with: -->
 
 You can install the last version of `EstimationTools` typing the
 following command lines in `R` console:
@@ -28,6 +25,15 @@ following command lines in `R` console:
 if (!require('devtools')) install.packages('devtools')
 devtools::install_github('Jaimemosg/EstimationTools', force = TRUE)
 library(EstimationTools)
+```
+
+Or you can install the released version of
+[`EstimationTools`](https://cran.r-project.org/package=EstimationTools)
+from [CRAN](https://cran.r-project.org/web/packages/index.html) if you
+prefer. You can also type the following command lines in `R` console:
+
+``` r
+install.packages("EstimationTools")
 ```
 
 ## Example
@@ -57,6 +63,23 @@ showed below
 
 ``` r
 library(EstimationTools)
+#> Loading required package: DEoptim
+#> Warning: package 'DEoptim' was built under R version 3.5.2
+#> Loading required package: parallel
+#> 
+#> DEoptim package
+#> Differential Evolution algorithm in R
+#> Authors: D. Ardia, K. Mullen, B. Peterson and J. Ulrich
+#> Loading required package: boot
+#> Warning: package 'boot' was built under R version 3.5.3
+#> Loading required package: numDeriv
+#> Loading required package: BBmisc
+#> Warning: package 'BBmisc' was built under R version 3.5.2
+#> 
+#> Attaching package: 'BBmisc'
+#> The following object is masked from 'package:base':
+#> 
+#>     isFALSE
 
 x <- rnorm( n = 10000, mean = 160, sd = 6 )
 fit <- maxlogL( x = x, link = list(over = "sd", fun = "log_link") )
@@ -66,10 +89,10 @@ summary(fit)
 #> Standard Error calculation: Hessian from optim 
 #> ---------------------------------------------------------------
 #>        AIC      BIC
-#>   64158.35 64154.35
+#>   64193.61 64189.61
 #> ---------------------------------------------------------------
 #>      Estimate  Std. Error
-#> mean  159.9093     0.0598
-#> sd      5.9821     0.0423
+#> mean  160.0423     0.0599
+#> sd      5.9927     0.0424
 #> -----
 ```
