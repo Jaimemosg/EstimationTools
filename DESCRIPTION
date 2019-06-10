@@ -5,7 +5,7 @@ Version: 1.1.0
 Authors@R: c(
       person("Jaime", "Mosquera", email = "jmosquerag@unal.edu.co", role = c("aut", "cre"), 
       comment = c(ORCID = "0000-0002-1684-4756")),
-      person("Freddy", "Hernandez", , "fhernanb@unal.edu.co", role = c("aut", "cre"), 
+      person("Freddy", "Hernandez", , "fhernanb@unal.edu.co", role = c("aut"), 
       comment = c(ORCID = "0000-0001-7459-3329"))
       )
 Imports: Rdpack, knitr, rmarkdown
