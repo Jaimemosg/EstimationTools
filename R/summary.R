@@ -118,7 +118,8 @@ summary.maxlogL <- function(object, ...){
 #==============================================================================
 # Standard error by Bootstrap -------------------------------------------------
 #==============================================================================
-
+# Inspired by bootstrap implementation on 'cubm' package
+# https://github.com/fhernanb/cubm
 boot_MLE <- function(object, R = 2000, ...){
 
   MLE <- function(data, i, object){
