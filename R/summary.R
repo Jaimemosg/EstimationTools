@@ -7,12 +7,12 @@
 #'
 #' @aliases summary.maxlogL
 #'
-#' @param object an object class "\code{\link{maxlogL}}".
+#' @param object an object class '\code{\link{maxlogL}}'.
 #' @param ... arguments passed to \code{\link[boot]{boot}} for estimation of stantdard error with
 #' non-parametric bootstrap. This computation occurs when option \code{hessian = TRUE} from \code{\link{optim}}
 #' and \code{\link[numDeriv]{hessian}} fails in \code{\link{maxlogL}} routine.
 #'
-#' @return An object of class "summary.maxlogL".
+#' @return An object of class 'summary.maxlogL'.
 #' @importFrom stats sd printCoefmat
 #' @importFrom boot boot
 #' @export
@@ -43,6 +43,8 @@ summary.maxlogL <- function(object, ...){
   estimate <- object$fit$par
   solver <- object$inputs$optimizer
   StdE_Method <- object$outputs$StdE_Method
+  allocation <- NULL
+
 
   if ( any(is.na(estimate)) | any(is.nan(estimate)) |
        any(is.infinite(estimate))){
@@ -51,11 +53,16 @@ summary.maxlogL <- function(object, ...){
                 "set different initial value(s)"))
   } else {
     if( any(is.na(object$fit$hessian)) ){
-      StdE_Method <- 'Bootstrap'
+      StdE_Method <- "Bootstrap"
       warn <- paste0("\n...Bootstrap computation of Standard Error. ",
                      "Please, wait a few minutes...\n\n")
       cat(warn)
+
       stdE <- try(boot_MLE(object=object, ...), silent = TRUE)
+      object_name <- deparse(substitute(object))
+      allocation <- paste0(object_name, "$outputs$StdE_Method <<- stdE")
+
+
       if( (any(is.na(stdE)) | is.error(stdE)) | any(is.character(stdE)) ){
         stdE <- rep(NA, times = object$outputs$npar)
         Zvalue <- rep(NA, times = object$outputs$npar)
@@ -113,6 +120,7 @@ summary.maxlogL <- function(object, ...){
   # cat("---------------------------------------------------------------\n")
   # cat('Note: p-values under asymptotic approximation \n')
   cat("-----\n")
+  if (StdE_Method == "Bootstrap") return(eval(parse(text = allocation)))
 }
 
 #==============================================================================
