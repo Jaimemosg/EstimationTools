@@ -246,7 +246,7 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
                  start = start, lower = lower, upper = upper,
                  x = x)
   outputs <- list(npar = npar - length(fixed), n = length(x),
-                 StdE_Method = StdE_Method)
+                 StdE_Method = StdE_Method, StdE = "Not computed yet")
   result <- list(fit = fit, inputs = inputs, outputs = outputs)
   class(result) <- "maxlogL"
   return(result)
