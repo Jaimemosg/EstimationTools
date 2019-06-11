@@ -88,7 +88,8 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
 
         stdE <- try(boot_MLE(object=object, ...), silent = TRUE)
         object_name <- deparse(substitute(object))
-        allocation <- paste0(object_name, "$outputs$StdE_Method <<- stdE")
+        allocation1 <- paste0(object_name, "$outputs$StdE_Method <<- ", StdE_Method)
+        allocation2 <- paste0(object_name, "$outputs$StdE <<- ", stdE)
 
         if( (any(is.na(stdE)) | is.error(stdE)) | any(is.character(stdE)) ){
           stdE <- rep(NA, times = object$outputs$npar)
