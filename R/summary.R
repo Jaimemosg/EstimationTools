@@ -151,7 +151,7 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
   # cat("---------------------------------------------------------------\n")
   # cat('Note: p-values under asymptotic approximation \n')
   cat("-----\n")
-  if (StdE_Method == "Bootstrap") return( eval(parse(text = c(allocation1, allocation2))) )
+  return( eval(parse(text = c(allocation1, allocation2))) )
 }
 
 #==============================================================================
