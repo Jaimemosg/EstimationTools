@@ -7,14 +7,14 @@
 \method{summary}{maxlogL}(object, ...)
 }
 \arguments{
-\item{object}{an object class "\code{\link{maxlogL}}".}
+\item{object}{an object class '\code{\link{maxlogL}}'.}
 
 \item{...}{arguments passed to \code{\link[boot]{boot}} for estimation of stantdard error with
 non-parametric bootstrap. This computation occurs when option \code{hessian = TRUE} from \code{\link{optim}}
 and \code{\link[numDeriv]{hessian}} fails in \code{\link{maxlogL}} routine.}
 }
 \value{
-An object of class "summary.maxlogL".
+An object of class 'summary.maxlogL'.
 }
 \description{
 Displays maximum likelihood estimates computed with \code{\link{maxlogL}} with
