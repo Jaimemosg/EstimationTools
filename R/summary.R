@@ -53,7 +53,7 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
   StdE_Method <- object$outputs$StdE_Method
   allocation <- NULL
 
-  if (Boot_Std_Err == FALSE){
+  if (Boot_Std_Err == TRUE){
     StdE_Method <- "Bootstrap"
     warn <- paste0("\n...Bootstrap computation of Standard Error. ",
                    "Please, wait a few minutes...\n\n")
