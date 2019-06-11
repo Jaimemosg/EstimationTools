@@ -1,6 +1,8 @@
-Submission 4 in progress
+Submission 5 in progress
 
 ----------------------------------------------------------------
+## v1.1.0: Submission 4 in successful (package on CRAN)
+
 ## v1.0.2 : Issues in submission 3:
 
 * All your examples are wrapped in \donttest{}: fixed
