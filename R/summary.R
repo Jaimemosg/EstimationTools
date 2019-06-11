@@ -8,9 +8,17 @@
 #' @aliases summary.maxlogL
 #'
 #' @param object an object class '\code{\link{maxlogL}}'.
+#' @param Boot_Std_Err a logical variable. If it is \code{TRUE}, standard Errors are calculated by
+#'        bootstrapping. The default is \code{FALSE}.
 #' @param ... arguments passed to \code{\link[boot]{boot}} for estimation of stantdard error with
 #' non-parametric bootstrap. This computation occurs when option \code{hessian = TRUE} from \code{\link{optim}}
 #' and \code{\link[numDeriv]{hessian}} fails in \code{\link{maxlogL}} routine.
+#'
+#' @details This \code{summary} method takes standard errors from \code{\link{maxlogL}} and displays them.
+#' If \code{\link[numDeriv]{hessian}} and Hessian from \code{\link{optim}} fails, standard errors are
+#' computed with bootstrap. However, if user sets \code{Boot_Std_Err = TRUE} in this summary function,
+#' standard errors are calculated by bootstrap, even if \code{\link[numDeriv]{hessian}} or Hessian from
+#' \code{\link{optim}} converges.
 #'
 #' @return An object of class 'summary.maxlogL'.
 #' @importFrom stats sd printCoefmat
@@ -36,7 +44,7 @@
 # Summary function ------------------------------------------------------------
 #==============================================================================
 
-summary.maxlogL <- function(object, ...){
+summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
   .myenv <- environment()
   var.list <- as.list(object)
   list2env(var.list , envir = .myenv)
@@ -45,43 +53,62 @@ summary.maxlogL <- function(object, ...){
   StdE_Method <- object$outputs$StdE_Method
   allocation <- NULL
 
+  if (Boot_Std_Err){
+    StdE_Method <- "Bootstrap"
+    warn <- paste0("\n...Bootstrap computation of Standard Error. ",
+                   "Please, wait a few minutes...\n\n")
+    cat(warn)
 
-  if ( any(is.na(estimate)) | any(is.nan(estimate)) |
-       any(is.infinite(estimate))){
-    stop(paste0("'maxlogL' computes NA ,NaN or Inf estimates. ",
-                "Please, change optimization algorithm or ",
-                "set different initial value(s)"))
-  } else {
-    if( any(is.na(object$fit$hessian)) ){
-      StdE_Method <- "Bootstrap"
-      warn <- paste0("\n...Bootstrap computation of Standard Error. ",
-                     "Please, wait a few minutes...\n\n")
-      cat(warn)
+    stdE <- try(boot_MLE(object=object, ...), silent = TRUE)
+    object_name <- deparse(substitute(object))
+    allocation <- paste0(object_name, "$outputs$StdE_Method <<- stdE")
 
-      stdE <- try(boot_MLE(object=object, ...), silent = TRUE)
-      object_name <- deparse(substitute(object))
-      allocation <- paste0(object_name, "$outputs$StdE_Method <<- stdE")
-
-
-      if( (any(is.na(stdE)) | is.error(stdE)) | any(is.character(stdE)) ){
-        stdE <- rep(NA, times = object$outputs$npar)
-        Zvalue <- rep(NA, times = object$outputs$npar)
-        pvalue <- rep(NA, times = object$outputs$npar)
-      } else {
-        Zvalue <- round(estimate / stdE, digits = 4)
-        pvalue <- 2 * pnorm(abs(Zvalue), lower.tail = FALSE)
-      }
+    if( (any(is.na(stdE)) | is.error(stdE)) | any(is.character(stdE)) ){
+      stdE <- rep(NA, times = object$outputs$npar)
+      Zvalue <- rep(NA, times = object$outputs$npar)
+      pvalue <- rep(NA, times = object$outputs$npar)
     } else {
-      # Diagonal of Hessian^-1
-      stdE <- round(sqrt(diag(solve(object$fit$hessian))), digits = 4)
       Zvalue <- round(estimate / stdE, digits = 4)
       pvalue <- 2 * pnorm(abs(Zvalue), lower.tail = FALSE)
     }
-  }
-  if (any(is.na(stdE))){
-    stdE <- rep(NA, times = object$outputs$npar)
-    Zvalue <- rep(NA, times = object$outputs$npar)
-    pvalue <- rep(NA, times = object$outputs$npar)
+
+  } else {
+    if ( any(is.na(estimate)) | any(is.nan(estimate)) |
+         any(is.infinite(estimate))){
+      stop(paste0("'maxlogL' computes NA ,NaN or Inf estimates. ",
+                  "Please, change optimization algorithm or ",
+                  "set different initial value(s)"))
+    } else {
+      if( any(is.na(object$fit$hessian)) ){
+        StdE_Method <- "Bootstrap"
+        warn <- paste0("\n...Bootstrap computation of Standard Error. ",
+                       "Please, wait a few minutes...\n\n")
+        cat(warn)
+
+        stdE <- try(boot_MLE(object=object, ...), silent = TRUE)
+        object_name <- deparse(substitute(object))
+        allocation <- paste0(object_name, "$outputs$StdE_Method <<- stdE")
+
+        if( (any(is.na(stdE)) | is.error(stdE)) | any(is.character(stdE)) ){
+          stdE <- rep(NA, times = object$outputs$npar)
+          Zvalue <- rep(NA, times = object$outputs$npar)
+          pvalue <- rep(NA, times = object$outputs$npar)
+        } else {
+          Zvalue <- round(estimate / stdE, digits = 4)
+          pvalue <- 2 * pnorm(abs(Zvalue), lower.tail = FALSE)
+        }
+      } else {
+        # Diagonal of Hessian^-1
+        stdE <- round(sqrt(diag(solve(object$fit$hessian))), digits = 4)
+        Zvalue <- round(estimate / stdE, digits = 4)
+        pvalue <- 2 * pnorm(abs(Zvalue), lower.tail = FALSE)
+      }
+    }
+    if (any(is.na(stdE))){
+      stdE <- rep(NA, times = object$outputs$npar)
+      Zvalue <- rep(NA, times = object$outputs$npar)
+      pvalue <- rep(NA, times = object$outputs$npar)
+    }
   }
   res <- cbind(Estimate = estimate, stdE = stdE, Zvalue, pvalue)
   # res <- formatC(res, format = "e", digits = 3)
