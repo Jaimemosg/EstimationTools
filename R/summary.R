@@ -51,7 +51,8 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
   estimate <- object$fit$par
   solver <- object$inputs$optimizer
   StdE_Method <- object$outputs$StdE_Method
-  allocation <- NULL
+  allocation1 <- NULL
+  allocation2 <- NULL
 
   if (Boot_Std_Err == TRUE){
     StdE_Method <- "Bootstrap"
@@ -104,6 +105,7 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
         stdE <- round(sqrt(diag(solve(object$fit$hessian))), digits = 4)
         Zvalue <- round(estimate / stdE, digits = 4)
         pvalue <- 2 * pnorm(abs(Zvalue), lower.tail = FALSE)
+        allocation2 <- paste0(object_name, "$outputs$StdE <<- ", stdE)
       }
     }
     if (any(is.na(stdE))){
