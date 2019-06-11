@@ -28,7 +28,7 @@ visit documentation of density function. There are three link functions availabl
 \item{upper}{a numeric vector with upper bounds, with the same lenght of argument `start` (for box-constrained optimization).}
 
 \item{optimizer}{a lenght-one character vector with the name of optimization routine. \code{\link{nlminb}}, \code{\link{optim}}
-and \code{\link{DEoptim}} are available; \code{\link{nlminb}} is the default.
+and \code{\link[DEoptim]{DEoptim}} are available; \code{\link{nlminb}} is the default.
 routine.}
 
 \item{control}{control parameters of the optimization routine. Please, visit documentation of selected

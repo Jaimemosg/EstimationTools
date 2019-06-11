@@ -4,10 +4,13 @@
 \alias{summary.maxlogL}
 \title{Summarize Maximum Likelihood Estimation}
 \usage{
-\method{summary}{maxlogL}(object, ...)
+\method{summary}{maxlogL}(object, Boot_Std_Err = FALSE, ...)
 }
 \arguments{
 \item{object}{an object class '\code{\link{maxlogL}}'.}
+
+\item{Boot_Std_Err}{a logical variable. If it is \code{TRUE}, standard Errors are calculated by
+bootstrapping. The default is \code{FALSE}.}
 
 \item{...}{arguments passed to \code{\link[boot]{boot}} for estimation of stantdard error with
 non-parametric bootstrap. This computation occurs when option \code{hessian = TRUE} from \code{\link{optim}}
@@ -20,6 +23,13 @@ An object of class 'summary.maxlogL'.
 Displays maximum likelihood estimates computed with \code{\link{maxlogL}} with
 its standard errors, AIC and BIC.
 This is a \code{summary} method for \code{\link{maxlogL}} object
+}
+\details{
+This \code{summary} method takes standard errors from \code{\link{maxlogL}} and displays them.
+If \code{\link[numDeriv]{hessian}} and Hessian from \code{\link{optim}} fails, standard errors are
+computed with bootstrap. However, if user sets \code{Boot_Std_Err = TRUE} in this summary function,
+standard errors are calculated by bootstrap, even if \code{\link[numDeriv]{hessian}} or Hessian from
+\code{\link{optim}} converges.
 }
 \examples{
 # One known parameter
