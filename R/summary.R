@@ -105,6 +105,7 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
         stdE <- round(sqrt(diag(solve(object$fit$hessian))), digits = 4)
         Zvalue <- round(estimate / stdE, digits = 4)
         pvalue <- 2 * pnorm(abs(Zvalue), lower.tail = FALSE)
+        object_name <- deparse(substitute(object))
         allocation2 <- paste0(object_name, "$outputs$StdE <<- ", stdE)
       }
     }
