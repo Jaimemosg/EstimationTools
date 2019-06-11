@@ -18,7 +18,7 @@
 #' @param lower a numeric vector with lower bounds, with the same lenght of argument `start` (for box-constrained optimization).
 #' @param upper a numeric vector with upper bounds, with the same lenght of argument `start` (for box-constrained optimization).
 #' @param optimizer a lenght-one character vector with the name of optimization routine. \code{\link{nlminb}}, \code{\link{optim}}
-#'                  and \code{\link{DEoptim}} are available; \code{\link{nlminb}} is the default.
+#'                  and \code{\link[DEoptim]{DEoptim}} are available; \code{\link{nlminb}} is the default.
 #'                  routine.
 #' @param control control parameters of the optimization routine. Please, visit documentation of selected
 #'                optimizer for further information.
