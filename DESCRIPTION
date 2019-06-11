@@ -8,7 +8,7 @@ Authors@R: c(
       person("Freddy", "Hernandez", , "fhernanb@unal.edu.co", role = c("aut"), 
       comment = c(ORCID = "0000-0001-7459-3329"))
       )
-Imports: Rdpack, knitr, rmarkdown
+Imports: Rdpack
 RdMacros: Rdpack
 Suggests: gamlss.dist
 Depends: R (>= 3.3.0), stats, DEoptim, boot, numDeriv, BBmisc
