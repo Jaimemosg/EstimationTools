@@ -8,6 +8,9 @@ Status](https://ci.appveyor.com/api/projects/status/github/Jaimemosg/EstimationT
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version-ago/EstimationTools)](https://cran.r-project.org/package=EstimationTools)
 [![CRAN\_Download\_Badge](http://cranlogs.r-pkg.org/badges/EstimationTools)](https://cran.r-project.org/package=EstimationTools)
+[![Project Status: Active – The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
 # EstimationTools <img src="man/figure/ETLogo.png" align="right" height="200" align="right"/>
 
@@ -73,10 +76,10 @@ summary(fit)
 #> Standard Error calculation: Hessian from optim 
 #> ---------------------------------------------------------------
 #>        AIC      BIC
-#>   64440.99 64436.99
+#>   64240.26 64236.26
 #> ---------------------------------------------------------------
 #>      Estimate  Std. Error
-#> mean  160.0513     0.0607
-#> sd      6.0673     0.0429
+#> mean  160.0076     0.0601
+#> sd      6.0067     0.0425
 #> -----
 ```
