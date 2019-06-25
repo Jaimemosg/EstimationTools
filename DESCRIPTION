@@ -12,7 +12,7 @@ Imports: Rdpack
 RdMacros: Rdpack
 Suggests: gamlss.dist, R.rsp
 VignetteBuilder: R.rsp
-Depends: R (>= 3.3.0), stats, DEoptim, boot, numDeriv, BBmisc, magrittr
+Depends: R (>= 3.3.0), stats, DEoptim, boot, numDeriv, BBmisc
 Description: A routine for parameter estimation for any probability density or
     mass function implemented in R via maximum likelihood (ML) given a data set. This
     routine is a wrapper function specifically developed for ML estimation. There are
