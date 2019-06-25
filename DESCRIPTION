@@ -22,6 +22,7 @@ Description: A routine for parameter estimation for any probability density or
     or the option 'Hessian = TRUE' of 'optim' function.
 License: GPL-3
 URL: https://github.com/Jaimemosg/EstimationTools
+BugReports: https://github.com/Jaimemosg/EstimationTools/issues
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
