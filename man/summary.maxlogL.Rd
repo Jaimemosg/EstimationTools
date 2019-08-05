@@ -7,7 +7,7 @@
 \method{summary}{maxlogL}(object, Boot_Std_Err = FALSE, ...)
 }
 \arguments{
-\item{object}{an object class '\code{\link{maxlogL}}'.}
+\item{object}{an object class "\code{\link{maxlogL}}".}
 
 \item{Boot_Std_Err}{a logical variable. If it is \code{TRUE}, standard Errors are calculated by
 bootstrapping. The default is \code{FALSE}.}

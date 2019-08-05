@@ -7,7 +7,7 @@
 #'
 #' @aliases summary.maxlogL
 #'
-#' @param object an object class \code{\link{"maxlogL"}}.
+#' @param object an object class "\code{\link{maxlogL}}".
 #' @param Boot_Std_Err a logical variable. If it is \code{TRUE}, standard Errors are calculated by
 #'        bootstrapping. The default is \code{FALSE}.
 #' @param ... arguments passed to \code{\link[boot]{boot}} for estimation of stantdard error with
