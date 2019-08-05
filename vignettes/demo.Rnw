@@ -1,7 +1,6 @@
-
 \documentclass{article}
 
-\usepackage{natbib}
+% \usepackage{natbib}
 \usepackage{graphics}
 \usepackage{amsmath}
 \usepackage{indentfirst}
@@ -14,7 +13,7 @@
 
 \begin{document}
 
-<<foo,include=FALSE,echo=FALSE>>=
+<<mito,include=FALSE,echo=FALSE>>=
 options(keep.source = TRUE, width = 60)
 @
 
@@ -26,7 +25,8 @@ options(keep.source = TRUE, width = 60)
 
 This is just a test for vignettes \cite{MurdockBennetB.1961}.
 
-\bibliography{../inst/refs.bib}
+\bibliography{../inst/refs}
+\bibliographystyle{ieeetr}
 
 % \begin{thebibliography}{}
 %
