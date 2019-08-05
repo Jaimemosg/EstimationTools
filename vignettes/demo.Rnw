@@ -24,27 +24,29 @@ options(keep.source = TRUE, width = 60)
 
 \section{The Problem}
 
-This is just a test for vignettes.
+This is just a test for vignettes \cite{MurdockBennetB.1961}.
 
-\begin{thebibliography}{}
+\bibliography{../inst/refs.bib}
 
-\bibitem[Gelman et al.(1996)Gelman, Roberts, and Gilks]{grg}
-Gelman, A., G.~O. Roberts, and W.~R. Gilks (1996).
-\newblock Efficient Metropolis jumping rules.
-\newblock In \emph{Bayesian Statistics, 5 (Alicante, 1994)}, pp.~599--607.
-  Oxford University Press.
-
-\bibitem[Geyer(1992)]{practical}
-Geyer, C.~J. (1992).
-\newblock Practical Markov chain Monte Carlo (with discussion).
-\newblock \emph{Statistical Science}, 7, 473--511.
-
-\bibitem[Geyer and Thompson(1995)]{geyer-temp}
-Geyer, C.~J. and E.~A. Thompson (1995).
-\newblock Annealing Markov chain Monte Carlo with applications to
-    ancestral inference.
-\newblock \emph{Journal of the American Statistical Association}, 90, 909--920.
-
-\end{thebibliography}
+% \begin{thebibliography}{}
+%
+% \bibitem[Gelman et al.(1996)Gelman, Roberts, and Gilks]{grg}
+% Gelman, A., G.~O. Roberts, and W.~R. Gilks (1996).
+% \newblock Efficient Metropolis jumping rules.
+% \newblock In \emph{Bayesian Statistics, 5 (Alicante, 1994)}, pp.~599--607.
+%   Oxford University Press.
+%
+% \bibitem[Geyer(1992)]{practical}
+% Geyer, C.~J. (1992).
+% \newblock Practical Markov chain Monte Carlo (with discussion).
+% \newblock \emph{Statistical Science}, 7, 473--511.
+%
+% \bibitem[Geyer and Thompson(1995)]{geyer-temp}
+% Geyer, C.~J. and E.~A. Thompson (1995).
+% \newblock Annealing Markov chain Monte Carlo with applications to
+%     ancestral inference.
+% \newblock \emph{Journal of the American Statistical Association}, 90, 909--920.
+%
+% \end{thebibliography}
 
 \end{document}
