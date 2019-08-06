@@ -46,6 +46,8 @@ in `R` console:
 install.packages("EstimationTools")
 ```
 
+You can visit the [package website](https://Jaimemosg.github.io/EstimationTools/) to explore the vignettes (articles) and functions reference. 
+
 ## Example
 
 This is a basic example which shows you how to solve a common maximum likelihood estimation problem with `EstimationTools`:

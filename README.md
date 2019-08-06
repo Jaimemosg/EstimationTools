@@ -40,6 +40,10 @@ prefer. You can also type the following command lines in `R` console:
 install.packages("EstimationTools")
 ```
 
+You can visit the [package
+website](https://Jaimemosg.github.io/EstimationTools/) to explore the
+vignettes (articles) and functions reference.
+
 ## Example
 
 This is a basic example which shows you how to solve a common maximum
@@ -76,10 +80,10 @@ summary(fit)
 #> Standard Error calculation: Hessian from optim 
 #> ---------------------------------------------------------------
 #>        AIC      BIC
-#>   64438.29 64434.29
+#>   64246.73 64242.73
 #> ---------------------------------------------------------------
 #>      Estimate  Std. Error
-#> mean  159.9717     0.0607
-#> sd      6.0665     0.0429
+#> mean  159.9938     0.0601
+#> sd      6.0086     0.0425
 #> -----
 ```
