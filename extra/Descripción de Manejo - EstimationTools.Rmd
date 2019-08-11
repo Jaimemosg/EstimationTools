@@ -1,0 +1,192 @@
+---
+title: "Manual de manejo, **EstimationTools**"
+author: "Jaime Mosquera Gutiérrez"
+date: "Agosto 12, 2019"
+output: 
+  pdf_document:
+    includes:
+      in_header: mystyle.sty
+urlcolor: blue
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Introducción
+
+\proglang{R} es un lenguaje de programación y un software libre creado para hacer computación estadística y gráficos. Su caracter de software libre permite desarrollar paquetes, que son extensiones para ampliar su funcionalidad y capacidades. \textbf{EstimationTools} es justamente un paquete desarrollado como una extensión para ajustar modelos de regresión de distribuciones utilizadas en el área de confiabilidad.
+
+De acuerdo a lo anterior, es necesario instalar el software \proglang{R} para que \textbf{EstimationTools} funcione.
+
+## Instalación del software \proglang{R}
+
+Para instalar \proglang{R} en Windows 7/8/10, siga los siguietes pasos:
+
+1. Ingrese al sitio de _R project_ ( <https://www.r-project.org/>). También puede ingresar haciendo una búsqueda en un motor de búsqueda:
+
+\centering
+\includegraphics[width=0.7\textwidth]{Paso1a}
+
+2. Una vez esté ubicado en el sitio pricipal de _R project_, ingrese al enlace señalado con un reacuadro rojo para acceder al sitio web donde podrá realizar la descarga.
+
+\centering
+\includegraphics[width=0.9\textwidth]{Paso2a}
+
+3. Seleccione un servidor para la descarga. En este instructivo, se seleccionó un servidor de Austria:
+
+\centering
+\includegraphics[width=0.9\textwidth]{Paso3a}
+
+4. Seleccione la opción de descarga para Windows:
+
+\centering
+\includegraphics[width=0.9\textwidth]{Paso4a}
+
+5. Haga clic en el enlace encerrado en un recuadro rojo:
+
+\centering
+\includegraphics[width=0.9\textwidth]{Paso5a}
+
+6. Haga clic en el enlace de desgarca señalado a continuación:
+
+\centering
+\includegraphics[width=0.9\textwidth]{Paso6a}
+
+7. Cuando la descarga se complete, haga abra el archivo ejecutable:
+
+\centering
+\includegraphics[width=0.3\textwidth]{Paso7}
+
+8. Seleccione su idioma de preferencia, y haga clic en _Aceptar_:
+
+\centering
+\includegraphics[width=0.3\textwidth]{Paso8}
+
+9. Lea la información sobre la GPL 2 (_General Public License, version 2_) y haga clic en _Siguiente_:
+
+\centering
+\includegraphics[width=0.5\textwidth]{Paso9}
+
+10. Seleccione el directorio donde almacenará la instalación. En este caso, se utilizará el directorio asignado por defecto. Haga clic en _Siguiente_:
+
+\centering
+\includegraphics[width=0.5\textwidth]{Paso10}
+
+11. El archivo ejecutabla instala todos los componentes por defecto. Haga clic en _Siguiente_:
+
+\centering
+\includegraphics[width=0.5\textwidth]{Paso11}
+
+12. Se recomienda especificar la configuración por defecto que realiza el instalador. Para ello, seleccione la opción _No_, y haga clic en _Siguiente_:
+
+\centering
+\includegraphics[width=0.5\textwidth]{Paso12}
+
+13. Utilice la ubicación que el instalador trae por defecto para crear los accesos directos en el _Menú Inicio_:
+
+\centering
+\includegraphics[width=0.5\textwidth]{Paso13}
+
+14. Haga clic en los recuadros pequeños si desea crear unos accesos directos adicionales. En este caso, no se crearán. En la opción _Registro de entradas_, asegúrese de tener seleccionadas ambas opciones, como se muestra en la imágen a continuación:
+
+\centering
+\includegraphics[width=0.5\textwidth]{Paso14}
+
+15. Espere que el software se instale:
+
+\centering
+\includegraphics[width=0.5\textwidth]{Paso15}
+
+16. Hagac clic en _Finalizar_:
+
+\centering
+\includegraphics[width=0.5\textwidth]{Paso16}
+
+\justifying
+
+## Instalación de \proglang{RStudio}
+
+\proglang{RStudio} es un IDE (_Integrated Development Envornment_) libre de código abierto para \proglang{R}. Este ambiente de desarrollo es ideal y se incita a los usuarios a instalarlo para usar **EstimationTools**. Para instalarlo, siga los siguientes pasos:
+
+1. Ingrese al sitio web de \proglang{RStudio} ( <https://www.rstudio.com/>), y haga clic en la pestaña _Products_, señalada con un recuadro rojo:
+
+\centering
+\includegraphics[width=0.8\textwidth]{Paso17a}
+
+Luego seleccione la opción _RStudio_ dentro del menú, como se muestra a continuación:
+
+\centering
+\includegraphics[width=0.8\textwidth]{Paso17b}
+
+2. Use la barra de desplazamiento del lado izquierdo para moverse hacia abajo en el sitio web, hasta encontrar la opción _Download RStudio Desktop_:
+
+\centering
+\includegraphics[width=0.8\textwidth]{Paso18a}
+
+3. Posteriomente, seleccione la versión gratuita:
+
+\centering
+\includegraphics[width=0.8\textwidth]{Paso19a}
+
+4. Haga clic en la descarga para Windows:
+
+\centering
+\includegraphics[width=0.8\textwidth]{Paso20a}
+
+5. Cuando la descarga se complete, haga abra el archivo ejecutable:
+
+\centering
+\includegraphics[width=0.3\textwidth]{Paso21}
+
+6. Lea la recomendación de la ventana de diálogo, y haga clic en _Siguiente_:
+
+\centering
+\includegraphics[width=0.5\textwidth]{Paso22}
+
+7. Elija el directorio donde se almacenará \proglang{RStudio}. Se recomienda utilizar la ubicación por defecto:
+
+\centering
+\includegraphics[width=0.5\textwidth]{Paso23}
+
+8. Luego, aparecerá esta ventana de diálogo:
+
+\centering
+\includegraphics[width=0.5\textwidth]{Paso24}
+
+Haga clic en _Instalar_. De esta forma, utilizará la ubicación por defecto para el acceso directo del _Menú Inicio_.
+
+9. Espere que el software se instale:
+
+\centering
+\includegraphics[width=0.5\textwidth]{Paso25}
+
+10. Haga clic en _Terminar_
+
+\centering
+\includegraphics[width=0.5\textwidth]{Paso26}
+
+\justifying
+
+## Instalación de **EstimationTools**
+
+Para instalar **EstimationTools** usted debe instalar el paquete **devtools** primero. Para instalar ambos paquetes. copie y peque en la consola de \proglang{RStudio} el siguiente texto:
+
+```r
+if (!require('devtools')) install.packages('devtools')
+devtools::install_github('Jaimemosg/EstimationTools', force = TRUE)
+library(EstimationTools)
+```
+La consola se lucirá de la siguiente manera luego de copiar y pegar el texto:
+
+\centering
+\includegraphics[width=0.7\textwidth]{Paso27}
+
+\justifying
+Luego, presione enter. El paquete está instalado, y listo para utilizarse. Cada vez que abra \proglang{RStudio}, usted deberá escribir la siguiente línea de comando para usar **EstimationTools**:
+
+```r
+library(EstimationTools)
+```
+
+Usted puede visitar el sitio web del paquete ( <https://jaimemosg.github.io/EstimationTools/>) **EstimationTools** para explorar la documentación de las funciones disponibles y su modo de uso.

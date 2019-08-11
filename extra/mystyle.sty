@@ -1,0 +1,31 @@
+% Paquetes
+\usepackage{ragged2e} % Para justificar
+\usepackage{hyperref}
+%\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\decimalpoint
+\selectlanguage{spanish}
+
+% New for newcommand, proglang and code
+\newcommand{\pkg}[1]{{\normalfont\fontseries{b}\selectfont #1}}
+  \let\proglang=\textsf
+  \let\code=\texttt
+
+\def\begincols{\begin{columns}}
+\def\begincol{\begin{column}}
+\def\endcol{\end{column}}
+\def\endcols{\end{columns}}
+
+\usepackage{mathtools}
+\newcommand\Mycomb[2][^n]{\prescript{#1\mkern-0.5mu}{}C_{#2}}
