@@ -51,8 +51,8 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
   estimate <- object$fit$par
   solver <- object$inputs$optimizer
   StdE_Method <- object$outputs$StdE_Method
-  allocation1 <- NULL
-  allocation2 <- NULL
+  # allocation1 <- NULL
+  # allocation2 <- NULL
 
   if (Boot_Std_Err == TRUE){
     StdE_Method <- "Bootstrap"
@@ -62,12 +62,14 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
 
     stdE <- try(boot_MLE(object = object, ...), silent = TRUE)
     object_name <- deparse(substitute(object))
-    allocation1 <- paste0(object_name, "$outputs$StdE_Method <<- StdE_Method")
-    allocation2 <- paste0(object_name, "$outputs$StdE <<- ", stdE)
+    # allocation1 <- paste0(object_name, "$outputs$StdE_Method <<- StdE_Method")
+    # allocation2 <- paste0(object_name, "$outputs$StdE <<- ", stdE)
 
     ## Standard error updating in "object"
-    eval(parse(text = allocation1))
-    eval(parse(text = allocation2))
+    # eval(parse(text = allocation1))
+    # eval(parse(text = allocation2))
+    parent <- parent.frame()
+    uptodate(p = parent, object_name, stdE, StdE_Method)
 
     if( (any(is.na(stdE)) | is.error(stdE)) | any(is.character(stdE)) ){
       stdE <- rep(NA, times = object$outputs$npar)
@@ -93,12 +95,14 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
 
         stdE <- try(boot_MLE(object=object, ...), silent = TRUE)
         object_name <- deparse(substitute(object))
-        allocation1 <- paste0(object_name, "$outputs$StdE_Method <<- StdE_Method")
-        allocation2 <- paste0(object_name, "$outputs$StdE <<- ", stdE)
+        # allocation1 <- paste0(object_name, "$outputs$StdE_Method <<- StdE_Method")
+        # allocation2 <- paste0(object_name, "$outputs$StdE <<- ", stdE)
 
         ## Standard error updating in "object"
-        eval(parse(text = allocation1))
-        eval(parse(text = allocation2))
+        # eval(parse(text = allocation1))
+        # eval(parse(text = allocation2))
+        parent <- parent.frame()
+        uptodate(p = parent, object_name, stdE, StdE_Method)
 
         if( (any(is.na(stdE)) | is.error(stdE)) | any(is.character(stdE)) ){
           stdE <- rep(NA, times = object$outputs$npar)
@@ -114,10 +118,13 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
         Zvalue <- round(estimate / stdE, digits = 4)
         pvalue <- 2 * pnorm(abs(Zvalue), lower.tail = FALSE)
         object_name <- deparse(substitute(object))
-        allocation2 <- paste0(object_name, "$outputs$StdE <<- ", stdE)
+        # allocation2 <- paste0(object_name, "$outputs$StdE <<- ", stdE)
 
         ## Standard error updating in "object"
-        eval(parse(text = allocation2))
+        # eval(parse(text = allocation2))
+        parent <- parent.frame()
+        uptodate(p = parent, object_name, stdE, StdE_Method,
+                 change_SE_method = FALSE)
       }
     }
     if (any(is.na(stdE))){
@@ -184,4 +191,18 @@ boot_MLE <- function(object, R = 2000, ...){
   data <- object$inputs$x
   btstrp <- boot::boot(data = data, statistic = MLE, R = R, object = object, ...)
   return(apply(X = btstrp$t, MARGIN = 2, FUN = sd))
+}
+
+#==============================================================================
+# Standard update -------------------------------------------------------------
+#==============================================================================
+uptodate <- function(p, object_name, stdE, StdE_Method,
+                     change_SE_method = TRUE){
+  allocation2 <- paste0("p$", object_name, "$outputs$StdE <- ", stdE)
+  eval(parse(text = allocation2))
+  if (change_SE_method){
+    allocation1 <- paste0("p$", object_name,
+                          "$outputs$StdE_Method <- StdE_Method")
+    eval(parse(text = allocation1))
+  }
 }
