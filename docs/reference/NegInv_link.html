@@ -157,16 +157,7 @@ defines and returns a list with details of the link function:</p><ol>
 <span class='no'>T</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Exponential'>rexp</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>rate</span> <span class='kw'>=</span> <span class='fl'>3</span>)
 <span class='no'>lambda</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='maxlogL.html'>maxlogL</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>T</span>, <span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>"dexp"</span>, <span class='kw'>start</span> <span class='kw'>=</span> <span class='fl'>5</span>,
                   <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='st'>"rate"</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"NegInv_link"</span>))
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>lambda</span>)</div><div class='output co'>#&gt; ---------------------------------------------------------------
-#&gt; Optimization routine: nlminb 
-#&gt; Standard Error calculation: Hessian from optim 
-#&gt; ---------------------------------------------------------------
-#&gt;         AIC       BIC
-#&gt;   -138.3141 -140.3141
-#&gt; ---------------------------------------------------------------
-#&gt;      Estimate  Std. Error
-#&gt; rate    2.9158     0.0922
-#&gt; -----</div><div class='output co'>#&gt; <span class='error'>Error in lambda$outputs$StdE &lt;&lt;- 0.0922: objeto 'lambda' no encontrado</span></div><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>lambda</span>)</div><div class='output co'>#&gt; <span class='error'>Error in lambda$outputs$StdE &lt;&lt;- 0.0922: objeto 'lambda' no encontrado</span></div><div class='input'>
 <span class='co'># Link function name</span>
 <span class='no'>fun</span> <span class='kw'>&lt;-</span> <span class='fu'>NegInv_link</span>()$<span class='no'>name</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>fun</span>)</div><div class='output co'>#&gt; [1] "NegInv"</div><div class='input'>

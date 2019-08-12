@@ -5,8 +5,10 @@ date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Bootstrap implementation}
-  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include = FALSE}
@@ -27,7 +29,7 @@ Var(\hat{\boldsymbol{\theta}}) = I^{-1}(\hat{\boldsymbol{\theta}}) = C(\hat{\bol
 where $I(\hat{\boldsymbol{\theta}})$ is the Fisher Information Matrix. Hence, the standard errors can be calculated as the square root of the diagonal elements of matrix $C$, as follows:
 
 \begin{equation}
-S.E(\hat{\boldsymbol{\theta}}) = \sqrt{C_{jj}(\hat{\boldsymbol{\theta}})},
+SE(\hat{\boldsymbol{\theta}}) = \sqrt{C_{jj}(\hat{\boldsymbol{\theta}})},
 \end{equation}
 
 To install the package, type the following commands:
@@ -85,4 +87,4 @@ print(theta_1$outputs$StdE_Method)
 b <- theta_1$outputs$StdE
 ```
 
-Note that Standard Errors calculated with `optim` ($`r round(a, 6)`$) and those calculated with bootstrap implementation ($`r round(b, 6)`$) are approximately equals, but no identical.
+Notice that Standard Errors calculated with `optim` ($`r round(a, 6)`$) and those calculated with bootstrap implementation ($`r round(b, 6)`$) are approximately equals, but no identical.

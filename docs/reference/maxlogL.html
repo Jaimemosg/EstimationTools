@@ -235,48 +235,19 @@ ISSN 00983500, doi: <a href='https://doi.org/10.1145/355958.355965'>10.1145/3559
 #&gt;   4:     32152.783:  1.80001
 #&gt;   5:     32152.648:  1.79643
 #&gt;   6:     32152.648:  1.79633
-#&gt;   7:     32152.648:  1.79633</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>theta_1</span>)</div><div class='output co'>#&gt; ---------------------------------------------------------------
-#&gt; Optimization routine: nlminb 
-#&gt; Standard Error calculation: Hessian from optim 
-#&gt; ---------------------------------------------------------------
-#&gt;       AIC     BIC
-#&gt;   64305.3 64305.3
-#&gt; ---------------------------------------------------------------
-#&gt;    Estimate  Std. Error
-#&gt; sd    6.0275     0.0426
-#&gt; -----</div><div class='output co'>#&gt; <span class='error'>Error in theta_1$outputs$StdE &lt;&lt;- 0.0426: objeto 'theta_1' no encontrado</span></div><div class='input'>
+#&gt;   7:     32152.648:  1.79633</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>theta_1</span>)</div><div class='output co'>#&gt; <span class='error'>Error in theta_1$outputs$StdE &lt;&lt;- 0.0426: objeto 'theta_1' no encontrado</span></div><div class='input'>
 <span class='co'># Both parameters of normal distribution mapped with logarithmic function</span>
 <span class='no'>theta_2</span> <span class='kw'>&lt;-</span> <span class='fu'>maxlogL</span>( <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>x</span>, <span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>"dnorm"</span>,
                     <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"mean"</span>,<span class='st'>"sd"</span>),
                                 <span class='kw'>fun</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"log_link"</span>,<span class='st'>"log_link"</span>)) )
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>theta_2</span>)</div><div class='output co'>#&gt; ---------------------------------------------------------------
-#&gt; Optimization routine: nlminb 
-#&gt; Standard Error calculation: Hessian from optim 
-#&gt; ---------------------------------------------------------------
-#&gt;       AIC     BIC
-#&gt;   64306.9 64302.9
-#&gt; ---------------------------------------------------------------
-#&gt;      Estimate  Std. Error
-#&gt; mean  159.9066     0.0603
-#&gt; sd      6.0267     0.0426
-#&gt; -----</div><div class='output co'>#&gt; <span class='error'>Error in theta_2$outputs$StdE &lt;&lt;- 0.0603: objeto 'theta_2' no encontrado</span></div><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>theta_2</span>)</div><div class='output co'>#&gt; <span class='error'>Error in theta_2$outputs$StdE &lt;&lt;- 0.0603: objeto 'theta_2' no encontrado</span></div><div class='input'>
 <span class='co'># Parameter estimation in ZIP distribution</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>gamlss.dist</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: MASS</span></div><div class='input'><span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/gamlss.dist/topics/ZIP'>rZIP</a></span>(<span class='kw'>n</span><span class='kw'>=</span><span class='fl'>10000</span>, <span class='kw'>mu</span><span class='kw'>=</span><span class='fl'>6</span>, <span class='kw'>sigma</span><span class='kw'>=</span><span class='fl'>0.08</span>)
 <span class='no'>theta_3</span>  <span class='kw'>&lt;-</span> <span class='fu'>maxlogL</span>( <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>z</span>, <span class='kw'>dist</span><span class='kw'>=</span><span class='st'>'dZIP'</span>, <span class='kw'>start</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>0</span>), <span class='kw'>lower</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(-<span class='fl'>Inf</span>, -<span class='fl'>Inf</span>),
                      <span class='kw'>upper</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>Inf</span>, <span class='fl'>Inf</span>), <span class='kw'>optimizer</span> <span class='kw'>=</span> <span class='st'>'optim'</span>,
                      <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>over</span><span class='kw'>=</span><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"mu"</span>, <span class='st'>"sigma"</span>),
                      <span class='kw'>fun</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"log_link"</span>, <span class='st'>"logit_link"</span>)) )
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>theta_3</span>)</div><div class='output co'>#&gt; ---------------------------------------------------------------
-#&gt; Optimization routine: optim 
-#&gt; Standard Error calculation: Hessian from optim 
-#&gt; ---------------------------------------------------------------
-#&gt;        AIC      BIC
-#&gt;   47685.83 47681.83
-#&gt; ---------------------------------------------------------------
-#&gt;       Estimate  Std. Error
-#&gt; mu     5.984879     0.0257
-#&gt; sigma  0.076475     0.0027
-#&gt; -----</div><div class='output co'>#&gt; <span class='error'>Error in theta_3$outputs$StdE &lt;&lt;- 0.0257: objeto 'theta_3' no encontrado</span></div><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>theta_3</span>)</div><div class='output co'>#&gt; <span class='error'>Error in theta_3$outputs$StdE &lt;&lt;- 0.0257: objeto 'theta_3' no encontrado</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
