@@ -45,9 +45,9 @@
 #==============================================================================
 
 summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
-  .myenv <- environment()
-  var.list <- as.list(object)
-  list2env(var.list , envir = .myenv)
+  # .myenv <- environment()
+  # var.list <- as.list(object)
+  # list2env(var.list , envir = .myenv)
   estimate <- object$fit$par
   solver <- object$inputs$optimizer
   StdE_Method <- object$outputs$StdE_Method
@@ -60,10 +60,14 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
                    "Please, wait a few minutes...\n\n")
     cat(warn)
 
-    stdE <- try(boot_MLE(object=object, ...), silent = TRUE)
+    stdE <- try(boot_MLE(object = object, ...), silent = TRUE)
     object_name <- deparse(substitute(object))
     allocation1 <- paste0(object_name, "$outputs$StdE_Method <<- StdE_Method")
     allocation2 <- paste0(object_name, "$outputs$StdE <<- ", stdE)
+
+    ## Standard error updating in "object"
+    eval(parse(text = allocation1))
+    eval(parse(text = allocation2))
 
     if( (any(is.na(stdE)) | is.error(stdE)) | any(is.character(stdE)) ){
       stdE <- rep(NA, times = object$outputs$npar)
@@ -92,6 +96,10 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
         allocation1 <- paste0(object_name, "$outputs$StdE_Method <<- StdE_Method")
         allocation2 <- paste0(object_name, "$outputs$StdE <<- ", stdE)
 
+        ## Standard error updating in "object"
+        eval(parse(text = allocation1))
+        eval(parse(text = allocation2))
+
         if( (any(is.na(stdE)) | is.error(stdE)) | any(is.character(stdE)) ){
           stdE <- rep(NA, times = object$outputs$npar)
           Zvalue <- rep(NA, times = object$outputs$npar)
@@ -107,6 +115,9 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
         pvalue <- 2 * pnorm(abs(Zvalue), lower.tail = FALSE)
         object_name <- deparse(substitute(object))
         allocation2 <- paste0(object_name, "$outputs$StdE <<- ", stdE)
+
+        ## Standard error updating in "object"
+        eval(parse(text = allocation2))
       }
     }
     if (any(is.na(stdE))){
@@ -115,12 +126,14 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
       pvalue <- rep(NA, times = object$outputs$npar)
     }
   }
+
+  ## Summary table
   res <- cbind(Estimate = estimate, stdE = stdE, Zvalue, pvalue)
   # res <- formatC(res, format = "e", digits = 3)
   res <- data.frame(res)
-
   colnames(res) <- c('Estimate ', 'Std. Error', 'Z value', 'Pr(>z)')
 
+  ## Undo link application
   names_numeric <- rep("", times=object$outputs$npar)
   dist_args <- as.list(args(object$inputs$dist))
   j <- 1
@@ -152,7 +165,7 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
   # cat("---------------------------------------------------------------\n")
   # cat('Note: p-values under asymptotic approximation \n')
   cat("-----\n")
-  return( eval(parse(text = c(allocation1, allocation2))) )
+  # return( eval(parse(text = c(allocation1, allocation2))) )
 }
 
 #==============================================================================
