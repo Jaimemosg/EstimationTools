@@ -1,6 +1,8 @@
-Submission 5 in progress
+Submission 6 coming soon
 
 ----------------------------------------------------------------
+## v1.2.0: Submission 5 in successful (package updated on CRAN)
+
 ## v1.1.0: Submission 4 in successful (package on CRAN)
 
 ## v1.0.2 : Issues in submission 3:
@@ -35,6 +37,6 @@ Status: OK
 
 R CMD check results
 
-0 errors | 0 warnings | 0 notes
+0 errors | 0 warnings | 1 note
 
 ----------------------------------------------------------------
