@@ -114,6 +114,7 @@ Para instalar \proglang{R} en Windows 7/8/10, siga los siguietes pasos:
 \centering
 \includegraphics[width=0.8\textwidth]{Paso17a}
 
+\justifying
 Luego seleccione la opción _RStudio_ dentro del menú, como se muestra a continuación:
 
 \centering
