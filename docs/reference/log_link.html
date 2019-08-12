@@ -157,7 +157,17 @@ defines and returns a list with details of the link function:</p><ol>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10000</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>50</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>4</span>)
 <span class='no'>theta_2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='maxlogL.html'>maxlogL</a></span>( <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>x</span>, <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='st'>"sd"</span>,
                                        <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"log_link"</span>) )
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>theta_2</span>)</div><div class='output co'>#&gt; <span class='error'>Error in theta_2$outputs$StdE &lt;&lt;- 0.0395: objeto 'theta_2' no encontrado</span></div><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>theta_2</span>)</div><div class='output co'>#&gt; ---------------------------------------------------------------
+#&gt; Optimization routine: nlminb 
+#&gt; Standard Error calculation: Hessian from optim 
+#&gt; ---------------------------------------------------------------
+#&gt;        AIC      BIC
+#&gt;   55876.44 55872.44
+#&gt; ---------------------------------------------------------------
+#&gt;      Estimate  Std. Error
+#&gt; mean   50.0034     0.0395
+#&gt; sd      3.9538     0.0280
+#&gt; -----</div><div class='input'>
 <span class='co'># Link function name</span>
 <span class='no'>fun</span> <span class='kw'>&lt;-</span> <span class='fu'>log_link</span>()$<span class='no'>name</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>fun</span>)</div><div class='output co'>#&gt; [1] "Log"</div><div class='input'>
