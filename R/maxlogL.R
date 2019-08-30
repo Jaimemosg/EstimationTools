@@ -84,6 +84,7 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
                     start = NULL, lower = NULL, upper = NULL,
                     optimizer = 'nlminb', control = NULL, ...){
 
+  call <- match.call()
   # List of arguments of density function
   arguments <- as.list(args(dist))
 
@@ -241,7 +242,7 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
   if ( (any(is.na(fit$hessian)) | is.error(fit$hessian)) |
        any(is.character(fit$hessian)) ) fit$hessian <- NA
 
-  inputs <- list(dist = dist, fixed = fixed,
+  inputs <- list(call = call, dist = dist, fixed = fixed,
                  link = link, optimizer = optimizer,
                  start = start, lower = lower, upper = upper,
                  x = x)
@@ -256,7 +257,7 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
 #==============================================================================
 link_apply <- function(over, dist_args, npar){
   if (is.null(over)){
-    return(linked_params=NULL)
+    return(linked_params = NULL)
   } else {
     if (length(over) > npar) stop("Number of mapped parameters is
                                   greater than the number of
@@ -316,4 +317,10 @@ minus_ll <- function(x, dist, dist_args, over, link, npar, fixed){
     return(-sum(logf))
   }
   return(f)
+}
+#==============================================================================
+# maxlogL function identification ---------------------------------------------
+#==============================================================================
+is.maxlogL <- function(x){
+  inherits(x, c("maxlogL"))
 }
