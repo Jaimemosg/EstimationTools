@@ -20,9 +20,10 @@
 #' standard errors are calculated by bootstrap, even if \code{\link[numDeriv]{hessian}} or Hessian from
 #' \code{\link{optim}} converges.
 #'
-#' If the user creates a variable (supose the name \code{fit}) that stores \code{\link{maxlogL}}, this
-#' summary method modifies the element \code{fit$outputs$StdE_Method} object from \code{Gobal Environment},
-#' else, it simply calculates standard errors.
+#' Supose that the user creates a variable named \code{fit} that stores \code{\link{maxlogL}} object. The
+#' summary method modifies the element \code{fit$outputs$StdE_Method} object from \code{Gobal Environment}
+#' (see the Second Example). If user does not creat a variable, the summary methid it simply calculates
+#' standard errors (see the Third Example).
 #'
 #' @return An object of class 'summary.maxlogL'.
 #' @importFrom stats sd printCoefmat
@@ -32,13 +33,16 @@
 #' @examples
 #' #--------------------------------------------------------------------------------
 #' ### First example: One known parameter
+#'
 #' x <- rnorm(n = 10000, mean = 160, sd = 6)
 #' theta_1 <- maxlogL(x = x, dist = 'dnorm', control = list(trace = 1),
 #'                  link = list(over = "sd", fun = "log_link"),
 #'                  fixed = list(mean = 160))
 #' summary(theta_1)
 #' #--------------------------------------------------------------------------------
-#' # Second example: Binomial probability parameter estimation
+#' # Second example: Binomial probability parameter estimation with variable
+#' # creation
+#'
 #' N <- rbinom(n = 100, size = 10, prob = 0.3)
 #' phat <- maxlogL(x = N, dist = 'dbinom', fixed = list(size = 10),
 #'                 link = list(over = "prob", fun = "logit_link"))
@@ -55,6 +59,13 @@
 #' ## Now, standard error is updated
 #' print(phat$outputs$StdE_Method)
 #' print(phat$outputs$StdE)
+#' #--------------------------------------------------------------------------------
+#' # Third example: Binomial probability parameter estimation with no varaible
+#' # creation
+#'
+#' N <- rbinom(n = 100, size = 10, prob = 0.3)
+#' summary(maxlogL(x = N, dist = 'dbinom', fixed = list(size = 10),
+#'                 link = list(over = "prob", fun = "logit_link")))
 #' #--------------------------------------------------------------------------------
 #'
 #' @references
