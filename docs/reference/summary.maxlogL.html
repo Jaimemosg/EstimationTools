@@ -65,7 +65,7 @@ This is a summary method for maxlogL object" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EstimationTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.1</span>
       </span>
     </div>
 
@@ -95,12 +95,7 @@ This is a summary method for maxlogL object" />
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        <li>
-  <a href="https://github.com/Jaimemosg/EstimationTools">
-    <span class="fa fa-github fa-lg"></span>
-     
-  </a>
-</li>
+        
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -114,7 +109,7 @@ This is a summary method for maxlogL object" />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Summarize Maximum Likelihood Estimation</h1>
-    <small class="dont-index">Source: <a href='https://github.com/Jaimemosg/EstimationTools/blob/master/R/summary.R'><code>R/summary.R</code></a></small>
+    
     <div class="hidden name"><code>summary.maxlogL.Rd</code></div>
     </div>
 
@@ -155,11 +150,14 @@ and <code><a href='https://www.rdocumentation.org/packages/numDeriv/topics/hessi
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>This <code>summary</code> method takes standard errors from <code><a href='maxlogL.html'>maxlogL</a></code> and displays them.
+    <p>This <code>summary</code> method takes standard errors from <code><a href='maxlogL.html'>maxlogL</a></code> object and displays them.
 If <code><a href='https://www.rdocumentation.org/packages/numDeriv/topics/hessian'>hessian</a></code> and Hessian from <code><a href='https://www.rdocumentation.org/packages/stats/topics/optim'>optim</a></code> fails, standard errors are
 computed with bootstrap. However, if user sets <code>Boot_Std_Err = TRUE</code> in this summary function,
 standard errors are calculated by bootstrap, even if <code><a href='https://www.rdocumentation.org/packages/numDeriv/topics/hessian'>hessian</a></code> or Hessian from
 <code><a href='https://www.rdocumentation.org/packages/stats/topics/optim'>optim</a></code> converges.</p>
+<p>If the user creates a variable (supose the name <code>fit</code>) that stores <code><a href='maxlogL.html'>maxlogL</a></code>, this
+summary method modifies the element <code>fit$outputs$StdE_Method</code> object from <code>Gobal Environment</code>,
+else, it simply calculates standard errors.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -172,7 +170,8 @@ standard errors are calculated by bootstrap, even if <code><a href='https://www.
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># One known parameter</span>
+    <pre class="examples"><div class='input'><span class='co'>#--------------------------------------------------------------------------------</span>
+<span class='co'>### First example: One known parameter</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10000</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>160</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>6</span>)
 <span class='no'>theta_1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='maxlogL.html'>maxlogL</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>x</span>, <span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>'dnorm'</span>, <span class='kw'>control</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>1</span>),
                  <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='st'>"sd"</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"log_link"</span>),
@@ -192,7 +191,29 @@ standard errors are calculated by bootstrap, even if <code><a href='https://www.
 #&gt; ---------------------------------------------------------------
 #&gt;    Estimate  Std. Error
 #&gt; sd    5.9661     0.0422
+#&gt; -----</div><div class='input'><span class='co'>#--------------------------------------------------------------------------------</span>
+<span class='co'># Second example: Binomial probability parameter estimation</span>
+<span class='no'>N</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Binomial'>rbinom</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.3</span>)
+<span class='no'>phat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='maxlogL.html'>maxlogL</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>N</span>, <span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>'dbinom'</span>, <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>10</span>),
+                <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='st'>"prob"</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"logit_link"</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: NaNs produced</span></div><div class='input'>
+<span class='co'>## Standard error calculation method</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>phat</span>$<span class='no'>outputs</span>$<span class='no'>StdE_Method</span>)</div><div class='output co'>#&gt; [1] "numDeriv::hessian"</div><div class='input'>
+<span class='co'>## Standard error value (not computed yet, because is computed with 'summary')</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>phat</span>$<span class='no'>outputs</span>$<span class='no'>StdE</span>)</div><div class='output co'>#&gt; [1] "Not computed yet"</div><div class='input'>
+<span class='co'>## 'summary' method</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>phat</span>)</div><div class='output co'>#&gt; ---------------------------------------------------------------
+#&gt; Optimization routine: nlminb 
+#&gt; Standard Error calculation: numDeriv::hessian 
+#&gt; ---------------------------------------------------------------
+#&gt;        AIC      BIC
+#&gt;   371.5587 371.5587
+#&gt; ---------------------------------------------------------------
+#&gt;      Estimate  Std. Error
+#&gt; prob     0.294     0.0144
 #&gt; -----</div><div class='input'>
+<span class='co'>## Now, standard error is updated</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>phat</span>$<span class='no'>outputs</span>$<span class='no'>StdE_Method</span>)</div><div class='output co'>#&gt; [1] "numDeriv::hessian"</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>phat</span>$<span class='no'>outputs</span>$<span class='no'>StdE</span>)</div><div class='output co'>#&gt; [1] 0.0144</div><div class='input'>#--------------------------------------------------------------------------------
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

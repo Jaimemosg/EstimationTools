@@ -25,19 +25,43 @@ its standard errors, AIC and BIC.
 This is a \code{summary} method for \code{\link{maxlogL}} object
 }
 \details{
-This \code{summary} method takes standard errors from \code{\link{maxlogL}} and displays them.
+This \code{summary} method takes standard errors from \code{\link{maxlogL}} object and displays them.
 If \code{\link[numDeriv]{hessian}} and Hessian from \code{\link{optim}} fails, standard errors are
 computed with bootstrap. However, if user sets \code{Boot_Std_Err = TRUE} in this summary function,
 standard errors are calculated by bootstrap, even if \code{\link[numDeriv]{hessian}} or Hessian from
 \code{\link{optim}} converges.
+
+If the user creates a variable (supose the name \code{fit}) that stores \code{\link{maxlogL}}, this
+summary method modifies the element \code{fit$outputs$StdE_Method} object from \code{Gobal Environment},
+else, it simply calculates standard errors.
 }
 \examples{
-# One known parameter
+#--------------------------------------------------------------------------------
+### First example: One known parameter
 x <- rnorm(n = 10000, mean = 160, sd = 6)
 theta_1 <- maxlogL(x = x, dist = 'dnorm', control = list(trace = 1),
                  link = list(over = "sd", fun = "log_link"),
                  fixed = list(mean = 160))
 summary(theta_1)
+#--------------------------------------------------------------------------------
+# Second example: Binomial probability parameter estimation
+N <- rbinom(n = 100, size = 10, prob = 0.3)
+phat <- maxlogL(x = N, dist = 'dbinom', fixed = list(size = 10),
+                link = list(over = "prob", fun = "logit_link"))
+
+## Standard error calculation method
+print(phat$outputs$StdE_Method)
+
+## Standard error value (not computed yet, because is computed with 'summary')
+print(phat$outputs$StdE)
+
+## 'summary' method
+summary(phat)
+
+## Now, standard error is updated
+print(phat$outputs$StdE_Method)
+print(phat$outputs$StdE)
+#--------------------------------------------------------------------------------
 
 }
 \references{
