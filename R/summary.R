@@ -14,11 +14,15 @@
 #' non-parametric bootstrap. This computation occurs when option \code{hessian = TRUE} from \code{\link{optim}}
 #' and \code{\link[numDeriv]{hessian}} fails in \code{\link{maxlogL}} routine.
 #'
-#' @details This \code{summary} method takes standard errors from \code{\link{maxlogL}} and displays them.
+#' @details This \code{summary} method takes standard errors from \code{\link{maxlogL}} object and displays them.
 #' If \code{\link[numDeriv]{hessian}} and Hessian from \code{\link{optim}} fails, standard errors are
 #' computed with bootstrap. However, if user sets \code{Boot_Std_Err = TRUE} in this summary function,
 #' standard errors are calculated by bootstrap, even if \code{\link[numDeriv]{hessian}} or Hessian from
 #' \code{\link{optim}} converges.
+#'
+#' If the user creates a variable (supose the name \code{fit}) that stores \code{\link{maxlogL}}, this
+#' summary method modifies the element \code{fit$outputs$StdE_Method} object from \code{Gobal Environment},
+#' else, it simply calculates standard errors.
 #'
 #' @return An object of class 'summary.maxlogL'.
 #' @importFrom stats sd printCoefmat
@@ -26,12 +30,32 @@
 #' @export
 #'
 #' @examples
-#' # One known parameter
+#' #--------------------------------------------------------------------------------
+#' ### First example: One known parameter
 #' x <- rnorm(n = 10000, mean = 160, sd = 6)
 #' theta_1 <- maxlogL(x = x, dist = 'dnorm', control = list(trace = 1),
 #'                  link = list(over = "sd", fun = "log_link"),
 #'                  fixed = list(mean = 160))
 #' summary(theta_1)
+#' #--------------------------------------------------------------------------------
+#' # Second example: Binomial probability parameter estimation
+#' N <- rbinom(n = 100, size = 10, prob = 0.3)
+#' phat <- maxlogL(x = N, dist = 'dbinom', fixed = list(size = 10),
+#'                 link = list(over = "prob", fun = "logit_link"))
+#'
+#' ## Standard error calculation method
+#' print(phat$outputs$StdE_Method)
+#'
+#' ## Standard error value (not computed yet, because is computed with 'summary')
+#' print(phat$outputs$StdE)
+#'
+#' ## 'summary' method
+#' summary(phat)
+#'
+#' ## Now, standard error is updated
+#' print(phat$outputs$StdE_Method)
+#' print(phat$outputs$StdE)
+#' #--------------------------------------------------------------------------------
 #'
 #' @references
 #' \insertRef{Canty2017}{EstimationTools}
@@ -46,13 +70,11 @@
 
 summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
   # .myenv <- environment()
-  # var.list <- as.list(object)
   # list2env(var.list , envir = .myenv)
+  # var.list <- as.list(object)
   estimate <- object$fit$par
   solver <- object$inputs$optimizer
   StdE_Method <- object$outputs$StdE_Method
-  # allocation1 <- NULL
-  # allocation2 <- NULL
 
   if (Boot_Std_Err == TRUE){
     StdE_Method <- "Bootstrap"
@@ -62,14 +84,12 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
 
     stdE <- try(boot_MLE(object = object, ...), silent = TRUE)
     object_name <- deparse(substitute(object))
-    # allocation1 <- paste0(object_name, "$outputs$StdE_Method <<- StdE_Method")
-    # allocation2 <- paste0(object_name, "$outputs$StdE <<- ", stdE)
 
     ## Standard error updating in "object"
-    # eval(parse(text = allocation1))
-    # eval(parse(text = allocation2))
-    parent <- parent.frame()
-    uptodate(p = parent, object_name, stdE, StdE_Method)
+    if (any(object_name != deparse(object$inputs$call))){
+      parent <- parent.frame()
+      uptodate(p = parent, object_name, stdE, StdE_Method)
+    }
 
     if( (any(is.na(stdE)) | is.error(stdE)) | any(is.character(stdE)) ){
       stdE <- rep(NA, times = object$outputs$npar)
@@ -95,14 +115,12 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
 
         stdE <- try(boot_MLE(object=object, ...), silent = TRUE)
         object_name <- deparse(substitute(object))
-        # allocation1 <- paste0(object_name, "$outputs$StdE_Method <<- StdE_Method")
-        # allocation2 <- paste0(object_name, "$outputs$StdE <<- ", stdE)
 
         ## Standard error updating in "object"
-        # eval(parse(text = allocation1))
-        # eval(parse(text = allocation2))
-        parent <- parent.frame()
-        uptodate(p = parent, object_name, stdE, StdE_Method)
+        if (any(object_name != deparse(object$inputs$call))){
+          parent <- parent.frame()
+          uptodate(p = parent, object_name, stdE, StdE_Method)
+        }
 
         if( (any(is.na(stdE)) | is.error(stdE)) | any(is.character(stdE)) ){
           stdE <- rep(NA, times = object$outputs$npar)
@@ -118,13 +136,13 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
         Zvalue <- round(estimate / stdE, digits = 4)
         pvalue <- 2 * pnorm(abs(Zvalue), lower.tail = FALSE)
         object_name <- deparse(substitute(object))
-        # allocation2 <- paste0(object_name, "$outputs$StdE <<- ", stdE)
 
         ## Standard error updating in "object"
-        # eval(parse(text = allocation2))
-        parent <- parent.frame()
-        uptodate(p = parent, object_name, stdE, StdE_Method,
-                 change_SE_method = FALSE)
+        if (any(object_name != deparse(object$inputs$call))){
+          parent <- parent.frame()
+          uptodate(p = parent, object_name, stdE, StdE_Method,
+                   change_SE_method = FALSE)
+        }
       }
     }
     if (any(is.na(stdE))){
@@ -170,9 +188,12 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
   # print(res[,1:2])
   printCoefmat(res[,1:2], P.values = FALSE)
   # cat("---------------------------------------------------------------\n")
-  # cat('Note: p-values under asymptotic approximation \n')
+  # cat('Note: p-values under asymptotic normality of estimators \n')
   cat("-----\n")
-  # return( eval(parse(text = c(allocation1, allocation2))) )
+  estimatePrint <- estimate
+  names(estimatePrint) <- names_numeric
+  ans <- list(Estimate = estimatePrint, Std_Error = stdE,
+              Z_value = Zvalue, p_value = pvalue)
 }
 
 #==============================================================================
