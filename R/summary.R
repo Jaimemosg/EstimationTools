@@ -205,6 +205,7 @@ boot_MLE <- function(object, R = 2000, ...){
 
   MLE <- function(data, i, object){
     MLE.arguments <- object$inputs[-which(names(object$inputs) == "x")]
+    MLE.arguments <- MLE.arguments[-which(names(MLE.arguments) == "call")]
     estimates <- do.call( what = "maxlogL",
                           args = c(list(x = data[i]), MLE.arguments) )
     return(estimates$fit$par)
