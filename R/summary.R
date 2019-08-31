@@ -205,6 +205,8 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
   names(estimatePrint) <- names_numeric
   ans <- list(Estimate = estimatePrint, Std_Error = stdE,
               Z_value = Zvalue, p_value = pvalue)
+  class(ans) <- "summary.maxlogL"
+  result <- ans
 }
 
 #==============================================================================
