@@ -1,9 +1,13 @@
 Submission 6 coming soon
 
 ----------------------------------------------------------------
-## v1.2.0: Submission 5 in successful (package updated on CRAN)
+## v1.3.0: Submission 5 successful (package updated on CRAN)
 
-## v1.1.0: Submission 4 in successful (package on CRAN)
+* 
+
+## v1.2.0: Submission 5 successful (package updated on CRAN)
+
+## v1.1.0: Submission 4 successful (package on CRAN)
 
 ## v1.0.2 : Issues in submission 3:
 
