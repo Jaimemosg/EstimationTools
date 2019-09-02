@@ -54,6 +54,7 @@ the distribution specified in argument \code{dist} and maximizes it through
 generates an S3 object of class \code{maxlogL}.
 }
 \examples{
+#--------------------------------------------------------------------------------
 # Estimation with one fixed parameter
 x <- rnorm(n = 10000, mean = 160, sd = 6)
 theta_1 <- maxlogL(x = x, dist = 'dnorm', control = list(trace = 1),
@@ -61,12 +62,16 @@ theta_1 <- maxlogL(x = x, dist = 'dnorm', control = list(trace = 1),
                  fixed = list(mean = 160))
 summary(theta_1)
 
+
+#--------------------------------------------------------------------------------
 # Both parameters of normal distribution mapped with logarithmic function
 theta_2 <- maxlogL( x = x, dist = "dnorm",
                     link = list(over = c("mean","sd"),
                                 fun = c("log_link","log_link")) )
 summary(theta_2)
 
+
+#--------------------------------------------------------------------------------
 # Parameter estimation in ZIP distribution
 library(gamlss.dist)
 z <- rZIP(n=10000, mu=6, sigma=0.08)
@@ -75,6 +80,9 @@ theta_3  <- maxlogL( x = z, dist='dZIP', start = c(0, 0), lower = c(-Inf, -Inf),
                      link = list(over=c("mu", "sigma"),
                      fun = c("log_link", "logit_link")) )
 summary(theta_3)
+
+
+#--------------------------------------------------------------------------------
 
 }
 \references{
