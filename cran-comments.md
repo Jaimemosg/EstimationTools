@@ -1,9 +1,9 @@
 Submission 6 coming soon
 
 ----------------------------------------------------------------
-## v1.3.0: Submission 5 successful (package updated on CRAN)
+## v1.2.1: Submission 6 successful (package updated on CRAN)
 
-* 
+* Derivatives computantion in maxlogL corrected.
 
 ## v1.2.0: Submission 5 successful (package updated on CRAN)
 
