@@ -65,7 +65,7 @@ This is a summary method for maxlogL object" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EstimationTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.2</span>
       </span>
     </div>
 
@@ -193,21 +193,24 @@ standard errors (see the Third Example).</p>
 #&gt; ---------------------------------------------------------------
 #&gt;    Estimate  Std. Error
 #&gt; sd    5.9661     0.0422
-#&gt; -----</div><div class='input'><span class='co'>#--------------------------------------------------------------------------------</span>
+#&gt; -----</div><div class='input'>
+
+<span class='co'>#--------------------------------------------------------------------------------</span>
 <span class='co'># Second example: Binomial probability parameter estimation with variable</span>
 <span class='co'># creation</span>
 
 <span class='no'>N</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Binomial'>rbinom</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.3</span>)
 <span class='no'>phat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='maxlogL.html'>maxlogL</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>N</span>, <span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>'dbinom'</span>, <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>10</span>),
-                <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='st'>"prob"</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"logit_link"</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: NaNs produced</span></div><div class='input'>
+                <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='st'>"prob"</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"logit_link"</span>))
+
 <span class='co'>## Standard error calculation method</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>phat</span>$<span class='no'>outputs</span>$<span class='no'>StdE_Method</span>)</div><div class='output co'>#&gt; [1] "numDeriv::hessian"</div><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>phat</span>$<span class='no'>outputs</span>$<span class='no'>StdE_Method</span>)</div><div class='output co'>#&gt; [1] "Hessian from optim"</div><div class='input'>
 <span class='co'>## Standard error value (not computed yet, because is computed with 'summary')</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>phat</span>$<span class='no'>outputs</span>$<span class='no'>StdE</span>)</div><div class='output co'>#&gt; [1] "Not computed yet"</div><div class='input'>
 <span class='co'>## 'summary' method</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>phat</span>)</div><div class='output co'>#&gt; ---------------------------------------------------------------
 #&gt; Optimization routine: nlminb 
-#&gt; Standard Error calculation: numDeriv::hessian 
+#&gt; Standard Error calculation: Hessian from optim 
 #&gt; ---------------------------------------------------------------
 #&gt;        AIC      BIC
 #&gt;   371.5587 371.5587
@@ -216,22 +219,26 @@ standard errors (see the Third Example).</p>
 #&gt; prob     0.294     0.0144
 #&gt; -----</div><div class='input'>
 <span class='co'>## Now, standard error is updated</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>phat</span>$<span class='no'>outputs</span>$<span class='no'>StdE_Method</span>)</div><div class='output co'>#&gt; [1] "numDeriv::hessian"</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>phat</span>$<span class='no'>outputs</span>$<span class='no'>StdE</span>)</div><div class='output co'>#&gt; [1] 0.0144</div><div class='input'><span class='co'>#--------------------------------------------------------------------------------</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>phat</span>$<span class='no'>outputs</span>$<span class='no'>StdE_Method</span>)</div><div class='output co'>#&gt; [1] "Hessian from optim"</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>phat</span>$<span class='no'>outputs</span>$<span class='no'>StdE</span>)</div><div class='output co'>#&gt; [1] 0.0144</div><div class='input'>
+
+<span class='co'>#--------------------------------------------------------------------------------</span>
 <span class='co'># Third example: Binomial probability parameter estimation with no varaible</span>
 <span class='co'># creation</span>
 
 <span class='no'>N</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Binomial'>rbinom</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.3</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='fu'><a href='maxlogL.html'>maxlogL</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>N</span>, <span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>'dbinom'</span>, <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>10</span>),
-                <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='st'>"prob"</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"logit_link"</span>)))</div><div class='output co'>#&gt; <span class='warning'>Warning: NaNs produced</span></div><div class='output co'>#&gt; ---------------------------------------------------------------
+                <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='st'>"prob"</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"logit_link"</span>)))</div><div class='output co'>#&gt; ---------------------------------------------------------------
 #&gt; Optimization routine: nlminb 
-#&gt; Standard Error calculation: numDeriv::hessian 
+#&gt; Standard Error calculation: Hessian from optim 
 #&gt; ---------------------------------------------------------------
 #&gt;        AIC      BIC
 #&gt;   363.5842 363.5842
 #&gt; ---------------------------------------------------------------
 #&gt;      Estimate  Std. Error
 #&gt; prob     0.321     0.0148
-#&gt; -----</div><div class='input'>#--------------------------------------------------------------------------------
+#&gt; -----</div><div class='input'>
+
+#--------------------------------------------------------------------------------
 
 </div></pre>
   </div>

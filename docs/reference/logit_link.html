@@ -66,7 +66,7 @@ of link objects." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EstimationTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.2</span>
       </span>
     </div>
 
@@ -152,9 +152,10 @@ defines and returns a list with details of the link function:</p><ol>
 <span class='co'># 10 trials, probability of success equals to 30%)</span>
 <span class='no'>N</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Binomial'>rbinom</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.3</span>)
 <span class='no'>phat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='maxlogL.html'>maxlogL</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>N</span>, <span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>'dbinom'</span>, <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>size</span><span class='kw'>=</span><span class='fl'>10</span>),
-                <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='st'>"prob"</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"logit_link"</span>))</div><div class='output co'>#&gt; <span class='warning'>Warning: NaNs produced</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>phat</span>)</div><div class='output co'>#&gt; ---------------------------------------------------------------
+                <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='st'>"prob"</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"logit_link"</span>))
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>phat</span>)</div><div class='output co'>#&gt; ---------------------------------------------------------------
 #&gt; Optimization routine: nlminb 
-#&gt; Standard Error calculation: numDeriv::hessian 
+#&gt; Standard Error calculation: Hessian from optim 
 #&gt; ---------------------------------------------------------------
 #&gt;        AIC      BIC
 #&gt;   349.2752 349.2752

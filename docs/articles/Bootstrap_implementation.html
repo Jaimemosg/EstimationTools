@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EstimationTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.2</span>
       </span>
     </div>
 
@@ -73,7 +73,7 @@
       <h1>Bootstrap implementation</h1>
                         <h4 class="author">Jaime Mosquera</h4>
             
-            <h4 class="date">2019-08-31</h4>
+            <h4 class="date">2019-09-02</h4>
       
       
       <div class="hidden name"><code>Bootstrap_implementation.Rmd</code></div>
@@ -109,34 +109,34 @@ SE(\hat{\boldsymbol{\theta}}) = \sqrt{C_{jj}(\hat{\boldsymbol{\theta}})},
 <a class="sourceLine" id="cb2-4" title="4">theta_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/maxlogL.html">maxlogL</a></span>(<span class="dt">x =</span> x, <span class="dt">dist =</span> <span class="st">'dnorm'</span>, <span class="dt">control =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dt">trace =</span> <span class="dv">1</span>),</a>
 <a class="sourceLine" id="cb2-5" title="5">                   <span class="dt">link =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dt">over =</span> <span class="st">"sd"</span>, <span class="dt">fun =</span> <span class="st">"log_link"</span>),</a>
 <a class="sourceLine" id="cb2-6" title="6">                   <span class="dt">fixed =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list">list</a></span>(<span class="dt">mean =</span> <span class="dv">160</span>))</a>
-<a class="sourceLine" id="cb2-7" title="7"><span class="co">#&gt;   0:     43575.519:  1.00000</span></a>
-<a class="sourceLine" id="cb2-8" title="8"><span class="co">#&gt;   1:     32489.690:  2.00000</span></a>
-<a class="sourceLine" id="cb2-9" title="9"><span class="co">#&gt;   2:     32261.015:  1.91942</span></a>
-<a class="sourceLine" id="cb2-10" title="10"><span class="co">#&gt;   3:     32121.301:  1.76253</span></a>
-<a class="sourceLine" id="cb2-11" title="11"><span class="co">#&gt;   4:     32112.421:  1.79619</span></a>
-<a class="sourceLine" id="cb2-12" title="12"><span class="co">#&gt;   5:     32112.269:  1.79240</span></a>
-<a class="sourceLine" id="cb2-13" title="13"><span class="co">#&gt;   6:     32112.269:  1.79229</span></a>
-<a class="sourceLine" id="cb2-14" title="14"><span class="co">#&gt;   7:     32112.269:  1.79229</span></a>
+<a class="sourceLine" id="cb2-7" title="7"><span class="co">#&gt;   0:     43644.766:  1.00000</span></a>
+<a class="sourceLine" id="cb2-8" title="8"><span class="co">#&gt;   1:     32499.061:  2.00000</span></a>
+<a class="sourceLine" id="cb2-9" title="9"><span class="co">#&gt;   2:     32273.521:  1.92009</span></a>
+<a class="sourceLine" id="cb2-10" title="10"><span class="co">#&gt;   3:     32135.237:  1.76435</span></a>
+<a class="sourceLine" id="cb2-11" title="11"><span class="co">#&gt;   4:     32126.593:  1.79753</span></a>
+<a class="sourceLine" id="cb2-12" title="12"><span class="co">#&gt;   5:     32126.447:  1.79382</span></a>
+<a class="sourceLine" id="cb2-13" title="13"><span class="co">#&gt;   6:     32126.447:  1.79371</span></a>
+<a class="sourceLine" id="cb2-14" title="14"><span class="co">#&gt;   7:     32126.447:  1.79371</span></a>
 <a class="sourceLine" id="cb2-15" title="15"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(theta_<span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb2-16" title="16"><span class="co">#&gt; ---------------------------------------------------------------</span></a>
 <a class="sourceLine" id="cb2-17" title="17"><span class="co">#&gt; Optimization routine: nlminb </span></a>
 <a class="sourceLine" id="cb2-18" title="18"><span class="co">#&gt; Standard Error calculation: Hessian from optim </span></a>
 <a class="sourceLine" id="cb2-19" title="19"><span class="co">#&gt; ---------------------------------------------------------------</span></a>
 <a class="sourceLine" id="cb2-20" title="20"><span class="co">#&gt;        AIC      BIC</span></a>
-<a class="sourceLine" id="cb2-21" title="21"><span class="co">#&gt;   64224.54 64224.54</span></a>
+<a class="sourceLine" id="cb2-21" title="21"><span class="co">#&gt;   64252.89 64252.89</span></a>
 <a class="sourceLine" id="cb2-22" title="22"><span class="co">#&gt; ---------------------------------------------------------------</span></a>
 <a class="sourceLine" id="cb2-23" title="23"><span class="co">#&gt;    Estimate  Std. Error</span></a>
-<a class="sourceLine" id="cb2-24" title="24"><span class="co">#&gt; sd    6.0032     0.0424</span></a>
+<a class="sourceLine" id="cb2-24" title="24"><span class="co">#&gt; sd    6.0117     0.0425</span></a>
 <a class="sourceLine" id="cb2-25" title="25"><span class="co">#&gt; -----</span></a>
 <a class="sourceLine" id="cb2-26" title="26"></a>
 <a class="sourceLine" id="cb2-27" title="27"><span class="co">## Hessian </span></a>
 <a class="sourceLine" id="cb2-28" title="28"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(theta_<span class="dv">1</span><span class="op">$</span>fit<span class="op">$</span>hessian)</a>
 <a class="sourceLine" id="cb2-29" title="29"><span class="co">#&gt;          [,1]</span></a>
-<a class="sourceLine" id="cb2-30" title="30"><span class="co">#&gt; [1,] 554.9683</span></a>
+<a class="sourceLine" id="cb2-30" title="30"><span class="co">#&gt; [1,] 553.3969</span></a>
 <a class="sourceLine" id="cb2-31" title="31"></a>
 <a class="sourceLine" id="cb2-32" title="32"><span class="co">## Standard errors</span></a>
 <a class="sourceLine" id="cb2-33" title="33"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(theta_<span class="dv">1</span><span class="op">$</span>outputs<span class="op">$</span>StdE)</a>
-<a class="sourceLine" id="cb2-34" title="34"><span class="co">#&gt; [1] 0.0424</span></a>
+<a class="sourceLine" id="cb2-34" title="34"><span class="co">#&gt; [1] 0.0425</span></a>
 <a class="sourceLine" id="cb2-35" title="35"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(theta_<span class="dv">1</span><span class="op">$</span>outputs<span class="op">$</span>StdE_Method)</a>
 <a class="sourceLine" id="cb2-36" title="36"><span class="co">#&gt; [1] "Hessian from optim"</span></a></code></pre></div>
 <p>Note that Hessian matrix was computed with no issues. However, the user can implement bootstrap alogorithm available in <code>summary</code> function:</p>
@@ -149,23 +149,23 @@ SE(\hat{\boldsymbol{\theta}}) = \sqrt{C_{jj}(\hat{\boldsymbol{\theta}})},
 <a class="sourceLine" id="cb3-7" title="7"><span class="co">#&gt; Standard Error calculation: Bootstrap </span></a>
 <a class="sourceLine" id="cb3-8" title="8"><span class="co">#&gt; ---------------------------------------------------------------</span></a>
 <a class="sourceLine" id="cb3-9" title="9"><span class="co">#&gt;        AIC      BIC</span></a>
-<a class="sourceLine" id="cb3-10" title="10"><span class="co">#&gt;   64224.54 64224.54</span></a>
+<a class="sourceLine" id="cb3-10" title="10"><span class="co">#&gt;   64252.89 64252.89</span></a>
 <a class="sourceLine" id="cb3-11" title="11"><span class="co">#&gt; ---------------------------------------------------------------</span></a>
 <a class="sourceLine" id="cb3-12" title="12"><span class="co">#&gt;    Estimate  Std. Error</span></a>
-<a class="sourceLine" id="cb3-13" title="13"><span class="co">#&gt; sd    6.0032     0.0424</span></a>
+<a class="sourceLine" id="cb3-13" title="13"><span class="co">#&gt; sd    6.0117      0.045</span></a>
 <a class="sourceLine" id="cb3-14" title="14"><span class="co">#&gt; -----</span></a>
 <a class="sourceLine" id="cb3-15" title="15"></a>
 <a class="sourceLine" id="cb3-16" title="16"><span class="co">## Hessian </span></a>
 <a class="sourceLine" id="cb3-17" title="17"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(theta_<span class="dv">1</span><span class="op">$</span>fit<span class="op">$</span>hessian)</a>
 <a class="sourceLine" id="cb3-18" title="18"><span class="co">#&gt;          [,1]</span></a>
-<a class="sourceLine" id="cb3-19" title="19"><span class="co">#&gt; [1,] 554.9683</span></a>
+<a class="sourceLine" id="cb3-19" title="19"><span class="co">#&gt; [1,] 553.3969</span></a>
 <a class="sourceLine" id="cb3-20" title="20"></a>
 <a class="sourceLine" id="cb3-21" title="21"><span class="co">## Standard errors</span></a>
 <a class="sourceLine" id="cb3-22" title="22"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(theta_<span class="dv">1</span><span class="op">$</span>outputs<span class="op">$</span>StdE)</a>
-<a class="sourceLine" id="cb3-23" title="23"><span class="co">#&gt; [1] 0.04241367</span></a>
+<a class="sourceLine" id="cb3-23" title="23"><span class="co">#&gt; [1] 0.04504129</span></a>
 <a class="sourceLine" id="cb3-24" title="24"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/print">print</a></span>(theta_<span class="dv">1</span><span class="op">$</span>outputs<span class="op">$</span>StdE_Method)</a>
 <a class="sourceLine" id="cb3-25" title="25"><span class="co">#&gt; [1] "Bootstrap"</span></a></code></pre></div>
-<p>Notice that Standard Errors calculated with <code>optim</code> (<span class="math inline">\(0.0424\)</span>) and those calculated with bootstrap implementation (<span class="math inline">\(0.042414\)</span>) are approximately equals, but no identical.</p>
+<p>Notice that Standard Errors calculated with <code>optim</code> (<span class="math inline">\(0.0425\)</span>) and those calculated with bootstrap implementation (<span class="math inline">\(0.045041\)</span>) are approximately equals, but no identical.</p>
 </div>
   </div>
 

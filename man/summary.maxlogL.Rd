@@ -45,6 +45,8 @@ theta_1 <- maxlogL(x = x, dist = 'dnorm', control = list(trace = 1),
                  link = list(over = "sd", fun = "log_link"),
                  fixed = list(mean = 160))
 summary(theta_1)
+
+
 #--------------------------------------------------------------------------------
 # Second example: Binomial probability parameter estimation with variable
 # creation
@@ -65,6 +67,8 @@ summary(phat)
 ## Now, standard error is updated
 print(phat$outputs$StdE_Method)
 print(phat$outputs$StdE)
+
+
 #--------------------------------------------------------------------------------
 # Third example: Binomial probability parameter estimation with no varaible
 # creation
@@ -72,6 +76,8 @@ print(phat$outputs$StdE)
 N <- rbinom(n = 100, size = 10, prob = 0.3)
 summary(maxlogL(x = N, dist = 'dbinom', fixed = list(size = 10),
                 link = list(over = "prob", fun = "logit_link")))
+
+
 #--------------------------------------------------------------------------------
 
 }
