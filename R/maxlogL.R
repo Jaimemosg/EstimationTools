@@ -228,10 +228,11 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
   ll.noLink <- minus_ll(x = x, dist, dist_args = arguments, over = NULL,
                         link = NULL, npar = npar, fixed = fixed)
   fit$hessian <- try(optim(par = fit$par, fn = ll.noLink, method = 'L-BFGS-B',
-                           lower = lower, upper = upper,
+                           lower = fit$par - 0.5*fit$par, upper = fit$par + 0.5*fit$par,
                            hessian = TRUE)$hessian, silent = TRUE)
   # fit$hessian <- try(optimHess(par = fit$par, fn = ll.noLink, method = 'L-BFGS-B',
-  #                              lower = lower, upper = upper), silent = TRUE)
+  #                              lower = fit$par - 0.5*fit$par,
+  #                              upper = fit$par + 0.5*fit$par), silent = TRUE)
 
   StdE_Method <- "Hessian from optim"
   if ( (any(is.na(fit$hessian)) | is.error(fit$hessian)) |
