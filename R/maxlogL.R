@@ -166,20 +166,9 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
 
   # Link application over initial values
   if ( !is.null(lower) & !is.null(upper) & !is.null(start)){
-    if ( !is.null(link$over) & !is.null(link$fun) ){
-      linked_params <- link_apply(over = link$over, dist_args = arguments,
-                                  npar = npar)
-      link_start <- vector(mode = "list", length = length(linked_params))
-      link_init <- paste0(link$fun, "()")
-      link_start <- lapply( 1:length(linked_params), FUN =
-                               function(x) eval(parse(text = link_init[x])) )
-      for (i in 1:length(linked_params)){
-        g_start <- paste0("link_start[[", i, "]]$g_inv")
-        g_start <- eval(parse(text = g_start))
-        start[linked_params[i]] <- do.call( what = "g_start",
-                                              args = list(x = start[linked_params[i]]) )
-      }
-    }
+    start <- link_apply(values = start, over = link$over,
+                        dist_args = arguments, npar = npar,
+                        link_fun = link$fun)
   }
 
   # Optimizers
@@ -218,25 +207,15 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
   }
 
   # Revert link mapping
-  if ( !is.null(link$over) & !is.null(link$fun) ){
-    linked_params <- link_apply(over = link$over, dist_args = arguments,
-                                npar = npar)
-    link_revert <- vector(mode = "list", length = length(linked_params))
-    link_rev <- paste0(link$fun, "()")
-    link_revert <- lapply( 1:length(linked_params), FUN =
-                             function(x) eval(parse(text = link_rev[x])) )
-    for (i in 1:length(linked_params)){
-      g_revert <- paste0("link_revert[[", i, "]]$g_inv")
-      g_revert <- eval(parse(text = g_revert))
-      fit$par[linked_params[i]] <- do.call( what = "g_revert",
-                                   args = list(x = fit$par[linked_params[i]]) )
-    }
-  }
+  fit$par <- link_apply(values = fit$par, over = link$over,
+                        dist_args = arguments, npar = npar,
+                        link_fun = link$fun)
 
   ll.noLink <- minus_ll(x = x, dist, dist_args = arguments, over = NULL,
                         link = NULL, npar = npar, fixed = fixed)
   fit$hessian <- try(optim(par = fit$par, fn = ll.noLink, method = 'L-BFGS-B',
-                           lower = fit$par - 0.5*fit$par, upper = fit$par + 0.5*fit$par,
+                           lower = fit$par - 0.5*fit$par,
+                           upper = fit$par + 0.5*fit$par,
                            hessian = TRUE)$hessian, silent = TRUE)
   # fit$hessian <- try(optimHess(par = fit$par, fn = ll.noLink, method = 'L-BFGS-B',
   #                              lower = fit$par - 0.5*fit$par,
@@ -256,41 +235,42 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
                  start = start, lower = lower, upper = upper,
                  x = x)
   outputs <- list(npar = npar - length(fixed), n = length(x),
-                 StdE_Method = StdE_Method, StdE = "Not computed yet")
+                  StdE_Method = StdE_Method, StdE = "Not computed yet")
   result <- list(fit = fit, inputs = inputs, outputs = outputs)
   class(result) <- "maxlogL"
   return(result)
 }
 #==============================================================================
-# Link application ------------------------------------------------------------
+# Link list generation --------------------------------------------------------
 #==============================================================================
-link_apply <- function(over, dist_args, npar){
-  if (is.null(over)){
+link_list <- function(over, dist_args, npar){
+  if ( is.null(over) ){
     return(linked_params = NULL)
   } else {
-    if (length(over) > npar) stop("Number of mapped parameters is
-                                  greater than the number of
-                                  parameters of the distribution")
+  if ( length(over) > npar ) stop(paste0("Number of mapped parameters is ",
+                                  "greater than the number of parameters ",
+                                  "of the distribution.\n Remember, ",
+                                  "npar > over"))
     numeric_list <- vector(mode = "list", length = npar + 1)
     names_numeric <- rep("", times = npar + 1)
     j <- 1
-    for (i in 1:length(dist_args)){
+    for ( i in 1:length(dist_args) ){
       if (is.numeric(dist_args[[i]]) | is.symbol(dist_args[[i]])){
         numeric_list[[j]]<- dist_args[[i]]
         names_numeric[j] <- names(dist_args[i])
         j <- j + 1
       }
     }
-    numeric_list[which(names_numeric=="x")] <- NULL
-    names_numeric <- names_numeric[-which(names_numeric=="x")]
+    numeric_list[which(names_numeric == "x")] <- NULL
+    names_numeric <- names_numeric[-which(names_numeric == "x")]
     names(numeric_list) <- names_numeric
 
     args_names <- names(dist_args)
     mapped_param <- match(over, args_names)
 
-    linked_args <- vector(mode="list", length=length(over))
-    names_linked <- rep("", times=length(over))
-    for (i in 1:length(mapped_param)){
+    linked_args <- vector(mode = "list", length = length(over))
+    names_linked <- rep("", times = length(over))
+    for ( i in 1:length(mapped_param) ){
       linked_args[i] <- dist_args[mapped_param[i]]
       names_linked[i] <- names(dist_args[mapped_param[i]])
     }
@@ -301,12 +281,32 @@ link_apply <- function(over, dist_args, npar){
   }
 }
 #==============================================================================
+# Link application ------------------------------------------------------------
+#==============================================================================
+link_apply <- function(values, over, dist_args, npar, link_fun){
+  if ( !is.null(over) & !is.null(link_fun) ){
+    linked_parlist <- link_list(over = over, dist_args = dist_args,
+                                npar = npar)
+    linked_params <- vector(mode = "list", length = length(linked_parlist))
+    g_fun <- paste0(link_fun, "()")
+    linked_params <- lapply( 1:length(linked_parlist), FUN =
+                               function(x) eval(parse(text = g_fun[x])) )
+    for (i in 1:length(linked_parlist)){
+      g_apply <- paste0("linked_params[[", i, "]]$g_inv")
+      g_apply <- eval(parse(text = g_apply))
+      values[linked_parlist[i]] <- do.call( what = "g_apply",
+                  args = list(x = values[linked_parlist[i]]) )
+    }
+  }
+  return(values)
+}
+#==============================================================================
 # log-likelihood function computation -----------------------------------------
 #==============================================================================
 minus_ll <- function(x, dist, dist_args, over, link, npar, fixed){
   f <- function(param){
     if( !is.null(link) & !is.null(over) ){
-      linked_params <- link_apply(over = over, dist_args = dist_args,
+      linked_params <- link_list(over = over, dist_args = dist_args,
                                   npar = npar)
       if ( !is.null(linked_params) ){
         link_eval <- vector( mode = "list", length = length(linked_params) )
