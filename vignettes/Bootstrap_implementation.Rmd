@@ -69,7 +69,6 @@ print(theta_1$outputs$StdE_Method)
 a <- theta_1$outputs$StdE
 ```
 
-
 Note that Hessian matrix was computed with no issues. However, the user can implement bootstrap alogorithm available in `summary` function:
 
 ```{r}
