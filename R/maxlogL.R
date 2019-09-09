@@ -93,11 +93,12 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
                     optimizer = 'nlminb', control = NULL, ...){
 
   call <- match.call()
+
   # List of arguments of density function
   arguments <- as.list(args(dist))
 
   # Common errors
-  if (class(control) != 'list'){
+  if ( !is.list(control) ){
     if (!is.null(control)){
       stop("control argument must be a list \n \n")
     }
@@ -105,11 +106,15 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
 
   if ( is.null(dist) ) stop("Distribution not specified \n \n")
 
+  if ( !is.character(dist) ) stop(paste0("'dist' argument must be a character ",
+                                         "string \n \n"))
+
   solvers <- c('nlminb', 'optim', 'DEoptim')
   if ( !optimizer %in% solvers ){
     stop(c("Select optimizers from the following list: \n \n",
            "  --> ",paste0(solvers, collapse=", ")))
   }
+
   if ( !is.null(link) ){
     if (length(match(link$over, names(arguments)) ) == 0)
       stop(paste0("Name(s) of linked parameter(s) do not agree with ",
@@ -156,7 +161,7 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
   npar <- length(nnum[nnum == TRUE]) + length(nsym[nsym == TRUE]) - 1
 
   #  Negative of log-Likelihood function
-  ll <- minus_ll(x = x, dist, dist_args = arguments, over = link$over,
+  ll <- minus_lL(x = x, dist, dist_args = arguments, over = link$over,
                  link = link$fun, npar = npar, fixed = fixed)
 
   #  Default feasible region
@@ -211,7 +216,8 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
                         dist_args = arguments, npar = npar,
                         link_fun = link$fun)
 
-  ll.noLink <- minus_ll(x = x, dist, dist_args = arguments, over = NULL,
+  # Hessian computation
+  ll.noLink <- minus_lL(x = x, dist, dist_args = arguments, over = NULL,
                         link = NULL, npar = npar, fixed = fixed)
   fit$hessian <- try(optim(par = fit$par, fn = ll.noLink, method = 'L-BFGS-B',
                            lower = fit$par - 0.5*fit$par,
@@ -303,7 +309,7 @@ link_apply <- function(values, over, dist_args, npar, link_fun){
 #==============================================================================
 # log-likelihood function computation -----------------------------------------
 #==============================================================================
-minus_ll <- function(x, dist, dist_args, over, link, npar, fixed){
+minus_lL <- function(x, dist, dist_args, over, link, npar, fixed){
   f <- function(param){
     if( !is.null(link) & !is.null(over) ){
       linked_params <- link_list(over = over, dist_args = dist_args,
@@ -316,8 +322,8 @@ minus_ll <- function(x, dist, dist_args, over, link, npar, fixed){
         for (i in 1:length(linked_params)){
           g_inv <- paste0("link_eval[[", i, "]]$g_inv")
           g_inv <- eval(parse(text=g_inv))
-          param[[linked_params[i]]] <- do.call( what = "g_inv", args = list(
-            x=param[[linked_params[i]]]) )
+          param[[linked_params[i]]] <- do.call( what = "g_inv",
+                          args = list(x = param[[linked_params[i]]]) )
         }
       }
     }
