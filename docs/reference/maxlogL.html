@@ -64,7 +64,7 @@ of any distribution implemented in R." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EstimationTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.2.2.1</span>
       </span>
     </div>
 
@@ -219,7 +219,8 @@ ISSN 00983500, doi: <a href='https://doi.org/10.1145/355958.355965'>10.1145/3559
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Estimation with one fixed parameter</span>
+    <pre class="examples"><div class='input'><span class='co'>#--------------------------------------------------------------------------------</span>
+<span class='co'># Estimation with one fixed parameter</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10000</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>160</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>6</span>)
 <span class='no'>theta_1</span> <span class='kw'>&lt;-</span> <span class='fu'>maxlogL</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>x</span>, <span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>'dnorm'</span>, <span class='kw'>control</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>1</span>),
                  <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='st'>"sd"</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"log_link"</span>),
@@ -240,6 +241,8 @@ ISSN 00983500, doi: <a href='https://doi.org/10.1145/355958.355965'>10.1145/3559
 #&gt;    Estimate  Std. Error
 #&gt; sd    6.0275     0.0426
 #&gt; -----</div><div class='input'>
+
+<span class='co'>#--------------------------------------------------------------------------------</span>
 <span class='co'># Both parameters of normal distribution mapped with logarithmic function</span>
 <span class='no'>theta_2</span> <span class='kw'>&lt;-</span> <span class='fu'>maxlogL</span>( <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>x</span>, <span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>"dnorm"</span>,
                     <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"mean"</span>,<span class='st'>"sd"</span>),
@@ -255,6 +258,8 @@ ISSN 00983500, doi: <a href='https://doi.org/10.1145/355958.355965'>10.1145/3559
 #&gt; mean  159.9066     0.0603
 #&gt; sd      6.0267     0.0426
 #&gt; -----</div><div class='input'>
+
+<span class='co'>#--------------------------------------------------------------------------------</span>
 <span class='co'># Parameter estimation in ZIP distribution</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>gamlss.dist</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: MASS</span></div><div class='input'><span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/gamlss.dist/topics/ZIP'>rZIP</a></span>(<span class='kw'>n</span><span class='kw'>=</span><span class='fl'>10000</span>, <span class='kw'>mu</span><span class='kw'>=</span><span class='fl'>6</span>, <span class='kw'>sigma</span><span class='kw'>=</span><span class='fl'>0.08</span>)
 <span class='no'>theta_3</span>  <span class='kw'>&lt;-</span> <span class='fu'>maxlogL</span>( <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>z</span>, <span class='kw'>dist</span><span class='kw'>=</span><span class='st'>'dZIP'</span>, <span class='kw'>start</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>0</span>), <span class='kw'>lower</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(-<span class='fl'>Inf</span>, -<span class='fl'>Inf</span>),
@@ -272,6 +277,9 @@ ISSN 00983500, doi: <a href='https://doi.org/10.1145/355958.355965'>10.1145/3559
 #&gt; mu     5.984879     0.0256
 #&gt; sigma  0.076475     0.0027
 #&gt; -----</div><div class='input'>
+
+#--------------------------------------------------------------------------------
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
