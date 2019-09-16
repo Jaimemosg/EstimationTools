@@ -8,11 +8,13 @@
 #' @aliases summary.maxlogL
 #'
 #' @param object an object class "\code{\link{maxlogL}}".
-#' @param Boot_Std_Err a logical variable. If it is \code{TRUE}, standard Errors are calculated by
-#'        bootstrapping. The default is \code{FALSE}.
+#' @param Boot_Std_Err a logical variable for standard Errors computation by
+#'        bootstrapping. The default is \code{FALSE}. This computation occurs when hessian
+#'        from \code{\link{optim}} and \code{\link[numDeriv]{hessian}} fails in
+#'        \code{\link{maxlogL}} routine. If this argument is \code{TRUE}, standard errors
+#'        are computed, even if hessian did not fail in \code{\link{maxlogL}} routine.
 #' @param ... arguments passed to \code{\link[boot]{boot}} for estimation of stantdard error with
-#' non-parametric bootstrap. This computation occurs when option \code{hessian = TRUE} from \code{\link{optim}}
-#' and \code{\link[numDeriv]{hessian}} fails in \code{\link{maxlogL}} routine.
+#' non-parametric bootstrap.
 #'
 #' @details This \code{summary} method takes standard errors from \code{\link{maxlogL}} object and displays them.
 #' If \code{\link[numDeriv]{hessian}} and Hessian from \code{\link{optim}} fails, standard errors are
@@ -84,7 +86,6 @@
 #==============================================================================
 # Summary function ------------------------------------------------------------
 #==============================================================================
-
 summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
   # .myenv <- environment()
   # list2env(var.list , envir = .myenv)
@@ -176,7 +177,7 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
   colnames(res) <- c('Estimate ', 'Std. Error', 'Z value', 'Pr(>z)')
 
   ## Undo link application
-  names_numeric <- rep("", times=object$outputs$npar)
+  names_numeric <- rep("", times = object$outputs$npar)
   dist_args <- as.list(args(object$inputs$dist))
   j <- 1
   for (i in 1:length(dist_args)){
@@ -246,4 +247,15 @@ uptodate <- function(p, object_name, stdE, StdE_Method,
                           "$outputs$StdE_Method <- StdE_Method")
     eval(parse(text = allocation1))
   }
+}
+
+#==============================================================================
+# Print method ---------------------------------------------------------------
+#==============================================================================
+print.maxlogL <- function(x, ...) {
+  cat("Call:\n")
+  print(x$call)
+  cat("\n Results: \n")
+  cat("\n Estimated parameters: \n")
+  print(x$par)
 }
