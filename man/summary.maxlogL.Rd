@@ -9,12 +9,14 @@
 \arguments{
 \item{object}{an object class "\code{\link{maxlogL}}".}
 
-\item{Boot_Std_Err}{a logical variable. If it is \code{TRUE}, standard Errors are calculated by
-bootstrapping. The default is \code{FALSE}.}
+\item{Boot_Std_Err}{a logical variable for standard Errors computation by
+bootstrapping. The default is \code{FALSE}. This computation occurs when hessian
+from \code{\link{optim}} and \code{\link[numDeriv]{hessian}} fails in
+\code{\link{maxlogL}} routine. If this argument is \code{TRUE}, standard errors
+are computed, even if hessian did not fail in \code{\link{maxlogL}} routine.}
 
 \item{...}{arguments passed to \code{\link[boot]{boot}} for estimation of stantdard error with
-non-parametric bootstrap. This computation occurs when option \code{hessian = TRUE} from \code{\link{optim}}
-and \code{\link[numDeriv]{hessian}} fails in \code{\link{maxlogL}} routine.}
+non-parametric bootstrap.}
 }
 \value{
 An object of class 'summary.maxlogL'.

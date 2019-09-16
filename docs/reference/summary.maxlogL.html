@@ -133,14 +133,16 @@ This is a <code>summary</code> method for <code><a href='maxlogL.html'>maxlogL</
     </tr>
     <tr>
       <th>Boot_Std_Err</th>
-      <td><p>a logical variable. If it is <code>TRUE</code>, standard Errors are calculated by
-bootstrapping. The default is <code>FALSE</code>.</p></td>
+      <td><p>a logical variable for standard Errors computation by
+bootstrapping. The default is <code>FALSE</code>. This computation occurs when hessian
+from <code><a href='https://www.rdocumentation.org/packages/stats/topics/optim'>optim</a></code> and <code><a href='https://www.rdocumentation.org/packages/numDeriv/topics/hessian'>hessian</a></code> fails in
+<code><a href='maxlogL.html'>maxlogL</a></code> routine. If this argument is <code>TRUE</code>, standard errors
+are computed, even if hessian did not fail in <code><a href='maxlogL.html'>maxlogL</a></code> routine.</p></td>
     </tr>
     <tr>
       <th>...</th>
       <td><p>arguments passed to <code><a href='https://www.rdocumentation.org/packages/boot/topics/boot'>boot</a></code> for estimation of stantdard error with
-non-parametric bootstrap. This computation occurs when option <code>hessian = TRUE</code> from <code><a href='https://www.rdocumentation.org/packages/stats/topics/optim'>optim</a></code>
-and <code><a href='https://www.rdocumentation.org/packages/numDeriv/topics/hessian'>hessian</a></code> fails in <code><a href='maxlogL.html'>maxlogL</a></code> routine.</p></td>
+non-parametric bootstrap.</p></td>
     </tr>
     </table>
     
