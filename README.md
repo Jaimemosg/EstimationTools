@@ -23,7 +23,7 @@ estimation of probability density/mass functions in `R`.
 
 ## Installation
 
-You can install the last version of `EstimationTools` typing the
+You can install the lastest version of `EstimationTools` typing the
 following command lines in `R` console:
 
 ``` r
@@ -53,15 +53,15 @@ likelihood estimation problem with `EstimationTools`:
 ![
 \\begin{aligned} 
 X &\\sim N(\\mu, \\:\\sigma^2) \\\\
-\\mu &= 160 \\\\
-\\sigma &= 6
+\\mu &= 160 \\quad (\\verb|mean|) \\\\
+\\sigma &= 6 \\quad (\\verb|sd|)
 \\end{aligned}
-](https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%20%0AX%20%26%5Csim%20N%28%5Cmu%2C%20%5C%3A%5Csigma%5E2%29%20%5C%5C%0A%5Cmu%20%26%3D%20160%20%5C%5C%0A%5Csigma%20%26%3D%206%0A%5Cend%7Baligned%7D%0A
+](https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%20%0AX%20%26%5Csim%20N%28%5Cmu%2C%20%5C%3A%5Csigma%5E2%29%20%5C%5C%0A%5Cmu%20%26%3D%20160%20%5Cquad%20%28%5Cverb%7Cmean%7C%29%20%5C%5C%0A%5Csigma%20%26%3D%206%20%5Cquad%20%28%5Cverb%7Csd%7C%29%0A%5Cend%7Baligned%7D%0A
 "
 \\begin{aligned} 
 X &\\sim N(\\mu, \\:\\sigma^2) \\\\
-\\mu &= 160 \\\\
-\\sigma &= 6
+\\mu &= 160 \\quad (\\verb|mean|) \\\\
+\\sigma &= 6 \\quad (\\verb|sd|)
 \\end{aligned}
 ")  
 
@@ -79,11 +79,11 @@ summary(fit)
 #> Optimization routine: nlminb 
 #> Standard Error calculation: Hessian from optim 
 #> ---------------------------------------------------------------
-#>        AIC      BIC
-#>   64246.73 64242.73
+#>       AIC     BIC
+#>   64559.6 64555.6
 #> ---------------------------------------------------------------
 #>      Estimate  Std. Error
-#> mean  159.9938     0.0601
-#> sd      6.0086     0.0425
+#> mean  159.9795     0.0610
+#> sd      6.1034     0.0432
 #> -----
 ```

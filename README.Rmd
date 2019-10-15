@@ -30,7 +30,7 @@ The goal of `EstimationTools` is to provide a routine for parameter estimation o
 
 ## Installation
 
-You can install the last version of `EstimationTools` typing the following command lines
+You can install the lastest version of `EstimationTools` typing the following command lines
 in `R` console:
 
 ``` {r eval=FALSE}
@@ -55,8 +55,8 @@ This is a basic example which shows you how to solve a common maximum likelihood
 $$
 \begin{aligned} 
 X &\sim N(\mu, \:\sigma^2) \\
-\mu &= 160 \\
-\sigma &= 6
+\mu &= 160 \quad (\verb|mean|) \\
+\sigma &= 6 \quad (\verb|sd|)
 \end{aligned}
 $$
 
