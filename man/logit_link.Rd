@@ -16,7 +16,7 @@ A list with logit link function, its inverse and its name.
 of link objects.
 }
 \details{
-\code{log_link} is part of a family of generic functions with no input arguments that
+\code{logit_link} is part of a family of generic functions with no input arguments that
 defines and returns a list with details of the link function:
 \enumerate{
    \item \code{name}: a character string with the name of the link function.

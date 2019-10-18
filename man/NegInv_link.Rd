@@ -16,7 +16,7 @@ A list with negative inverse link function, its inverse and its name.
 of link objects.
 }
 \details{
-\code{logit_link} is part of a family of generic functions with no input arguments that
+\code{NegInv_link} is part of a family of generic functions with no input arguments that
 defines and returns a list with details of the link function:
 \enumerate{
    \item \code{name}: a character string with the name of the link function.
