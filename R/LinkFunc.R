@@ -33,7 +33,7 @@
 #' ginv <- logit_link()$g_inv
 #' curve(ginv(x), from = -10, to = 10)
 #'
-#' @details \code{log_link} is part of a family of generic functions with no input arguments that
+#' @details \code{logit_link} is part of a family of generic functions with no input arguments that
 #' defines and returns a list with details of the link function:
 #' \enumerate{
 #'    \item \code{name}: a character string with the name of the link function.
@@ -137,7 +137,7 @@ log_link <- function(){
 #' ginv <- NegInv_link()$g_inv
 #' curve(ginv(x), from = 0.1, to = 1)
 #'
-#' @details \code{logit_link} is part of a family of generic functions with no input arguments that
+#' @details \code{NegInv_link} is part of a family of generic functions with no input arguments that
 #' defines and returns a list with details of the link function:
 #' \enumerate{
 #'    \item \code{name}: a character string with the name of the link function.
