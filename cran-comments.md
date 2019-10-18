@@ -1,4 +1,4 @@
-Submission 6 coming soon
+Submission 7 coming soon
 
 ----------------------------------------------------------------
 ## v1.2.1: Submission 6 successful (package updated on CRAN)
