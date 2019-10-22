@@ -6,3 +6,12 @@
 ^cran-comments\.md$
 ^docs$
 ^extra$
+vignettes/jss.bst
+vignettes/jss.cls
+vignettes/.*\.aux
+vignettes/.*\.bbl
+vignettes/.*\.blg
+vignettes/.*\.idx
+vignettes/.*\.log
+vignettes/.*\.out
+vignettes/.*\.toc
