@@ -1,0 +1,15 @@
+\BOOKMARK [1][-]{Section.0.Introduction.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{Section.1.Maximum Likelihood estimation.1}{Maximum Likelihood estimation}{}% 2
+\BOOKMARK [1][-]{Section.2.Basic usage and features.1}{Basic usage and features}{}% 3
+\BOOKMARK [1][-]{Section.3.Simulation Study.1}{Simulation Study}{}% 4
+\BOOKMARK [2][-]{Subsection.4.0.Existing distributions.2}{Existing distributions}{Section.3.Simulation Study.1}% 5
+\BOOKMARK [2][-]{Subsection.4.1.User-defined distribution.2}{User-defined distribution}{Section.3.Simulation Study.1}% 6
+\BOOKMARK [1][-]{Section.4.Results.1}{Results}{}% 7
+\BOOKMARK [1][-]{Section.5.Illustrative examples.1}{Illustrative examples}{}% 8
+\BOOKMARK [2][-]{Subsection.6.0.Tensile strength data: power Lindley distribution.2}{Tensile strength data: power Lindley distribution}{Section.5.Illustrative examples.1}% 9
+\BOOKMARK [2][-]{Subsection.6.1.Forgetting data: hierarchical binomial distribution.2}{Forgetting data: hierarchical binomial distribution}{Section.5.Illustrative examples.1}% 10
+\BOOKMARK [1][-]{Section.6.Conclusions.1}{Conclusions}{}% 11
+\BOOKMARK [1][-]{Section..Variance of estimates.1}{Variance of estimates}{}% 12
+\BOOKMARK [2][-]{Subsection.A.0.Normal distribution.2}{Normal distribution}{Section..Variance of estimates.1}% 13
+\BOOKMARK [2][-]{Subsection.A.1.ZIP distribution.2}{ZIP distribution}{Section..Variance of estimates.1}% 14
+\BOOKMARK [2][-]{Subsection.A.2.EEB distribution.2}{EEB distribution}{Section..Variance of estimates.1}% 15

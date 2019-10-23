@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.8.11)  22 OCT 2019 10:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.8.11)  23 OCT 2019 22:17
 entering extended mode
-**./maxlogL.tex
-(maxlogL.tex
+**F:/Documents/R/EstimationTools/vignettes/maxlogL.tex
+(F:/Documents/R/EstimationTools/vignettes/maxlogL.tex
 LaTeX2e <2018-12-01>
 (jss.cls
 Document Class: jss 2015/09/01 3.0 jss class by Achim Zeileis
@@ -62,36 +62,33 @@ or.cfg"
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: pdftex.def on input line 147.
-)
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/ae\ae.sty"
+) ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/ae\ae.sty"
 Package: ae 2001/02/12 1.3 Almost European Computer Modern
-
 ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\fontenc.sty
 "
 Package: fontenc 2018/08/11 v2.0j Standard LaTeX package
- ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\t1enc.def"
+("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\t1enc.def"
 File: t1enc.def 2018/08/11 v2.0j Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 )
 LaTeX Font Info:    Try loading font information for T1+aer on input line 105.
- ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/ae\t1aer.fd"
+("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/ae\t1aer.fd"
 File: t1aer.fd 1997/11/16 Font definitions for T1/aer.
 )))
 ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/fancyvrb\fancyvr
 b.sty"
 Package: fancyvrb 2019/01/15
- Style option: `fancyvrb' v3.2a <2019/01/15> (tvz)
+Style option: `fancyvrb' v3.2a <2019/01/15> (tvz)
 \FV@CodeLineNo=\count88
 \FV@InFile=\read1
 \FV@TabBox=\box27
 \c@FancyVerbLine=\count89
 \FV@StepNumber=\count90
 \FV@OutFile=\write3
-)
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\fontenc.sty
-"
+) ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\fontenc.s
+ty"
 Package: fontenc 2018/08/11 v2.0j Standard LaTeX package
- ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\t1enc.def"
+("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\t1enc.def"
 File: t1enc.def 2018/08/11 v2.0j Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 ))
@@ -115,7 +112,6 @@ Package textcomp Info: Sub-encoding information:
 (textcomp)             Family '?' is the default used for unknown fonts.
 (textcomp)             See the documentation for details.
 Package textcomp Info: Setting ? sub-encoding to TS1/1 on input line 79.
-
 ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\ts1enc.def"
 File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
 Now handling font encoding TS1 ...
@@ -349,7 +345,6 @@ Package hyperref Info: Backreferencing OFF on input line 4570.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4803.
 \c@Hy@tempcnt=\count95
-
 ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/url\url.sty"
 \Urlmuskip=\muskip10
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
@@ -395,7 +390,6 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 \postMskip=\skip51
 \postSskip=\skip52
 
-
 Package hyperref Warning: Option `hyperindex' has already been used,
 (hyperref)                setting the option has no effect on input line 466.
 
@@ -406,7 +400,6 @@ Package hyperref Info: Option `plainpages' set `false' on input line 466.
 ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/generic/thumbpdf\thumb
 pdf.sty"
 Package: thumbpdf 2018/09/07 v3.17 Inclusion of thumbnails (HO)
-
 
 Package thumbpdf Warning: Thumbnail data file `maxlogL.tpt' not found.
 
@@ -450,7 +443,6 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 sty"
 Package: amsmath 2018/12/01 v2.17b AMS math features
 \@mathmargin=\skip53
-
 For additional information on amsmath, use the `?' option.
 
 ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amstext.
@@ -509,8 +501,7 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 730.
 \mathdisplay@stack=\toks19
 LaTeX Info: Redefining \[ on input line 2844.
 LaTeX Info: Redefining \] on input line 2845.
-)
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tools\bm.sty"
+) ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tools\bm.sty"
 Package: bm 2017/01/16 v1.2c Bold Symbol Support (DPC/FMi)
 \symboldoperators=\mathgroup4
 \symboldletters=\mathgroup5
@@ -556,8 +547,8 @@ Package caption Info: hyperref package is loaded.
 )
 \c@subfigure=\count116
 \c@subtable=\count117
-)
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/float\float.sty"
+) ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/float\float.st
+y"
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count118
 \float@exts=\toks20
@@ -603,28 +594,28 @@ LaTeX Warning: Label `sub@fig:norma' multiply defined.
 )
 \openout1 = `maxlogL.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 81.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 81.
- ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\ts1cmr.fd"
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 86.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 86.
+("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\ts1cmr.fd"
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 81.
-LaTeX Font Info:    ... okay on input line 81.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 81.
- ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\t1lmr.fd"
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 86.
+LaTeX Font Info:    ... okay on input line 86.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 86.
+("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\t1lmr.fd"
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mkii\supp
@@ -658,7 +649,7 @@ G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
 \AtBeginShipoutBox=\box33
-Package hyperref Info: Link coloring ON on input line 81.
+Package hyperref Info: Link coloring ON on input line 86.
 
 ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\nameref
 .sty"
@@ -670,122 +661,114 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count125
 )
-LaTeX Info: Redefining \ref on input line 81.
-LaTeX Info: Redefining \pageref on input line 81.
-LaTeX Info: Redefining \nameref on input line 81.
- (maxlogL.out) (maxlogL.out)
+LaTeX Info: Redefining \ref on input line 86.
+LaTeX Info: Redefining \pageref on input line 86.
+LaTeX Info: Redefining \nameref on input line 86.
+(maxlogL.out) (maxlogL.out)
 \@outlinefile=\write4
 \openout4 = `maxlogL.out'.
 
-LaTeX Font Info:    Try loading font information for T1+lmss on input line 81.
-
+LaTeX Font Info:    Try loading font information for T1+lmss on input line 86.
 ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\t1lmss.fd"
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 81.
-
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 86.
 ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\ot1lmr.fd"
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 81.
-
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 86.
 ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\omllmm.fd"
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 81.
-
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 86.
 
 ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\omslmsy.fd"
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 81.
-
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 86.
 
 ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\omxlmex.fd"
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 81.
+(Font)              <10.95> on input line 86.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 81.
+(Font)              <8> on input line 86.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 81.
-LaTeX Font Info:    Try loading font information for U+msa on input line 81.
-
+(Font)              <6> on input line 86.
+LaTeX Font Info:    Try loading font information for U+msa on input line 86.
 ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd
 "
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 81.
-
+LaTeX Font Info:    Try loading font information for U+msb on input line 86.
 ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd
 "
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 81.
- ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\t1lmtt.fd"
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 86.
+("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\t1lmtt.fd"
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
 
-
-Package xcolor Warning: Incompatible color definition on input line 99.
-
-
-Package xcolor Warning: Incompatible color definition on input line 99.
+Package xcolor Warning: Incompatible color definition on input line 104.
 
 
-Package xcolor Warning: Incompatible color definition on input line 101.
+Package xcolor Warning: Incompatible color definition on input line 104.
 
 
-Package xcolor Warning: Incompatible color definition on input line 101.
+Package xcolor Warning: Incompatible color definition on input line 106.
 
 
-Package xcolor Warning: Incompatible color definition on input line 101.
+Package xcolor Warning: Incompatible color definition on input line 106.
 
 
-Package xcolor Warning: Incompatible color definition on input line 101.
+Package xcolor Warning: Incompatible color definition on input line 106.
 
 
-Package xcolor Warning: Incompatible color definition on input line 101.
+Package xcolor Warning: Incompatible color definition on input line 106.
 
 
-Package xcolor Warning: Incompatible color definition on input line 101.
+Package xcolor Warning: Incompatible color definition on input line 106.
 
 
-Package xcolor Warning: Incompatible color definition on input line 101.
+Package xcolor Warning: Incompatible color definition on input line 106.
 
 
-Package xcolor Warning: Incompatible color definition on input line 101.
+Package xcolor Warning: Incompatible color definition on input line 106.
 
 
-Package xcolor Warning: Incompatible color definition on input line 103.
+Package xcolor Warning: Incompatible color definition on input line 106.
 
 
-Package xcolor Warning: Incompatible color definition on input line 103.
+Package xcolor Warning: Incompatible color definition on input line 108.
 
 
-Package xcolor Warning: Incompatible color definition on input line 103.
+Package xcolor Warning: Incompatible color definition on input line 108.
 
 
-Package xcolor Warning: Incompatible color definition on input line 103.
+Package xcolor Warning: Incompatible color definition on input line 108.
+
+
+Package xcolor Warning: Incompatible color definition on input line 108.
 
 
 Underfull \vbox (badness 1648) has occurred while \output is active []
 
- [1
+[1
 
 {C:/Users/USUARIO/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
 
-Package xcolor Warning: Incompatible color definition on input line 139.
+Package xcolor Warning: Incompatible color definition on input line 144.
 
 
-Package xcolor Warning: Incompatible color definition on input line 139.
+Package xcolor Warning: Incompatible color definition on input line 144.
 
 
-Package xcolor Warning: Incompatible color definition on input line 149.
+Package xcolor Warning: Incompatible color definition on input line 154.
 
 
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
@@ -794,18 +777,18 @@ Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 
 [2]
 
-Package xcolor Warning: Incompatible color definition on input line 168.
+Package xcolor Warning: Incompatible color definition on input line 173.
 
 
-Package xcolor Warning: Incompatible color definition on input line 168.
+Package xcolor Warning: Incompatible color definition on input line 173.
 
 
-Package xcolor Warning: Incompatible color definition on input line 168.
+Package xcolor Warning: Incompatible color definition on input line 173.
 
 
-Package xcolor Warning: Incompatible color definition on input line 168.
+Package xcolor Warning: Incompatible color definition on input line 173.
 
-LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 176
+LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 181
 .
 ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\ts1lmtt.fd"
 File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -821,19 +804,19 @@ Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 
 [4]
 
-Package xcolor Warning: Incompatible color definition on input line 276.
+Package xcolor Warning: Incompatible color definition on input line 281.
 
 
-Package xcolor Warning: Incompatible color definition on input line 276.
+Package xcolor Warning: Incompatible color definition on input line 281.
 
 
-Overfull \hbox (11.92255pt too wide) in paragraph at lines 276--277
+Overfull \hbox (11.92255pt too wide) in paragraph at lines 281--282
 \T1/lmr/m/n/10.95 (an ex-po-nen-ti-ated ex-po-nen-tial bi-no-mial dis-tri-bu-ti
 on, pro-posed by [][]Bak-ouch, Ris-ti¢, As-gharzadeh,
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 282.
+Package xcolor Warning: Incompatible color definition on input line 287.
 
 
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
@@ -844,37 +827,36 @@ Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 <article-norm_a.pdf, id=154, 722.7pt x 722.7pt>
 File: article-norm_a.pdf Graphic file (type pdf)
 <use article-norm_a.pdf>
-Package pdftex.def Info: article-norm_a.pdf  used on input line 312.
+Package pdftex.def Info: article-norm_a.pdf  used on input line 317.
 (pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
 <article-norm_b.pdf, id=155, 722.7pt x 722.7pt>
 File: article-norm_b.pdf Graphic file (type pdf)
 <use article-norm_b.pdf>
-Package pdftex.def Info: article-norm_b.pdf  used on input line 316.
+Package pdftex.def Info: article-norm_b.pdf  used on input line 321.
 (pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
 
-
-Package xcolor Warning: Incompatible color definition on input line 325.
-
-
-Package xcolor Warning: Incompatible color definition on input line 325.
+Package xcolor Warning: Incompatible color definition on input line 330.
 
 
-Package xcolor Warning: Incompatible color definition on input line 325.
+Package xcolor Warning: Incompatible color definition on input line 330.
+
+
+Package xcolor Warning: Incompatible color definition on input line 330.
 
 <article-EEBa.pdf, id=159, 722.7pt x 722.7pt>
 File: article-EEBa.pdf Graphic file (type pdf)
 <use article-EEBa.pdf>
-Package pdftex.def Info: article-EEBa.pdf  used on input line 333.
+Package pdftex.def Info: article-EEBa.pdf  used on input line 338.
 (pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
 <article-EEBb.pdf, id=160, 722.7pt x 722.7pt>
 File: article-EEBb.pdf Graphic file (type pdf)
 <use article-EEBb.pdf>
-Package pdftex.def Info: article-EEBb.pdf  used on input line 337.
+Package pdftex.def Info: article-EEBb.pdf  used on input line 342.
 (pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
 <article-EEBc.pdf, id=161, 722.7pt x 722.7pt>
 File: article-EEBc.pdf Graphic file (type pdf)
 <use article-EEBc.pdf>
-Package pdftex.def Info: article-EEBc.pdf  used on input line 342.
+Package pdftex.def Info: article-EEBc.pdf  used on input line 347.
 (pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -886,38 +868,38 @@ Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 
 [6 <./article-norm_a.pdf> <./article-norm_b.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 349.
+Package xcolor Warning: Incompatible color definition on input line 354.
 
 
-Package xcolor Warning: Incompatible color definition on input line 349.
+Package xcolor Warning: Incompatible color definition on input line 354.
 
 
-Package xcolor Warning: Incompatible color definition on input line 349.
+Package xcolor Warning: Incompatible color definition on input line 354.
 
 
-Package xcolor Warning: Incompatible color definition on input line 349.
+Package xcolor Warning: Incompatible color definition on input line 354.
 
 
-Package xcolor Warning: Incompatible color definition on input line 349.
+Package xcolor Warning: Incompatible color definition on input line 354.
 
 
-Package xcolor Warning: Incompatible color definition on input line 349.
+Package xcolor Warning: Incompatible color definition on input line 354.
 
 
-Package xcolor Warning: Incompatible color definition on input line 349.
+Package xcolor Warning: Incompatible color definition on input line 354.
 
 
-Package xcolor Warning: Incompatible color definition on input line 349.
+Package xcolor Warning: Incompatible color definition on input line 354.
 
 <article-ZIPa.pdf, id=190, 722.7pt x 722.7pt>
 File: article-ZIPa.pdf Graphic file (type pdf)
 <use article-ZIPa.pdf>
-Package pdftex.def Info: article-ZIPa.pdf  used on input line 356.
+Package pdftex.def Info: article-ZIPa.pdf  used on input line 361.
 (pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
 <article-ZIPb.pdf, id=191, 722.7pt x 722.7pt>
 File: article-ZIPb.pdf Graphic file (type pdf)
 <use article-ZIPb.pdf>
-Package pdftex.def Info: article-ZIPb.pdf  used on input line 360.
+Package pdftex.def Info: article-ZIPb.pdf  used on input line 365.
 (pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -929,25 +911,25 @@ Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 
 [7 <./article-EEBa.pdf> <./article-EEBb.pdf> <./article-EEBc.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 399.
+Package xcolor Warning: Incompatible color definition on input line 404.
 
 
-Package xcolor Warning: Incompatible color definition on input line 399.
-
-
-Package xcolor Warning: Incompatible color definition on input line 399.
-
-
-Package xcolor Warning: Incompatible color definition on input line 399.
-
-
-Package xcolor Warning: Incompatible color definition on input line 402.
+Package xcolor Warning: Incompatible color definition on input line 404.
 
 
 Package xcolor Warning: Incompatible color definition on input line 404.
 
 
 Package xcolor Warning: Incompatible color definition on input line 404.
+
+
+Package xcolor Warning: Incompatible color definition on input line 407.
+
+
+Package xcolor Warning: Incompatible color definition on input line 409.
+
+
+Package xcolor Warning: Incompatible color definition on input line 409.
 
 
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
@@ -956,13 +938,13 @@ Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 
 [8 <./article-ZIPa.pdf> <./article-ZIPb.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 459.
+Package xcolor Warning: Incompatible color definition on input line 464.
 
 
-Package xcolor Warning: Incompatible color definition on input line 459.
+Package xcolor Warning: Incompatible color definition on input line 464.
 
 
-Package xcolor Warning: Incompatible color definition on input line 459.
+Package xcolor Warning: Incompatible color definition on input line 464.
 
 
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
@@ -973,31 +955,30 @@ Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 <article-PLexample_a.pdf, id=258, 722.7pt x 722.7pt>
 File: article-PLexample_a.pdf Graphic file (type pdf)
 <use article-PLexample_a.pdf>
-Package pdftex.def Info: article-PLexample_a.pdf  used on input line 466.
+Package pdftex.def Info: article-PLexample_a.pdf  used on input line 471.
 (pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
 <article-PLexample_b.pdf, id=259, 722.7pt x 722.7pt>
 File: article-PLexample_b.pdf Graphic file (type pdf)
 <use article-PLexample_b.pdf>
-Package pdftex.def Info: article-PLexample_b.pdf  used on input line 470.
+Package pdftex.def Info: article-PLexample_b.pdf  used on input line 475.
 (pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
 
-
-Package xcolor Warning: Incompatible color definition on input line 478.
-
-
-Package xcolor Warning: Incompatible color definition on input line 478.
+Package xcolor Warning: Incompatible color definition on input line 483.
 
 
-Package xcolor Warning: Incompatible color definition on input line 478.
+Package xcolor Warning: Incompatible color definition on input line 483.
 
 
-Package xcolor Warning: Incompatible color definition on input line 478.
+Package xcolor Warning: Incompatible color definition on input line 483.
 
 
-Package xcolor Warning: Incompatible color definition on input line 480.
+Package xcolor Warning: Incompatible color definition on input line 483.
 
 
-Package xcolor Warning: Incompatible color definition on input line 480.
+Package xcolor Warning: Incompatible color definition on input line 485.
+
+
+Package xcolor Warning: Incompatible color definition on input line 485.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1006,10 +987,10 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [10 <./article-PLexample_a.pdf> <./article-PLexample_b.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 525.
+Package xcolor Warning: Incompatible color definition on input line 530.
 
 
-Package xcolor Warning: Incompatible color definition on input line 525.
+Package xcolor Warning: Incompatible color definition on input line 530.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1018,22 +999,22 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [11]
 
-Package xcolor Warning: Incompatible color definition on input line 555.
+Package xcolor Warning: Incompatible color definition on input line 560.
 
 
-Package xcolor Warning: Incompatible color definition on input line 555.
+Package xcolor Warning: Incompatible color definition on input line 560.
 
 
-Package xcolor Warning: Incompatible color definition on input line 555.
+Package xcolor Warning: Incompatible color definition on input line 560.
 
 
-Package xcolor Warning: Incompatible color definition on input line 597.
+Package xcolor Warning: Incompatible color definition on input line 602.
 
 
-Package xcolor Warning: Incompatible color definition on input line 597.
+Package xcolor Warning: Incompatible color definition on input line 602.
 
 
-Package xcolor Warning: Incompatible color definition on input line 597.
+Package xcolor Warning: Incompatible color definition on input line 602.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1044,18 +1025,18 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 <article-RetentionPlot.pdf, id=305, 722.7pt x 722.7pt>
 File: article-RetentionPlot.pdf Graphic file (type pdf)
 <use article-RetentionPlot.pdf>
-Package pdftex.def Info: article-RetentionPlot.pdf  used on input line 602.
+Package pdftex.def Info: article-RetentionPlot.pdf  used on input line 607.
 (pdftex.def)             Requested size: 265.59494pt x 265.59732pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 670--671
+Underfull \hbox (badness 10000) in paragraph at lines 675--676
 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 672.
+Package xcolor Warning: Incompatible color definition on input line 677.
 
 
-Package xcolor Warning: Incompatible color definition on input line 672.
+Package xcolor Warning: Incompatible color definition on input line 677.
 
 (maxlogL.bbl
 
@@ -1150,42 +1131,42 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [15]
 
-Package xcolor Warning: Incompatible color definition on input line 686.
+Package xcolor Warning: Incompatible color definition on input line 691.
 
 <article-varnorm_a.pdf, id=359, 722.7pt x 722.7pt>
 File: article-varnorm_a.pdf Graphic file (type pdf)
 <use article-varnorm_a.pdf>
-Package pdftex.def Info: article-varnorm_a.pdf  used on input line 695.
+Package pdftex.def Info: article-varnorm_a.pdf  used on input line 700.
 (pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
 <article-varnorm_b.pdf, id=360, 722.7pt x 722.7pt>
 File: article-varnorm_b.pdf Graphic file (type pdf)
 <use article-varnorm_b.pdf>
-Package pdftex.def Info: article-varnorm_b.pdf  used on input line 699.
+Package pdftex.def Info: article-varnorm_b.pdf  used on input line 704.
 (pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
 <article-varZIPa.pdf, id=361, 722.7pt x 722.7pt>
 File: article-varZIPa.pdf Graphic file (type pdf)
 <use article-varZIPa.pdf>
-Package pdftex.def Info: article-varZIPa.pdf  used on input line 714.
+Package pdftex.def Info: article-varZIPa.pdf  used on input line 719.
 (pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
 <article-varZIPb.pdf, id=362, 722.7pt x 722.7pt>
 File: article-varZIPb.pdf Graphic file (type pdf)
 <use article-varZIPb.pdf>
-Package pdftex.def Info: article-varZIPb.pdf  used on input line 718.
+Package pdftex.def Info: article-varZIPb.pdf  used on input line 723.
 (pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
 <article-varEEBa.pdf, id=363, 722.7pt x 722.7pt>
 File: article-varEEBa.pdf Graphic file (type pdf)
 <use article-varEEBa.pdf>
-Package pdftex.def Info: article-varEEBa.pdf  used on input line 734.
+Package pdftex.def Info: article-varEEBa.pdf  used on input line 739.
 (pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
 <article-varEEBb.pdf, id=364, 722.7pt x 722.7pt>
 File: article-varEEBb.pdf Graphic file (type pdf)
 <use article-varEEBb.pdf>
-Package pdftex.def Info: article-varEEBb.pdf  used on input line 738.
+Package pdftex.def Info: article-varEEBb.pdf  used on input line 743.
 (pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
 <article-varEEBc.pdf, id=365, 722.7pt x 722.7pt>
 File: article-varEEBc.pdf Graphic file (type pdf)
 <use article-varEEBc.pdf>
-Package pdftex.def Info: article-varEEBc.pdf  used on input line 743.
+Package pdftex.def Info: article-varEEBc.pdf  used on input line 748.
 (pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
 
 Underfull \vbox (badness 1412) has occurred while \output is active []
@@ -1198,9 +1179,9 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [16 <./article-varnorm_a.pdf> <./article-varnorm_b.pdf> <./article-varZIPa.pdf>
  <./article-varZIPb.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 755.
+Package xcolor Warning: Incompatible color definition on input line 760.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 755.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 760.
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 [] \T1/lmr/m/n/10.95 17
@@ -1212,26 +1193,25 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
  []
 
 [18]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 755.
- (maxlogL.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 755.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 755.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 760.
+(maxlogL.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 760.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 760.
 Package rerunfilecheck Info: File `maxlogL.out' has not changed.
 (rerunfilecheck)             Checksum: 60342A0522F4B27EEC95FBA8B49F4375;1521.
 
-
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 755.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 760.
  ) 
 Here is how much of TeX's memory you used:
- 9806 strings out of 492895
- 148644 string characters out of 3122801
+ 9808 strings out of 492895
+ 148767 string characters out of 3122801
  242524 words of memory out of 3000000
  13448 multiletter control sequences out of 15000+200000
  93156 words of font info for 66 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,17n,44p,754b,548s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 42i,17n,44p,793b,548s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/USUARIO/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.
 enc}{C:/Users/USUARIO/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-m
 athit.enc}{C:/Users/USUARIO/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/l
