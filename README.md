@@ -11,6 +11,7 @@ state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![CRAN\_Download\_Badge](http://cranlogs.r-pkg.org/badges/EstimationTools)](https://cran.r-project.org/package=EstimationTools)
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
+[![Dependencies](https://tinyverse.netlify.com/badge/EstimationTools)](https://cran.r-project.org/package=EstimationTools)
 
 # EstimationTools <img src="man/figure/ETLogo.png" align="right" height="200" align="right"/>
 
@@ -79,11 +80,11 @@ summary(fit)
 #> Optimization routine: nlminb 
 #> Standard Error calculation: Hessian from optim 
 #> ---------------------------------------------------------------
-#>       AIC     BIC
-#>   64559.6 64555.6
+#>        AIC      BIC
+#>   64265.61 64261.61
 #> ---------------------------------------------------------------
 #>      Estimate  Std. Error
-#> mean  159.9795     0.0610
-#> sd      6.1034     0.0432
+#> mean  160.0381     0.0601
+#> sd      6.0143     0.0425
 #> -----
 ```
