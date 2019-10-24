@@ -18,7 +18,7 @@ StripTrailingWhitespace: Yes
 BuildType: Package
 PackageUseDevtools: Yes
 PackageInstallArgs: --no-multiarch --with-keep.source
-PackageBuildArgs: --compact-vignettes=both
+PackageBuildArgs: --resave-data=best --compact-vignettes=both
 PackageBuildBinaryArgs: --compact-docs
 PackageCheckArgs: --as-cran
 PackageRoxygenize: rd,collate,namespace,vignette
