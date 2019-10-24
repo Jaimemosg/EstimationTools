@@ -10,7 +10,7 @@ Authors@R: c(
       )
 Imports: Rdpack, utils
 RdMacros: Rdpack
-Suggests: gamlss.dist, survival, knitr, rmarkdown
+Suggests: gamlss.dist, survival, knitr
 VignetteBuilder: knitr
 Depends: R (>= 3.3.0), stats, DEoptim, boot, numDeriv, BBmisc
 Description: A routine for parameter estimation for any probability density or
