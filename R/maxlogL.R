@@ -1,4 +1,4 @@
-#' @title Maximum Likelihood Estimation
+#' @title Maximum Likelihood Estimation for parametric distributions
 #'
 #' @description
 #' Function to compute maximum likelihood estimators (MLE)
@@ -6,20 +6,26 @@
 #'
 #' @author Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
 #'
-#' @param x a vector with data to be fitted. This argument must be a matrix with hierarchical distributions.
-#' @param dist a length-one character vector with the name of density/mass function of interest. The default value
-#'             is "dnorm", to compute maximum likelihood estimators of normal distribution.
-#' @param fixed a list with fixed/known parameters of distribution of interest. Fixed parameters
-#'              must be passed with its name.
-#' @param link a list with names of parameters to be linked, and names of the link object. For names of parameters, please
-#'            visit documentation of density function. There are three link functions available: \code{\link{log_link}},
-#'            \code{\link{logit_link}} and \code{\link{NegInv_link}}.
+#' @param x a vector with data to be fitted. This argument must be a matrix
+#'          with hierarchical distributions.
+#' @param dist a length-one character vector with the name of density/mass function
+#'             of interest. The default value is "dnorm", to compute maximum likelihood
+#'             estimators of normal distribution.
+#' @param fixed a list with fixed/known parameters of distribution of interest.
+#'              Fixed parameters must be passed with its name.
+#' @param link a list with names of parameters to be linked, and names of the link function
+#'             object. For names of parameters, please visit documentation of density/mass
+#'             function. There are three link functions available: \code{\link{log_link}},
+#'             \code{\link{logit_link}} and \code{\link{NegInv_link}}.
 #' @param start a numeric vector with initial values for the parameters to be estimated.
-#' @param lower a numeric vector with lower bounds, with the same lenght of argument `start` (for box-constrained optimization).
-#' @param upper a numeric vector with upper bounds, with the same lenght of argument `start` (for box-constrained optimization).
-#' @param optimizer a lenght-one character vector with the name of optimization routine. \code{\link{nlminb}}, \code{\link{optim}}
-#'                  and \code{\link[DEoptim]{DEoptim}} are available; \code{\link{nlminb}} is the default.
-#'                  routine.
+#' @param lower a numeric vector with lower bounds, with the same lenght of argument
+#'              `start` (for box-constrained optimization).
+#' @param upper a numeric vector with upper bounds, with the same lenght of argument
+#'              `start` (for box-constrained optimization).
+#' @param optimizer a lenght-one character vector with the name of optimization routine.
+#'                  \code{\link{nlminb}}, \code{\link{optim}} and
+#'                  \code{\link[DEoptim]{DEoptim}} are available; \code{\link{nlminb}}
+#'                  is the default routine.
 #' @param control control parameters of the optimization routine. Please, visit documentation of selected
 #'                optimizer for further information.
 #' @param ... Further arguments to be supplied to the optimizer.
@@ -28,12 +34,21 @@
 #'  lists:
 #' \item{fit}{A list with output information about estimation and method used.}
 #' \item{inputs}{A list with all input arguments.}
-#' \item{outputs}{A list with number of parameters, sample size and standard error method.}
+#' \item{outputs}{A list with some output additional information:
+#'       \itemize{
+#'          \item Number of parameters.
+#'          \item Sample size
+#'          \item Standard error computation method.
+#'        }
+#' }
 #'
 #' @details \code{maxlogL} calculates computationally the likelihood function corresponding to
 #' the distribution specified in argument \code{dist} and maximizes it through
 #' \code{\link{optim}}, \code{\link{nlminb}} or \code{\link{DEoptim}}. \code{maxlogL}
 #' generates an S3 object of class \code{maxlogL}.
+#'
+#' @note The following generic functions can be used with a \code{maxlogL} object:
+#' \code{summary}
 #'
 #' @importFrom stats nlminb optim pnorm
 #' @importFrom DEoptim DEoptim
@@ -332,10 +347,4 @@ minus_lL <- function(x, dist, dist_args, over, link, npar, fixed){
     return(-sum(logf))
   }
   return(f)
-}
-#==============================================================================
-# maxlogL function identification ---------------------------------------------
-#==============================================================================
-is.maxlogL <- function(x){
-  inherits(x, c("maxlogL"))
 }
