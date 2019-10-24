@@ -1,7 +1,6 @@
 \documentclass[nojss]{jss}
 
-% \VignetteIndexEntry{maxlogL: A general computational procedure for Maximum Likelihood estimation in R}
-% \VignetteDepends{EstimationTools}
+% \VignetteIndexEntry{maxlogL: Maximum Likelihood estimation in R}
 % \VignetteKeyword{Maximum likelihood estimation}
 % \VignetteKeyword{Parameter estimation}
 
