@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Maximum Likelihood Estimation — maxlogL • EstimationTools</title>
+<title>Maximum Likelihood Estimation for parametric distributions — maxlogL • EstimationTools</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,7 +30,7 @@
 
 
 
-<meta property="og:title" content="Maximum Likelihood Estimation — maxlogL" />
+<meta property="og:title" content="Maximum Likelihood Estimation for parametric distributions — maxlogL" />
 
 <meta property="og:description" content="Function to compute maximum likelihood estimators (MLE)
 of any distribution implemented in R." />
@@ -112,7 +112,7 @@ of any distribution implemented in R." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Maximum Likelihood Estimation</h1>
+    <h1>Maximum Likelihood Estimation for parametric distributions</h1>
     <small class="dont-index">Source: <a href='https://github.com/Jaimemosg/EstimationTools/blob/master/R/maxlogL.R'><code>R/maxlogL.R</code></a></small>
     <div class="hidden name"><code>maxlogL.Rd</code></div>
     </div>
@@ -133,22 +133,25 @@ of any distribution implemented in <code>R</code>.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>a vector with data to be fitted. This argument must be a matrix with hierarchical distributions.</p></td>
+      <td><p>a vector with data to be fitted. This argument must be a matrix
+with hierarchical distributions.</p></td>
     </tr>
     <tr>
       <th>dist</th>
-      <td><p>a length-one character vector with the name of density/mass function of interest. The default value
-is "dnorm", to compute maximum likelihood estimators of normal distribution.</p></td>
+      <td><p>a length-one character vector with the name of density/mass function
+of interest. The default value is "dnorm", to compute maximum likelihood
+estimators of normal distribution.</p></td>
     </tr>
     <tr>
       <th>fixed</th>
-      <td><p>a list with fixed/known parameters of distribution of interest. Fixed parameters
-must be passed with its name.</p></td>
+      <td><p>a list with fixed/known parameters of distribution of interest.
+Fixed parameters must be passed with its name.</p></td>
     </tr>
     <tr>
       <th>link</th>
-      <td><p>a list with names of parameters to be linked, and names of the link object. For names of parameters, please
-visit documentation of density function. There are three link functions available: <code><a href='log_link.html'>log_link</a></code>,
+      <td><p>a list with names of parameters to be linked, and names of the link function
+object. For names of parameters, please visit documentation of density/mass
+function. There are three link functions available: <code><a href='log_link.html'>log_link</a></code>,
 <code><a href='logit_link.html'>logit_link</a></code> and <code><a href='NegInv_link.html'>NegInv_link</a></code>.</p></td>
     </tr>
     <tr>
@@ -157,17 +160,20 @@ visit documentation of density function. There are three link functions availabl
     </tr>
     <tr>
       <th>lower</th>
-      <td><p>a numeric vector with lower bounds, with the same lenght of argument `start` (for box-constrained optimization).</p></td>
+      <td><p>a numeric vector with lower bounds, with the same lenght of argument
+`start` (for box-constrained optimization).</p></td>
     </tr>
     <tr>
       <th>upper</th>
-      <td><p>a numeric vector with upper bounds, with the same lenght of argument `start` (for box-constrained optimization).</p></td>
+      <td><p>a numeric vector with upper bounds, with the same lenght of argument
+`start` (for box-constrained optimization).</p></td>
     </tr>
     <tr>
       <th>optimizer</th>
-      <td><p>a lenght-one character vector with the name of optimization routine. <code><a href='https://www.rdocumentation.org/packages/stats/topics/nlminb'>nlminb</a></code>, <code><a href='https://www.rdocumentation.org/packages/stats/topics/optim'>optim</a></code>
-and <code><a href='https://www.rdocumentation.org/packages/DEoptim/topics/DEoptim'>DEoptim</a></code> are available; <code><a href='https://www.rdocumentation.org/packages/stats/topics/nlminb'>nlminb</a></code> is the default.
-routine.</p></td>
+      <td><p>a lenght-one character vector with the name of optimization routine.
+<code><a href='https://www.rdocumentation.org/packages/stats/topics/nlminb'>nlminb</a></code>, <code><a href='https://www.rdocumentation.org/packages/stats/topics/optim'>optim</a></code> and
+<code><a href='https://www.rdocumentation.org/packages/DEoptim/topics/DEoptim'>DEoptim</a></code> are available; <code><a href='https://www.rdocumentation.org/packages/stats/topics/nlminb'>nlminb</a></code>
+is the default routine.</p></td>
     </tr>
     <tr>
       <th>control</th>
@@ -186,7 +192,12 @@ optimizer for further information.</p></td>
  lists:</p>
 <dt>fit</dt><dd><p>A list with output information about estimation and method used.</p></dd>
 <dt>inputs</dt><dd><p>A list with all input arguments.</p></dd>
-<dt>outputs</dt><dd><p>A list with number of parameters, sample size and standard error method.</p></dd>
+<dt>outputs</dt><dd><p>A list with some output additional information:
+      <ul>
+<li><p>Number of parameters.</p></li>
+<li><p>Sample size</p></li>
+<li><p>Standard error computation method.</p></li>
+</ul></p></dd>
 
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
@@ -195,6 +206,11 @@ optimizer for further information.</p></td>
 the distribution specified in argument <code>dist</code> and maximizes it through
 <code><a href='https://www.rdocumentation.org/packages/stats/topics/optim'>optim</a></code>, <code><a href='https://www.rdocumentation.org/packages/stats/topics/nlminb'>nlminb</a></code> or <code>DEoptim</code>. <code>maxlogL</code>
 generates an S3 object of class <code>maxlogL</code>.</p>
+    
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>The following generic functions can be used with a <code>maxlogL</code> object:
+<code>summary</code></p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -295,6 +311,8 @@ ISSN 00983500, doi: <a href='https://doi.org/10.1145/355958.355965'>10.1145/3559
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
+
+      <li><a href="#note">Note</a></li>
 
       <li><a href="#references">References</a></li>
 
