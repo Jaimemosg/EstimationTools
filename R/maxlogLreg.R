@@ -77,13 +77,16 @@
 #' n <- 1000
 #' x1 <- runif(n = n, -5, 6)
 #' y <- rnorm(n = n, mean = -2 + 3 * x1, sd = exp(1 + 0.3* x1))
+#' norm_data <- data.frame(y = y, x1 = x1)
 #'
 #' # It does not matter the order of the paramters
 #' formulas <- list(sd.fo = ~ x1, mean.fo = ~ x1)
 #'
-#' norm_mod <- maxlogLreg(formulas, y_dist = y ~ dnorm,
+#' norm_mod <- maxlogLreg(formulas, y_dist = y ~ dnorm, data = norm_data,
 #'                        link = list(over = "sd", fun = "log_link"))
 #' summary(norm_mod)
+#'
+#'
 #' #--------------------------------------------------------------------------------
 #' # Fitting with censorship
 #' # (data from https://www.itl.nist.gov/div898/handbook/apr/section4/apr413.htm)
@@ -91,12 +94,16 @@
 #' failures = c(55, 187, 216, 240, 244, 335, 361, 373, 375, 386)
 #' fails <- c(failures, rep(500, 10))
 #' status <- c(rep(1, length(failures)), rep(0, 10))
+#' Wei_data <- data.frame(fails = fails, status = status)
+#'
 #' formulas <- list(scale.fo=~1, shape.fo=~1)
 #'
 #' mod_weibull <- maxlogLreg(formulas, y_dist = Surv(fails, status) ~ dweibull,
 #'                           start = c(scale=100, shape=10),
-#'                           lower = c(scale=0,shape=0))
+#'                           lower = c(scale=0,shape=0), data = Wei_data)
 #' summary(mod_weibull)
+#'
+#'
 #' #--------------------------------------------------------------------------------
 #==============================================================================
 # Maximization routine for regression -----------------------------------------
@@ -104,7 +111,7 @@
 #' @export
 maxlogLreg <- function(formulas,
                        y_dist,
-                       data = sys.parent(),
+                       data = NULL,
                        subset = NULL,
                        fixed = NULL,
                        link = NULL,
@@ -349,7 +356,7 @@ model.matrix.MLreg <- function(formulas, data, y_dist, npar, par_names){
                                          "must be a formula of the form ",
                                          "'y ~ dist' or ",
                                          "'Surv(time, status) ~ dist'"))
-  Y <- Surv_transform(y_dist = y_dist)
+  Y <- all.vars(y_dist)[1] #Surv_transform(y_dist = y_dist)
 
   # Extract the right side of formulas
   formulas_corrector <- stringr::str_extract(as.character(formulas), "~.+")
@@ -357,25 +364,30 @@ model.matrix.MLreg <- function(formulas, data, y_dist, npar, par_names){
   names(formulas_tmp) <- par_names
 
   # Variables
-  fos_mat <- lapply(formulas_tmp, fos_bind, response = Y$resp)
-  mf <- lapply(fos_mat, model.frame)
-  data_reg <- as.data.frame(mf)
-  var_names <- as.character(sapply(mf, names))
-  names(data_reg) <- var_names
-  data_reg <- as.data.frame(data_reg[,unique(var_names)])
-  names(data_reg) <- unique(var_names)
+  fos_mat_char <- lapply(formulas_tmp, fos_bind, response = Y)
+  fos_mat <- lapply(fos_mat_char, as.formula)
+  list_mfs <- lapply(fos_mat, model.frame, data = data)
+  if ( is.null(data) ){
+    data_reg <- as.data.frame(list_mfs)
+    var_names <- as.character(sapply(list_mfs, names))
+    names(data_reg) <- var_names
+    data_reg <- as.data.frame(data_reg[,unique(var_names)])
+    names(data_reg) <- unique(var_names)
+    data <- data_reg
+  }
   response <- model.frame(fos_mat[[1]], data = data)[, 1]
-  # response <- data_reg[, 1]
+
+  # Censorship status
+  cens <- Surv_transform(y_dist = y_dist, data = data)
 
   # Formulas for 'model.frame'
-  list_mfs <- lapply(fos_mat, model.frame, data = data)
-  mtrxs <- lapply(X = 1:nfos, FUN = matrixes,
-                  formulas = fos_mat, model_frames = list_mfs)
+  mtrxs <- lapply(X = 1:nfos, FUN = matrixes, formulas = fos_mat,
+                  model_frames = list_mfs)
 
   names(mtrxs) <- names(fos_mat)
   mtrxs$y <- response
-  mtrxs$status <- Y$cens[,2:ncol(Y$cens)]
-  mtrxs$data_reg <- data_reg
+  mtrxs$status <- cens[,2:ncol(cens)]
+  mtrxs$data_reg <- data
   return(mtrxs)
 }
 fos_bind <- function(formula, response){
@@ -383,13 +395,14 @@ fos_bind <- function(formula, response){
 }
 matrixes <- function(j, formulas, model_frames){
   do.call(what = "model.matrix",
-          args = list(as.formula(formulas[[j]]), model_frames[j]))
+          args = list(object = as.formula(formulas[[j]]),
+                      data = model_frames[[j]]))
 }
 #==============================================================================
 # Response variable evaluation ------------------------------------------------
 #==============================================================================
-Surv_transform <- function(y_dist){
-  SurvObject <- eval(y_dist[[2]])
+Surv_transform <- function(y_dist, data){
+  SurvObject <- with(data, eval(y_dist[[2]]))
   if ( inherits(SurvObject, "Surv") ){
     if ( ncol(SurvObject) == 3 ){
       stop("Estimation for interval censored data no available \n\n")
@@ -399,19 +412,19 @@ Surv_transform <- function(y_dist){
       obs   <- ifelse(SurvObject[,2] == 1, 1, 0)
       left  <- ifelse(SurvObject[,2] == 2, 1, 0)
       right <- ifelse(SurvObject[,2] == 0, 1, 0)
-      yvar <- all.vars(y_dist)[1]
+      # yvar <- all.vars(y_dist)[1]
     }
   } else if ( class(SurvObject) == "numeric" ){
     y <- SurvObject
     obs <- rep(1, length(y))
     left <- right <- rep(0, length(y))
-    yvar <- all.vars(y_dist)[1]
+    # yvar <- all.vars(y_dist)[1]
   } else {
     stop("Response variable must be of class 'numeric' or a 'Surv' object")
   }
   status <- c(obs, left, right)
   cens_data <- matrix(c(y,status), nrow = length(y))
-  return(list(cens = cens_data, resp = yvar))
+  return(cens = cens_data)
 }
 #==============================================================================
 # log-likelihood function computation -----------------------------------------
