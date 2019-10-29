@@ -279,7 +279,7 @@ maxlogLreg <- function(formulas,
                            dist_args = arguments, over = link$over,
                            link = link$fun, npar = npar, fixed = fixed,
                            par_names = par_names, b_length = b_length)$hessian,
-                     silent = TRUE,)
+                     silent = TRUE)
 
   StdE_Method <- "Hessian from optim"
   if ( (any(is.na(fit$hessian)) | is.error(fit$hessian)) |
