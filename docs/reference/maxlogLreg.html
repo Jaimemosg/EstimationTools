@@ -235,7 +235,9 @@ generates an S3 object of class <code>maxlogLreg</code>.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>#--------------------------------------------------------------------------------</span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>EstimationTools</span>)
+
+<span class='co'>#--------------------------------------------------------------------------------</span>
 <span class='co'># Estimation in simulated normal distribution</span>
 <span class='no'>n</span> <span class='kw'>&lt;-</span> <span class='fl'>1000</span>
 <span class='no'>x1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Uniform'>runif</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>, -<span class='fl'>5</span>, <span class='fl'>6</span>)
@@ -244,7 +246,6 @@ generates an S3 object of class <code>maxlogLreg</code>.</p>
 <span class='co'># It does not matter the order of the paramters</span>
 <span class='no'>formulas</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>sd.fo</span> <span class='kw'>=</span> ~ <span class='no'>x1</span>, <span class='kw'>mean.fo</span> <span class='kw'>=</span> ~ <span class='no'>x1</span>)
 
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>EstimationTools</span>)
 <span class='no'>norm_mod</span> <span class='kw'>&lt;-</span> <span class='fu'>maxlogLreg</span>(<span class='no'>formulas</span>, <span class='kw'>y_dist</span> <span class='kw'>=</span> <span class='no'>y</span> ~ <span class='no'>dnorm</span>,
                        <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='st'>"sd"</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"log_link"</span>))</div><div class='output co'>#&gt; <span class='error'>Error in eval(y_dist[[2]]): object 'y' not found</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>norm_mod</span>)</div><div class='output co'>#&gt; <span class='error'>Error in summary(norm_mod): object 'norm_mod' not found</span></div><div class='input'><span class='co'>#--------------------------------------------------------------------------------</span>
 <span class='co'># Fitting with censorship</span>
