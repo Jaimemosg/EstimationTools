@@ -189,7 +189,7 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
     res <- cbind(estimate = estimate, se = stdE, zvalue = Zvalue,
                  pvalue = pvalue)
     # res <- formatC(res, format = "e", digits = 3)
-    res <- data.frame(res)
+    # res <- data.frame(res)
     colnames(res) <- c('Estimate ', 'Std. Error', 'Z value', 'Pr(>|z|)')
 
     ## Parameter names
@@ -226,7 +226,7 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
     A <- param_index(object$outputs$b_length, object$outputs$npar)
     res <- cbind(estimate = estimate, se = stdE, zvalue = Zvalue,
                  pvalue = pvalue)
-    res <- data.frame(res)
+    # res <- data.frame(res)
     colnames(res) <- c('Estimate', 'Std. Error', 'Z value', 'Pr(>|z|)')
     for (i in 1:object$outputs$npar){
       cat(paste0("Fixed effects for g(", object$outputs$par_names[i],
