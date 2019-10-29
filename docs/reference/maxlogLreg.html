@@ -124,7 +124,7 @@ of any distribution implemented in <code>R</code> with covariates (linear predic
     
     </div>
 
-    <pre class="usage"><span class='fu'>maxlogLreg</span>(<span class='no'>formulas</span>, <span class='no'>y_dist</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/sys.parent'>sys.parent</a></span>(), <span class='kw'>subset</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+    <pre class="usage"><span class='fu'>maxlogLreg</span>(<span class='no'>formulas</span>, <span class='no'>y_dist</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subset</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>link</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>start</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>lower</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>upper</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>optimizer</span> <span class='kw'>=</span> <span class='st'>"nlminb"</span>, <span class='kw'>control</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
@@ -242,23 +242,68 @@ generates an S3 object of class <code>maxlogLreg</code>.</p>
 <span class='no'>n</span> <span class='kw'>&lt;-</span> <span class='fl'>1000</span>
 <span class='no'>x1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Uniform'>runif</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>, -<span class='fl'>5</span>, <span class='fl'>6</span>)
 <span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>, <span class='kw'>mean</span> <span class='kw'>=</span> -<span class='fl'>2</span> + <span class='fl'>3</span> * <span class='no'>x1</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>exp</a></span>(<span class='fl'>1</span> + <span class='fl'>0.3</span>* <span class='no'>x1</span>))
+<span class='no'>norm_data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>y</span>, <span class='kw'>x1</span> <span class='kw'>=</span> <span class='no'>x1</span>)
 
 <span class='co'># It does not matter the order of the paramters</span>
 <span class='no'>formulas</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>sd.fo</span> <span class='kw'>=</span> ~ <span class='no'>x1</span>, <span class='kw'>mean.fo</span> <span class='kw'>=</span> ~ <span class='no'>x1</span>)
 
-<span class='no'>norm_mod</span> <span class='kw'>&lt;-</span> <span class='fu'>maxlogLreg</span>(<span class='no'>formulas</span>, <span class='kw'>y_dist</span> <span class='kw'>=</span> <span class='no'>y</span> ~ <span class='no'>dnorm</span>,
-                       <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='st'>"sd"</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"log_link"</span>))</div><div class='output co'>#&gt; <span class='error'>Error in eval(y_dist[[2]]): object 'y' not found</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>norm_mod</span>)</div><div class='output co'>#&gt; <span class='error'>Error in summary(norm_mod): object 'norm_mod' not found</span></div><div class='input'><span class='co'>#--------------------------------------------------------------------------------</span>
+<span class='no'>norm_mod</span> <span class='kw'>&lt;-</span> <span class='fu'>maxlogLreg</span>(<span class='no'>formulas</span>, <span class='kw'>y_dist</span> <span class='kw'>=</span> <span class='no'>y</span> ~ <span class='no'>dnorm</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>norm_data</span>,
+                       <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='st'>"sd"</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"log_link"</span>))
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>norm_mod</span>)</div><div class='output co'>#&gt; ---------------------------------------------------------------
+#&gt; Optimization routine: nlminb 
+#&gt; Standard Error calculation: Hessian from optim 
+#&gt; ---------------------------------------------------------------
+#&gt; Fixed effects for g(mean) 
+#&gt; 
+#&gt;             Estimate Std. Error Z value  Pr(&gt;|z|)    
+#&gt; (Intercept)  -2.0016     0.1107 -18.081 &lt; 2.2e-16 ***
+#&gt; x1            2.9963     0.0302  99.214 &lt; 2.2e-16 ***
+#&gt; ---
+#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#&gt; ---------------------------------------------------------------
+#&gt; Fixed effects for g(sd) 
+#&gt; 
+#&gt;             Estimate Std. Error Z value  Pr(&gt;|z|)    
+#&gt; (Intercept)  0.99592    0.02250  44.263 &lt; 2.2e-16 ***
+#&gt; x1           0.29660    0.00740  40.081 &lt; 2.2e-16 ***
+#&gt; ---
+#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#&gt; ---------------------------------------------------------------
+#&gt; Note: p-values valid under asymptotic normality of estimators 
+#&gt; ---</div><div class='input'><span class='co'>#--------------------------------------------------------------------------------</span>
 <span class='co'># Fitting with censorship</span>
 <span class='co'># (data from https://www.itl.nist.gov/div898/handbook/apr/section4/apr413.htm)</span>
 
 <span class='no'>failures</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>55</span>, <span class='fl'>187</span>, <span class='fl'>216</span>, <span class='fl'>240</span>, <span class='fl'>244</span>, <span class='fl'>335</span>, <span class='fl'>361</span>, <span class='fl'>373</span>, <span class='fl'>375</span>, <span class='fl'>386</span>)
 <span class='no'>fails</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>failures</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fl'>500</span>, <span class='fl'>10</span>))
 <span class='no'>status</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fl'>1</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>failures</span>)), <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fl'>0</span>, <span class='fl'>10</span>))
+<span class='no'>Wei_data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>fails</span> <span class='kw'>=</span> <span class='no'>fails</span>, <span class='kw'>status</span> <span class='kw'>=</span> <span class='no'>status</span>)
+
 <span class='no'>formulas</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>scale.fo</span><span class='kw'>=</span>~<span class='fl'>1</span>, <span class='kw'>shape.fo</span><span class='kw'>=</span>~<span class='fl'>1</span>)
 
 <span class='no'>mod_weibull</span> <span class='kw'>&lt;-</span> <span class='fu'>maxlogLreg</span>(<span class='no'>formulas</span>, <span class='kw'>y_dist</span> <span class='kw'>=</span> <span class='fu'>Surv</span>(<span class='no'>fails</span>, <span class='no'>status</span>) ~ <span class='no'>dweibull</span>,
                           <span class='kw'>start</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='kw'>scale</span><span class='kw'>=</span><span class='fl'>100</span>, <span class='kw'>shape</span><span class='kw'>=</span><span class='fl'>10</span>),
-                          <span class='kw'>lower</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='kw'>scale</span><span class='kw'>=</span><span class='fl'>0</span>,<span class='kw'>shape</span><span class='kw'>=</span><span class='fl'>0</span>))</div><div class='output co'>#&gt; <span class='error'>Error in Surv(fails, status): object 'fails' not found</span></div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod_weibull</span>)</div><div class='output co'>#&gt; <span class='error'>Error in summary(mod_weibull): object 'mod_weibull' not found</span></div><div class='input'>#--------------------------------------------------------------------------------
+                          <span class='kw'>lower</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='kw'>scale</span><span class='kw'>=</span><span class='fl'>0</span>,<span class='kw'>shape</span><span class='kw'>=</span><span class='fl'>0</span>), <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>Wei_data</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod_weibull</span>)</div><div class='output co'>#&gt; ---------------------------------------------------------------
+#&gt; Optimization routine: nlminb 
+#&gt; Standard Error calculation: Hessian from optim 
+#&gt; ---------------------------------------------------------------
+#&gt; Fixed effects for g(shape) 
+#&gt; 
+#&gt;             Estimate Std. Error Z value  Pr(&gt;|z|)    
+#&gt; (Intercept)   1.7256     0.5034  3.4279 0.0006083 ***
+#&gt; ---
+#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#&gt; ---------------------------------------------------------------
+#&gt; Fixed effects for g(scale) 
+#&gt; 
+#&gt;             Estimate Std. Error Z value  Pr(&gt;|z|)    
+#&gt; (Intercept)   606.00     124.43  4.8703 1.114e-06 ***
+#&gt; ---
+#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#&gt; ---------------------------------------------------------------
+#&gt; Note: p-values valid under asymptotic normality of estimators 
+#&gt; ---</div><div class='input'>#--------------------------------------------------------------------------------
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

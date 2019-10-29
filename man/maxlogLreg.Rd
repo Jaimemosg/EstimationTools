@@ -4,7 +4,7 @@
 \alias{maxlogLreg}
 \title{Maximum Likelihood Estimation for parametric linear regression models}
 \usage{
-maxlogLreg(formulas, y_dist, data = sys.parent(), subset = NULL,
+maxlogLreg(formulas, y_dist, data = NULL, subset = NULL,
   fixed = NULL, link = NULL, start = NULL, lower = NULL,
   upper = NULL, optimizer = "nlminb", control = NULL, ...)
 }
@@ -90,13 +90,16 @@ library(EstimationTools)
 n <- 1000
 x1 <- runif(n = n, -5, 6)
 y <- rnorm(n = n, mean = -2 + 3 * x1, sd = exp(1 + 0.3* x1))
+norm_data <- data.frame(y = y, x1 = x1)
 
 # It does not matter the order of the paramters
 formulas <- list(sd.fo = ~ x1, mean.fo = ~ x1)
 
-norm_mod <- maxlogLreg(formulas, y_dist = y ~ dnorm,
+norm_mod <- maxlogLreg(formulas, y_dist = y ~ dnorm, data = norm_data,
                        link = list(over = "sd", fun = "log_link"))
 summary(norm_mod)
+
+
 #--------------------------------------------------------------------------------
 # Fitting with censorship
 # (data from https://www.itl.nist.gov/div898/handbook/apr/section4/apr413.htm)
@@ -104,12 +107,16 @@ summary(norm_mod)
 failures = c(55, 187, 216, 240, 244, 335, 361, 373, 375, 386)
 fails <- c(failures, rep(500, 10))
 status <- c(rep(1, length(failures)), rep(0, 10))
+Wei_data <- data.frame(fails = fails, status = status)
+
 formulas <- list(scale.fo=~1, shape.fo=~1)
 
 mod_weibull <- maxlogLreg(formulas, y_dist = Surv(fails, status) ~ dweibull,
                           start = c(scale=100, shape=10),
-                          lower = c(scale=0,shape=0))
+                          lower = c(scale=0,shape=0), data = Wei_data)
 summary(mod_weibull)
+
+
 #--------------------------------------------------------------------------------
 }
 \seealso{
