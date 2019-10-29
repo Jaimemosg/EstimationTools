@@ -348,8 +348,7 @@ model.matrix.MLreg <- function(formulas, data, y_dist, npar, par_names){
                                          "must be a formula of the form ",
                                          "'y ~ dist' or ",
                                          "'Surv(time, status) ~ dist'"))
-
-  Y <- Surv_transform(SurvObject = eval(y_dist[[2]]))
+  Y <- Surv_transform(y_dist = y_dist)
 
   # Extract the right side of formulas
   formulas_corrector <- stringr::str_extract(as.character(formulas), "~.+")
@@ -388,8 +387,8 @@ matrixes <- function(j, formulas, model_frames){
 #==============================================================================
 # Response variable evaluation ------------------------------------------------
 #==============================================================================
-Surv_transform <- function(SurvObject){
-  # SurvObject <- eval(y_dist[[2]])
+Surv_transform <- function(y_dist){
+  SurvObject <- eval(y_dist[[2]])
   if ( inherits(SurvObject, "Surv") ){
     if ( ncol(SurvObject) == 3 ){
       stop("Estimation for interval censored data no available \n\n")
