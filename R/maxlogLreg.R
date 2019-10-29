@@ -70,6 +70,8 @@
 #' @importFrom stringr str_extract
 #'
 #' @examples
+#' library(EstimationTools)
+#'
 #' #--------------------------------------------------------------------------------
 #' # Estimation in simulated normal distribution
 #' n <- 1000
@@ -79,7 +81,6 @@
 #' # It does not matter the order of the paramters
 #' formulas <- list(sd.fo = ~ x1, mean.fo = ~ x1)
 #'
-#' library(EstimationTools)
 #' norm_mod <- maxlogLreg(formulas, y_dist = y ~ dnorm,
 #'                        link = list(over = "sd", fun = "log_link"))
 #' summary(norm_mod)

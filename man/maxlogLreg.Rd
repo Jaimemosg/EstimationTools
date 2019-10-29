@@ -83,6 +83,8 @@ The following generic functions can be used with a \code{maxlogL} object:
 \code{summary, print}.
 }
 \examples{
+library(EstimationTools)
+
 #--------------------------------------------------------------------------------
 # Estimation in simulated normal distribution
 n <- 1000
@@ -92,7 +94,6 @@ y <- rnorm(n = n, mean = -2 + 3 * x1, sd = exp(1 + 0.3* x1))
 # It does not matter the order of the paramters
 formulas <- list(sd.fo = ~ x1, mean.fo = ~ x1)
 
-library(EstimationTools)
 norm_mod <- maxlogLreg(formulas, y_dist = y ~ dnorm,
                        link = list(over = "sd", fun = "log_link"))
 summary(norm_mod)
