@@ -18,9 +18,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Bootstrap procedure
+# Bootstrap procedure
 
-`maxlogL` estimates parameters of probability functions tby Maximum Likelihood. The variance-covariance matrix is computed from Fisher information matrix, which is obtained by means of the Inverse Hessian matrix of estimators:
+Objects of `maxogL` class (`maxlogL` and `maxlogLreg`) estimates parameters of probability density/mass functions by Maximum Likelihood. The variance-covariance matrix is computed from Fisher information matrix, which is obtained by means of the Inverse Hessian matrix of estimators:
 
 \begin{equation}
 Var(\hat{\boldsymbol{\theta}}) = I^{-1}(\hat{\boldsymbol{\theta}}) = C(\hat{\boldsymbol{\theta}}),
@@ -39,51 +39,11 @@ if (!require('devtools')) install.packages('devtools')
 devtools::install_github('Jaimemosg/EstimationTools', force = TRUE)
 ```
 
-
 The Hessian matrix is computed in the following way:
 
 - Firstly, it is estimated through `optim`, with option `hessian = TRUE` in `maxlogL` function.
 - If the previous implementation fails, it is calculated with `hessian` function from **numDeriv** package.
-- If both of the previous methods fail, then standard errors are computed by bootstraping.
+- If both of the previous methods fail, then standard errors are computed by bootstrapping.
 
-Additionally, **EstimationTools** allows implementation of bootstrap for standard error estimation, even if the Hessian computation does not fail. The following chunks illustrates this feature:
+Additionally, **EstimationTools** allows implementation of bootstrap for standard error estimation, even if the Hessian computation does not fail.
 
-```{r warning=FALSE, message=FALSE}
-library(EstimationTools)
-
-x <- rnorm(n = 10000, mean = 160, sd = 6)
-theta_1 <- maxlogL(x = x, dist = 'dnorm', control = list(trace = 1),
-                   link = list(over = "sd", fun = "log_link"),
-                   fixed = list(mean = 160))
-summary(theta_1)
-
-## Hessian 
-print(theta_1$fit$hessian)
-
-## Standard errors
-print(theta_1$outputs$StdE)
-print(theta_1$outputs$StdE_Method)
-```
-
-```{r echo=FALSE}
-a <- theta_1$outputs$StdE
-```
-
-Note that Hessian matrix was computed with no issues. However, the user can implement bootstrap alogorithm available in `summary` function:
-
-```{r}
-summary(theta_1, Boot_Std_Err = TRUE, R = 1000)
-
-## Hessian 
-print(theta_1$fit$hessian)
-
-## Standard errors
-print(theta_1$outputs$StdE)
-print(theta_1$outputs$StdE_Method)
-```
-
-```{r echo=FALSE}
-b <- theta_1$outputs$StdE
-```
-
-Notice that Standard Errors calculated with `optim` ($`r round(a, 6)`$) and those calculated with bootstrap implementation ($`r round(b, 6)`$) are approximately equals, but no identical.

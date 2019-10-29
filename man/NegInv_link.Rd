@@ -2,7 +2,7 @@
 % Please edit documentation in R/LinkFunc.R
 \name{NegInv_link}
 \alias{NegInv_link}
-\title{Negative inverse link function (for estimation with \code{maxlogL})}
+\title{Negative inverse link function (for estimation with \code{maxlogL} object)}
 \usage{
 NegInv_link()
 }

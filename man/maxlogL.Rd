@@ -67,7 +67,7 @@ generates an S3 object of class \code{maxlogL}.
 }
 \note{
 The following generic functions can be used with a \code{maxlogL} object:
-\code{summary}
+\code{summary, print}.
 }
 \examples{
 #--------------------------------------------------------------------------------
@@ -113,7 +113,10 @@ summary(theta_3)
 \seealso{
 \code{\link{summary.maxlogL}}, \code{\link{optim}}, \code{\link{nlminb}},
          \code{\link{DEoptim}}, \code{\link{DEoptim.control}}
+
+Other maxlogL: \code{\link{maxlogLreg}}
 }
 \author{
 Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
 }
+\concept{maxlogL}

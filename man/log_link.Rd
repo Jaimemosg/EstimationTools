@@ -2,7 +2,7 @@
 % Please edit documentation in R/LinkFunc.R
 \name{log_link}
 \alias{log_link}
-\title{Logarithmic link function (for estimation with \code{maxlogL})}
+\title{Logarithmic link function (for estimation with \code{maxlogL} object)}
 \usage{
 log_link()
 }
