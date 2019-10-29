@@ -87,33 +87,35 @@
 # Summary function ------------------------------------------------------------
 #==============================================================================
 summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
-  if ("x" %in% names(object$inputs)){
-    # .myenv <- environment()
-    # list2env(var.list , envir = .myenv)
-    # var.list <- as.list(object)
-    estimate <- object$fit$par
-    solver <- object$inputs$optimizer
-    StdE_Method <- object$outputs$StdE_Method
+  # .myenv <- environment()
+  # list2env(var.list , envir = .myenv)
+  # var.list <- as.list(object)
+  estimate <- object$fit$par
+  solver <- object$inputs$optimizer
+  StdE_Method <- object$outputs$StdE_Method
+  n_est <- ifelse( object$outputs$type == "maxlogL", object$outputs$npar,
+                   sum(object$outputs$b_length) )
 
-    if (Boot_Std_Err == TRUE){
+  if ( any(object$outputs$StdE == "Not computed yet") ){
+    if ( Boot_Std_Err == TRUE ){
       StdE_Method <- "Bootstrap"
       warn <- paste0("\n...Bootstrap computation of Standard Error. ",
                      "Please, wait a few minutes...\n\n")
       cat(warn)
 
       stdE <- try(boot_MLE(object = object, ...), silent = TRUE)
-      object_name <- deparse(substitute(object))
 
-      ## Standard error updating in "object"
+      # Standard error updating in "object"
+      object_name <- deparse(substitute(object))
       if (any(object_name != deparse(object$inputs$call))){
         parent <- parent.frame()
         uptodate(p = parent, object_name, stdE, StdE_Method)
       }
 
       if( (any(is.na(stdE)) | is.error(stdE)) | any(is.character(stdE)) ){
-        stdE <- rep(NA, times = object$outputs$npar)
-        Zvalue <- rep(NA, times = object$outputs$npar)
-        pvalue <- rep(NA, times = object$outputs$npar)
+        stdE <- rep(NA, times = n_est)
+        Zvalue <- rep(NA, times = n_est)
+        pvalue <- rep(NA, times = n_est)
       } else {
         Zvalue <- round(estimate / stdE, digits = 4)
         pvalue <- 2 * pnorm(abs(Zvalue), lower.tail = FALSE)
@@ -122,9 +124,9 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
     } else {
       if ( any(is.na(estimate)) | any(is.nan(estimate)) |
            any(is.infinite(estimate))){
-        stop(paste0("'maxlogL' computes NA ,NaN or Inf estimates. ",
-                    "Please, change optimization algorithm or ",
-                    "set different initial value(s)"))
+        stop(paste0("'", as.character(as.list(call)[[1]]), "' computes NA ,",
+                    "NaN or Inf estimates. Please, change optimization ",
+                    "algorithm or set different initial value(s)"))
       } else {
         if( any(is.na(object$fit$hessian)) ){
           StdE_Method <- "Bootstrap"
@@ -132,19 +134,19 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
                          "Please, wait a few minutes...\n\n")
           cat(warn)
 
-          stdE <- try(boot_MLE(object=object, ...), silent = TRUE)
-          object_name <- deparse(substitute(object))
+          stdE <- try(boot_MLE(object = object, ...), silent = TRUE)
 
-          ## Standard error updating in "object"
+          # Standard error updating in "object"
+          object_name <- deparse(substitute(object))
           if (any(object_name != deparse(object$inputs$call))){
             parent <- parent.frame()
             uptodate(p = parent, object_name, stdE, StdE_Method)
           }
 
           if( (any(is.na(stdE)) | is.error(stdE)) | any(is.character(stdE)) ){
-            stdE <- rep(NA, times = object$outputs$npar)
-            Zvalue <- rep(NA, times = object$outputs$npar)
-            pvalue <- rep(NA, times = object$outputs$npar)
+            stdE <- rep(NA, times = n_est)
+            Zvalue <- rep(NA, times = n_est)
+            pvalue <- rep(NA, times = n_est)
           } else {
             Zvalue <- round(estimate / stdE, digits = 4)
             pvalue <- 2 * pnorm(abs(Zvalue), lower.tail = FALSE)
@@ -154,9 +156,9 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
           stdE <- round(sqrt(diag(solve(object$fit$hessian))), digits = 4)
           Zvalue <- round(estimate / stdE, digits = 4)
           pvalue <- 2 * pnorm(abs(Zvalue), lower.tail = FALSE)
-          object_name <- deparse(substitute(object))
 
-          ## Standard error updating in "object"
+          # Standard error updating in "object"
+          object_name <- deparse(substitute(object))
           if (any(object_name != deparse(object$inputs$call))){
             parent <- parent.frame()
             uptodate(p = parent, object_name, stdE, StdE_Method,
@@ -165,38 +167,47 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
         }
       }
       if (any(is.na(stdE))){
-        stdE <- rep(NA, times = object$outputs$npar)
-        Zvalue <- rep(NA, times = object$outputs$npar)
-        pvalue <- rep(NA, times = object$outputs$npar)
+        stdE <- rep(NA, times = n_est)
+        Zvalue <- rep(NA, times = n_est)
+        pvalue <- rep(NA, times = n_est)
       }
     }
+  } else {
+    stdE <- object$outputs$StdE
+    Zvalue <- round(estimate / stdE, digits = 4)
+    pvalue <- 2 * pnorm(abs(Zvalue), lower.tail = FALSE)
+    StdE_Method <- object$outputs$StdE_Method
+  }
 
+  cat("---------------------------------------------------------------\n")
+  cat(paste0('Optimization routine: ', object$input$optimizer),'\n')
+  cat(paste0('Standard Error calculation: ', StdE_Method),'\n')
+  cat("---------------------------------------------------------------\n")
+
+  if ( object$outputs$type == "maxlogL" ){
     ## Summary table
-    res <- cbind(Estimate = estimate, stdE = stdE, Zvalue, pvalue)
+    res <- cbind(estimate = estimate, se = stdE, zvalue = Zvalue,
+                 pvalue = pvalue)
     # res <- formatC(res, format = "e", digits = 3)
     res <- data.frame(res)
-    colnames(res) <- c('Estimate ', 'Std. Error', 'Z value', 'Pr(>z)')
+    colnames(res) <- c('Estimate ', 'Std. Error', 'Z value', 'Pr(>|z|)')
 
-    ## Undo link application
-    names_numeric <- rep("", times = object$outputs$npar)
-    dist_args <- as.list(args(object$inputs$dist))
-    j <- 1
-    for (i in 1:length(dist_args)){
-      if (is.numeric(dist_args[[i]]) || is.symbol(dist_args[[i]])){
-        names_numeric[j] <- names(dist_args[i])
-        j <- j + 1
-      }
-    }
-    names_numeric <- names_numeric[-which(names_numeric=="x")]
-    pos.del <- length(match(names(object$inputs$fixed), names_numeric))
-    if (pos.del > 0){
-      names_numeric <- names_numeric[-pos.del]
-    }
-    rownames(res) <- names_numeric
-    cat("---------------------------------------------------------------\n")
-    cat(paste0('Optimization routine: ', object$input$optimizer),'\n')
-    cat(paste0('Standard Error calculation: ', StdE_Method),'\n')
-    cat("---------------------------------------------------------------\n")
+    ## Parameter names
+    # names_numeric <- rep("", times = n_est)
+    # dist_args <- as.list(args(object$inputs$dist))
+    # j <- 1
+    # for (i in 1:length(dist_args)){
+    #   if (is.numeric(dist_args[[i]]) || is.symbol(dist_args[[i]])){
+    #     names_numeric[j] <- names(dist_args[i])
+    #     j <- j + 1
+    #   }
+    # }
+    # names_numeric <- names_numeric[-which(names_numeric == "x")]
+    # pos_del <- length(match(names(object$inputs$fixed), names_numeric))
+    # if (pos_del > 0){
+    #   names_numeric <- names_numeric[-pos_del]
+    # }
+    # rownames(res) <- names_numeric
     AIC <- 2 * object$outputs$npar - 2 * object$fit$objective
     BIC <- log(length(object$outputs$n)) * object$outputs$npar - 2 * object$fit$objective
     table <- data.frame(AIC=round(AIC, digits = 4),
@@ -206,18 +217,34 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
     cat("---------------------------------------------------------------\n")
     # print(res[,1:2])
     printCoefmat(res[,1:2], P.values = FALSE)
-    # cat("---------------------------------------------------------------\n")
-    # cat('Note: p-values under asymptotic normality of estimators \n')
-    cat("-----\n")
+    cat("---------------------------------------------------------------\n")
+    # cat('Note: p-values valid under asymptotic normality of estimators \n')
+    # cat("-----\n")
     estimatePrint <- estimate
-    names(estimatePrint) <- names_numeric
-    ans <- list(Estimate = estimatePrint, Std_Error = stdE,
-                Z_value = Zvalue, p_value = pvalue)
-    class(ans) <- "summary.maxlogL"
-    result <- ans
+    # names(estimatePrint) <- names_numeric
   } else {
-    stop("Not available yet")
+    A <- param_index(object$outputs$b_length, object$outputs$npar)
+    res <- cbind(estimate = estimate, se = stdE, zvalue = Zvalue,
+                 pvalue = pvalue)
+    res <- data.frame(res)
+    colnames(res) <- c('Estimate', 'Std. Error', 'Z value', 'Pr(>|z|)')
+    for (i in 1:object$outputs$npar){
+      cat(paste0("Fixed effects for g(", object$outputs$par_names[i],
+                 ") \n\n"))
+      res_temp <- res[A[i,1]:A[i,2],]
+      rownames(res_temp) <- names(object$fit$par)[A[i,1]:A[i,2]]
+      printCoefmat(res_temp, P.values = TRUE, has.Pvalue = TRUE)
+      cat("---------------------------------------------------------------\n")
+    }
+    cat('Note: p-values valid under asymptotic normality of estimators \n')
+    cat("---\n")
+    estimatePrint <- estimate
   }
+  ans <- list(Estimate = estimatePrint, Std_Error = stdE,
+              Z_value = Zvalue, p_value = pvalue)
+  result <- ans
+  # class(ans) <- "summary.maxlogL"
+  # return(ans)
 }
 
 #==============================================================================
@@ -228,13 +255,32 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
 boot_MLE <- function(object, R = 2000, ...){
 
   MLE <- function(data, i, object){
-    MLE.arguments <- object$inputs[-which(names(object$inputs) == "x")]
-    MLE.arguments <- MLE.arguments[-which(names(MLE.arguments) == "call")]
-    estimates <- do.call( what = "maxlogL",
-                          args = c(list(x = data[i]), MLE.arguments) )
+    MLE_arguments <- as.list(object$inputs$call)[-1]
+    if ( !is.null(MLE_arguments$control) ){
+      MLE_arguments$control <-
+        MLE_arguments$control[-which(names(MLE_arguments$control) == "trace")]
+    }
+    if ( object$outputs$type == "maxlogL" ){
+      # MLE_arguments <- object$inputs[-which(names(object$inputs) == "call")]
+      # MLE_arguments <- MLE_arguments[-which(names(MLE_arguments) == "data")]
+      MLE_arguments <- MLE_arguments[-which(names(MLE_arguments) == "x")]
+      estimates <- do.call( what = "maxlogL",
+                            args = c(list(x = data[i]), MLE_arguments) )
+    } else {
+      MLE_arguments <- MLE_arguments[-which(names(MLE_arguments) ==
+                                              "formulas")]
+      fos <- object$inputs$formulas
+      data_names <- names(data)
+      data <- data[i,]
+      data <- as.data.frame(data)
+      names(data) <- data_names
+      estimates <- do.call( what = "maxlogLreg",
+                            args = c(list(data = data, formulas = fos),
+                                     MLE_arguments) )
+    }
     return(estimates$fit$par)
   }
-  data <- object$inputs$x
+  data <- object$inputs$data
   btstrp <- boot::boot(data = data, statistic = MLE, R = R, object = object, ...)
   return(apply(X = btstrp$t, MARGIN = 2, FUN = sd))
 }
@@ -244,7 +290,8 @@ boot_MLE <- function(object, R = 2000, ...){
 #==============================================================================
 uptodate <- function(p, object_name, stdE, StdE_Method,
                      change_SE_method = TRUE){
-  allocation2 <- paste0("p$", object_name, "$outputs$StdE <- ", stdE)
+  # allocation2 <- paste0("p$", object_name, "$outputs$StdE <- ", stdE)
+  allocation2 <- paste0("p$", object_name, "$outputs$StdE <- stdE")
   eval(parse(text = allocation2))
   if (change_SE_method){
     allocation1 <- paste0("p$", object_name,
@@ -252,24 +299,29 @@ uptodate <- function(p, object_name, stdE, StdE_Method,
     eval(parse(text = allocation1))
   }
 }
-
 #==============================================================================
 # Print method ----------------------------------------------------------------
 #==============================================================================
+#' @export
 print.maxlogL <- function(x, ...) {
-  if (!("x" %in% names(x$inputs))){
+  if ( x$outputs$type == "maxlogLreg" ){
+    A <- param_index(x$outputs$b_length, x$outputs$npar)
     cat("Call:\n")
     print(x$inputs$call)
     cat("\n Results: \n")
     for (i in 1:x$outputs$npar){
-      cat("\n Estimated coefficients for g(", x$inputs$par_names[i], "): \n")
-      print(x$fit$par[1:x$outputs$b_length[i]])
+      cat(paste0("\n Estimated coefficients for g(",
+                 x$outputs$par_names[i], "): \n"))
+      print(x$fit$par[A[i,1]:A[i,2]])
     }
   } else {
     cat("Call:\n")
-    print(x$call)
+    print(x$inputs$call)
+
     cat("\n Results: \n")
     cat("\n Estimated parameters: \n")
-    print(x$par)
+    result <- x$fit$par
+    # names(result) <-
+    print(result)
   }
 }
