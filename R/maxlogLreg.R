@@ -348,7 +348,8 @@ model.matrix.MLreg <- function(formulas, data, y_dist, npar, par_names){
                                          "must be a formula of the form ",
                                          "'y ~ dist' or ",
                                          "'Surv(time, status) ~ dist'"))
-  Y <- Surv_transform(y_dist = y_dist)
+
+  Y <- Surv_transform(SurvObject = eval(y_dist[[2]]))
 
   # Extract the right side of formulas
   formulas_corrector <- stringr::str_extract(as.character(formulas), "~.+")
@@ -383,6 +384,34 @@ fos_bind <- function(formula, response){
 matrixes <- function(j, formulas, model_frames){
   do.call(what = "model.matrix",
           args = list(as.formula(formulas[[j]]), model_frames[j]))
+}
+#==============================================================================
+# Response variable evaluation ------------------------------------------------
+#==============================================================================
+Surv_transform <- function(SurvObject){
+  # SurvObject <- eval(y_dist[[2]])
+  if ( inherits(SurvObject, "Surv") ){
+    if ( ncol(SurvObject) == 3 ){
+      stop("Estimation for interval censored data no available \n\n")
+    }
+    if ( ncol(SurvObject) == 2 ){
+      y <- SurvObject[,1]
+      obs   <- ifelse(SurvObject[,2] == 1, 1, 0)
+      left  <- ifelse(SurvObject[,2] == 2, 1, 0)
+      right <- ifelse(SurvObject[,2] == 0, 1, 0)
+      yvar <- all.vars(y_dist)[1]
+    }
+  } else if ( class(SurvObject) == "numeric" ){
+    y <- SurvObject
+    obs <- rep(1, length(y))
+    left <- right <- rep(0, length(y))
+    yvar <- all.vars(y_dist)[1]
+  } else {
+    stop("Response variable must be of class 'numeric' or a 'Surv' object")
+  }
+  status <- c(obs, left, right)
+  cens_data <- matrix(c(y,status), nrow = length(y))
+  return(list(cens = cens_data, resp = yvar))
 }
 #==============================================================================
 # log-likelihood function computation -----------------------------------------
@@ -497,32 +526,4 @@ link_list <- function(over, dist_args, npar){
     linked_params <- match(names_linked, names_numeric)
     return(linked_params)
   }
-}
-#==============================================================================
-# Response variable evaluation ------------------------------------------------
-#==============================================================================
-Surv_transform <- function(y_dist){
-  SurvObject <- eval(y_dist[[2]])
-  if ( inherits(SurvObject, "Surv") ){
-    if ( ncol(SurvObject) == 3 ){
-      stop("Estimation for interval censored data no available \n\n")
-    }
-    if ( ncol(SurvObject) == 2 ){
-      y <- SurvObject[,1]
-      obs   <- ifelse(SurvObject[,2] == 1, 1, 0)
-      left  <- ifelse(SurvObject[,2] == 2, 1, 0)
-      right <- ifelse(SurvObject[,2] == 0, 1, 0)
-      yvar <- all.vars(y_dist)[1]
-    }
-  } else if ( class(SurvObject) == "numeric" ){
-    y <- SurvObject
-    obs <- rep(1, length(y))
-    left <- right <- rep(0, length(y))
-    yvar <- all.vars(y_dist)[1]
-  } else {
-    stop("Response variable must be of class 'numeric' or a 'Surv' object")
-  }
-  status <- c(obs, left, right)
-  cens_data <- matrix(c(y,status), nrow = length(y))
-  return(list(cens = cens_data, resp = yvar))
 }
