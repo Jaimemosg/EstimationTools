@@ -1,4 +1,5 @@
 #' @title Maximum Likelihood Estimation for parametric distributions
+#' @family maxlogL
 #'
 #' @description
 #' Function to compute maximum likelihood estimators (MLE)
@@ -48,13 +49,12 @@
 #' generates an S3 object of class \code{maxlogL}.
 #'
 #' @note The following generic functions can be used with a \code{maxlogL} object:
-#' \code{summary}
+#' \code{summary, print}.
 #'
 #' @importFrom stats nlminb optim pnorm
 #' @importFrom DEoptim DEoptim
 #' @importFrom BBmisc is.error
 #' @importFrom numDeriv hessian
-#' @export
 #'
 #' @examples
 #' #--------------------------------------------------------------------------------
@@ -103,6 +103,7 @@
 #==============================================================================
 # Maximization routine --------------------------------------------------------
 #==============================================================================
+#' @export
 maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
                     start = NULL, lower = NULL, upper = NULL,
                     optimizer = 'nlminb', control = NULL, ...){
@@ -251,12 +252,25 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
   if ( (any(is.na(fit$hessian)) | is.error(fit$hessian)) |
        any(is.character(fit$hessian)) ) fit$hessian <- NA
 
+  ## Parameter names
+  names_numeric <- rep("", times = npar)
+  j <- 1
+  for (i in 1:length(arguments)){
+    if (is.numeric(arguments[[i]]) || is.symbol(arguments[[i]])){
+      names_numeric[j] <- names(arguments[i])
+      j <- j + 1
+    }
+  }
+  names_numeric <- names_numeric[-which(names_numeric == "x")]
+  names(fit$par) <- names_numeric
+
   inputs <- list(call = call, dist = dist, fixed = fixed,
                  link = link, optimizer = optimizer,
                  start = start, lower = lower, upper = upper,
-                 x = x)
+                 data = x)
   outputs <- list(npar = npar - length(fixed), n = length(x),
-                  StdE_Method = StdE_Method, StdE = "Not computed yet")
+                  StdE_Method = StdE_Method, type = "maxlogL",
+                  StdE = "Not computed yet", par_names = names_numeric)
   result <- list(fit = fit, inputs = inputs, outputs = outputs)
   class(result) <- "maxlogL"
   return(result)
