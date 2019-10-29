@@ -1,7 +1,7 @@
 #==============================================================================
 # Default link functions ------------------------------------------------------
 #==============================================================================
-#' @title Logit link function (for estimation with \code{maxlogL})
+#' @title Logit link function (for estimation with \code{maxlogL} object)
 #' @family link functions
 #'
 #' @description
@@ -54,7 +54,7 @@ logit_link <- function(){
   return(out)
 }
 #=============================================================================#
-#' @title Logarithmic link function (for estimation with \code{maxlogL})
+#' @title Logarithmic link function (for estimation with \code{maxlogL} object)
 #' @family link functions
 #'
 #' @description
@@ -106,7 +106,7 @@ log_link <- function(){
   return(out)
 }
 #=============================================================================#
-#' @title Negative inverse link function (for estimation with \code{maxlogL})
+#' @title Negative inverse link function (for estimation with \code{maxlogL} object)
 #' @family link functions
 #'
 #' @description
