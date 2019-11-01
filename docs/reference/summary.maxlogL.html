@@ -191,16 +191,16 @@ standard errors (see the Third Example).</p>
 #&gt;   4:     32111.639:  1.79611
 #&gt;   5:     32111.488:  1.79233
 #&gt;   6:     32111.487:  1.79221
-#&gt;   7:     32111.487:  1.79221</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>theta_1</span>)</div><div class='output co'>#&gt; ---------------------------------------------------------------
+#&gt;   7:     32111.487:  1.79221</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>theta_1</span>)</div><div class='output co'>#&gt; _______________________________________________________________
 #&gt; Optimization routine: nlminb 
 #&gt; Standard Error calculation: Hessian from optim 
-#&gt; ---------------------------------------------------------------
+#&gt; _______________________________________________________________
 #&gt;        AIC      BIC
 #&gt;   64222.97 64222.97
-#&gt; ---------------------------------------------------------------
+#&gt; _______________________________________________________________
 #&gt;    Estimate  Std. Error
 #&gt; sd    6.0027     0.0424
-#&gt; ---------------------------------------------------------------</div><div class='input'>
+#&gt; _______________________________________________________________</div><div class='input'>
 
 <span class='co'>#--------------------------------------------------------------------------------</span>
 <span class='co'># Second example: Binomial probability parameter estimation with variable</span>
@@ -215,16 +215,16 @@ standard errors (see the Third Example).</p>
 <span class='co'>## Standard error value (not computed yet, because is computed with 'summary')</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>phat</span>$<span class='no'>outputs</span>$<span class='no'>StdE</span>)</div><div class='output co'>#&gt; [1] "Not computed yet"</div><div class='input'>
 <span class='co'>## 'summary' method</span>
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>phat</span>)</div><div class='output co'>#&gt; ---------------------------------------------------------------
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>phat</span>)</div><div class='output co'>#&gt; _______________________________________________________________
 #&gt; Optimization routine: nlminb 
 #&gt; Standard Error calculation: Hessian from optim 
-#&gt; ---------------------------------------------------------------
+#&gt; _______________________________________________________________
 #&gt;        AIC      BIC
 #&gt;   339.1831 339.1831
-#&gt; ---------------------------------------------------------------
+#&gt; _______________________________________________________________
 #&gt;      Estimate  Std. Error
 #&gt; prob     0.296     0.0144
-#&gt; ---------------------------------------------------------------</div><div class='input'>
+#&gt; _______________________________________________________________</div><div class='input'>
 <span class='co'>## Now, standard error is updated</span>
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>phat</span>$<span class='no'>outputs</span>$<span class='no'>StdE_Method</span>)</div><div class='output co'>#&gt; [1] "Hessian from optim"</div><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/print'>print</a></span>(<span class='no'>phat</span>$<span class='no'>outputs</span>$<span class='no'>StdE</span>)</div><div class='output co'>#&gt; [1] 0.0144</div><div class='input'>
 
@@ -234,16 +234,16 @@ standard errors (see the Third Example).</p>
 
 <span class='no'>N</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Binomial'>rbinom</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.3</span>)
 <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='fu'><a href='maxlogL.html'>maxlogL</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>N</span>, <span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>'dbinom'</span>, <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>10</span>),
-                <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='st'>"prob"</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"logit_link"</span>)))</div><div class='output co'>#&gt; ---------------------------------------------------------------
+                <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='st'>"prob"</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"logit_link"</span>)))</div><div class='output co'>#&gt; _______________________________________________________________
 #&gt; Optimization routine: nlminb 
 #&gt; Standard Error calculation: Hessian from optim 
-#&gt; ---------------------------------------------------------------
+#&gt; _______________________________________________________________
 #&gt;        AIC      BIC
 #&gt;   375.4428 375.4428
-#&gt; ---------------------------------------------------------------
+#&gt; _______________________________________________________________
 #&gt;      Estimate  Std. Error
 #&gt; prob     0.304     0.0145
-#&gt; ---------------------------------------------------------------</div><div class='input'>
+#&gt; _______________________________________________________________</div><div class='input'>
 
 #--------------------------------------------------------------------------------
 
