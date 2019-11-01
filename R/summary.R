@@ -186,8 +186,9 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
   AIC <- stats::AIC(object); BIC <- stats::BIC(object)
   table <- data.frame(AIC=round(AIC, digits = 4),
                       BIC=round(BIC, digits = 4))
-  rownames(table) <- " "
+  rownamepkgs(table) <- " "
   print(table)
+  cat("_______________________________________________________________\n")
 
   if ( object$outputs$type == "maxlogL" ){
     ## Summary table
