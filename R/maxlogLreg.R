@@ -23,10 +23,11 @@
 #'               in the fitting process.
 #' @param fixed a list with fixed/known parameters of distribution of interest. Fixed parameters
 #'              must be passed with its name and its value (known).
-#' @param link a list with names of parameters to be linked, and names of the link object.
+#' @param link a list with names of parameters to be linked, and names of the link function object.
 #'             For names of parameters, please visit documentation of density/mass function.
 #'             There are three link functions available: \code{\link{log_link}},
-#'             \code{\link{logit_link}} and \code{\link{NegInv_link}}.
+#'             \code{\link{logit_link}} and \code{\link{NegInv_link}}. Take into account: the order
+#'             used in argument \code{over} corresponds to the order in argument \code{link}.
 #' @param start a numeric vector with initial values for the parameters to be estimated.
 #' @param lower a numeric vector with lower bounds, with the same lenght of
 #'              argument `start` (for box-constrained optimization).
@@ -99,8 +100,8 @@
 #' formulas <- list(scale.fo=~1, shape.fo=~1)
 #'
 #' mod_weibull <- maxlogLreg(formulas, y_dist = Surv(fails, status) ~ dweibull,
-#'                           start = c(scale=100, shape=10),
-#'                           lower = c(scale=0,shape=0), data = Wei_data)
+#'                           start = c(scale = 100, shape = 10),
+#'                           lower = c(scale = 0,shape = 0), data = Wei_data)
 #' summary(mod_weibull)
 #'
 #'
