@@ -183,6 +183,11 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
   cat(paste0('Optimization routine: ', object$input$optimizer),'\n')
   cat(paste0('Standard Error calculation: ', StdE_Method),'\n')
   cat("_______________________________________________________________\n")
+  AIC <- stats::AIC(object); BIC <- stats::BIC(object)
+  table <- data.frame(AIC=round(AIC, digits = 4),
+                      BIC=round(BIC, digits = 4))
+  rownames(table) <- " "
+  print(table)
 
   if ( object$outputs$type == "maxlogL" ){
     ## Summary table
@@ -208,12 +213,12 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
     #   names_numeric <- names_numeric[-pos_del]
     # }
     # rownames(res) <- names_numeric
-    AIC <- 2 * object$outputs$npar - 2 * object$fit$objective
-    BIC <- log(length(object$outputs$n)) * object$outputs$npar - 2 * object$fit$objective
-    table <- data.frame(AIC=round(AIC, digits = 4),
-                        BIC=round(BIC, digits = 4))
-    rownames(table) <- " "
-    print(table)
+    # AIC <- 2 * object$outputs$npar - 2 * object$fit$objective
+    # BIC <- log(length(object$outputs$n)) * object$outputs$npar - 2 * object$fit$objective
+    # table <- data.frame(AIC=round(AIC, digits = 4),
+                        # BIC=round(BIC, digits = 4))
+    # rownames(table) <- " "
+    # print(table)
     cat("_______________________________________________________________\n")
     printCoefmat(res[,1:2], P.values = FALSE)
     cat("_______________________________________________________________\n")
@@ -324,4 +329,19 @@ print.maxlogL <- function(x, ...) {
     # names(result) <-
     print(result)
   }
+}
+#==============================================================================
+# logLik method ---------------------------------------------------------------
+#==============================================================================
+#' @export
+logLik.maxlogL <- function(object, ...){
+  p <- ifelse(object$outputs$type == "maxlogL",
+              object$outputs$npar,
+              sum(as.numeric(object$outputs$b_length)))
+  val <- object$fit$objective
+  attr(val, "nall") <- object$outputs$n
+  attr(val, "nobs") <- object$outputs$n
+  attr(val, "df") <- p
+  class(val) <- "logLik"
+  val
 }
