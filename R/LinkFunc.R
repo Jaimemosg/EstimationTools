@@ -47,7 +47,7 @@
 #' @seealso \code{\link{maxlogL}}
 #'
 logit_link <- function(){
-  name <- "Logit"
+  name <- "logit"
   g <- function(x) log(x/(1-x))
   g_inv <- function(x) exp(x)/(exp(x)+1)
   out <- list(name = name, g = g, g_inv = g_inv)
@@ -99,7 +99,7 @@ logit_link <- function(){
 #' @seealso \code{\link{maxlogL}}
 #'
 log_link <- function(){
-  name <- "Log"
+  name <- "log"
   g <- function(x) log(x)
   g_inv <- function(x) exp(x)
   out <- list(name = name, g = g, g_inv = g_inv)
