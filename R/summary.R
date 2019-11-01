@@ -179,10 +179,10 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
     StdE_Method <- object$outputs$StdE_Method
   }
 
-  cat("---------------------------------------------------------------\n")
+  cat("_______________________________________________________________\n")
   cat(paste0('Optimization routine: ', object$input$optimizer),'\n')
   cat(paste0('Standard Error calculation: ', StdE_Method),'\n')
-  cat("---------------------------------------------------------------\n")
+  cat("_______________________________________________________________\n")
 
   if ( object$outputs$type == "maxlogL" ){
     ## Summary table
@@ -214,9 +214,9 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
                         BIC=round(BIC, digits = 4))
     rownames(table) <- " "
     print(table)
-    cat("---------------------------------------------------------------\n")
+    cat("_______________________________________________________________\n")
     printCoefmat(res[,1:2], P.values = FALSE)
-    cat("---------------------------------------------------------------\n")
+    cat("_______________________________________________________________\n")
     # cat('Note: p-values valid under asymptotic normality of estimators \n')
     # cat("-----\n")
     estimatePrint <- estimate
@@ -229,11 +229,12 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
     colnames(res) <- c('Estimate', 'Std. Error', 'Z value', 'Pr(>|z|)')
     for (i in 1:object$outputs$npar){
       cat(paste0("Fixed effects for g(", object$outputs$par_names[i],
-                 ") \n\n"))
+                 ") \n"))
+      cat("---------------------------------------------------------------\n")
       res_temp <- res[A[i,1]:A[i,2],]
       rownames(res_temp) <- names(object$fit$par)[A[i,1]:A[i,2]]
       printCoefmat(res_temp, P.values = TRUE, has.Pvalue = TRUE)
-      cat("---------------------------------------------------------------\n")
+      cat("_______________________________________________________________\n")
     }
     cat('Note: p-values valid under asymptotic normality of estimators \n')
     cat("---\n")
