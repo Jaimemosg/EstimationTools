@@ -63,7 +63,7 @@
 #' @note The following generic functions can be used with a \code{maxlogL} object:
 #' \code{summary, print}.
 #'
-#' @importFrom stats nlminb optim pnorm model.frame as.formula
+#' @importFrom stats nlminb optim pnorm model.frame as.formula na.omit
 #' @importFrom survival Surv
 #' @importFrom DEoptim DEoptim
 #' @importFrom BBmisc is.error
@@ -80,7 +80,7 @@
 #' y <- rnorm(n = n, mean = -2 + 3 * x1, sd = exp(1 + 0.3* x1))
 #' norm_data <- data.frame(y = y, x1 = x1)
 #'
-#' # It does not matter the order of the paramters
+#' # It does not matter the order of distribution paramters
 #' formulas <- list(sd.fo = ~ x1, mean.fo = ~ x1)
 #'
 #' norm_mod <- maxlogLreg(formulas, y_dist = y ~ dnorm, data = norm_data,
@@ -97,11 +97,22 @@
 #' status <- c(rep(1, length(failures)), rep(0, 10))
 #' Wei_data <- data.frame(fails = fails, status = status)
 #'
+#' # Formulas with linear predictors
 #' formulas <- list(scale.fo=~1, shape.fo=~1)
 #'
+#' # Bounds for optimization. Upper bound set with default values (Inf)
+#' start <- list(
+#'   scale = list(Intercept = 100),
+#'   shape = list(Intercept = 10)
+#' )
+#' lower <- list(
+#'   scale = list(Intercept = 0),
+#'   shape = list(Intercept = 0)
+#' )
+#'
 #' mod_weibull <- maxlogLreg(formulas, y_dist = Surv(fails, status) ~ dweibull,
-#'                           start = c(scale = 100, shape = 10),
-#'                           lower = c(scale = 0,shape = 0), data = Wei_data)
+#'                           start = start,
+#'                           lower = lower, data = Wei_data)
 #' summary(mod_weibull)
 #'
 #'
@@ -217,12 +228,22 @@ maxlogLreg <- function(formulas,
 
   ## Number of regression parameters
   n_betas <- sum(as.numeric(unlist(sapply(dsgn_mat[1:npar], ncol))))
+  b_names <- apply(matrix(1:npar, nrow = npar), MARGIN = 1,
+                   FUN = function(x) colnames(dsgn_mat[[x]]))
+  names(b_names) <- par_names
   b_length <- sapply(dsgn_mat[1:npar], ncol)
 
   #  Feasible region
-  lower <- set_values(input = lower, n_betas = n_betas, par_names = par_names)
-  upper <- set_values(input = upper, n_betas = n_betas, par_names = par_names)
-  start <- set_values(input = start, n_betas = n_betas, par_names = par_names)
+  # This implementation is useful in 'maxlogL' in future revisions
+  # lower <- set_values(input = lower, n_betas = n_betas, par_names = par_names)
+  # upper <- set_values(input = upper, n_betas = n_betas, par_names = par_names)
+  # start <- set_values(input = start, n_betas = n_betas, par_names = par_names)
+  lower <- set_values(input = lower, n_betas = n_betas, par_names = par_names,
+                      b_names = b_names, npar = npar, b_length = b_length)
+  upper <- set_values(input = upper, n_betas = n_betas, par_names = par_names,
+                      b_names = b_names, npar = npar, b_length = b_length)
+  start <- set_values(input = start, n_betas = n_betas, par_names = par_names,
+                      b_names = b_names, npar = npar, b_length = b_length)
 
   # Optimizers
   if ( optimizer == 'nlminb' ) {
@@ -318,22 +339,76 @@ maxlogLreg <- function(formulas,
   return(result)
 }
 
-set_values <- function(input, n_betas, par_names, par_order){
+# set_values <- function(input, n_betas, par_names, par_order){
+#   call <- match.call()
+#   limit <- call[[2]]
+#   if( is.null(input) ){
+#     default_bounds <- c(lower = -Inf, upper = Inf, start = 0)
+#     output <- rep(x = as.numeric(default_bounds[as.character(limit)]),
+#                   times = n_betas)
+#   } else {
+#     if ( is.null(names(input)) ) stop(paste0("Please, specify '",
+#                                                    as.character(limit),
+#                                                    "' values with the name",
+#                                                    " of parameters"))
+#     input_order <- match(par_names, names(input))
+#     output <- as.numeric(input)[input_order]
+#   }
+#   return(output)
+# }
+set_values <- function(input, n_betas, par_names, par_order,
+                       b_names, npar, b_length){
   call <- match.call()
   limit <- call[[2]]
+  default_bounds <- c(lower = -Inf, upper = Inf, start = 0)
   if( is.null(input) ){
-    default_bounds <- c(lower = -Inf, upper = Inf, start = 0)
     output <- rep(x = as.numeric(default_bounds[as.character(limit)]),
                   times = n_betas)
   } else {
-    if ( is.null(names(input)) ) stop(paste0("Please, specify '",
-                                                   as.character(limit),
-                                                   "' values with the name",
-                                                   " of parameters"))
+    input_names <- lapply(input, names)
+    b_names <- lapply(b_names, change)
+
+    # Check for names for all regression parameters in input
+    input_names_length <- sapply(input_names, length)
+    input_length <- sapply(input, length)
+    if ( any(input_names_length < input_length) )
+      stop(paste0("There are more names than values in'", as.character(limit),
+                  "' argument. Please, specify the name of all regression parameters"))
+    if ( any(input_names_length > input_length) )
+      stop(paste0("There are more values than names in'", as.character(limit),
+                  "' argument. Please, specify the value of all regression parameters"))
+
+    # Reorder the parameters test[[1]] <- input[[1]][c(3,1,2)]
     input_order <- match(par_names, names(input))
-    output <- as.numeric(input)[input_order]
+    input <- input[input_order]
+    reg_order <- apply(matrix(1:npar, nrow = npar), MARGIN = 1,
+                       FUN = function(x) match(b_names[[x]], input_names[[x]]))
+    na_pos <- lapply(lapply(reg_order, is.na), which)
+    reg_order <- lapply(lapply(reg_order, na.omit), as.numeric)
+    input <- apply(matrix(1:npar, nrow = npar), MARGIN = 1,
+                   FUN = function(x) input[[x]] <- input[[x]][reg_order[[x]]])
+    names(input) <- par_names
+    output <- as.numeric(unlist(input))
+
+    # Adding default values where it is needed
+    if( any(unlist(sapply(na_pos, length)) == 0) ){
+      A <- param_index(b_length, npar)
+      A <- A - sum(sapply(na_pos, length))
+      A[A==0] <- 1
+      for (i in 1:npar){
+        newpos <- A[i,1] + na_pos[[i]] - 2
+        if ( length(newpos) == 0 ) next
+        output <- append(output,
+                         as.numeric(default_bounds[as.character(limit)]),
+                         after = newpos)
+      }
+    }
   }
   return(output)
+}
+change <- function(x){
+  x[x == "(Intercept)"] <- "Intercept"
+  return(x)
 }
 #==============================================================================
 # Design matrix composition ---------------------------------------------------
