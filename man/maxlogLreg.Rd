@@ -93,7 +93,7 @@ x1 <- runif(n = n, -5, 6)
 y <- rnorm(n = n, mean = -2 + 3 * x1, sd = exp(1 + 0.3* x1))
 norm_data <- data.frame(y = y, x1 = x1)
 
-# It does not matter the order of the paramters
+# It does not matter the order of distribution paramters
 formulas <- list(sd.fo = ~ x1, mean.fo = ~ x1)
 
 norm_mod <- maxlogLreg(formulas, y_dist = y ~ dnorm, data = norm_data,
@@ -110,11 +110,22 @@ fails <- c(failures, rep(500, 10))
 status <- c(rep(1, length(failures)), rep(0, 10))
 Wei_data <- data.frame(fails = fails, status = status)
 
+# Formulas with linear predictors
 formulas <- list(scale.fo=~1, shape.fo=~1)
 
+# Bounds for optimization. Upper bound set with default values (Inf)
+start <- list(
+  scale = list(Intercept = 100),
+  shape = list(Intercept = 10)
+)
+lower <- list(
+  scale = list(Intercept = 0),
+  shape = list(Intercept = 0)
+)
+
 mod_weibull <- maxlogLreg(formulas, y_dist = Surv(fails, status) ~ dweibull,
-                          start = c(scale = 100, shape = 10),
-                          lower = c(scale = 0,shape = 0), data = Wei_data)
+                          start = start,
+                          lower = lower, data = Wei_data)
 summary(mod_weibull)
 
 
