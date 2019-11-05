@@ -57,7 +57,7 @@ $$
 \begin{aligned} 
 X &\sim N(\mu, \:\sigma^2) \\
 \mu &= 160 \quad (\verb|mean|) \\
-\log (\sigma) &= 6 \quad (\verb|sd|)
+\sigma &= 6 \quad (\verb|sd|)
 \end{aligned}
 $$
 
