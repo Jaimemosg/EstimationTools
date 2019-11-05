@@ -10,8 +10,7 @@
 #' @param formulas a list of formula objects. Each element must have an \code{~}, with the terms
 #' on the right separated by \code{+} operators. The response variable on the left side is optional.
 #' Linear predictor of each parameter must be specified with the name of the parameter folowed by
-#' the sufix \code{'.fo'}. See 'Details' and the examples below for further
-#' illustration.
+#' the sufix \code{'.fo'}. See the examples below for further illustration.
 #' @param y_dist a formula object tha specifies the distribution of the response variable.
 #'               On the left side of \code{~} must be the response, and in the right side
 #'               must be the name o de probability density/mass function. See the section
@@ -28,18 +27,19 @@
 #'             There are three link functions available: \code{\link{log_link}},
 #'             \code{\link{logit_link}} and \code{\link{NegInv_link}}. Take into account: the order
 #'             used in argument \code{over} corresponds to the order in argument \code{link}.
-#' @param start a numeric vector with initial values for the parameters to be estimated.
+#' @param start a numeric vector with initial values for the parameters to be estimated. Zero is the
+#'              default value.
 #' @param lower a numeric vector with lower bounds, with the same lenght of
-#'              argument `start` (for box-constrained optimization).
+#'              argument `start` (for box-constrained optimization). \code{-Inf} is the default value.
 #' @param upper a numeric vector with upper bounds, with the same lenght of
-#'              argument `start` (for box-constrained optimization).
+#'              argument `start` (for box-constrained optimization). \code{Inf} is the default value.
 #' @param optimizer a lenght-one character vector with the name of optimization routine.
 #'                  \code{\link{nlminb}}, \code{\link{optim}} and
 #'                  \code{\link[DEoptim]{DEoptim}} are available; \code{\link{nlminb}}
 #'                  is the default routine.
 #' @param control control parameters of the optimization routine. Please, visit documentation of selected
 #'                optimizer for further information.
-#' @param ... Further arguments to be supplied to the optimizer.
+#' @param ... Further arguments to be supplied to the optimization routine.
 #'
 #' @return A list with class \code{"maxlogL"} containing the following
 #'  lists:
@@ -58,7 +58,7 @@
 #' corresponding to the distribution specified in argument \code{y_dist} with linear
 #' predictors specified in argument \code{formulas}. Then, it maximizes the log L through
 #' \code{\link{optim}}, \code{\link{nlminb}} or \code{\link{DEoptim}}. \code{maxlogLreg}
-#' generates an S3 object of class \code{maxlogLreg}.
+#' generates an S3 object of class \code{maxlogL}.
 #'
 #' @note The following generic functions can be used with a \code{maxlogL} object:
 #' \code{summary, print}.
@@ -445,7 +445,7 @@ model.matrix.MLreg <- function(formulas, data, y_dist, npar, par_names){
   list_mfs <- lapply(fos_mat, model.frame, data = data)
   if ( is.null(data) ){
     data_reg <- as.data.frame(list_mfs)
-    var_names <- as.character(sapply(list_mfs, names))
+    var_names <- as.character(unlist(sapply(list_mfs, names)))
     names(data_reg) <- var_names
     data_reg <- as.data.frame(data_reg[,unique(var_names)])
     names(data_reg) <- unique(var_names)
@@ -541,9 +541,10 @@ minus_lL_LinReg <- function(param, mat, dist, dist_args, over, link, npar,
                                           log.p = TRUE, fixed) )
     logF <- do.call( what = cdf, args = c(list(q = y), param,
                                           log.p = TRUE, fixed) )
-    l <- sum( logf*delta[,1] + logF*delta[,2] + logS*delta[,3] )
+    ll <- sum( logf*delta[,1] + logF*delta[,2] + logS*delta[,3] )
+
     # Negative of log-Likelihood function
-    return(-l)
+    return(as.numeric(-ll)) # Useful when using Rmpfr
 }
 param_index <- function(b_length, npar){
   b_length_plus <- c(0, as.numeric(b_length))
