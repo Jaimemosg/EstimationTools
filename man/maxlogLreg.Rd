@@ -36,13 +36,14 @@ There are three link functions available: \code{\link{log_link}},
 \code{\link{logit_link}} and \code{\link{NegInv_link}}. Take into account: the order
 used in argument \code{over} corresponds to the order in argument \code{link}.}
 
-\item{start}{a numeric vector with initial values for the parameters to be estimated.}
+\item{start}{a numeric vector with initial values for the parameters to be estimated. Zero is the
+default value.}
 
 \item{lower}{a numeric vector with lower bounds, with the same lenght of
-argument `start` (for box-constrained optimization).}
+argument `start` (for box-constrained optimization). \code{-Inf} is the default value.}
 
 \item{upper}{a numeric vector with upper bounds, with the same lenght of
-argument `start` (for box-constrained optimization).}
+argument `start` (for box-constrained optimization). \code{Inf} is the default value.}
 
 \item{optimizer}{a lenght-one character vector with the name of optimization routine.
 \code{\link{nlminb}}, \code{\link{optim}} and
@@ -52,7 +53,7 @@ is the default routine.}
 \item{control}{control parameters of the optimization routine. Please, visit documentation of selected
 optimizer for further information.}
 
-\item{...}{Further arguments to be supplied to the optimizer.}
+\item{...}{Further arguments to be supplied to the optimization routine.}
 }
 \value{
 A list with class \code{"maxlogL"} containing the following
