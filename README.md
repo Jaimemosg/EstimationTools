@@ -55,14 +55,14 @@ likelihood estimation problem with `EstimationTools`:
 \\begin{aligned} 
 X &\\sim N(\\mu, \\:\\sigma^2) \\\\
 \\mu &= 160 \\quad (\\verb|mean|) \\\\
-\\sigma &= 6 \\quad (\\verb|sd|)
+\\log (\\sigma) &= 6 \\quad (\\verb|sd|)
 \\end{aligned}
-](https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%20%0AX%20%26%5Csim%20N%28%5Cmu%2C%20%5C%3A%5Csigma%5E2%29%20%5C%5C%0A%5Cmu%20%26%3D%20160%20%5Cquad%20%28%5Cverb%7Cmean%7C%29%20%5C%5C%0A%5Csigma%20%26%3D%206%20%5Cquad%20%28%5Cverb%7Csd%7C%29%0A%5Cend%7Baligned%7D%0A
+](https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%20%0AX%20%26%5Csim%20N%28%5Cmu%2C%20%5C%3A%5Csigma%5E2%29%20%5C%5C%0A%5Cmu%20%26%3D%20160%20%5Cquad%20%28%5Cverb%7Cmean%7C%29%20%5C%5C%0A%5Clog%20%28%5Csigma%29%20%26%3D%206%20%5Cquad%20%28%5Cverb%7Csd%7C%29%0A%5Cend%7Baligned%7D%0A
 "
 \\begin{aligned} 
 X &\\sim N(\\mu, \\:\\sigma^2) \\\\
 \\mu &= 160 \\quad (\\verb|mean|) \\\\
-\\sigma &= 6 \\quad (\\verb|sd|)
+\\log (\\sigma) &= 6 \\quad (\\verb|sd|)
 \\end{aligned}
 ")  
 
@@ -81,10 +81,11 @@ summary(fit)
 #> Standard Error calculation: Hessian from optim 
 #> _______________________________________________________________
 #>        AIC      BIC
-#>   64220.82 64216.82
+#>   64132.07 64146.49
+#> _______________________________________________________________
 #> _______________________________________________________________
 #>      Estimate  Std. Error
-#> mean  159.8994     0.0600
-#> sd      6.0009     0.0424
+#> mean  159.9744     0.0597
+#> sd      5.9743     0.0422
 #> _______________________________________________________________
 ```
