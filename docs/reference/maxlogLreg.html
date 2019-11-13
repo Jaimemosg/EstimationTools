@@ -136,8 +136,7 @@ of any distribution implemented in <code>R</code> with covariates (linear predic
       <td><p>a list of formula objects. Each element must have an <code>~</code>, with the terms
 on the right separated by <code>+</code> operators. The response variable on the left side is optional.
 Linear predictor of each parameter must be specified with the name of the parameter folowed by
-the sufix <code>'.fo'</code>. See 'Details' and the examples below for further
-illustration.</p></td>
+the sufix <code>'.fo'</code>. See the examples below for further illustration.</p></td>
     </tr>
     <tr>
       <th>y_dist</th>
@@ -224,7 +223,7 @@ optimizer for further information.</p></td>
 corresponding to the distribution specified in argument <code>y_dist</code> with linear
 predictors specified in argument <code>formulas</code>. Then, it maximizes the log L through
 <code><a href='https://www.rdocumentation.org/packages/stats/topics/optim'>optim</a></code>, <code><a href='https://www.rdocumentation.org/packages/stats/topics/nlminb'>nlminb</a></code> or <code>DEoptim</code>. <code>maxlogLreg</code>
-generates an S3 object of class <code>maxlogLreg</code>.</p>
+generates an S3 object of class <code>maxlogL</code>.</p>
     
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
@@ -242,12 +241,12 @@ generates an S3 object of class <code>maxlogLreg</code>.</p>
 <span class='co'>#--------------------------------------------------------------------------------</span>
 <span class='co'># Estimation in simulated normal distribution</span>
 <span class='no'>n</span> <span class='kw'>&lt;-</span> <span class='fl'>1000</span>
-<span class='no'>x1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Uniform'>runif</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>, -<span class='fl'>5</span>, <span class='fl'>6</span>)
-<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>, <span class='kw'>mean</span> <span class='kw'>=</span> -<span class='fl'>2</span> + <span class='fl'>3</span> * <span class='no'>x1</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>exp</a></span>(<span class='fl'>1</span> + <span class='fl'>0.3</span>* <span class='no'>x1</span>))
-<span class='no'>norm_data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>y</span>, <span class='kw'>x1</span> <span class='kw'>=</span> <span class='no'>x1</span>)
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Uniform'>runif</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>, -<span class='fl'>5</span>, <span class='fl'>6</span>)
+<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>, <span class='kw'>mean</span> <span class='kw'>=</span> -<span class='fl'>2</span> + <span class='fl'>3</span> * <span class='no'>x</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>exp</a></span>(<span class='fl'>1</span> + <span class='fl'>0.3</span>* <span class='no'>x</span>))
+<span class='no'>norm_data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>y</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>x</span>)
 
 <span class='co'># It does not matter the order of distribution paramters</span>
-<span class='no'>formulas</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>sd.fo</span> <span class='kw'>=</span> ~ <span class='no'>x1</span>, <span class='kw'>mean.fo</span> <span class='kw'>=</span> ~ <span class='no'>x1</span>)
+<span class='no'>formulas</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>sd.fo</span> <span class='kw'>=</span> ~ <span class='no'>x</span>, <span class='kw'>mean.fo</span> <span class='kw'>=</span> ~ <span class='no'>x</span>)
 
 <span class='no'>norm_mod</span> <span class='kw'>&lt;-</span> <span class='fu'>maxlogLreg</span>(<span class='no'>formulas</span>, <span class='kw'>y_dist</span> <span class='kw'>=</span> <span class='no'>y</span> ~ <span class='no'>dnorm</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>norm_data</span>,
                        <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='st'>"sd"</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"log_link"</span>))
@@ -262,7 +261,7 @@ generates an S3 object of class <code>maxlogLreg</code>.</p>
 #&gt; ---------------------------------------------------------------
 #&gt;             Estimate Std. Error Z value  Pr(&gt;|z|)    
 #&gt; (Intercept)  -2.0016     0.1107 -18.081 &lt; 2.2e-16 ***
-#&gt; x1            2.9963     0.0302  99.214 &lt; 2.2e-16 ***
+#&gt; x             2.9963     0.0302  99.214 &lt; 2.2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________
@@ -270,7 +269,7 @@ generates an S3 object of class <code>maxlogLreg</code>.</p>
 #&gt; ---------------------------------------------------------------
 #&gt;             Estimate Std. Error Z value  Pr(&gt;|z|)    
 #&gt; (Intercept)  0.99592    0.02250  44.263 &lt; 2.2e-16 ***
-#&gt; x1           0.29660    0.00740  40.081 &lt; 2.2e-16 ***
+#&gt; x            0.29660    0.00740  40.081 &lt; 2.2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________

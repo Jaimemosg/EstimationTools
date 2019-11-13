@@ -114,7 +114,7 @@
 <div id="estimation-in-regression-models" class="section level2">
 <h2 class="hasAnchor">
 <a href="#estimation-in-regression-models" class="anchor"></a>Estimation in regression models</h2>
-<p>The data is from <a href="https://www.itl.nist.gov/div898/handbook/apr/section2/apr221.htm#Example">NIST</a>. They generated 20 random Weibull failure times with a parameter <code>shape=1.5</code> and <code>scale=500</code>. The test time is 500 hours, 10 of these failure times are right censored. The observed times are, to the nearest hour: 54, 187, 216, 240, 244, 335, 361, 373, 375, and 386.</p>
+<!-- The data is from [NIST](https://www.itl.nist.gov/div898/handbook/apr/section2/apr221.htm#Example). They generated  20 random Weibull failure times with a parameter `shape=1.5` and `scale=500`. The test time is 500 hours, 10 of these failure times are right censored. The observed times are, to the nearest hour: 54, 187, 216, 240, 244, 335, 361, 373, 375, and 386. -->
 <p>The model is as follows:</p>
 <p><span class="math display">\[
 f(t|\alpha, k) = \frac{\alpha}{k} \left(\frac{t}{k}\right)^{\alpha-1} \exp\left[-\left(\frac{t}{k}\right)^{\alpha}\right]
@@ -123,7 +123,7 @@ f(t|\alpha, k) = \frac{\alpha}{k} \left(\frac{t}{k}\right)^{\alpha-1} \exp\left[
 <p><span class="math display">\[
 \begin{aligned}
 T &amp;\stackrel{\text{iid.}}{\sim} WEI(\alpha,\: k), \\
-\alpha &amp;= 1.5 \quad  (\verb|shape|),\\
+\alpha &amp;= 1.5 + 0.3*x \quad  (\verb|shape|),\\
 k &amp;= 500 \quad (\verb|scale|).
 \end{aligned}
 \]</span></p>
@@ -194,13 +194,13 @@ X &amp;\sim N(\mu, \:\sigma^2), \\
 <a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt; Optimization routine: nlminb </span></a>
 <a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt; Standard Error calculation: Hessian from optim </span></a>
 <a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt; _______________________________________________________________</span></a>
-<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt;        AIC     BIC</span></a>
-<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt;   64144.98 64159.4</span></a>
+<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt;     AIC      BIC</span></a>
+<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt;   64290 64304.42</span></a>
 <a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt; _______________________________________________________________</span></a>
 <a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt; _______________________________________________________________</span></a>
 <a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt;      Estimate  Std. Error</span></a>
-<a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt; mean  159.9222     0.0598</span></a>
-<a class="sourceLine" id="cb4-14" title="14"><span class="co">#&gt; sd      5.9781     0.0423</span></a>
+<a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt; mean  159.9717     0.0602</span></a>
+<a class="sourceLine" id="cb4-14" title="14"><span class="co">#&gt; sd      6.0217     0.0426</span></a>
 <a class="sourceLine" id="cb4-15" title="15"><span class="co">#&gt; _______________________________________________________________</span></a></code></pre></div>
 </div>
 </div>
@@ -210,6 +210,8 @@ X &amp;\sim N(\mu, \:\sigma^2), \\
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
+<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=EstimationTools">https://​cloud.r-project.org/​package=EstimationTools</a>
+</li>
 <li>Browse source code at <br><a href="https://github.com/Jaimemosg/EstimationTools">https://​github.com/​Jaimemosg/​EstimationTools</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/Jaimemosg/EstimationTools/issues">https://​github.com/​Jaimemosg/​EstimationTools/​issues</a>

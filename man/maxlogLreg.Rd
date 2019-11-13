@@ -90,7 +90,7 @@ library(EstimationTools)
 # Estimation in simulated normal distribution
 n <- 1000
 x <- runif(n = n, -5, 6)
-y <- rnorm(n = n, mean = -2 + 3 * x1, sd = exp(1 + 0.3* x1))
+y <- rnorm(n = n, mean = -2 + 3 * x, sd = exp(1 + 0.3* x))
 norm_data <- data.frame(y = y, x = x)
 
 # It does not matter the order of distribution paramters
