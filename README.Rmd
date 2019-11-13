@@ -49,9 +49,37 @@ install.packages("EstimationTools")
 
 You can visit the [package website](https://Jaimemosg.github.io/EstimationTools/) to explore the vignettes (articles) and functions reference. 
 
-## Example
+# Examples
 
-This is a basic example which shows you how to solve a common maximum likelihood estimation problem with `EstimationTools`:
+These are basic examples which shows you how to solve a common maximum likelihood estimation problem with `EstimationTools`:
+
+## Estimation in regression models
+
+$$
+\begin{aligned} 
+X &\sim N(\mu, \:\sigma^2) \\
+\mu &= -2 + 3x \quad (\verb|mean|) \\
+\log(\sigma) &= 1 + 0.3x \quad (\verb|sd|)
+\end{aligned}
+$$
+
+The solution for a data set generated with size $n=10000$ is printed below
+
+```{r example1, message=FALSE, warning=FALSE}
+library(EstimationTools)
+
+n <- 10000
+x1 <- runif(n = n, -5, 6)
+y <- rnorm(n = n, mean = -2 + 3 * x1, sd = exp(1 + 0.3* x1))
+
+formulas <- list(sd.fo = ~ x1, mean.fo = ~ x1)
+
+norm_mod <- maxlogLreg(formulas, y_dist = y ~ dnorm,
+                       link = list(over = "sd", fun = "log_link"))
+summary(norm_mod)
+```
+
+## Estimation in distributions
 
 $$
 \begin{aligned} 
@@ -63,9 +91,7 @@ $$
 
 The solution for a data set generated with size $n=10000$ is showed below
 
-```{r example, message=FALSE, warning=FALSE}
-library(EstimationTools)
-
+```{r example2, message=FALSE, warning=FALSE}
 x <- rnorm( n = 10000, mean = 160, sd = 6 )
 fit <- maxlogL( x = x, dist = "dnorm", link = list(over = "sd", fun = "log_link") )
 summary(fit)
