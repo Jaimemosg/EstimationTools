@@ -52,58 +52,86 @@ likelihood estimation problem with `EstimationTools`:
 
 ## Estimation in regression models
 
+The data is from
+[NIST](https://www.itl.nist.gov/div898/handbook/apr/section2/apr221.htm#Example).
+They generated 20 random Weibull failure times with a parameter
+`shape=1.5` and `scale=500`. The test time is 500 hours, 10 of these
+failure times are right censored. The observed times are, to the nearest
+hour: 54, 187, 216, 240, 244, 335, 361, 373, 375, and 386.
+
+The model is as follows:
+
   
 ![
-\\begin{aligned} 
-X &\\sim N(\\mu, \\:\\sigma^2) \\\\
-\\mu &= -2 + 3x \\quad (\\verb|mean|) \\\\
-\\log(\\sigma) &= 1 + 0.3x \\quad (\\verb|sd|)
-\\end{aligned}
-](https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%20%0AX%20%26%5Csim%20N%28%5Cmu%2C%20%5C%3A%5Csigma%5E2%29%20%5C%5C%0A%5Cmu%20%26%3D%20-2%20%2B%203x%20%5Cquad%20%28%5Cverb%7Cmean%7C%29%20%5C%5C%0A%5Clog%28%5Csigma%29%20%26%3D%201%20%2B%200.3x%20%5Cquad%20%28%5Cverb%7Csd%7C%29%0A%5Cend%7Baligned%7D%0A
+f(t|\\alpha, k) = \\frac{\\alpha}{k}
+\\left(\\frac{t}{k}\\right)^{\\alpha-1}
+\\exp\\left\[-\\left(\\frac{t}{k}\\right)^{\\alpha}\\right\]
+](https://latex.codecogs.com/png.latex?%0Af%28t%7C%5Calpha%2C%20k%29%20%3D%20%5Cfrac%7B%5Calpha%7D%7Bk%7D%20%5Cleft%28%5Cfrac%7Bt%7D%7Bk%7D%5Cright%29%5E%7B%5Calpha-1%7D%20%5Cexp%5Cleft%5B-%5Cleft%28%5Cfrac%7Bt%7D%7Bk%7D%5Cright%29%5E%7B%5Calpha%7D%5Cright%5D%0A
 "
-\\begin{aligned} 
-X &\\sim N(\\mu, \\:\\sigma^2) \\\\
-\\mu &= -2 + 3x \\quad (\\verb|mean|) \\\\
-\\log(\\sigma) &= 1 + 0.3x \\quad (\\verb|sd|)
+f(t|\\alpha, k) = \\frac{\\alpha}{k} \\left(\\frac{t}{k}\\right)^{\\alpha-1} \\exp\\left[-\\left(\\frac{t}{k}\\right)^{\\alpha}\\right]
+")  
+
+  
+![
+\\begin{aligned}
+T &\\stackrel{\\text{iid.}}{\\sim} WEI(\\alpha,\\: k), \\\\
+\\alpha &= 1.5 \\quad (\\verb|shape|),\\\\
+k &= 500 \\quad (\\verb|scale|).
+\\end{aligned}
+](https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0AT%20%26%5Cstackrel%7B%5Ctext%7Biid.%7D%7D%7B%5Csim%7D%20WEI%28%5Calpha%2C%5C%3A%20k%29%2C%20%5C%5C%0A%5Calpha%20%26%3D%201.5%20%5Cquad%20%20%28%5Cverb%7Cshape%7C%29%2C%5C%5C%0Ak%20%26%3D%20500%20%5Cquad%20%28%5Cverb%7Cscale%7C%29.%0A%5Cend%7Baligned%7D%0A
+"
+\\begin{aligned}
+T &\\stackrel{\\text{iid.}}{\\sim} WEI(\\alpha,\\: k), \\\\
+\\alpha &= 1.5 \\quad  (\\verb|shape|),\\\\
+k &= 500 \\quad (\\verb|scale|).
 \\end{aligned}
 ")  
 
-The solution for a data set generated with size
-![n=10000](https://latex.codecogs.com/png.latex?n%3D10000 "n=10000") is
-printed below
+The implementation and its solution is printed below:
 
 ``` r
 library(EstimationTools)
 
-n <- 10000
-x1 <- runif(n = n, -5, 6)
-y <- rnorm(n = n, mean = -2 + 3 * x1, sd = exp(1 + 0.3* x1))
+failures = c(55, 187, 216, 240, 244, 335, 361, 373, 375, 386)
+fails <- c(failures, rep(500, 10))
+status <- c(rep(1, length(failures)), rep(0, 10))
+Wei_data <- data.frame(fails = fails, status = status)
 
-formulas <- list(sd.fo = ~ x1, mean.fo = ~ x1)
+# Formulas with linear predictors
+formulas <- list(scale.fo=~1, shape.fo=~1)
 
-norm_mod <- maxlogLreg(formulas, y_dist = y ~ dnorm,
-                       link = list(over = "sd", fun = "log_link"))
-summary(norm_mod)
+# Bounds for optimization
+start <- list(
+  scale = list(Intercept = 100),
+  shape = list(Intercept = 10)
+)
+lower <- list(
+  scale = list(Intercept = 0),
+  shape = list(Intercept = 0)
+)
+
+mod_weibull <- maxlogLreg(formulas, y_dist = Surv(fails, status) ~ dweibull,
+                          start = start,
+                          lower = lower, data = Wei_data)
+summary(mod_weibull)
 #> _______________________________________________________________
 #> Optimization routine: nlminb 
 #> Standard Error calculation: Hessian from optim 
 #> _______________________________________________________________
 #>        AIC      BIC
-#>   51621.09 51649.93
+#>   154.2437 156.2352
 #> _______________________________________________________________
-#> Fixed effects for g(mean) 
+#> Fixed effects for g(shape) 
 #> ---------------------------------------------------------------
 #>             Estimate Std. Error Z value  Pr(>|z|)    
-#> (Intercept)  -1.9701     0.0357 -55.184 < 2.2e-16 ***
-#> x1            3.0054     0.0096 313.061 < 2.2e-16 ***
+#> (Intercept)   1.7256     0.5034  3.4279 0.0006083 ***
 #> ---
 #> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #> _______________________________________________________________
-#> Fixed effects for g(sd) 
+#> Fixed effects for g(scale) 
 #> ---------------------------------------------------------------
 #>             Estimate Std. Error Z value  Pr(>|z|)    
-#> (Intercept)  0.99565    0.00720  138.28 < 2.2e-16 ***
-#> x1           0.30629    0.00230  133.17 < 2.2e-16 ***
+#> (Intercept)   606.00     124.43  4.8703 1.114e-06 ***
 #> ---
 #> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #> _______________________________________________________________
@@ -116,16 +144,16 @@ summary(norm_mod)
   
 ![
 \\begin{aligned} 
-X &\\sim N(\\mu, \\:\\sigma^2) \\\\
-\\mu &= 160 \\quad (\\verb|mean|) \\\\
-\\sigma &= 6 \\quad (\\verb|sd|)
+X &\\sim N(\\mu, \\:\\sigma^2), \\\\
+\\mu &= 160 \\quad (\\verb|mean|), \\\\
+\\sigma &= 6 \\quad (\\verb|sd|).
 \\end{aligned}
-](https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%20%0AX%20%26%5Csim%20N%28%5Cmu%2C%20%5C%3A%5Csigma%5E2%29%20%5C%5C%0A%5Cmu%20%26%3D%20160%20%5Cquad%20%28%5Cverb%7Cmean%7C%29%20%5C%5C%0A%5Csigma%20%26%3D%206%20%5Cquad%20%28%5Cverb%7Csd%7C%29%0A%5Cend%7Baligned%7D%0A
+](https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%20%0AX%20%26%5Csim%20N%28%5Cmu%2C%20%5C%3A%5Csigma%5E2%29%2C%20%5C%5C%0A%5Cmu%20%26%3D%20160%20%5Cquad%20%28%5Cverb%7Cmean%7C%29%2C%20%5C%5C%0A%5Csigma%20%26%3D%206%20%5Cquad%20%28%5Cverb%7Csd%7C%29.%0A%5Cend%7Baligned%7D%0A
 "
 \\begin{aligned} 
-X &\\sim N(\\mu, \\:\\sigma^2) \\\\
-\\mu &= 160 \\quad (\\verb|mean|) \\\\
-\\sigma &= 6 \\quad (\\verb|sd|)
+X &\\sim N(\\mu, \\:\\sigma^2), \\\\
+\\mu &= 160 \\quad (\\verb|mean|), \\\\
+\\sigma &= 6 \\quad (\\verb|sd|).
 \\end{aligned}
 ")  
 
@@ -142,11 +170,11 @@ summary(fit)
 #> Standard Error calculation: Hessian from optim 
 #> _______________________________________________________________
 #>       AIC      BIC
-#>   64145.4 64159.82
+#>   64196.5 64210.92
 #> _______________________________________________________________
 #> _______________________________________________________________
 #>      Estimate  Std. Error
-#> mean  159.9893     0.0598
-#> sd      5.9783     0.0423
+#> mean  159.9233     0.0599
+#> sd      5.9936     0.0424
 #> _______________________________________________________________
 ```

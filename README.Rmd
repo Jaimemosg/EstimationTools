@@ -55,37 +55,59 @@ These are basic examples which shows you how to solve a common maximum likelihoo
 
 ## Estimation in regression models
 
+<!-- The data is from [NIST](https://www.itl.nist.gov/div898/handbook/apr/section2/apr221.htm#Example). They generated  20 random Weibull failure times with a parameter `shape=1.5` and `scale=500`. The test time is 500 hours, 10 of these failure times are right censored. The observed times are, to the nearest hour: 54, 187, 216, 240, 244, 335, 361, 373, 375, and 386. -->
+
+The model is as follows:
+
 $$
-\begin{aligned} 
-X &\sim N(\mu, \:\sigma^2) \\
-\mu &= -2 + 3x \quad (\verb|mean|) \\
-\log(\sigma) &= 1 + 0.3x \quad (\verb|sd|)
+f(t|\alpha, k) = \frac{\alpha}{k} \left(\frac{t}{k}\right)^{\alpha-1} \exp\left[-\left(\frac{t}{k}\right)^{\alpha}\right]
+$$
+
+\centering
+$$
+\begin{aligned}
+T &\stackrel{\text{iid.}}{\sim} WEI(\alpha,\: k), \\
+\alpha &= 1.5 + 0.3*x \quad  (\verb|shape|),\\
+k &= 500 \quad (\verb|scale|).
 \end{aligned}
 $$
 
-The solution for a data set generated with size $n=10000$ is printed below
+The implementation and its solution is printed below:
 
 ```{r example1, message=FALSE, warning=FALSE}
 library(EstimationTools)
 
-n <- 10000
-x1 <- runif(n = n, -5, 6)
-y <- rnorm(n = n, mean = -2 + 3 * x1, sd = exp(1 + 0.3* x1))
+failures = c(55, 187, 216, 240, 244, 335, 361, 373, 375, 386)
+fails <- c(failures, rep(500, 10))
+status <- c(rep(1, length(failures)), rep(0, 10))
+Wei_data <- data.frame(fails = fails, status = status)
 
-formulas <- list(sd.fo = ~ x1, mean.fo = ~ x1)
+# Formulas with linear predictors
+formulas <- list(scale.fo=~1, shape.fo=~1)
 
-norm_mod <- maxlogLreg(formulas, y_dist = y ~ dnorm,
-                       link = list(over = "sd", fun = "log_link"))
-summary(norm_mod)
+# Bounds for optimization
+start <- list(
+  scale = list(Intercept = 100),
+  shape = list(Intercept = 10)
+)
+lower <- list(
+  scale = list(Intercept = 0),
+  shape = list(Intercept = 0)
+)
+
+mod_weibull <- maxlogLreg(formulas, y_dist = Surv(fails, status) ~ dweibull,
+                          start = start,
+                          lower = lower, data = Wei_data)
+summary(mod_weibull)
 ```
 
 ## Estimation in distributions
 
 $$
 \begin{aligned} 
-X &\sim N(\mu, \:\sigma^2) \\
-\mu &= 160 \quad (\verb|mean|) \\
-\sigma &= 6 \quad (\verb|sd|)
+X &\sim N(\mu, \:\sigma^2), \\
+\mu &= 160 \quad (\verb|mean|), \\
+\sigma &= 6 \quad (\verb|sd|).
 \end{aligned}
 $$
 
