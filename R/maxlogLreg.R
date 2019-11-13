@@ -76,12 +76,12 @@
 #' #--------------------------------------------------------------------------------
 #' # Estimation in simulated normal distribution
 #' n <- 1000
-#' x1 <- runif(n = n, -5, 6)
+#' x <- runif(n = n, -5, 6)
 #' y <- rnorm(n = n, mean = -2 + 3 * x1, sd = exp(1 + 0.3* x1))
-#' norm_data <- data.frame(y = y, x1 = x1)
+#' norm_data <- data.frame(y = y, x = x)
 #'
 #' # It does not matter the order of distribution paramters
-#' formulas <- list(sd.fo = ~ x1, mean.fo = ~ x1)
+#' formulas <- list(sd.fo = ~ x, mean.fo = ~ x)
 #'
 #' norm_mod <- maxlogLreg(formulas, y_dist = y ~ dnorm, data = norm_data,
 #'                        link = list(over = "sd", fun = "log_link"))
