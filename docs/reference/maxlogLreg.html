@@ -172,17 +172,18 @@ used in argument <code>over</code> corresponds to the order in argument <code>li
     </tr>
     <tr>
       <th>start</th>
-      <td><p>a numeric vector with initial values for the parameters to be estimated.</p></td>
+      <td><p>a numeric vector with initial values for the parameters to be estimated. Zero is the
+default value.</p></td>
     </tr>
     <tr>
       <th>lower</th>
       <td><p>a numeric vector with lower bounds, with the same lenght of
-argument `start` (for box-constrained optimization).</p></td>
+argument `start` (for box-constrained optimization). <code>-Inf</code> is the default value.</p></td>
     </tr>
     <tr>
       <th>upper</th>
       <td><p>a numeric vector with upper bounds, with the same lenght of
-argument `start` (for box-constrained optimization).</p></td>
+argument `start` (for box-constrained optimization). <code>Inf</code> is the default value.</p></td>
     </tr>
     <tr>
       <th>optimizer</th>
@@ -198,7 +199,7 @@ optimizer for further information.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Further arguments to be supplied to the optimizer.</p></td>
+      <td><p>Further arguments to be supplied to the optimization routine.</p></td>
     </tr>
     </table>
     

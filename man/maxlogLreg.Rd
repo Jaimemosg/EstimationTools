@@ -12,8 +12,7 @@ maxlogLreg(formulas, y_dist, data = NULL, subset = NULL,
 \item{formulas}{a list of formula objects. Each element must have an \code{~}, with the terms
 on the right separated by \code{+} operators. The response variable on the left side is optional.
 Linear predictor of each parameter must be specified with the name of the parameter folowed by
-the sufix \code{'.fo'}. See 'Details' and the examples below for further
-illustration.}
+the sufix \code{'.fo'}. See the examples below for further illustration.}
 
 \item{y_dist}{a formula object tha specifies the distribution of the response variable.
 On the left side of \code{~} must be the response, and in the right side
@@ -78,7 +77,7 @@ of any distribution implemented in \code{R} with covariates (linear predictors).
 corresponding to the distribution specified in argument \code{y_dist} with linear
 predictors specified in argument \code{formulas}. Then, it maximizes the log L through
 \code{\link{optim}}, \code{\link{nlminb}} or \code{\link{DEoptim}}. \code{maxlogLreg}
-generates an S3 object of class \code{maxlogLreg}.
+generates an S3 object of class \code{maxlogL}.
 }
 \note{
 The following generic functions can be used with a \code{maxlogL} object:
@@ -90,12 +89,12 @@ library(EstimationTools)
 #--------------------------------------------------------------------------------
 # Estimation in simulated normal distribution
 n <- 1000
-x1 <- runif(n = n, -5, 6)
+x <- runif(n = n, -5, 6)
 y <- rnorm(n = n, mean = -2 + 3 * x1, sd = exp(1 + 0.3* x1))
-norm_data <- data.frame(y = y, x1 = x1)
+norm_data <- data.frame(y = y, x = x)
 
 # It does not matter the order of distribution paramters
-formulas <- list(sd.fo = ~ x1, mean.fo = ~ x1)
+formulas <- list(sd.fo = ~ x, mean.fo = ~ x)
 
 norm_mod <- maxlogLreg(formulas, y_dist = y ~ dnorm, data = norm_data,
                        link = list(over = "sd", fun = "log_link"))
