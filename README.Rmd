@@ -57,6 +57,26 @@ These are basic examples which shows you how to solve a common maximum likelihoo
 
 <!-- The data is from [NIST](https://www.itl.nist.gov/div898/handbook/apr/section2/apr221.htm#Example). They generated  20 random Weibull failure times with a parameter `shape=1.5` and `scale=500`. The test time is 500 hours, 10 of these failure times are right censored. The observed times are, to the nearest hour: 54, 187, 216, 240, 244, 335, 361, 373, 375, and 386. -->
 
+```{r, echo=FALSE}
+tcens1 <- qweibull(0.1, shape = exp(1.5), scale = exp(6.214608), lower.tail = FALSE)
+tcens2 <- qweibull(0.1, shape = exp(1.5+0.3), scale = exp(6.214608), lower.tail = FALSE)
+tcens <- min(tcens1, tcens2)
+t1 <- rweibull(n = 15, shape = exp(1.5), scale = exp(6.214608))
+t2 <- rweibull(n = 15, shape = exp(1.5+0.3), scale = exp(6.214608))
+
+t0 <- c(t1, t2)
+t_sim <- ifelse(t0 < tcens, t0, tcens)
+status <- as.numeric(t_sim < tcens)
+group <- c(rep(0, 15), rep(1, 15))
+```
+
+We generate data from an hypothetic failure test of `r round(tcens1, 2)` hours. 10% of the data is right censored; the data is showed just above:
+
+```{r, echo=FALSE}
+data.frame(t_sim=t_sim, status=status, group=group)[1:6,]
+```
+
+
 The model is as follows:
 
 $$
@@ -67,7 +87,7 @@ $$
 $$
 \begin{aligned}
 T &\stackrel{\text{iid.}}{\sim} WEI(\alpha,\: k), \\
-\alpha &= 1.5 + 0.3*x \quad  (\verb|shape|),\\
+\alpha &= 1.5 + 0.3 \times group \quad  (\verb|shape|),\\
 k &= 500 \quad (\verb|scale|).
 \end{aligned}
 $$
@@ -77,28 +97,14 @@ The implementation and its solution is printed below:
 ```{r example1, message=FALSE, warning=FALSE}
 library(EstimationTools)
 
-failures = c(55, 187, 216, 240, 244, 335, 361, 373, 375, 386)
-fails <- c(failures, rep(500, 10))
-status <- c(rep(1, length(failures)), rep(0, 10))
-Wei_data <- data.frame(fails = fails, status = status)
-
 # Formulas with linear predictors
-formulas <- list(scale.fo=~1, shape.fo=~1)
+formulas <- list(scale.fo = ~ 1, shape.fo = ~ group)
 
-# Bounds for optimization
-start <- list(
-  scale = list(Intercept = 100),
-  shape = list(Intercept = 10)
-)
-lower <- list(
-  scale = list(Intercept = 0),
-  shape = list(Intercept = 0)
-)
-
-mod_weibull <- maxlogLreg(formulas, y_dist = Surv(fails, status) ~ dweibull,
-                          start = start,
-                          lower = lower, data = Wei_data)
-summary(mod_weibull)
+# The model
+fit_wei <- maxlogLreg(formulas, y_dist = Surv(t_sim, status) ~ dweibull,
+                      link = list(over = c("shape", "scale"),
+                                  fun = rep("log_link", 2)))
+summary(fit_wei)
 ```
 
 ## Estimation in distributions

@@ -48,16 +48,23 @@ vignettes (articles) and functions reference.
 # Examples
 
 These are basic examples which shows you how to solve a common maximum
-likelihood estimation problem with `EstimationTools`:
+likelihood estimation problem with
+`EstimationTools`:
 
 ## Estimation in regression models
 
-The data is from
-[NIST](https://www.itl.nist.gov/div898/handbook/apr/section2/apr221.htm#Example).
-They generated 20 random Weibull failure times with a parameter
-`shape=1.5` and `scale=500`. The test time is 500 hours, 10 of these
-failure times are right censored. The observed times are, to the nearest
-hour: 54, 187, 216, 240, 244, 335, 361, 373, 375, and 386.
+<!-- The data is from [NIST](https://www.itl.nist.gov/div898/handbook/apr/section2/apr221.htm#Example). They generated  20 random Weibull failure times with a parameter `shape=1.5` and `scale=500`. The test time is 500 hours, 10 of these failure times are right censored. The observed times are, to the nearest hour: 54, 187, 216, 240, 244, 335, 361, 373, 375, and 386. -->
+
+We generate data from an hypothetic failure test of 602.27 hours. 10% of
+the data is right censored; the data is showed just above:
+
+    #>      t_sim status group
+    #> 1 503.2226      1     0
+    #> 2 573.9100      0     0
+    #> 3 378.8040      1     0
+    #> 4 431.6010      1     0
+    #> 5 430.7365      1     0
+    #> 6 405.2497      1     0
 
 The model is as follows:
 
@@ -75,14 +82,14 @@ f(t|\\alpha, k) = \\frac{\\alpha}{k} \\left(\\frac{t}{k}\\right)^{\\alpha-1} \\e
 ![
 \\begin{aligned}
 T &\\stackrel{\\text{iid.}}{\\sim} WEI(\\alpha,\\: k), \\\\
-\\alpha &= 1.5 \\quad (\\verb|shape|),\\\\
+\\alpha &= 1.5 + 0.3 \\times group \\quad (\\verb|shape|),\\\\
 k &= 500 \\quad (\\verb|scale|).
 \\end{aligned}
-](https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0AT%20%26%5Cstackrel%7B%5Ctext%7Biid.%7D%7D%7B%5Csim%7D%20WEI%28%5Calpha%2C%5C%3A%20k%29%2C%20%5C%5C%0A%5Calpha%20%26%3D%201.5%20%5Cquad%20%20%28%5Cverb%7Cshape%7C%29%2C%5C%5C%0Ak%20%26%3D%20500%20%5Cquad%20%28%5Cverb%7Cscale%7C%29.%0A%5Cend%7Baligned%7D%0A
+](https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0AT%20%26%5Cstackrel%7B%5Ctext%7Biid.%7D%7D%7B%5Csim%7D%20WEI%28%5Calpha%2C%5C%3A%20k%29%2C%20%5C%5C%0A%5Calpha%20%26%3D%201.5%20%2B%200.3%20%5Ctimes%20group%20%5Cquad%20%20%28%5Cverb%7Cshape%7C%29%2C%5C%5C%0Ak%20%26%3D%20500%20%5Cquad%20%28%5Cverb%7Cscale%7C%29.%0A%5Cend%7Baligned%7D%0A
 "
 \\begin{aligned}
 T &\\stackrel{\\text{iid.}}{\\sim} WEI(\\alpha,\\: k), \\\\
-\\alpha &= 1.5 \\quad  (\\verb|shape|),\\\\
+\\alpha &= 1.5 + 0.3 \\times group \\quad  (\\verb|shape|),\\\\
 k &= 500 \\quad (\\verb|scale|).
 \\end{aligned}
 ")  
@@ -92,46 +99,33 @@ The implementation and its solution is printed below:
 ``` r
 library(EstimationTools)
 
-failures = c(55, 187, 216, 240, 244, 335, 361, 373, 375, 386)
-fails <- c(failures, rep(500, 10))
-status <- c(rep(1, length(failures)), rep(0, 10))
-Wei_data <- data.frame(fails = fails, status = status)
-
 # Formulas with linear predictors
-formulas <- list(scale.fo=~1, shape.fo=~1)
+formulas <- list(scale.fo = ~ 1, shape.fo = ~ group)
 
-# Bounds for optimization
-start <- list(
-  scale = list(Intercept = 100),
-  shape = list(Intercept = 10)
-)
-lower <- list(
-  scale = list(Intercept = 0),
-  shape = list(Intercept = 0)
-)
-
-mod_weibull <- maxlogLreg(formulas, y_dist = Surv(fails, status) ~ dweibull,
-                          start = start,
-                          lower = lower, data = Wei_data)
-summary(mod_weibull)
+# The model
+fit_wei <- maxlogLreg(formulas, y_dist = Surv(t_sim, status) ~ dweibull,
+                      link = list(over = c("shape", "scale"),
+                                  fun = rep("log_link", 2)))
+summary(fit_wei)
 #> _______________________________________________________________
 #> Optimization routine: nlminb 
 #> Standard Error calculation: Hessian from optim 
 #> _______________________________________________________________
 #>        AIC      BIC
-#>   154.2437 156.2352
+#>   325.0006 329.2042
 #> _______________________________________________________________
 #> Fixed effects for g(shape) 
 #> ---------------------------------------------------------------
 #>             Estimate Std. Error Z value  Pr(>|z|)    
-#> (Intercept)   1.7256     0.5034  3.4279 0.0006083 ***
+#> (Intercept)   1.5395     0.2311  6.6618 2.705e-11 ***
+#> group         0.2870     0.3107  0.9237    0.3556    
 #> ---
 #> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #> _______________________________________________________________
 #> Fixed effects for g(scale) 
 #> ---------------------------------------------------------------
 #>             Estimate Std. Error Z value  Pr(>|z|)    
-#> (Intercept)   606.00     124.43  4.8703 1.114e-06 ***
+#> (Intercept)   6.1911     0.0361   171.5 < 2.2e-16 ***
 #> ---
 #> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #> _______________________________________________________________
@@ -169,12 +163,12 @@ summary(fit)
 #> Optimization routine: nlminb 
 #> Standard Error calculation: Hessian from optim 
 #> _______________________________________________________________
-#>       AIC      BIC
-#>   64196.5 64210.92
+#>        AIC   BIC
+#>   64265.58 64280
 #> _______________________________________________________________
 #> _______________________________________________________________
 #>      Estimate  Std. Error
-#> mean  159.9233     0.0599
-#> sd      5.9936     0.0424
+#> mean  159.9175     0.0601
+#> sd      6.0143     0.0425
 #> _______________________________________________________________
 ```
