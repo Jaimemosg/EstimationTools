@@ -61,7 +61,7 @@
 #' generates an S3 object of class \code{maxlogL}.
 #'
 #' @note The following generic functions can be used with a \code{maxlogL} object:
-#' \code{summary, print}.
+#' \code{summary, print, logLik, AIC}.
 #'
 #' @importFrom stats nlminb optim pnorm model.frame as.formula na.omit
 #' @importFrom survival Surv
