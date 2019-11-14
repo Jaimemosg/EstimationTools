@@ -55,16 +55,16 @@ likelihood estimation problem with
 
 <!-- The data is from [NIST](https://www.itl.nist.gov/div898/handbook/apr/section2/apr221.htm#Example). They generated  20 random Weibull failure times with a parameter `shape=1.5` and `scale=500`. The test time is 500 hours, 10 of these failure times are right censored. The observed times are, to the nearest hour: 54, 187, 216, 240, 244, 335, 361, 373, 375, and 386. -->
 
-We generate data from an hypothetic failure test of 602.27 hours. 10% of
+We generate data from an hypothetic failure test of 573.91 hours. 10% of
 the data is right censored; the data is showed just above:
 
     #>      t_sim status group
-    #> 1 503.2226      1     0
-    #> 2 573.9100      0     0
-    #> 3 378.8040      1     0
-    #> 4 431.6010      1     0
-    #> 5 430.7365      1     0
-    #> 6 405.2497      1     0
+    #> 1 242.2502      1     0
+    #> 2 486.4024      1     0
+    #> 3 295.7664      1     0
+    #> 4 375.5752      1     0
+    #> 5 408.4251      1     0
+    #> 6 558.4667      1     0
 
 The model is as follows:
 
@@ -112,20 +112,20 @@ summary(fit_wei)
 #> Standard Error calculation: Hessian from optim 
 #> _______________________________________________________________
 #>        AIC      BIC
-#>   325.0006 329.2042
+#>   334.4596 338.6632
 #> _______________________________________________________________
 #> Fixed effects for g(shape) 
 #> ---------------------------------------------------------------
 #>             Estimate Std. Error Z value  Pr(>|z|)    
-#> (Intercept)   1.5395     0.2311  6.6618 2.705e-11 ***
-#> group         0.2870     0.3107  0.9237    0.3556    
+#> (Intercept)  1.59695    0.24030  6.6457 3.018e-11 ***
+#> group        0.43014    0.32860  1.3090    0.1905    
 #> ---
 #> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #> _______________________________________________________________
 #> Fixed effects for g(scale) 
 #> ---------------------------------------------------------------
 #>             Estimate Std. Error Z value  Pr(>|z|)    
-#> (Intercept)   6.1911     0.0361   171.5 < 2.2e-16 ***
+#> (Intercept)   6.2436     0.0304  205.38 < 2.2e-16 ***
 #> ---
 #> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #> _______________________________________________________________
@@ -163,12 +163,12 @@ summary(fit)
 #> Optimization routine: nlminb 
 #> Standard Error calculation: Hessian from optim 
 #> _______________________________________________________________
-#>        AIC   BIC
-#>   64265.58 64280
+#>        AIC      BIC
+#>   64082.36 64096.78
 #> _______________________________________________________________
 #> _______________________________________________________________
 #>      Estimate  Std. Error
-#> mean  159.9175     0.0601
-#> sd      6.0143     0.0425
+#> mean  160.0391     0.0596
+#> sd      5.9595     0.0421
 #> _______________________________________________________________
 ```

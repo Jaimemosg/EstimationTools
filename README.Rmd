@@ -70,7 +70,7 @@ status <- as.numeric(t_sim < tcens)
 group <- c(rep(0, 15), rep(1, 15))
 ```
 
-We generate data from an hypothetic failure test of `r round(tcens1, 2)` hours. 10% of the data is right censored; the data is showed just above:
+We generate data from an hypothetic failure test of `r round(tcens, 2)` hours. 10% of the data is right censored; the data is showed just above:
 
 ```{r, echo=FALSE}
 data.frame(t_sim=t_sim, status=status, group=group)[1:6,]
