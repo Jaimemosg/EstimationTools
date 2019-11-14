@@ -115,14 +115,14 @@
 <h2 class="hasAnchor">
 <a href="#estimation-in-regression-models" class="anchor"></a>Estimation in regression models</h2>
 <!-- The data is from [NIST](https://www.itl.nist.gov/div898/handbook/apr/section2/apr221.htm#Example). They generated  20 random Weibull failure times with a parameter `shape=1.5` and `scale=500`. The test time is 500 hours, 10 of these failure times are right censored. The observed times are, to the nearest hour: 54, 187, 216, 240, 244, 335, 361, 373, 375, and 386. -->
-<p>We generate data from an hypothetic failure test of 573.91 hours. 10% of the data is right censored; the data is showed just above:</p>
-<pre><code>#&gt;      t_sim status group
-#&gt; 1 374.4553      1     0
-#&gt; 2 246.7288      1     0
-#&gt; 3 545.0431      1     0
-#&gt; 4 485.1876      1     0
-#&gt; 5 540.4015      1     0
-#&gt; 6 371.6984      1     0</code></pre>
+<p>We generate data from an hypothetic failure test of 621.94 hours with 30 experimental units, 15 from group 1 and 15 from group 2. Lets assume a censorship rate of 0.2, and regard that the data is right censored. Times from 6 experimental units are shown just bellow:</p>
+<pre><code>#&gt;       t_sim status group
+#&gt; 1  585.7114      1     1
+#&gt; 2  429.6387      1     1
+#&gt; 3  580.4012      1     1
+#&gt; 28 600.7153      1     2
+#&gt; 29 372.3699      1     2
+#&gt; 30 400.9628      1     2</code></pre>
 <p>The model is as follows:</p>
 <p><span class="math display">\[
 f(t|\alpha, k) = \frac{\alpha}{k} \left(\frac{t}{k}\right)^{\alpha-1} \exp\left[-\left(\frac{t}{k}\right)^{\alpha}\right]
@@ -150,21 +150,21 @@ k &amp;= 500 \quad (\verb|scale|).
 <a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt; Optimization routine: nlminb </span></a>
 <a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt; Standard Error calculation: Hessian from optim </span></a>
 <a class="sourceLine" id="cb4-14" title="14"><span class="co">#&gt; _______________________________________________________________</span></a>
-<a class="sourceLine" id="cb4-15" title="15"><span class="co">#&gt;        AIC     BIC</span></a>
-<a class="sourceLine" id="cb4-16" title="16"><span class="co">#&gt;   344.1804 348.384</span></a>
+<a class="sourceLine" id="cb4-15" title="15"><span class="co">#&gt;        AIC      BIC</span></a>
+<a class="sourceLine" id="cb4-16" title="16"><span class="co">#&gt;   327.2288 331.4323</span></a>
 <a class="sourceLine" id="cb4-17" title="17"><span class="co">#&gt; _______________________________________________________________</span></a>
 <a class="sourceLine" id="cb4-18" title="18"><span class="co">#&gt; Fixed effects for g(shape) </span></a>
 <a class="sourceLine" id="cb4-19" title="19"><span class="co">#&gt; ---------------------------------------------------------------</span></a>
 <a class="sourceLine" id="cb4-20" title="20"><span class="co">#&gt;             Estimate Std. Error Z value  Pr(&gt;|z|)    </span></a>
-<a class="sourceLine" id="cb4-21" title="21"><span class="co">#&gt; (Intercept)  1.48455    0.20830  7.1270 1.026e-12 ***</span></a>
-<a class="sourceLine" id="cb4-22" title="22"><span class="co">#&gt; group        0.27698    0.28650  0.9668    0.3336    </span></a>
+<a class="sourceLine" id="cb4-21" title="21"><span class="co">#&gt; (Intercept)  1.04585    0.26720  3.9141 9.074e-05 ***</span></a>
+<a class="sourceLine" id="cb4-22" title="22"><span class="co">#&gt; group2       0.42641    0.35380  1.2052    0.2281    </span></a>
 <a class="sourceLine" id="cb4-23" title="23"><span class="co">#&gt; ---</span></a>
 <a class="sourceLine" id="cb4-24" title="24"><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></a>
 <a class="sourceLine" id="cb4-25" title="25"><span class="co">#&gt; _______________________________________________________________</span></a>
 <a class="sourceLine" id="cb4-26" title="26"><span class="co">#&gt; Fixed effects for g(scale) </span></a>
 <a class="sourceLine" id="cb4-27" title="27"><span class="co">#&gt; ---------------------------------------------------------------</span></a>
 <a class="sourceLine" id="cb4-28" title="28"><span class="co">#&gt;             Estimate Std. Error Z value  Pr(&gt;|z|)    </span></a>
-<a class="sourceLine" id="cb4-29" title="29"><span class="co">#&gt; (Intercept)   6.1332     0.0379  161.83 &lt; 2.2e-16 ***</span></a>
+<a class="sourceLine" id="cb4-29" title="29"><span class="co">#&gt; (Intercept)   6.2892     0.0557  112.91 &lt; 2.2e-16 ***</span></a>
 <a class="sourceLine" id="cb4-30" title="30"><span class="co">#&gt; ---</span></a>
 <a class="sourceLine" id="cb4-31" title="31"><span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span></a>
 <a class="sourceLine" id="cb4-32" title="32"><span class="co">#&gt; _______________________________________________________________</span></a>
@@ -190,12 +190,12 @@ X &amp;\sim N(\mu, \:\sigma^2), \\
 <a class="sourceLine" id="cb5-6" title="6"><span class="co">#&gt; Standard Error calculation: Hessian from optim </span></a>
 <a class="sourceLine" id="cb5-7" title="7"><span class="co">#&gt; _______________________________________________________________</span></a>
 <a class="sourceLine" id="cb5-8" title="8"><span class="co">#&gt;        AIC      BIC</span></a>
-<a class="sourceLine" id="cb5-9" title="9"><span class="co">#&gt;   64148.15 64162.57</span></a>
+<a class="sourceLine" id="cb5-9" title="9"><span class="co">#&gt;   64217.36 64231.78</span></a>
 <a class="sourceLine" id="cb5-10" title="10"><span class="co">#&gt; _______________________________________________________________</span></a>
 <a class="sourceLine" id="cb5-11" title="11"><span class="co">#&gt; _______________________________________________________________</span></a>
 <a class="sourceLine" id="cb5-12" title="12"><span class="co">#&gt;      Estimate  Std. Error</span></a>
-<a class="sourceLine" id="cb5-13" title="13"><span class="co">#&gt; mean  160.1083     0.0598</span></a>
-<a class="sourceLine" id="cb5-14" title="14"><span class="co">#&gt; sd      5.9791     0.0423</span></a>
+<a class="sourceLine" id="cb5-13" title="13"><span class="co">#&gt; mean  160.0648     0.0600</span></a>
+<a class="sourceLine" id="cb5-14" title="14"><span class="co">#&gt; sd      5.9998     0.0424</span></a>
 <a class="sourceLine" id="cb5-15" title="15"><span class="co">#&gt; _______________________________________________________________</span></a></code></pre></div>
 </div>
 </div>
