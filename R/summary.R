@@ -33,6 +33,8 @@
 #' @export
 #'
 #' @examples
+#' library(EstimationTools)
+#'
 #' #--------------------------------------------------------------------------------
 #' ### First example: One known parameter
 #'
@@ -220,7 +222,7 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
                         # BIC=round(BIC, digits = 4))
     # rownames(table) <- " "
     # print(table)
-    cat("_______________________________________________________________\n")
+    # cat("_______________________________________________________________\n")
     printCoefmat(res[,1:2], P.values = FALSE)
     cat("_______________________________________________________________\n")
     # cat('Note: p-values valid under asymptotic normality of estimators \n')
