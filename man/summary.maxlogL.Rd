@@ -39,6 +39,8 @@ summary method modifies the element \code{fit$outputs$StdE_Method} object from \
 standard errors (see the Third Example).
 }
 \examples{
+library(EstimationTools)
+
 #--------------------------------------------------------------------------------
 ### First example: One known parameter
 
