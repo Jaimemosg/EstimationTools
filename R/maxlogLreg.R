@@ -137,13 +137,13 @@ maxlogLreg <- function(formulas,
   call <- match.call()
 
   # Distribution of response varaibles
-  dist <- as.character(y_dist)[3]
+  distr <- as.character(y_dist)[3]
 
   # Subset of data
   if ( !is.null(subset) ) data <- subset(data, eval(parse(text = subset)))
 
   # List of arguments of density function
-  arguments <- as.list(args(dist))
+  arguments <- as.list(args(distr))
 
   # Common errors
   if ( !is.list(control) ){
@@ -170,7 +170,7 @@ maxlogLreg <- function(formulas,
   if ( !is.null(link) ){
     if (length(match(link$over, names(arguments)) ) == 0)
       stop(paste0("Name(s) of linked parameter(s) do not agree with ",
-                  "arguments of ", dist, ". \n Please, change name(s) ",
+                  "arguments of ", distr, ". \n Please, change name(s) ",
                   "specified in the entry 'over' of 'link' argument in \n",
                   " function maxlogLreg\n"))
     if ( is.null(link$over) & !is.null(link$fun) ){
@@ -189,7 +189,7 @@ maxlogLreg <- function(formulas,
   if ( !is.null(fixed) ){
     if( length(match(names(fixed),names(arguments))) == 0 )
       stop(paste0("Name(s) of fixed (known) parameter(s) do not agree with ",
-                  "arguments of ", dist, ". \n Please, change names ",
+                  "arguments of ", distr, ". \n Please, change names ",
                   "specified in argument 'fixed' in function ",
                   "maxlogLreg", "\n"))
   }
@@ -250,7 +250,7 @@ maxlogLreg <- function(formulas,
     nlminbcontrol <- control
     fit <- nlminb(start = start, objective = minus_lL_LinReg,
                   lower = lower, upper = upper, control = nlminbcontrol, ...,
-                  mat = dsgn_mat, dist = dist, dist_args = arguments,
+                  mat = dsgn_mat, distr = distr, dist_args = arguments,
                   over = link$over, link = link$fun, npar = npar, fixed = fixed,
                   par_names = par_names, b_length = b_length)
     fit$objective <- -fit$objective
@@ -259,12 +259,12 @@ maxlogLreg <- function(formulas,
   if ( optimizer == 'optim' ) {
     optimcontrol <- control
     if (npar<2) fit <- optim(par = start, fn = minus_lL_LinReg, lower = lower,
-                             upper=upper,mat = dsgn_mat, dist = dist,
+                             upper=upper,mat = dsgn_mat, distr = distr,
                              dist_args = arguments, over = link$over,
                              link = link$fun, npar = npar, fixed = fixed,
                              par_names = par_names, b_length = b_length)
     fit <- optim(par = start,fn = minus_lL_LinReg, control = optimcontrol, ...,
-                 mat = dsgn_mat, dist = dist, dist_args = arguments,
+                 mat = dsgn_mat, distr = distr, dist_args = arguments,
                  over = link$over, link = link$fun, npar = npar, fixed = fixed,
                  par_names = par_names, b_length = b_length)
     fit$objective <- -fit$value
@@ -286,7 +286,7 @@ maxlogLreg <- function(formulas,
     }
     fit <- DEoptim(fn = minus_lL_LinReg, lower = lower, upper = upper,
                    control = DEoptimcontrol, ..., mat = dsgn_mat,
-                   dist = dist, dist_args = arguments, over = link$over,
+                   distr = distr, dist_args = arguments, over = link$over,
                    link = link$fun, npar = npar, fixed = fixed,
                    par_names = par_names, b_length = b_length)
     fit$par <- fit$optim$bestmem
@@ -305,7 +305,7 @@ maxlogLreg <- function(formulas,
                            method = 'L-BFGS-B',
                            lower = fit$par - 0.5*fit$par,
                            upper = fit$par + 0.5*fit$par,
-                           hessian = TRUE, mat = dsgn_mat, dist = dist,
+                           hessian = TRUE, mat = dsgn_mat, distr = distr,
                            dist_args = arguments, over = link$over,
                            link = link$fun, npar = npar, fixed = fixed,
                            par_names = par_names, b_length = b_length)$hessian,
@@ -315,7 +315,7 @@ maxlogLreg <- function(formulas,
   if ( (any(is.na(fit$hessian)) | is.error(fit$hessian)) |
        any(is.character(fit$hessian)) ){
     fit$hessian <- try(numDeriv::hessian(minus_lL_LinReg, fit$par,
-                                         mat = dsgn_mat, dist = dist,
+                                         mat = dsgn_mat, distr = distr,
                                          dist_args = arguments,
                                          over = link$over, link = link$fun,
                                          npar = npar, fixed = fixed,
@@ -326,14 +326,15 @@ maxlogLreg <- function(formulas,
   if ( (any(is.na(fit$hessian)) | is.error(fit$hessian)) |
        any(is.character(fit$hessian)) ) fit$hessian <- NA
 
-  inputs <- list(call = call, dist = dist, y_dist = y_dist,
+  inputs <- list(call = call, distr = distr, y_dist = y_dist,
                  formulas = formulas, fixed = fixed, link = link,
                  start = start, lower = lower, upper = upper,
                  optimizer = optimizer, data = dsgn_mat$data_reg)
   outputs <- list(npar = npar - length(fixed), n = length(dsgn_mat$y),
                   StdE_Method = StdE_Method, type = "maxlogLreg",
                   StdE = "Not computed yet", b_length = b_length,
-                  par_names = par_names)
+                  par_names = par_names, response = dsgn_mat$y,
+                  design_matrix = dsgn_mat)
   result <- list(fit = fit, inputs = inputs, outputs = outputs)
   class(result) <- "maxlogL"
   return(result)
@@ -430,8 +431,8 @@ model.matrix.MLreg <- function(formulas, data, y_dist, npar, par_names){
                                                   "must be of class 'formula"))
   if ( length(y_dist) != 3 ) stop(paste0("Expression in 'y_dist' ",
                                          "must be a formula of the form ",
-                                         "'y ~ dist' or ",
-                                         "'Surv(time, status) ~ dist'"))
+                                         "'response ~ distribution' or ",
+                                         "'Surv(response, status) ~ distribution'"))
   Y <- all.vars(y_dist)[1] #Surv_transform(y_dist = y_dist)
 
   # Extract the right side of formulas
@@ -505,7 +506,7 @@ Surv_transform <- function(y_dist, data){
 #==============================================================================
 # log-likelihood function computation -----------------------------------------
 #==============================================================================
-minus_lL_LinReg <- function(param, mat, dist, dist_args, over, link, npar,
+minus_lL_LinReg <- function(param, mat, distr, dist_args, over, link, npar,
                             fixed, par_names, b_length){
     # Linear predictor
     betas_list <- all_betas(b_length = b_length, npar = npar,
@@ -532,19 +533,20 @@ minus_lL_LinReg <- function(param, mat, dist, dist_args, over, link, npar,
     }
     y <- mat$y
     delta <- mat$status
-    cdf  <- gsub("d","p", dist)
+    cdf  <- paste0("p", substring(distr, 2))
 
-    logf <- do.call( what = dist, args = c(list(x = y), param,
+    logf <- do.call( what = distr, args = c(list(x = y), param,
                                            log = TRUE, fixed) )
     logS <- do.call( what = cdf, args = c(list(q = y), param,
                                           lower.tail = FALSE,
                                           log.p = TRUE, fixed) )
     logF <- do.call( what = cdf, args = c(list(q = y), param,
+                                          lower.tail = TRUE,
                                           log.p = TRUE, fixed) )
     ll <- sum( logf*delta[,1] + logF*delta[,2] + logS*delta[,3] )
 
     # Negative of log-Likelihood function
-    return(as.numeric(-ll)) # Useful when using Rmpfr
+    return(as.numeric(-ll)) # Useful when using Rmpfr (momi)
 }
 param_index <- function(b_length, npar){
   b_length_plus <- c(0, as.numeric(b_length))
