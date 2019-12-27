@@ -150,7 +150,7 @@ The \proglang{R} function presented here calculates $l(\boldsymbol{\theta}|\bm{y
 
 \section{Basic usage and features}
 
-Our \code{maxlogL} function is a S3 object of class \code{maxlogL}. It is included in \pkg{EstimationTools}, a package available from the Comprehensive R Archive Netwrok (CRAN) \url{https://cran.r-project.org/package=EstimationTools}. It can be downloaded and loaded in global environment typing the following instructions in the console:
+Our \code{maxlogL} function is a S3 object of class \code{maxlogL}. It is included in \pkg{EstimationTools}, a package available from the Comprehensive R Archive Network (CRAN) \url{https://cran.r-project.org/package=EstimationTools}. It can be downloaded and loaded in global environment typing the following instructions in the console:
 
 \begin{Schunk}
 \begin{Sinput}
@@ -167,7 +167,7 @@ R> maxlogL(x, dist, optimizer, lower = NULL, upper = NULL)
 \end{Sinput}
 \end{Schunk}
 
-where the argument \code{x} is a vector with data to be fitted, \code{dist} corresponds to the probability density/mass function of the working distribution, whereas \code{upper} and \code{lower} are limits used when user selects box-constrained algorithms. \code{maxlogL} is a wrapper function specifically developed for ML estimation, which allows to implement any of \code{optim} algorithms for optimization or \code{nlminb} routine for unconstrained or box-constrined optimization through the argument \code{optimizer}.
+where the argument \code{x} is a vector with data to be fitted, \code{dist} corresponds to the probability density/mass function of the working distribution, whereas \code{upper} and \code{lower} are limits used when user selects box-constrained algorithms. \code{maxlogL} is a wrapper function specifically developed for ML estimation, which allows to implement any of \code{optim} algorithms for optimization or \code{nlminb} routine for unconstrained or box-constrained optimization through the argument \code{optimizer}.
 
 \pkg{EstimationTools} package provides a \code{summary} method for class \code{maxlogL}, which displays AIC (Akaike Information Criterion), BIC (Bayesian Information Criterion), ML estimates and its standard error. The method also reports the optimization routine selected by the user and the method used for computation of standard error. There are three methods available: \code{hessian} function from \pkg{numDeriv} package, calculation with \code{optim} (setting the argument \code{hessian = TRUE} and bootstrap calculation, with \code{boot} function of \pkg{boot} package \citep{Davison1997, Canty2017}.
 
@@ -182,21 +182,21 @@ R> fit1 <- maxlogL(x = z, dist = 'dnorm', start=c(2, 3),
 R> summary(fit1)
 \end{Sinput}
 \begin{Soutput}
----------------------------------------------------------------
+_______________________________________________________________
 Optimization routine: nlminb 
 Standard Error calculation: Hessian from optim 
----------------------------------------------------------------
+_______________________________________________________________
        AIC      BIC
-  2804.033 2800.033
----------------------------------------------------------------
+  2804.033 2813.849
+_______________________________________________________________
      Estimate  Std. Error
 mean   9.98752     0.0310
 sd     0.98126     0.0219
------
+_______________________________________________________________
 \end{Soutput}
 \end{Schunk}
 
-The \code{link} argument is a list with entries \code{fun} and \code{over}, which specify the link functions applied and the name of linked parameters in probability function implemented in \proglang{R} respectively. The estimation performed above can be carried out applying logarithm link funcion to $\sigma$, avoiding problems of estimation in the boundary of parametric space. The usage is illustrated in the following code snippet:
+The \code{link} argument is a list with entries \code{fun} and \code{over}, which specify the link functions applied and the name of linked parameters in probability function implemented in \proglang{R} respectively. The estimation performed above can be carried out applying logarithm link function to $\sigma$, avoiding problems of estimation in the boundary of parametric space. The usage is illustrated in the following code snippet:
 
 \begin{Schunk}
 \begin{Sinput}
@@ -205,17 +205,17 @@ R> fit2 <- maxlogL(x = z, dist = 'dnorm',
 R> summary(fit2)
 \end{Sinput}
 \begin{Soutput}
----------------------------------------------------------------
+_______________________________________________________________
 Optimization routine: nlminb 
 Standard Error calculation: Hessian from optim 
----------------------------------------------------------------
+_______________________________________________________________
        AIC      BIC
-  2804.033 2800.033
----------------------------------------------------------------
+  2804.033 2813.849
+_______________________________________________________________
      Estimate  Std. Error
 mean   9.98752     0.0310
 sd     0.98126     0.0219
------
+_______________________________________________________________
 \end{Soutput}
 \end{Schunk}
 
@@ -229,17 +229,17 @@ R> fit3 <- maxlogL(x = z, dist = 'dnorm',
 R> summary(fit3)
 \end{Sinput}
 \begin{Soutput}
----------------------------------------------------------------
+_______________________________________________________________
 Optimization routine: nlminb 
 Standard Error calculation: Hessian from optim 
----------------------------------------------------------------
+_______________________________________________________________
        AIC      BIC
-  2804.033 2800.033
----------------------------------------------------------------
+  2804.033 2813.849
+_______________________________________________________________
      Estimate  Std. Error
 mean   9.98752     0.0310
 sd     0.98126     0.0219
------
+_______________________________________________________________
 \end{Soutput}
 \end{Schunk}
 
@@ -254,16 +254,16 @@ R> phat <- maxlogL(x = N, dist = 'dbinom', fixed = list(size = 10),
 R> summary(phat)
 \end{Sinput}
 \begin{Soutput}
----------------------------------------------------------------
+_______________________________________________________________
 Optimization routine: nlminb 
 Standard Error calculation: Hessian from optim 
----------------------------------------------------------------
+_______________________________________________________________
        AIC      BIC
   334.9805 334.9805
----------------------------------------------------------------
+_______________________________________________________________
      Estimate  Std. Error
 prob     0.312     0.0147
------
+_______________________________________________________________
 \end{Soutput}
 \end{Schunk}
 
@@ -283,7 +283,7 @@ Additionally, we simulated $W \sim \text{EEB}(\mu=0.5,\: \sigma=1, \nu=1.5, m=10
   f(w|\mu, \sigma, \nu, m) = \frac{\sigma\nu\mu m}{1-(1-\mu)^m} \left(1 - e^{-\sigma w} \right)^{\nu-1} \left[ 1 - \mu\left(1 - e^{-\sigma w} \right)^\nu \right]^{m-1},
 \end{equation}
 
-with $w>0$, $\mu \in (0,1)$, $\sigma, \nu>0$ and $m$ an integer such that $m \geq 1$. We took this distribution as the user-defined by implementing it as an proglang{R} function, as is customary. Note that argument \code{size} corresponds to parameter $m$ in equation (\ref{EEBf}):
+with $w>0$, $\mu \in (0,1)$, $\sigma, \nu>0$ and $m$ an integer such that $m \geq 1$. We took this distribution as the user-defined by implementing it as an \proglang{R} function, as is customary. Note that argument \code{size} corresponds to parameter $m$ in equation (\ref{EEBf}):
 
 \begin{Schunk}
 \begin{Sinput}
@@ -446,17 +446,17 @@ R> theta <- maxlogL(x = st, dist = "dPL",
 R> summary(theta)
 \end{Sinput}
 \begin{Soutput}
----------------------------------------------------------------
+_______________________________________________________________
 Optimization routine: nlminb 
 Standard Error calculation: Hessian from optim 
----------------------------------------------------------------
-      AIC    BIC
-  102.119 98.119
----------------------------------------------------------------
+_______________________________________________________________
+      AIC      BIC
+  102.119 106.5872
+_______________________________________________________________
       Estimate  Std. Error
 mu     3.867777     0.3137
 sigma  0.049671     0.0160
------
+_______________________________________________________________
 \end{Soutput}
 \end{Schunk}
 
@@ -501,7 +501,7 @@ Observed proportion       & 0.94 & 0.77 & 0.40 & 0.26 & 0.24 & 0.16 \\ \hline
 \caption{Observed proportion of recalls at each time.}
 \end{table}
 
-Each observation in the data set corresponds to a proportion obtained as the quotient of correct responses ($x_i$) and the total number of independent trials (replications of each memory test, represented by $m$). This kind of experiment can be modeled with a binomial distribution:
+Each observation in the data set corresponds to a proportion obtained as the quotient of correct responses ($x_i$) and the total number of independent trials (replications of each memory test, represented by $m$). This kind of experiment can be modelled with a binomial distribution:
 
 \begin{equation} \label{posterior}
   f(x_i|a, b, m) = \frac{m!}{(m-x_i)!\: x_i!}p(a, b, t_i) \left[ 1-p(a, b, t_i) \right]^{m-x_i}
@@ -542,17 +542,17 @@ R> retention.pwr <- maxlogL(x = Xi, dist = "power_logL", lower = c(0.01,0.01),
 R> summary(retention.pwr)
 \end{Sinput}
 \begin{Soutput}
----------------------------------------------------------------
+_______________________________________________________________
 Optimization routine: nlminb 
 Standard Error calculation: Hessian from optim 
----------------------------------------------------------------
-      AIC     BIC
-  57.4522 53.4522
----------------------------------------------------------------
+_______________________________________________________________
+      AIC    BIC
+  57.4522 58.422
+_______________________________________________________________
   Estimate  Std. Error
 a   0.95312     0.0186
 b   0.49793     0.0324
------
+_______________________________________________________________
 \end{Soutput}
 \end{Schunk}
 
@@ -584,17 +584,17 @@ R> retention.exp <- maxlogL(x = Xi, dist = 'exp_logL', lower = c(0.1,0.1),
 R> summary(retention.exp)
 \end{Sinput}
 \begin{Soutput}
----------------------------------------------------------------
+_______________________________________________________________
 Optimization routine: nlminb 
 Standard Error calculation: Hessian from optim 
----------------------------------------------------------------
+_______________________________________________________________
       AIC     BIC
-  41.3329 37.3329
----------------------------------------------------------------
+  41.3329 42.3027
+_______________________________________________________________
   Estimate  Std. Error
 a   1.07011     0.0313
 b   0.13083     0.0093
------
+_______________________________________________________________
 \end{Soutput}
 \end{Schunk}
 
@@ -671,7 +671,7 @@ Again, we obtain the same estimates of \cite{Myung2003}: $\hat{\boldsymbol{\thet
 
 \section{Conclusions} \label{sec:conclussions}
 
-We have implemented classic estimation via maximization of log-likelihood function through basic optimization routines in \proglang{R} such as \code{optim} and \code{nlminb}. With \code{maxlogL}, we enable researchers, developers and users in general to compute ML estimators of any distribution in a fast and reliable way. With our \code{summary} method, it ia possible to calculate standard error of estimates through Hessian matrix or bootstrap algortihm. In some cases, it is possible to implement estimation in hierarchical models, with appropriate tunning of initial values. \\
+We have implemented classic estimation via maximization of log-likelihood function through basic optimization routines in \proglang{R} such as \code{optim} and \code{nlminb}. With \code{maxlogL}, we enable researchers, developers and users in general to compute ML estimators of any distribution in a fast and reliable way. With our \code{summary} method, it is possible to calculate standard error of estimates through Hessian matrix or bootstrap algorithm. In some cases, it is possible to implement estimation in hierarchical models, with appropriate tuning of initial values. \\
 
 In future revisions, we could implement evolutionary algorithms to perform estimation in distributions with regularity issues \citep{Haupt2003}. Furthermore, our routine could be took to develop further work on log-likelihood estimation, such as developing new parametric regression models.
 

@@ -50,7 +50,8 @@ curve(ginv(x), from = 0.1, to = 1)
 \seealso{
 \code{\link{maxlogL}}
 
-Other link functions: \code{\link{log_link}},
-  \code{\link{logit_link}}
+Other link functions: 
+\code{\link{log_link}()},
+\code{\link{logit_link}()}
 }
 \concept{link functions}

@@ -1,15 +1,16 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.8.11)  24 OCT 2019 15:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.12.20)  27 DEC 2019 20:08
 entering extended mode
-**F:/Documents/R/EstimationTools/vignettes/maxlogL.tex
-(F:/Documents/R/EstimationTools/vignettes/maxlogL.tex
-LaTeX2e <2018-12-01>
-(jss.cls
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**maxlogL.tex
+(./maxlogL.tex
+LaTeX2e <2019-10-01> patch level 3
+(./jss.cls
 Document Class: jss 2015/09/01 3.0 jss class by Achim Zeileis
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\article.cls
-"
-Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\size11.clo"
-File: size11.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
+(c:/texlive/2019/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2019/10/25 v1.4k Standard LaTeX document class
+(c:/texlive/2019/texmf-dist/tex/latex/base/size11.clo
+File: size11.clo 2019/10/25 v1.4k Standard LaTeX file (size option)
 )
 \c@part=\count80
 \c@section=\count81
@@ -23,82 +24,77 @@ File: size11.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 )
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\graphic
-x.sty"
+(c:/texlive/2019/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
 
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\keyval.
-sty"
+(c:/texlive/2019/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks14
 )
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\graphic
-s.sty"
-Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+(c:/texlive/2019/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2019/11/01 v1.3d Standard LaTeX Graphics (DPC,SPQR)
 
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\trig.st
-y"
+(c:/texlive/2019/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-cfg\gra
-phics.cfg"
+(c:/texlive/2019/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: pdftex.def on input line 99.
+Package graphics Info: Driver file: pdftex.def on input line 105.
 
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-def\pdf
-tex.def"
+(c:/texlive/2019/texmf-dist/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen103
 \Gin@req@width=\dimen104
 )
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\color.s
-ty"
+(c:/texlive/2019/texmf-dist/tex/latex/graphics/color.sty
 Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
 
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-cfg\col
-or.cfg"
+(c:/texlive/2019/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: pdftex.def on input line 147.
-) ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/ae\ae.sty"
+)
+(c:/texlive/2019/texmf-dist/tex/latex/ae/ae.sty
 Package: ae 2001/02/12 1.3 Almost European Computer Modern
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\fontenc.sty
-"
+
+(c:/texlive/2019/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2018/08/11 v2.0j Standard LaTeX package
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\t1enc.def"
+
+(c:/texlive/2019/texmf-dist/tex/latex/base/t1enc.def
 File: t1enc.def 2018/08/11 v2.0j Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 )
-LaTeX Font Info:    Try loading font information for T1+aer on input line 105.
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/ae\t1aer.fd"
+LaTeX Font Info:    Trying to load font information for T1+aer on input line 10
+5.
+
+(c:/texlive/2019/texmf-dist/tex/latex/ae/t1aer.fd
 File: t1aer.fd 1997/11/16 Font definitions for T1/aer.
 )))
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/fancyvrb\fancyvr
-b.sty"
-Package: fancyvrb 2019/01/15
-Style option: `fancyvrb' v3.2a <2019/01/15> (tvz)
+(c:/texlive/2019/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2019/11/09
+
+Style option: `fancyvrb' v3.4 <2019/11/09> (tvz)
 \FV@CodeLineNo=\count88
 \FV@InFile=\read1
 \FV@TabBox=\box27
 \c@FancyVerbLine=\count89
 \FV@StepNumber=\count90
 \FV@OutFile=\write3
-) ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\fontenc.s
-ty"
+)
+(c:/texlive/2019/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2018/08/11 v2.0j Standard LaTeX package
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\t1enc.def"
+
+(c:/texlive/2019/texmf-dist/tex/latex/base/t1enc.def
 File: t1enc.def 2018/08/11 v2.0j Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 ))
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/upquote\upquote.
-sty"
+(c:/texlive/2019/texmf-dist/tex/latex/upquote/upquote.sty
 Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
 tim
 
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\textcomp.st
-y"
+(c:/texlive/2019/texmf-dist/tex/latex/base/textcomp.sty
 Package: textcomp 2018/08/11 v2.0j Standard LaTeX package
 Package textcomp Info: Sub-encoding information:
 (textcomp)               5 = only ISO-Adobe without \textcurrency
@@ -112,12 +108,14 @@ Package textcomp Info: Sub-encoding information:
 (textcomp)             Family '?' is the default used for unknown fonts.
 (textcomp)             See the documentation for details.
 Package textcomp Info: Setting ? sub-encoding to TS1/1 on input line 79.
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\ts1enc.def"
+
+(c:/texlive/2019/texmf-dist/tex/latex/base/ts1enc.def
 File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
 Now handling font encoding TS1 ...
 ... processing UTF-8 mapping file for font encoding TS1
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\ts1enc.dfu"
-File: ts1enc.dfu 2018/10/05 v1.2f UTF-8 support for inputenc
+
+(c:/texlive/2019/texmf-dist/tex/latex/base/ts1enc.dfu
+File: ts1enc.dfu 2019/07/11 v1.2j UTF-8 support for inputenc
    defining Unicode char U+00A2 (decimal 162)
    defining Unicode char U+00A3 (decimal 163)
    defining Unicode char U+00A4 (decimal 164)
@@ -187,6 +185,8 @@ File: ts1enc.dfu 2018/10/05 v1.2f UTF-8 support for inputenc
    defining Unicode char U+25E6 (decimal 9702)
    defining Unicode char U+25EF (decimal 9711)
    defining Unicode char U+266A (decimal 9834)
+   defining Unicode char U+27E8 (decimal 10216)
+   defining Unicode char U+27E9 (decimal 10217)
    defining Unicode char U+FEFF (decimal 65279)
 ))
 LaTeX Info: Redefining \oldstylenums on input line 334.
@@ -253,8 +253,7 @@ Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 407.
 Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 408.
 Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 409.
 ))
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/natbib\natbib.st
-y"
+(c:/texlive/2019/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip43
 \bibsep=\skip44
@@ -263,123 +262,136 @@ LaTeX Info: Redefining \cite on input line 694.
 )
 \footerskip=\skip45
 
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\hyperre
-f.sty"
-Package: hyperref 2019/06/12 v6.88h Hypertext links for LaTeX
+(c:/texlive/2019/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2019/11/10 v7.00c Hypertext links for LaTeX
 
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\hobsu
-b-hyperref.sty"
-Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
-
-
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\hobsu
-b-generic.sty"
-Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
-Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
-Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
-Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
-Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
-Package ifluatex Info: LuaTeX not detected.
-Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
-Package ifvtex Info: VTeX not detected.
-Package: intcalc 2016/05/16 v1.2 Expandable calculations with integers (HO)
-Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
-Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
-Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
-Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
-Package: pdftexcmds 2019/07/25 v0.30 Utility functions of pdfTeX for LuaTeX (HO
+(c:/texlive/2019/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2019/12/15 v1.24 LaTeX kernel commands for general use (HO)
 )
-Package pdftexcmds Info: LuaTeX not detected.
+(c:/texlive/2019/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2019/11/07 v1.0c TeX engine tests
+)
+(c:/texlive/2019/texmf-dist/tex/latex/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2019/11/24 v0.31 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(c:/texlive/2019/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
-Package: pdfescape 2016/05/16 v1.14 Implements pdfTeX's escape features (HO)
-Package: bigintcalc 2016/05/16 v1.4 Expandable calculations on big integers (HO
 )
-Package: bitset 2016/05/16 v1.2 Handle bit-vector datatype (HO)
-Package: uniquecounter 2016/05/16 v1.3 Provide unlimited unique counter (HO)
+(c:/texlive/2019/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
 )
-Package hobsub Info: Skipping package `hobsub' (already loaded).
-Package: letltxmacro 2016/05/16 v1.5 Let assignment for LaTeX macros (HO)
+(c:/texlive/2019/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019/12/15 v1.5 Define keys (HO)
+)
+(c:/texlive/2019/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+)
+(c:/texlive/2019/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2019/12/15 v1.9 Color options for hyperref/bookmark (HO)
+
+(c:/texlive/2019/texmf-dist/tex/latex/hycolor/xcolor-patch.sty
+Package: xcolor-patch 2019/12/15 xcolor patch
+
+(c:/texlive/2019/texmf-dist/tex/latex/oberdiek/hopatch.sty
 Package: hopatch 2016/05/16 v1.3 Wrapper for package hooks (HO)
-Package: xcolor-patch 2016/05/16 xcolor patch
-Package: atveryend 2016/05/16 v1.9 Hooks at the very end of document (HO)
-Package atveryend Info: \enddocument detected (standard20110627).
-Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
-Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
-Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
+)))
+(c:/texlive/2019/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty
+Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
 )
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/generic/ifxetex\ifxete
-x.sty"
-Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+(c:/texlive/2019/texmf-dist/tex/latex/auxhook/auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 )
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/oberdiek\auxhook
-.sty"
-Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
-)
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/oberdiek\kvoptio
-ns.sty"
-Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+(c:/texlive/2019/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
 )
 \@linkdim=\dimen105
 \Hy@linkcounter=\count92
 \Hy@pagecounter=\count93
 
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\pd1enc.
-def"
-File: pd1enc.def 2019/06/12 v6.88h Hyperref: PDFDocEncoding definition (HO)
+(c:/texlive/2019/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2019/11/10 v7.00c Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 )
+(c:/texlive/2019/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+(c:/texlive/2019/texmf-dist/tex/generic/etexcmds/etexcmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+)
 \Hy@SavedSpaceFactor=\count94
 
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/00miktex\hyperre
-f.cfg"
+(c:/texlive/2019/texmf-dist/tex/latex/latexconfig/hyperref.cfg
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
 )
-Package hyperref Info: Hyper figures OFF on input line 4550.
-Package hyperref Info: Link nesting OFF on input line 4555.
-Package hyperref Info: Hyper index ON on input line 4558.
-Package hyperref Info: Plain pages OFF on input line 4565.
-Package hyperref Info: Backreferencing OFF on input line 4570.
+Package hyperref Info: Hyper figures OFF on input line 4535.
+Package hyperref Info: Link nesting OFF on input line 4540.
+Package hyperref Info: Hyper index ON on input line 4543.
+Package hyperref Info: Plain pages OFF on input line 4550.
+Package hyperref Info: Backreferencing OFF on input line 4555.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4803.
+Package hyperref Info: Bookmarks ON on input line 4788.
 \c@Hy@tempcnt=\count95
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/url\url.sty"
+
+(c:/texlive/2019/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip10
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 5156.
+LaTeX Info: Redefining \url on input line 5147.
 \XeTeXLinkMargin=\dimen106
+
+(c:/texlive/2019/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(c:/texlive/2019/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
 \Fld@menulength=\count96
 \Field@Width=\dimen107
 \Fld@charsize=\dimen108
-Package hyperref Info: Hyper figures OFF on input line 6411.
-Package hyperref Info: Link nesting OFF on input line 6416.
-Package hyperref Info: Hyper index ON on input line 6419.
-Package hyperref Info: backreferencing OFF on input line 6426.
-Package hyperref Info: Link coloring OFF on input line 6431.
-Package hyperref Info: Link coloring with OCG OFF on input line 6436.
-Package hyperref Info: PDF/A mode OFF on input line 6441.
-LaTeX Info: Redefining \ref on input line 6481.
-LaTeX Info: Redefining \pageref on input line 6485.
+Package hyperref Info: Hyper figures OFF on input line 6418.
+Package hyperref Info: Link nesting OFF on input line 6423.
+Package hyperref Info: Hyper index ON on input line 6426.
+Package hyperref Info: backreferencing OFF on input line 6433.
+Package hyperref Info: Link coloring OFF on input line 6438.
+Package hyperref Info: Link coloring with OCG OFF on input line 6443.
+Package hyperref Info: PDF/A mode OFF on input line 6448.
+LaTeX Info: Redefining \ref on input line 6488.
+LaTeX Info: Redefining \pageref on input line 6492.
+
+(c:/texlive/2019/texmf-dist/tex/generic/atbegshi/atbegshi.sty
+Package: atbegshi 2019/12/05 v1.19 At begin shipout hook (HO)
+)
 \Hy@abspage=\count97
 \c@Item=\count98
 \c@Hfootnote=\count99
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\hpdftex
-.def"
-File: hpdftex.def 2019/06/12 v6.88h Hyperref driver for pdfTeX
+(c:/texlive/2019/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2019/11/10 v7.00c Hyperref driver for pdfTeX
+
+(c:/texlive/2019/texmf-dist/tex/latex/atveryend/atveryend.sty
+Package: atveryend 2019-12-11 v1.11 Hooks at the very end of document (HO)
+Package atveryend Info: \enddocument detected (standard20110627).
+)
 \Fld@listcount=\count100
 \c@bookmark@seq@number=\count101
 
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/oberdiek\rerunfi
-lecheck.sty"
-Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
+(c:/texlive/2019/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
+
+(c:/texlive/2019/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
-82.
+86.
 )
 \Hy@SectionHShift=\skip46
 )
@@ -390,21 +402,18 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 \postMskip=\skip51
 \postSskip=\skip52
 
+
 Package hyperref Warning: Option `hyperindex' has already been used,
 (hyperref)                setting the option has no effect on input line 466.
 
 Package hyperref Info: Option `colorlinks' set `true' on input line 466.
 Package hyperref Info: Option `linktocpage' set `true' on input line 466.
 Package hyperref Info: Option `plainpages' set `false' on input line 466.
-)
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/generic/thumbpdf\thumb
-pdf.sty"
+) (c:/texlive/2019/texmf-dist/tex/generic/thumbpdf/thumbpdf.sty
 Package: thumbpdf 2018/09/07 v3.17 Inclusion of thumbnails (HO)
-
-Package thumbpdf Warning: Thumbnail data file `maxlogL.tpt' not found.
-
-) ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\lmodern.sty
-"
+THUMBPDF: Compressed PDF objects of PDF 1.5 are not supported
+)
+(c:/texlive/2019/texmf-dist/tex/latex/lm/lmodern.sty
 Package: lmodern 2009/10/30 v1.6 Latin Modern Fonts
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
@@ -439,46 +448,41 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
 )
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsmath.
-sty"
-Package: amsmath 2018/12/01 v2.17b AMS math features
+(c:/texlive/2019/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2019/11/16 v2.17d AMS math features
 \@mathmargin=\skip53
-For additional information on amsmath, use the `?' option.
 
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amstext.
-sty"
+For additional information on amsmath, use the `?' option.
+(c:/texlive/2019/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2000/06/29 v2.01 AMS text
 
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsgen.s
-ty"
+(c:/texlive/2019/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks15
 \ex@=\dimen109
 ))
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsbsy.s
-ty"
+(c:/texlive/2019/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen110
 )
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsmath\amsopn.s
-ty"
+(c:/texlive/2019/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
 \inf@bad=\count102
-LaTeX Info: Redefining \frac on input line 223.
+LaTeX Info: Redefining \frac on input line 227.
 \uproot@=\count103
 \leftroot@=\count104
-LaTeX Info: Redefining \overline on input line 385.
+LaTeX Info: Redefining \overline on input line 389.
 \classnum@=\count105
 \DOTSCASE@=\count106
-LaTeX Info: Redefining \ldots on input line 482.
-LaTeX Info: Redefining \dots on input line 485.
-LaTeX Info: Redefining \cdots on input line 606.
+LaTeX Info: Redefining \ldots on input line 486.
+LaTeX Info: Redefining \dots on input line 489.
+LaTeX Info: Redefining \cdots on input line 610.
 \Mathstrutbox@=\box28
 \strutbox@=\box29
 \big@size=\dimen111
-LaTeX Font Info:    Redeclaring font encoding OML on input line 729.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 730.
+LaTeX Font Info:    Redeclaring font encoding OML on input line 733.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
 \macc@depth=\count107
 \c@MaxMatrixCols=\count108
 \dotsspace@=\muskip11
@@ -499,39 +503,36 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 730.
 \multlinegap=\skip54
 \multlinetaggap=\skip55
 \mathdisplay@stack=\toks19
-LaTeX Info: Redefining \[ on input line 2844.
-LaTeX Info: Redefining \] on input line 2845.
-) ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/tools\bm.sty"
-Package: bm 2017/01/16 v1.2c Bold Symbol Support (DPC/FMi)
+LaTeX Info: Redefining \[ on input line 2858.
+LaTeX Info: Redefining \] on input line 2859.
+)
+(c:/texlive/2019/texmf-dist/tex/latex/tools/bm.sty
+Package: bm 2019/07/24 v1.2d Bold Symbol Support (DPC/FMi)
 \symboldoperators=\mathgroup4
 \symboldletters=\mathgroup5
 \symboldsymbols=\mathgroup6
 LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 141.
-LaTeX Info: Redefining \bm on input line 207.
+LaTeX Info: Redefining \bm on input line 209.
 )
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\amssymb
-.sty"
+(c:/texlive/2019/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\amsfont
-s.sty"
+(c:/texlive/2019/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup7
 \symAMSb=\mathgroup8
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/caption\subcapti
-on.sty"
-Package: subcaption 2018/05/01 v1.1-162 Sub-captions (AR)
+(c:/texlive/2019/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2019/09/01 v1.3a Sub-captions (AR)
 
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/caption\caption.
-sty"
-Package: caption 2018/10/06 v3.3-154 Customizing captions (AR)
+(c:/texlive/2019/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2019/10/18 v3.4a Customizing captions (AR)
 
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/caption\caption3
-.sty"
-Package: caption3 2018/09/12 v1.8c caption3 kernel (AR)
+(c:/texlive/2019/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2019/09/09 v1.8e caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 64.
 \captionmargin=\dimen118
 \captionmargin@=\dimen119
@@ -540,15 +541,16 @@ Package caption3 Info: TeX engine: e-TeX on input line 64.
 \caption@indent=\dimen122
 \caption@parindent=\dimen123
 \caption@hangindent=\dimen124
+Package caption Info: Standard document class detected.
 )
 \c@caption@flags=\count114
-\c@ContinuedFloat=\count115
+\c@continuedfloat=\count115
 Package caption Info: hyperref package is loaded.
 )
 \c@subfigure=\count116
 \c@subtable=\count117
-) ("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/float\float.st
-y"
+)
+(c:/texlive/2019/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count118
 \float@exts=\toks20
@@ -556,12 +558,10 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks21
 \@floatcapt=\box31
 )
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/xcolor\xcolor.st
-y"
+(c:/texlive/2019/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
 
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-cfg\col
-or.cfg"
+(c:/texlive/2019/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: pdftex.def on input line 225.
@@ -576,15 +576,14 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 )
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/framed\framed.st
-y"
+(c:/texlive/2019/texmf-dist/tex/latex/framed/framed.sty
 Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
 \OuterFrameSep=\skip56
 \fb@frw=\dimen125
 \fb@frh=\dimen126
 \FrameRule=\dimen127
 \FrameSep=\dimen128
-) (maxlogL.aux
+) (./maxlogL.aux
 
 LaTeX Warning: Label `fig:norma' multiply defined.
 
@@ -607,19 +606,21 @@ LaTeX Font Info:    ... okay on input line 85.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 85.
 LaTeX Font Info:    ... okay on input line 85.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 85.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 85.
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\ts1cmr.fd"
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 8
+5.
+ (c:/texlive/2019/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 85.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 85.
 LaTeX Font Info:    ... okay on input line 85.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 85.
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\t1lmr.fd"
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 85
+.
+
+(c:/texlive/2019/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mkii\supp
--pdf.mkii"
+(c:/texlive/2019/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count119
 \scratchdimen=\dimen129
@@ -632,62 +633,65 @@ File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 \MPnumerator=\count123
 \makeMPintoPDFobject=\count124
 \everyMPtoPDFconversion=\toks23
-)
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/oberdiek\epstopd
-f-base.sty"
-Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
-
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/oberdiek\grfext.
-sty"
-Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
-)
+) (c:/texlive/2019/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2019-12-09 v2.10 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-38.
-Package grfext Info: Graphics extension search list:
-(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
-G,.JBIG2,.JB2,.eps]
-(grfext)             \AppendGraphicsExtensions on input line 456.
-)
+85.
+
+(c:/texlive/2019/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
 \AtBeginShipoutBox=\box33
 Package hyperref Info: Link coloring ON on input line 85.
 
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/hyperref\nameref
-.sty"
-Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
+(c:/texlive/2019/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\getti
-tlestring.sty"
-Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
+(c:/texlive/2019/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(c:/texlive/2019/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count125
 )
 LaTeX Info: Redefining \ref on input line 85.
 LaTeX Info: Redefining \pageref on input line 85.
 LaTeX Info: Redefining \nameref on input line 85.
-(maxlogL.out) (maxlogL.out)
+
+(./maxlogL.out) (./maxlogL.out)
 \@outlinefile=\write4
 \openout4 = `maxlogL.out'.
 
-LaTeX Font Info:    Try loading font information for T1+lmss on input line 85.
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\t1lmss.fd"
+LaTeX Font Info:    Trying to load font information for T1+lmss on input line 8
+5.
+
+(c:/texlive/2019/texmf-dist/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 85.
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\ot1lmr.fd"
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 8
+5.
+
+(c:/texlive/2019/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 85.
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\omllmm.fd"
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 8
+5.
+
+(c:/texlive/2019/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 85.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
+85.
 
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\omslmsy.fd"
+(c:/texlive/2019/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 85.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
+85.
 
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\omxlmex.fd"
+(c:/texlive/2019/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -696,23 +700,28 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <8> on input line 85.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <6> on input line 85.
-LaTeX Font Info:    Try loading font information for U+msa on input line 85.
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd
-"
+LaTeX Font Info:    Trying to load font information for U+msa on input line 85.
+
+
+(c:/texlive/2019/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 85.
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd
-"
+LaTeX Font Info:    Trying to load font information for U+msb on input line 85.
+
+
+(c:/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 85.
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\t1lmtt.fd"
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 8
+5.
+
+(c:/texlive/2019/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
+
 
 Package xcolor Warning: Incompatible color definition on input line 103.
 
@@ -758,9 +767,9 @@ Package xcolor Warning: Incompatible color definition on input line 107.
 
 Underfull \vbox (badness 1648) has occurred while \output is active []
 
-[1
+ [1
 
-{C:/Users/USUARIO/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+{c:/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
 Package xcolor Warning: Incompatible color definition on input line 143.
 
@@ -788,9 +797,9 @@ Package xcolor Warning: Incompatible color definition on input line 172.
 
 Package xcolor Warning: Incompatible color definition on input line 172.
 
-LaTeX Font Info:    Try loading font information for TS1+lmtt on input line 180
-.
-("C:\Users\USUARIO\AppData\Local\Programs\MiKTeX 2.9\tex/latex/lm\ts1lmtt.fd"
+LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 
+180.
+(c:/texlive/2019/texmf-dist/tex/latex/lm/ts1lmtt.fd
 File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
@@ -824,36 +833,37 @@ Overfull \hbox (5.47499pt too wide) has occurred while \output is active
  []
 
 [5]
-<article-norm_a.pdf, id=154, 722.7pt x 722.7pt>
+<article-norm_a.pdf, id=155, 722.7pt x 722.7pt>
 File: article-norm_a.pdf Graphic file (type pdf)
 <use article-norm_a.pdf>
 Package pdftex.def Info: article-norm_a.pdf  used on input line 316.
 (pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
-<article-norm_b.pdf, id=155, 722.7pt x 722.7pt>
+<article-norm_b.pdf, id=156, 722.7pt x 722.7pt>
 File: article-norm_b.pdf Graphic file (type pdf)
 <use article-norm_b.pdf>
 Package pdftex.def Info: article-norm_b.pdf  used on input line 320.
 (pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
 
-Package xcolor Warning: Incompatible color definition on input line 329.
-
 
 Package xcolor Warning: Incompatible color definition on input line 329.
 
 
 Package xcolor Warning: Incompatible color definition on input line 329.
 
-<article-EEBa.pdf, id=159, 722.7pt x 722.7pt>
+
+Package xcolor Warning: Incompatible color definition on input line 329.
+
+<article-EEBa.pdf, id=160, 722.7pt x 722.7pt>
 File: article-EEBa.pdf Graphic file (type pdf)
 <use article-EEBa.pdf>
 Package pdftex.def Info: article-EEBa.pdf  used on input line 337.
 (pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
-<article-EEBb.pdf, id=160, 722.7pt x 722.7pt>
+<article-EEBb.pdf, id=161, 722.7pt x 722.7pt>
 File: article-EEBb.pdf Graphic file (type pdf)
 <use article-EEBb.pdf>
 Package pdftex.def Info: article-EEBb.pdf  used on input line 341.
 (pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
-<article-EEBc.pdf, id=161, 722.7pt x 722.7pt>
+<article-EEBc.pdf, id=162, 722.7pt x 722.7pt>
 File: article-EEBc.pdf Graphic file (type pdf)
 <use article-EEBc.pdf>
 Package pdftex.def Info: article-EEBc.pdf  used on input line 346.
@@ -891,12 +901,12 @@ Package xcolor Warning: Incompatible color definition on input line 353.
 
 Package xcolor Warning: Incompatible color definition on input line 353.
 
-<article-ZIPa.pdf, id=190, 722.7pt x 722.7pt>
+<article-ZIPa.pdf, id=192, 722.7pt x 722.7pt>
 File: article-ZIPa.pdf Graphic file (type pdf)
 <use article-ZIPa.pdf>
 Package pdftex.def Info: article-ZIPa.pdf  used on input line 360.
 (pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
-<article-ZIPb.pdf, id=191, 722.7pt x 722.7pt>
+<article-ZIPb.pdf, id=193, 722.7pt x 722.7pt>
 File: article-ZIPb.pdf Graphic file (type pdf)
 <use article-ZIPb.pdf>
 Package pdftex.def Info: article-ZIPb.pdf  used on input line 364.
@@ -952,16 +962,17 @@ Overfull \hbox (5.47499pt too wide) has occurred while \output is active
  []
 
 [9]
-<article-PLexample_a.pdf, id=258, 722.7pt x 722.7pt>
+<article-PLexample_a.pdf, id=260, 722.7pt x 722.7pt>
 File: article-PLexample_a.pdf Graphic file (type pdf)
 <use article-PLexample_a.pdf>
 Package pdftex.def Info: article-PLexample_a.pdf  used on input line 470.
 (pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
-<article-PLexample_b.pdf, id=259, 722.7pt x 722.7pt>
+<article-PLexample_b.pdf, id=261, 722.7pt x 722.7pt>
 File: article-PLexample_b.pdf Graphic file (type pdf)
 <use article-PLexample_b.pdf>
 Package pdftex.def Info: article-PLexample_b.pdf  used on input line 474.
 (pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
+
 
 Package xcolor Warning: Incompatible color definition on input line 482.
 
@@ -1022,7 +1033,7 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
  []
 
 [12]
-<article-RetentionPlot.pdf, id=305, 722.7pt x 722.7pt>
+<article-RetentionPlot.pdf, id=308, 722.7pt x 722.7pt>
 File: article-RetentionPlot.pdf Graphic file (type pdf)
 <use article-RetentionPlot.pdf>
 Package pdftex.def Info: article-RetentionPlot.pdf  used on input line 606.
@@ -1038,7 +1049,7 @@ Package xcolor Warning: Incompatible color definition on input line 676.
 
 Package xcolor Warning: Incompatible color definition on input line 676.
 
-(maxlogL.bbl
+(./maxlogL.bbl
 
 Package xcolor Warning: Incompatible color definition on input line 20.
 
@@ -1133,37 +1144,37 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 Package xcolor Warning: Incompatible color definition on input line 690.
 
-<article-varnorm_a.pdf, id=359, 722.7pt x 722.7pt>
+<article-varnorm_a.pdf, id=362, 722.7pt x 722.7pt>
 File: article-varnorm_a.pdf Graphic file (type pdf)
 <use article-varnorm_a.pdf>
 Package pdftex.def Info: article-varnorm_a.pdf  used on input line 699.
 (pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
-<article-varnorm_b.pdf, id=360, 722.7pt x 722.7pt>
+<article-varnorm_b.pdf, id=363, 722.7pt x 722.7pt>
 File: article-varnorm_b.pdf Graphic file (type pdf)
 <use article-varnorm_b.pdf>
 Package pdftex.def Info: article-varnorm_b.pdf  used on input line 703.
 (pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
-<article-varZIPa.pdf, id=361, 722.7pt x 722.7pt>
+<article-varZIPa.pdf, id=364, 722.7pt x 722.7pt>
 File: article-varZIPa.pdf Graphic file (type pdf)
 <use article-varZIPa.pdf>
 Package pdftex.def Info: article-varZIPa.pdf  used on input line 718.
 (pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
-<article-varZIPb.pdf, id=362, 722.7pt x 722.7pt>
+<article-varZIPb.pdf, id=365, 722.7pt x 722.7pt>
 File: article-varZIPb.pdf Graphic file (type pdf)
 <use article-varZIPb.pdf>
 Package pdftex.def Info: article-varZIPb.pdf  used on input line 722.
 (pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
-<article-varEEBa.pdf, id=363, 722.7pt x 722.7pt>
+<article-varEEBa.pdf, id=366, 722.7pt x 722.7pt>
 File: article-varEEBa.pdf Graphic file (type pdf)
 <use article-varEEBa.pdf>
 Package pdftex.def Info: article-varEEBa.pdf  used on input line 738.
 (pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
-<article-varEEBb.pdf, id=364, 722.7pt x 722.7pt>
+<article-varEEBb.pdf, id=367, 722.7pt x 722.7pt>
 File: article-varEEBb.pdf Graphic file (type pdf)
 <use article-varEEBb.pdf>
 Package pdftex.def Info: article-varEEBb.pdf  used on input line 742.
 (pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
-<article-varEEBc.pdf, id=365, 722.7pt x 722.7pt>
+<article-varEEBc.pdf, id=368, 722.7pt x 722.7pt>
 File: article-varEEBc.pdf Graphic file (type pdf)
 <use article-varEEBc.pdf>
 Package pdftex.def Info: article-varEEBc.pdf  used on input line 747.
@@ -1194,55 +1205,49 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 
 [18]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 759.
-(maxlogL.aux)
+ (./maxlogL.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 759.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 759.
 Package rerunfilecheck Info: File `maxlogL.out' has not changed.
-(rerunfilecheck)             Checksum: 60342A0522F4B27EEC95FBA8B49F4375;1521.
+(rerunfilecheck)             Checksum: A394AD11CA3DC8D72BA26A2D49AD5F38;1506.
+
 
 LaTeX Warning: There were multiply-defined labels.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 759.
  ) 
 Here is how much of TeX's memory you used:
- 9808 strings out of 492895
- 148767 string characters out of 3122801
- 242524 words of memory out of 3000000
- 13448 multiletter control sequences out of 15000+200000
- 93156 words of font info for 66 fonts, out of 3000000 for 9000
+ 10190 strings out of 492163
+ 150599 string characters out of 6129090
+ 242060 words of memory out of 5000000
+ 14235 multiletter control sequences out of 15000+600000
+ 93156 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 42i,17n,44p,793b,548s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/USUARIO/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.
-enc}{C:/Users/USUARIO/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/lm/lm-m
-athit.enc}{C:/Users/USUARIO/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvips/l
-m/lm-ts1.enc}{C:/Users/USUARIO/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dvip
-s/lm/lm-rm.enc}{C:/Users/USUARIO/AppData/Local/Programs/MiKTeX 2.9/fonts/enc/dv
-ips/lm/lm-mathex.enc}{C:/Users/USUARIO/AppData/Local/Programs/MiKTeX 2.9/fonts/
-enc/dvips/lm/lm-mathsy.enc}<C:/Users/USUARIO/AppData/Local/Programs/MiKTeX 2.9/
-fonts/type1/public/lm/lmb10.pfb><C:/Users/USUARIO/AppData/Local/Programs/MiKTeX
- 2.9/fonts/type1/public/lm/lmbo10.pfb><C:/Users/USUARIO/AppData/Local/Programs/
-MiKTeX 2.9/fonts/type1/public/lm/lmbx10.pfb><C:/Users/USUARIO/AppData/Local/Pro
-grams/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Users/USUARIO/AppData/Loc
-al/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmex10.pfb><C:/Users/USUARIO/AppDa
-ta/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmmi10.pfb><C:/Users/USUARIO
-/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmmi6.pfb><C:/Users/US
-UARIO/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmmi8.pfb><C:/Use
-rs/USUARIO/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmmib10.pfb>
-<C:/Users/USUARIO/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmr10
-.pfb><C:/Users/USUARIO/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/
-lmr8.pfb><C:/Users/USUARIO/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public
-/lm/lmri10.pfb><C:/Users/USUARIO/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/
-public/lm/lmro10.pfb><C:/Users/USUARIO/AppData/Local/Programs/MiKTeX 2.9/fonts/
-type1/public/lm/lmss10.pfb><C:/Users/USUARIO/AppData/Local/Programs/MiKTeX 2.9/
-fonts/type1/public/lm/lmssbx10.pfb><C:/Users/USUARIO/AppData/Local/Programs/MiK
-TeX 2.9/fonts/type1/public/lm/lmsso10.pfb><C:/Users/USUARIO/AppData/Local/Progr
-ams/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Users/USUARIO/AppData/Local
-/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Users/USUARIO/AppData/
-Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmtt10.pfb><C:/Users/USUARIO/Ap
-pData/Local/Programs/MiKTeX 2.9/fonts/type1/public/lm/lmtto10.pfb>
-Output written on maxlogL.pdf (18 pages, 638226 bytes).
+ 48i,17n,46p,752b,549s stack positions out of 5000i,500n,10000p,200000b,80000s
+{c:/texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/texlive/2019/tex
+mf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/2019/texmf-dist/fonts/enc/
+dvips/lm/lm-ts1.enc}{c:/texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c
+:/texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{c:/texlive/2019/tex
+mf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}<c:/texlive/2019/texmf-dist/fonts/type
+1/public/lm/lmb10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/lm/lmbo10.
+pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/20
+19/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2019/texmf-dist/font
+s/type1/public/lm/lmex10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/lm/
+lmmi10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/lm/lmmi6.pfb><c:/texl
+ive/2019/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/texlive/2019/texmf-dist
+/fonts/type1/public/lm/lmmib10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/publ
+ic/lm/lmr10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/
+texlive/2019/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/texlive/2019/texmf
+-dist/fonts/type1/public/lm/lmro10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/
+public/lm/lmss10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/lm/lmssbx10
+.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/lm/lmsso10.pfb><c:/texlive/
+2019/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2019/texmf-dist/fo
+nts/type1/public/lm/lmsy8.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/lm
+/lmtt10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/lm/lmtto10.pfb>
+Output written on maxlogL.pdf (18 pages, 578745 bytes).
 PDF statistics:
- 517 PDF objects out of 1000 (max. 8388607)
+ 523 PDF objects out of 1000 (max. 8388607)
+ 442 compressed objects within 5 object streams
  85 named destinations out of 1000 (max. 500000)
  206 words of extra memory for PDF output out of 10000 (max. 10000000)
 
