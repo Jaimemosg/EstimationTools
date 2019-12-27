@@ -16,3 +16,4 @@ vignettes/.*\.log
 vignettes/.*\.out
 vignettes/.*\.toc
 vignettes/*\.RData
+^LICENSE\.md$
