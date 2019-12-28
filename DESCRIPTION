@@ -13,7 +13,7 @@ Imports: Rdpack, utils, stats, numDeriv, boot
 RdMacros: Rdpack
 Suggests: gamlss.dist, knitr, rmarkdown
 VignetteBuilder: knitr, utils
-Description: A routine for parameter estimation for any probability density or
+Description: Routines for parameter estimation for any probability density or
     mass function implemented in R via maximum likelihood (ML) given a data set. This
     routine is a wrapper function specifically developed for ML estimation. There are
     included optimization procedures such as 'nlminb' and 'optim' from base package,
