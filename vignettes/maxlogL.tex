@@ -150,7 +150,7 @@ The \proglang{R} function presented here calculates $l(\boldsymbol{\theta}|\bm{y
 
 \section{Basic usage and features}
 
-Our \code{maxlogL} function is a S3 object of class \code{maxlogL}. It is included in \pkg{EstimationTools}, a package available from the Comprehensive R Archive Netwrok (CRAN) \url{https://cran.r-project.org/package=EstimationTools}. It can be downloaded and loaded in global environment typing the following instructions in the console:
+Our \code{maxlogL} function is a S3 object of class \code{maxlogL}. It is included in \pkg{EstimationTools}, a package available from the Comprehensive R Archive Network (CRAN) \url{https://cran.r-project.org/package=EstimationTools}. It can be downloaded and loaded in global environment typing the following instructions in the console:
 
 \begin{Schunk}
 \begin{Sinput}
@@ -167,7 +167,7 @@ R> maxlogL(x, dist, optimizer, lower = NULL, upper = NULL)
 \end{Sinput}
 \end{Schunk}
 
-where the argument \code{x} is a vector with data to be fitted, \code{dist} corresponds to the probability density/mass function of the working distribution, whereas \code{upper} and \code{lower} are limits used when user selects box-constrained algorithms. \code{maxlogL} is a wrapper function specifically developed for ML estimation, which allows to implement any of \code{optim} algorithms for optimization or \code{nlminb} routine for unconstrained or box-constrined optimization through the argument \code{optimizer}.
+where the argument \code{x} is a vector with data to be fitted, \code{dist} corresponds to the probability density/mass function of the working distribution, whereas \code{upper} and \code{lower} are limits used when user selects box-constrained algorithms. \code{maxlogL} is a wrapper function specifically developed for ML estimation, which allows to implement any of \code{optim} algorithms for optimization or \code{nlminb} routine for unconstrained or box-constrained optimization through the argument \code{optimizer}.
 
 \pkg{EstimationTools} package provides a \code{summary} method for class \code{maxlogL}, which displays AIC (Akaike Information Criterion), BIC (Bayesian Information Criterion), ML estimates and its standard error. The method also reports the optimization routine selected by the user and the method used for computation of standard error. There are three methods available: \code{hessian} function from \pkg{numDeriv} package, calculation with \code{optim} (setting the argument \code{hessian = TRUE} and bootstrap calculation, with \code{boot} function of \pkg{boot} package \citep{Davison1997, Canty2017}.
 
@@ -196,7 +196,7 @@ _______________________________________________________________
 \end{Soutput}
 \end{Schunk}
 
-The \code{link} argument is a list with entries \code{fun} and \code{over}, which specify the link functions applied and the name of linked parameters in probability function implemented in \proglang{R} respectively. The estimation performed above can be carried out applying logarithm link funcion to $\sigma$, avoiding problems of estimation in the boundary of parametric space. The usage is illustrated in the following code snippet:
+The \code{link} argument is a list with entries \code{fun} and \code{over}, which specify the link functions applied and the name of linked parameters in probability function implemented in \proglang{R} respectively. The estimation performed above can be carried out applying logarithm link function to $\sigma$, avoiding problems of estimation in the boundary of parametric space. The usage is illustrated in the following code snippet:
 
 \begin{Schunk}
 \begin{Sinput}
@@ -269,6 +269,107 @@ _______________________________________________________________
 
 As can be seen, the procedure applies the inverse of the link function to return the parameter to the original scale.
 
+<<<<<<< HEAD
+=======
+\section{Simulation Study}
+
+In this section we simulated ML estimation with some distributions with \code{maxlogL}.
+
+\subsection{Existing distributions}
+We simulated the following two types of random variables: $X \sim \text{NO}(\mu=5,\: \sigma^2=4)$ with sample sizes $n \in \lbrace 3,...,400 \rbrace$ and $Y \sim \text{ZIP}(\lambda=6,\: \pi=0.08)$ with $n \in \lbrace 3,...,500 \rbrace$. We performed 1000 replications of each sample size.
+
+\subsection{User-defined distribution}
+Additionally, we simulated $W \sim \text{EEB}(\mu=0.5,\: \sigma=1, \nu=1.5, m=10)$ with $n \in \lbrace 3,...,1000 \rbrace$ (an exponentiated exponential binomial distribution, proposed by \cite{Bakouch2012}). As the previous case, we performed 1000 replications of each sample size. Probability density function of EEB distribution is given by the following expression:
+
+\begin{equation} \label{EEBf}
+  f(w|\mu, \sigma, \nu, m) = \frac{\sigma\nu\mu m}{1-(1-\mu)^m} \left(1 - e^{-\sigma w} \right)^{\nu-1} \left[ 1 - \mu\left(1 - e^{-\sigma w} \right)^\nu \right]^{m-1},
+\end{equation}
+
+with $w>0$, $\mu \in (0,1)$, $\sigma, \nu>0$ and $m$ an integer such that $m \geq 1$. We took this distribution as the user-defined by implementing it as an \proglang{R} function, as is customary. Note that argument \code{size} corresponds to parameter $m$ in equation (\ref{EEBf}):
+
+\begin{Schunk}
+\begin{Sinput}
+R> dEEB <- function(x, mu = 0.5, sigma = 1, nu = 1.5, size = 10,
++                   log = FALSE){
++    if (any(x<0))
++      stop(paste("x must greater than zero", "\n", ""))
++    if (any(mu < 0) | any(mu > 1))
++      stop(paste("mu must be between 0 and 1", "\n", ""))
++    if (any(sigma<=0 ))
++      stop(paste("sigma must be greater than zero", "\n", ""))
++    if (any(nu<=0 ))
++      stop(paste("nu must be greater than zero", "\n", ""))
++  
++    loglik <- log(sigma * nu * size *  mu) - sigma * x +
++              (nu - 1) * log(1 - exp(-sigma * x)) -
++              log(1 - (1 - mu)^size) +
++              (size - 1) * log(1 - mu * (1 - exp(-sigma * x))^nu)
++    if (log == FALSE)
++      density <- exp(loglik) else density <- loglik
++    return(density)
++  }
+\end{Sinput}
+\end{Schunk}
+
+
+
+\begin{figure}[H]
+    \begin{subfigure}[h]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{article-norm_a}
+        \caption{\label{fig:norma}}
+    \end{subfigure}
+    \begin{subfigure}[h]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{article-norm_b}
+        \caption{\label{fig:normb}}
+    \end{subfigure}
+\caption{\label{fig:norm} Mean value for (a) location parameter $\hat{\mu}$ and (b) scale parameter $\hat{\sigma}$ versus sample size $n$ in normal distribution based on 1000 replications. Horizontal red lines are the true value of the parameters.}
+\end{figure}
+% {\color{white} Jaime} \nolinebreak[4]
+
+\section{Results}\label{sec:results}
+
+The results of Monte Carlo study for the three distributions mentioned are presented in Figure \ref{fig:norm} above, and Figures \ref{fig:EEB} and \ref{fig:ZIP} below. All the plots show that the mean estimates tend to the true value of the parameter as the sample size increases, as is expected under regularity conditions.
+
+
+
+
+\begin{figure}[H]
+  \centering
+    \begin{subfigure}[h]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{article-EEBa}
+        \caption{\label{fig:EEBa}}
+    \end{subfigure}
+    \begin{subfigure}[h]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{article-EEBb}
+        \caption{\label{fig:EEBb}}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[h]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{article-EEBc}
+        \caption{\label{fig:EEBc}}
+    \end{subfigure}
+\caption{\label{fig:EEB} Mean value for (a) proportion of successes $\hat{\mu}$, (b) scale parameter $\hat{\sigma}$ and (c) shape parameter $\hat{\tau}$ versus sample size $n$ in EEB distribution based on 1000 replications. Horizontal red lines are the true value of the parameters.}
+\vspace{1.5cm}
+\end{figure}
+
+Variance of estimated parameters decreases as sample size increases, according to the efficiency property of ML estimators \citep{Gurland1954, Daniels1961}. This results are presented in figures \ref{fig:varnorm}, \ref{fig:varZIP} and \ref{fig:varEEB} of Appendix \ref{append:variance}.
+
+
+
+\begin{figure}[H]
+  \centering
+    \begin{subfigure}[h]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{article-ZIPa}
+        \caption{\label{fig:ZIPa}}
+    \end{subfigure}
+    \begin{subfigure}[h]{0.49\textwidth}
+        \includegraphics[width=\textwidth]{article-ZIPb}
+        \caption{\label{fig:ZIPb}}
+    \end{subfigure}
+\caption{\label{fig:ZIP} Mean value for (a) rate parameter $\hat{\lambda}$ and (b) extra zeros proportion $\hat{\pi}$ versus sample size $n$ in ZIP distribution based on 1000 replications. Horizontal red lines are the true value of the parameters.}
+\end{figure}
+
+>>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
 %% -- Illustrations ------------------------------------------------------------
 
 %% - Virtually all JSS manuscripts list source code along with the generated
@@ -403,7 +504,7 @@ Observed proportion       & 0.94 & 0.77 & 0.40 & 0.26 & 0.24 & 0.16 \\ \hline
 \caption{Observed proportion of recalls at each time.}
 \end{table}
 
-Each observation in the data set corresponds to a proportion obtained as the quotient of correct responses ($x_i$) and the total number of independent trials (replications of each memory test, represented by $m$). This kind of experiment can be modeled with a binomial distribution:
+Each observation in the data set corresponds to a proportion obtained as the quotient of correct responses ($x_i$) and the total number of independent trials (replications of each memory test, represented by $m$). This kind of experiment can be modelled with a binomial distribution:
 
 \begin{equation} \label{posterior}
   f(x_i|a, b, m) = \frac{m!}{(m-x_i)!\: x_i!}p(a, b, t_i) \left[ 1-p(a, b, t_i) \right]^{m-x_i}
@@ -513,7 +614,7 @@ Again, we obtain the same estimates of \cite{Myung2003}: $\hat{\boldsymbol{\thet
 
 \section{Conclusions} \label{sec:conclussions}
 
-We have implemented classic estimation via maximization of log-likelihood function through basic optimization routines in \proglang{R} such as \code{optim} and \code{nlminb}. With \code{maxlogL}, we enable researchers, developers and users in general to compute ML estimators of any distribution in a fast and reliable way. With our \code{summary} method, it ia possible to calculate standard error of estimates through Hessian matrix or bootstrap algortihm. In some cases, it is possible to implement estimation in hierarchical models, with appropriate tunning of initial values. \\
+We have implemented classic estimation via maximization of log-likelihood function through basic optimization routines in \proglang{R} such as \code{optim} and \code{nlminb}. With \code{maxlogL}, we enable researchers, developers and users in general to compute ML estimators of any distribution in a fast and reliable way. With our \code{summary} method, it is possible to calculate standard error of estimates through Hessian matrix or bootstrap algorithm. In some cases, it is possible to implement estimation in hierarchical models, with appropriate tuning of initial values. \\
 
 In future revisions, we could implement evolutionary algorithms to perform estimation in distributions with regularity issues \citep{Haupt2003}. Furthermore, our routine could be took to develop further work on log-likelihood estimation, such as developing new parametric regression models.
 

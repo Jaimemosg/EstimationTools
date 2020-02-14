@@ -4,9 +4,18 @@
 \alias{maxlogL}
 \title{Maximum Likelihood Estimation for parametric distributions}
 \usage{
-maxlogL(x, dist = "dnorm", fixed = NULL, link = NULL, start = NULL,
-  lower = NULL, upper = NULL, optimizer = "nlminb", control = NULL,
-  ...)
+maxlogL(
+  x,
+  dist = "dnorm",
+  fixed = NULL,
+  link = NULL,
+  start = NULL,
+  lower = NULL,
+  upper = NULL,
+  optimizer = "nlminb",
+  control = NULL,
+  ...
+)
 }
 \arguments{
 \item{x}{a vector with data to be fitted. This argument must be a matrix
@@ -114,7 +123,8 @@ summary(theta_3)
 \code{\link{summary.maxlogL}}, \code{\link{optim}}, \code{\link{nlminb}},
          \code{\link{DEoptim}}, \code{\link{DEoptim.control}}
 
-Other maxlogL: \code{\link{maxlogLreg}}
+Other maxlogL: 
+\code{\link{maxlogLreg}()}
 }
 \author{
 Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}

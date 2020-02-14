@@ -4,9 +4,20 @@
 \alias{maxlogLreg}
 \title{Maximum Likelihood Estimation for parametric linear regression models}
 \usage{
-maxlogLreg(formulas, y_dist, data = NULL, subset = NULL,
-  fixed = NULL, link = NULL, start = NULL, lower = NULL,
-  upper = NULL, optimizer = "nlminb", control = NULL, ...)
+maxlogLreg(
+  formulas,
+  y_dist,
+  data = NULL,
+  subset = NULL,
+  fixed = NULL,
+  link = NULL,
+  start = NULL,
+  lower = NULL,
+  upper = NULL,
+  optimizer = "nlminb",
+  control = NULL,
+  ...
+)
 }
 \arguments{
 \item{formulas}{a list of formula objects. Each element must have an \code{~}, with the terms
@@ -132,7 +143,8 @@ summary(mod_weibull)
 #--------------------------------------------------------------------------------
 }
 \seealso{
-Other maxlogL: \code{\link{maxlogL}}
+Other maxlogL: 
+\code{\link{maxlogL}()}
 }
 \author{
 Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
