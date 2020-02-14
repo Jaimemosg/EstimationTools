@@ -143,7 +143,7 @@ maxlogLreg <- function(formulas,
   if ( !is.null(subset) ) data <- subset(data, eval(parse(text = subset)))
 
   # List of arguments of density function
-  arguments <- as.list(args(distr))
+  arguments <- formals(distr)
 
   # Common errors
   if ( !is.list(control) ){

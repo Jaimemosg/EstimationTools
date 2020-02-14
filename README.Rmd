@@ -61,21 +61,28 @@ These are basic examples which shows you how to solve a common maximum likelihoo
 tcens1 <- qweibull(0.1, shape = exp(1.2), scale = exp(6.214608), lower.tail = FALSE)
 tcens2 <- qweibull(0.07, shape = exp(1.2+0.3), scale = exp(6.214608), lower.tail = FALSE)
 tcens <- min(tcens1, tcens2)
-t1 <- rweibull(n = 15, shape = exp(1.2), scale = exp(6.214608))
-t2 <- rweibull(n = 15, shape = exp(1.2+0.3), scale = exp(6.214608))
-
-t0 <- c(t1, t2)
-t_sim <- ifelse(t0 < tcens, t0, tcens)
-status <- as.numeric(t_sim < tcens)
-group <- as.factor(c(rep(0, 15), rep(1, 15)) + 1)
+# save.image(file="sim_wei.RData")
+load(file="extra/sim_wei.RData")
+# t1 <- rweibull(n = 15, shape = exp(1.2), scale = exp(6.214608))
+# t2 <- rweibull(n = 15, shape = exp(1.2+0.3), scale = exp(6.214608))
+# 
+# t0 <- c(t1, t2)
+# t_sim <- ifelse(t0 < tcens, t0, tcens)
+# status <- as.numeric(t_sim < tcens)
+# group <- as.factor(c(rep(0, 15), rep(1, 15)) + 1)
+# data.frame(t_sim=t_sim, status=status, group=group)[c(1:3,28:30),]
 ```
 
 We generate data from an hypothetic failure test of `r round(tcens, 2)` hours with 30 experimental units, 15 from group 1 and 15 from group 2. Lets assume a censorship rate of `r round(1 - sum(status)/length(status), 2)`, and regard that the data is right censored. Times from 6 experimental units are shown just bellow:
 
-```{r, echo=FALSE}
-data.frame(t_sim=t_sim, status=status, group=group)[c(1:3,28:30),]
-```
+```{r, echo=TRUE}
+library(RCurl)
+library(foreign)
 
+url_data <- "https://raw.githubusercontent.com/Jaimemosg/EstimationTools/master/extra/sim_wei.csv"
+wei_data <- getURL(url_data)
+data <- read.csv(textConnection(wei_data))
+```
 
 The model is as follows:
 
@@ -101,7 +108,8 @@ library(EstimationTools)
 formulas <- list(scale.fo = ~ 1, shape.fo = ~ group)
 
 # The model
-fit_wei <- maxlogLreg(formulas, y_dist = Surv(t_sim, status) ~ dweibull,
+fit_wei <- maxlogLreg(formulas, data = data,
+                      y_dist = Surv(t_sim, status) ~ dweibull,
                       link = list(over = c("shape", "scale"),
                                   fun = rep("log_link", 2)))
 summary(fit_wei)

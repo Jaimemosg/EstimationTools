@@ -182,17 +182,17 @@ R> fit1 <- maxlogL(x = z, dist = 'dnorm', start=c(2, 3),
 R> summary(fit1)
 \end{Sinput}
 \begin{Soutput}
----------------------------------------------------------------
+_______________________________________________________________
 Optimization routine: nlminb 
 Standard Error calculation: Hessian from optim 
----------------------------------------------------------------
+_______________________________________________________________
        AIC      BIC
-  2804.033 2800.033
----------------------------------------------------------------
+  2804.033 2813.849
+_______________________________________________________________
      Estimate  Std. Error
 mean   9.98752     0.0310
 sd     0.98126     0.0219
------
+_______________________________________________________________
 \end{Soutput}
 \end{Schunk}
 
@@ -205,17 +205,17 @@ R> fit2 <- maxlogL(x = z, dist = 'dnorm',
 R> summary(fit2)
 \end{Sinput}
 \begin{Soutput}
----------------------------------------------------------------
+_______________________________________________________________
 Optimization routine: nlminb 
 Standard Error calculation: Hessian from optim 
----------------------------------------------------------------
+_______________________________________________________________
        AIC      BIC
-  2804.033 2800.033
----------------------------------------------------------------
+  2804.033 2813.849
+_______________________________________________________________
      Estimate  Std. Error
 mean   9.98752     0.0310
 sd     0.98126     0.0219
------
+_______________________________________________________________
 \end{Soutput}
 \end{Schunk}
 
@@ -229,17 +229,17 @@ R> fit3 <- maxlogL(x = z, dist = 'dnorm',
 R> summary(fit3)
 \end{Sinput}
 \begin{Soutput}
----------------------------------------------------------------
+_______________________________________________________________
 Optimization routine: nlminb 
 Standard Error calculation: Hessian from optim 
----------------------------------------------------------------
+_______________________________________________________________
        AIC      BIC
-  2804.033 2800.033
----------------------------------------------------------------
+  2804.033 2813.849
+_______________________________________________________________
      Estimate  Std. Error
 mean   9.98752     0.0310
 sd     0.98126     0.0219
------
+_______________________________________________________________
 \end{Soutput}
 \end{Schunk}
 
@@ -254,118 +254,20 @@ R> phat <- maxlogL(x = N, dist = 'dbinom', fixed = list(size = 10),
 R> summary(phat)
 \end{Sinput}
 \begin{Soutput}
----------------------------------------------------------------
+_______________________________________________________________
 Optimization routine: nlminb 
 Standard Error calculation: Hessian from optim 
----------------------------------------------------------------
+_______________________________________________________________
        AIC      BIC
   334.9805 334.9805
----------------------------------------------------------------
+_______________________________________________________________
      Estimate  Std. Error
 prob     0.312     0.0147
------
+_______________________________________________________________
 \end{Soutput}
 \end{Schunk}
 
 As can be seen, the procedure applies the inverse of the link function to return the parameter to the original scale.
-
-\section{Simulation Study}
-
-In this section we simulated ML estimation with some distributions with \code{maxlogL}.
-
-\subsection{Existing distributions}
-We simulated the following two types of random variables: $X \sim \text{NO}(\mu=5,\: \sigma^2=4)$ with sample sizes $n \in \lbrace 3,...,400 \rbrace$ and $Y \sim \text{ZIP}(\lambda=6,\: \pi=0.08)$ with $n \in \lbrace 3,...,500 \rbrace$. We performed 1000 replications of each sample size.
-
-\subsection{User-defined distribution}
-Additionally, we simulated $W \sim \text{EEB}(\mu=0.5,\: \sigma=1, \nu=1.5, m=10)$ with $n \in \lbrace 3,...,1000 \rbrace$ (an exponentiated exponential binomial distribution, proposed by \cite{Bakouch2012}). As the previous case, we performed 1000 replications of each sample size. Probability density function of EEB distribution is given by the following expression:
-
-\begin{equation} \label{EEBf}
-  f(w|\mu, \sigma, \nu, m) = \frac{\sigma\nu\mu m}{1-(1-\mu)^m} \left(1 - e^{-\sigma w} \right)^{\nu-1} \left[ 1 - \mu\left(1 - e^{-\sigma w} \right)^\nu \right]^{m-1},
-\end{equation}
-
-with $w>0$, $\mu \in (0,1)$, $\sigma, \nu>0$ and $m$ an integer such that $m \geq 1$. We took this distribution as the user-defined by implementing it as an proglang{R} function, as is customary. Note that argument \code{size} corresponds to parameter $m$ in equation (\ref{EEBf}):
-
-\begin{Schunk}
-\begin{Sinput}
-R> dEEB <- function(x, mu = 0.5, sigma = 1, nu = 1.5, size = 10,
-+                   log = FALSE){
-+    if (any(x<0))
-+      stop(paste("x must greater than zero", "\n", ""))
-+    if (any(mu < 0) | any(mu > 1))
-+      stop(paste("mu must be between 0 and 1", "\n", ""))
-+    if (any(sigma<=0 ))
-+      stop(paste("sigma must be greater than zero", "\n", ""))
-+    if (any(nu<=0 ))
-+      stop(paste("nu must be greater than zero", "\n", ""))
-+  
-+    loglik <- log(sigma * nu * size *  mu) - sigma * x +
-+              (nu - 1) * log(1 - exp(-sigma * x)) -
-+              log(1 - (1 - mu)^size) +
-+              (size - 1) * log(1 - mu * (1 - exp(-sigma * x))^nu)
-+    if (log == FALSE)
-+      density <- exp(loglik) else density <- loglik
-+    return(density)
-+  }
-\end{Sinput}
-\end{Schunk}
-
-
-
-\begin{figure}[H]
-    \begin{subfigure}[h]{0.49\textwidth}
-        \includegraphics[width=\textwidth]{article-norm_a}
-        \caption{\label{fig:norma}}
-    \end{subfigure}
-    \begin{subfigure}[h]{0.49\textwidth}
-        \includegraphics[width=\textwidth]{article-norm_b}
-        \caption{\label{fig:normb}}
-    \end{subfigure}
-\caption{\label{fig:norm} Mean value for (a) location parameter $\hat{\mu}$ and (b) scale parameter $\hat{\sigma}$ versus sample size $n$ in normal distribution based on 1000 replications. Horizontal red lines are the true value of the parameters.}
-\end{figure}
-% {\color{white} Jaime} \nolinebreak[4]
-
-\section{Results}\label{sec:results}
-
-The results of Monte Carlo study for the three distributions mentioned are presented in Figure \ref{fig:norm} above, and Figures \ref{fig:EEB} and \ref{fig:ZIP} below. All the plots show that the mean estimates tend to the true value of the parameter as the sample size increases, as is expected under regularity conditions.
-
-
-
-
-\begin{figure}[H]
-  \centering
-    \begin{subfigure}[h]{0.49\textwidth}
-        \includegraphics[width=\textwidth]{article-EEBa}
-        \caption{\label{fig:EEBa}}
-    \end{subfigure}
-    \begin{subfigure}[h]{0.49\textwidth}
-        \includegraphics[width=\textwidth]{article-EEBb}
-        \caption{\label{fig:EEBb}}
-    \end{subfigure}
-    ~
-    \begin{subfigure}[h]{0.49\textwidth}
-        \includegraphics[width=\textwidth]{article-EEBc}
-        \caption{\label{fig:EEBc}}
-    \end{subfigure}
-\caption{\label{fig:EEB} Mean value for (a) proportion of successes $\hat{\mu}$, (b) scale parameter $\hat{\sigma}$ and (c) shape parameter $\hat{\tau}$ versus sample size $n$ in EEB distribution based on 1000 replications. Horizontal red lines are the true value of the parameters.}
-\vspace{1.5cm}
-\end{figure}
-
-Variance of estimated parameters decreases as sample size increases, according to the efficiency property of ML estimators \citep{Gurland1954, Daniels1961}. This results are presented in figures \ref{fig:varnorm}, \ref{fig:varZIP} and \ref{fig:varEEB} of Appendix \ref{append:variance}.
-
-
-
-\begin{figure}[H]
-  \centering
-    \begin{subfigure}[h]{0.49\textwidth}
-        \includegraphics[width=\textwidth]{article-ZIPa}
-        \caption{\label{fig:ZIPa}}
-    \end{subfigure}
-    \begin{subfigure}[h]{0.49\textwidth}
-        \includegraphics[width=\textwidth]{article-ZIPb}
-        \caption{\label{fig:ZIPb}}
-    \end{subfigure}
-\caption{\label{fig:ZIP} Mean value for (a) rate parameter $\hat{\lambda}$ and (b) extra zeros proportion $\hat{\pi}$ versus sample size $n$ in ZIP distribution based on 1000 replications. Horizontal red lines are the true value of the parameters.}
-\end{figure}
 
 %% -- Illustrations ------------------------------------------------------------
 
@@ -446,17 +348,17 @@ R> theta <- maxlogL(x = st, dist = "dPL",
 R> summary(theta)
 \end{Sinput}
 \begin{Soutput}
----------------------------------------------------------------
+_______________________________________________________________
 Optimization routine: nlminb 
 Standard Error calculation: Hessian from optim 
----------------------------------------------------------------
-      AIC    BIC
-  102.119 98.119
----------------------------------------------------------------
+_______________________________________________________________
+      AIC      BIC
+  102.119 106.5872
+_______________________________________________________________
       Estimate  Std. Error
 mu     3.867777     0.3137
 sigma  0.049671     0.0160
------
+_______________________________________________________________
 \end{Soutput}
 \end{Schunk}
 
@@ -542,17 +444,17 @@ R> retention.pwr <- maxlogL(x = Xi, dist = "power_logL", lower = c(0.01,0.01),
 R> summary(retention.pwr)
 \end{Sinput}
 \begin{Soutput}
----------------------------------------------------------------
+_______________________________________________________________
 Optimization routine: nlminb 
 Standard Error calculation: Hessian from optim 
----------------------------------------------------------------
-      AIC     BIC
-  57.4522 53.4522
----------------------------------------------------------------
+_______________________________________________________________
+      AIC    BIC
+  57.4522 58.422
+_______________________________________________________________
   Estimate  Std. Error
 a   0.95312     0.0186
 b   0.49793     0.0324
------
+_______________________________________________________________
 \end{Soutput}
 \end{Schunk}
 
@@ -584,17 +486,17 @@ R> retention.exp <- maxlogL(x = Xi, dist = 'exp_logL', lower = c(0.1,0.1),
 R> summary(retention.exp)
 \end{Sinput}
 \begin{Soutput}
----------------------------------------------------------------
+_______________________________________________________________
 Optimization routine: nlminb 
 Standard Error calculation: Hessian from optim 
----------------------------------------------------------------
+_______________________________________________________________
       AIC     BIC
-  41.3329 37.3329
----------------------------------------------------------------
+  41.3329 42.3027
+_______________________________________________________________
   Estimate  Std. Error
 a   1.07011     0.0313
 b   0.13083     0.0093
------
+_______________________________________________________________
 \end{Soutput}
 \end{Schunk}
 
@@ -606,66 +508,6 @@ Again, we obtain the same estimates of \cite{Myung2003}: $\hat{\boldsymbol{\thet
   \includegraphics[width=0.6\textwidth]{article-RetentionPlot}
   \caption{\label{fig:forgetting} Observed proportion of recalls and models fitted.}
 \end{figure}
-
-% % \section{Aarset data}
-% %
-% % Data is from Aarset (1987) and they contain the times to failure of 50 devices put on life test
-% %
-% % \begin{table}[ht]
-% % \centering
-% % \begin{tabular}{rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr}
-% %   \hline
-% % 0.10  & 0.20  & 1.00  & 1.00  & 1.00  & 1.00  & 1.00  & 2.00  & 3.00  & 6.00  & 7.00  \\
-% % 1.00  & 1.00  & 12.00 & 18.00 & 18.00 & 18.00 & 18.00 & 18.00 & 21.00 & 32.00 & 36.00 \\
-% % 40.00 & 45.00 & 46.00 & 47.00 & 50.00 & 55.00 & 60.00 & 63.00 & 63.00 & 67.00 & 67.00 \\
-% % 67.00 & 67.00 & 72.00 & 75.00 & 79.00 & 82.00 & 82.00 & 83.00 & 84.00 & 84.00 & 84.00 \\
-% % 85.00 & 85.00 & 85.00 & 85.00 & 85.00 & 86.00 & 86.00 \\
-% %    \hline
-% % \end{tabular}
-% % \caption{\label{tab:Aarset}Failure time of 50 devices.}
-% % \end{table}
-% %
-% % This data has been fitted by Mudholkar and Srivastava, Xie and Lai , Lai et al., Sarhan and Zaindin and Silva et al. Almalki et al. (2013) fitted their NMW distribution via ML estimation. The pdf is as follows
-% %
-% % \begin{equation}
-% % f(t|\alpha, \beta, \gamma, \theta, \lambda) = \left( \alpha\theta t^{\theta-1} + \beta (\gamma+\lambda t)t^{\gamma-1}e^{\lambda t} \right)e^{-\alpha t^\theta -\beta t^\gamma e^{\lambda t}}, \quad t>0
-% % \end{equation}
-% %
-% % In first place, we must implement the corresponding pdf
-% %
-% % <<echo=TRUE, eval=TRUE>>=
-% % dNMW <- function(x, alpha, beta, gamma, theta, lambda, log = FALSE){
-% %   if (any(x<0))
-% %     stop(paste("x must be positive", "\n", ""))
-% %   if (any(alpha<=0 ))
-% %     stop(paste("alpha must be positive", "\n", ""))
-% %   if (any(beta<=0))
-% %     stop(paste("beta must be positive", "\n", ""))
-% %   if (any(theta<=0))
-% %     stop(paste("theta must be positive", "\n", ""))
-% %   if (any(gamma<=0))
-% %     stop(paste("gamma must be positive", "\n", ""))
-% %   if (any(lambda<0))
-% %     stop(paste("lambda must be positive", "\n", ""))
-% %
-% %   loglik<- log(alpha*theta*(x^(theta-1)) + exp(lambda*x)*beta*(gamma+lambda*x)*x^(gamma-1)) -
-% %            alpha*(x^theta) - beta*(x^gamma)*exp(lambda*x)
-% %
-% %   if (log == FALSE)
-% %     density<- exp(loglik)
-% %   else
-% %     density <- loglik
-% %   return(density)
-% % }
-% % @
-% %
-% % Then, we implement \code{maxlogL} routine
-% %
-% % <<warining=FALSE, message=FALSE>>=
-% % # res <- maxlogL(x = Aarset, dist = 'dNMW', lower = numeric(5)+1e-10,
-% % #                upper = c(0.1,0.001,0.05,1,0.5))
-% % # summary(res)
-% % @
 
 %% -- Summary/conclusions/discussion -------------------------------------------
 
@@ -680,80 +522,5 @@ In future revisions, we could implement evolutionary algorithms to perform estim
 %% -- Appendix (if any) --------------------------------------------------------
 %% - After the bibliography with page break.
 %% - With proper section titles and _not_ just "Appendix".
-
-\newpage
-
-\begin{appendix}
-
-\section{Variance of estimates} \label{append:variance}
-
-In this section we report results of variance versus sample size of ML estimation with distributions fitted with \code{maxlogL} in section \ref{sec:results}.
-
-\subsection{Normal distribution}
-
-
-
-\begin{figure}[ht]
-    \vspace{-20pt}
-    \begin{subfigure}[h]{0.49\textwidth}
-        \includegraphics[width=\textwidth]{article-varnorm_a}
-        \caption{\label{fig:norma}}
-    \end{subfigure}
-    \begin{subfigure}[h]{0.49\textwidth}
-        \includegraphics[width=\textwidth]{article-varnorm_b}
-        \caption{\label{fig:varnormb}}
-    \end{subfigure}
-\caption{\label{fig:varnorm}  Variance for (a) location parameter $\hat{\mu}$ and (b) scale parameter $\hat{\sigma}$ versus sample size $n$ in normal distribution based on 1000 replications..}
-\vspace{-20pt}
-\end{figure}
-
-\subsection{ZIP distribution}
-
-
-
-\begin{figure}[h]
-  \vspace{-20pt}
-  \centering
-    \begin{subfigure}[h]{0.49\textwidth}
-        \includegraphics[width=\textwidth]{article-varZIPa}
-        \caption{\label{fig:varZIPa}}
-    \end{subfigure}
-    \begin{subfigure}[h]{0.49\textwidth}
-        \includegraphics[width=\textwidth]{article-varZIPb}
-        \caption{\label{fig:varZIPb}}
-    \end{subfigure}
-\caption{\label{fig:varZIP} Variance for (a) rate parameter $\hat{\lambda}$ and (b) extra zeros proportion $\hat{\pi}$ versus sample size $n$ in ZIP distribution based on 1000 replications.}
-\vspace{-20pt}
-\end{figure}
-
-\subsection{EEB distribution}
-
-
-
-
-\begin{figure}[H]
-  \vspace{-60pt}
-  \centering
-    \begin{subfigure}[h]{0.49\textwidth}
-        \includegraphics[width=\textwidth]{article-varEEBa}
-        \caption{\label{fig:varEEBa}}
-    \end{subfigure}
-    \begin{subfigure}[h]{0.49\textwidth}
-        \includegraphics[width=\textwidth]{article-varEEBb}
-        \caption{\label{fig:varEEBb}}
-    \end{subfigure}
-    ~
-    \begin{subfigure}[h]{0.49\textwidth}
-        \includegraphics[width=\textwidth]{article-varEEBc}
-        \caption{\label{fig:varEEBc}}
-    \end{subfigure}
-\caption{\label{fig:varEEB} Variance for (a) proportion of successes $\hat{\mu}$, (b) scale parameter $\hat{\sigma}$ and (c) shape parameter $\hat{\tau}$ versus sample size $n$ in EEB distribution based on 1000 replications.}
-\vspace{90pt}
-\end{figure}
-
-\end{appendix}
-
-%% -----------------------------------------------------------------------------
-
 
 \end{document}

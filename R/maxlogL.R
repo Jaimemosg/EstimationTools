@@ -111,7 +111,7 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
   call <- match.call()
 
   # List of arguments of density function
-  arguments <- as.list(args(dist))
+  arguments <- formals(dist)
 
   # Common errors
   if ( !is.list(control) ){

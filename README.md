@@ -48,25 +48,34 @@ vignettes (articles) and functions reference.
 # Examples
 
 These are basic examples which shows you how to solve a common maximum
-likelihood estimation problem with
-`EstimationTools`:
+likelihood estimation problem with `EstimationTools`:
 
 ## Estimation in regression models
 
 <!-- The data is from [NIST](https://www.itl.nist.gov/div898/handbook/apr/section2/apr221.htm#Example). They generated  20 random Weibull failure times with a parameter `shape=1.5` and `scale=500`. The test time is 500 hours, 10 of these failure times are right censored. The observed times are, to the nearest hour: 54, 187, 216, 240, 244, 335, 361, 373, 375, and 386. -->
 
+    #>       t_sim status group
+    #> 1  621.9377      0     1
+    #> 2  161.9245      1     1
+    #> 3  621.9377      0     1
+    #> 28 442.9541      1     2
+    #> 29 154.4469      1     2
+    #> 30 587.6642      1     2
+
 We generate data from an hypothetic failure test of 621.94 hours with 30
 experimental units, 15 from group 1 and 15 from group 2. Lets assume a
-censorship rate of 0.1, and regard that the data is right censored.
+censorship rate of 0.2, and regard that the data is right censored.
 Times from 6 experimental units are shown just bellow:
 
-    #>       t_sim status group
-    #> 1  383.9410      1     1
-    #> 2  194.8475      1     1
-    #> 3  285.6984      1     1
-    #> 28 537.0781      1     2
-    #> 29 621.9377      0     2
-    #> 30 445.0450      1     2
+``` r
+library(RCurl)
+#> Loading required package: bitops
+library(foreign)
+
+url_data <- "https://raw.githubusercontent.com/Jaimemosg/EstimationTools/master/extra/sim_wei.csv"
+wei_data <- getURL(url_data)
+data <- read.csv(textConnection(wei_data))
+```
 
 The model is as follows:
 
@@ -105,7 +114,8 @@ library(EstimationTools)
 formulas <- list(scale.fo = ~ 1, shape.fo = ~ group)
 
 # The model
-fit_wei <- maxlogLreg(formulas, y_dist = Surv(t_sim, status) ~ dweibull,
+fit_wei <- maxlogLreg(formulas, data = data,
+                      y_dist = Surv(t_sim, status) ~ dweibull,
                       link = list(over = c("shape", "scale"),
                                   fun = rep("log_link", 2)))
 summary(fit_wei)
@@ -114,20 +124,18 @@ summary(fit_wei)
 #> Standard Error calculation: Hessian from optim 
 #> _______________________________________________________________
 #>        AIC      BIC
-#>   356.0582 360.2618
+#>   352.1875 356.3911
 #> _______________________________________________________________
 #> Fixed effects for g(shape) 
 #> ---------------------------------------------------------------
-#>             Estimate Std. Error Z value  Pr(>|z|)    
-#> (Intercept)  1.28937    0.23180  5.5624 2.661e-08 ***
-#> group2       0.12938    0.33790  0.3829    0.7018    
-#> ---
-#> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#>             Estimate Std. Error Z value Pr(>|z|)
+#> (Intercept)  0.80985    0.50440  1.6056   0.1084
+#> group        0.48116    0.31160  1.5441   0.1226
 #> _______________________________________________________________
 #> Fixed effects for g(scale) 
 #> ---------------------------------------------------------------
 #>             Estimate Std. Error Z value  Pr(>|z|)    
-#> (Intercept)   6.2389     0.0521  119.75 < 2.2e-16 ***
+#> (Intercept)   6.2128     0.0406  153.03 < 2.2e-16 ***
 #> ---
 #> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #> _______________________________________________________________
@@ -166,11 +174,10 @@ summary(fit)
 #> Standard Error calculation: Hessian from optim 
 #> _______________________________________________________________
 #>        AIC      BIC
-#>   64334.94 64349.36
-#> _______________________________________________________________
+#>   64141.94 64156.36
 #> _______________________________________________________________
 #>      Estimate  Std. Error
-#> mean  159.9359     0.0604
-#> sd      6.0352     0.0427
+#> mean  160.0099     0.0598
+#> sd      5.9772     0.0423
 #> _______________________________________________________________
 ```
