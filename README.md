@@ -54,9 +54,9 @@ likelihood estimation problem with `EstimationTools`:
 
 <!-- The data is from [NIST](https://www.itl.nist.gov/div898/handbook/apr/section2/apr221.htm#Example). They generated  20 random Weibull failure times with a parameter `shape=1.5` and `scale=500`. The test time is 500 hours, 10 of these failure times are right censored. The observed times are, to the nearest hour: 54, 187, 216, 240, 244, 335, 361, 373, 375, and 386. -->
 
-We generate data from an hypothetic failure test of 621.94 hours with 30
+We generate data from an hypothetic failure test of 540 hours with 30
 experimental units, 15 from group 1 and 15 from group 2. Lets assume a
-censorship rate of 0.03, and regard that the data is right censored.
+censorship rate of 10%, and regard that the data is right censored.
 Times from 6 experimental units are shown just bellow:
 
 ``` r
@@ -106,7 +106,7 @@ formulas <- list(scale.fo = ~ 1, shape.fo = ~ group)
 
 # The model
 fit_wei <- maxlogLreg(formulas, data = data,
-                      y_dist = Surv(t_sim, status) ~ dweibull,
+                      y_dist = Surv(Time, status) ~ dweibull,
                       link = list(over = c("shape", "scale"),
                                   fun = rep("log_link", 2)))
 summary(fit_wei)
@@ -114,21 +114,19 @@ summary(fit_wei)
 #> Optimization routine: nlminb 
 #> Standard Error calculation: Hessian from optim 
 #> _______________________________________________________________
-#>       AIC     BIC
-#>   75.2786 74.6539
+#>        AIC      BIC
+#>   301.1538 305.3574
 #> _______________________________________________________________
 #> Fixed effects for g(shape) 
 #> ---------------------------------------------------------------
-#>             Estimate Std. Error Z value Pr(>|z|)  
-#> (Intercept) 1.814813   0.961700  1.8871  0.05915 .
-#> group       0.034373   0.619600  0.0555  0.95574  
-#> ---
-#> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#>             Estimate Std. Error Z value Pr(>|z|)
+#> (Intercept)  0.83174    0.57660  1.4425   0.1492
+#> group        0.37584    0.36560  1.0280   0.3039
 #> _______________________________________________________________
 #> Fixed effects for g(scale) 
 #> ---------------------------------------------------------------
 #>             Estimate Std. Error Z value  Pr(>|z|)    
-#> (Intercept)   6.1830     0.0692  89.349 < 2.2e-16 ***
+#> (Intercept)   6.3359     0.0525  120.68 < 2.2e-16 ***
 #> ---
 #> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #> _______________________________________________________________
@@ -167,10 +165,10 @@ summary(fit)
 #> Standard Error calculation: Hessian from optim 
 #> _______________________________________________________________
 #>        AIC      BIC
-#>   64037.91 64052.33
+#>   64192.71 64207.13
 #> _______________________________________________________________
 #>      Estimate  Std. Error
-#> mean  159.9768     0.0595
-#> sd      5.9462     0.0420
+#> mean  159.9859     0.0599
+#> sd      5.9924     0.0424
 #> _______________________________________________________________
 ```

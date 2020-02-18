@@ -94,7 +94,7 @@ formulas <- list(scale.fo = ~ 1, shape.fo = ~ group)
 
 # The model
 fit_wei <- maxlogLreg(formulas, data = data,
-                      y_dist = Surv(t_sim, status) ~ dweibull,
+                      y_dist = Surv(Time, status) ~ dweibull,
                       link = list(over = c("shape", "scale"),
                                   fun = rep("log_link", 2)))
 summary(fit_wei)
