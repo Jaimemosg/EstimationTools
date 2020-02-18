@@ -57,25 +57,10 @@ These are basic examples which shows you how to solve a common maximum likelihoo
 
 <!-- The data is from [NIST](https://www.itl.nist.gov/div898/handbook/apr/section2/apr221.htm#Example). They generated  20 random Weibull failure times with a parameter `shape=1.5` and `scale=500`. The test time is 500 hours, 10 of these failure times are right censored. The observed times are, to the nearest hour: 54, 187, 216, 240, 244, 335, 361, 373, 375, and 386. -->
 
-```{r, echo=FALSE}
-tcens1 <- qweibull(0.1, shape = exp(1.2), scale = exp(6.214608), lower.tail = FALSE)
-tcens2 <- qweibull(0.07, shape = exp(1.2+0.3), scale = exp(6.214608), lower.tail = FALSE)
-tcens <- min(tcens1, tcens2)
-# save.image(file="sim_wei.RData")
-load(file="extra/sim_wei.RData")
-# t1 <- rweibull(n = 15, shape = exp(1.2), scale = exp(6.214608))
-# t2 <- rweibull(n = 15, shape = exp(1.2+0.3), scale = exp(6.214608))
-# 
-# t0 <- c(t1, t2)
-# t_sim <- ifelse(t0 < tcens, t0, tcens)
-# status <- as.numeric(t_sim < tcens)
-# group <- as.factor(c(rep(0, 15), rep(1, 15)) + 1)
-# data.frame(t_sim=t_sim, status=status, group=group)[c(1:3,28:30),]
-```
 
-We generate data from an hypothetic failure test of `r round(tcens, 2)` hours with 30 experimental units, 15 from group 1 and 15 from group 2. Lets assume a censorship rate of `r round(1 - sum(status)/length(status), 2)`, and regard that the data is right censored. Times from 6 experimental units are shown just bellow:
+We generate data from an hypothetic failure test of 540 hours with 30 experimental units, 15 from group 1 and 15 from group 2. Lets assume a censorship rate of 10%, and regard that the data is right censored. Times from 6 experimental units are shown just bellow:
 
-```{r, echo=TRUE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
 library(RCurl)
 library(foreign)
 
