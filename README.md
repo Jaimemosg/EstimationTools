@@ -54,10 +54,11 @@ likelihood estimation problem with `EstimationTools`:
 
 <!-- The data is from [NIST](https://www.itl.nist.gov/div898/handbook/apr/section2/apr221.htm#Example). They generated  20 random Weibull failure times with a parameter `shape=1.5` and `scale=500`. The test time is 500 hours, 10 of these failure times are right censored. The observed times are, to the nearest hour: 54, 187, 216, 240, 244, 335, 361, 373, 375, and 386. -->
 
-We generate data from an hypothetic failure test of 540 hours with 30
-experimental units, 15 from group 1 and 15 from group 2. Lets assume a
-censorship rate of 10%, and regard that the data is right censored.
-Times from 6 experimental units are shown just bellow:
+We generate data from an hypothetic failure test of approximately 641
+hours with 40 experimental units, 20 from group 1 and 20 from group 2.
+Lets assume a censorship rate of 10%, and regard that the data is right
+censored. Times from 6 of the 20 experimental units are shown just
+bellow:
 
 ``` r
 library(RCurl)
@@ -65,7 +66,16 @@ library(foreign)
 
 url_data <- "https://raw.githubusercontent.com/Jaimemosg/EstimationTools/master/extra/sim_wei.csv"
 wei_data <- getURL(url_data)
-data <- read.csv(textConnection(wei_data))
+data <- read.csv(textConnection(wei_data), header = TRUE)
+data$group <- as.factor(data$group)
+head(data)
+#>   label     Time status group
+#> 1     2 172.7296      1     2
+#> 2     5 198.5872      1     1
+#> 3    13 284.9617      1     1
+#> 4    18 289.8941      1     1
+#> 5    20 293.4005      1     1
+#> 6    15 303.5566      1     1
 ```
 
 The model is as follows:
@@ -84,14 +94,14 @@ f(t|\\alpha, k) = \\frac{\\alpha}{k} \\left(\\frac{t}{k}\\right)^{\\alpha-1} \\e
 ![
 \\begin{aligned}
 T &\\stackrel{\\text{iid.}}{\\sim} WEI(\\alpha,\\: k), \\\\
-\\alpha &= 1.5 + 0.3 \\times group \\quad (\\verb|shape|),\\\\
+\\log(\\alpha) &= 1.2 + 0.1 \\times group \\quad (\\verb|shape|),\\\\
 k &= 500 \\quad (\\verb|scale|).
 \\end{aligned}
-](https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0AT%20%26%5Cstackrel%7B%5Ctext%7Biid.%7D%7D%7B%5Csim%7D%20WEI%28%5Calpha%2C%5C%3A%20k%29%2C%20%5C%5C%0A%5Calpha%20%26%3D%201.5%20%2B%200.3%20%5Ctimes%20group%20%5Cquad%20%20%28%5Cverb%7Cshape%7C%29%2C%5C%5C%0Ak%20%26%3D%20500%20%5Cquad%20%28%5Cverb%7Cscale%7C%29.%0A%5Cend%7Baligned%7D%0A
+](https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0AT%20%26%5Cstackrel%7B%5Ctext%7Biid.%7D%7D%7B%5Csim%7D%20WEI%28%5Calpha%2C%5C%3A%20k%29%2C%20%5C%5C%0A%5Clog%28%5Calpha%29%20%26%3D%201.2%20%2B%200.1%20%5Ctimes%20group%20%5Cquad%20%20%28%5Cverb%7Cshape%7C%29%2C%5C%5C%0Ak%20%26%3D%20500%20%5Cquad%20%28%5Cverb%7Cscale%7C%29.%0A%5Cend%7Baligned%7D%0A
 "
 \\begin{aligned}
 T &\\stackrel{\\text{iid.}}{\\sim} WEI(\\alpha,\\: k), \\\\
-\\alpha &= 1.5 + 0.3 \\times group \\quad  (\\verb|shape|),\\\\
+\\log(\\alpha) &= 1.2 + 0.1 \\times group \\quad  (\\verb|shape|),\\\\
 k &= 500 \\quad (\\verb|scale|).
 \\end{aligned}
 ")  
@@ -115,18 +125,20 @@ summary(fit_wei)
 #> Standard Error calculation: Hessian from optim 
 #> _______________________________________________________________
 #>        AIC      BIC
-#>   301.1538 305.3574
+#>   472.4435 477.5101
 #> _______________________________________________________________
 #> Fixed effects for g(shape) 
 #> ---------------------------------------------------------------
-#>             Estimate Std. Error Z value Pr(>|z|)
-#> (Intercept)  0.83174    0.57660  1.4425   0.1492
-#> group        0.37584    0.36560  1.0280   0.3039
+#>             Estimate Std. Error Z value  Pr(>|z|)    
+#> (Intercept)  1.16587    0.19960  5.8410 5.189e-09 ***
+#> group2       0.30861    0.28990  1.0645    0.2871    
+#> ---
+#> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #> _______________________________________________________________
 #> Fixed effects for g(scale) 
 #> ---------------------------------------------------------------
 #>             Estimate Std. Error Z value  Pr(>|z|)    
-#> (Intercept)   6.3359     0.0525  120.68 < 2.2e-16 ***
+#> (Intercept)   6.2553     0.0463   135.1 < 2.2e-16 ***
 #> ---
 #> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #> _______________________________________________________________
@@ -165,10 +177,10 @@ summary(fit)
 #> Standard Error calculation: Hessian from optim 
 #> _______________________________________________________________
 #>        AIC      BIC
-#>   64192.71 64207.13
+#>   64242.83 64257.25
 #> _______________________________________________________________
 #>      Estimate  Std. Error
-#> mean  159.9859     0.0599
-#> sd      5.9924     0.0424
+#> mean  160.0410     0.0601
+#> sd      6.0075     0.0425
 #> _______________________________________________________________
 ```
