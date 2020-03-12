@@ -106,8 +106,9 @@
 #' @export
 maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
                     start = NULL, lower = NULL, upper = NULL,
-                    optimizer = 'nlminb', control = NULL, ...){
+                    optimizer = 'nlminb', silent = FALSE, control = NULL, ...){
 
+  if (silent) options(warn = -1)
   call <- match.call()
 
   # List of arguments of density function
@@ -273,6 +274,7 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
                   StdE = "Not computed yet", par_names = names_numeric)
   result <- list(fit = fit, inputs = inputs, outputs = outputs)
   class(result) <- "maxlogL"
+  if (silent) options(warn = 0)
   return(result)
 }
 #==============================================================================
