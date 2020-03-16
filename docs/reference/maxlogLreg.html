@@ -8,21 +8,25 @@
 
 <title>Maximum Likelihood Estimation for parametric linear regression models — maxlogLreg • EstimationTools</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,11 +34,12 @@
 
 
 
-<meta property="og:title" content="Maximum Likelihood Estimation for parametric linear regression models — maxlogLreg" />
 
+<meta property="og:title" content="Maximum Likelihood Estimation for parametric linear regression models — maxlogLreg" />
 <meta property="og:description" content="Function to compute maximum likelihood estimators (MLE) of regression parameters
 of any distribution implemented in R with covariates (linear predictors)." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -46,6 +51,7 @@ of any distribution implemented in R with covariates (linear predictors)." />
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
 
 
   </head>
@@ -72,7 +78,7 @@ of any distribution implemented in R with covariates (linear predictors)." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -92,11 +98,10 @@ of any distribution implemented in R with covariates (linear predictors)." />
   </ul>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/Jaimemosg/EstimationTools">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -107,6 +112,7 @@ of any distribution implemented in R with covariates (linear predictors)." />
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -118,16 +124,25 @@ of any distribution implemented in R with covariates (linear predictors)." />
     </div>
 
     <div class="ref-description">
-    
     <p>Function to compute maximum likelihood estimators (MLE) of regression parameters
 of any distribution implemented in <code>R</code> with covariates (linear predictors).</p>
-    
     </div>
 
-    <pre class="usage"><span class='fu'>maxlogLreg</span>(<span class='no'>formulas</span>, <span class='no'>y_dist</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subset</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>link</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>start</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>lower</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>upper</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>optimizer</span> <span class='kw'>=</span> <span class='st'>"nlminb"</span>, <span class='kw'>control</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
-    
+    <pre class="usage"><span class='fu'>maxlogLreg</span>(
+  <span class='no'>formulas</span>,
+  <span class='no'>y_dist</span>,
+  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>subset</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>link</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>start</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>lower</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>upper</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>optimizer</span> <span class='kw'>=</span> <span class='st'>"nlminb"</span>,
+  <span class='kw'>control</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>...</span>
+)</pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -187,8 +202,8 @@ argument `start` (for box-constrained optimization). <code>Inf</code> is the def
     <tr>
       <th>optimizer</th>
       <td><p>a lenght-one character vector with the name of optimization routine.
-<code><a href='https://www.rdocumentation.org/packages/stats/topics/nlminb'>nlminb</a></code>, <code><a href='https://www.rdocumentation.org/packages/stats/topics/optim'>optim</a></code> and
-<code><a href='https://www.rdocumentation.org/packages/DEoptim/topics/DEoptim'>DEoptim</a></code> are available; <code><a href='https://www.rdocumentation.org/packages/stats/topics/nlminb'>nlminb</a></code>
+<code><a href='https://rdrr.io/r/stats/nlminb.html'>nlminb</a></code>, <code><a href='https://rdrr.io/r/stats/optim.html'>optim</a></code> and
+<code><a href='https://rdrr.io/pkg/DEoptim/man/DEoptim.html'>DEoptim</a></code> are available; <code><a href='https://rdrr.io/r/stats/nlminb.html'>nlminb</a></code>
 is the default routine.</p></td>
     </tr>
     <tr>
@@ -201,7 +216,7 @@ optimizer for further information.</p></td>
       <td><p>Further arguments to be supplied to the optimization routine.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A list with class <code>"maxlogL"</code> containing the following
@@ -216,41 +231,38 @@ optimizer for further information.</p></td>
 <li><p>Number of regression parameters.</p></li>
 </ul></p></dd>
 
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p><code>maxlogLreg</code> calculates computationally the log-likelihood (log L) function
 corresponding to the distribution specified in argument <code>y_dist</code> with linear
 predictors specified in argument <code>formulas</code>. Then, it maximizes the log L through
-<code><a href='https://www.rdocumentation.org/packages/stats/topics/optim'>optim</a></code>, <code><a href='https://www.rdocumentation.org/packages/stats/topics/nlminb'>nlminb</a></code> or <code>DEoptim</code>. <code>maxlogLreg</code>
+<code><a href='https://rdrr.io/r/stats/optim.html'>optim</a></code>, <code><a href='https://rdrr.io/r/stats/nlminb.html'>nlminb</a></code> or <code>DEoptim</code>. <code>maxlogLreg</code>
 generates an S3 object of class <code>maxlogL</code>.</p>
-    
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>The following generic functions can be used with a <code>maxlogL</code> object:
-<code>summary, print</code>.</p>
-    
+<code>summary, print, logLik, AIC</code>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other maxlogL: <code><a href='maxlogL.html'>maxlogL</a></code></p></div>
-    
+    <div class='dont-index'><p>Other maxlogL: 
+<code><a href='maxlogL.html'>maxlogL</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>EstimationTools</span>)
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>EstimationTools</span>)
 
 <span class='co'>#--------------------------------------------------------------------------------</span>
 <span class='co'># Estimation in simulated normal distribution</span>
 <span class='no'>n</span> <span class='kw'>&lt;-</span> <span class='fl'>1000</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Uniform'>runif</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>, -<span class='fl'>5</span>, <span class='fl'>6</span>)
-<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/stats/topics/Normal'>rnorm</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>, <span class='kw'>mean</span> <span class='kw'>=</span> -<span class='fl'>2</span> + <span class='fl'>3</span> * <span class='no'>x</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/Log'>exp</a></span>(<span class='fl'>1</span> + <span class='fl'>0.3</span>* <span class='no'>x</span>))
-<span class='no'>norm_data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>y</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>x</span>)
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>, -<span class='fl'>5</span>, <span class='fl'>6</span>)
+<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>, <span class='kw'>mean</span> <span class='kw'>=</span> -<span class='fl'>2</span> + <span class='fl'>3</span> * <span class='no'>x</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>exp</a></span>(<span class='fl'>1</span> + <span class='fl'>0.3</span>* <span class='no'>x</span>))
+<span class='no'>norm_data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>y</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>x</span>)
 
 <span class='co'># It does not matter the order of distribution paramters</span>
-<span class='no'>formulas</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>sd.fo</span> <span class='kw'>=</span> ~ <span class='no'>x</span>, <span class='kw'>mean.fo</span> <span class='kw'>=</span> ~ <span class='no'>x</span>)
+<span class='no'>formulas</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>sd.fo</span> <span class='kw'>=</span> ~ <span class='no'>x</span>, <span class='kw'>mean.fo</span> <span class='kw'>=</span> ~ <span class='no'>x</span>)
 
 <span class='no'>norm_mod</span> <span class='kw'>&lt;-</span> <span class='fu'>maxlogLreg</span>(<span class='no'>formulas</span>, <span class='kw'>y_dist</span> <span class='kw'>=</span> <span class='no'>y</span> ~ <span class='no'>dnorm</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>norm_data</span>,
-                       <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='st'>"sd"</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"log_link"</span>))
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>norm_mod</span>)</div><div class='output co'>#&gt; _______________________________________________________________
+                       <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='st'>"sd"</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"log_link"</span>))
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>norm_mod</span>)</div><div class='output co'>#&gt; _______________________________________________________________
 #&gt; Optimization routine: nlminb 
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
@@ -280,28 +292,28 @@ generates an S3 object of class <code>maxlogL</code>.</p>
 <span class='co'># Fitting with censorship</span>
 <span class='co'># (data from https://www.itl.nist.gov/div898/handbook/apr/section4/apr413.htm)</span>
 
-<span class='no'>failures</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>55</span>, <span class='fl'>187</span>, <span class='fl'>216</span>, <span class='fl'>240</span>, <span class='fl'>244</span>, <span class='fl'>335</span>, <span class='fl'>361</span>, <span class='fl'>373</span>, <span class='fl'>375</span>, <span class='fl'>386</span>)
-<span class='no'>fails</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='no'>failures</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fl'>500</span>, <span class='fl'>10</span>))
-<span class='no'>status</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fl'>1</span>, <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/length'>length</a></span>(<span class='no'>failures</span>)), <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/rep'>rep</a></span>(<span class='fl'>0</span>, <span class='fl'>10</span>))
-<span class='no'>Wei_data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></span>(<span class='kw'>fails</span> <span class='kw'>=</span> <span class='no'>fails</span>, <span class='kw'>status</span> <span class='kw'>=</span> <span class='no'>status</span>)
+<span class='no'>failures</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>55</span>, <span class='fl'>187</span>, <span class='fl'>216</span>, <span class='fl'>240</span>, <span class='fl'>244</span>, <span class='fl'>335</span>, <span class='fl'>361</span>, <span class='fl'>373</span>, <span class='fl'>375</span>, <span class='fl'>386</span>)
+<span class='no'>fails</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>failures</span>, <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>500</span>, <span class='fl'>10</span>))
+<span class='no'>status</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>failures</span>)), <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>0</span>, <span class='fl'>10</span>))
+<span class='no'>Wei_data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>fails</span> <span class='kw'>=</span> <span class='no'>fails</span>, <span class='kw'>status</span> <span class='kw'>=</span> <span class='no'>status</span>)
 
 <span class='co'># Formulas with linear predictors</span>
-<span class='no'>formulas</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>scale.fo</span><span class='kw'>=</span>~<span class='fl'>1</span>, <span class='kw'>shape.fo</span><span class='kw'>=</span>~<span class='fl'>1</span>)
+<span class='no'>formulas</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>scale.fo</span><span class='kw'>=</span>~<span class='fl'>1</span>, <span class='kw'>shape.fo</span><span class='kw'>=</span>~<span class='fl'>1</span>)
 
 <span class='co'># Bounds for optimization. Upper bound set with default values (Inf)</span>
-<span class='no'>start</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
-  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>Intercept</span> <span class='kw'>=</span> <span class='fl'>100</span>),
-  <span class='kw'>shape</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>Intercept</span> <span class='kw'>=</span> <span class='fl'>10</span>)
+<span class='no'>start</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>Intercept</span> <span class='kw'>=</span> <span class='fl'>100</span>),
+  <span class='kw'>shape</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>Intercept</span> <span class='kw'>=</span> <span class='fl'>10</span>)
 )
-<span class='no'>lower</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(
-  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>Intercept</span> <span class='kw'>=</span> <span class='fl'>0</span>),
-  <span class='kw'>shape</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>(<span class='kw'>Intercept</span> <span class='kw'>=</span> <span class='fl'>0</span>)
+<span class='no'>lower</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
+  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>Intercept</span> <span class='kw'>=</span> <span class='fl'>0</span>),
+  <span class='kw'>shape</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>Intercept</span> <span class='kw'>=</span> <span class='fl'>0</span>)
 )
 
 <span class='no'>mod_weibull</span> <span class='kw'>&lt;-</span> <span class='fu'>maxlogLreg</span>(<span class='no'>formulas</span>, <span class='kw'>y_dist</span> <span class='kw'>=</span> <span class='fu'>Surv</span>(<span class='no'>fails</span>, <span class='no'>status</span>) ~ <span class='no'>dweibull</span>,
                           <span class='kw'>start</span> <span class='kw'>=</span> <span class='no'>start</span>,
                           <span class='kw'>lower</span> <span class='kw'>=</span> <span class='no'>lower</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>Wei_data</span>)
-<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/summary'>summary</a></span>(<span class='no'>mod_weibull</span>)</div><div class='output co'>#&gt; _______________________________________________________________
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod_weibull</span>)</div><div class='output co'>#&gt; _______________________________________________________________
 #&gt; Optimization routine: nlminb 
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
@@ -332,15 +344,10 @@ generates an S3 object of class <code>maxlogL</code>.</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-
       <li><a href="#note">Note</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
@@ -349,19 +356,23 @@ generates an S3 object of class <code>maxlogL</code>.</p>
   </div>
 </div>
 
+
       <footer>
       <div class="copyright">
   <p>Developed by Jaime Mosquera, Freddy Hernandez.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

@@ -23,7 +23,7 @@ maxlogL(
 with hierarchical distributions.}
 
 \item{dist}{a length-one character vector with the name of density/mass function
-of interest. The default value is "dnorm", to compute maximum likelihood
+of interest. The default value is \code{'dnorm'}, to compute maximum likelihood
 estimators of normal distribution.}
 
 \item{fixed}{a list with fixed/known parameters of distribution of interest.
@@ -46,6 +46,8 @@ function. There are three link functions available: \code{\link{log_link}},
 \code{\link{nlminb}}, \code{\link{optim}} and
 \code{\link[DEoptim]{DEoptim}} are available; \code{\link{nlminb}}
 is the default routine.}
+
+\item{silent}{logical; if TRUE, warnings of \code{"maxlogL"} are supressed.}
 
 \item{control}{control parameters of the optimization routine. Please, visit documentation of selected
 optimizer for further information.}
@@ -70,7 +72,7 @@ Function to compute maximum likelihood estimators (MLE)
 of any distribution implemented in \code{R}.
 }
 \details{
-\code{maxlogL} calculates computationally the likelihood function corresponding to
+\code{maxlogL} computes the likelihood function corresponding to
 the distribution specified in argument \code{dist} and maximizes it through
 \code{\link{optim}}, \code{\link{nlminb}} or \code{\link{DEoptim}}. \code{maxlogL}
 generates an S3 object of class \code{maxlogL}.
