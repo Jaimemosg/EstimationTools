@@ -13,6 +13,7 @@ maxlogL(
   lower = NULL,
   upper = NULL,
   optimizer = "nlminb",
+  silent = FALSE,
   control = NULL,
   ...
 )

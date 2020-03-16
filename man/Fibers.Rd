@@ -4,7 +4,9 @@
 \name{Fibers}
 \alias{Fibers}
 \title{Tensile strengths}
-\format{A data frame with 69 observations.}
+\format{
+A data frame with 69 observations.
+}
 \usage{
 Fibers
 }
