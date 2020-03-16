@@ -10,7 +10,7 @@
 #' @param x a vector with data to be fitted. This argument must be a matrix
 #'          with hierarchical distributions.
 #' @param dist a length-one character vector with the name of density/mass function
-#'             of interest. The default value is "dnorm", to compute maximum likelihood
+#'             of interest. The default value is \code{'dnorm'}, to compute maximum likelihood
 #'             estimators of normal distribution.
 #' @param fixed a list with fixed/known parameters of distribution of interest.
 #'              Fixed parameters must be passed with its name.
@@ -27,6 +27,7 @@
 #'                  \code{\link{nlminb}}, \code{\link{optim}} and
 #'                  \code{\link[DEoptim]{DEoptim}} are available; \code{\link{nlminb}}
 #'                  is the default routine.
+#' @param silent  logical; if TRUE, warnings of \code{"maxlogL"} are supressed.
 #' @param control control parameters of the optimization routine. Please, visit documentation of selected
 #'                optimizer for further information.
 #' @param ... Further arguments to be supplied to the optimizer.
@@ -43,7 +44,7 @@
 #'        }
 #' }
 #'
-#' @details \code{maxlogL} calculates computationally the likelihood function corresponding to
+#' @details \code{maxlogL} computes the likelihood function corresponding to
 #' the distribution specified in argument \code{dist} and maximizes it through
 #' \code{\link{optim}}, \code{\link{nlminb}} or \code{\link{DEoptim}}. \code{maxlogL}
 #' generates an S3 object of class \code{maxlogL}.
@@ -51,7 +52,7 @@
 #' @note The following generic functions can be used with a \code{maxlogL} object:
 #' \code{summary, print}.
 #'
-#' @importFrom stats nlminb optim pnorm
+#' @importFrom stats nlminb optim
 #' @importFrom DEoptim DEoptim
 #' @importFrom BBmisc is.error
 #' @importFrom numDeriv hessian
