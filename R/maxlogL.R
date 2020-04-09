@@ -50,7 +50,7 @@
 #' generates an S3 object of class \code{maxlogL}.
 #'
 #' @note The following generic functions can be used with a \code{maxlogL} object:
-#' \code{summary, print}.
+#' \code{summary, print, AIC, BIC, logLik}.
 #'
 #' @importFrom stats nlminb optim
 #' @importFrom DEoptim DEoptim
