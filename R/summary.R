@@ -119,7 +119,7 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
         Zvalue <- rep(NA, times = n_est)
         pvalue <- rep(NA, times = n_est)
       } else {
-        Zvalue <- round(estimate / stdE, digits = 4)
+        Zvalue <- format(estimate / stdE, digits = 4, nsmall = 4)
         pvalue <- 2 * pnorm(abs(Zvalue), lower.tail = FALSE)
       }
 
@@ -150,13 +150,13 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
             Zvalue <- rep(NA, times = n_est)
             pvalue <- rep(NA, times = n_est)
           } else {
-            Zvalue <- round(estimate / stdE, digits = 4)
+            Zvalue <- estimate / stdE
             pvalue <- 2 * pnorm(abs(Zvalue), lower.tail = FALSE)
           }
         } else {
           # Diagonal of Hessian^-1
-          stdE <- round(sqrt(diag(solve(object$fit$hessian))), digits = 4)
-          Zvalue <- round(estimate / stdE, digits = 4)
+          stdE <- sqrt(diag(solve(object$fit$hessian)))
+          Zvalue <- estimate / stdE
           pvalue <- 2 * pnorm(abs(Zvalue), lower.tail = FALSE)
 
           # Standard error updating in "object"
@@ -176,7 +176,7 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
     }
   } else {
     stdE <- object$outputs$StdE
-    Zvalue <- round(estimate / stdE, digits = 4)
+    Zvalue <- estimate / stdE
     pvalue <- 2 * pnorm(abs(Zvalue), lower.tail = FALSE)
     StdE_Method <- object$outputs$StdE_Method
   }
@@ -194,8 +194,9 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
 
   if ( object$outputs$type == "maxlogL" ){
     ## Summary table
-    res <- cbind(estimate = estimate, se = stdE, zvalue = Zvalue,
-                 pvalue = pvalue)
+    res <- cbind(estimate = estimate, se = stdE,
+                 zvalue = Zvalue, pvalue = pvalue)
+    # res <- format(res, digits = 5, nsmall = 4)
     # res <- formatC(res, format = "e", digits = 3)
     res <- data.frame(res)
     colnames(res) <- c('Estimate ', 'Std. Error', 'Z value', 'Pr(>|z|)')
@@ -223,7 +224,7 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
     # rownames(table) <- " "
     # print(table)
     # cat("_______________________________________________________________\n")
-    printCoefmat(res[,1:2], P.values = FALSE)
+    printCoefmat(res, P.values = TRUE, digits = 4)
     cat("_______________________________________________________________\n")
     # cat('Note: p-values valid under asymptotic normality of estimators \n')
     # cat("-----\n")
