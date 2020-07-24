@@ -119,7 +119,7 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
         Zvalue <- rep(NA, times = n_est)
         pvalue <- rep(NA, times = n_est)
       } else {
-        Zvalue <- format(estimate / stdE, digits = 4, nsmall = 4)
+        Zvalue <- estimate / stdE
         pvalue <- 2 * pnorm(abs(Zvalue), lower.tail = FALSE)
       }
 
