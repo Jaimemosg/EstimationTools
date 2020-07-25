@@ -1,35 +1,24 @@
 #' @title Summarize Maximum Likelihood Estimation
 #'
+#' @author Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
+#'
 #' @description
 #' Displays maximum likelihood estimates computed with \code{\link{maxlogL}} with
 #' its standard errors, AIC and BIC.
-#' This is a \code{summary} method for \code{\link{maxlogL}} object
+#' This is a \code{summary} method for \code{\link{maxlogL}} object.
 #'
 #' @aliases summary.maxlogL
 #'
-#' @param object an object class "\code{\link{maxlogL}}".
-#' @param Boot_Std_Err a logical variable for standard Errors computation by
-#'        bootstrapping. The default is \code{FALSE}. This computation occurs when hessian
-#'        from \code{\link{optim}} and \code{\link[numDeriv]{hessian}} fails in
-#'        \code{\link{maxlogL}} routine. If this argument is \code{TRUE}, standard errors
-#'        are computed, even if hessian did not fail in \code{\link{maxlogL}} routine.
-#' @param ... arguments passed to \code{\link[boot]{boot}} for estimation of stantdard error with
-#' non-parametric bootstrap.
+#' @param object an object of \code{\link{maxlogL}} class which summary is desired.
+#' @param ... additional arguments affecting the summary produced.
 #'
-#' @details This \code{summary} method takes standard errors from \code{\link{maxlogL}} object and displays them.
-#' If \code{\link[numDeriv]{hessian}} and Hessian from \code{\link{optim}} fails, standard errors are
-#' computed with bootstrap. However, if user sets \code{Boot_Std_Err = TRUE} in this summary function,
-#' standard errors are calculated by bootstrap, even if \code{\link[numDeriv]{hessian}} or Hessian from
-#' \code{\link{optim}} converges.
+#' @details This \code{summary} method computes and displays AIC, BIC,
+#' estimates and standard errors from a estimated model stored i a \code{maxlogL}
+#' class object. It  also displays and computes Z-score and p values of significance
+#' test of parameters.
 #'
-#' Supose that the user creates a variable named \code{fit} that stores \code{\link{maxlogL}} object. The
-#' summary method modifies the element \code{fit$outputs$StdE_Method} object from \code{Gobal Environment}
-#' (see the Second Example). If user does not creat a variable, the summary methid it simply calculates
-#' standard errors (see the Third Example).
-#'
-#' @return An object of class 'summary.maxlogL'.
+#' @return A list with details that summarize results of a \code{maxlogL} class object.
 #' @importFrom stats sd printCoefmat
-#' @importFrom boot boot
 #' @export
 #'
 #' @examples
@@ -56,39 +45,41 @@
 #' ## Standard error calculation method
 #' print(phat$outputs$StdE_Method)
 #'
-#' ## Standard error value (not computed yet, because is computed with 'summary')
-#' print(phat$outputs$StdE)
-#'
 #' ## 'summary' method
 #' summary(phat)
 #'
-#' ## Now, standard error is updated
-#' print(phat$outputs$StdE_Method)
-#' print(phat$outputs$StdE)
-#'
-#'
 #' #--------------------------------------------------------------------------------
-#' # Third example: Binomial probability parameter estimation with no varaible
+#' # Third example: Binomial probability parameter estimation with no variable
 #' # creation
 #'
 #' N <- rbinom(n = 100, size = 10, prob = 0.3)
 #' summary(maxlogL(x = N, dist = 'dbinom', fixed = list(size = 10),
 #'                 link = list(over = "prob", fun = "logit_link")))
 #'
+#' #--------------------------------------------------------------------------------
+#' # Fourth example: Estimation with simulated normal data
+#' n <- 1000
+#' x <- runif(n = n, -5, 6)
+#' y <- rnorm(n = n, mean = -2 + 3 * x, sd = exp(1 + 0.3* x))
+#' norm_data <- data.frame(y = y, x = x)
+#' formulas <- list(sd.fo = ~ x, mean.fo = ~ x)
+#'
+#' norm_mod <- maxlogLreg(formulas, y_dist = y ~ dnorm, data = norm_data,
+#'                        link = list(over = "sd", fun = "log_link"))
+#'
+#' ## 'summary' method
+#' summary(norm_mod)
+#'
 #'
 #' #--------------------------------------------------------------------------------
 #'
-#' @references
-#' \insertRef{Canty2017}{EstimationTools}
-#'
-#' @importFrom Rdpack reprompt
-#'
-#' @seealso \code{\link{maxlogL}}, \code{\link[boot]{boot}}
+#' @seealso \code{\link{maxlogL}}, \code{\link{maxlogLreg}},
+#' \code{\link{bootstrap_maxlogL}}
 #'
 #==============================================================================
 # Summary function ------------------------------------------------------------
 #==============================================================================
-summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
+summary.maxlogL <- function(object, ...){
   # .myenv <- environment()
   # list2env(var.list , envir = .myenv)
   # var.list <- as.list(object)
@@ -97,86 +88,33 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
   StdE_Method <- object$outputs$StdE_Method
   n_est <- ifelse( object$outputs$type == "maxlogL", object$outputs$npar,
                    sum(object$outputs$b_length) )
+  warn <- NULL
 
-  if ( any(object$outputs$StdE == "Not computed yet") ){
-    if ( Boot_Std_Err == TRUE ){
-      StdE_Method <- "Bootstrap"
-      warn <- paste0("\n...Bootstrap computation of Standard Error. ",
-                     "Please, wait a few minutes...\n\n")
-      cat(warn)
-
-      stdE <- try(boot_MLE(object = object, ...), silent = TRUE)
-
-      # Standard error updating in "object"
-      object_name <- deparse(substitute(object))
-      if (any(object_name != deparse(object$inputs$call))){
-        parent <- parent.frame()
-        uptodate(p = parent, object_name, stdE, StdE_Method)
-      }
-
-      if( (any(is.na(stdE)) | is.error(stdE)) | any(is.character(stdE)) ){
-        stdE <- rep(NA, times = n_est)
-        Zvalue <- rep(NA, times = n_est)
-        pvalue <- rep(NA, times = n_est)
-      } else {
-        Zvalue <- estimate / stdE
-        pvalue <- 2 * pnorm(abs(Zvalue), lower.tail = FALSE)
-      }
-
-    } else {
-      if ( any(is.na(estimate)) | any(is.nan(estimate)) |
-           any(is.infinite(estimate))){
+  if ( any(StdE_Method == "'optim' and 'numDeriv' failed") ){
+  	condition1 <- any(is.na(estimate)) | any(is.nan(estimate)) |
+                  any(is.infinite(estimate)) | any(is.error(estimate))
+    if ( condition1 ){
         stop(paste0("'", as.character(as.list(call)[[1]]), "' computes NA ,",
                     "NaN or Inf estimates. Please, change optimization ",
                     "algorithm or set different initial value(s)"))
-      } else {
-        if( any(is.na(object$fit$hessian)) ){
-          StdE_Method <- "Bootstrap"
-          warn <- paste0("\n...Bootstrap computation of Standard Error. ",
-                         "Please, wait a few minutes...\n\n")
-          cat(warn)
-
-          stdE <- try(boot_MLE(object = object, ...), silent = TRUE)
-
-          # Standard error updating in "object"
-          object_name <- deparse(substitute(object))
-          if (any(object_name != deparse(object$inputs$call))){
-            parent <- parent.frame()
-            uptodate(p = parent, object_name, stdE, StdE_Method)
-          }
-
-          if( (any(is.na(stdE)) | is.error(stdE)) | any(is.character(stdE)) ){
-            stdE <- rep(NA, times = n_est)
-            Zvalue <- rep(NA, times = n_est)
-            pvalue <- rep(NA, times = n_est)
-          } else {
-            Zvalue <- estimate / stdE
-            pvalue <- 2 * pnorm(abs(Zvalue), lower.tail = FALSE)
-          }
-        } else {
-          # Diagonal of Hessian^-1
-          stdE <- sqrt(diag(solve(object$fit$hessian)))
-          Zvalue <- estimate / stdE
-          pvalue <- 2 * pnorm(abs(Zvalue), lower.tail = FALSE)
-
-          # Standard error updating in "object"
-          object_name <- deparse(substitute(object))
-          if (any(object_name != deparse(object$inputs$call))){
-            parent <- parent.frame()
-            uptodate(p = parent, object_name, stdE, StdE_Method,
-                     change_SE_method = FALSE)
-          }
-        }
-      }
-      if (any(is.na(stdE))){
-        stdE <- rep(NA, times = n_est)
-        Zvalue <- rep(NA, times = n_est)
-        pvalue <- rep(NA, times = n_est)
+    } else {
+      # codition2 <- any(is.na(object$fit$hessian)) #|
+      # 		any(is.nan(object$fit$hessian)) |
+      # 		   any(is.infinite(object$fit$hessian)) |
+      # 		   any(is.error(object$fit$hessian)) |
+      # 		   any(is.character(object$fit$hessian))
+      if (  any(is.na(object$fit$hessian)) ){  # this is the condition2
+          warn <- paste0("One or more standard errors equals NA. Please,
+          				 try bootstrap computation of standard error with
+          				 'boot_maxlogL' function.")
+          StdE <- rep(NA, times = n_est)
+          Zvalue <- rep(NA, times = n_est)
+          pvalue <- rep(NA, times = n_est)
       }
     }
   } else {
-    stdE <- object$outputs$StdE
-    Zvalue <- estimate / stdE
+    StdE <- object$fit$StdE
+    Zvalue <- estimate / StdE
     pvalue <- 2 * pnorm(abs(Zvalue), lower.tail = FALSE)
     StdE_Method <- object$outputs$StdE_Method
   }
@@ -194,45 +132,18 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
 
   if ( object$outputs$type == "maxlogL" ){
     ## Summary table
-    res <- cbind(estimate = estimate, se = stdE,
+    res <- cbind(estimate = estimate, se = StdE,
                  zvalue = Zvalue, pvalue = pvalue)
     # res <- format(res, digits = 5, nsmall = 4)
     # res <- formatC(res, format = "e", digits = 3)
     res <- data.frame(res)
     colnames(res) <- c('Estimate ', 'Std. Error', 'Z value', 'Pr(>|z|)')
-
-    ## Parameter names
-    # names_numeric <- rep("", times = n_est)
-    # dist_args <- as.list(args(object$inputs$dist))
-    # j <- 1
-    # for (i in 1:length(dist_args)){
-    #   if (is.numeric(dist_args[[i]]) || is.symbol(dist_args[[i]])){
-    #     names_numeric[j] <- names(dist_args[i])
-    #     j <- j + 1
-    #   }
-    # }
-    # names_numeric <- names_numeric[-which(names_numeric == "x")]
-    # pos_del <- length(match(names(object$inputs$fixed), names_numeric))
-    # if (pos_del > 0){
-    #   names_numeric <- names_numeric[-pos_del]
-    # }
-    # rownames(res) <- names_numeric
-    # AIC <- 2 * object$outputs$npar - 2 * object$fit$objective
-    # BIC <- log(length(object$outputs$n)) * object$outputs$npar - 2 * object$fit$objective
-    # table <- data.frame(AIC=round(AIC, digits = 4),
-                        # BIC=round(BIC, digits = 4))
-    # rownames(table) <- " "
-    # print(table)
-    # cat("_______________________________________________________________\n")
     printCoefmat(res, P.values = TRUE, digits = 4)
     cat("_______________________________________________________________\n")
-    # cat('Note: p-values valid under asymptotic normality of estimators \n')
-    # cat("-----\n")
     estimatePrint <- estimate
-    # names(estimatePrint) <- names_numeric
   } else {
     A <- param_index(object$outputs$b_length, object$outputs$npar)
-    res <- cbind(estimate = estimate, se = stdE, zvalue = Zvalue,
+    res <- cbind(estimate = estimate, se = StdE, zvalue = Zvalue,
                  pvalue = pvalue)
     res <- data.frame(res)
     colnames(res) <- c('Estimate', 'Std. Error', 'Z value', 'Pr(>|z|)')
@@ -249,64 +160,12 @@ summary.maxlogL <- function(object, Boot_Std_Err = FALSE, ...){
     cat("---\n")
     estimatePrint <- estimate
   }
-  ans <- list(Estimate = estimatePrint, Std_Error = stdE,
+  if ( !is.null(warn) ) warning(warn)
+  ans <- list(Estimate = estimatePrint, Std_Error = StdE,
               Z_value = Zvalue, p_value = pvalue)
   result <- ans
   # class(ans) <- "summary.maxlogL"
   # return(ans)
-}
-
-#==============================================================================
-# Standard error by Bootstrap -------------------------------------------------
-#==============================================================================
-# Inspired by bootstrap implementation on 'cubm' package
-# https://github.com/fhernanb/cubm
-boot_MLE <- function(object, R = 2000, ...){
-
-  MLE <- function(data, i, object){
-    MLE_arguments <- as.list(object$inputs$call)[-1]
-    if ( !is.null(MLE_arguments$control) ){
-      MLE_arguments$control <-
-        MLE_arguments$control[-which(names(MLE_arguments$control) == "trace")]
-    }
-    if ( object$outputs$type == "maxlogL" ){
-      # MLE_arguments <- object$inputs[-which(names(object$inputs) == "call")]
-      # MLE_arguments <- MLE_arguments[-which(names(MLE_arguments) == "data")]
-      MLE_arguments <- MLE_arguments[-which(names(MLE_arguments) == "x")]
-      estimates <- do.call( what = "maxlogL",
-                            args = c(list(x = data[i]), MLE_arguments) )
-    } else {
-      MLE_arguments <- MLE_arguments[-which(names(MLE_arguments) ==
-                                              "formulas")]
-      fos <- object$inputs$formulas
-      data_names <- names(data)
-      data <- data[i,]
-      data <- as.data.frame(data)
-      names(data) <- data_names
-      estimates <- do.call( what = "maxlogLreg",
-                            args = c(list(data = data, formulas = fos),
-                                     MLE_arguments) )
-    }
-    return(estimates$fit$par)
-  }
-  data <- object$inputs$data
-  btstrp <- boot::boot(data = data, statistic = MLE, R = R, object = object, ...)
-  return(apply(X = btstrp$t, MARGIN = 2, FUN = sd))
-}
-
-#==============================================================================
-# Standard update -------------------------------------------------------------
-#==============================================================================
-uptodate <- function(p, object_name, stdE, StdE_Method,
-                     change_SE_method = TRUE){
-  # allocation2 <- paste0("p$", object_name, "$outputs$StdE <- ", stdE)
-  allocation2 <- paste0("p$", object_name, "$outputs$StdE <- stdE")
-  eval(parse(text = allocation2))
-  if (change_SE_method){
-    allocation1 <- paste0("p$", object_name,
-                          "$outputs$StdE_Method <- StdE_Method")
-    eval(parse(text = allocation1))
-  }
 }
 #==============================================================================
 # Print method ----------------------------------------------------------------
