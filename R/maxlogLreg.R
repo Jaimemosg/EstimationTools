@@ -1,17 +1,17 @@
 #' @title Maximum Likelihood Estimation for parametric linear regression models
 #' @family maxlogL
 #'
+#' @author Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
+#'
 #' @description
 #' Function to compute maximum likelihood estimators (MLE) of regression parameters
 #' of any distribution implemented in \code{R} with covariates (linear predictors).
 #'
-#' @author Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
-#'
 #' @param formulas a list of formula objects. Each element must have an \code{~}, with the terms
 #' on the right separated by \code{+} operators. The response variable on the left side is optional.
-#' Linear predictor of each parameter must be specified with the name of the parameter folowed by
-#' the sufix \code{'.fo'}. See the examples below for further illustration.
-#' @param y_dist a formula object tha specifies the distribution of the response variable.
+#' Linear predictor of each parameter must be specified with the name of the parameter followed by
+#' the suffix \code{'.fo'}. See the examples below for further illustration.
+#' @param y_dist a formula object that specifies the distribution of the response variable.
 #'               On the left side of \code{~} must be the response, and in the right side
 #'               must be the name o de probability density/mass function. See the section
 #'               'Details' and the examples below for further illustration.
@@ -39,6 +39,7 @@
 #'                  is the default routine.
 #' @param control control parameters of the optimization routine. Please, visit documentation of selected
 #'                optimizer for further information.
+#' @param silent  logical. If TRUE, warnings of \code{maxlogL} are suppressed.
 #' @param ... Further arguments to be supplied to the optimization routine.
 #'
 #' @return A list with class \code{"maxlogL"} containing the following
@@ -80,7 +81,7 @@
 #' y <- rnorm(n = n, mean = -2 + 3 * x, sd = exp(1 + 0.3* x))
 #' norm_data <- data.frame(y = y, x = x)
 #'
-#' # It does not matter the order of distribution paramters
+#' # It does not matter the order of distribution parameters
 #' formulas <- list(sd.fo = ~ x, mean.fo = ~ x)
 #'
 #' norm_mod <- maxlogLreg(formulas, y_dist = y ~ dnorm, data = norm_data,
@@ -116,27 +117,23 @@
 #' summary(mod_weibull)
 #'
 #'
-#' #--------------------------------------------------------------------------------
+#' @seealso \code{\link{summary.maxlogL}}, \code{\link{optim}}, \code{\link{nlminb}},
+#'          \code{\link{DEoptim}}, \code{\link{DEoptim.control}},
+#'          \code{\link{maxlogL}}, \code{\link{bootstrap_maxlogL}}
+#'
 #==============================================================================
 # Maximization routine for regression -----------------------------------------
 #==============================================================================
 #' @export
-maxlogLreg <- function(formulas,
-                       y_dist,
-                       data = NULL,
-                       subset = NULL,
-                       fixed = NULL,
-                       link = NULL,
-                       start = NULL,
-                       lower = NULL,
-                       upper = NULL,
-                       optimizer = 'nlminb',
-                       control = NULL,
-                       ...){
+maxlogLreg <- function(formulas, y_dist, data = NULL, subset = NULL,
+                       fixed = NULL, link = NULL, start = NULL,
+                       lower = NULL, upper = NULL, optimizer = 'nlminb',
+                       control = NULL, silent = FALSE, ...){
 
+  if (silent) options(warn = -1)
   call <- match.call()
 
-  # Distribution of response varaibles
+  # Distribution of response variables
   distr <- as.character(y_dist)[3]
 
   # Subset of data
@@ -324,19 +321,28 @@ maxlogLreg <- function(formulas,
     StdE_Method <- "numDeriv::hessian"
   }
   if ( (any(is.na(fit$hessian)) | is.error(fit$hessian)) |
-       any(is.character(fit$hessian)) ) fit$hessian <- NA
+       any(is.character(fit$hessian)) ){
+    StdE_Method <- "'optim' and 'numDeriv' failed"
+    fit$hessian <- NA
+    fit$StdE <- NA
+  } else {
+    fit$StdE <- sqrt(diag(solve(fit$hessian)))
+  }
 
+  # fit stores the following information:
+  # fit <- list(par, objective, hessian, StdE)
   inputs <- list(call = call, distr = distr, y_dist = y_dist,
                  formulas = formulas, fixed = fixed, link = link,
                  start = start, lower = lower, upper = upper,
                  optimizer = optimizer, data = dsgn_mat$data_reg)
   outputs <- list(npar = npar - length(fixed), n = length(dsgn_mat$y),
                   StdE_Method = StdE_Method, type = "maxlogLreg",
-                  StdE = "Not computed yet", b_length = b_length,
+                  b_length = b_length,
                   par_names = par_names, response = dsgn_mat$y,
                   design_matrix = dsgn_mat)
   result <- list(fit = fit, inputs = inputs, outputs = outputs)
   class(result) <- "maxlogL"
+  if (silent) options(warn = 0)
   return(result)
 }
 

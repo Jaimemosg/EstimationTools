@@ -1,11 +1,11 @@
 #' @title Maximum Likelihood Estimation for parametric distributions
 #' @family maxlogL
 #'
+#' @author Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
+#'
 #' @description
 #' Function to compute maximum likelihood estimators (MLE)
 #' of any distribution implemented in \code{R}.
-#'
-#' @author Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
 #'
 #' @param x a vector with data to be fitted. This argument must be a matrix
 #'          with hierarchical distributions.
@@ -19,22 +19,21 @@
 #'             function. There are three link functions available: \code{\link{log_link}},
 #'             \code{\link{logit_link}} and \code{\link{NegInv_link}}.
 #' @param start a numeric vector with initial values for the parameters to be estimated.
-#' @param lower a numeric vector with lower bounds, with the same lenght of argument
+#' @param lower a numeric vector with lower bounds, with the same length of argument
 #'              `start` (for box-constrained optimization).
-#' @param upper a numeric vector with upper bounds, with the same lenght of argument
+#' @param upper a numeric vector with upper bounds, with the same length of argument
 #'              `start` (for box-constrained optimization).
 #' @param optimizer a lenght-one character vector with the name of optimization routine.
 #'                  \code{\link{nlminb}}, \code{\link{optim}} and
 #'                  \code{\link[DEoptim]{DEoptim}} are available; \code{\link{nlminb}}
 #'                  is the default routine.
-#' @param silent  logical; if TRUE, warnings of \code{"maxlogL"} are supressed.
 #' @param control control parameters of the optimization routine. Please, visit documentation of selected
 #'                optimizer for further information.
-#' @param ... Further arguments to be supplied to the optimizer.
+#' @param silent  logical. If TRUE, warnings of \code{maxlogL} are suppressed.
+#' @param ... further arguments to be supplied to the optimizer.
 #'
-#' @return A list with class \code{"maxlogL"} containing the following
-#'  lists:
-#' \item{fit}{A list with output information about estimation and method used.}
+#' @return A list with class \code{"maxlogL"} containing the following lists:
+#' \item{fit}{A list with output information about estimation.}
 #' \item{inputs}{A list with all input arguments.}
 #' \item{outputs}{A list with some output additional information:
 #'       \itemize{
@@ -100,14 +99,16 @@
 #' @importFrom Rdpack reprompt
 #'
 #' @seealso \code{\link{summary.maxlogL}}, \code{\link{optim}}, \code{\link{nlminb}},
-#'          \code{\link{DEoptim}}, \code{\link{DEoptim.control}}
+#'          \code{\link{DEoptim}}, \code{\link{DEoptim.control}},
+#'          \code{\link{maxlogLreg}}, \code{\link{bootstrap_maxlogL}}
+#'
 #==============================================================================
 # Maximization routine --------------------------------------------------------
 #==============================================================================
 #' @export
 maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
                     start = NULL, lower = NULL, upper = NULL,
-                    optimizer = 'nlminb', silent = FALSE, control = NULL, ...){
+                    optimizer = 'nlminb', control = NULL, silent = FALSE, ...){
 
   if (silent) options(warn = -1)
   call <- match.call()
@@ -244,15 +245,22 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
   # fit$hessian <- try(optimHess(par = fit$par, fn = ll.noLink, method = 'L-BFGS-B',
   #                              lower = fit$par - 0.5*fit$par,
   #                              upper = fit$par + 0.5*fit$par), silent = TRUE)
-
   StdE_Method <- "Hessian from optim"
   if ( (any(is.na(fit$hessian)) | is.error(fit$hessian)) |
        any(is.character(fit$hessian)) ){
     fit$hessian <- try(numDeriv::hessian(ll.noLink, fit$par), silent = TRUE)
     StdE_Method <- "numDeriv::hessian"
   }
+
+  ## Standard error computation
   if ( (any(is.na(fit$hessian)) | is.error(fit$hessian)) |
-       any(is.character(fit$hessian)) ) fit$hessian <- NA
+       any(is.character(fit$hessian)) ){
+    StdE_Method <- "'optim' and 'numDeriv' failed"
+    fit$hessian <- NA
+    fit$StdE <- NA
+  } else {
+    fit$StdE <- sqrt(diag(solve(fit$hessian)))
+  }
 
   ## Parameter names
   names_numeric <- rep("", times = npar)
@@ -266,13 +274,15 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
   names_numeric <- names_numeric[-which(names_numeric == "x")]
   names(fit$par) <- names_numeric
 
+  # fit stores the following information:
+  # fit <- list(par, objective, hessian, StdE)
   inputs <- list(call = call, dist = dist, fixed = fixed,
                  link = link, optimizer = optimizer,
                  start = start, lower = lower, upper = upper,
                  data = x)
   outputs <- list(npar = npar - length(fixed), n = length(x),
                   StdE_Method = StdE_Method, type = "maxlogL",
-                  StdE = "Not computed yet", par_names = names_numeric)
+                  par_names = names_numeric)
   result <- list(fit = fit, inputs = inputs, outputs = outputs)
   class(result) <- "maxlogL"
   if (silent) options(warn = 0)
