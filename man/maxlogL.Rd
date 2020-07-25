@@ -13,8 +13,8 @@ maxlogL(
   lower = NULL,
   upper = NULL,
   optimizer = "nlminb",
-  silent = FALSE,
   control = NULL,
+  silent = FALSE,
   ...
 )
 }
@@ -36,10 +36,10 @@ function. There are three link functions available: \code{\link{log_link}},
 
 \item{start}{a numeric vector with initial values for the parameters to be estimated.}
 
-\item{lower}{a numeric vector with lower bounds, with the same lenght of argument
+\item{lower}{a numeric vector with lower bounds, with the same length of argument
 `start` (for box-constrained optimization).}
 
-\item{upper}{a numeric vector with upper bounds, with the same lenght of argument
+\item{upper}{a numeric vector with upper bounds, with the same length of argument
 `start` (for box-constrained optimization).}
 
 \item{optimizer}{a lenght-one character vector with the name of optimization routine.
@@ -47,17 +47,16 @@ function. There are three link functions available: \code{\link{log_link}},
 \code{\link[DEoptim]{DEoptim}} are available; \code{\link{nlminb}}
 is the default routine.}
 
-\item{silent}{logical; if TRUE, warnings of \code{"maxlogL"} are supressed.}
-
 \item{control}{control parameters of the optimization routine. Please, visit documentation of selected
 optimizer for further information.}
 
-\item{...}{Further arguments to be supplied to the optimizer.}
+\item{silent}{logical. If TRUE, warnings of \code{maxlogL} are suppressed.}
+
+\item{...}{further arguments to be supplied to the optimizer.}
 }
 \value{
-A list with class \code{"maxlogL"} containing the following
- lists:
-\item{fit}{A list with output information about estimation and method used.}
+A list with class \code{"maxlogL"} containing the following lists:
+\item{fit}{A list with output information about estimation.}
 \item{inputs}{A list with all input arguments.}
 \item{outputs}{A list with some output additional information:
       \itemize{
@@ -124,7 +123,8 @@ summary(theta_3)
 }
 \seealso{
 \code{\link{summary.maxlogL}}, \code{\link{optim}}, \code{\link{nlminb}},
-         \code{\link{DEoptim}}, \code{\link{DEoptim.control}}
+         \code{\link{DEoptim}}, \code{\link{DEoptim.control}},
+         \code{\link{maxlogLreg}}, \code{\link{bootstrap_maxlogL}}
 
 Other maxlogL: 
 \code{\link{maxlogLreg}()}

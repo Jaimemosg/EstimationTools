@@ -4,39 +4,26 @@
 \alias{summary.maxlogL}
 \title{Summarize Maximum Likelihood Estimation}
 \usage{
-\method{summary}{maxlogL}(object, Boot_Std_Err = FALSE, ...)
+\method{summary}{maxlogL}(object, ...)
 }
 \arguments{
-\item{object}{an object class "\code{\link{maxlogL}}".}
+\item{object}{an object of \code{\link{maxlogL}} class which summary is desired.}
 
-\item{Boot_Std_Err}{a logical variable for standard Errors computation by
-bootstrapping. The default is \code{FALSE}. This computation occurs when hessian
-from \code{\link{optim}} and \code{\link[numDeriv]{hessian}} fails in
-\code{\link{maxlogL}} routine. If this argument is \code{TRUE}, standard errors
-are computed, even if hessian did not fail in \code{\link{maxlogL}} routine.}
-
-\item{...}{arguments passed to \code{\link[boot]{boot}} for estimation of stantdard error with
-non-parametric bootstrap.}
+\item{...}{additional arguments affecting the summary produced.}
 }
 \value{
-An object of class 'summary.maxlogL'.
+A list with details that summarize results of a \code{maxlogL} class object.
 }
 \description{
 Displays maximum likelihood estimates computed with \code{\link{maxlogL}} with
 its standard errors, AIC and BIC.
-This is a \code{summary} method for \code{\link{maxlogL}} object
+This is a \code{summary} method for \code{\link{maxlogL}} object.
 }
 \details{
-This \code{summary} method takes standard errors from \code{\link{maxlogL}} object and displays them.
-If \code{\link[numDeriv]{hessian}} and Hessian from \code{\link{optim}} fails, standard errors are
-computed with bootstrap. However, if user sets \code{Boot_Std_Err = TRUE} in this summary function,
-standard errors are calculated by bootstrap, even if \code{\link[numDeriv]{hessian}} or Hessian from
-\code{\link{optim}} converges.
-
-Supose that the user creates a variable named \code{fit} that stores \code{\link{maxlogL}} object. The
-summary method modifies the element \code{fit$outputs$StdE_Method} object from \code{Gobal Environment}
-(see the Second Example). If user does not creat a variable, the summary methid it simply calculates
-standard errors (see the Third Example).
+This \code{summary} method computes and displays AIC, BIC,
+estimates and standard errors from a estimated model stored i a \code{maxlogL}
+class object. It  also displays and computes Z-score and p values of significance
+test of parameters.
 }
 \examples{
 library(EstimationTools)
@@ -62,32 +49,39 @@ phat <- maxlogL(x = N, dist = 'dbinom', fixed = list(size = 10),
 ## Standard error calculation method
 print(phat$outputs$StdE_Method)
 
-## Standard error value (not computed yet, because is computed with 'summary')
-print(phat$outputs$StdE)
-
 ## 'summary' method
 summary(phat)
 
-## Now, standard error is updated
-print(phat$outputs$StdE_Method)
-print(phat$outputs$StdE)
-
-
 #--------------------------------------------------------------------------------
-# Third example: Binomial probability parameter estimation with no varaible
+# Third example: Binomial probability parameter estimation with no variable
 # creation
 
 N <- rbinom(n = 100, size = 10, prob = 0.3)
 summary(maxlogL(x = N, dist = 'dbinom', fixed = list(size = 10),
                 link = list(over = "prob", fun = "logit_link")))
 
+#--------------------------------------------------------------------------------
+# Fourth example: Estimation with simulated normal data
+n <- 1000
+x <- runif(n = n, -5, 6)
+y <- rnorm(n = n, mean = -2 + 3 * x, sd = exp(1 + 0.3* x))
+norm_data <- data.frame(y = y, x = x)
+formulas <- list(sd.fo = ~ x, mean.fo = ~ x)
+
+norm_mod <- maxlogLreg(formulas, y_dist = y ~ dnorm, data = norm_data,
+                       link = list(over = "sd", fun = "log_link"))
+
+## 'summary' method
+summary(norm_mod)
+
 
 #--------------------------------------------------------------------------------
 
 }
-\references{
-\insertRef{Canty2017}{EstimationTools}
-}
 \seealso{
-\code{\link{maxlogL}}, \code{\link[boot]{boot}}
+\code{\link{maxlogL}}, \code{\link{maxlogLreg}},
+\code{\link{bootstrap_maxlogL}}
+}
+\author{
+Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
 }

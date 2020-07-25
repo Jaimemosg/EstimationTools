@@ -16,16 +16,17 @@ maxlogLreg(
   upper = NULL,
   optimizer = "nlminb",
   control = NULL,
+  silent = FALSE,
   ...
 )
 }
 \arguments{
 \item{formulas}{a list of formula objects. Each element must have an \code{~}, with the terms
 on the right separated by \code{+} operators. The response variable on the left side is optional.
-Linear predictor of each parameter must be specified with the name of the parameter folowed by
-the sufix \code{'.fo'}. See the examples below for further illustration.}
+Linear predictor of each parameter must be specified with the name of the parameter followed by
+the suffix \code{'.fo'}. See the examples below for further illustration.}
 
-\item{y_dist}{a formula object tha specifies the distribution of the response variable.
+\item{y_dist}{a formula object that specifies the distribution of the response variable.
 On the left side of \code{~} must be the response, and in the right side
 must be the name o de probability density/mass function. See the section
 'Details' and the examples below for further illustration.}
@@ -62,6 +63,8 @@ is the default routine.}
 
 \item{control}{control parameters of the optimization routine. Please, visit documentation of selected
 optimizer for further information.}
+
+\item{silent}{logical. If TRUE, warnings of \code{maxlogL} are suppressed.}
 
 \item{...}{Further arguments to be supplied to the optimization routine.}
 }
@@ -104,7 +107,7 @@ x <- runif(n = n, -5, 6)
 y <- rnorm(n = n, mean = -2 + 3 * x, sd = exp(1 + 0.3* x))
 norm_data <- data.frame(y = y, x = x)
 
-# It does not matter the order of distribution paramters
+# It does not matter the order of distribution parameters
 formulas <- list(sd.fo = ~ x, mean.fo = ~ x)
 
 norm_mod <- maxlogLreg(formulas, y_dist = y ~ dnorm, data = norm_data,
@@ -140,9 +143,12 @@ mod_weibull <- maxlogLreg(formulas, y_dist = Surv(fails, status) ~ dweibull,
 summary(mod_weibull)
 
 
-#--------------------------------------------------------------------------------
 }
 \seealso{
+\code{\link{summary.maxlogL}}, \code{\link{optim}}, \code{\link{nlminb}},
+         \code{\link{DEoptim}}, \code{\link{DEoptim.control}},
+         \code{\link{maxlogL}}, \code{\link{bootstrap_maxlogL}}
+
 Other maxlogL: 
 \code{\link{maxlogL}()}
 }
