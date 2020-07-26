@@ -17,7 +17,7 @@
 #' class object. It  also displays and computes Z-score and p values of significance
 #' test of parameters.
 #'
-#' @return A list with details that summarize results of a \code{maxlogL} class object.
+#' @return A list with information that summarize results of a \code{maxlogL} class object.
 #' @importFrom stats sd printCoefmat
 #' @export
 #'
