@@ -2,7 +2,7 @@
 % Please edit documentation in R/bootstrap_maxlogL.R
 \name{bootstrap_maxlogL}
 \alias{bootstrap_maxlogL}
-\title{Bootstrap calculatio of standard error for \code{maxlogL} class objects.}
+\title{Bootstrap computation of standard error for \code{maxlogL} class objects.}
 \usage{
 bootstrap_maxlogL(object, R = 2000, silent = FALSE, ...)
 }
@@ -66,8 +66,7 @@ summary(phat2)
 \insertRef{Canty2017}{EstimationTools}
 }
 \seealso{
-\code{\link{maxlogL}}, \code{\link{maxlogLreg}},
-\code{\link{bootstrap_maxlogL}}
+\code{\link{maxlogL}}, \code{\link{maxlogLreg}}, , \code{\link[boot]{boot}}
 }
 \author{
 Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}

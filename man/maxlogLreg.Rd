@@ -29,7 +29,7 @@ the suffix \code{'.fo'}. See the examples below for further illustration.}
 \item{y_dist}{a formula object that specifies the distribution of the response variable.
 On the left side of \code{~} must be the response, and in the right side
 must be the name o de probability density/mass function. See the section
-'Details' and the examples below for further illustration.}
+\strong{Details} and the examples below for further illustration.}
 
 \item{data}{an optional data frame containing the variables in the model. If data is not
 specified, the variables are taken from the environment from which
@@ -51,10 +51,10 @@ used in argument \code{over} corresponds to the order in argument \code{link}.}
 default value.}
 
 \item{lower}{a numeric vector with lower bounds, with the same lenght of
-argument `start` (for box-constrained optimization). \code{-Inf} is the default value.}
+argument \code{start} (for box-constrained optimization). \code{-Inf} is the default value.}
 
 \item{upper}{a numeric vector with upper bounds, with the same lenght of
-argument `start` (for box-constrained optimization). \code{Inf} is the default value.}
+argument \code{start} (for box-constrained optimization). \code{Inf} is the default value.}
 
 \item{optimizer}{a lenght-one character vector with the name of optimization routine.
 \code{\link{nlminb}}, \code{\link{optim}} and
@@ -69,17 +69,17 @@ optimizer for further information.}
 \item{...}{Further arguments to be supplied to the optimization routine.}
 }
 \value{
-A list with class \code{"maxlogL"} containing the following
- lists:
+A list with class \code{maxlogL} containing the following
+lists:
 \item{fit}{A list with output information about estimation and method used.}
 \item{inputs}{A list with all input arguments.}
 \item{outputs}{A list with additional information:
-      \itemize{
-         \item Number of parameters.
-         \item Sample size
-         \item Standard error computation method.
-         \item Number of regression parameters.
-       }
+\itemize{
+\item Number of parameters.
+\item Sample size
+\item Standard error computation method.
+\item Number of regression parameters.
+}
 }
 }
 \description{
@@ -101,7 +101,7 @@ The following generic functions can be used with a \code{maxlogL} object:
 library(EstimationTools)
 
 #--------------------------------------------------------------------------------
-# Estimation in simulated normal distribution
+# First example: Estimation in simulated normal distribution
 n <- 1000
 x <- runif(n = n, -5, 6)
 y <- rnorm(n = n, mean = -2 + 3 * x, sd = exp(1 + 0.3* x))
@@ -116,7 +116,7 @@ summary(norm_mod)
 
 
 #--------------------------------------------------------------------------------
-# Fitting with censorship
+# Second example: Fitting with censorship
 # (data from https://www.itl.nist.gov/div898/handbook/apr/section4/apr413.htm)
 
 failures = c(55, 187, 216, 240, 244, 335, 361, 373, 375, 386)
@@ -143,11 +143,22 @@ mod_weibull <- maxlogLreg(formulas, y_dist = Surv(fails, status) ~ dweibull,
 summary(mod_weibull)
 
 
+#--------------------------------------------------------------------------------
+
+}
+\references{
+\insertRef{Nelder1965}{EstimationTools}
+
+\insertRef{Fox1978}{EstimationTools}
+
+\insertRef{Nash1979}{EstimationTools}
+
+\insertRef{Dennis1981}{EstimationTools}
 }
 \seealso{
 \code{\link{summary.maxlogL}}, \code{\link{optim}}, \code{\link{nlminb}},
-         \code{\link{DEoptim}}, \code{\link{DEoptim.control}},
-         \code{\link{maxlogL}}, \code{\link{bootstrap_maxlogL}}
+\code{\link{DEoptim}}, \code{\link{DEoptim.control}},
+\code{\link{maxlogL}}, \code{\link{bootstrap_maxlogL}}
 
 Other maxlogL: 
 \code{\link{maxlogL}()}

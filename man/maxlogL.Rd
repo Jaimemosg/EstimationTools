@@ -37,10 +37,10 @@ function. There are three link functions available: \code{\link{log_link}},
 \item{start}{a numeric vector with initial values for the parameters to be estimated.}
 
 \item{lower}{a numeric vector with lower bounds, with the same length of argument
-`start` (for box-constrained optimization).}
+\code{start} (for box-constrained optimization).}
 
 \item{upper}{a numeric vector with upper bounds, with the same length of argument
-`start` (for box-constrained optimization).}
+\code{start} (for box-constrained optimization).}
 
 \item{optimizer}{a lenght-one character vector with the name of optimization routine.
 \code{\link{nlminb}}, \code{\link{optim}} and
@@ -59,11 +59,11 @@ A list with class \code{"maxlogL"} containing the following lists:
 \item{fit}{A list with output information about estimation.}
 \item{inputs}{A list with all input arguments.}
 \item{outputs}{A list with some output additional information:
-      \itemize{
-         \item Number of parameters.
-         \item Sample size
-         \item Standard error computation method.
-       }
+\itemize{
+\item Number of parameters.
+\item Sample size
+\item Standard error computation method.
+}
 }
 }
 \description{
@@ -123,8 +123,8 @@ summary(theta_3)
 }
 \seealso{
 \code{\link{summary.maxlogL}}, \code{\link{optim}}, \code{\link{nlminb}},
-         \code{\link{DEoptim}}, \code{\link{DEoptim.control}},
-         \code{\link{maxlogLreg}}, \code{\link{bootstrap_maxlogL}}
+\code{\link{DEoptim}}, \code{\link{DEoptim.control}},
+\code{\link{maxlogLreg}}, \code{\link{bootstrap_maxlogL}}
 
 Other maxlogL: 
 \code{\link{maxlogLreg}()}

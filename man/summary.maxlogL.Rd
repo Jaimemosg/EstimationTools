@@ -12,7 +12,7 @@
 \item{...}{additional arguments affecting the summary produced.}
 }
 \value{
-A list with details that summarize results of a \code{maxlogL} class object.
+A list with information that summarize results of a \code{maxlogL} class object.
 }
 \description{
 Displays maximum likelihood estimates computed with \code{\link{maxlogL}} with
