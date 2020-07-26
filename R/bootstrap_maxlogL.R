@@ -1,4 +1,4 @@
-#' @title Bootstrap calculatio of standard error for \code{maxlogL} class objects.
+#' @title Bootstrap computation of standard error for \code{maxlogL} class objects.
 #'
 #' @author Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
 #'
@@ -56,8 +56,7 @@
 #' \insertRef{Canty2017}{EstimationTools}
 #'
 #' @importFrom Rdpack reprompt
-#' @seealso \code{\link{maxlogL}}, \code{\link{maxlogLreg}},
-#' \code{\link{bootstrap_maxlogL}}
+#' @seealso \code{\link{maxlogL}}, \code{\link{maxlogLreg}}, \code{\link[boot]{boot}}
 #'
 #==============================================================================
 # Main routine ----------------------------------------------------------------
