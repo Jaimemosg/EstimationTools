@@ -14,7 +14,7 @@
 #' @param y_dist a formula object that specifies the distribution of the response variable.
 #'               On the left side of \code{~} must be the response, and in the right side
 #'               must be the name o de probability density/mass function. See the section
-#'               'Details' and the examples below for further illustration.
+#'               \strong{Details} and the examples below for further illustration.
 #' @param data an optional data frame containing the variables in the model. If data is not
 #'             specified, the variables are taken from the environment from which
 #'             \code{maxlogLreg} is called.
@@ -42,7 +42,7 @@
 #' @param silent  logical. If TRUE, warnings of \code{maxlogL} are suppressed.
 #' @param ... Further arguments to be supplied to the optimization routine.
 #'
-#' @return A list with class \code{"maxlogL"} containing the following
+#' @return A list with class \code{maxlogL} containing the following
 #'  lists:
 #' \item{fit}{A list with output information about estimation and method used.}
 #' \item{inputs}{A list with all input arguments.}
@@ -75,7 +75,7 @@
 #' library(EstimationTools)
 #'
 #' #--------------------------------------------------------------------------------
-#' # Estimation in simulated normal distribution
+#' # First example: Estimation in simulated normal distribution
 #' n <- 1000
 #' x <- runif(n = n, -5, 6)
 #' y <- rnorm(n = n, mean = -2 + 3 * x, sd = exp(1 + 0.3* x))
@@ -90,7 +90,7 @@
 #'
 #'
 #' #--------------------------------------------------------------------------------
-#' # Fitting with censorship
+#' # Second example: Fitting with censorship
 #' # (data from https://www.itl.nist.gov/div898/handbook/apr/section4/apr413.htm)
 #'
 #' failures = c(55, 187, 216, 240, 244, 335, 361, 373, 375, 386)
@@ -116,6 +116,19 @@
 #'                           lower = lower, data = Wei_data)
 #' summary(mod_weibull)
 #'
+#'
+#' #--------------------------------------------------------------------------------
+#'
+#' @references
+#' \insertRef{Nelder1965}{EstimationTools}
+#'
+#' \insertRef{Fox1978}{EstimationTools}
+#'
+#' \insertRef{Nash1979}{EstimationTools}
+#'
+#' \insertRef{Dennis1981}{EstimationTools}
+#'
+#' @importFrom Rdpack reprompt
 #'
 #' @seealso \code{\link{summary.maxlogL}}, \code{\link{optim}}, \code{\link{nlminb}},
 #'          \code{\link{DEoptim}}, \code{\link{DEoptim.control}},
