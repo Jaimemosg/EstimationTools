@@ -64,8 +64,8 @@
 #'
 #' TTT_1 <- TTT_EAnalytical(Surv(stop, event == 'pcm') ~1, method = 'cens',
 #'                          data = mgus1, subset=(start == 0))
-#' print(TTT_1$`i/n`)
-#' print(TTT_1$phi_n)
+#' head(TTT_1$`i/n`)
+#' head(TTT_1$phi_n)
 #' print(TTT_1$strata)
 #'
 #'
@@ -74,8 +74,8 @@
 #' # from 'survival' package.
 #'
 #' TTT_2 <- TTT_EAnalytical(Surv(time, status) ~ x, method = "cens", data = aml)
-#' print(TTT_2$`i/n`)
-#' print(TTT_2$phi_n)
+#' head(TTT_2$`i/n`)
+#' head(TTT_2$phi_n)
 #' print(TTT_2$strata)
 #'
 #' #--------------------------------------------------------------------------------
@@ -84,8 +84,8 @@
 #'
 #' y <- rweibull(n=20, shape=1, scale=pi)
 #' TTT_3 <- TTT_EAnalytical(y ~ 1, sclaed = FALSE)
-#' print(TTT_3$`i/n`)
-#' print(TTT_3$phi_n)
+#' head(TTT_3$`i/n`)
+#' head(TTT_3$phi_n)
 #' print(TTT_3$strata)
 #'
 #'
@@ -95,8 +95,8 @@
 #'
 #' y <- rweibull(n=20, shape=1, scale=pi)
 #' TTT_4 <- TTT_EAnalytical(response = y, scladed = FALSE)
-#' print(TTT_3$`i/n`)
-#' print(TTT_3$phi_n)
+#' head(TTT_3$`i/n`)
+#' head(TTT_3$phi_n)
 #' print(TTT_3$strata)
 #'
 #'
