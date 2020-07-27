@@ -57,7 +57,7 @@
 #'                 link = list(over = "prob", fun = "logit_link")))
 #'
 #' #--------------------------------------------------------------------------------
-#' # Fourth example: Estimation with simulated normal data
+#' # Fourth example: Estimation in a regression model with simulated normal data
 #' n <- 1000
 #' x <- runif(n = n, -5, 6)
 #' y <- rnorm(n = n, mean = -2 + 3 * x, sd = exp(1 + 0.3* x))
@@ -84,6 +84,15 @@ summary.maxlogL <- function(object, ...){
   # .myenv <- environment()
   # list2env(var.list , envir = .myenv)
   # var.list <- as.list(object)
+  dots <- substitute(...())
+  names_dots <- names(dots)
+  match_names <- match(c("Boot_Std_Err", "R"), names_dots)
+  match_names <- na.omit(match_names)
+  if ( length(match_names) != 0)
+    stop(paste0("Bootstrap computation of summary method has been removed.",
+                "If you need to compute standard errors by bootstrap, please",
+                "use our 'bootstrap_maxlogL' function."))
+
   estimate <- object$fit$par
   solver <- object$inputs$optimizer
   StdE_Method <- object$outputs$StdE_Method
