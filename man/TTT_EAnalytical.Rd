@@ -93,22 +93,22 @@ print(TTT_2$phi_n)
 print(TTT_2$strata)
 
 #--------------------------------------------------------------------------------
-# Third example: Scaled empirical TTT without a factor (arbitrarily simulated
+# Third example: Non-scaled empirical TTT without a factor (arbitrarily simulated
 # data).
 
 y <- rweibull(n=20, shape=1, scale=pi)
-TTT_3 <- TTT_EAnalytical(y ~ 1)
+TTT_3 <- TTT_EAnalytical(y ~ 1, sclaed = FALSE)
 print(TTT_3$`i/n`)
 print(TTT_3$phi_n)
 print(TTT_3$strata)
 
 
 #--------------------------------------------------------------------------------
-# Fourth example: Scaled empirical TTT without a factor (arbitrarily simulated
+# Fourth example: non-scaled empirical TTT without a factor (arbitrarily simulated
 # data) using the 'response' argument (this is equivalent to Third example).
 
 y <- rweibull(n=20, shape=1, scale=pi)
-TTT_4 <- TTT_EAnalytical(y ~ 1)
+TTT_4 <- TTT_EAnalytical(y ~ 1, scladed = FALSE)
 print(TTT_3$`i/n`)
 print(TTT_3$phi_n)
 print(TTT_3$strata)
@@ -126,7 +126,10 @@ print(TTT_3$strata)
 
 \insertRef{Westberg1994}{EstimationTools}
 }
+\seealso{
+\code{\link{plot.EmpiricalTTT}}
+}
 \author{
 Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
 }
-\concept{Empirical.TTT}
+\concept{EmpiricalTTT}

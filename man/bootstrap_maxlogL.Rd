@@ -66,7 +66,7 @@ summary(phat2)
 \insertRef{Canty2017}{EstimationTools}
 }
 \seealso{
-\code{\link{maxlogL}}, \code{\link{maxlogLreg}}, , \code{\link[boot]{boot}}
+\code{\link{maxlogL}}, \code{\link{maxlogLreg}}, \code{\link[boot]{boot}}
 }
 \author{
 Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
