@@ -5,7 +5,7 @@
 \title{Plot method for \code{EmpiricalTTT} objects}
 \usage{
 \method{plot}{EmpiricalTTT}(
-  object,
+  x,
   add = FALSE,
   type = "l",
   pch = 1,
@@ -15,7 +15,7 @@
 )
 }
 \arguments{
-\item{object}{an object of class \code{EmpiricalTTT}.}
+\item{x}{an object of class \code{EmpiricalTTT}.}
 
 \item{add}{logical. If TRUE, \code{plot.EmpiricalTTT} add a TTT plot to an
 already existing plot.}
@@ -60,8 +60,8 @@ plot(TTT_1, type = "p")
 # from 'survival' package.
 
 TTT_2 <- TTT_EAnalytical(Surv(time, status) ~ x, method = "cens", data = aml)
-plot(TTT_2, type = "l", lty = c(1,1), col = c(2,4))
-plot(TTT_2, add = TRUE, type = "p", lty = c(1,1), col = c(2,4))
+#plot(TTT_2, type = "l", lty = c(1,1), col = c(2,4))
+#plot(TTT_2, add = TRUE, type = "p", lty = c(1,1), col = c(2,4))
 
 #--------------------------------------------------------------------------------
 # Third example: Non-scaled empirical TTT without a factor (arbitrarily simulated
@@ -69,7 +69,7 @@ plot(TTT_2, add = TRUE, type = "p", lty = c(1,1), col = c(2,4))
 
 y <- rweibull(n=20, shape=1, scale=pi)
 TTT_3 <- TTT_EAnalytical(y ~ 1, scaled = FALSE)
-plot(TTT_3, type = "s", col = 3, lwd = 3)
+#plot(TTT_3, type = "s", col = 3, lwd = 3)
 
 
 #--------------------------------------------------------------------------------
