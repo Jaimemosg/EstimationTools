@@ -94,7 +94,7 @@
 #' # data) using the 'response' argument (this is equivalent to Third example).
 #'
 #' y <- rweibull(n=20, shape=1, scale=pi)
-#' TTT_4 <- TTT_EAnalytical(y ~ 1, scladed = FALSE)
+#' TTT_4 <- TTT_EAnalytical(response = y, scladed = FALSE)
 #' print(TTT_3$`i/n`)
 #' print(TTT_3$phi_n)
 #' print(TTT_3$strata)
