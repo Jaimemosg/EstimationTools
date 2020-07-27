@@ -100,6 +100,7 @@ summary(theta_2)
 
 #--------------------------------------------------------------------------------
 # Parameter estimation in ZIP distribution
+if (!require('gamlss.dist')) install.packages('gamlss.dist')
 library(gamlss.dist)
 z <- rZIP(n=10000, mu=6, sigma=0.08)
 theta_3  <- maxlogL( x = z, dist='dZIP', start = c(0, 0), lower = c(-Inf, -Inf),

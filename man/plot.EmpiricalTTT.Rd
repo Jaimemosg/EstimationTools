@@ -7,6 +7,7 @@
 \method{plot}{EmpiricalTTT}(
   x,
   add = FALSE,
+  grid = FALSE,
   type = "l",
   pch = 1,
   xlab = "i/n",
@@ -19,6 +20,8 @@
 
 \item{add}{logical. If TRUE, \code{plot.EmpiricalTTT} add a TTT plot to an
 already existing plot.}
+
+\item{grid}{logical. If \code{TRUE}, plot appears with grid.}
 
 \item{type}{character string (length 1 vector) or vector of 1-character strings
 indicating the type of plot for each TTT graph. See \code{\link{plot}}.}
@@ -61,7 +64,7 @@ plot(TTT_1, type = "p")
 
 TTT_2 <- TTT_EAnalytical(Surv(time, status) ~ x, method = "cens", data = aml)
 plot(TTT_2, type = "l", lty = c(1,1), col = c(2,4))
-plot(TTT_2, add = TRUE, type = "p", lty = c(1,1), col = c(2,4))
+plot(TTT_2, add = TRUE, type = "p", lty = c(1,1), col = c(2,4), pch = 16)
 
 #--------------------------------------------------------------------------------
 # Third example: Non-scaled empirical TTT without a factor (arbitrarily simulated
@@ -70,6 +73,16 @@ plot(TTT_2, add = TRUE, type = "p", lty = c(1,1), col = c(2,4))
 y <- rweibull(n=20, shape=1, scale=pi)
 TTT_3 <- TTT_EAnalytical(y ~ 1, scaled = FALSE)
 plot(TTT_3, type = "s", col = 3, lwd = 3)
+
+
+#--------------------------------------------------------------------------------
+# Fourth example: TTT plot for 'carbone' data from 'AdequacyModel' package
+
+if (!require('AdequacyModel')) install.packages('AdequacyModel')
+library(AdequacyModel)
+data(carbone)
+TTT_4 <- TTT_EAnalytical(response = carbone, scaled = TRUE)
+plot(TTT_4, type = "l", col = "red", lwd = 2, grid = TRUE)
 
 
 #--------------------------------------------------------------------------------
