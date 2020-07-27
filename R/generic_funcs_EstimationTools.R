@@ -19,3 +19,9 @@ logLik.maxlogL <- function(object, ...){
 is.maxlogL <- function(x){
   inherits(x, c("maxlogL"))
 }
+#==============================================================================
+# EmpiricalTTT function identification ----------------------------------------
+#==============================================================================
+is.EmpiricalTTT <- function(x){
+  inherits(x, c("EmpiricalTTT"))
+}
