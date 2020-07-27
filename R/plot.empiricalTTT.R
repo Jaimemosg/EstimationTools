@@ -14,6 +14,7 @@
 #' @param x an object of class \code{EmpiricalTTT}.
 #' @param add logical. If TRUE, \code{plot.EmpiricalTTT} add a TTT plot to an
 #'            already existing plot.
+#' @param grid logical. If \code{TRUE}, plot appears with grid.
 #' @param type character string (length 1 vector) or vector of 1-character strings
 #'             indicating the type of plot for each TTT graph. See \code{\link{plot}}.
 #' @param xlab,ylab  titles for x and y axes, as in \code{\link{plot}}.
@@ -27,7 +28,7 @@
 #' \code{xlab = "i/n"} and \code{ylab = expression(phi[n](i/n))}. This arguments
 #' can be modified by the user.
 #'
-#' @importFrom graphics matplot lines
+#' @importFrom graphics matplot lines grid
 #' @export
 #'
 #' @examples
@@ -61,6 +62,7 @@
 #' #--------------------------------------------------------------------------------
 #' # Fourth example: TTT plot for 'carbone' data from 'AdequacyModel' package
 #'
+#' if (!require('AdequacyModel')) install.packages('AdequacyModel')
 #' library(AdequacyModel)
 #' data(carbone)
 #' TTT_4 <- TTT_EAnalytical(response = carbone, scaled = TRUE)
