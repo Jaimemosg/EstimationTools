@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -38,7 +42,6 @@
 <meta property="og:title" content="Maximum Likelihood Estimation for parametric distributions — maxlogL" />
 <meta property="og:description" content="Function to compute maximum likelihood estimators (MLE)
 of any distribution implemented in R." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -56,7 +59,7 @@ of any distribution implemented in R." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -100,7 +103,7 @@ of any distribution implemented in R." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/Jaimemosg/EstimationTools">
+  <a href="https://github.com/Jaimemosg/EstimationTools/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -137,8 +140,8 @@ of any distribution implemented in <code>R</code>.</p>
   <span class='kw'>lower</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>upper</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>optimizer</span> <span class='kw'>=</span> <span class='st'>"nlminb"</span>,
-  <span class='kw'>silent</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>control</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>silent</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='no'>...</span>
 )</pre>
 
@@ -174,13 +177,13 @@ function. There are three link functions available: <code><a href='log_link.html
     </tr>
     <tr>
       <th>lower</th>
-      <td><p>a numeric vector with lower bounds, with the same lenght of argument
-`start` (for box-constrained optimization).</p></td>
+      <td><p>a numeric vector with lower bounds, with the same length of argument
+<code>start</code> (for box-constrained optimization).</p></td>
     </tr>
     <tr>
       <th>upper</th>
-      <td><p>a numeric vector with upper bounds, with the same lenght of argument
-`start` (for box-constrained optimization).</p></td>
+      <td><p>a numeric vector with upper bounds, with the same length of argument
+<code>start</code> (for box-constrained optimization).</p></td>
     </tr>
     <tr>
       <th>optimizer</th>
@@ -190,28 +193,27 @@ function. There are three link functions available: <code><a href='log_link.html
 is the default routine.</p></td>
     </tr>
     <tr>
-      <th>silent</th>
-      <td><p>logical; if TRUE, warnings of <code>"maxlogL"</code> are supressed.</p></td>
-    </tr>
-    <tr>
       <th>control</th>
       <td><p>control parameters of the optimization routine. Please, visit documentation of selected
 optimizer for further information.</p></td>
     </tr>
     <tr>
+      <th>silent</th>
+      <td><p>logical. If TRUE, warnings of <code>maxlogL</code> are suppressed.</p></td>
+    </tr>
+    <tr>
       <th>...</th>
-      <td><p>Further arguments to be supplied to the optimizer.</p></td>
+      <td><p>further arguments to be supplied to the optimizer.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list with class <code>"maxlogL"</code> containing the following
- lists:</p>
-<dt>fit</dt><dd><p>A list with output information about estimation and method used.</p></dd>
+    <p>A list with class <code>"maxlogL"</code> containing the following lists:</p>
+<dt>fit</dt><dd><p>A list with output information about estimation.</p></dd>
 <dt>inputs</dt><dd><p>A list with all input arguments.</p></dd>
 <dt>outputs</dt><dd><p>A list with some output additional information:
-      <ul>
+<ul>
 <li><p>Number of parameters.</p></li>
 <li><p>Sample size</p></li>
 <li><p>Standard error computation method.</p></li>
@@ -226,7 +228,7 @@ generates an S3 object of class <code>maxlogL</code>.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>The following generic functions can be used with a <code>maxlogL</code> object:
-<code>summary, print</code>.</p>
+<code>summary, print, AIC, BIC, logLik</code>.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Nelder JA, Mead R (1965).
@@ -250,7 +252,8 @@ ISSN 00983500, doi: <a href='https://doi.org/10.1145/355958.355965'>10.1145/3559
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='summary.maxlogL.html'>summary.maxlogL</a></code>, <code><a href='https://rdrr.io/r/stats/optim.html'>optim</a></code>, <code><a href='https://rdrr.io/r/stats/nlminb.html'>nlminb</a></code>,
-         <code>DEoptim</code>, <code>DEoptim.control</code></p>
+<code>DEoptim</code>, <code>DEoptim.control</code>,
+<code><a href='maxlogLreg.html'>maxlogLreg</a></code>, <code><a href='bootstrap_maxlogL.html'>bootstrap_maxlogL</a></code></p>
 <p>Other maxlogL: 
 <code><a href='maxlogLreg.html'>maxlogLreg</a>()</code></p></div>
 
@@ -260,22 +263,24 @@ ISSN 00983500, doi: <a href='https://doi.org/10.1145/355958.355965'>10.1145/3559
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10000</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>160</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>6</span>)
 <span class='no'>theta_1</span> <span class='kw'>&lt;-</span> <span class='fu'>maxlogL</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>x</span>, <span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>'dnorm'</span>, <span class='kw'>control</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>1</span>),
                  <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='st'>"sd"</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"log_link"</span>),
-                 <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>160</span>))</div><div class='output co'>#&gt;   0:     43773.251:  1.00000
-#&gt;   1:     32516.450:  2.00000
-#&gt;   2:     32296.645:  1.92132
-#&gt;   3:     32161.004:  1.76769
-#&gt;   4:     32152.783:  1.80001
-#&gt;   5:     32152.648:  1.79643
-#&gt;   6:     32152.648:  1.79633
-#&gt;   7:     32152.648:  1.79633</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>theta_1</span>)</div><div class='output co'>#&gt; _______________________________________________________________
+                 <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>160</span>))</div><div class='output co'>#&gt;   0:     43467.608:  1.00000
+#&gt;   1:     32475.085:  2.00000
+#&gt;   2:     32241.462:  1.91836
+#&gt;   3:     32099.513:  1.75969
+#&gt;   4:     32090.256:  1.79409
+#&gt;   5:     32090.095:  1.79019
+#&gt;   6:     32090.095:  1.79007
+#&gt;   7:     32090.095:  1.79007</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>theta_1</span>)</div><div class='output co'>#&gt; _______________________________________________________________
 #&gt; Optimization routine: nlminb 
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
-#&gt;       AIC     BIC
-#&gt;   64305.3 64305.3
+#&gt;        AIC      BIC
+#&gt;   64180.19 64180.19
 #&gt; _______________________________________________________________
-#&gt;    Estimate  Std. Error
-#&gt; sd    6.0275     0.0426
+#&gt;    Estimate  Std. Error Z value Pr(&gt;|z|)    
+#&gt; sd   5.98988    0.04235   141.4   &lt;2e-16 ***
+#&gt; ---
+#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________</div><div class='input'>
 
 <span class='co'>#--------------------------------------------------------------------------------</span>
@@ -287,17 +292,20 @@ ISSN 00983500, doi: <a href='https://doi.org/10.1145/355958.355965'>10.1145/3559
 #&gt; Optimization routine: nlminb 
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
-#&gt;       AIC      BIC
-#&gt;   64306.9 64321.32
+#&gt;        AIC      BIC
+#&gt;   64184.15 64198.57
 #&gt; _______________________________________________________________
-#&gt;      Estimate  Std. Error
-#&gt; mean  159.9066     0.0603
-#&gt; sd      6.0267     0.0426
+#&gt;      Estimate  Std. Error Z value Pr(&gt;|z|)    
+#&gt; mean 160.01125    0.05990  2671.4   &lt;2e-16 ***
+#&gt; sd     5.98986    0.04235   141.4   &lt;2e-16 ***
+#&gt; ---
+#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________</div><div class='input'>
 
 <span class='co'>#--------------------------------------------------------------------------------</span>
 <span class='co'># Parameter estimation in ZIP distribution</span>
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>gamlss.dist</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: MASS</span></div><div class='input'><span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/gamlss.dist/man/ZIP.html'>rZIP</a></span>(<span class='kw'>n</span><span class='kw'>=</span><span class='fl'>10000</span>, <span class='kw'>mu</span><span class='kw'>=</span><span class='fl'>6</span>, <span class='kw'>sigma</span><span class='kw'>=</span><span class='fl'>0.08</span>)
+<span class='kw'>if</span> (!<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='st'>'gamlss.dist'</span>)) <span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span>(<span class='st'>'gamlss.dist'</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: gamlss.dist</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: MASS</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>gamlss.dist</span>)
+<span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/gamlss.dist/man/ZIP.html'>rZIP</a></span>(<span class='kw'>n</span><span class='kw'>=</span><span class='fl'>10000</span>, <span class='kw'>mu</span><span class='kw'>=</span><span class='fl'>6</span>, <span class='kw'>sigma</span><span class='kw'>=</span><span class='fl'>0.08</span>)
 <span class='no'>theta_3</span>  <span class='kw'>&lt;-</span> <span class='fu'>maxlogL</span>( <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>z</span>, <span class='kw'>dist</span><span class='kw'>=</span><span class='st'>'dZIP'</span>, <span class='kw'>start</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>0</span>), <span class='kw'>lower</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>Inf</span>, -<span class='fl'>Inf</span>),
                      <span class='kw'>upper</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>Inf</span>, <span class='fl'>Inf</span>), <span class='kw'>optimizer</span> <span class='kw'>=</span> <span class='st'>'optim'</span>,
                      <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>over</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"mu"</span>, <span class='st'>"sigma"</span>),
@@ -307,31 +315,23 @@ ISSN 00983500, doi: <a href='https://doi.org/10.1145/355958.355965'>10.1145/3559
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
 #&gt;        AIC      BIC
-#&gt;   47685.83 47700.25
+#&gt;   47685.93 47700.35
 #&gt; _______________________________________________________________
-#&gt;       Estimate  Std. Error
-#&gt; mu     5.984879     0.0256
-#&gt; sigma  0.076475     0.0027
+#&gt;       Estimate  Std. Error Z value Pr(&gt;|z|)    
+#&gt; mu     6.003220   0.025747  233.16   &lt;2e-16 ***
+#&gt; sigma  0.080619   0.002764   29.16   &lt;2e-16 ***
+#&gt; ---
+#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________</div><div class='input'>
 
 #--------------------------------------------------------------------------------
 
 </div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#note">Note</a></li>
-      <li><a href="#references">References</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    <p>Jaime Mosquera Gutiérrez, <a href='mailto:jmosquerag@unal.edu.co'>jmosquerag@unal.edu.co</a></p>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -342,7 +342,7 @@ ISSN 00983500, doi: <a href='https://doi.org/10.1145/355958.355965'>10.1145/3559
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

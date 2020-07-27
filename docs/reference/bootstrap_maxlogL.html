@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Logit link function (for estimation with <code>maxlogL</code> object) — logit_link • EstimationTools</title>
+<title>Bootstrap computation of standard error for <code>maxlogL</code> class objects. — bootstrap_maxlogL • EstimationTools</title>
 
 
 <!-- jquery -->
@@ -39,11 +39,9 @@
 
 
 
-<meta property="og:title" content="Logit link function (for estimation with <code>maxlogL</code> object) — logit_link" />
-<meta property="og:description" content="log_link object provides a way to implement logit link function that
-maxlogL needs to perform estimation. See documentation for
-maxlogL for further information on parameter estimation and implementation
-of link objects." />
+<meta property="og:title" content="Bootstrap computation of standard error for <code>maxlogL</code> class objects. — bootstrap_maxlogL" />
+<meta property="og:description" content="bootstrap_maxlogL computes standard errors of
+maxlogL class objects by non-parametric bootstrap." />
 
 
 
@@ -123,69 +121,109 @@ of link objects." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Logit link function (for estimation with <code>maxlogL</code> object)</h1>
-    <small class="dont-index">Source: <a href='https://github.com/Jaimemosg/EstimationTools/blob/master/R/LinkFunc.R'><code>R/LinkFunc.R</code></a></small>
-    <div class="hidden name"><code>logit_link.Rd</code></div>
+    <h1>Bootstrap computation of standard error for <code>maxlogL</code> class objects.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/Jaimemosg/EstimationTools/blob/master/R/bootstrap_maxlogL.R'><code>R/bootstrap_maxlogL.R</code></a></small>
+    <div class="hidden name"><code>bootstrap_maxlogL.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><code>log_link</code> object provides a way to implement logit link function that
-<code><a href='maxlogL.html'>maxlogL</a></code> needs to perform estimation. See documentation for
-<code><a href='maxlogL.html'>maxlogL</a></code> for further information on parameter estimation and implementation
-of link objects.</p>
+    <p><code>bootstrap_maxlogL</code> computes standard errors of
+<code><a href='maxlogL.html'>maxlogL</a></code> class objects by non-parametric bootstrap.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>logit_link</span>()</pre>
+    <pre class="usage"><span class='fu'>bootstrap_maxlogL</span>(<span class='no'>object</span>, <span class='kw'>R</span> <span class='kw'>=</span> <span class='fl'>2000</span>, <span class='kw'>silent</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>object</th>
+      <td><p>an object of <code><a href='maxlogL.html'>maxlogL</a></code> class whose standard errors
+are going to be computed by bootstrap.</p></td>
+    </tr>
+    <tr>
+      <th>R</th>
+      <td><p>numeric. It is the number of resamples performed with the dataset
+in bootstrap computation. Default value is 2000.</p></td>
+    </tr>
+    <tr>
+      <th>silent</th>
+      <td><p>logical. If TRUE, notifications of <code>bootstrap_maxlogL</code> are suppressed.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>arguments passed to <code><a href='https://rdrr.io/pkg/boot/man/boot.html'>boot</a></code> used in this routine
+for estimation of standard errors.</p></td>
+    </tr>
+    </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list with logit link function, its inverse and its name.</p>
+    <p>A modified object of class <code>maxlogL</code>.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><code>logit_link</code> is part of a family of generic functions with no input arguments that
-defines and returns a list with details of the link function:</p><ol>
-<li><p><code>name</code>: a character string with the name of the link function.</p></li>
-<li><p><code>g</code>: implementation of the link function as a generic function in <code>R</code>.</p></li>
-<li><p><code>g_inv</code>: implementation of the inverse link function as a generic function
-in <code>R</code>.</p></li>
-</ol>
+    <p>The computation performed by this function may be
+invoked when Hessian from <code><a href='https://rdrr.io/r/stats/optim.html'>optim</a></code> and
+<code><a href='https://rdrr.io/pkg/numDeriv/man/hessian.html'>hessian</a></code> fail in  <code><a href='maxlogL.html'>maxlogL</a></code> or
+in <code><a href='maxlogLreg.html'>maxlogLreg</a></code>.</p>
+<p>However, this function can be run even if Hessian matrix calculation
+does not fails. In this case, standard errors in the <code><a href='maxlogL.html'>maxlogL</a></code>
+class object is replaced.</p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-<p>There is a way to add new mapping functions. The user must specify the details aforesaid.</p>
+    <p>Canty A, Ripley BD (2017).
+<em>boot: Bootstrap R (S-Plus) Functions</em>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='maxlogL.html'>maxlogL</a></code></p>
-<p>Other link functions: 
-<code><a href='NegInv_link.html'>NegInv_link</a>()</code>,
-<code><a href='log_link.html'>log_link</a>()</code></p></div>
+    <div class='dont-index'><p><code><a href='maxlogL.html'>maxlogL</a></code>, <code><a href='maxlogLreg.html'>maxlogLreg</a></code>, <code><a href='https://rdrr.io/pkg/boot/man/boot.html'>boot</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Estimation of proportion in binomial distribution with 'logit' function</span>
-<span class='co'># 10 trials, probability of success equals to 30%)</span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>EstimationTools</span>)
+
+<span class='co'>#--------------------------------------------------------------------------------</span>
+<span class='co'># First example: Comparison between standard error computation via Hessian matrix</span>
+<span class='co'># and standard error computation via bootstrap</span>
+
 <span class='no'>N</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Binomial.html'>rbinom</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.3</span>)
-<span class='no'>phat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='maxlogL.html'>maxlogL</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>N</span>, <span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>'dbinom'</span>, <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span><span class='kw'>=</span><span class='fl'>10</span>),
+<span class='no'>phat1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='maxlogL.html'>maxlogL</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>N</span>, <span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>'dbinom'</span>, <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>10</span>),
                 <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='st'>"prob"</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"logit_link"</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>phat</span>)</div><div class='output co'>#&gt; _______________________________________________________________
+
+<span class='co'>## Standard error computation method and results</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>phat1</span>$<span class='no'>outputs</span>$<span class='no'>StdE_Method</span>)   <span class='co'># Hessian</span></div><div class='output co'>#&gt; [1] "Hessian from optim"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>phat1</span>)</div><div class='output co'>#&gt; _______________________________________________________________
 #&gt; Optimization routine: nlminb 
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
-#&gt;       AIC     BIC
-#&gt;   357.355 357.355
+#&gt;        AIC      BIC
+#&gt;   349.2752 349.2752
 #&gt; _______________________________________________________________
 #&gt;      Estimate  Std. Error Z value Pr(&gt;|z|)    
-#&gt; prob   0.30900    0.01461   21.15   &lt;2e-16 ***
+#&gt; prob   0.29200    0.01438   20.31   &lt;2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________</div><div class='input'>
-<span class='co'># Link function name</span>
-<span class='no'>fun</span> <span class='kw'>&lt;-</span> <span class='fu'>logit_link</span>()$<span class='no'>name</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>fun</span>)</div><div class='output co'>#&gt; [1] "logit"</div><div class='input'>
-<span class='co'># Link function</span>
-<span class='no'>g</span> <span class='kw'>&lt;-</span> <span class='fu'>logit_link</span>()$<span class='no'>g</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/curve.html'>curve</a></span>(<span class='fu'>g</span>(<span class='no'>x</span>), <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='img'><img src='logit_link-1.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Inverse link function</span>
-<span class='no'>ginv</span> <span class='kw'>&lt;-</span> <span class='fu'>logit_link</span>()$<span class='no'>g_inv</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/curve.html'>curve</a></span>(<span class='fu'>ginv</span>(<span class='no'>x</span>), <span class='kw'>from</span> <span class='kw'>=</span> -<span class='fl'>10</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>10</span>)</div><div class='img'><img src='logit_link-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'>## 'bootstrap_maxlogL' implementation</span>
+<span class='no'>phat2</span> <span class='kw'>&lt;-</span> <span class='no'>phat1</span>                   <span class='co'># Copy the first 'maxlogL' object</span>
+<span class='fu'>bootstrap_maxlogL</span>(<span class='no'>phat2</span>, <span class='kw'>R</span> <span class='kw'>=</span> <span class='fl'>100</span>)</div><div class='output co'>#&gt; 
+#&gt; ...Bootstrap computation of Standard Error. Please, wait a few minutes...
+#&gt; 
+#&gt; 
+#&gt;  --&gt; Done &lt;--- </div><div class='input'>
+<span class='co'>## Standard error computation method and results</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>phat2</span>$<span class='no'>outputs</span>$<span class='no'>StdE_Method</span>)   <span class='co'># Bootstrap</span></div><div class='output co'>#&gt; [1] "Bootstrap"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>phat2</span>)</div><div class='output co'>#&gt; _______________________________________________________________
+#&gt; Optimization routine: nlminb 
+#&gt; Standard Error calculation: Bootstrap 
+#&gt; _______________________________________________________________
+#&gt;        AIC      BIC
+#&gt;   349.2752 349.2752
+#&gt; _______________________________________________________________
+#&gt;      Estimate  Std. Error Z value Pr(&gt;|z|)    
+#&gt; prob   0.29200    0.01329   21.97   &lt;2e-16 ***
+#&gt; ---
+#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#&gt; _______________________________________________________________</div><div class='input'>
+
+#--------------------------------------------------------------------------------
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

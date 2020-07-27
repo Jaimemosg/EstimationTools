@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -38,7 +42,6 @@
 <meta property="og:title" content="Maximum Likelihood Estimation for parametric linear regression models — maxlogLreg" />
 <meta property="og:description" content="Function to compute maximum likelihood estimators (MLE) of regression parameters
 of any distribution implemented in R with covariates (linear predictors)." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -56,7 +59,7 @@ of any distribution implemented in R with covariates (linear predictors)." />
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -100,7 +103,7 @@ of any distribution implemented in R with covariates (linear predictors)." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/Jaimemosg/EstimationTools">
+  <a href="https://github.com/Jaimemosg/EstimationTools/">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -140,6 +143,7 @@ of any distribution implemented in <code>R</code> with covariates (linear predic
   <span class='kw'>upper</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>optimizer</span> <span class='kw'>=</span> <span class='st'>"nlminb"</span>,
   <span class='kw'>control</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>silent</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='no'>...</span>
 )</pre>
 
@@ -150,15 +154,15 @@ of any distribution implemented in <code>R</code> with covariates (linear predic
       <th>formulas</th>
       <td><p>a list of formula objects. Each element must have an <code>~</code>, with the terms
 on the right separated by <code>+</code> operators. The response variable on the left side is optional.
-Linear predictor of each parameter must be specified with the name of the parameter folowed by
-the sufix <code>'.fo'</code>. See the examples below for further illustration.</p></td>
+Linear predictor of each parameter must be specified with the name of the parameter followed by
+the suffix <code>'.fo'</code>. See the examples below for further illustration.</p></td>
     </tr>
     <tr>
       <th>y_dist</th>
-      <td><p>a formula object tha specifies the distribution of the response variable.
+      <td><p>a formula object that specifies the distribution of the response variable.
 On the left side of <code>~</code> must be the response, and in the right side
 must be the name o de probability density/mass function. See the section
-'Details' and the examples below for further illustration.</p></td>
+<strong>Details</strong> and the examples below for further illustration.</p></td>
     </tr>
     <tr>
       <th>data</th>
@@ -192,12 +196,12 @@ default value.</p></td>
     <tr>
       <th>lower</th>
       <td><p>a numeric vector with lower bounds, with the same lenght of
-argument `start` (for box-constrained optimization). <code>-Inf</code> is the default value.</p></td>
+argument <code>start</code> (for box-constrained optimization). <code>-Inf</code> is the default value.</p></td>
     </tr>
     <tr>
       <th>upper</th>
       <td><p>a numeric vector with upper bounds, with the same lenght of
-argument `start` (for box-constrained optimization). <code>Inf</code> is the default value.</p></td>
+argument <code>start</code> (for box-constrained optimization). <code>Inf</code> is the default value.</p></td>
     </tr>
     <tr>
       <th>optimizer</th>
@@ -212,6 +216,10 @@ is the default routine.</p></td>
 optimizer for further information.</p></td>
     </tr>
     <tr>
+      <th>silent</th>
+      <td><p>logical. If TRUE, warnings of <code>maxlogL</code> are suppressed.</p></td>
+    </tr>
+    <tr>
       <th>...</th>
       <td><p>Further arguments to be supplied to the optimization routine.</p></td>
     </tr>
@@ -219,12 +227,12 @@ optimizer for further information.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list with class <code>"maxlogL"</code> containing the following
- lists:</p>
+    <p>A list with class <code>maxlogL</code> containing the following
+lists:</p>
 <dt>fit</dt><dd><p>A list with output information about estimation and method used.</p></dd>
 <dt>inputs</dt><dd><p>A list with all input arguments.</p></dd>
 <dt>outputs</dt><dd><p>A list with additional information:
-      <ul>
+<ul>
 <li><p>Number of parameters.</p></li>
 <li><p>Sample size</p></li>
 <li><p>Standard error computation method.</p></li>
@@ -242,22 +250,45 @@ generates an S3 object of class <code>maxlogL</code>.</p>
 
     <p>The following generic functions can be used with a <code>maxlogL</code> object:
 <code>summary, print, logLik, AIC</code>.</p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Nelder JA, Mead R (1965).
+&#8220;A Simplex Method for Function Minimization.&#8221;
+<em>The Computer Journal</em>, <b>7</b>(4), 308--313.
+ISSN 0010-4620, doi: <a href='https://doi.org/10.1093/comjnl/7.4.308'>10.1093/comjnl/7.4.308</a>
+, <a href='https://academic.oup.com/comjnl/article-lookup/doi/10.1093/comjnl/7.4.308'>https://academic.oup.com/comjnl/article-lookup/doi/10.1093/comjnl/7.4.308</a>.</p>
+<p>Fox PA, Hall AP, Schryer NL (1978).
+&#8220;The PORT Mathematical Subroutine Library.&#8221;
+<em>ACM Transactions on Mathematical Software</em>, <b>4</b>(2), 104--126.
+ISSN 00983500, doi: <a href='https://doi.org/10.1145/355780.355783'>10.1145/355780.355783</a>
+, <a href='http://portal.acm.org/citation.cfm?doid=355780.355783'>http://portal.acm.org/citation.cfm?doid=355780.355783</a>.</p>
+<p>Nash JC (1979).
+<em>Compact Numerical Methods for Computers. Linear Algebra and Function Minimisation</em>, 2nd Editio edition.
+Adam Hilger, Bristol.</p>
+<p>Dennis JE, Gay DM, Walsh RE (1981).
+&#8220;An Adaptive Nonlinear Least-Squares Algorithm.&#8221;
+<em>ACM Transactions on Mathematical Software</em>, <b>7</b>(3), 348--368.
+ISSN 00983500, doi: <a href='https://doi.org/10.1145/355958.355965'>10.1145/355958.355965</a>
+, <a href='http://portal.acm.org/citation.cfm?doid=355958.355965'>http://portal.acm.org/citation.cfm?doid=355958.355965</a>.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other maxlogL: 
+    <div class='dont-index'><p><code><a href='summary.maxlogL.html'>summary.maxlogL</a></code>, <code><a href='https://rdrr.io/r/stats/optim.html'>optim</a></code>, <code><a href='https://rdrr.io/r/stats/nlminb.html'>nlminb</a></code>,
+<code>DEoptim</code>, <code>DEoptim.control</code>,
+<code><a href='maxlogL.html'>maxlogL</a></code>, <code><a href='bootstrap_maxlogL.html'>bootstrap_maxlogL</a></code></p>
+<p>Other maxlogL: 
 <code><a href='maxlogL.html'>maxlogL</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>EstimationTools</span>)
 
 <span class='co'>#--------------------------------------------------------------------------------</span>
-<span class='co'># Estimation in simulated normal distribution</span>
+<span class='co'># First example: Estimation in simulated normal distribution</span>
 <span class='no'>n</span> <span class='kw'>&lt;-</span> <span class='fl'>1000</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>, -<span class='fl'>5</span>, <span class='fl'>6</span>)
 <span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>, <span class='kw'>mean</span> <span class='kw'>=</span> -<span class='fl'>2</span> + <span class='fl'>3</span> * <span class='no'>x</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>exp</a></span>(<span class='fl'>1</span> + <span class='fl'>0.3</span>* <span class='no'>x</span>))
 <span class='no'>norm_data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>y</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>x</span>)
 
-<span class='co'># It does not matter the order of distribution paramters</span>
+<span class='co'># It does not matter the order of distribution parameters</span>
 <span class='no'>formulas</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>sd.fo</span> <span class='kw'>=</span> ~ <span class='no'>x</span>, <span class='kw'>mean.fo</span> <span class='kw'>=</span> ~ <span class='no'>x</span>)
 
 <span class='no'>norm_mod</span> <span class='kw'>&lt;-</span> <span class='fu'>maxlogLreg</span>(<span class='no'>formulas</span>, <span class='kw'>y_dist</span> <span class='kw'>=</span> <span class='no'>y</span> ~ <span class='no'>dnorm</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>norm_data</span>,
@@ -267,21 +298,21 @@ generates an S3 object of class <code>maxlogL</code>.</p>
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
 #&gt;        AIC      BIC
-#&gt;   5052.605 5072.236
+#&gt;   5134.837 5154.468
 #&gt; _______________________________________________________________
 #&gt; Fixed effects for g(mean) 
 #&gt; ---------------------------------------------------------------
-#&gt;             Estimate Std. Error Z value  Pr(&gt;|z|)    
-#&gt; (Intercept)  -2.0016     0.1107 -18.081 &lt; 2.2e-16 ***
-#&gt; x             2.9963     0.0302  99.214 &lt; 2.2e-16 ***
+#&gt;              Estimate Std. Error Z value  Pr(&gt;|z|)    
+#&gt; (Intercept) -1.965099   0.109619 -17.927 &lt; 2.2e-16 ***
+#&gt; x            3.029621   0.030859  98.175 &lt; 2.2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________
 #&gt; Fixed effects for g(sd) 
 #&gt; ---------------------------------------------------------------
-#&gt;             Estimate Std. Error Z value  Pr(&gt;|z|)    
-#&gt; (Intercept)  0.99592    0.02250  44.263 &lt; 2.2e-16 ***
-#&gt; x            0.29660    0.00740  40.081 &lt; 2.2e-16 ***
+#&gt;              Estimate Std. Error Z value  Pr(&gt;|z|)    
+#&gt; (Intercept) 0.9695303  0.0227591  42.600 &lt; 2.2e-16 ***
+#&gt; x           0.2946174  0.0071403  41.261 &lt; 2.2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________
@@ -289,7 +320,7 @@ generates an S3 object of class <code>maxlogL</code>.</p>
 #&gt; ---</div><div class='input'>
 
 <span class='co'>#--------------------------------------------------------------------------------</span>
-<span class='co'># Fitting with censorship</span>
+<span class='co'># Second example: Fitting with censorship</span>
 <span class='co'># (data from https://www.itl.nist.gov/div898/handbook/apr/section4/apr413.htm)</span>
 
 <span class='no'>failures</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>55</span>, <span class='fl'>187</span>, <span class='fl'>216</span>, <span class='fl'>240</span>, <span class='fl'>244</span>, <span class='fl'>335</span>, <span class='fl'>361</span>, <span class='fl'>373</span>, <span class='fl'>375</span>, <span class='fl'>386</span>)
@@ -330,7 +361,7 @@ generates an S3 object of class <code>maxlogL</code>.</p>
 #&gt; Fixed effects for g(scale) 
 #&gt; ---------------------------------------------------------------
 #&gt;             Estimate Std. Error Z value  Pr(&gt;|z|)    
-#&gt; (Intercept)   606.00     124.43  4.8703 1.114e-06 ***
+#&gt; (Intercept)   606.00     124.43  4.8703 1.115e-06 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________
@@ -338,21 +369,13 @@ generates an S3 object of class <code>maxlogL</code>.</p>
 #&gt; ---</div><div class='input'>
 
 #--------------------------------------------------------------------------------
+
 </div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
-      <li><a href="#note">Note</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    <p>Jaime Mosquera Gutiérrez, <a href='mailto:jmosquerag@unal.edu.co'>jmosquerag@unal.edu.co</a></p>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -363,7 +386,7 @@ generates an S3 object of class <code>maxlogL</code>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
