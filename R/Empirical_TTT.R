@@ -1,5 +1,5 @@
 #' @title Empirical Total Time on Test (TTT), analytic version.
-#' @family Empirical.TTT
+#' @family EmpiricalTTT
 #'
 #' @author Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
 #'
@@ -79,22 +79,22 @@
 #' print(TTT_2$strata)
 #'
 #' #--------------------------------------------------------------------------------
-#' # Third example: Scaled empirical TTT without a factor (arbitrarily simulated
+#' # Third example: Non-scaled empirical TTT without a factor (arbitrarily simulated
 #' # data).
 #'
 #' y <- rweibull(n=20, shape=1, scale=pi)
-#' TTT_3 <- TTT_EAnalytical(y ~ 1)
+#' TTT_3 <- TTT_EAnalytical(y ~ 1, sclaed = FALSE)
 #' print(TTT_3$`i/n`)
 #' print(TTT_3$phi_n)
 #' print(TTT_3$strata)
 #'
 #'
 #' #--------------------------------------------------------------------------------
-#' # Fourth example: Scaled empirical TTT without a factor (arbitrarily simulated
+#' # Fourth example: non-scaled empirical TTT without a factor (arbitrarily simulated
 #' # data) using the 'response' argument (this is equivalent to Third example).
 #'
 #' y <- rweibull(n=20, shape=1, scale=pi)
-#' TTT_4 <- TTT_EAnalytical(y ~ 1)
+#' TTT_4 <- TTT_EAnalytical(y ~ 1, scladed = FALSE)
 #' print(TTT_3$`i/n`)
 #' print(TTT_3$phi_n)
 #' print(TTT_3$strata)
@@ -112,6 +112,8 @@
 #' \insertRef{Westberg1994}{EstimationTools}
 #'
 #' @importFrom Rdpack reprompt
+#'
+#' @seealso \code{\link{plot.EmpiricalTTT}}
 #'
 #==============================================================================
 # Empirical TTT computation ---------------------------------------------------
@@ -168,7 +170,7 @@ TTT_EAnalytical <- function(formula, response = NULL, scaled = TRUE, data,
                    Barlow = Baction(y, x))
 
   TTT <- TTT_formula_selector(inputs, scaled, method)
-  class(TTT) <- "Empirical.TTT"
+  class(TTT) <- "EmpiricalTTT"
   return(TTT)
 }
 #==============================================================================
