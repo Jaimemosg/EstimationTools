@@ -47,7 +47,7 @@
 #'
 #' TTT_2 <- TTT_EAnalytical(Surv(time, status) ~ x, method = "cens", data = aml)
 #' plot(TTT_2, type = "l", lty = c(1,1), col = c(2,4))
-#' plot(TTT_2, add = TRUE, type = "p", lty = c(1,1), col = c(2,4))
+#' plot(TTT_2, add = TRUE, type = "p", lty = c(1,1), col = c(2,4), pch = 16)
 #'
 #' #--------------------------------------------------------------------------------
 #' # Third example: Non-scaled empirical TTT without a factor (arbitrarily simulated
