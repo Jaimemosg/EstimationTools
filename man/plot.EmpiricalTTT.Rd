@@ -60,8 +60,8 @@ plot(TTT_1, type = "p")
 # from 'survival' package.
 
 TTT_2 <- TTT_EAnalytical(Surv(time, status) ~ x, method = "cens", data = aml)
-#plot(TTT_2, type = "l", lty = c(1,1), col = c(2,4))
-#plot(TTT_2, add = TRUE, type = "p", lty = c(1,1), col = c(2,4))
+plot(TTT_2, type = "l", lty = c(1,1), col = c(2,4))
+plot(TTT_2, add = TRUE, type = "p", lty = c(1,1), col = c(2,4))
 
 #--------------------------------------------------------------------------------
 # Third example: Non-scaled empirical TTT without a factor (arbitrarily simulated
@@ -69,7 +69,7 @@ TTT_2 <- TTT_EAnalytical(Surv(time, status) ~ x, method = "cens", data = aml)
 
 y <- rweibull(n=20, shape=1, scale=pi)
 TTT_3 <- TTT_EAnalytical(y ~ 1, scaled = FALSE)
-#plot(TTT_3, type = "s", col = 3, lwd = 3)
+plot(TTT_3, type = "s", col = 3, lwd = 3)
 
 
 #--------------------------------------------------------------------------------
