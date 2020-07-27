@@ -2,7 +2,7 @@
 
 - 'EstimationTools' was build in R 4.0.2.
 
-- This is the first time we implement a 'NEWS.md' file.
+- We have implemented computation and plots of empirical total time on test (TTT).
 
 - Standard error computation is now performed inside 'maxlogL' and 'maxlogLreg'.
 

@@ -97,14 +97,15 @@
 <!-- badges: start -->
 <!-- badges: end -->
 <p>The goal of <code>EstimationTools</code> is to provide a routine for parameter estimation of probability density/mass functions in <code>R</code>.</p>
+<p><em>Edit (27/07/2020)</em> – We have implemented new tools and we have performed some deep modifications in our <code>summary</code> method for <code>maxlogL</code> objects. You can find out in our <a href="https://jaimemosg.github.io/EstimationTools/news/index.html">changelog</a>.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the lastest version of <code>EstimationTools</code> typing the following command lines in <code>R</code> console:</p>
+<p>You can install the lastest version (2.0.0) of <code>EstimationTools</code> typing the following command lines in <code>R</code> console:</p>
 <div class="sourceCode" id="cb1"><pre class="r"><span class="kw">if</span> (!<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="st">'devtools'</span>)) <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">'devtools'</span>)
 <span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">'Jaimemosg/EstimationTools'</span>, <span class="kw">force</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">EstimationTools</span>)</pre></div>
-<p>Or you can install the released version from <a href="https://cran.r-project.org/package=EstimationTools">CRAN</a> if you prefer. You can also type the following command lines in <code>R</code> console:</p>
+<p>Or you can install the released version (1.2.1) from <a href="https://cran.r-project.org/package=EstimationTools">CRAN</a> if you prefer. You can also type the following command lines in <code>R</code> console:</p>
 <div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"EstimationTools"</span>)</pre></div>
 <p>You can visit the <a href="https://Jaimemosg.github.io/EstimationTools/">package website</a> to explore the vignettes (articles) and functions reference.</p>
 </div>
@@ -200,11 +201,11 @@ X &amp;\sim N(\mu, \:\sigma^2), \\
 <span class="co">#&gt; Standard Error calculation: Hessian from optim </span>
 <span class="co">#&gt; _______________________________________________________________</span>
 <span class="co">#&gt;        AIC      BIC</span>
-<span class="co">#&gt;   64249.35 64263.78</span>
+<span class="co">#&gt;   64310.02 64324.44</span>
 <span class="co">#&gt; _______________________________________________________________</span>
 <span class="co">#&gt;      Estimate  Std. Error Z value Pr(&gt;|z|)    </span>
-<span class="co">#&gt; mean 159.98903    0.06009  2662.3   &lt;2e-16 ***</span>
-<span class="co">#&gt; sd     6.00943    0.04249   141.4   &lt;2e-16 ***</span>
+<span class="co">#&gt; mean 159.94629    0.06028  2653.5   &lt;2e-16 ***</span>
+<span class="co">#&gt; sd     6.02768    0.04262   141.4   &lt;2e-16 ***</span>
 <span class="co">#&gt; ---</span>
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 <span class="co">#&gt; _______________________________________________________________</span></pre></div>
