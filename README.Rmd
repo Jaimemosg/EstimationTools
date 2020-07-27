@@ -30,9 +30,11 @@ knitr::opts_chunk$set(
 
 The goal of `EstimationTools` is to provide a routine for parameter estimation of probability density/mass functions in `R`.
 
+_Edit (27/07/2020)_ -- We have implemented new tools and we have performed some deep modifications in our `summary` method for `maxlogL` objects. You can find out in our [changelog](https://jaimemosg.github.io/EstimationTools/news/index.html).
+
 ## Installation
 
-You can install the lastest version of `EstimationTools` typing the following command lines
+You can install the lastest version (2.0.0) of `EstimationTools` typing the following command lines
 in `R` console:
 
 ``` {r eval=FALSE}
@@ -41,7 +43,7 @@ devtools::install_github('Jaimemosg/EstimationTools', force = TRUE)
 library(EstimationTools)
 ```
 
-Or you can install the released version from  [CRAN](https://cran.r-project.org/package=EstimationTools) if you prefer. You can also type the following command lines
+Or you can install the released version (1.2.1) from  [CRAN](https://cran.r-project.org/package=EstimationTools) if you prefer. You can also type the following command lines
 in `R` console:
 
 ```{r eval=FALSE}

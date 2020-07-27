@@ -24,10 +24,15 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 The goal of `EstimationTools` is to provide a routine for parameter
 estimation of probability density/mass functions in `R`.
 
+*Edit (27/07/2020)* – We have implemented new tools and we have
+performed some deep modifications in our `summary` method for `maxlogL`
+objects. You can find out in our
+[changelog](https://jaimemosg.github.io/EstimationTools/news/index.html).
+
 ## Installation
 
-You can install the lastest version of `EstimationTools` typing the
-following command lines in `R` console:
+You can install the lastest version (2.0.0) of `EstimationTools` typing
+the following command lines in `R` console:
 
 ``` r
 if (!require('devtools')) install.packages('devtools')
@@ -35,7 +40,7 @@ devtools::install_github('Jaimemosg/EstimationTools', force = TRUE)
 library(EstimationTools)
 ```
 
-Or you can install the released version from
+Or you can install the released version (1.2.1) from
 [CRAN](https://cran.r-project.org/package=EstimationTools) if you
 prefer. You can also type the following command lines in `R` console:
 
@@ -170,11 +175,11 @@ summary(fit)
 #> Standard Error calculation: Hessian from optim 
 #> _______________________________________________________________
 #>        AIC      BIC
-#>   64249.35 64263.78
+#>   64310.02 64324.44
 #> _______________________________________________________________
 #>      Estimate  Std. Error Z value Pr(>|z|)    
-#> mean 159.98903    0.06009  2662.3   <2e-16 ***
-#> sd     6.00943    0.04249   141.4   <2e-16 ***
+#> mean 159.94629    0.06028  2653.5   <2e-16 ***
+#> sd     6.02768    0.04262   141.4   <2e-16 ***
 #> ---
 #> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #> _______________________________________________________________
