@@ -61,7 +61,7 @@ summary(maxlogL(x = N, dist = 'dbinom', fixed = list(size = 10),
                 link = list(over = "prob", fun = "logit_link")))
 
 #--------------------------------------------------------------------------------
-# Fourth example: Estimation with simulated normal data
+# Fourth example: Estimation in a regression model with simulated normal data
 n <- 1000
 x <- runif(n = n, -5, 6)
 y <- rnorm(n = n, mean = -2 + 3 * x, sd = exp(1 + 0.3* x))
