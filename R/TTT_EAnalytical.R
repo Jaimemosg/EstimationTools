@@ -165,8 +165,8 @@ TTT_EAnalytical <- function(formula, response = NULL, scaled = TRUE, data,
 
   Alldots <- substitute(...())
   inputs <- switch(method,
-                   censored = KMaction(y, formula, model_frame = modfrm,
-                                       data = data, Alldots),
+                   censored = Cens_action(y, formula, model_frame = modfrm,
+                                          data = data, Alldots),
                    Barlow = Baction(y, x))
 
   TTT <- TTT_formula_selector(inputs, scaled, method)
@@ -174,48 +174,34 @@ TTT_EAnalytical <- function(formula, response = NULL, scaled = TRUE, data,
   return(TTT)
 }
 #==============================================================================
-# Formula conversion for 'survfit' using --------------------------------------
-#==============================================================================
-formula2Surv <- function(model_frame){
-  vars <- names(model_frame)
-  y_var <- paste0('Surv(', vars[1L], ', rep(1, nrow(model_frame)))')
-  right_side <- if (length(vars) > 1){
-    paste(vars[2L:end(vars)[1]], collapse = "+")
-  } else {
-    "1"
-  }
-  formula <- as.formula(paste0(y_var, "~", right_side))
-  return(formula)
-}
-#==============================================================================
 # Data preparation for TTT computation ----------------------------------------
 #==============================================================================
-KMaction <- function(y, fo, model_frame, data, Alldots){
+Cens_action <- function(y, fo, model_frame, data, Alldots){
+  # if ( !is.Surv(y) ){
+  #   fo <- formula2Surv(model_frame)
+  #   if ( missing(data) ) data <- model_frame
+  # } else {
+  #   if ( missing(data) ){
+  #     vars <- names(model_frame)
+  #     ySurv <- vars[1L]
+  #     yname <- gsub("Surv\\((.*?),.*", "\\1", ySurv)
+  #     statusname <- gsub(paste0("Surv\\(", yname, ",(.*?)\\)"), "\\1", ySurv)
+  #     factorname <- vars[length(vars)]
+  #     data <- data.frame(y[,1], y[,2], model_frame[,2])
+  #     colnames(data) <- c(yname, statusname, factorname)
+  #   }
+  # }
+  cens_outs <- fo_and_data(y, fo, model_frame, data)
   args_matches <- match(names(formals(survfit.formula)), names(Alldots),
                         nomatch = 0)
   survfit_extras <- Alldots[args_matches]
   survfit_dots <- Alldots[-args_matches]
   survfit_dots <- if ( length(survfit_dots) == 0){ NULL }
-  if ( !is.Surv(y) ){
-    fo <- formula2Surv(model_frame)
-    if ( missing(data) ) data <- model_frame
-  } else {
-    if ( missing(data) ){
-      vars <- names(model_frame)
-      ySurv <- vars[1L]
-      yname <- gsub("Surv\\((.*?),.*", "\\1", ySurv)
-      statusname <- gsub(paste0("Surv\\(", yname, ",(.*?)\\)"), "\\1", ySurv)
-      factorname <- vars[length(vars)]
-      data <- data.frame(y[,1], y[,2], model_frame[,2])
-      colnames(data) <- c(yname, statusname, factorname)
-    }
-  }
-  inputs <- do.call("survfit.formula", args = c(list(formula = fo, data = data),
-                                              survfit_extras, survfit_dots))
-  # inputs <- survival::survfit(fo, data = data, ...)
+  inputs <- do.call("survfit.formula", args = c(list(formula = cens_outs$fo,
+                                                     data = cens_outs$data),
+                                                survfit_extras, survfit_dots))
   return(inputs)
 }
-
 Baction <- function(y, x){
   if ( is.Surv(y) ){
     inputs <- data.frame(y[,1], x)
