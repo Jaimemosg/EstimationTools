@@ -59,6 +59,15 @@
 #'
 #'
 #' #--------------------------------------------------------------------------------
+#' # Fourth example: TTT plot for 'carbone' data from 'AdequacyModel' package
+#'
+#' library(AdequacyModel)
+#' data(carbone)
+#' TTT_4 <- TTT_EAnalytical(response = carbone, scaled = TRUE)
+#' plot(TTT_4, type = "l", col = "red", lwd = 2, grid = TRUE)
+#'
+#'
+#' #--------------------------------------------------------------------------------
 #'
 #' @seealso \code{\link{TTT_EAnalytical}}, \code{\link[graphics]{matplot}}
 #' @method plot EmpiricalTTT
@@ -66,10 +75,12 @@
 #==============================================================================
 # plot method -----------------------------------------------------------------
 #==============================================================================
-plot.EmpiricalTTT <- function(x, add = FALSE,  type = "l", pch = 1, xlab = "i/n",
-                              ylab = expression(phi[n](i/n)), ...){
+plot.EmpiricalTTT <- function(x, add = FALSE, grid = FALSE, type = "l", pch = 1,
+                              xlab = "i/n", ylab = expression(phi[n](i/n)), ...){
   matplot(x$`i/n`, x$phi_n, xlab = xlab, ylab = ylab,
           xlim = c(0,1), type = type, pch = pch, add = add, ...)
   if ( !add ) lines(c(0,1), c(0, max(x$phi_n[nrow(x$phi_n),])),
                     lty = 2)
+  if ( grid == TRUE )
+    grid()
 }
