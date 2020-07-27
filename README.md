@@ -1,6 +1,8 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+[![Lifecycle:
+maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 [![Travis build
 status](https://travis-ci.org/Jaimemosg/EstimationTools.svg?branch=master)](https://travis-ci.org/Jaimemosg/EstimationTools)
 [![AppVeyor Build
@@ -81,23 +83,18 @@ head(data)
 The model is as follows:
 
   
-![
-f(t|\\alpha, k) = \\frac{\\alpha}{k}
+![&#10;f(t|\\alpha, k) = \\frac{\\alpha}{k}
 \\left(\\frac{t}{k}\\right)^{\\alpha-1}
-\\exp\\left\[-\\left(\\frac{t}{k}\\right)^{\\alpha}\\right\]
-](https://latex.codecogs.com/png.latex?%0Af%28t%7C%5Calpha%2C%20k%29%20%3D%20%5Cfrac%7B%5Calpha%7D%7Bk%7D%20%5Cleft%28%5Cfrac%7Bt%7D%7Bk%7D%5Cright%29%5E%7B%5Calpha-1%7D%20%5Cexp%5Cleft%5B-%5Cleft%28%5Cfrac%7Bt%7D%7Bk%7D%5Cright%29%5E%7B%5Calpha%7D%5Cright%5D%0A
+\\exp\\left\[-\\left(\\frac{t}{k}\\right)^{\\alpha}\\right\]&#10;](https://latex.codecogs.com/png.latex?%0Af%28t%7C%5Calpha%2C%20k%29%20%3D%20%5Cfrac%7B%5Calpha%7D%7Bk%7D%20%5Cleft%28%5Cfrac%7Bt%7D%7Bk%7D%5Cright%29%5E%7B%5Calpha-1%7D%20%5Cexp%5Cleft%5B-%5Cleft%28%5Cfrac%7Bt%7D%7Bk%7D%5Cright%29%5E%7B%5Calpha%7D%5Cright%5D%0A
 "
 f(t|\\alpha, k) = \\frac{\\alpha}{k} \\left(\\frac{t}{k}\\right)^{\\alpha-1} \\exp\\left[-\\left(\\frac{t}{k}\\right)^{\\alpha}\\right]
 ")  
 
   
-![
-\\begin{aligned}
-T &\\stackrel{\\text{iid.}}{\\sim} WEI(\\alpha,\\: k), \\\\
-\\log(\\alpha) &= 1.2 + 0.1 \\times group \\quad (\\verb|shape|),\\\\
-k &= 500 \\quad (\\verb|scale|).
-\\end{aligned}
-](https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0AT%20%26%5Cstackrel%7B%5Ctext%7Biid.%7D%7D%7B%5Csim%7D%20WEI%28%5Calpha%2C%5C%3A%20k%29%2C%20%5C%5C%0A%5Clog%28%5Calpha%29%20%26%3D%201.2%20%2B%200.1%20%5Ctimes%20group%20%5Cquad%20%20%28%5Cverb%7Cshape%7C%29%2C%5C%5C%0Ak%20%26%3D%20500%20%5Cquad%20%28%5Cverb%7Cscale%7C%29.%0A%5Cend%7Baligned%7D%0A
+![&#10;\\begin{aligned}&#10;T &\\stackrel{\\text{iid.}}{\\sim}
+WEI(\\alpha,\\: k), \\\\&#10;\\log(\\alpha) &= 1.2 + 0.1 \\times group
+\\quad (\\verb|shape|),\\\\&#10;k &= 500 \\quad
+(\\verb|scale|).&#10;\\end{aligned}&#10;](https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0AT%20%26%5Cstackrel%7B%5Ctext%7Biid.%7D%7D%7B%5Csim%7D%20WEI%28%5Calpha%2C%5C%3A%20k%29%2C%20%5C%5C%0A%5Clog%28%5Calpha%29%20%26%3D%201.2%20%2B%200.1%20%5Ctimes%20group%20%5Cquad%20%20%28%5Cverb%7Cshape%7C%29%2C%5C%5C%0Ak%20%26%3D%20500%20%5Cquad%20%28%5Cverb%7Cscale%7C%29.%0A%5Cend%7Baligned%7D%0A
 "
 \\begin{aligned}
 T &\\stackrel{\\text{iid.}}{\\sim} WEI(\\alpha,\\: k), \\\\
@@ -130,15 +127,15 @@ summary(fit_wei)
 #> Fixed effects for g(shape) 
 #> ---------------------------------------------------------------
 #>             Estimate Std. Error Z value  Pr(>|z|)    
-#> (Intercept)  1.16587    0.19960  5.8410 5.189e-09 ***
-#> group2       0.30861    0.28990  1.0645    0.2871    
+#> (Intercept)  1.16587    0.19956  5.8422 5.152e-09 ***
+#> group2       0.30861    0.28988  1.0646    0.2871    
 #> ---
 #> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #> _______________________________________________________________
 #> Fixed effects for g(scale) 
 #> ---------------------------------------------------------------
 #>             Estimate Std. Error Z value  Pr(>|z|)    
-#> (Intercept)   6.2553     0.0463   135.1 < 2.2e-16 ***
+#> (Intercept) 6.255290   0.046286  135.14 < 2.2e-16 ***
 #> ---
 #> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #> _______________________________________________________________
@@ -149,13 +146,9 @@ summary(fit_wei)
 ## Estimation in distributions
 
   
-![
-\\begin{aligned} 
-X &\\sim N(\\mu, \\:\\sigma^2), \\\\
-\\mu &= 160 \\quad (\\verb|mean|), \\\\
-\\sigma &= 6 \\quad (\\verb|sd|).
-\\end{aligned}
-](https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%20%0AX%20%26%5Csim%20N%28%5Cmu%2C%20%5C%3A%5Csigma%5E2%29%2C%20%5C%5C%0A%5Cmu%20%26%3D%20160%20%5Cquad%20%28%5Cverb%7Cmean%7C%29%2C%20%5C%5C%0A%5Csigma%20%26%3D%206%20%5Cquad%20%28%5Cverb%7Csd%7C%29.%0A%5Cend%7Baligned%7D%0A
+![&#10;\\begin{aligned} &#10;X &\\sim N(\\mu, \\:\\sigma^2),
+\\\\&#10;\\mu &= 160 \\quad (\\verb|mean|), \\\\&#10;\\sigma &= 6 \\quad
+(\\verb|sd|).&#10;\\end{aligned}&#10;](https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%20%0AX%20%26%5Csim%20N%28%5Cmu%2C%20%5C%3A%5Csigma%5E2%29%2C%20%5C%5C%0A%5Cmu%20%26%3D%20160%20%5Cquad%20%28%5Cverb%7Cmean%7C%29%2C%20%5C%5C%0A%5Csigma%20%26%3D%206%20%5Cquad%20%28%5Cverb%7Csd%7C%29.%0A%5Cend%7Baligned%7D%0A
 "
 \\begin{aligned} 
 X &\\sim N(\\mu, \\:\\sigma^2), \\\\
@@ -177,10 +170,12 @@ summary(fit)
 #> Standard Error calculation: Hessian from optim 
 #> _______________________________________________________________
 #>        AIC      BIC
-#>   64242.83 64257.25
+#>   64249.35 64263.78
 #> _______________________________________________________________
-#>      Estimate  Std. Error
-#> mean  160.0410     0.0601
-#> sd      6.0075     0.0425
+#>      Estimate  Std. Error Z value Pr(>|z|)    
+#> mean 159.98903    0.06009  2662.3   <2e-16 ***
+#> sd     6.00943    0.04249   141.4   <2e-16 ***
+#> ---
+#> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #> _______________________________________________________________
 ```
