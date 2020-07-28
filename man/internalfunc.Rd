@@ -7,7 +7,7 @@
 \usage{
 formula2Surv(model_frame)
 
-fo_and_data(y, fo, model_frame, data)
+fo_and_data(y, fo, model_frame, data, fo2Surv = TRUE)
 }
 \arguments{
 \item{model_frame}{a model frame build internally in some functions on
