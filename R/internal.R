@@ -30,9 +30,9 @@ formula2Surv <- function(model_frame){
 #' @keywords internal
 #' @rdname internalfunc
 #'
-fo_and_data <- function(y, fo, model_frame, data){
+fo_and_data <- function(y, fo, model_frame, data, fo2Surv = TRUE){
   if ( !is.Surv(y) ){
-    fo <- formula2Surv(model_frame)
+    if ( fo2Surv ) fo <- formula2Surv(model_frame)
     if ( missing(data) ) data <- model_frame
   } else {
     if ( missing(data) ){
