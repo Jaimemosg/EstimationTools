@@ -97,7 +97,7 @@ print(TTT_2$strata)
 # data).
 
 y <- rweibull(n=20, shape=1, scale=pi)
-TTT_3 <- TTT_EAnalytical(y ~ 1, sclaed = FALSE)
+TTT_3 <- TTT_EAnalytical(y ~ 1, scaled = FALSE)
 head(TTT_3$`i/n`)
 head(TTT_3$phi_n)
 print(TTT_3$strata)
@@ -108,7 +108,7 @@ print(TTT_3$strata)
 # data) using the 'response' argument (this is equivalent to Third example).
 
 y <- rweibull(n=20, shape=1, scale=pi)
-TTT_4 <- TTT_EAnalytical(response = y, scladed = FALSE)
+TTT_4 <- TTT_EAnalytical(response = y, scaled = FALSE)
 head(TTT_3$`i/n`)
 head(TTT_3$phi_n)
 print(TTT_3$strata)
@@ -128,9 +128,6 @@ print(TTT_3$strata)
 }
 \seealso{
 \code{\link{plot.EmpiricalTTT}}
-
-Other EmpiricalTTT: 
-\code{\link{TTTE_Analytical}()}
 }
 \author{
 Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}

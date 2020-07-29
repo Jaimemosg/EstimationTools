@@ -53,7 +53,7 @@ library(EstimationTools)
 #--------------------------------------------------------------------------------
 # First example: Scaled empirical TTT from 'mgus1' data from 'survival' package.
 
-TTT_1 <- TTT_EAnalytical(Surv(stop, event == 'pcm') ~1, method = 'cens',
+TTT_1 <- TTTE_Analytical(Surv(stop, event == 'pcm') ~1, method = 'cens',
                          data = mgus1, subset=(start == 0))
 plot(TTT_1, type = "p")
 
@@ -62,7 +62,7 @@ plot(TTT_1, type = "p")
 # Second example: Scaled empirical TTT using a factor variable with 'aml' data
 # from 'survival' package.
 
-TTT_2 <- TTT_EAnalytical(Surv(time, status) ~ x, method = "cens", data = aml)
+TTT_2 <- TTTE_Analytical(Surv(time, status) ~ x, method = "cens", data = aml)
 plot(TTT_2, type = "l", lty = c(1,1), col = c(2,4))
 plot(TTT_2, add = TRUE, type = "p", lty = c(1,1), col = c(2,4), pch = 16)
 
@@ -71,7 +71,7 @@ plot(TTT_2, add = TRUE, type = "p", lty = c(1,1), col = c(2,4), pch = 16)
 # data).
 
 y <- rweibull(n=20, shape=1, scale=pi)
-TTT_3 <- TTT_EAnalytical(y ~ 1, scaled = FALSE)
+TTT_3 <- TTTE_Analytical(y ~ 1, scaled = FALSE)
 plot(TTT_3, type = "s", col = 3, lwd = 3)
 
 
@@ -81,7 +81,7 @@ plot(TTT_3, type = "s", col = 3, lwd = 3)
 if (!require('AdequacyModel')) install.packages('AdequacyModel')
 library(AdequacyModel)
 data(carbone)
-TTT_4 <- TTT_EAnalytical(response = carbone, scaled = TRUE)
+TTT_4 <- TTTE_Analytical(response = carbone, scaled = TRUE)
 plot(TTT_4, type = "l", col = "red", lwd = 2, grid = TRUE)
 
 
@@ -89,7 +89,7 @@ plot(TTT_4, type = "l", col = "red", lwd = 2, grid = TRUE)
 
 }
 \seealso{
-\code{\link{TTT_EAnalytical}}, \code{\link[graphics]{matplot}}
+\code{\link{TTTE_Analytical}}, \code{\link[graphics]{matplot}}
 }
 \author{
 Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
