@@ -62,7 +62,7 @@
 #' #--------------------------------------------------------------------------------
 #' # First example: Scaled empirical TTT from 'mgus1' data from 'survival' package.
 #'
-#' TTT_1 <- TTT_EAnalytical(Surv(stop, event == 'pcm') ~1, method = 'cens',
+#' TTT_1 <- TTTE_Analytical(Surv(stop, event == 'pcm') ~1, method = 'cens',
 #'                          data = mgus1, subset=(start == 0))
 #' head(TTT_1$`i/n`)
 #' head(TTT_1$phi_n)
@@ -73,7 +73,7 @@
 #' # Second example: Scaled empirical TTT using a factor variable with 'aml' data
 #' # from 'survival' package.
 #'
-#' TTT_2 <- TTT_EAnalytical(Surv(time, status) ~ x, method = "cens", data = aml)
+#' TTT_2 <- TTTE_Analytical(Surv(time, status) ~ x, method = "cens", data = aml)
 #' head(TTT_2$`i/n`)
 #' head(TTT_2$phi_n)
 #' print(TTT_2$strata)
@@ -83,7 +83,7 @@
 #' # data).
 #'
 #' y <- rweibull(n=20, shape=1, scale=pi)
-#' TTT_3 <- TTT_EAnalytical(y ~ 1, sclaed = FALSE)
+#' TTT_3 <- TTTE_Analytical(y ~ 1, scaled = FALSE)
 #' head(TTT_3$`i/n`)
 #' head(TTT_3$phi_n)
 #' print(TTT_3$strata)
@@ -94,7 +94,7 @@
 #' # data) using the 'response' argument (this is equivalent to Third example).
 #'
 #' y <- rweibull(n=20, shape=1, scale=pi)
-#' TTT_4 <- TTT_EAnalytical(response = y, scladed = FALSE)
+#' TTT_4 <- TTTE_Analytical(response = y, scaled = FALSE)
 #' head(TTT_3$`i/n`)
 #' head(TTT_3$phi_n)
 #' print(TTT_3$strata)
@@ -118,7 +118,7 @@
 #==============================================================================
 # Empirical TTT computation ---------------------------------------------------
 #==============================================================================
-TTT_EAnalytical <- function(formula, response = NULL, scaled = TRUE, data,
+TTTE_Analytical <- function(formula, response = NULL, scaled = TRUE, data,
                             method = c('Barlow', 'censored'), ...){
   method <- match.arg(method, c('Barlow', 'censored'))
   mycall <- match.call()
