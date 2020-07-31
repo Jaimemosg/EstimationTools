@@ -61,6 +61,8 @@
 #' \code{\link{optim}}, \code{\link{nlminb}} or \code{\link{DEoptim}}. \code{maxlogLreg}
 #' generates an S3 object of class \code{maxlogL}.
 #'
+#' Noncentrality parameters must be named as \code{ncp} in the distribution.
+#'
 #' @note The following generic functions can be used with a \code{maxlogL} object:
 #' \code{summary, print, logLik, AIC}.
 #'

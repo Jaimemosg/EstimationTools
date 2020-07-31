@@ -48,6 +48,8 @@
 #' \code{\link{optim}}, \code{\link{nlminb}} or \code{\link{DEoptim}}. \code{maxlogL}
 #' generates an S3 object of class \code{maxlogL}.
 #'
+#' Noncentrality parameters must be named as \code{ncp} in the distribution.
+#'
 #' @note The following generic functions can be used with a \code{maxlogL} object:
 #' \code{summary, print, AIC, BIC, logLik}.
 #'
@@ -60,7 +62,7 @@
 #' library(EstimationTools)
 #'
 #' #--------------------------------------------------------------------------------
-#' # Estimation with one fixed parameter
+#' # Example 1: estimation with one fixed parameter
 #' x <- rnorm(n = 10000, mean = 160, sd = 6)
 #' theta_1 <- maxlogL(x = x, dist = 'dnorm', control = list(trace = 1),
 #'                  link = list(over = "sd", fun = "log_link"),
@@ -69,23 +71,39 @@
 #'
 #'
 #' #--------------------------------------------------------------------------------
-#' # Both parameters of normal distribution mapped with logarithmic function
-#' theta_2 <- maxlogL( x = x, dist = "dnorm",
-#'                     link = list(over = c("mean","sd"),
-#'                                 fun = c("log_link","log_link")) )
+#' # Example 2: both parameters of normal distribution mapped with logarithmic
+#' # function
+#' theta_2 <- maxlogL(x = x, dist = "dnorm",
+#'                    link = list(over = c("mean","sd"),
+#'                                fun = c("log_link","log_link")))
 #' summary(theta_2)
 #'
 #'
 #' #--------------------------------------------------------------------------------
-#' # Parameter estimation in ZIP distribution
+#' # Example 3: parameter estimation in ZIP distribution
 #' if (!require('gamlss.dist')) install.packages('gamlss.dist')
 #' library(gamlss.dist)
-#' z <- rZIP(n=10000, mu=6, sigma=0.08)
-#' theta_3  <- maxlogL( x = z, dist='dZIP', start = c(0, 0), lower = c(-Inf, -Inf),
-#'                      upper = c(Inf, Inf), optimizer = 'optim',
-#'                      link = list(over=c("mu", "sigma"),
-#'                      fun = c("log_link", "logit_link")) )
+#' z <- rZIP(n=1000, mu=6, sigma=0.08)
+#' theta_3  <- maxlogL(x = z, dist='dZIP', start = c(0, 0), lower = c(-Inf, -Inf),
+#'                    upper = c(Inf, Inf), optimizer = 'optim',
+#'                    link = list(over=c("mu", "sigma"),
+#'                    fun = c("log_link", "logit_link")))
 #' summary(theta_3)
+#'
+#'
+#' #--------------------------------------------------------------------------------
+#' # Example 4: parameter estimation with fixed noncentrality parameter.
+#' y_2 <- rbeta(n = 1000, shape1 = 2, shape2 = 3)
+#' theta_41 <- maxlogL(x = y_2, dist = "dbeta",
+#'                     link = list(over = c("shape1", "shape2"),
+#'                     fun = c("log_link","log_link")))
+#' summary(theta_41)
+#'
+#' # It is also possible define 'ncp' as fixed parameter
+#' theta_42 <- maxlogL(x = y_2, dist = "dbeta", fixed = list(ncp = 0),
+#'                     link = list(over = c("shape1", "shape2"),
+#'                     fun = c("log_link","log_link")) )
+#' summary(theta_42)
 #'
 #'
 #' #--------------------------------------------------------------------------------

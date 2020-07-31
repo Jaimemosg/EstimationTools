@@ -2,6 +2,9 @@
 
 - 'EstimationTools' was build in R 4.0.2.
 
+- We have implemented noncentrality parameter detection. This parameter must be named
+`ncp` in the distribution.
+
 - We have implemented computation and plots of empirical total time on test (TTT).
 
 - Standard error computation is now performed inside 'maxlogL' and 'maxlogLreg'.
