@@ -4,7 +4,7 @@ author: "Jaime Mosquera"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Bootstrap implementation}
+  %\VignetteIndexEntry{Estimation with maxlogL objects}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 editor_options: 
