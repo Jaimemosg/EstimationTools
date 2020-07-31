@@ -1,0 +1,88 @@
+---
+title: "Estimation with `maxlogL` objects"
+author: "Jaime Mosquera"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Bootstrap implementation}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+These are basic examples which shows you how to solve a common maximum likelihood estimation problem with `EstimationTools`:
+
+## Estimation in regression models
+
+<!-- The data is from [NIST](https://www.itl.nist.gov/div898/handbook/apr/section2/apr221.htm#Example). They generated  20 random Weibull failure times with a parameter `shape=1.5` and `scale=500`. The test time is 500 hours, 10 of these failure times are right censored. The observed times are, to the nearest hour: 54, 187, 216, 240, 244, 335, 361, 373, 375, and 386. -->
+
+We generate data from an hypothetic failure test of approximately 641 hours with 40 experimental units, 20 from group 1 and 20 from group 2. Lets assume a censorship rate of 10%, and regard that the data is right censored. Times from 6 of the 20 experimental units are shown just bellow:
+
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+library(RCurl)
+library(foreign)
+
+url_data <- "https://raw.githubusercontent.com/Jaimemosg/EstimationTools/master/extra/sim_wei.csv"
+wei_data <- getURL(url_data)
+data <- read.csv(textConnection(wei_data), header = TRUE)
+data$group <- as.factor(data$group)
+head(data)
+```
+
+The model is as follows:
+
+$$
+f(t|\alpha, k) = \frac{\alpha}{k} \left(\frac{t}{k}\right)^{\alpha-1} \exp\left[-\left(\frac{t}{k}\right)^{\alpha}\right]
+$$
+
+\centering
+$$
+\begin{aligned}
+T &\stackrel{\text{iid.}}{\sim} WEI(\alpha,\: k), \\
+\log(\alpha) &= 1.2 + 0.1 \times group \quad  (\verb|shape|),\\
+k &= 500 \quad (\verb|scale|).
+\end{aligned}
+$$
+
+The implementation and its solution is printed below:
+
+```{r example1, message=FALSE, warning=FALSE}
+library(EstimationTools)
+
+# Formulas with linear predictors
+formulas <- list(scale.fo = ~ 1, shape.fo = ~ group)
+
+# The model
+fit_wei <- maxlogLreg(formulas, data = data,
+                      y_dist = Surv(Time, status) ~ dweibull,
+                      link = list(over = c("shape", "scale"),
+                                  fun = rep("log_link", 2)))
+summary(fit_wei)
+```
+
+## Estimation in distributions
+
+$$
+\begin{aligned} 
+X &\sim N(\mu, \:\sigma^2), \\
+\mu &= 160 \quad (\verb|mean|), \\
+\sigma &= 6 \quad (\verb|sd|).
+\end{aligned}
+$$
+
+The solution for a data set generated with size $n=10000$ is showed below
+
+```{r example2, message=FALSE, warning=FALSE}
+x <- rnorm( n = 10000, mean = 160, sd = 6 )
+fit <- maxlogL( x = x, dist = "dnorm", link = list(over = "sd", fun = "log_link") )
+summary(fit)
+```
+

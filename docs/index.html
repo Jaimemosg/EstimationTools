@@ -63,6 +63,9 @@
 <li>
       <a href="articles/Bootstrap_implementation.html">Bootstrap implementation</a>
     </li>
+    <li>
+      <a href="articles/Examples.html">Estimation with `maxlogL` objects</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -101,114 +104,13 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the lastest version (2.0.0) of <code>EstimationTools</code> typing the following command lines in <code>R</code> console:</p>
+<p>You can install the latest version (2.0.0) of <code>EstimationTools</code> typing the following command lines in <code>R</code> console:</p>
 <div class="sourceCode" id="cb1"><pre class="r"><span class="kw">if</span> (!<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="st">'devtools'</span>)) <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">'devtools'</span>)
 <span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">'Jaimemosg/EstimationTools'</span>, <span class="kw">force</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">EstimationTools</span>)</pre></div>
-<p>Or you can install the released version (1.2.1) from <a href="https://cran.r-project.org/package=EstimationTools">CRAN</a> if you prefer. You can also type the following command lines in <code>R</code> console:</p>
+<p>Or you can install the released version (2.0.0) from <a href="https://cran.r-project.org/package=EstimationTools">CRAN</a> if you prefer. You can also type the following command lines in <code>R</code> console:</p>
 <div class="sourceCode" id="cb2"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"EstimationTools"</span>)</pre></div>
-<p>You can visit the <a href="https://Jaimemosg.github.io/EstimationTools/">package website</a> to explore the vignettes (articles) and functions reference.</p>
-</div>
-</div>
-<div id="examples" class="section level1">
-<h1 class="hasAnchor">
-<a href="#examples" class="anchor"></a>Examples</h1>
-<p>These are basic examples which shows you how to solve a common maximum likelihood estimation problem with <code>EstimationTools</code>:</p>
-<div id="estimation-in-regression-models" class="section level2">
-<h2 class="hasAnchor">
-<a href="#estimation-in-regression-models" class="anchor"></a>Estimation in regression models</h2>
-<!-- The data is from [NIST](https://www.itl.nist.gov/div898/handbook/apr/section2/apr221.htm#Example). They generated  20 random Weibull failure times with a parameter `shape=1.5` and `scale=500`. The test time is 500 hours, 10 of these failure times are right censored. The observed times are, to the nearest hour: 54, 187, 216, 240, 244, 335, 361, 373, 375, and 386. -->
-<p>We generate data from an hypothetic failure test of approximately 641 hours with 40 experimental units, 20 from group 1 and 20 from group 2. Lets assume a censorship rate of 10%, and regard that the data is right censored. Times from 6 of the 20 experimental units are shown just bellow:</p>
-<div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">RCurl</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">foreign</span>)
-
-<span class="no">url_data</span> <span class="kw">&lt;-</span> <span class="st">"https://raw.githubusercontent.com/Jaimemosg/EstimationTools/master/extra/sim_wei.csv"</span>
-<span class="no">wei_data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/RCurl/man/getURL.html">getURL</a></span>(<span class="no">url_data</span>)
-<span class="no">data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.csv</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/textconnections.html">textConnection</a></span>(<span class="no">wei_data</span>), <span class="kw">header</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
-<span class="no">data</span>$<span class="no">group</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(<span class="no">data</span>$<span class="no">group</span>)
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">data</span>)
-<span class="co">#&gt;   label     Time status group</span>
-<span class="co">#&gt; 1     2 172.7296      1     2</span>
-<span class="co">#&gt; 2     5 198.5872      1     1</span>
-<span class="co">#&gt; 3    13 284.9617      1     1</span>
-<span class="co">#&gt; 4    18 289.8941      1     1</span>
-<span class="co">#&gt; 5    20 293.4005      1     1</span>
-<span class="co">#&gt; 6    15 303.5566      1     1</span></pre></div>
-<p>The model is as follows:</p>
-<p><img src="https://latex.codecogs.com/png.latex?%0Af%28t%7C%5Calpha%2C%20k%29%20%3D%20%5Cfrac%7B%5Calpha%7D%7Bk%7D%20%5Cleft%28%5Cfrac%7Bt%7D%7Bk%7D%5Cright%29%5E%7B%5Calpha-1%7D%20%5Cexp%5Cleft%5B-%5Cleft%28%5Cfrac%7Bt%7D%7Bk%7D%5Cright%29%5E%7B%5Calpha%7D%5Cright%5D%0A%20%22%20f(t%7C%5Calpha,%20k)%20=%20%5Cfrac%7B%5Calpha%7D%7Bk%7D%20%5Cleft(%5Cfrac%7Bt%7D%7Bk%7D%5Cright)%5E%7B%5Calpha-1%7D%20%5Cexp%5Cleft%5B-%5Cleft(%5Cfrac%7Bt%7D%7Bk%7D%5Cright)%5E%7B%5Calpha%7D%5Cright%5D%20%22" alt="
-f(t|\alpha, k) = \frac{\alpha}{k} \left(\frac{t}{k}\right)^{\alpha-1} \exp\left-\\left(\\frac{t}{k}\\right)^{\\alpha}\\right
-"></p>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%0AT%20%26%5Cstackrel%7B%5Ctext%7Biid.%7D%7D%7B%5Csim%7D%20WEI%28%5Calpha%2C%5C%3A%20k%29%2C%20%5C%5C%0A%5Clog%28%5Calpha%29%20%26%3D%201.2%20%2B%200.1%20%5Ctimes%20group%20%5Cquad%20%20%28%5Cverb%7Cshape%7C%29%2C%5C%5C%0Ak%20%26%3D%20500%20%5Cquad%20%28%5Cverb%7Cscale%7C%29.%0A%5Cend%7Baligned%7D%0A%20%22%20%5Cbegin%7Baligned%7D%20T%20&amp;%5Cstackrel%7B%5Ctext%7Biid.%7D%7D%7B%5Csim%7D%20WEI(%5Calpha,%5C:%20k),%20%5C%5C%20%5Clog(%5Calpha)%20&amp;=%201.2%20+%200.1%20%5Ctimes%20group%20%5Cquad%20(%5Cverb%7Cshape%7C),%5C%5C%20k%20&amp;=%20500%20%5Cquad%20(%5Cverb%7Cscale%7C).%20%5Cend%7Baligned%7D%20%22" alt="
-\begin{aligned}
-T &amp;\stackrel{\text{iid.}}{\sim} WEI(\alpha,\: k), \\
-\log(\alpha) &amp;= 1.2 + 0.1 \times group \quad (\verb|shape|),\\
-k &amp;= 500 \quad (\verb|scale|).
-\end{aligned}
-"></p>
-<p>The implementation and its solution is printed below:</p>
-<div class="sourceCode" id="cb4"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">EstimationTools</span>)
-
-<span class="co"># Formulas with linear predictors</span>
-<span class="no">formulas</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">scale.fo</span> <span class="kw">=</span> ~ <span class="fl">1</span>, <span class="kw">shape.fo</span> <span class="kw">=</span> ~ <span class="no">group</span>)
-
-<span class="co"># The model</span>
-<span class="no">fit_wei</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/maxlogLreg.html">maxlogLreg</a></span>(<span class="no">formulas</span>, <span class="kw">data</span> <span class="kw">=</span> <span class="no">data</span>,
-                      <span class="kw">y_dist</span> <span class="kw">=</span> <span class="fu">Surv</span>(<span class="no">Time</span>, <span class="no">status</span>) ~ <span class="no">dweibull</span>,
-                      <span class="kw">link</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">over</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"shape"</span>, <span class="st">"scale"</span>),
-                                  <span class="kw">fun</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="st">"log_link"</span>, <span class="fl">2</span>)))
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">fit_wei</span>)
-<span class="co">#&gt; _______________________________________________________________</span>
-<span class="co">#&gt; Optimization routine: nlminb </span>
-<span class="co">#&gt; Standard Error calculation: Hessian from optim </span>
-<span class="co">#&gt; _______________________________________________________________</span>
-<span class="co">#&gt;        AIC      BIC</span>
-<span class="co">#&gt;   472.4435 477.5101</span>
-<span class="co">#&gt; _______________________________________________________________</span>
-<span class="co">#&gt; Fixed effects for g(shape) </span>
-<span class="co">#&gt; ---------------------------------------------------------------</span>
-<span class="co">#&gt;             Estimate Std. Error Z value  Pr(&gt;|z|)    </span>
-<span class="co">#&gt; (Intercept)  1.16587    0.19956  5.8422 5.152e-09 ***</span>
-<span class="co">#&gt; group2       0.30861    0.28988  1.0646    0.2871    </span>
-<span class="co">#&gt; ---</span>
-<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
-<span class="co">#&gt; _______________________________________________________________</span>
-<span class="co">#&gt; Fixed effects for g(scale) </span>
-<span class="co">#&gt; ---------------------------------------------------------------</span>
-<span class="co">#&gt;             Estimate Std. Error Z value  Pr(&gt;|z|)    </span>
-<span class="co">#&gt; (Intercept) 6.255290   0.046286  135.14 &lt; 2.2e-16 ***</span>
-<span class="co">#&gt; ---</span>
-<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
-<span class="co">#&gt; _______________________________________________________________</span>
-<span class="co">#&gt; Note: p-values valid under asymptotic normality of estimators </span>
-<span class="co">#&gt; ---</span></pre></div>
-</div>
-<div id="estimation-in-distributions" class="section level2">
-<h2 class="hasAnchor">
-<a href="#estimation-in-distributions" class="anchor"></a>Estimation in distributions</h2>
-<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Baligned%7D%20%0AX%20%26%5Csim%20N%28%5Cmu%2C%20%5C%3A%5Csigma%5E2%29%2C%20%5C%5C%0A%5Cmu%20%26%3D%20160%20%5Cquad%20%28%5Cverb%7Cmean%7C%29%2C%20%5C%5C%0A%5Csigma%20%26%3D%206%20%5Cquad%20%28%5Cverb%7Csd%7C%29.%0A%5Cend%7Baligned%7D%0A%20%22%20%5Cbegin%7Baligned%7D%20X%20&amp;%5Csim%20N(%5Cmu,%20%5C:%5Csigma%5E2),%20%5C%5C%20%5Cmu%20&amp;=%20160%20%5Cquad%20(%5Cverb%7Cmean%7C),%20%5C%5C%20%5Csigma%20&amp;=%206%20%5Cquad%20(%5Cverb%7Csd%7C).%20%5Cend%7Baligned%7D%20%22" alt="
-\begin{aligned} 
-X &amp;\sim N(\mu, \:\sigma^2), \\
-\mu &amp;= 160 \quad (\verb|mean|), \\
-\sigma &amp;= 6 \quad (\verb|sd|).
-\end{aligned}
-"></p>
-<p>The solution for a data set generated with size <embed src="https://latex.codecogs.com/png.latex?n%3D10000" title="n=10000"></embed> is showed below</p>
-<div class="sourceCode" id="cb5"><pre class="r"><span class="no">x</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span>( <span class="kw">n</span> <span class="kw">=</span> <span class="fl">10000</span>, <span class="kw">mean</span> <span class="kw">=</span> <span class="fl">160</span>, <span class="kw">sd</span> <span class="kw">=</span> <span class="fl">6</span> )
-<span class="no">fit</span> <span class="kw">&lt;-</span> <span class="fu"><a href="reference/maxlogL.html">maxlogL</a></span>( <span class="kw">x</span> <span class="kw">=</span> <span class="no">x</span>, <span class="kw">dist</span> <span class="kw">=</span> <span class="st">"dnorm"</span>, <span class="kw">link</span> <span class="kw">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="kw">over</span> <span class="kw">=</span> <span class="st">"sd"</span>, <span class="kw">fun</span> <span class="kw">=</span> <span class="st">"log_link"</span>) )
-<span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">fit</span>)
-<span class="co">#&gt; _______________________________________________________________</span>
-<span class="co">#&gt; Optimization routine: nlminb </span>
-<span class="co">#&gt; Standard Error calculation: Hessian from optim </span>
-<span class="co">#&gt; _______________________________________________________________</span>
-<span class="co">#&gt;        AIC      BIC</span>
-<span class="co">#&gt;   64310.02 64324.44</span>
-<span class="co">#&gt; _______________________________________________________________</span>
-<span class="co">#&gt;      Estimate  Std. Error Z value Pr(&gt;|z|)    </span>
-<span class="co">#&gt; mean 159.94629    0.06028  2653.5   &lt;2e-16 ***</span>
-<span class="co">#&gt; sd     6.02768    0.04262   141.4   &lt;2e-16 ***</span>
-<span class="co">#&gt; ---</span>
-<span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
-<span class="co">#&gt; _______________________________________________________________</span></pre></div>
+<p>You can visit the <a href="https://Jaimemosg.github.io/EstimationTools/">package website</a> to explore the functions reference or our vignettes (articles).</p>
 </div>
 </div>
 
