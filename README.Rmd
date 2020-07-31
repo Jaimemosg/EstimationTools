@@ -50,4 +50,7 @@ in `R` console:
 install.packages("EstimationTools")
 ```
 
-You can visit the [package website](https://Jaimemosg.github.io/EstimationTools/) to explore the functions reference or our vignettes (articles).
+You can visit the [package website](https://Jaimemosg.github.io/EstimationTools/) to explore the functions reference and our vignettes (articles).
+
+## Examples
+You can visit our estimation [vignette](https://Jaimemosg.github.io/EstimationTools/) to see the examples
