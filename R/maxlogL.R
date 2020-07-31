@@ -57,6 +57,8 @@
 #' @importFrom numDeriv hessian
 #'
 #' @examples
+#' library(EstimationTools)
+#'
 #' #--------------------------------------------------------------------------------
 #' # Estimation with one fixed parameter
 #' x <- rnorm(n = 10000, mean = 160, sd = 6)
@@ -167,8 +169,28 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
                 "function. \n"))
   }
 
-  # Exclusion of fixed parameters from objective variables
-  pos.deletion <- match(names(fixed), names(arguments))
+  # Exclusion of fixed or default (ncp) parameters from objective variables
+  # class_arguments <- sapply(arguments, class)
+  names_arguments <- names(arguments)
+  pos_ncp <- sapply(names_arguments, function(y) grep('^ncp*.', y)[1])
+  pos_ncp <- which(!is.na(pos_ncp))
+
+  if ( length(pos_ncp) > 0 ){
+    class_arguments <- sapply(arguments, class)
+    num_ncp <- which((class_arguments[pos_ncp] == "numeric" |
+                        class_arguments[pos_ncp] == "symbol"))
+    if ( length(num_ncp) > 0 ){
+      fixed[[names_arguments[pos_ncp]]] <- arguments[[pos_ncp]]
+    }
+  }
+  names_fixed <- names(fixed)
+    # if ( !pos_and_fix & class_ncp == "numeric" ){
+    # if ( class_ncp == "numeric" ){
+    #   fixed[[names_arguments[pos_ncp]]] <- arguments[[pos_ncp]]
+    #   names_fixed <- names(fixed)
+    # }
+
+  pos.deletion <- match(names_fixed, names_arguments)
   if ( length(pos.deletion) > 0 ) arguments <- arguments[-pos.deletion]
 
   # Parameters counting
