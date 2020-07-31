@@ -92,6 +92,8 @@ corresponding to the distribution specified in argument \code{y_dist} with linea
 predictors specified in argument \code{formulas}. Then, it maximizes the log L through
 \code{\link{optim}}, \code{\link{nlminb}} or \code{\link{DEoptim}}. \code{maxlogLreg}
 generates an S3 object of class \code{maxlogL}.
+
+Noncentrality parameters must be named as \code{ncp} in the distribution.
 }
 \note{
 The following generic functions can be used with a \code{maxlogL} object:

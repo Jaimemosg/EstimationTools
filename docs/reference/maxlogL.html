@@ -228,6 +228,7 @@ optimizer for further information.</p></td>
 the distribution specified in argument <code>dist</code> and maximizes it through
 <code><a href='https://rdrr.io/r/stats/optim.html'>optim</a></code>, <code><a href='https://rdrr.io/r/stats/nlminb.html'>nlminb</a></code> or <code>DEoptim</code>. <code>maxlogL</code>
 generates an S3 object of class <code>maxlogL</code>.</p>
+<p>Noncentrality parameters must be named as <code>ncp</code> in the distribution.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>The following generic functions can be used with a <code>maxlogL</code> object:
@@ -264,7 +265,7 @@ ISSN 00983500, doi: <a href='https://doi.org/10.1145/355958.355965'>10.1145/3559
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>EstimationTools</span>)
 
 <span class='co'>#--------------------------------------------------------------------------------</span>
-<span class='co'># Estimation with one fixed parameter</span>
+<span class='co'># Example 1: estimation with one fixed parameter</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10000</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>160</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>6</span>)
 <span class='no'>theta_1</span> <span class='kw'>&lt;-</span> <span class='fu'>maxlogL</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>x</span>, <span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>'dnorm'</span>, <span class='kw'>control</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>1</span>),
                  <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='st'>"sd"</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"log_link"</span>),
@@ -291,10 +292,11 @@ ISSN 00983500, doi: <a href='https://doi.org/10.1145/355958.355965'>10.1145/3559
 #&gt; ---</div><div class='input'>
 
 <span class='co'>#--------------------------------------------------------------------------------</span>
-<span class='co'># Both parameters of normal distribution mapped with logarithmic function</span>
-<span class='no'>theta_2</span> <span class='kw'>&lt;-</span> <span class='fu'>maxlogL</span>( <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>x</span>, <span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>"dnorm"</span>,
-                    <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"mean"</span>,<span class='st'>"sd"</span>),
-                                <span class='kw'>fun</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"log_link"</span>,<span class='st'>"log_link"</span>)) )
+<span class='co'># Example 2: both parameters of normal distribution mapped with logarithmic</span>
+<span class='co'># function</span>
+<span class='no'>theta_2</span> <span class='kw'>&lt;-</span> <span class='fu'>maxlogL</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>x</span>, <span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>"dnorm"</span>,
+                   <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"mean"</span>,<span class='st'>"sd"</span>),
+                               <span class='kw'>fun</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"log_link"</span>,<span class='st'>"log_link"</span>)))
 <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>theta_2</span>)</div><div class='output co'>#&gt; _______________________________________________________________
 #&gt; Optimization routine: nlminb 
 #&gt; Standard Error calculation: Hessian from optim 
@@ -312,23 +314,64 @@ ISSN 00983500, doi: <a href='https://doi.org/10.1145/355958.355965'>10.1145/3559
 #&gt; ---</div><div class='input'>
 
 <span class='co'>#--------------------------------------------------------------------------------</span>
-<span class='co'># Parameter estimation in ZIP distribution</span>
+<span class='co'># Example 3: parameter estimation in ZIP distribution</span>
 <span class='kw'>if</span> (!<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='st'>'gamlss.dist'</span>)) <span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span>(<span class='st'>'gamlss.dist'</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: gamlss.dist</span></div><div class='output co'>#&gt; <span class='message'>Loading required package: MASS</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>gamlss.dist</span>)
-<span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/gamlss.dist/man/ZIP.html'>rZIP</a></span>(<span class='kw'>n</span><span class='kw'>=</span><span class='fl'>10000</span>, <span class='kw'>mu</span><span class='kw'>=</span><span class='fl'>6</span>, <span class='kw'>sigma</span><span class='kw'>=</span><span class='fl'>0.08</span>)
-<span class='no'>theta_3</span>  <span class='kw'>&lt;-</span> <span class='fu'>maxlogL</span>( <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>z</span>, <span class='kw'>dist</span><span class='kw'>=</span><span class='st'>'dZIP'</span>, <span class='kw'>start</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>0</span>), <span class='kw'>lower</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>Inf</span>, -<span class='fl'>Inf</span>),
-                     <span class='kw'>upper</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>Inf</span>, <span class='fl'>Inf</span>), <span class='kw'>optimizer</span> <span class='kw'>=</span> <span class='st'>'optim'</span>,
-                     <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>over</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"mu"</span>, <span class='st'>"sigma"</span>),
-                     <span class='kw'>fun</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"log_link"</span>, <span class='st'>"logit_link"</span>)) )
+<span class='no'>z</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/gamlss.dist/man/ZIP.html'>rZIP</a></span>(<span class='kw'>n</span><span class='kw'>=</span><span class='fl'>1000</span>, <span class='kw'>mu</span><span class='kw'>=</span><span class='fl'>6</span>, <span class='kw'>sigma</span><span class='kw'>=</span><span class='fl'>0.08</span>)
+<span class='no'>theta_3</span>  <span class='kw'>&lt;-</span> <span class='fu'>maxlogL</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>z</span>, <span class='kw'>dist</span><span class='kw'>=</span><span class='st'>'dZIP'</span>, <span class='kw'>start</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>0</span>), <span class='kw'>lower</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(-<span class='fl'>Inf</span>, -<span class='fl'>Inf</span>),
+                   <span class='kw'>upper</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>Inf</span>, <span class='fl'>Inf</span>), <span class='kw'>optimizer</span> <span class='kw'>=</span> <span class='st'>'optim'</span>,
+                   <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>over</span><span class='kw'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"mu"</span>, <span class='st'>"sigma"</span>),
+                   <span class='kw'>fun</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"log_link"</span>, <span class='st'>"logit_link"</span>)))
 <span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>theta_3</span>)</div><div class='output co'>#&gt; _______________________________________________________________
 #&gt; Optimization routine: optim 
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
 #&gt;        AIC      BIC
-#&gt;   47685.93 47700.35
+#&gt;   4799.277 4809.093
 #&gt; _______________________________________________________________
 #&gt;       Estimate  Std. Error Z value Pr(&gt;|z|)    
-#&gt; mu     6.003220   0.025747  233.16   &lt;2e-16 ***
-#&gt; sigma  0.080619   0.002764   29.16   &lt;2e-16 ***
+#&gt; mu      5.97210    0.08065  74.048   &lt;2e-16 ***
+#&gt; sigma   0.06767    0.00809   8.364   &lt;2e-16 ***
+#&gt; ---
+#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#&gt; _______________________________________________________________
+#&gt; Note: p-values valid under asymptotic normality of estimators 
+#&gt; ---</div><div class='input'>
+
+<span class='co'>#--------------------------------------------------------------------------------</span>
+<span class='co'># Example 4: parameter estimation with fixed noncentrality parameter.</span>
+<span class='no'>y_2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Beta.html'>rbeta</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>shape1</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>shape2</span> <span class='kw'>=</span> <span class='fl'>3</span>)
+<span class='no'>theta_41</span> <span class='kw'>&lt;-</span> <span class='fu'>maxlogL</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>y_2</span>, <span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>"dbeta"</span>,
+                    <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"shape1"</span>, <span class='st'>"shape2"</span>),
+                    <span class='kw'>fun</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"log_link"</span>,<span class='st'>"log_link"</span>)))
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>theta_41</span>)</div><div class='output co'>#&gt; _______________________________________________________________
+#&gt; Optimization routine: nlminb 
+#&gt; Standard Error calculation: Hessian from optim 
+#&gt; _______________________________________________________________
+#&gt;         AIC      BIC
+#&gt;   -550.8337 -545.926
+#&gt; _______________________________________________________________
+#&gt;        Estimate  Std. Error Z value Pr(&gt;|z|)    
+#&gt; shape1   2.11532    0.08908   23.75   &lt;2e-16 ***
+#&gt; shape2   3.35708    0.14755   22.75   &lt;2e-16 ***
+#&gt; ---
+#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+#&gt; _______________________________________________________________
+#&gt; Note: p-values valid under asymptotic normality of estimators 
+#&gt; ---</div><div class='input'>
+<span class='co'># It is also possible define 'ncp' as fixed parameter</span>
+<span class='no'>theta_42</span> <span class='kw'>&lt;-</span> <span class='fu'>maxlogL</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>y_2</span>, <span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>"dbeta"</span>, <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>ncp</span> <span class='kw'>=</span> <span class='fl'>0</span>),
+                    <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"shape1"</span>, <span class='st'>"shape2"</span>),
+                    <span class='kw'>fun</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"log_link"</span>,<span class='st'>"log_link"</span>)) )
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>theta_42</span>)</div><div class='output co'>#&gt; _______________________________________________________________
+#&gt; Optimization routine: nlminb 
+#&gt; Standard Error calculation: Hessian from optim 
+#&gt; _______________________________________________________________
+#&gt;         AIC      BIC
+#&gt;   -550.8337 -545.926
+#&gt; _______________________________________________________________
+#&gt;        Estimate  Std. Error Z value Pr(&gt;|z|)    
+#&gt; shape1   2.11532    0.08908   23.75   &lt;2e-16 ***
+#&gt; shape2   3.35708    0.14755   22.75   &lt;2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________

@@ -249,6 +249,7 @@ corresponding to the distribution specified in argument <code>y_dist</code> with
 predictors specified in argument <code>formulas</code>. Then, it maximizes the log L through
 <code><a href='https://rdrr.io/r/stats/optim.html'>optim</a></code>, <code><a href='https://rdrr.io/r/stats/nlminb.html'>nlminb</a></code> or <code>DEoptim</code>. <code>maxlogLreg</code>
 generates an S3 object of class <code>maxlogL</code>.</p>
+<p>Noncentrality parameters must be named as <code>ncp</code> in the distribution.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>The following generic functions can be used with a <code>maxlogL</code> object:
@@ -301,21 +302,21 @@ ISSN 00983500, doi: <a href='https://doi.org/10.1145/355958.355965'>10.1145/3559
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
 #&gt;        AIC      BIC
-#&gt;   5134.837 5154.468
+#&gt;   5075.637 5095.268
 #&gt; _______________________________________________________________
 #&gt; Fixed effects for g(mean) 
 #&gt; ---------------------------------------------------------------
-#&gt;              Estimate Std. Error Z value  Pr(&gt;|z|)    
-#&gt; (Intercept) -1.965099   0.109619 -17.927 &lt; 2.2e-16 ***
-#&gt; x            3.029621   0.030859  98.175 &lt; 2.2e-16 ***
+#&gt;             Estimate Std. Error Z value  Pr(&gt;|z|)    
+#&gt; (Intercept) -1.91064    0.11307 -16.897 &lt; 2.2e-16 ***
+#&gt; x            2.99805    0.03067  97.753 &lt; 2.2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________
 #&gt; Fixed effects for g(sd) 
 #&gt; ---------------------------------------------------------------
 #&gt;              Estimate Std. Error Z value  Pr(&gt;|z|)    
-#&gt; (Intercept) 0.9695303  0.0227591  42.600 &lt; 2.2e-16 ***
-#&gt; x           0.2946174  0.0071403  41.261 &lt; 2.2e-16 ***
+#&gt; (Intercept) 0.9868143  0.0225654  43.731 &lt; 2.2e-16 ***
+#&gt; x           0.2937185  0.0069565  42.222 &lt; 2.2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________

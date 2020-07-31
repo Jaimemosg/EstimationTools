@@ -175,22 +175,22 @@ test of parameters.</p>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10000</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>160</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>6</span>)
 <span class='no'>theta_1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='maxlogL.html'>maxlogL</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>x</span>, <span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>'dnorm'</span>, <span class='kw'>control</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>1</span>),
                  <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='st'>"sd"</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"log_link"</span>),
-                 <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>160</span>))</div><div class='output co'>#&gt;   0:     43767.406:  1.00000
-#&gt;   1:     32515.659:  2.00000
-#&gt;   2:     32295.595:  1.92127
-#&gt;   3:     32159.835:  1.76754
-#&gt;   4:     32151.595:  1.79990
-#&gt;   5:     32151.459:  1.79631
-#&gt;   6:     32151.459:  1.79621
-#&gt;   7:     32151.459:  1.79621</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>theta_1</span>)</div><div class='output co'>#&gt; _______________________________________________________________
+                 <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>160</span>))</div><div class='output co'>#&gt;   0:     43505.752:  1.00000
+#&gt;   1:     32480.248:  2.00000
+#&gt;   2:     32248.382:  1.91874
+#&gt;   3:     32107.224:  1.76070
+#&gt;   4:     32098.102:  1.79483
+#&gt;   5:     32097.944:  1.79098
+#&gt;   6:     32097.944:  1.79085
+#&gt;   7:     32097.944:  1.79086</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>theta_1</span>)</div><div class='output co'>#&gt; _______________________________________________________________
 #&gt; Optimization routine: nlminb 
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
 #&gt;        AIC      BIC
-#&gt;   64302.92 64302.92
+#&gt;   64195.89 64195.89
 #&gt; _______________________________________________________________
 #&gt;    Estimate  Std. Error Z value Pr(&gt;|z|)    
-#&gt; sd   6.02675    0.04262   141.4   &lt;2e-16 ***
+#&gt; sd   5.99458    0.04239   141.4   &lt;2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________
@@ -213,10 +213,10 @@ test of parameters.</p>
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
 #&gt;        AIC      BIC
-#&gt;   354.6428 354.6428
+#&gt;   335.3928 335.3928
 #&gt; _______________________________________________________________
 #&gt;      Estimate  Std. Error Z value Pr(&gt;|z|)    
-#&gt; prob   0.29900    0.01448   20.65   &lt;2e-16 ***
+#&gt; prob    0.2870     0.0143   20.06   &lt;2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________
@@ -233,10 +233,10 @@ test of parameters.</p>
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
 #&gt;        AIC      BIC
-#&gt;   358.7012 358.7012
+#&gt;   340.9402 340.9402
 #&gt; _______________________________________________________________
 #&gt;      Estimate  Std. Error Z value Pr(&gt;|z|)    
-#&gt; prob   0.31400    0.01468   21.39   &lt;2e-16 ***
+#&gt; prob   0.29100    0.01436   20.26   &lt;2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________
@@ -259,21 +259,21 @@ test of parameters.</p>
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
 #&gt;        AIC      BIC
-#&gt;   5199.606 5219.237
+#&gt;   5056.435 5076.066
 #&gt; _______________________________________________________________
 #&gt; Fixed effects for g(mean) 
 #&gt; ---------------------------------------------------------------
 #&gt;              Estimate Std. Error Z value  Pr(&gt;|z|)    
-#&gt; (Intercept) -2.066301   0.110600 -18.683 &lt; 2.2e-16 ***
-#&gt; x            2.981284   0.029964  99.494 &lt; 2.2e-16 ***
+#&gt; (Intercept) -1.944886   0.114731 -16.952 &lt; 2.2e-16 ***
+#&gt; x            3.007250   0.030082  99.967 &lt; 2.2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________
 #&gt; Fixed effects for g(sd) 
 #&gt; ---------------------------------------------------------------
 #&gt;              Estimate Std. Error Z value  Pr(&gt;|z|)    
-#&gt; (Intercept) 0.9846938  0.0227791  43.228 &lt; 2.2e-16 ***
-#&gt; x           0.3096252  0.0070026  44.216 &lt; 2.2e-16 ***
+#&gt; (Intercept) 1.0047459  0.0224859  44.683 &lt; 2.2e-16 ***
+#&gt; x           0.3045360  0.0071798  42.416 &lt; 2.2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________
