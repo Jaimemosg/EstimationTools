@@ -81,6 +81,8 @@ The following generic functions can be used with a \code{maxlogL} object:
 \code{summary, print, AIC, BIC, logLik}.
 }
 \examples{
+library(EstimationTools)
+
 #--------------------------------------------------------------------------------
 # Estimation with one fixed parameter
 x <- rnorm(n = 10000, mean = 160, sd = 6)

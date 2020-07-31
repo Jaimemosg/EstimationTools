@@ -261,7 +261,9 @@ ISSN 00983500, doi: <a href='https://doi.org/10.1145/355958.355965'>10.1145/3559
 <code><a href='maxlogLreg.html'>maxlogLreg</a>()</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>#--------------------------------------------------------------------------------</span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>EstimationTools</span>)
+
+<span class='co'>#--------------------------------------------------------------------------------</span>
 <span class='co'># Estimation with one fixed parameter</span>
 <span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10000</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>160</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>6</span>)
 <span class='no'>theta_1</span> <span class='kw'>&lt;-</span> <span class='fu'>maxlogL</span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>x</span>, <span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>'dnorm'</span>, <span class='kw'>control</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>1</span>),
@@ -284,7 +286,9 @@ ISSN 00983500, doi: <a href='https://doi.org/10.1145/355958.355965'>10.1145/3559
 #&gt; sd   5.98988    0.04235   141.4   &lt;2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-#&gt; _______________________________________________________________</div><div class='input'>
+#&gt; _______________________________________________________________
+#&gt; Note: p-values valid under asymptotic normality of estimators 
+#&gt; ---</div><div class='input'>
 
 <span class='co'>#--------------------------------------------------------------------------------</span>
 <span class='co'># Both parameters of normal distribution mapped with logarithmic function</span>
@@ -303,7 +307,9 @@ ISSN 00983500, doi: <a href='https://doi.org/10.1145/355958.355965'>10.1145/3559
 #&gt; sd     5.98986    0.04235   141.4   &lt;2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-#&gt; _______________________________________________________________</div><div class='input'>
+#&gt; _______________________________________________________________
+#&gt; Note: p-values valid under asymptotic normality of estimators 
+#&gt; ---</div><div class='input'>
 
 <span class='co'>#--------------------------------------------------------------------------------</span>
 <span class='co'># Parameter estimation in ZIP distribution</span>
@@ -325,7 +331,9 @@ ISSN 00983500, doi: <a href='https://doi.org/10.1145/355958.355965'>10.1145/3559
 #&gt; sigma  0.080619   0.002764   29.16   &lt;2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-#&gt; _______________________________________________________________</div><div class='input'>
+#&gt; _______________________________________________________________
+#&gt; Note: p-values valid under asymptotic normality of estimators 
+#&gt; ---</div><div class='input'>
 
 #--------------------------------------------------------------------------------
 

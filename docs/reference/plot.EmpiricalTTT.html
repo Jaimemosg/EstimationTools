@@ -195,7 +195,7 @@ sets some default values for graphic parameters: <code>type = "l"</code>, <code>
 can be modified by the user.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='TTT_EAnalytical.html'>TTT_EAnalytical</a></code>, <code><a href='https://rdrr.io/r/graphics/matplot.html'>matplot</a></code></p></div>
+    <div class='dont-index'><p><code><a href='TTTE_Analytical.html'>TTTE_Analytical</a></code>, <code><a href='https://rdrr.io/r/graphics/matplot.html'>matplot</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>EstimationTools</span>)
@@ -203,7 +203,7 @@ can be modified by the user.</p>
 <span class='co'>#--------------------------------------------------------------------------------</span>
 <span class='co'># First example: Scaled empirical TTT from 'mgus1' data from 'survival' package.</span>
 
-<span class='no'>TTT_1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='TTT_EAnalytical.html'>TTT_EAnalytical</a></span>(<span class='fu'>Surv</span>(<span class='no'>stop</span>, <span class='no'>event</span> <span class='kw'>==</span> <span class='st'>'pcm'</span>) ~<span class='fl'>1</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>'cens'</span>,
+<span class='no'>TTT_1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='TTTE_Analytical.html'>TTTE_Analytical</a></span>(<span class='fu'>Surv</span>(<span class='no'>stop</span>, <span class='no'>event</span> <span class='kw'>==</span> <span class='st'>'pcm'</span>) ~<span class='fl'>1</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>'cens'</span>,
                          <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mgus1</span>, <span class='kw'>subset</span><span class='kw'>=</span>(<span class='no'>start</span> <span class='kw'>==</span> <span class='fl'>0</span>))
 <span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>TTT_1</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"p"</span>)</div><div class='img'><img src='plot.EmpiricalTTT-1.png' alt='' width='700' height='433' /></div><div class='input'>
 
@@ -211,14 +211,14 @@ can be modified by the user.</p>
 <span class='co'># Second example: Scaled empirical TTT using a factor variable with 'aml' data</span>
 <span class='co'># from 'survival' package.</span>
 
-<span class='no'>TTT_2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='TTT_EAnalytical.html'>TTT_EAnalytical</a></span>(<span class='fu'>Surv</span>(<span class='no'>time</span>, <span class='no'>status</span>) ~ <span class='no'>x</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"cens"</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>aml</span>)
+<span class='no'>TTT_2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='TTTE_Analytical.html'>TTTE_Analytical</a></span>(<span class='fu'>Surv</span>(<span class='no'>time</span>, <span class='no'>status</span>) ~ <span class='no'>x</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"cens"</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>aml</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>TTT_2</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"l"</span>, <span class='kw'>lty</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>1</span>), <span class='kw'>col</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>,<span class='fl'>4</span>))</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>TTT_2</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"p"</span>, <span class='kw'>lty</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>1</span>), <span class='kw'>col</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>2</span>,<span class='fl'>4</span>), <span class='kw'>pch</span> <span class='kw'>=</span> <span class='fl'>16</span>)</div><div class='img'><img src='plot.EmpiricalTTT-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>#--------------------------------------------------------------------------------</span>
 <span class='co'># Third example: Non-scaled empirical TTT without a factor (arbitrarily simulated</span>
 <span class='co'># data).</span>
 
 <span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Weibull.html'>rweibull</a></span>(<span class='kw'>n</span><span class='kw'>=</span><span class='fl'>20</span>, <span class='kw'>shape</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>scale</span><span class='kw'>=</span><span class='no'>pi</span>)
-<span class='no'>TTT_3</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='TTT_EAnalytical.html'>TTT_EAnalytical</a></span>(<span class='no'>y</span> ~ <span class='fl'>1</span>, <span class='kw'>scaled</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='no'>TTT_3</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='TTTE_Analytical.html'>TTTE_Analytical</a></span>(<span class='no'>y</span> ~ <span class='fl'>1</span>, <span class='kw'>scaled</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>TTT_3</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"s"</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='fl'>3</span>, <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>3</span>)</div><div class='img'><img src='plot.EmpiricalTTT-3.png' alt='' width='700' height='433' /></div><div class='input'>
 
 <span class='co'>#--------------------------------------------------------------------------------</span>
@@ -226,7 +226,7 @@ can be modified by the user.</p>
 
 <span class='kw'>if</span> (!<span class='fu'><a href='https://rdrr.io/r/base/library.html'>require</a></span>(<span class='st'>'AdequacyModel'</span>)) <span class='fu'><a href='https://rdrr.io/r/utils/install.packages.html'>install.packages</a></span>(<span class='st'>'AdequacyModel'</span>)</div><div class='output co'>#&gt; <span class='message'>Loading required package: AdequacyModel</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>AdequacyModel</span>)
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>carbone</span>)
-<span class='no'>TTT_4</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='TTT_EAnalytical.html'>TTT_EAnalytical</a></span>(<span class='kw'>response</span> <span class='kw'>=</span> <span class='no'>carbone</span>, <span class='kw'>scaled</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+<span class='no'>TTT_4</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='TTTE_Analytical.html'>TTTE_Analytical</a></span>(<span class='kw'>response</span> <span class='kw'>=</span> <span class='no'>carbone</span>, <span class='kw'>scaled</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 <span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(<span class='no'>TTT_4</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"l"</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"red"</span>, <span class='kw'>lwd</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>grid</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='plot.EmpiricalTTT-4.png' alt='' width='700' height='433' /></div><div class='input'>
 
 #--------------------------------------------------------------------------------

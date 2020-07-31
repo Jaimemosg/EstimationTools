@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • EstimationTools</title>
+<title>Internal functions for formula and data handle — formula2Surv • EstimationTools</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,9 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Internal functions for formula and data handle — formula2Surv" />
+<meta property="og:description" content="Utility functions useful for passing data from functions
+inside others." />
 
 
 
@@ -58,7 +60,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -120,96 +122,34 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Internal functions for formula and data handle</h1>
+    <small class="dont-index">Source: <a href='https://github.com/Jaimemosg/EstimationTools/blob/master/R/internal.R'><code>R/internal.R</code></a></small>
+    <div class="hidden name"><code>internalfunc.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Utility functions useful for passing data from functions
+inside others.</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>formula2Surv</span>(<span class='no'>model_frame</span>)
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="bootstrap_maxlogL.html">bootstrap_maxlogL()</a></code> </p>
-        </td>
-        <td><p>Bootstrap computation of standard error for <code>maxlogL</code> class objects.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="Fibers.html">Fibers</a></code> </p>
-        </td>
-        <td><p>Tensile strengths</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="logit_link.html">logit_link()</a></code> </p>
-        </td>
-        <td><p>Logit link function (for estimation with <code>maxlogL</code> object)</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="log_link.html">log_link()</a></code> </p>
-        </td>
-        <td><p>Logarithmic link function (for estimation with <code>maxlogL</code> object)</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="maxlogL.html">maxlogL()</a></code> </p>
-        </td>
-        <td><p>Maximum Likelihood Estimation for parametric distributions</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="maxlogLreg.html">maxlogLreg()</a></code> </p>
-        </td>
-        <td><p>Maximum Likelihood Estimation for parametric linear regression models</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="NegInv_link.html">NegInv_link()</a></code> </p>
-        </td>
-        <td><p>Negative inverse link function (for estimation with <code>maxlogL</code> object)</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot.EmpiricalTTT.html">plot(<i>&lt;EmpiricalTTT&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot method for <code>EmpiricalTTT</code> objects</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="summary.maxlogL.html">summary(<i>&lt;maxlogL&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Summarize Maximum Likelihood Estimation</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="TTTE_Analytical.html">TTTE_Analytical()</a></code> </p>
-        </td>
-        <td><p>Empirical Total Time on Test (TTT), analytic version.</p></td>
-      </tr>
-    </tbody>
+<span class='fu'>fo_and_data</span>(<span class='no'>y</span>, <span class='no'>fo</span>, <span class='no'>model_frame</span>, <span class='no'>data</span>, <span class='kw'>fo2Surv</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>model_frame</th>
+      <td><p>a model frame build internally in some functions on
+<strong>EstimationTools</strong> package</p></td>
+    </tr>
     </table>
-  </div>
 
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
