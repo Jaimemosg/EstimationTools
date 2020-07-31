@@ -151,6 +151,8 @@ summary.maxlogL <- function(object, ...){
     printCoefmat(res, P.values = TRUE, digits = 4)
     cat("_______________________________________________________________\n")
     estimatePrint <- estimate
+    cat('Note: p-values valid under asymptotic normality of estimators \n')
+    cat("---\n")
   } else {
     A <- param_index(object$outputs$b_length, object$outputs$npar)
     res <- cbind(estimate = estimate, se = StdE, zvalue = Zvalue,
