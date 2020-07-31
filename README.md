@@ -55,5 +55,5 @@ functions reference and our vignettes (articles).
 ## Examples
 
 You can visit our estimation
-[vignette](https://Jaimemosg.github.io/EstimationTools/) to see the
-examples
+[vignette](https://jaimemosg.github.io/EstimationTools/articles/Examples.html)
+to see the examples.

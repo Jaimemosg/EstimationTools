@@ -53,4 +53,4 @@ install.packages("EstimationTools")
 You can visit the [package website](https://Jaimemosg.github.io/EstimationTools/) to explore the functions reference and our vignettes (articles).
 
 ## Examples
-You can visit our estimation [vignette](https://Jaimemosg.github.io/EstimationTools/) to see the examples
+You can visit our estimation [vignette](https://jaimemosg.github.io/EstimationTools/articles/Examples.html) to see the examples.
