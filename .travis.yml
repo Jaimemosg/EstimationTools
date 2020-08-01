@@ -6,3 +6,6 @@ cache: packages
 
 os:
   - linux
+
+script:
+  - ! grep -R "WARNING" "${RCHECK_DIR}/00check.log"
