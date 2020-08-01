@@ -10,3 +10,11 @@ os:
 script:
   - R CMD build . --compact-vignettes=gs+qpdf
   - R CMD check *tar.gz --as-cran
+
+addons:
+  apt:
+    update: true
+    packages:
+      - libgs-dev
+      - qpdf
+      - ghostscript
