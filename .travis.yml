@@ -1,10 +1,14 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: R
+env:
+  - PKG_TARBALL=RTest_1.2.6.tar.gz
+sudo: required
 
 warnings_are_errors: true
-sudo: false
-cache: packages
+cache:
+ - packages
+ - apt: true
 
 addons:
   apt:
@@ -25,10 +29,9 @@ matrix:
       - xvfb-run Rscript -e 'covr::codecov(type=c("tests", "vignettes", "examples"))'
       - rm -rf RTest.Rcheck
       - Rscript -e 'pkgdown::build_site()'
-
   - r: release
     os: osx
-    osx_image: xcode9.2
+    osx_image: xcode12u
     before_install:
       - brew update
       - brew cask reinstall xquartz
