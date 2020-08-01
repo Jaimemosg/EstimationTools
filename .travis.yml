@@ -1,24 +1,10 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
-language: r
-
-r:
-  - oldrel
-  - release
-  - devel
-  - bioc-devel
+language: R
 
 warnings_are_errors: true
 sudo: false
 cache: packages
-
-os:
-  - linux
-  - osx
-
-script:
-  - R CMD build . --compact-vignettes=gs+qpdf
-  - R CMD check *tar.gz --as-cran
 
 addons:
   apt:
@@ -28,6 +14,32 @@ addons:
       - qpdf
       - ghostscript
 
-after_failure:
-  - cat $TRAVIS_BUILD_DIR/RelDists.Rcheck/00install.out
-  - cat $TRAVIS_BUILD_DIR/RelDists.Rcheck/00check.log
+matrix:
+  include:
+  - r: release
+    script:
+      - R CMD build . --compact-vignettes=gs+qpdf
+      - xvfb-run R CMD check *tar.gz --as-cran
+    after_success:
+      - tar -C .. -xf $PKG_TARBALL
+      - xvfb-run Rscript -e 'covr::codecov(type=c("tests", "vignettes", "examples"))'
+      - rm -rf RTest.Rcheck
+      - Rscript -e 'pkgdown::build_site()'
+
+  - r: release
+    os: osx
+    osx_image: xcode9.2
+    before_install:
+      - brew update
+      - brew cask reinstall xquartz
+      - brew install tcl-tk
+      - brew link --overwrite --force tcl-tk; brew unlink tcl-tk
+      - sudo tlmgr update --self
+      - sudo tlmgr install framed titling
+    # FROM https://github.com/travis-ci/travis-ci/issues/7313
+    before_script:
+      - "export DISPLAY=:99.0"
+      - if [ "${TRAVIS_OS_NAME}" = "osx" ]; then ( sudo Xvfb :99 -ac -screen 0 1024x768x8; echo ok ) & fi
+    script:
+      - R CMD build . --compact-vignettes=gs+qpdf
+      - R CMD check *tar.gz --as-cran
