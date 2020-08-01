@@ -8,4 +8,5 @@ os:
   - linux
 
 script:
-  - ! grep -R "WARNING" "${RCHECK_DIR}/00check.log"
+  - R CMD build . --compact-vignettes=gs+qpdf
+  - R CMD check *tar.gz --as-cran
