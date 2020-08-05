@@ -1,3 +1,7 @@
+# EstimationTools 2.0.1
+
+- Bug fixed. Formula handle with survival objects without factor classification in TTTE_Analytic is fixed.
+
 # EstimationTools 2.0.0
 
 - 'EstimationTools' was build in R 4.0.2.
