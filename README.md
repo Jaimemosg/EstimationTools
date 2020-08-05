@@ -31,7 +31,7 @@ objects. You can find out in our
 
 ## Installation
 
-You can install the latest version (2.0.0) of `EstimationTools` typing
+You can install the latest version (2.0.1) of `EstimationTools` typing
 the following command lines in `R` console:
 
 ``` r

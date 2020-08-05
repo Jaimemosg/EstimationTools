@@ -34,7 +34,7 @@ _Edit (27/07/2020)_ -- We have implemented new tools and we have performed some 
 
 ## Installation
 
-You can install the latest version (2.0.0) of `EstimationTools` typing the following command lines
+You can install the latest version (2.0.1) of `EstimationTools` typing the following command lines
 in `R` console:
 
 ``` {r eval=FALSE}
