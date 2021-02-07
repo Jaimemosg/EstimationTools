@@ -79,6 +79,7 @@ jobs:
           tinytex::parse_install(text = "! LaTeX Error: File `subcaption.sty' not found.")
           tinytex::parse_install(text = "! LaTeX Error: File `float.sty' not found.")
           tinytex::parse_install(text = "! LaTeX Error: File `xcolor.sty' not found.")
+          tinytex::parse_packages(text = "! LaTeX Error: File `l3backend-xdvipdfmx.def' not found.")
         shell: Rscript {0}
 
       - name: Check
