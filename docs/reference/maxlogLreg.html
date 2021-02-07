@@ -73,7 +73,7 @@ of any distribution implemented in R with covariates (linear predictors)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EstimationTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.1</span>
       </span>
     </div>
 
@@ -81,7 +81,7 @@ of any distribution implemented in R with covariates (linear predictors)." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -110,7 +110,7 @@ of any distribution implemented in R with covariates (linear predictors)." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/Jaimemosg/EstimationTools/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -137,36 +137,36 @@ of any distribution implemented in R with covariates (linear predictors)." />
 of any distribution implemented in <code>R</code> with covariates (linear predictors).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>maxlogLreg</span>(
-  <span class='no'>formulas</span>,
-  <span class='no'>y_dist</span>,
-  <span class='kw'>data</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>subset</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>link</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>start</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>lower</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>upper</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>optimizer</span> <span class='kw'>=</span> <span class='st'>"nlminb"</span>,
-  <span class='kw'>control</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>silent</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>maxlogLreg</span><span class='op'>(</span>
+  <span class='va'>formulas</span>,
+  <span class='va'>y_dist</span>,
+  data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  subset <span class='op'>=</span> <span class='cn'>NULL</span>,
+  fixed <span class='op'>=</span> <span class='cn'>NULL</span>,
+  link <span class='op'>=</span> <span class='cn'>NULL</span>,
+  start <span class='op'>=</span> <span class='cn'>NULL</span>,
+  lower <span class='op'>=</span> <span class='cn'>NULL</span>,
+  upper <span class='op'>=</span> <span class='cn'>NULL</span>,
+  optimizer <span class='op'>=</span> <span class='st'>"nlminb"</span>,
+  control <span class='op'>=</span> <span class='cn'>NULL</span>,
+  silent <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>formulas</th>
-      <td><p>a list of formula objects. Each element must have an <code>~</code>, with the terms
-on the right separated by <code>+</code> operators. The response variable on the left side is optional.
+      <td><p>a list of formula objects. Each element must have an <code><a href='https://rdrr.io/r/base/tilde.html'>~</a></code>, with the terms
+on the right separated by <code><a href='https://rdrr.io/r/base/Arithmetic.html'>+</a></code> operators. The response variable on the left side is optional.
 Linear predictor of each parameter must be specified with the name of the parameter followed by
 the suffix <code>'.fo'</code>. See the examples below for further illustration.</p></td>
     </tr>
     <tr>
       <th>y_dist</th>
       <td><p>a formula object that specifies the distribution of the response variable.
-On the left side of <code>~</code> must be the response, and in the right side
+On the left side of <code><a href='https://rdrr.io/r/base/tilde.html'>~</a></code> must be the response, and in the right side
 must be the name o de probability density/mass function. See the section
 <strong>Details</strong> and the examples below for further illustration.</p></td>
     </tr>
@@ -284,23 +284,27 @@ ISSN 00983500, doi: <a href='https://doi.org/10.1145/355958.355965'>10.1145/3559
 <code><a href='maxlogL.html'>maxlogL</a></code>, <code><a href='bootstrap_maxlogL.html'>bootstrap_maxlogL</a></code></p>
 <p>Other maxlogL: 
 <code><a href='maxlogL.html'>maxlogL</a>()</code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Jaime Mosquera Gutiérrez, <a href='mailto:jmosquerag@unal.edu.co'>jmosquerag@unal.edu.co</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>EstimationTools</span>)
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://jaimemosg.github.io/EstimationTools/'>EstimationTools</a></span><span class='op'>)</span>
 
 <span class='co'>#--------------------------------------------------------------------------------</span>
 <span class='co'># First example: Estimation in simulated normal distribution</span>
-<span class='no'>n</span> <span class='kw'>&lt;-</span> <span class='fl'>1000</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>, -<span class='fl'>5</span>, <span class='fl'>6</span>)
-<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>, <span class='kw'>mean</span> <span class='kw'>=</span> -<span class='fl'>2</span> + <span class='fl'>3</span> * <span class='no'>x</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>exp</a></span>(<span class='fl'>1</span> + <span class='fl'>0.3</span>* <span class='no'>x</span>))
-<span class='no'>norm_data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>y</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>x</span>)
+<span class='va'>n</span> <span class='op'>&lt;-</span> <span class='fl'>1000</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='va'>n</span>, <span class='op'>-</span><span class='fl'>5</span>, <span class='fl'>6</span><span class='op'>)</span>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='va'>n</span>, mean <span class='op'>=</span> <span class='op'>-</span><span class='fl'>2</span> <span class='op'>+</span> <span class='fl'>3</span> <span class='op'>*</span> <span class='va'>x</span>, sd <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>exp</a></span><span class='op'>(</span><span class='fl'>1</span> <span class='op'>+</span> <span class='fl'>0.3</span><span class='op'>*</span> <span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>norm_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>y <span class='op'>=</span> <span class='va'>y</span>, x <span class='op'>=</span> <span class='va'>x</span><span class='op'>)</span>
 
 <span class='co'># It does not matter the order of distribution parameters</span>
-<span class='no'>formulas</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>sd.fo</span> <span class='kw'>=</span> ~ <span class='no'>x</span>, <span class='kw'>mean.fo</span> <span class='kw'>=</span> ~ <span class='no'>x</span>)
+<span class='va'>formulas</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>sd.fo <span class='op'>=</span> <span class='op'>~</span> <span class='va'>x</span>, mean.fo <span class='op'>=</span> <span class='op'>~</span> <span class='va'>x</span><span class='op'>)</span>
 
-<span class='no'>norm_mod</span> <span class='kw'>&lt;-</span> <span class='fu'>maxlogLreg</span>(<span class='no'>formulas</span>, <span class='kw'>y_dist</span> <span class='kw'>=</span> <span class='no'>y</span> ~ <span class='no'>dnorm</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>norm_data</span>,
-                       <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='st'>"sd"</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"log_link"</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>norm_mod</span>)</div><div class='output co'>#&gt; _______________________________________________________________
+<span class='va'>norm_mod</span> <span class='op'>&lt;-</span> <span class='fu'>maxlogLreg</span><span class='op'>(</span><span class='va'>formulas</span>, y_dist <span class='op'>=</span> <span class='va'>y</span> <span class='op'>~</span> <span class='va'>dnorm</span>, data <span class='op'>=</span> <span class='va'>norm_data</span>,
+                       link <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>over <span class='op'>=</span> <span class='st'>"sd"</span>, fun <span class='op'>=</span> <span class='st'>"log_link"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>norm_mod</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; _______________________________________________________________
 #&gt; Optimization routine: nlminb 
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
@@ -330,28 +334,29 @@ ISSN 00983500, doi: <a href='https://doi.org/10.1145/355958.355965'>10.1145/3559
 <span class='co'># Second example: Fitting with censorship</span>
 <span class='co'># (data from https://www.itl.nist.gov/div898/handbook/apr/section4/apr413.htm)</span>
 
-<span class='no'>failures</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>55</span>, <span class='fl'>187</span>, <span class='fl'>216</span>, <span class='fl'>240</span>, <span class='fl'>244</span>, <span class='fl'>335</span>, <span class='fl'>361</span>, <span class='fl'>373</span>, <span class='fl'>375</span>, <span class='fl'>386</span>)
-<span class='no'>fails</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='no'>failures</span>, <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>500</span>, <span class='fl'>10</span>))
-<span class='no'>status</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>failures</span>)), <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fl'>0</span>, <span class='fl'>10</span>))
-<span class='no'>Wei_data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>fails</span> <span class='kw'>=</span> <span class='no'>fails</span>, <span class='kw'>status</span> <span class='kw'>=</span> <span class='no'>status</span>)
+<span class='va'>failures</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>55</span>, <span class='fl'>187</span>, <span class='fl'>216</span>, <span class='fl'>240</span>, <span class='fl'>244</span>, <span class='fl'>335</span>, <span class='fl'>361</span>, <span class='fl'>373</span>, <span class='fl'>375</span>, <span class='fl'>386</span><span class='op'>)</span>
+<span class='va'>fails</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>failures</span>, <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>500</span>, <span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>status</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>failures</span><span class='op'>)</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>10</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>Wei_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>fails <span class='op'>=</span> <span class='va'>fails</span>, status <span class='op'>=</span> <span class='va'>status</span><span class='op'>)</span>
 
 <span class='co'># Formulas with linear predictors</span>
-<span class='no'>formulas</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>scale.fo</span><span class='kw'>=</span>~<span class='fl'>1</span>, <span class='kw'>shape.fo</span><span class='kw'>=</span>~<span class='fl'>1</span>)
+<span class='va'>formulas</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>scale.fo<span class='op'>=</span><span class='op'>~</span><span class='fl'>1</span>, shape.fo<span class='op'>=</span><span class='op'>~</span><span class='fl'>1</span><span class='op'>)</span>
 
 <span class='co'># Bounds for optimization. Upper bound set with default values (Inf)</span>
-<span class='no'>start</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>Intercept</span> <span class='kw'>=</span> <span class='fl'>100</span>),
-  <span class='kw'>shape</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>Intercept</span> <span class='kw'>=</span> <span class='fl'>10</span>)
-)
-<span class='no'>lower</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>Intercept</span> <span class='kw'>=</span> <span class='fl'>0</span>),
-  <span class='kw'>shape</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>Intercept</span> <span class='kw'>=</span> <span class='fl'>0</span>)
-)
+<span class='va'>start</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+  scale <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>Intercept <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span>,
+  shape <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>Intercept <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
+<span class='op'>)</span>
+<span class='va'>lower</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+  scale <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>Intercept <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>,
+  shape <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>Intercept <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>
+<span class='op'>)</span>
 
-<span class='no'>mod_weibull</span> <span class='kw'>&lt;-</span> <span class='fu'>maxlogLreg</span>(<span class='no'>formulas</span>, <span class='kw'>y_dist</span> <span class='kw'>=</span> <span class='fu'>Surv</span>(<span class='no'>fails</span>, <span class='no'>status</span>) ~ <span class='no'>dweibull</span>,
-                          <span class='kw'>start</span> <span class='kw'>=</span> <span class='no'>start</span>,
-                          <span class='kw'>lower</span> <span class='kw'>=</span> <span class='no'>lower</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>Wei_data</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>mod_weibull</span>)</div><div class='output co'>#&gt; _______________________________________________________________
+<span class='va'>mod_weibull</span> <span class='op'>&lt;-</span> <span class='fu'>maxlogLreg</span><span class='op'>(</span><span class='va'>formulas</span>, y_dist <span class='op'>=</span> <span class='fu'>Surv</span><span class='op'>(</span><span class='va'>fails</span>, <span class='va'>status</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>dweibull</span>,
+                          start <span class='op'>=</span> <span class='va'>start</span>,
+                          lower <span class='op'>=</span> <span class='va'>lower</span>, data <span class='op'>=</span> <span class='va'>Wei_data</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>mod_weibull</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; _______________________________________________________________
 #&gt; Optimization routine: nlminb 
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
@@ -375,7 +380,7 @@ ISSN 00983500, doi: <a href='https://doi.org/10.1145/355958.355965'>10.1145/3559
 #&gt; Note: p-values valid under asymptotic normality of estimators 
 #&gt; ---</div><div class='input'>
 
-#--------------------------------------------------------------------------------
+<span class='co'>#--------------------------------------------------------------------------------</span>
 
 </div></pre>
   </div>
@@ -393,7 +398,7 @@ ISSN 00983500, doi: <a href='https://doi.org/10.1145/355958.355965'>10.1145/3559
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

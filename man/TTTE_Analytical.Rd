@@ -36,8 +36,9 @@ options available: \code{'Barlow'} and \code{'censored'}. Further
 information can be found in the \strong{Details} section.}
 
 \item{partition_method}{a list specifying cluster formation when the covariate in
-\code{formula} is numeric. Equispaced distribution based
-on quantiles is the only one currently available.}
+\code{formula} is numeric. 'Equispaced' distribution based
+on quantiles is the only one currently available (See the
+last example).}
 
 \item{...}{further arguments passing to \code{\link[survival]{survfit}}.}
 }
@@ -118,6 +119,21 @@ head(TTT_3$`i/n`)
 head(TTT_3$phi_n)
 print(TTT_3$strata)
 
+#--------------------------------------------------------------------------------
+# Fifth example: empirical TTT with a continuously variant term for the the shape
+# parameter in Odd Weibull distribution.
+x <- runif(200, 0, 10)
+nu <- 0.1 + 0.1*x
+
+library(RelDists)
+y <- rOW(n=200, mu=0.05, sigma=2, nu=nu)
+
+partitions <- list(method='Equispaced', folds=5) # 5 equispaced partitions
+TTT_5 <- TTTE_Analytical(y ~ x, partition_method = partitions)
+head(TTT_5$`i/n`)
+head(TTT_5$phi_n)
+print(TTT_5$strata)
+plot(TTT_5) # Observe changes in Empirical TTT
 
 #--------------------------------------------------------------------------------
 

@@ -36,7 +36,7 @@ matrix:
     osx_image: xcode12u
     before_install:
       - brew update
-      - sudo installer -store -pkg /Volumes/XQuartz-${XQUARTZ_VERSION}/XQuartz.pkg -target /
+      - brew cask reinstall xquartz
       - brew install tcl-tk
       - brew link --overwrite --force tcl-tk; brew unlink tcl-tk
       - sudo tlmgr update --self

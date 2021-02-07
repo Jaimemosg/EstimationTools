@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Negative inverse link function (for estimation with <code>maxlogL</code> object) — NegInv_link • EstimationTools</title>
+<title>Negative inverse link function (for estimation with maxlogL object) — NegInv_link • EstimationTools</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Negative inverse link function (for estimation with <code>maxlogL</code> object) — NegInv_link" />
+<meta property="og:title" content="Negative inverse link function (for estimation with maxlogL object) — NegInv_link" />
 <meta property="og:description" content="NegInv_link object provides a way to implement negative inverse link function that
 maxlogL needs to perform estimation. See documentation for
 maxlogL for further information on parameter estimation and implementation
@@ -75,7 +75,7 @@ of link objects." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EstimationTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.1</span>
       </span>
     </div>
 
@@ -83,7 +83,7 @@ of link objects." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -112,7 +112,7 @@ of link objects." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/Jaimemosg/EstimationTools/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -141,7 +141,7 @@ of link objects." />
 of link objects.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>NegInv_link</span>()</pre>
+    <pre class="usage"><span class='fu'>NegInv_link</span><span class='op'>(</span><span class='op'>)</span></pre>
 
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -167,10 +167,11 @@ in <code>R</code>.</p></li>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Estimation of rate parameter in exponential distribution</span>
-<span class='no'>T</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Exponential.html'>rexp</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>1000</span>, <span class='kw'>rate</span> <span class='kw'>=</span> <span class='fl'>3</span>)
-<span class='no'>lambda</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='maxlogL.html'>maxlogL</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>T</span>, <span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>"dexp"</span>, <span class='kw'>start</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-                  <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='st'>"rate"</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"NegInv_link"</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>lambda</span>)</div><div class='output co'>#&gt; _______________________________________________________________
+<span class='cn'>T</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Exponential.html'>rexp</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>1000</span>, rate <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>
+<span class='va'>lambda</span> <span class='op'>&lt;-</span> <span class='fu'><a href='maxlogL.html'>maxlogL</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='cn'>T</span>, dist <span class='op'>=</span> <span class='st'>"dexp"</span>, start <span class='op'>=</span> <span class='fl'>5</span>,
+                  link <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>over <span class='op'>=</span> <span class='st'>"rate"</span>, fun <span class='op'>=</span> <span class='st'>"NegInv_link"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>lambda</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; _______________________________________________________________
 #&gt; Optimization routine: nlminb 
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
@@ -185,14 +186,17 @@ in <code>R</code>.</p></li>
 #&gt; Note: p-values valid under asymptotic normality of estimators 
 #&gt; ---</div><div class='input'>
 <span class='co'># Link function name</span>
-<span class='no'>fun</span> <span class='kw'>&lt;-</span> <span class='fu'>NegInv_link</span>()$<span class='no'>name</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>fun</span>)</div><div class='output co'>#&gt; [1] "NegInv"</div><div class='input'>
+<span class='va'>fun</span> <span class='op'>&lt;-</span> <span class='fu'>NegInv_link</span><span class='op'>(</span><span class='op'>)</span><span class='op'>$</span><span class='va'>name</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>fun</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "NegInv"</div><div class='input'>
 <span class='co'># Link function</span>
-<span class='no'>g</span> <span class='kw'>&lt;-</span> <span class='fu'>NegInv_link</span>()$<span class='no'>g</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/curve.html'>curve</a></span>(<span class='fu'>g</span>(<span class='no'>x</span>), <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='img'><img src='NegInv_link-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>g</span> <span class='op'>&lt;-</span> <span class='fu'>NegInv_link</span><span class='op'>(</span><span class='op'>)</span><span class='op'>$</span><span class='va'>g</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/curve.html'>curve</a></span><span class='op'>(</span><span class='fu'>g</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>, from <span class='op'>=</span> <span class='fl'>0.1</span>, to <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+</div><div class='img'><img src='NegInv_link-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># Inverse link function</span>
-<span class='no'>ginv</span> <span class='kw'>&lt;-</span> <span class='fu'>NegInv_link</span>()$<span class='no'>g_inv</span>
-<span class='fu'><a href='https://rdrr.io/r/graphics/curve.html'>curve</a></span>(<span class='fu'>ginv</span>(<span class='no'>x</span>), <span class='kw'>from</span> <span class='kw'>=</span> <span class='fl'>0.1</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='fl'>1</span>)</div><div class='img'><img src='NegInv_link-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>ginv</span> <span class='op'>&lt;-</span> <span class='fu'>NegInv_link</span><span class='op'>(</span><span class='op'>)</span><span class='op'>$</span><span class='va'>g_inv</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/curve.html'>curve</a></span><span class='op'>(</span><span class='fu'>ginv</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>, from <span class='op'>=</span> <span class='fl'>0.1</span>, to <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+</div><div class='img'><img src='NegInv_link-2.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -209,7 +213,7 @@ in <code>R</code>.</p></li>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

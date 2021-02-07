@@ -73,7 +73,7 @@ containing a factor type variable (classification variable)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EstimationTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.1</span>
       </span>
     </div>
 
@@ -81,7 +81,7 @@ containing a factor type variable (classification variable)." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -110,7 +110,7 @@ containing a factor type variable (classification variable)." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/Jaimemosg/EstimationTools/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -137,14 +137,15 @@ containing a factor type variable (classification variable)." />
 containing a factor type variable (classification variable).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>TTTE_Analytical</span>(
-  <span class='no'>formula</span>,
-  <span class='kw'>response</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>scaled</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='no'>data</span>,
-  <span class='kw'>method</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Barlow"</span>, <span class='st'>"censored"</span>),
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>TTTE_Analytical</span><span class='op'>(</span>
+  <span class='va'>formula</span>,
+  response <span class='op'>=</span> <span class='cn'>NULL</span>,
+  scaled <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  <span class='va'>data</span>,
+  method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Barlow"</span>, <span class='st'>"censored"</span><span class='op'>)</span>,
+  partition_method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"K-fold"</span>, folds <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -152,7 +153,7 @@ containing a factor type variable (classification variable).</p>
     <tr>
       <th>formula</th>
       <td><p>an object of class <code><a href='https://rdrr.io/r/stats/formula.html'>formula</a></code> with the response on
-the left of an operator <code>~</code>. The right side can be a factor
+the left of an operator <code><a href='https://rdrr.io/r/base/tilde.html'>~</a></code>. The right side can be a factor
 variable as term or an <code>1</code> if a classification by factor
 levels is not desired.</p></td>
     </tr>
@@ -178,6 +179,13 @@ is called.</p></td>
       <td><p>a character specifying the method of computation. There are two
 options available: <code>'Barlow'</code> and <code>'censored'</code>. Further
 information can be found in the <strong>Details</strong> section.</p></td>
+    </tr>
+    <tr>
+      <th>partition_method</th>
+      <td><p>a list specifying cluster formation when the covariate in
+<code>formula</code> is numeric. 'Equispaced' distribution based
+on quantiles is the only one currently available (See the
+last example).</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -227,8 +235,8 @@ ISSN 00281441, doi: <a href='https://doi.org/10.1002/nav.3800260303'>10.1002/nav
 &#8220;How to Identify a Bathtub Hazard Rate.&#8221;
 <em>IEEE Transactions on Reliability</em>, <b>R-36</b>(1), 106--108.
 ISSN 15581721, doi: <a href='https://doi.org/10.1109/TR.1987.5222310'>10.1109/TR.1987.5222310</a>
-.</p>
-<p>Klefsjö B (1991).
+, <a href='https://doi.org/10.1109/TR.1987.5222310'>https://doi.org/10.1109/TR.1987.5222310</a>.</p>
+<p>Klefsj昼㸶 B (1991).
 &#8220;TTT-plotting - a tool for both theoretical and practical problems.&#8221;
 <em>Journal of Statistical Planning and Inference</em>, <b>29</b>(1-2), 99--110.
 ISSN 03783758, doi: <a href='https://doi.org/10.1016/0378-3758(92)90125-C'>10.1016/0378-3758(92)90125-C</a>
@@ -241,92 +249,135 @@ ISSN 0218-5393, doi: <a href='https://doi.org/10.1142/S0218539394000027'>10.1142
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='plot.EmpiricalTTT.html'>plot.EmpiricalTTT</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Jaime Mosquera Gutiérrez, <a href='mailto:jmosquerag@unal.edu.co'>jmosquerag@unal.edu.co</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>EstimationTools</span>)
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://jaimemosg.github.io/EstimationTools/'>EstimationTools</a></span><span class='op'>)</span>
 
 <span class='co'>#--------------------------------------------------------------------------------</span>
 <span class='co'># First example: Scaled empirical TTT from 'mgus1' data from 'survival' package.</span>
 
-<span class='no'>TTT_1</span> <span class='kw'>&lt;-</span> <span class='fu'>TTTE_Analytical</span>(<span class='fu'>Surv</span>(<span class='no'>stop</span>, <span class='no'>event</span> <span class='kw'>==</span> <span class='st'>'pcm'</span>) ~<span class='fl'>1</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>'cens'</span>,
-                         <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>mgus1</span>, <span class='kw'>subset</span><span class='kw'>=</span>(<span class='no'>start</span> <span class='kw'>==</span> <span class='fl'>0</span>))
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>TTT_1</span>$<span class='no'>`i/n`</span>)</div><div class='output co'>#&gt;             [,1]
+<span class='va'>TTT_1</span> <span class='op'>&lt;-</span> <span class='fu'>TTTE_Analytical</span><span class='op'>(</span><span class='fu'>Surv</span><span class='op'>(</span><span class='va'>stop</span>, <span class='va'>event</span> <span class='op'>==</span> <span class='st'>'pcm'</span><span class='op'>)</span> <span class='op'>~</span><span class='fl'>1</span>, method <span class='op'>=</span> <span class='st'>'cens'</span>,
+                         data <span class='op'>=</span> <span class='va'>mgus1</span>, subset<span class='op'>=</span><span class='op'>(</span><span class='va'>start</span> <span class='op'>==</span> <span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>TTT_1</span><span class='op'>$</span><span class='va'>`i/n`</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;             [,1]
 #&gt; [1,] 0.000000000
 #&gt; [2,] 0.004219409
 #&gt; [3,] 0.008438819
 #&gt; [4,] 0.012658228
 #&gt; [5,] 0.016877637
-#&gt; [6,] 0.021097046</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>TTT_1</span>$<span class='no'>phi_n</span>)</div><div class='output co'>#&gt;              [,1]
+#&gt; [6,] 0.021097046</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>TTT_1</span><span class='op'>$</span><span class='va'>phi_n</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;              [,1]
 #&gt; [1,] 0.0000000000
 #&gt; [2,] 0.0006028396
 #&gt; [3,] 0.0007033129
 #&gt; [4,] 0.0031146713
 #&gt; [5,] 0.0032151446
-#&gt; [6,] 0.0039184574</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>TTT_1</span>$<span class='no'>strata</span>)</div><div class='output co'>#&gt; SingleGroup 
+#&gt; [6,] 0.0039184574</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>TTT_1</span><span class='op'>$</span><span class='va'>strata</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; SingleGroup 
 #&gt;         237 </div><div class='input'>
 
 <span class='co'>#--------------------------------------------------------------------------------</span>
 <span class='co'># Second example: Scaled empirical TTT using a factor variable with 'aml' data</span>
 <span class='co'># from 'survival' package.</span>
 
-<span class='no'>TTT_2</span> <span class='kw'>&lt;-</span> <span class='fu'>TTTE_Analytical</span>(<span class='fu'>Surv</span>(<span class='no'>time</span>, <span class='no'>status</span>) ~ <span class='no'>x</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"cens"</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>aml</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>TTT_2</span>$<span class='no'>`i/n`</span>)</div><div class='output co'>#&gt;      [,1] [,2]
+<span class='va'>TTT_2</span> <span class='op'>&lt;-</span> <span class='fu'>TTTE_Analytical</span><span class='op'>(</span><span class='fu'>Surv</span><span class='op'>(</span><span class='va'>time</span>, <span class='va'>status</span><span class='op'>)</span> <span class='op'>~</span> <span class='va'>x</span>, method <span class='op'>=</span> <span class='st'>"cens"</span>, data <span class='op'>=</span> <span class='va'>aml</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>TTT_2</span><span class='op'>$</span><span class='va'>`i/n`</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      [,1] [,2]
 #&gt; [1,]  0.0  0.0
 #&gt; [2,]  0.1  0.1
 #&gt; [3,]  0.2  0.2
 #&gt; [4,]  0.3  0.3
 #&gt; [5,]  0.4  0.4
-#&gt; [6,]  0.5  0.5</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>TTT_2</span>$<span class='no'>phi_n</span>)</div><div class='output co'>#&gt;           [,1]      [,2]
+#&gt; [6,]  0.5  0.5</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>TTT_2</span><span class='op'>$</span><span class='va'>phi_n</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;           [,1]      [,2]
 #&gt; [1,] 0.0000000 0.0000000
 #&gt; [2,] 0.1664586 0.2286585
 #&gt; [3,] 0.2330420 0.3384146
 #&gt; [4,] 0.3058677 0.4664634
 #&gt; [5,] 0.3682896 0.5945122
-#&gt; [6,] 0.4307116 0.7812500</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>TTT_2</span>$<span class='no'>strata</span>)</div><div class='output co'>#&gt;    x=Maintained x=Nonmaintained 
+#&gt; [6,] 0.4307116 0.7812500</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>TTT_2</span><span class='op'>$</span><span class='va'>strata</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;    x=Maintained x=Nonmaintained 
 #&gt;              10              10 </div><div class='input'>
 <span class='co'>#--------------------------------------------------------------------------------</span>
 <span class='co'># Third example: Non-scaled empirical TTT without a factor (arbitrarily simulated</span>
 <span class='co'># data).</span>
 
-<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Weibull.html'>rweibull</a></span>(<span class='kw'>n</span><span class='kw'>=</span><span class='fl'>20</span>, <span class='kw'>shape</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>scale</span><span class='kw'>=</span><span class='no'>pi</span>)
-<span class='no'>TTT_3</span> <span class='kw'>&lt;-</span> <span class='fu'>TTTE_Analytical</span>(<span class='no'>y</span> ~ <span class='fl'>1</span>, <span class='kw'>scaled</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>TTT_3</span>$<span class='no'>`i/n`</span>)</div><div class='output co'>#&gt;      [,1]
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Weibull.html'>rweibull</a></span><span class='op'>(</span>n<span class='op'>=</span><span class='fl'>20</span>, shape<span class='op'>=</span><span class='fl'>1</span>, scale<span class='op'>=</span><span class='va'>pi</span><span class='op'>)</span>
+<span class='va'>TTT_3</span> <span class='op'>&lt;-</span> <span class='fu'>TTTE_Analytical</span><span class='op'>(</span><span class='va'>y</span> <span class='op'>~</span> <span class='fl'>1</span>, scaled <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>TTT_3</span><span class='op'>$</span><span class='va'>`i/n`</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      [,1]
 #&gt; [1,] 0.00
 #&gt; [2,] 0.05
 #&gt; [3,] 0.10
 #&gt; [4,] 0.15
 #&gt; [5,] 0.20
-#&gt; [6,] 0.25</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>TTT_3</span>$<span class='no'>phi_n</span>)</div><div class='output co'>#&gt;           [,1]
+#&gt; [6,] 0.25</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>TTT_3</span><span class='op'>$</span><span class='va'>phi_n</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;           [,1]
 #&gt; [1,]  0.000000
 #&gt; [2,]  4.449457
 #&gt; [3,]  7.398548
 #&gt; [4,]  9.121747
 #&gt; [5,] 11.777099
-#&gt; [6,] 14.065017</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>TTT_3</span>$<span class='no'>strata</span>)</div><div class='output co'>#&gt; SingleGroup 
-#&gt;          20 </div><div class='input'>
+#&gt; [6,] 14.065017</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>TTT_3</span><span class='op'>$</span><span class='va'>strata</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  1 
+#&gt; 20 </div><div class='input'>
 
 <span class='co'>#--------------------------------------------------------------------------------</span>
 <span class='co'># Fourth example: non-scaled empirical TTT without a factor (arbitrarily simulated</span>
 <span class='co'># data) using the 'response' argument (this is equivalent to Third example).</span>
 
-<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Weibull.html'>rweibull</a></span>(<span class='kw'>n</span><span class='kw'>=</span><span class='fl'>20</span>, <span class='kw'>shape</span><span class='kw'>=</span><span class='fl'>1</span>, <span class='kw'>scale</span><span class='kw'>=</span><span class='no'>pi</span>)
-<span class='no'>TTT_4</span> <span class='kw'>&lt;-</span> <span class='fu'>TTTE_Analytical</span>(<span class='kw'>response</span> <span class='kw'>=</span> <span class='no'>y</span>, <span class='kw'>scaled</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>TTT_3</span>$<span class='no'>`i/n`</span>)</div><div class='output co'>#&gt;      [,1]
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Weibull.html'>rweibull</a></span><span class='op'>(</span>n<span class='op'>=</span><span class='fl'>20</span>, shape<span class='op'>=</span><span class='fl'>1</span>, scale<span class='op'>=</span><span class='va'>pi</span><span class='op'>)</span>
+<span class='va'>TTT_4</span> <span class='op'>&lt;-</span> <span class='fu'>TTTE_Analytical</span><span class='op'>(</span>response <span class='op'>=</span> <span class='va'>y</span>, scaled <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>TTT_3</span><span class='op'>$</span><span class='va'>`i/n`</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      [,1]
 #&gt; [1,] 0.00
 #&gt; [2,] 0.05
 #&gt; [3,] 0.10
 #&gt; [4,] 0.15
 #&gt; [5,] 0.20
-#&gt; [6,] 0.25</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>TTT_3</span>$<span class='no'>phi_n</span>)</div><div class='output co'>#&gt;           [,1]
+#&gt; [6,] 0.25</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>TTT_3</span><span class='op'>$</span><span class='va'>phi_n</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;           [,1]
 #&gt; [1,]  0.000000
 #&gt; [2,]  4.449457
 #&gt; [3,]  7.398548
 #&gt; [4,]  9.121747
 #&gt; [5,] 11.777099
-#&gt; [6,] 14.065017</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>TTT_3</span>$<span class='no'>strata</span>)</div><div class='output co'>#&gt; SingleGroup 
-#&gt;          20 </div><div class='input'>
+#&gt; [6,] 14.065017</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>TTT_3</span><span class='op'>$</span><span class='va'>strata</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  1 
+#&gt; 20 </div><div class='input'>
+<span class='co'>#--------------------------------------------------------------------------------</span>
+<span class='co'># Fifth example: empirical TTT with a continuously variant term for the the shape</span>
+<span class='co'># parameter in Odd Weibull distribution.</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='fl'>200</span>, <span class='fl'>0</span>, <span class='fl'>10</span><span class='op'>)</span>
+<span class='va'>nu</span> <span class='op'>&lt;-</span> <span class='fl'>0.1</span> <span class='op'>+</span> <span class='fl'>0.1</span><span class='op'>*</span><span class='va'>x</span>
 
-#--------------------------------------------------------------------------------
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ousuga.github.io/RelDists/'>RelDists</a></span><span class='op'>)</span>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ousuga.github.io/RelDists/reference/dOW.html'>rOW</a></span><span class='op'>(</span>n<span class='op'>=</span><span class='fl'>200</span>, mu<span class='op'>=</span><span class='fl'>0.05</span>, sigma<span class='op'>=</span><span class='fl'>2</span>, nu<span class='op'>=</span><span class='va'>nu</span><span class='op'>)</span>
+
+<span class='va'>partitions</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>method<span class='op'>=</span><span class='st'>'Equispaced'</span>, folds<span class='op'>=</span><span class='fl'>5</span><span class='op'>)</span> <span class='co'># 5 equispaced partitions</span>
+<span class='va'>TTT_5</span> <span class='op'>&lt;-</span> <span class='fu'>TTTE_Analytical</span><span class='op'>(</span><span class='va'>y</span> <span class='op'>~</span> <span class='va'>x</span>, partition_method <span class='op'>=</span> <span class='va'>partitions</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>TTT_5</span><span class='op'>$</span><span class='va'>`i/n`</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;       [,1]  [,2]       [,3]  [,4]       [,5]
+#&gt; [1,] 0.000 0.000 0.00000000 0.000 0.00000000
+#&gt; [2,] 0.025 0.025 0.02564103 0.025 0.02439024
+#&gt; [3,] 0.050 0.050 0.05128205 0.050 0.04878049
+#&gt; [4,] 0.075 0.075 0.07692308 0.075 0.07317073
+#&gt; [5,] 0.100 0.100 0.10256410 0.100 0.09756098
+#&gt; [6,] 0.125 0.125 0.12820513 0.125 0.12195122</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>TTT_5</span><span class='op'>$</span><span class='va'>phi_n</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;              [,1]         [,2]       [,3]       [,4]       [,5]
+#&gt; [1,] 0.000000e+00 0.0000000000 0.00000000 0.00000000 0.00000000
+#&gt; [2,] 3.690889e-05 0.0005657495 0.01203075 0.07259629 0.05227271
+#&gt; [3,] 9.525754e-05 0.0160637158 0.01370637 0.13088981 0.19357062
+#&gt; [4,] 1.003481e-04 0.0707636882 0.03036254 0.25196960 0.20564219
+#&gt; [5,] 1.119086e-04 0.1331264613 0.05211429 0.27416649 0.22195150
+#&gt; [6,] 1.700545e-04 0.1421793374 0.07883519 0.27958959 0.29615905</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>TTT_5</span><span class='op'>$</span><span class='va'>strata</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [0.06 - 2.21) [2.21 - 4.31) [4.31 - 6.21) [6.21 - 7.86) [7.86 - 9.97] 
+#&gt;            40            40            39            40            41 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>TTT_5</span><span class='op'>)</span> <span class='co'># Observe changes in Empirical TTT</span>
+</div><div class='img'><img src='TTTE_Analytical-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'>#--------------------------------------------------------------------------------</span>
 
 </div></pre>
   </div>
@@ -344,7 +395,7 @@ ISSN 0218-5393, doi: <a href='https://doi.org/10.1142/S0218539394000027'>10.1142
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -74,7 +74,7 @@ This is a summary method for maxlogL object." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EstimationTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.1</span>
       </span>
     </div>
 
@@ -82,7 +82,7 @@ This is a summary method for maxlogL object." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -111,7 +111,7 @@ This is a summary method for maxlogL object." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/Jaimemosg/EstimationTools/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -129,7 +129,7 @@ This is a summary method for maxlogL object." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Summarize Maximum Likelihood Estimation</h1>
-    <small class="dont-index">Source: <a href='https://github.com/Jaimemosg/EstimationTools/blob/master/R/summary.R'><code>R/summary.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/Jaimemosg/EstimationTools/blob/master/R/summary.maxlogL.R'><code>R/summary.maxlogL.R</code></a></small>
     <div class="hidden name"><code>summary.maxlogL.Rd</code></div>
     </div>
 
@@ -140,7 +140,7 @@ This is a <code>summary</code> method for <code><a href='maxlogL.html'>maxlogL</
     </div>
 
     <pre class="usage"><span class='co'># S3 method for maxlogL</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>object</span>, <span class='no'>...</span>)</pre>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>object</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -168,24 +168,29 @@ test of parameters.</p>
 
     <div class='dont-index'><p><code><a href='maxlogL.html'>maxlogL</a></code>, <code><a href='maxlogLreg.html'>maxlogLreg</a></code>,
 <code><a href='bootstrap_maxlogL.html'>bootstrap_maxlogL</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Jaime Mosquera Gutiérrez, <a href='mailto:jmosquerag@unal.edu.co'>jmosquerag@unal.edu.co</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>EstimationTools</span>)
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://jaimemosg.github.io/EstimationTools/'>EstimationTools</a></span><span class='op'>)</span>
 
 <span class='co'>#--------------------------------------------------------------------------------</span>
 <span class='co'>### First example: One known parameter</span>
 
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10000</span>, <span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>160</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fl'>6</span>)
-<span class='no'>theta_1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='maxlogL.html'>maxlogL</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>x</span>, <span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>'dnorm'</span>, <span class='kw'>control</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>trace</span> <span class='kw'>=</span> <span class='fl'>1</span>),
-                 <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='st'>"sd"</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"log_link"</span>),
-                 <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>mean</span> <span class='kw'>=</span> <span class='fl'>160</span>))</div><div class='output co'>#&gt;   0:     43505.752:  1.00000
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>10000</span>, mean <span class='op'>=</span> <span class='fl'>160</span>, sd <span class='op'>=</span> <span class='fl'>6</span><span class='op'>)</span>
+<span class='va'>theta_1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='maxlogL.html'>maxlogL</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, dist <span class='op'>=</span> <span class='st'>'dnorm'</span>, control <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>trace <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>,
+                 link <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>over <span class='op'>=</span> <span class='st'>"sd"</span>, fun <span class='op'>=</span> <span class='st'>"log_link"</span><span class='op'>)</span>,
+                 fixed <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>mean <span class='op'>=</span> <span class='fl'>160</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   0:     43505.752:  1.00000
 #&gt;   1:     32480.248:  2.00000
 #&gt;   2:     32248.382:  1.91874
 #&gt;   3:     32107.224:  1.76070
 #&gt;   4:     32098.102:  1.79483
 #&gt;   5:     32097.944:  1.79098
 #&gt;   6:     32097.944:  1.79085
-#&gt;   7:     32097.944:  1.79086</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>theta_1</span>)</div><div class='output co'>#&gt; _______________________________________________________________
+#&gt;   7:     32097.944:  1.79086</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>theta_1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; _______________________________________________________________
 #&gt; Optimization routine: nlminb 
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
@@ -204,14 +209,16 @@ test of parameters.</p>
 <span class='co'># Second example: Binomial probability parameter estimation with variable</span>
 <span class='co'># creation</span>
 
-<span class='no'>N</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Binomial.html'>rbinom</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.3</span>)
-<span class='no'>phat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='maxlogL.html'>maxlogL</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>N</span>, <span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>'dbinom'</span>, <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>10</span>),
-                <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='st'>"prob"</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"logit_link"</span>))
+<span class='va'>N</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Binomial.html'>rbinom</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>100</span>, size <span class='op'>=</span> <span class='fl'>10</span>, prob <span class='op'>=</span> <span class='fl'>0.3</span><span class='op'>)</span>
+<span class='va'>phat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='maxlogL.html'>maxlogL</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>N</span>, dist <span class='op'>=</span> <span class='st'>'dbinom'</span>, fixed <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>,
+                link <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>over <span class='op'>=</span> <span class='st'>"prob"</span>, fun <span class='op'>=</span> <span class='st'>"logit_link"</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'>## Standard error calculation method</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>phat</span>$<span class='no'>outputs</span>$<span class='no'>StdE_Method</span>)</div><div class='output co'>#&gt; [1] "Hessian from optim"</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>phat</span><span class='op'>$</span><span class='va'>outputs</span><span class='op'>$</span><span class='va'>StdE_Method</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "Hessian from optim"</div><div class='input'>
 <span class='co'>## 'summary' method</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>phat</span>)</div><div class='output co'>#&gt; _______________________________________________________________
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>phat</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; _______________________________________________________________
 #&gt; Optimization routine: nlminb 
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
@@ -229,9 +236,10 @@ test of parameters.</p>
 <span class='co'># Third example: Binomial probability parameter estimation with no variable</span>
 <span class='co'># creation</span>
 
-<span class='no'>N</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Binomial.html'>rbinom</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>prob</span> <span class='kw'>=</span> <span class='fl'>0.3</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='fu'><a href='maxlogL.html'>maxlogL</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>N</span>, <span class='kw'>dist</span> <span class='kw'>=</span> <span class='st'>'dbinom'</span>, <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>size</span> <span class='kw'>=</span> <span class='fl'>10</span>),
-                <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='st'>"prob"</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"logit_link"</span>)))</div><div class='output co'>#&gt; _______________________________________________________________
+<span class='va'>N</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Binomial.html'>rbinom</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>100</span>, size <span class='op'>=</span> <span class='fl'>10</span>, prob <span class='op'>=</span> <span class='fl'>0.3</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='fu'><a href='maxlogL.html'>maxlogL</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>N</span>, dist <span class='op'>=</span> <span class='st'>'dbinom'</span>, fixed <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>,
+                link <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>over <span class='op'>=</span> <span class='st'>"prob"</span>, fun <span class='op'>=</span> <span class='st'>"logit_link"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; _______________________________________________________________
 #&gt; Optimization routine: nlminb 
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
@@ -247,17 +255,18 @@ test of parameters.</p>
 #&gt; ---</div><div class='input'>
 <span class='co'>#--------------------------------------------------------------------------------</span>
 <span class='co'># Fourth example: Estimation in a regression model with simulated normal data</span>
-<span class='no'>n</span> <span class='kw'>&lt;-</span> <span class='fl'>1000</span>
-<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>, -<span class='fl'>5</span>, <span class='fl'>6</span>)
-<span class='no'>y</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span>(<span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>n</span>, <span class='kw'>mean</span> <span class='kw'>=</span> -<span class='fl'>2</span> + <span class='fl'>3</span> * <span class='no'>x</span>, <span class='kw'>sd</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>exp</a></span>(<span class='fl'>1</span> + <span class='fl'>0.3</span>* <span class='no'>x</span>))
-<span class='no'>norm_data</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>y</span>, <span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>x</span>)
-<span class='no'>formulas</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>sd.fo</span> <span class='kw'>=</span> ~ <span class='no'>x</span>, <span class='kw'>mean.fo</span> <span class='kw'>=</span> ~ <span class='no'>x</span>)
+<span class='va'>n</span> <span class='op'>&lt;-</span> <span class='fl'>1000</span>
+<span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='va'>n</span>, <span class='op'>-</span><span class='fl'>5</span>, <span class='fl'>6</span><span class='op'>)</span>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='va'>n</span>, mean <span class='op'>=</span> <span class='op'>-</span><span class='fl'>2</span> <span class='op'>+</span> <span class='fl'>3</span> <span class='op'>*</span> <span class='va'>x</span>, sd <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>exp</a></span><span class='op'>(</span><span class='fl'>1</span> <span class='op'>+</span> <span class='fl'>0.3</span><span class='op'>*</span> <span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>norm_data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>y <span class='op'>=</span> <span class='va'>y</span>, x <span class='op'>=</span> <span class='va'>x</span><span class='op'>)</span>
+<span class='va'>formulas</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>sd.fo <span class='op'>=</span> <span class='op'>~</span> <span class='va'>x</span>, mean.fo <span class='op'>=</span> <span class='op'>~</span> <span class='va'>x</span><span class='op'>)</span>
 
-<span class='no'>norm_mod</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='maxlogLreg.html'>maxlogLreg</a></span>(<span class='no'>formulas</span>, <span class='kw'>y_dist</span> <span class='kw'>=</span> <span class='no'>y</span> ~ <span class='no'>dnorm</span>, <span class='kw'>data</span> <span class='kw'>=</span> <span class='no'>norm_data</span>,
-                       <span class='kw'>link</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>over</span> <span class='kw'>=</span> <span class='st'>"sd"</span>, <span class='kw'>fun</span> <span class='kw'>=</span> <span class='st'>"log_link"</span>))
+<span class='va'>norm_mod</span> <span class='op'>&lt;-</span> <span class='fu'><a href='maxlogLreg.html'>maxlogLreg</a></span><span class='op'>(</span><span class='va'>formulas</span>, y_dist <span class='op'>=</span> <span class='va'>y</span> <span class='op'>~</span> <span class='va'>dnorm</span>, data <span class='op'>=</span> <span class='va'>norm_data</span>,
+                       link <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>over <span class='op'>=</span> <span class='st'>"sd"</span>, fun <span class='op'>=</span> <span class='st'>"log_link"</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'>## 'summary' method</span>
-<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>norm_mod</span>)</div><div class='output co'>#&gt; _______________________________________________________________
+<span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>norm_mod</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; _______________________________________________________________
 #&gt; Optimization routine: nlminb 
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
@@ -283,7 +292,7 @@ test of parameters.</p>
 #&gt; Note: p-values valid under asymptotic normality of estimators 
 #&gt; ---</div><div class='input'>
 
-#--------------------------------------------------------------------------------
+<span class='co'>#--------------------------------------------------------------------------------</span>
 
 </div></pre>
   </div>
@@ -301,7 +310,7 @@ test of parameters.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

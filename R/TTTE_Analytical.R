@@ -23,8 +23,9 @@
 #'               options available: \code{'Barlow'} and \code{'censored'}. Further
 #'               information can be found in the \strong{Details} section.
 #' @param partition_method a list specifying cluster formation when the covariate in
-#'                         \code{formula} is numeric. Equispaced distribution based
-#'                         on quantiles is the only one currently available.
+#'                         \code{formula} is numeric. 'Equispaced' distribution based
+#'                         on quantiles is the only one currently available (See the
+#'                         last example).
 #' @param ... further arguments passing to \code{\link[survival]{survfit}}.
 #'
 #' @details When \code{method} argument is set as \code{'Barlow'}, this function
@@ -103,6 +104,21 @@
 #' head(TTT_3$phi_n)
 #' print(TTT_3$strata)
 #'
+#' #--------------------------------------------------------------------------------
+#' # Fifth example: empirical TTT with a continuously variant term for the the shape
+#' # parameter in Odd Weibull distribution.
+#' x <- runif(200, 0, 10)
+#' nu <- 0.1 + 0.1*x
+#'
+#' library(RelDists)
+#' y <- rOW(n=200, mu=0.05, sigma=2, nu=nu)
+#'
+#' partitions <- list(method='Equispaced', folds=5) # 5 equispaced partitions
+#' TTT_5 <- TTTE_Analytical(y ~ x, partition_method = partitions)
+#' head(TTT_5$`i/n`)
+#' head(TTT_5$phi_n)
+#' print(TTT_5$strata)
+#' plot(TTT_5) # Observe changes in Empirical TTT
 #'
 #' #--------------------------------------------------------------------------------
 #'
@@ -155,14 +171,15 @@ TTTE_Analytical <- function(formula, response = NULL, scaled = TRUE, data,
     if (length(x_id) == 0){
       x <- factor(rep(1, nrow(modfrm)))
     } else {
-      if ( is.factor(class(modfrm[x_id][[1]])) )
+      if ( is.factor(modfrm[x_id][[1]]) )
         x <- survival::strata(modfrm[x_id])
-      if ( is.character(class(modfrm[x_id][[1]])) ){
+      if ( is.character(modfrm[x_id][[1]]) ){
         modfrm[x_id][[1]] <- as.factor(modfrm[x_id][[1]])
         x <- survival::strata(modfrm[x_id])
       }
-      if ( is.numeric(class(modfrm[x_id][[1]])) ){
-        x <- num2fac(partition_method = partition_method, y = y)
+      if ( is.numeric(modfrm[x_id][[1]]) ){
+        x <- num2fac(partition_method = partition_method,
+                     x_var = modfrm[x_id][[1]])
       }
     }
 
@@ -195,28 +212,31 @@ TTTE_Analytical <- function(formula, response = NULL, scaled = TRUE, data,
 #==============================================================================
 # TTT preparation for numerical covariate -------------------------------------
 #==============================================================================
-num2fac <- function(partition_method, y){
-  if (partition_method[[1]] %in% c('equispaced','density-based')){
+num2fac <- function(partition_method, x_var){
+  if (partition_method[[1]] %in% c('Equispaced')){  # Pending,'Density-based'
     prob <- 1/partition_method[[2]] * (1:(partition_method[[2]]))
     prob <- c(0, prob)
-    qi <- as.numeric(quantile(y, probs=prob))
+    qi <- as.numeric(quantile(x_var, probs=prob))
     cuts <- sapply(1:length(qi),
-                   function(x) which.min(abs(y - qi[x])))
+                   function(x) which.min(abs(x_var - qi[x])))
     indexes <- lapply(1:(length(cuts) - 1),
-                      function(i) which(y>=y[cuts[i]] & y<y[cuts[i+1]]))
+                      function(i) which(x_var >= x_var[cuts[i]] &
+                                          x_var < x_var[cuts[i+1]]))
     ranges <- sapply(1:(length(cuts) - 2), simplify = 'list',
-                     function(i) paste0('[', round(y[cuts[i]],2), ' - ',
-                                        round(y[cuts[i+1]],2), ')'))
-    ranges[[length(cuts)-1]] <- paste0('[', round(y[cuts[length(cuts)-1]],2), ' - ',
-                                       round(y[cuts[length(cuts)]],2), ']')
-    x <- rep(NA, length(y))
-    for (i in 1:(length(cuts) - 1) ) x[indexes[[i]]] <- ranges[i]
-    x[cuts[length(cuts)]] <- ranges[length(ranges)]
-    x <- as.factor(x)
-    return(x)
+                     function(i) paste0('[', round(x_var[cuts[i]],2), ' - ',
+                                        round(x_var[cuts[i+1]],2), ')'))
+    ranges[[length(cuts)-1]] <- paste0('[',
+                                       round(x_var[cuts[length(cuts)-1]],2),
+                                       ' - ',
+                                       round(x_var[cuts[length(cuts)]],2), ']')
+    x_new <- rep(NA, length(x_var))
+    for (i in 1:(length(cuts) - 1) ) x_new[indexes[[i]]] <- ranges[i]
+    x_new[cuts[length(cuts)]] <- ranges[length(ranges)]
+    x_new <- as.factor(x_new)
+    return(x_new)
   } else {
     stop("Choose one partition method from the following partition methods:
-         'equispaced' or 'density-based'")
+         'Equispaced'")
   }
 }
 #==============================================================================
@@ -307,7 +327,8 @@ TTT_Barlow <- function(inputs, scaled){
   ngroups <- length(levs)
 
   nlevs <- sapply(levs_int, function(x) length(which(x_int == x)))
-  phi_n <- r_full <- matrix(nrow = (max(nlevs) + 1), ncol = ngroups, byrow = FALSE)
+  phi_n <- r_full <- matrix(nrow = (max(nlevs) + 1), ncol = ngroups,
+                            byrow = FALSE)
 
   for (i in 1:ngroups){
     fac <- which(x_int == levs_int[i])
@@ -328,7 +349,7 @@ TTT_Barlow <- function(inputs, scaled){
     r_full[,i] <- r
   }
 
-  if ( is.null(names(nlevs)) ){
+  if ( is.null(names(nlevs) & ngroups == 1) ){
     names(nlevs) <- "SingleGroup"
   } else { names(nlevs) <- levs }
 
