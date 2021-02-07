@@ -43,8 +43,6 @@ jobs:
 
       - uses: r-lib/actions/setup-tinytex@master
 
-
-
       - name: Query dependencies
         run: |
           install.packages('remotes')
@@ -70,12 +68,16 @@ jobs:
 
       - name: Install dependencies
         run: |
+          install.packages('curl')
           remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
           tinytex::parse_install(text = "! LaTeX Error: File `pdfpages.sty' not found.")
           tinytex::parse_install(text = "! LaTeX Error: File `ae.sty' not found.")
           tinytex::parse_install(text = "! LaTeX Error: File `pdflscape.sty' not found.")
           tinytex::parse_install(text = "! LaTeX Error: File `thumbpdf.sty' not found.")
+          tinytex::parse_install(text = "! LaTeX Error: File `subcaption.sty' not found.")
+          tinytex::parse_install(text = "! LaTeX Error: File `float.sty' not found.")
+          tinytex::parse_install(text = "! LaTeX Error: File `xcolor.sty' not found.")
         shell: Rscript {0}
 
       - name: Check
