@@ -23,7 +23,7 @@ jobs:
       matrix:
         config:
           - {os: windows-latest, r: 'release'}
-          - {os: macOS-latest, r: 'release'}
+          #- {os: macOS-latest, r: 'release'}
           - {os: ubuntu-20.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
           - {os: ubuntu-20.04, r: 'devel', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
 
@@ -71,7 +71,6 @@ jobs:
           install.packages('curl')
           remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
-          tinytex::reinstall_tinytex()
           tinytex::parse_install(text = "! LaTeX Error: File `pdfpages.sty' not found.")
           tinytex::parse_install(text = "! LaTeX Error: File `ae.sty' not found.")
           tinytex::parse_install(text = "! LaTeX Error: File `pdflscape.sty' not found.")
@@ -79,7 +78,6 @@ jobs:
           tinytex::parse_install(text = "! LaTeX Error: File `subcaption.sty' not found.")
           tinytex::parse_install(text = "! LaTeX Error: File `float.sty' not found.")
           tinytex::parse_install(text = "! LaTeX Error: File `xcolor.sty' not found.")
-          tinytex::parse_packages(text = "! LaTeX Error: File `l3backend-pdftex.def' not found.")
         shell: Rscript {0}
 
       - name: Check
