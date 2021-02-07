@@ -22,6 +22,9 @@
 #' @param method a character specifying the method of computation. There are two
 #'               options available: \code{'Barlow'} and \code{'censored'}. Further
 #'               information can be found in the \strong{Details} section.
+#' @param partition_method a list specifying cluster formation when the covariate in
+#'                         \code{formula} is numeric. Equispaced distribution based
+#'                         on quantiles is the only one currently available.
 #' @param ... further arguments passing to \code{\link[survival]{survfit}}.
 #'
 #' @details When \code{method} argument is set as \code{'Barlow'}, this function
@@ -52,8 +55,9 @@
 #' \item{strata}{A numeric named vector storing the number of observations per strata,
 #'               and the name of each strata (names of the levels of the factor).}
 #'
-#' @importFrom stats model.frame model.extract terms end
+#' @importFrom stats model.frame model.extract terms end quantile
 #' @importFrom survival survfit.formula is.Surv strata
+#' @importFrom BBmisc is.error
 #' @export
 #'
 #' @examples
@@ -119,11 +123,14 @@
 # Empirical TTT computation ---------------------------------------------------
 #==============================================================================
 TTTE_Analytical <- function(formula, response = NULL, scaled = TRUE, data,
-                            method = c('Barlow', 'censored'), ...){
+                            method = c('Barlow', 'censored'),
+                            partition_method = list(method='K-fold', folds=3),
+                            ...){
   method <- match.arg(method, c('Barlow', 'censored'))
   mycall <- match.call()
+  formula_definition <- try(!is.null(formula), silent = TRUE)
 
-  if ( is.null(response)){
+  if ( is.null(response) & !BBmisc::is.error(formula_definition) ){
 
     # data frame building inspired by 'suvrfit' function from 'survival' package
     id_arg <- match(c("formula", "data"), names(mycall),
@@ -140,16 +147,27 @@ TTTE_Analytical <- function(formula, response = NULL, scaled = TRUE, data,
 
     x_id <- attr(stats::terms(modfrm), 'term.labels')
     if ( length(x_id) > 1 )
-      stop('Empirical TTT statistic only can be classified by one factor at
+      stop('Empirical TTT statistic only can be classified by one covariate at
             time')
 
-    x <- if (length(x_id) == 0){
-      factor(rep(1, nrow(modfrm)))}
-    else {
-      survival::strata(modfrm[x_id])
-    }
     y <- stats::model.extract(modfrm, 'response')
+
+    if (length(x_id) == 0){
+      x <- factor(rep(1, nrow(modfrm)))
+    } else {
+      if ( is.factor(class(modfrm[x_id][[1]])) )
+        x <- survival::strata(modfrm[x_id])
+      if ( is.character(class(modfrm[x_id][[1]])) ){
+        modfrm[x_id][[1]] <- as.factor(modfrm[x_id][[1]])
+        x <- survival::strata(modfrm[x_id])
+      }
+      if ( is.numeric(class(modfrm[x_id][[1]])) ){
+        x <- num2fac(partition_method = partition_method, y = y)
+      }
+    }
+
   } else {
+
     if ( !is.numeric(response) )
       stop("'response' argument must be numeric")
     x <- factor(rep(1, length(response)))
@@ -157,11 +175,12 @@ TTTE_Analytical <- function(formula, response = NULL, scaled = TRUE, data,
     formula <- y ~ x
     modfrm <- stats::model.frame(formula = formula,
                                  data = data.frame(y, x))
+
   }
 
   if ( is.Surv(y) & method == "Barlow")
     stop("Non-censored data must not be handled with a 'Surv' object in the
-         'formula' argument")
+         'formula' argument, and the method must be set as 'censored'")
 
   Alldots <- substitute(...())
   inputs <- switch(method,
@@ -172,6 +191,33 @@ TTTE_Analytical <- function(formula, response = NULL, scaled = TRUE, data,
   TTT <- TTT_formula_selector(inputs, scaled, method)
   class(TTT) <- "EmpiricalTTT"
   return(TTT)
+}
+#==============================================================================
+# TTT preparation for numerical covariate -------------------------------------
+#==============================================================================
+num2fac <- function(partition_method, y){
+  if (partition_method[[1]] %in% c('equispaced','density-based')){
+    prob <- 1/partition_method[[2]] * (1:(partition_method[[2]]))
+    prob <- c(0, prob)
+    qi <- as.numeric(quantile(y, probs=prob))
+    cuts <- sapply(1:length(qi),
+                   function(x) which.min(abs(y - qi[x])))
+    indexes <- lapply(1:(length(cuts) - 1),
+                      function(i) which(y>=y[cuts[i]] & y<y[cuts[i+1]]))
+    ranges <- sapply(1:(length(cuts) - 2), simplify = 'list',
+                     function(i) paste0('[', round(y[cuts[i]],2), ' - ',
+                                        round(y[cuts[i+1]],2), ')'))
+    ranges[[length(cuts)-1]] <- paste0('[', round(y[cuts[length(cuts)-1]],2), ' - ',
+                                       round(y[cuts[length(cuts)]],2), ']')
+    x <- rep(NA, length(y))
+    for (i in 1:(length(cuts) - 1) ) x[indexes[[i]]] <- ranges[i]
+    x[cuts[length(cuts)]] <- ranges[length(ranges)]
+    x <- as.factor(x)
+    return(x)
+  } else {
+    stop("Choose one partition method from the following partition methods:
+         'equispaced' or 'density-based'")
+  }
 }
 #==============================================================================
 # Data preparation for TTT computation ----------------------------------------
@@ -196,7 +242,7 @@ Cens_action <- function(y, fo, model_frame, data, Alldots){
                         nomatch = 0)
   survfit_extras <- Alldots[args_matches]
   survfit_dots <- Alldots[-args_matches]
-  survfit_dots <- if ( length(survfit_dots) == 0){ NULL }
+  survfit_dots <- if ( length(survfit_dots) == 0 ){ NULL }
   inputs <- do.call("survfit.formula", args = c(list(formula = cens_outs$fo,
                                                      data = cens_outs$data),
                                                 survfit_extras, survfit_dots))

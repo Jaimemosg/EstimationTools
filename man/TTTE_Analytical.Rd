@@ -10,6 +10,7 @@ TTTE_Analytical(
   scaled = TRUE,
   data,
   method = c("Barlow", "censored"),
+  partition_method = list(method = "K-fold", folds = 3),
   ...
 )
 }
@@ -33,6 +34,10 @@ is called.}
 \item{method}{a character specifying the method of computation. There are two
 options available: \code{'Barlow'} and \code{'censored'}. Further
 information can be found in the \strong{Details} section.}
+
+\item{partition_method}{a list specifying cluster formation when the covariate in
+\code{formula} is numeric. Equispaced distribution based
+on quantiles is the only one currently available.}
 
 \item{...}{further arguments passing to \code{\link[survival]{survfit}}.}
 }
