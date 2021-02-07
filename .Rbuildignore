@@ -1,7 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^README\.Rmd$
-^\.travis\.yml$
 ^appveyor\.yml$
 ^cran-comments\.md$
 ^docs$
@@ -17,3 +16,4 @@ vignettes/.*\.out
 vignettes/.*\.toc
 vignettes/*\.RData
 ^LICENSE\.md$
+^\.github$

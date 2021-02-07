@@ -1,3 +1,7 @@
+# EstimationTools 2.0.2
+
+- Empirical TTT with numerical (grouped) covariate.
+
 # EstimationTools 2.0.1
 
 - Bug fixed. Formula handle with survival objects without factor classification in TTTE_Analytic is fixed.
