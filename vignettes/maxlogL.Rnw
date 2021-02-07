@@ -7,7 +7,7 @@
 %% -- LaTeX packages and custom commands ---------------------------------------
 
 %% recommended packages
-\usepackage{thumbpdf,lmodern}
+\usepackage{thumbpdf, lmodern}
 \usepackage{amsmath, bm}
 \usepackage{amssymb}
 \usepackage{subcaption}
