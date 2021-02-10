@@ -73,7 +73,7 @@ containing a factor type variable (classification variable)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EstimationTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.2</span>
       </span>
     </div>
 
@@ -143,7 +143,7 @@ containing a factor type variable (classification variable).</p>
   scaled <span class='op'>=</span> <span class='cn'>TRUE</span>,
   <span class='va'>data</span>,
   method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Barlow"</span>, <span class='st'>"censored"</span><span class='op'>)</span>,
-  partition_method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>method <span class='op'>=</span> <span class='st'>"K-fold"</span>, folds <span class='op'>=</span> <span class='fl'>3</span><span class='op'>)</span>,
+  partition_method <span class='op'>=</span> <span class='cn'>NULL</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
 
@@ -305,6 +305,7 @@ ISSN 0218-5393, doi: <a href='https://doi.org/10.1142/S0218539394000027'>10.1142
 <span class='co'># Third example: Non-scaled empirical TTT without a factor (arbitrarily simulated</span>
 <span class='co'># data).</span>
 
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>911211</span><span class='op'>)</span>
 <span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Weibull.html'>rweibull</a></span><span class='op'>(</span>n<span class='op'>=</span><span class='fl'>20</span>, shape<span class='op'>=</span><span class='fl'>1</span>, scale<span class='op'>=</span><span class='va'>pi</span><span class='op'>)</span>
 <span class='va'>TTT_3</span> <span class='op'>&lt;-</span> <span class='fu'>TTTE_Analytical</span><span class='op'>(</span><span class='va'>y</span> <span class='op'>~</span> <span class='fl'>1</span>, scaled <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>TTT_3</span><span class='op'>$</span><span class='va'>`i/n`</span><span class='op'>)</span>
@@ -315,39 +316,40 @@ ISSN 0218-5393, doi: <a href='https://doi.org/10.1142/S0218539394000027'>10.1142
 #&gt; [4,] 0.15
 #&gt; [5,] 0.20
 #&gt; [6,] 0.25</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>TTT_3</span><span class='op'>$</span><span class='va'>phi_n</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;           [,1]
-#&gt; [1,]  0.000000
-#&gt; [2,]  4.449457
-#&gt; [3,]  7.398548
-#&gt; [4,]  9.121747
-#&gt; [5,] 11.777099
-#&gt; [6,] 14.065017</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>TTT_3</span><span class='op'>$</span><span class='va'>strata</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;  1 
-#&gt; 20 </div><div class='input'>
+</div><div class='output co'>#&gt;          [,1]
+#&gt; [1,]  0.00000
+#&gt; [2,]  2.75529
+#&gt; [3,] 11.11551
+#&gt; [4,] 18.07959
+#&gt; [5,] 18.71795
+#&gt; [6,] 31.26945</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>TTT_3</span><span class='op'>$</span><span class='va'>strata</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; SingleGroup 
+#&gt;          20 </div><div class='input'>
 
 <span class='co'>#--------------------------------------------------------------------------------</span>
 <span class='co'># Fourth example: non-scaled empirical TTT without a factor (arbitrarily simulated</span>
 <span class='co'># data) using the 'response' argument (this is equivalent to Third example).</span>
 
+<span class='fu'><a href='https://rdrr.io/r/base/Random.html'>set.seed</a></span><span class='op'>(</span><span class='fl'>911211</span><span class='op'>)</span>
 <span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Weibull.html'>rweibull</a></span><span class='op'>(</span>n<span class='op'>=</span><span class='fl'>20</span>, shape<span class='op'>=</span><span class='fl'>1</span>, scale<span class='op'>=</span><span class='va'>pi</span><span class='op'>)</span>
 <span class='va'>TTT_4</span> <span class='op'>&lt;-</span> <span class='fu'>TTTE_Analytical</span><span class='op'>(</span>response <span class='op'>=</span> <span class='va'>y</span>, scaled <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>TTT_3</span><span class='op'>$</span><span class='va'>`i/n`</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>TTT_4</span><span class='op'>$</span><span class='va'>`i/n`</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;      [,1]
 #&gt; [1,] 0.00
 #&gt; [2,] 0.05
 #&gt; [3,] 0.10
 #&gt; [4,] 0.15
 #&gt; [5,] 0.20
-#&gt; [6,] 0.25</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>TTT_3</span><span class='op'>$</span><span class='va'>phi_n</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;           [,1]
-#&gt; [1,]  0.000000
-#&gt; [2,]  4.449457
-#&gt; [3,]  7.398548
-#&gt; [4,]  9.121747
-#&gt; [5,] 11.777099
-#&gt; [6,] 14.065017</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>TTT_3</span><span class='op'>$</span><span class='va'>strata</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;  1 
-#&gt; 20 </div><div class='input'>
+#&gt; [6,] 0.25</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>TTT_4</span><span class='op'>$</span><span class='va'>phi_n</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;          [,1]
+#&gt; [1,]  0.00000
+#&gt; [2,]  2.75529
+#&gt; [3,] 11.11551
+#&gt; [4,] 18.07959
+#&gt; [5,] 18.71795
+#&gt; [6,] 31.26945</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>TTT_4</span><span class='op'>$</span><span class='va'>strata</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; SingleGroup 
+#&gt;          20 </div><div class='input'>
 <span class='co'>#--------------------------------------------------------------------------------</span>
 <span class='co'># Fifth example: empirical TTT with a continuously variant term for the the shape</span>
 <span class='co'># parameter in Odd Weibull distribution.</span>
@@ -394,14 +396,14 @@ ISSN 0218-5393, doi: <a href='https://doi.org/10.1142/S0218539394000027'>10.1142
 #&gt; [4,] 0.075 0.075 0.07692308 0.075 0.07317073
 #&gt; [5,] 0.100 0.100 0.10256410 0.100 0.09756098
 #&gt; [6,] 0.125 0.125 0.12820513 0.125 0.12195122</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>TTT_5</span><span class='op'>$</span><span class='va'>phi_n</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;              [,1]         [,2]       [,3]       [,4]       [,5]
-#&gt; [1,] 0.000000e+00 0.0000000000 0.00000000 0.00000000 0.00000000
-#&gt; [2,] 3.690889e-05 0.0005657495 0.01203075 0.07259629 0.05227271
-#&gt; [3,] 9.525754e-05 0.0160637158 0.01370637 0.13088981 0.19357062
-#&gt; [4,] 1.003481e-04 0.0707636882 0.03036254 0.25196960 0.20564219
-#&gt; [5,] 1.119086e-04 0.1331264613 0.05211429 0.27416649 0.22195150
-#&gt; [6,] 1.700545e-04 0.1421793374 0.07883519 0.27958959 0.29615905</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>TTT_5</span><span class='op'>$</span><span class='va'>strata</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [0.06 - 2.21) [2.21 - 4.31) [4.31 - 6.21) [6.21 - 7.86) [7.86 - 9.97] 
+</div><div class='output co'>#&gt;              [,1]        [,2]       [,3]       [,4]      [,5]
+#&gt; [1,] 0.000000e+00 0.000000000 0.00000000 0.00000000 0.0000000
+#&gt; [2,] 1.655629e-08 0.004588231 0.04393647 0.01088776 0.2544856
+#&gt; [3,] 4.457868e-07 0.025057745 0.06826296 0.11793525 0.2984248
+#&gt; [4,] 1.295947e-05 0.036151297 0.08863933 0.13483659 0.3946043
+#&gt; [5,] 1.675025e-04 0.099896104 0.10073241 0.13904064 0.4981321
+#&gt; [6,] 4.686772e-04 0.101558181 0.11333774 0.15721037 0.5041750</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>TTT_5</span><span class='op'>$</span><span class='va'>strata</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  [0.02 - 1.7)  [1.7 - 3.74) [3.74 - 5.39) [5.39 - 7.56) [7.56 - 9.75] 
 #&gt;            40            40            39            40            41 </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>TTT_5</span><span class='op'>)</span> <span class='co'># Observe changes in Empirical TTT</span>
 </div><div class='img'><img src='TTTE_Analytical-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'>#--------------------------------------------------------------------------------</span>

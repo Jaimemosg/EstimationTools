@@ -10,7 +10,7 @@ TTTE_Analytical(
   scaled = TRUE,
   data,
   method = c("Barlow", "censored"),
-  partition_method = list(method = "K-fold", folds = 3),
+  partition_method = NULL,
   ...
 )
 }
@@ -102,6 +102,7 @@ print(TTT_2$strata)
 # Third example: Non-scaled empirical TTT without a factor (arbitrarily simulated
 # data).
 
+set.seed(911211)
 y <- rweibull(n=20, shape=1, scale=pi)
 TTT_3 <- TTTE_Analytical(y ~ 1, scaled = FALSE)
 head(TTT_3$`i/n`)
@@ -113,11 +114,12 @@ print(TTT_3$strata)
 # Fourth example: non-scaled empirical TTT without a factor (arbitrarily simulated
 # data) using the 'response' argument (this is equivalent to Third example).
 
+set.seed(911211)
 y <- rweibull(n=20, shape=1, scale=pi)
 TTT_4 <- TTTE_Analytical(response = y, scaled = FALSE)
-head(TTT_3$`i/n`)
-head(TTT_3$phi_n)
-print(TTT_3$strata)
+head(TTT_4$`i/n`)
+head(TTT_4$phi_n)
+print(TTT_4$strata)
 
 #--------------------------------------------------------------------------------
 # Fifth example: empirical TTT with a continuously variant term for the the shape

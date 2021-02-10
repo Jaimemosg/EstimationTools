@@ -87,6 +87,7 @@
 #' # Third example: Non-scaled empirical TTT without a factor (arbitrarily simulated
 #' # data).
 #'
+#' set.seed(911211)
 #' y <- rweibull(n=20, shape=1, scale=pi)
 #' TTT_3 <- TTTE_Analytical(y ~ 1, scaled = FALSE)
 #' head(TTT_3$`i/n`)
@@ -98,11 +99,12 @@
 #' # Fourth example: non-scaled empirical TTT without a factor (arbitrarily simulated
 #' # data) using the 'response' argument (this is equivalent to Third example).
 #'
+#' set.seed(911211)
 #' y <- rweibull(n=20, shape=1, scale=pi)
 #' TTT_4 <- TTTE_Analytical(response = y, scaled = FALSE)
-#' head(TTT_3$`i/n`)
-#' head(TTT_3$phi_n)
-#' print(TTT_3$strata)
+#' head(TTT_4$`i/n`)
+#' head(TTT_4$phi_n)
+#' print(TTT_4$strata)
 #'
 #' #--------------------------------------------------------------------------------
 #' # Fifth example: empirical TTT with a continuously variant term for the the shape
@@ -167,8 +169,7 @@
 #==============================================================================
 TTTE_Analytical <- function(formula, response = NULL, scaled = TRUE, data,
                             method = c('Barlow', 'censored'),
-                            partition_method = list(method='K-fold', folds=3),
-                            ...){
+                            partition_method = NULL, ...){
   method <- match.arg(method, c('Barlow', 'censored'))
   mycall <- match.call()
   formula_definition <- try(!is.null(formula), silent = TRUE)
@@ -188,27 +189,7 @@ TTTE_Analytical <- function(formula, response = NULL, scaled = TRUE, data,
     if (length(ord) & any(ord != 1))
       stop("Interaction terms are not valid for this function")
 
-    x_id <- attr(stats::terms(modfrm), 'term.labels')
-    if ( length(x_id) > 1 )
-      stop('Empirical TTT statistic only can be classified by one covariate at
-            time')
-
     y <- stats::model.extract(modfrm, 'response')
-
-    if (length(x_id) == 0){
-      x <- factor(rep(1, nrow(modfrm)))
-    } else {
-      if ( is.factor(modfrm[x_id][[1]]) )
-        x <- survival::strata(modfrm[x_id])
-      if ( is.character(modfrm[x_id][[1]]) ){
-        modfrm[x_id][[1]] <- as.factor(modfrm[x_id][[1]])
-        x <- survival::strata(modfrm[x_id])
-      }
-      if ( is.numeric(modfrm[x_id][[1]]) ){
-        x <- num2fac(partition_method = partition_method,
-                     x_var = modfrm[x_id][[1]])
-      }
-    }
 
   } else {
 
@@ -222,15 +203,25 @@ TTTE_Analytical <- function(formula, response = NULL, scaled = TRUE, data,
 
   }
 
+  x_id <- attr(stats::terms(modfrm), 'term.labels')
+
   if ( is.Surv(y) & method == "Barlow")
-    stop("Non-censored data must not be handled with a 'Surv' object in the
+    stop("Censored data must be handled with a 'Surv' object in the
          'formula' argument, and the method must be set as 'censored'")
+  if ( !is.Surv(y) & method == "censored")
+    stop("Non-Censored data must not be handled with a 'Surv' object in the
+         'formula' argument, and the method must be set as 'Barlow'")
 
   Alldots <- substitute(...())
   inputs <- switch(method,
                    censored = Cens_action(y, formula, model_frame = modfrm,
-                                          data = data, Alldots),
-                   Barlow = Baction(y, x))
+                                          data = data, x_id =  x_id,
+                                          partition_method, TTT_call = temp,
+                                          Alldots),
+                   Barlow = Baction(y, model_frame = modfrm, data = data,
+                                    x_id = x_id,
+                                    partition_method = partition_method,
+                                    TTT_call = temp))
 
   TTT <- TTT_formula_selector(inputs, scaled, method)
   class(TTT) <- "EmpiricalTTT"
@@ -239,8 +230,19 @@ TTTE_Analytical <- function(formula, response = NULL, scaled = TRUE, data,
 #==============================================================================
 # TTT preparation for numerical covariate -------------------------------------
 #==============================================================================
-num2fac <- function(partition_method, x_var){
+num2fac <- function(partition_method, model_frame, x_id, TTT_call){
   if (partition_method[[1]] %in% c('Equispaced')){  # Pending,'Density-based'
+    if (length(x_id) == 1){
+      x_var <- model_frame[x_id][[1]]
+    } else {
+      temp2 <- TTT_call
+      temp2[[1L]] <- quote(stats::model.matrix)
+      temp2[[2L]] <- quote(model_frame)
+      names(temp2)[2] <- "object"
+      predictor_matrix <-  eval(temp2)[,2:(length(x_id)+1)]
+      x_var <- rowSums(predictor_matrix)
+    }
+
     prob <- 1/partition_method[[2]] * (1:(partition_method[[2]]))
     prob <- c(0, prob)
     qi <- as.numeric(quantile(x_var, probs=prob))
@@ -269,7 +271,8 @@ num2fac <- function(partition_method, x_var){
 #==============================================================================
 # Data preparation for TTT computation ----------------------------------------
 #==============================================================================
-Cens_action <- function(y, fo, model_frame, data, Alldots){
+Cens_action <- function(y, fo, model_frame, data, x_id, partition_method,
+                        TTT_call, Alldots){
   # if ( !is.Surv(y) ){
   #   fo <- formula2Surv(model_frame)
   #   if ( missing(data) ) data <- model_frame
@@ -284,7 +287,29 @@ Cens_action <- function(y, fo, model_frame, data, Alldots){
   #     colnames(data) <- c(yname, statusname, factorname)
   #   }
   # }
-  cens_outs <- fo_and_data(y, fo, model_frame, data, fo2Surv = TRUE)
+  if (length(x_id) == 0){
+    x <- factor(rep(1, nrow(model_frame)))
+  } else {
+    if ( is.factor(model_frame[x_id][[1]]) )
+      x <- survival::strata(model_frame[x_id])
+    if ( is.character(model_frame[x_id][[1]]) ){
+      model_frame[x_id][[1]] <- as.factor(model_frame[x_id][[1]])
+      x <- survival::strata(model_frame[x_id])
+    }
+    if ( is.numeric(model_frame[x_id][[1]]) ){
+      x <- num2fac(partition_method = partition_method,
+                   model_frame = model_frame, x_id = x_id,
+                   TTT_call = TTT_call)
+    }
+    if ( is.Surv(y) ){
+      fo <- y ~ x
+      data <- data.frame(y = y, x = x)
+      model_frame <- stats::model.frame(formula = fo, data = data)
+    }
+  }
+
+  cens_outs <- fo_and_data(y, fo, model_frame = model_frame, data,
+                           fo2Surv = TRUE)
   args_matches <- match(names(formals(survfit.formula)), names(Alldots),
                         nomatch = 0)
   survfit_extras <- Alldots[args_matches]
@@ -293,9 +318,35 @@ Cens_action <- function(y, fo, model_frame, data, Alldots){
   inputs <- do.call("survfit.formula", args = c(list(formula = cens_outs$fo,
                                                      data = cens_outs$data),
                                                 survfit_extras, survfit_dots))
+  if ( !is.null(inputs$strata) ){
+    level_names <- attr(inputs$strata, 'names')
+    new_names <- sub('.*=.*=', '', x = level_names)
+    new_names <- paste0(x_id, '=', new_names)
+    attr(inputs$strata, 'names') <- new_names
+  }
+
   return(inputs)
 }
-Baction <- function(y, x){
+Baction <- function(y, model_frame, data, x_id, partition_method, TTT_call){
+
+  if (length(x_id) == 0){
+    x <- factor(rep(1, nrow(model_frame)))
+  } else {
+    if ( is.factor(model_frame[x_id][[1]]) )
+      x <- survival::strata(model_frame[x_id])
+    if ( is.character(model_frame[x_id][[1]]) ){
+      model_frame[x_id][[1]] <- as.factor(model_frame[x_id][[1]])
+      x <- survival::strata(model_frame[x_id])
+    }
+    if ( is.numeric(model_frame[x_id][[1]]) ){
+      if ( is.null(partition_method) )
+        stop("'partition_method' argument must be defined.")
+      x <- num2fac(partition_method = partition_method,
+                   model_frame = model_frame, x_id = x_id,
+                   TTT_call = TTT_call)
+    }
+  }
+
   if ( is.Surv(y) ){
     inputs <- data.frame(y[,1], x)
   } else { inputs <- data.frame(y, x) }
@@ -376,7 +427,7 @@ TTT_Barlow <- function(inputs, scaled){
     r_full[,i] <- r
   }
 
-  if ( is.null(names(nlevs) & ngroups == 1) ){
+  if ( is.null(names(nlevs)) & ngroups == 1 ){
     names(nlevs) <- "SingleGroup"
   } else { names(nlevs) <- levs }
 
