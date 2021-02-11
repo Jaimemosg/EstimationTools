@@ -23,9 +23,9 @@
 #'               options available: \code{'Barlow'} and \code{'censored'}. Further
 #'               information can be found in the \strong{Details} section.
 #' @param partition_method a list specifying cluster formation when the covariate in
-#'                         \code{formula} is numeric. 'Equispaced' distribution based
-#'                         on quantiles is the only one currently available (See the
-#'                         last example).
+#'                         \code{formula} is numeric, or when the data has several
+#'                         covariates. 'quantile-based' method is the only one
+#'                         currently available (See the last example).
 #' @param ... further arguments passing to \code{\link[survival]{survfit}}.
 #'
 #' @details When \code{method} argument is set as \code{'Barlow'}, this function
@@ -142,7 +142,8 @@
 #' nu <- 0.1 + 0.1*x
 #' y <- rOW(n=200, mu=0.05, sigma=2, nu=nu)
 #'
-#' partitions <- list(method='Equispaced', folds=5) # 5 equispaced partitions
+#' partitions <- list(method='quantile-based',
+#'                    folds=5)
 #' TTT_5 <- TTTE_Analytical(y ~ x, partition_method = partitions)
 #' head(TTT_5$`i/n`)
 #' head(TTT_5$phi_n)
@@ -198,8 +199,9 @@ TTTE_Analytical <- function(formula, response = NULL, scaled = TRUE, data,
     x <- factor(rep(1, length(response)))
     y <- response
     formula <- y ~ x
+    data <- data.frame(y, x)
     modfrm <- stats::model.frame(formula = formula,
-                                 data = data.frame(y, x))
+                                 data = data)
 
   }
 
@@ -224,6 +226,7 @@ TTTE_Analytical <- function(formula, response = NULL, scaled = TRUE, data,
                                     TTT_call = temp))
 
   TTT <- TTT_formula_selector(inputs, scaled, method)
+  TTT$x_var <- inputs$x
   class(TTT) <- "EmpiricalTTT"
   return(TTT)
 }
@@ -231,16 +234,17 @@ TTTE_Analytical <- function(formula, response = NULL, scaled = TRUE, data,
 # TTT preparation for numerical covariate -------------------------------------
 #==============================================================================
 num2fac <- function(partition_method, model_frame, x_id, TTT_call){
-  if (partition_method[[1]] %in% c('Equispaced')){  # Pending,'Density-based'
+  if (partition_method[[1]] %in% c('quantile-based')){  # Pending,'Density-based'
     if (length(x_id) == 1){
       x_var <- model_frame[x_id][[1]]
     } else {
-      temp2 <- TTT_call
-      temp2[[1L]] <- quote(stats::model.matrix)
-      temp2[[2L]] <- quote(model_frame)
-      names(temp2)[2] <- "object"
-      predictor_matrix <-  eval(temp2)[,2:(length(x_id)+1)]
-      x_var <- rowSums(predictor_matrix)
+      # temp2 <- TTT_call
+      # temp2[[1L]] <- quote(stats::model.matrix)
+      # temp2[[2L]] <- quote(model_frame)
+      # names(temp2)[2] <- "object"
+      # predictor_matrix <-  eval(temp2)[,2:(length(x_id)+1)]
+      # x_var <- rowSums(predictor_matrix)
+      stop("Empirical TTT for several covariates cannot be computed.")
     }
 
     prob <- 1/partition_method[[2]] * (1:(partition_method[[2]]))
@@ -265,7 +269,7 @@ num2fac <- function(partition_method, model_frame, x_id, TTT_call){
     return(x_new)
   } else {
     stop("Choose one partition method from the following partition methods:
-         'Equispaced'")
+         'quantile-based'")
   }
 }
 #==============================================================================
@@ -324,6 +328,7 @@ Cens_action <- function(y, fo, model_frame, data, x_id, partition_method,
     new_names <- paste0(x_id, '=', new_names)
     attr(inputs$strata, 'names') <- new_names
   }
+  inputs$x <- x
 
   return(inputs)
 }
@@ -350,6 +355,7 @@ Baction <- function(y, model_frame, data, x_id, partition_method, TTT_call){
   if ( is.Surv(y) ){
     inputs <- data.frame(y[,1], x)
   } else { inputs <- data.frame(y, x) }
+  inputs$x <- x
   return(inputs)
 }
 #==============================================================================

@@ -36,9 +36,9 @@ options available: \code{'Barlow'} and \code{'censored'}. Further
 information can be found in the \strong{Details} section.}
 
 \item{partition_method}{a list specifying cluster formation when the covariate in
-\code{formula} is numeric. 'Equispaced' distribution based
-on quantiles is the only one currently available (See the
-last example).}
+\code{formula} is numeric, or when the data has several
+covariates. 'quantile-based' method is the only one
+currently available (See the last example).}
 
 \item{...}{further arguments passing to \code{\link[survival]{survfit}}.}
 }
@@ -157,7 +157,8 @@ x <- runif(200, 0, 10)
 nu <- 0.1 + 0.1*x
 y <- rOW(n=200, mu=0.05, sigma=2, nu=nu)
 
-partitions <- list(method='Equispaced', folds=5) # 5 equispaced partitions
+partitions <- list(method='quantile-based',
+                   folds=5)
 TTT_5 <- TTTE_Analytical(y ~ x, partition_method = partitions)
 head(TTT_5$`i/n`)
 head(TTT_5$phi_n)
