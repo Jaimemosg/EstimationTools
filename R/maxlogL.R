@@ -383,8 +383,9 @@ link_apply <- function(values, over, dist_args, npar, link_fun){
     for (i in 1:length(linked_parlist)){
       g_apply <- paste0("linked_params[[", i, "]]$g_inv")
       g_apply <- eval(parse(text = g_apply))
-      values[linked_parlist[i]] <- do.call( what = "g_apply",
-                  args = list(x = values[linked_parlist[i]]) )
+      # '[[]]' operator works over atomic or lists
+      values[[linked_parlist[i]]] <- do.call( what = "g_apply",
+                  args = list(eta = values[[linked_parlist[i]]]) )
     }
   }
   return(values)
@@ -406,7 +407,7 @@ minus_lL <- function(x, dist, dist_args, over, link, npar, fixed){
           g_inv <- paste0("link_eval[[", i, "]]$g_inv")
           g_inv <- eval(parse(text=g_inv))
           param[[linked_params[i]]] <- do.call( what = "g_inv",
-                          args = list(x = param[[linked_params[i]]]) )
+                          args = list(eta = param[[linked_params[i]]]) )
         }
       }
     }

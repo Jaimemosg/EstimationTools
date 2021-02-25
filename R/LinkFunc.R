@@ -48,9 +48,12 @@
 #'
 logit_link <- function(){
   name <- "logit"
-  g <- function(x) log(x/(1-x))
-  g_inv <- function(x) exp(x)/(exp(x)+1)
-  out <- list(name = name, g = g, g_inv = g_inv)
+  g <- function(eta) log(eta/(1 - eta))
+  g_inv <- function(eta) exp(eta)/(exp(eta) + 1)
+  dg.eta <- function(eta) 1/(eta*(1 - eta))
+  dg_inv.eta <- function(eta) exp(eta)/(exp(eta) + 1)^2
+  out <- list(name = name, g = g, g_inv = g_inv,
+              dg.eta = dg.eta, dg_inv.eta = dg_inv.eta)
   return(out)
 }
 #=============================================================================#
@@ -100,9 +103,12 @@ logit_link <- function(){
 #'
 log_link <- function(){
   name <- "log"
-  g <- function(x) log(x)
-  g_inv <- function(x) exp(x)
-  out <- list(name = name, g = g, g_inv = g_inv)
+  g <- function(eta) log(eta)
+  g_inv <- function(eta) exp(eta)
+  dg.eta <- function(eta) 1/eta
+  dg_inv.eta <- function(eta) exp(eta)
+  out <- list(name = name, g = g, g_inv = g_inv,
+              dg.eta = dg.eta, dg_inv.eta = dg_inv.eta)
   return(out)
 }
 #=============================================================================#
@@ -152,16 +158,22 @@ log_link <- function(){
 #'
 NegInv_link <- function(){
   name <- "NegInv"
-  g <- function(x) -1/x
-  g_inv <- function(x) -1/x
-  out <- list(name = name, g = g, g_inv = g_inv)
+  g <- function(eta) -1/eta
+  g_inv <- function(eta) -1/eta
+  dg.eta <- function(eta) 1/(eta*eta)
+  dg_inv.eta <- function(eta) 1/(eta*eta)
+  out <- list(name = name, g = g, g_inv = g_inv,
+              dg.eta = dg.eta, dg_inv.eta = dg_inv.eta)
   return(out)
 }
 #=============================================================================#
 InvAdd_link <- function(){
   name <- "InvAdd"
-  g <- function(x) -x
-  g_inv <- function(x) -x
-  out <- list(name = name, g = g, g_inv = g_inv)
+  g <- function(eta) -eta
+  g_inv <- function(eta) -eta
+  dg.eta <- function(eta) -1
+  dg_inv.eta <- function(eta) -1
+  out <- list(name = name, g = g, g_inv = g_inv,
+              dg.eta = dg.eta, dg_inv.eta = dg_inv.eta)
   return(out)
 }

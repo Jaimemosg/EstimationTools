@@ -1,0 +1,154 @@
+#' @title Predict Method for \code{maxlogL} Fits
+#'
+#' @author Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
+#'
+#' @description
+#' This function computes predictions and optionally the estimated standard errors
+#' of those predictions from a model fitted with \code{maxlogLreg}.
+#'
+#' @aliases predict.maxlogL
+#'
+#' @param object an object of \code{\link{maxlogL}} class.
+#' @param parameter a character which specifies the paramter to predict.
+#' @param newdata a data frame with covariates with which to predict. It is an
+#'                optional argument, if omitted, the fitted linear predictors or
+#'                the (distribution) parameter predictions are used.
+#' @param type a character with the type of prediction required. The default
+#'             (\code{type = "link"}) is on the scale of the linear predictors;
+#'             the alternative \code{type = "response"} is on the scale of the
+#'             distribution parameter.
+#' @param terms A character vector that specifies which terms are required if
+#'              \code{type = "terms"}. All terms are returned by default.
+#' @param se.fit logical switch indicating if standard errors of predictions
+#'               are required.
+#' @param ... further arguments passed to or from other methods.
+#'
+#' @details This \code{summary} method computes and displays AIC, BIC,
+#' estimates and standard errors from a estimated model stored i a \code{maxlogL}
+#' class object. It  also displays and computes Z-score and p values of significance
+#' test of parameters.
+#'
+#' @return
+#' If \code{se.fit = FALSE}, a vector of predictions is returned.
+#' For \code{type = "terms"}, a matrix with a column per term and an attribute "constant"
+#' is returned.
+#'
+#' If \code{se.fit = TRUE}, a list with the following components is obtained:
+#' \enumerate{
+#'    \item \code{fit}: Predictions.
+#'    \item \code{se.fit}: Estimated standard errors.
+#' }
+#'
+#' @note
+#' Variables are first looked for in newdata and then searched for in the usual way
+#' (which will include the environment of the formula used in the fit). A warning
+#' will be given if the variables found are not of the same length as those
+#' in \code{newdata} if it is supplied.
+#'
+#' @importFrom stats model.matrix formula
+#' @export
+predict.maxlogL <-
+  function(object, parameter = NULL, newdata = NULL,
+           type = c("link", "response", "terms"), se.fit = FALSE,
+           terms = NULL, ...){
+    # Setting all input options
+    type <- match.arg(type)
+    call <- object$inputs$call
+    if ( is.null(parameter) ) parameter <- object$outputs$par_names[1]
+    parameter <- match.arg(parameter, choices = object$outputs$par_names)
+    if ( length(parameter) > 1 )
+      stop(paste("Argument 'parameter' must be an unique element of class",
+                 "'character' with the following options:",
+                 paste(object$outputs$par_names, collapse = ', ')))
+
+    # Linear predictors computation
+    betas_pos <- match(object$outputs$par_names, parameter, nomatch = 0)
+    betas_pos <- betas_pos[which(betas_pos != 0)]
+    betas <- all_betas(b_length = object$outputs$b_length,
+                       npar = object$outputs$npar,
+                       param = object$fit$par)[[betas_pos]]
+
+    if ( is.null(newdata) ){
+      pred <- switch(type,
+                     link = object$outputs$linear.predictors[[parameter]],
+                     response = object$outputs$fitted.values[[parameter]],
+                     terms = terms_maxlogL(object, parameter, terms = terms,
+                                           data = object$inputs$data))
+    } else {
+      if ( !inherits(newdata, "data.frame") )
+        stop("'newdata' must be a data frame.")
+
+      if ( type == 'terms' ){
+        pred <- terms_maxlogL(object, parameter, terms = terms,
+                              data = newdata)
+      } else {
+        fo.name <- paste0(parameter, ".fo")
+        response_char <- as.character(object$inputs$y_dist[2])
+        newdata_modification <- paste0('newdata$', response_char,
+                                       ' <- rep(0, nrow(newdata))')
+        eval(parse(text = newdata_modification))
+        dsgn_mat <- model.matrix.MLreg(formulas = object$inputs$formulas[fo.name],
+                                       data = newdata,
+                                       y_dist = object$inputs$y_dist,
+                                       npar = 1, # because predict takes only one parameter.
+                                       par_names = parameter)[[parameter]]
+
+        pred <- LinPred(j = 1, betas = betas, mat = dsgn_mat)
+
+        # Fitted values computation
+        if ( parameter == object$inputs$link$over & type == 'link' ){
+          pred <- do.call(what = object$inputs$link$fun,
+                          args = list())$g_inv(pred)
+        }
+      }
+    }
+
+    if ( type != "terms" ){
+      if ( se.fit ){
+        A <- param_index(object$outputs$b_length, object$outputs$npar)
+        cov_mat_full <- as.data.frame(solve(object$fit$hessian))
+        index <- which(object$outputs$par_names == parameter)
+        cov_mat <- as.matrix(cov_mat_full[A[index,1]:A[index,2],
+                                          A[index,1]:A[index,2]])
+        se_index <- which(object$inputs$link$over == parameter)
+        X <- object$outputs$design_matrix[[parameter]]
+        if ( type == "link"){
+          var_pred <- X %*% cov_mat %*% t(X)
+        } else if ( type == "response" ){
+          g_eta <- paste0(object$inputs$link$fun[se_index], '()$dg_inv.eta')
+          g_eta <- eval(parse(text = g_eta))
+          var_pred <- t(g_eta(betas)) %*% cov_mat %*% g_eta(betas)
+        } else {
+          stop(paste("Standard Error of prediction is not a valid option for",
+                     "'type = terms'."))
+        }
+        se <- as.numeric(sqrt(diag(var_pred)))
+        pred <- list(fit = pred, se.fit = se)
+      } else {
+        pred <- as.numeric(pred)
+        names(pred) <- 1:length(pred)
+      }
+    }
+
+    return(pred)
+  }
+
+terms_maxlogL <- function(object, param, terms, data){
+  beta <- object$outputs$coef[[param]]
+  fo.name <- paste0(param, ".fo")
+  predictor <- as.character(object$inputs$formulas[[fo.name]])
+  response <- as.character(object$inputs$y_dist[2])
+  fo <- formula(paste(c(response, predictor), collapse = ''))
+  X <- model.matrix(fo, data = data)
+  Xav <- colMeans(X)
+  X_center <- sweep(X, 2L, Xav)
+  mat_terms <- t(beta*t(X_center))
+  terms_names <- colnames(mat_terms)
+  mat_terms <- as.matrix(mat_terms[, colnames(mat_terms) != '(Intercept)'],
+                     ncol=(length(beta) - 1))
+  colnames(mat_terms) <- terms_names[2:length(beta)]
+  intercept <- as.numeric(crossprod(Xav, beta))
+  attr(mat_terms, 'constant') <- intercept
+  if ( !is.null(terms) ) mat_terms <- mat_terms[,mat_terms]
+  return(mat_terms)
+}

@@ -218,8 +218,8 @@ TTTE_Analytical <- function(formula, response = NULL, scaled = TRUE, data,
   inputs <- switch(method,
                    censored = Cens_action(y, formula, model_frame = modfrm,
                                           data = data, x_id =  x_id,
-                                          partition_method, TTT_call = temp,
-                                          Alldots),
+                                          partition_method = partition_method,
+                                          TTT_call = temp, Alldots),
                    Barlow = Baction(y, model_frame = modfrm, data = data,
                                     x_id = x_id,
                                     partition_method = partition_method,
@@ -301,6 +301,9 @@ Cens_action <- function(y, fo, model_frame, data, x_id, partition_method,
       x <- survival::strata(model_frame[x_id])
     }
     if ( is.numeric(model_frame[x_id][[1]]) ){
+      if ( is.null(partition_method) )
+        partition_method <- list(method='quantile-based', folds=3)
+      # stop("'partition_method' argument must be defined.")
       x <- num2fac(partition_method = partition_method,
                    model_frame = model_frame, x_id = x_id,
                    TTT_call = TTT_call)
@@ -345,7 +348,8 @@ Baction <- function(y, model_frame, data, x_id, partition_method, TTT_call){
     }
     if ( is.numeric(model_frame[x_id][[1]]) ){
       if ( is.null(partition_method) )
-        stop("'partition_method' argument must be defined.")
+        partition_method <- list(method='quantile-based', folds=3)
+        # stop("'partition_method' argument must be defined.")
       x <- num2fac(partition_method = partition_method,
                    model_frame = model_frame, x_id = x_id,
                    TTT_call = TTT_call)
