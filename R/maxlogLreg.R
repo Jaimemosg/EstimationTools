@@ -384,7 +384,7 @@ maxlogLreg <- function(formulas, y_dist, data = NULL, subset = NULL,
   inputs <- list(call = call, distr = distr, y_dist = y_dist,
                  formulas = formulas, fixed = fixed, link = link,
                  start = start, lower = lower, upper = upper,
-                 optimizer = optimizer, data = dsgn_mat$data_reg)
+                 optimizer = optimizer, data = dsgn_mat$data)
   outputs <- list(npar = npar - length(fixed), n = length(dsgn_mat$y),
                   StdE_Method = StdE_Method, type = "maxlogLreg",
                   b_length = b_length, levels = levels,
@@ -481,8 +481,8 @@ model.matrix.MLreg <- function(formulas, data, y_dist, npar, par_names){
   nfos <- length(formulas)
 
   if (nfos != npar) stop(paste0("Distribution defined for response ",
-                                 "variable has ", npar, " parameters. ",
-                                 "Each parameter must have its own formula"))
+                                "variable has ", npar, " parameters. ",
+                                "Each parameter must have its own formula"))
 
   # Response variable
   if ( !inherits(y_dist, "formula") ) stop(paste0("Expression in 'y_dist' ",
@@ -491,7 +491,7 @@ model.matrix.MLreg <- function(formulas, data, y_dist, npar, par_names){
                                          "must be a formula of the form ",
                                          "'response ~ distribution' or ",
                                          "'Surv(response, status) ~ distribution'"))
-  levels <- NULL
+
   Y <- all.vars(y_dist)[1] #Surv_transform(y_dist = y_dist)
 
   # Extract the right side of formulas
@@ -504,19 +504,24 @@ model.matrix.MLreg <- function(formulas, data, y_dist, npar, par_names){
   fos_mat <- lapply(fos_mat_char, as.formula)
   list_mfs <- lapply(fos_mat, model.frame, data = data)
   if ( is.null(data) ){
-    data_reg <- as.data.frame(list_mfs)
+    data_temp <- as.data.frame(list_mfs)
     var_names <- as.character(unlist(sapply(list_mfs, names)))
-    names(data_reg) <- var_names
-    data_reg <- as.data.frame(data_reg[,unique(var_names)])
-    names(data_reg) <- unique(var_names)
-    data <- data_reg
+    names(data_temp) <- var_names
+    col_names <- unique(var_names)
+    data_temp <- as.data.frame(data_temp[, col_names])
+    names(data_temp) <- col_names
+    data <- data_temp
   }
+
+  levels <- NULL
+  original_data <- data
+  data_reg <- data
   response <- model.frame(fos_mat[[1]], data = data)[, 1]
-  # levels <- NULL
-  # if ( is.character(response) | is.factor(response) ){
-  #   response <- as.integer(as.factor(response)) - 1
-  #   levels <- levels(response)
-  # }
+  if ( is.character(response) | is.factor(response) ){
+    eval(substitute(data$res <- as.integer(data$res) - 1, list(res = Y)))
+    levels <- levels(response)
+    data_reg <- data
+  }
 
   # Censorship status
   cens <- Surv_transform(y_dist = y_dist, data = data)
@@ -528,8 +533,9 @@ model.matrix.MLreg <- function(formulas, data, y_dist, npar, par_names){
   names(mtrxs) <- names(fos_mat)
   mtrxs$y <- response
   mtrxs$status <- cens[,2:ncol(cens)]
-  mtrxs$data_reg <- data
-  # mtrxs$levels <- levels
+  mtrxs$data_reg <- data_reg
+  mtrxs$data <- original_data
+  mtrxs$levels <- levels
   return(mtrxs)
 }
 fos_bind <- function(formula, response){
