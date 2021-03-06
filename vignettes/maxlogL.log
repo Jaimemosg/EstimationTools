@@ -1,612 +1,268 @@
-<<<<<<< HEAD
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7250 64-bit) (preloaded format=pdflatex 2020.1.29)  14 FEB 2020 13:06
-entering extended mode
-**./maxlogL.tex
-(maxlogL.tex
-LaTeX2e <2019-10-01> patch level 3
-(jss.cls
-Document Class: jss 2015/09/01 3.0 jss class by Achim Zeileis
-("C:\Program Files\MiKTeX 2.9\tex/latex/base\article.cls"
-Document Class: article 2019/10/25 v1.4k Standard LaTeX document class
-("C:\Program Files\MiKTeX 2.9\tex/latex/base\size11.clo"
-=======
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2019.12.20)  27 DEC 2019 20:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/W32TeX) (preloaded format=pdflatex 2021.3.5)  6 MAR 2021 11:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **maxlogL.tex
 (./maxlogL.tex
-LaTeX2e <2019-10-01> patch level 3
-(./jss.cls
+LaTeX2e <2020-10-01> patch level 4
+L3 programming layer <2021-02-18> (./jss.cls
 Document Class: jss 2015/09/01 3.0 jss class by Achim Zeileis
-(c:/texlive/2019/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2019/10/25 v1.4k Standard LaTeX document class
-(c:/texlive/2019/texmf-dist/tex/latex/base/size11.clo
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
-File: size11.clo 2019/10/25 v1.4k Standard LaTeX file (size option)
-)
-\c@part=\count80
-\c@section=\count81
-\c@subsection=\count82
-\c@subsubsection=\count83
-\c@paragraph=\count84
-\c@subparagraph=\count85
-\c@figure=\count86
-\c@table=\count87
-\abovecaptionskip=\skip41
-\belowcaptionskip=\skip42
-\bibindent=\dimen102
-)
-<<<<<<< HEAD
-("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\graphicx.sty"
-Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
 
-("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\keyval.sty"
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/size11.clo
+File: size11.clo 2020/04/10 v1.4m Standard LaTeX file (size option)
+)
+\c@part=\count179
+\c@section=\count180
+\c@subsection=\count181
+\c@subsubsection=\count182
+\c@paragraph=\count183
+\c@subparagraph=\count184
+\c@figure=\count185
+\c@table=\count186
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen138
+)
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/graphic
+x.sty
+Package: graphicx 2020/09/09 v1.2b Enhanced LaTeX Graphics (DPC,SPQR)
+
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/keyval.
+sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
-\KV@toks@=\toks14
+\KV@toks@=\toks15
 )
-("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\graphics.sty"
-Package: graphics 2019/11/01 v1.3d Standard LaTeX Graphics (DPC,SPQR)
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/graphic
+s.sty
+Package: graphics 2020/08/30 v1.4c Standard LaTeX Graphics (DPC,SPQR)
 
-("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\trig.sty"
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/trig.st
+y
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-("C:\Program Files\MiKTeX 2.9\tex/latex/graphics-cfg\graphics.cfg"
-=======
-(c:/texlive/2019/texmf-dist/tex/latex/graphics/graphicx.sty
-Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
-
-(c:/texlive/2019/texmf-dist/tex/latex/graphics/keyval.sty
-Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
-\KV@toks@=\toks14
-)
-(c:/texlive/2019/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2019/11/01 v1.3d Standard LaTeX Graphics (DPC,SPQR)
-
-(c:/texlive/2019/texmf-dist/tex/latex/graphics/trig.sty
-Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
-)
-(c:/texlive/2019/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-cfg/gra
+phics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 105.
 
-<<<<<<< HEAD
-("C:\Program Files\MiKTeX 2.9\tex/latex/graphics-def\pdftex.def"
-=======
-(c:/texlive/2019/texmf-dist/tex/latex/graphics-def/pdftex.def
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
-File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-def/pdf
+tex.def
+File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
 ))
-\Gin@req@height=\dimen103
-\Gin@req@width=\dimen104
+\Gin@req@height=\dimen139
+\Gin@req@width=\dimen140
 )
-<<<<<<< HEAD
-("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\color.sty"
-Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics/color.s
+ty
+Package: color 2020/02/24 v1.2b Standard LaTeX Color (DPC)
 
-("C:\Program Files\MiKTeX 2.9\tex/latex/graphics-cfg\color.cfg"
-=======
-(c:/texlive/2019/texmf-dist/tex/latex/graphics/color.sty
-Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
-
-(c:/texlive/2019/texmf-dist/tex/latex/graphics-cfg/color.cfg
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-cfg/col
+or.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: pdftex.def on input line 147.
 )
-<<<<<<< HEAD
-("C:\Program Files\MiKTeX 2.9\tex/latex/ae\ae.sty"
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/ae/ae.sty
 Package: ae 2001/02/12 1.3 Almost European Computer Modern
 
-("C:\Program Files\MiKTeX 2.9\tex/latex/base\fontenc.sty"
-Package: fontenc 2018/08/11 v2.0j Standard LaTeX package
-
-("C:\Program Files\MiKTeX 2.9\tex/latex/base\t1enc.def"
-=======
-(c:/texlive/2019/texmf-dist/tex/latex/ae/ae.sty
-Package: ae 2001/02/12 1.3 Almost European Computer Modern
-
-(c:/texlive/2019/texmf-dist/tex/latex/base/fontenc.sty
-Package: fontenc 2018/08/11 v2.0j Standard LaTeX package
-
-(c:/texlive/2019/texmf-dist/tex/latex/base/t1enc.def
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
-File: t1enc.def 2018/08/11 v2.0j Standard LaTeX file
-LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
-)
-LaTeX Font Info:    Trying to load font information for T1+aer on input line 10
-5.
-
-<<<<<<< HEAD
-("C:\Program Files\MiKTeX 2.9\tex/latex/ae\t1aer.fd"
-File: t1aer.fd 1997/11/16 Font definitions for T1/aer.
-)))
-("C:\Program Files\MiKTeX 2.9\tex/latex/fancyvrb\fancyvrb.sty"
-Package: fancyvrb 2020/01/13 v3.5 verbatim text (tvz,hv)
-=======
-(c:/texlive/2019/texmf-dist/tex/latex/ae/t1aer.fd
-File: t1aer.fd 1997/11/16 Font definitions for T1/aer.
-)))
-(c:/texlive/2019/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
-Package: fancyvrb 2019/11/09
-
-Style option: `fancyvrb' v3.4 <2019/11/09> (tvz)
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
-\FV@CodeLineNo=\count88
-\FV@InFile=\read1
-\FV@TabBox=\box27
-\c@FancyVerbLine=\count89
-\FV@StepNumber=\count90
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2020/08/10 v2.0s Standard LaTeX package
+))
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fancyvrb/fancyvr
+b.sty
+Package: fancyvrb 2021/01/20 v3.7 verbatim text (tvz,hv)
+\FV@CodeLineNo=\count187
+\FV@InFile=\read2
+\FV@TabBox=\box47
+\c@FancyVerbLine=\count188
+\FV@StepNumber=\count189
 \FV@OutFile=\write3
 )
-<<<<<<< HEAD
-("C:\Program Files\MiKTeX 2.9\tex/latex/base\fontenc.sty"
-Package: fontenc 2018/08/11 v2.0j Standard LaTeX package
-
-("C:\Program Files\MiKTeX 2.9\tex/latex/base\t1enc.def"
-File: t1enc.def 2018/08/11 v2.0j Standard LaTeX file
-LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2020/08/10 v2.0s Standard LaTeX package
+LaTeX Font Info:    Trying to load font information for T1+aer on input line 11
+2.
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/ae/t1aer.fd
+File: t1aer.fd 1997/11/16 Font definitions for T1/aer.
 ))
-("C:\Program Files\MiKTeX 2.9\tex/latex/upquote\upquote.sty"
-Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
-tim
-
-("C:\Program Files\MiKTeX 2.9\tex/latex/base\textcomp.sty"
-=======
-(c:/texlive/2019/texmf-dist/tex/latex/base/fontenc.sty
-Package: fontenc 2018/08/11 v2.0j Standard LaTeX package
-
-(c:/texlive/2019/texmf-dist/tex/latex/base/t1enc.def
-File: t1enc.def 2018/08/11 v2.0j Standard LaTeX file
-LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
-))
-(c:/texlive/2019/texmf-dist/tex/latex/upquote/upquote.sty
-Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
-tim
-
-(c:/texlive/2019/texmf-dist/tex/latex/base/textcomp.sty
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
-Package: textcomp 2018/08/11 v2.0j Standard LaTeX package
-Package textcomp Info: Sub-encoding information:
-(textcomp)               5 = only ISO-Adobe without \textcurrency
-(textcomp)               4 = 5 + \texteuro
-(textcomp)               3 = 4 + \textohm
-(textcomp)               2 = 3 + \textestimated + \textcurrency
-(textcomp)               1 = TS1 - \textcircled - \t
-(textcomp)               0 = TS1 (full)
-(textcomp)             Font families with sub-encoding setting implement
-(textcomp)             only a restricted character set as indicated.
-(textcomp)             Family '?' is the default used for unknown fonts.
-(textcomp)             See the documentation for details.
-Package textcomp Info: Setting ? sub-encoding to TS1/1 on input line 79.
-
-<<<<<<< HEAD
-("C:\Program Files\MiKTeX 2.9\tex/latex/base\ts1enc.def"
-=======
-(c:/texlive/2019/texmf-dist/tex/latex/base/ts1enc.def
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
-File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
-Now handling font encoding TS1 ...
-... processing UTF-8 mapping file for font encoding TS1
-
-<<<<<<< HEAD
-("C:\Program Files\MiKTeX 2.9\tex/latex/base\ts1enc.dfu"
-=======
-(c:/texlive/2019/texmf-dist/tex/latex/base/ts1enc.dfu
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
-File: ts1enc.dfu 2019/07/11 v1.2j UTF-8 support for inputenc
-   defining Unicode char U+00A2 (decimal 162)
-   defining Unicode char U+00A3 (decimal 163)
-   defining Unicode char U+00A4 (decimal 164)
-   defining Unicode char U+00A5 (decimal 165)
-   defining Unicode char U+00A6 (decimal 166)
-   defining Unicode char U+00A7 (decimal 167)
-   defining Unicode char U+00A8 (decimal 168)
-   defining Unicode char U+00A9 (decimal 169)
-   defining Unicode char U+00AA (decimal 170)
-   defining Unicode char U+00AC (decimal 172)
-   defining Unicode char U+00AE (decimal 174)
-   defining Unicode char U+00AF (decimal 175)
-   defining Unicode char U+00B0 (decimal 176)
-   defining Unicode char U+00B1 (decimal 177)
-   defining Unicode char U+00B2 (decimal 178)
-   defining Unicode char U+00B3 (decimal 179)
-   defining Unicode char U+00B4 (decimal 180)
-   defining Unicode char U+00B5 (decimal 181)
-   defining Unicode char U+00B6 (decimal 182)
-   defining Unicode char U+00B7 (decimal 183)
-   defining Unicode char U+00B9 (decimal 185)
-   defining Unicode char U+00BA (decimal 186)
-   defining Unicode char U+00BC (decimal 188)
-   defining Unicode char U+00BD (decimal 189)
-   defining Unicode char U+00BE (decimal 190)
-   defining Unicode char U+00D7 (decimal 215)
-   defining Unicode char U+00F7 (decimal 247)
-   defining Unicode char U+0192 (decimal 402)
-   defining Unicode char U+02C7 (decimal 711)
-   defining Unicode char U+02D8 (decimal 728)
-   defining Unicode char U+02DD (decimal 733)
-   defining Unicode char U+0E3F (decimal 3647)
-   defining Unicode char U+2016 (decimal 8214)
-   defining Unicode char U+2020 (decimal 8224)
-   defining Unicode char U+2021 (decimal 8225)
-   defining Unicode char U+2022 (decimal 8226)
-   defining Unicode char U+2030 (decimal 8240)
-   defining Unicode char U+2031 (decimal 8241)
-   defining Unicode char U+203B (decimal 8251)
-   defining Unicode char U+203D (decimal 8253)
-   defining Unicode char U+2044 (decimal 8260)
-   defining Unicode char U+204E (decimal 8270)
-   defining Unicode char U+2052 (decimal 8274)
-   defining Unicode char U+20A1 (decimal 8353)
-   defining Unicode char U+20A4 (decimal 8356)
-   defining Unicode char U+20A6 (decimal 8358)
-   defining Unicode char U+20A9 (decimal 8361)
-   defining Unicode char U+20AB (decimal 8363)
-   defining Unicode char U+20AC (decimal 8364)
-   defining Unicode char U+20B1 (decimal 8369)
-   defining Unicode char U+2103 (decimal 8451)
-   defining Unicode char U+2116 (decimal 8470)
-   defining Unicode char U+2117 (decimal 8471)
-   defining Unicode char U+211E (decimal 8478)
-   defining Unicode char U+2120 (decimal 8480)
-   defining Unicode char U+2122 (decimal 8482)
-   defining Unicode char U+2126 (decimal 8486)
-   defining Unicode char U+2127 (decimal 8487)
-   defining Unicode char U+212E (decimal 8494)
-   defining Unicode char U+2190 (decimal 8592)
-   defining Unicode char U+2191 (decimal 8593)
-   defining Unicode char U+2192 (decimal 8594)
-   defining Unicode char U+2193 (decimal 8595)
-   defining Unicode char U+2329 (decimal 9001)
-   defining Unicode char U+232A (decimal 9002)
-   defining Unicode char U+2422 (decimal 9250)
-   defining Unicode char U+25E6 (decimal 9702)
-   defining Unicode char U+25EF (decimal 9711)
-   defining Unicode char U+266A (decimal 9834)
-   defining Unicode char U+27E8 (decimal 10216)
-   defining Unicode char U+27E9 (decimal 10217)
-   defining Unicode char U+FEFF (decimal 65279)
-))
-LaTeX Info: Redefining \oldstylenums on input line 334.
-Package textcomp Info: Setting cmr sub-encoding to TS1/0 on input line 349.
-Package textcomp Info: Setting cmss sub-encoding to TS1/0 on input line 350.
-Package textcomp Info: Setting cmtt sub-encoding to TS1/0 on input line 351.
-Package textcomp Info: Setting cmvtt sub-encoding to TS1/0 on input line 352.
-Package textcomp Info: Setting cmbr sub-encoding to TS1/0 on input line 353.
-Package textcomp Info: Setting cmtl sub-encoding to TS1/0 on input line 354.
-Package textcomp Info: Setting ccr sub-encoding to TS1/0 on input line 355.
-Package textcomp Info: Setting ptm sub-encoding to TS1/4 on input line 356.
-Package textcomp Info: Setting pcr sub-encoding to TS1/4 on input line 357.
-Package textcomp Info: Setting phv sub-encoding to TS1/4 on input line 358.
-Package textcomp Info: Setting ppl sub-encoding to TS1/3 on input line 359.
-Package textcomp Info: Setting pag sub-encoding to TS1/4 on input line 360.
-Package textcomp Info: Setting pbk sub-encoding to TS1/4 on input line 361.
-Package textcomp Info: Setting pnc sub-encoding to TS1/4 on input line 362.
-Package textcomp Info: Setting pzc sub-encoding to TS1/4 on input line 363.
-Package textcomp Info: Setting bch sub-encoding to TS1/4 on input line 364.
-Package textcomp Info: Setting put sub-encoding to TS1/5 on input line 365.
-Package textcomp Info: Setting uag sub-encoding to TS1/5 on input line 366.
-Package textcomp Info: Setting ugq sub-encoding to TS1/5 on input line 367.
-Package textcomp Info: Setting ul8 sub-encoding to TS1/4 on input line 368.
-Package textcomp Info: Setting ul9 sub-encoding to TS1/4 on input line 369.
-Package textcomp Info: Setting augie sub-encoding to TS1/5 on input line 370.
-Package textcomp Info: Setting dayrom sub-encoding to TS1/3 on input line 371.
-Package textcomp Info: Setting dayroms sub-encoding to TS1/3 on input line 372.
-
-Package textcomp Info: Setting pxr sub-encoding to TS1/0 on input line 373.
-Package textcomp Info: Setting pxss sub-encoding to TS1/0 on input line 374.
-Package textcomp Info: Setting pxtt sub-encoding to TS1/0 on input line 375.
-Package textcomp Info: Setting txr sub-encoding to TS1/0 on input line 376.
-Package textcomp Info: Setting txss sub-encoding to TS1/0 on input line 377.
-Package textcomp Info: Setting txtt sub-encoding to TS1/0 on input line 378.
-Package textcomp Info: Setting lmr sub-encoding to TS1/0 on input line 379.
-Package textcomp Info: Setting lmdh sub-encoding to TS1/0 on input line 380.
-Package textcomp Info: Setting lmss sub-encoding to TS1/0 on input line 381.
-Package textcomp Info: Setting lmssq sub-encoding to TS1/0 on input line 382.
-Package textcomp Info: Setting lmvtt sub-encoding to TS1/0 on input line 383.
-Package textcomp Info: Setting lmtt sub-encoding to TS1/0 on input line 384.
-Package textcomp Info: Setting qhv sub-encoding to TS1/0 on input line 385.
-Package textcomp Info: Setting qag sub-encoding to TS1/0 on input line 386.
-Package textcomp Info: Setting qbk sub-encoding to TS1/0 on input line 387.
-Package textcomp Info: Setting qcr sub-encoding to TS1/0 on input line 388.
-Package textcomp Info: Setting qcs sub-encoding to TS1/0 on input line 389.
-Package textcomp Info: Setting qpl sub-encoding to TS1/0 on input line 390.
-Package textcomp Info: Setting qtm sub-encoding to TS1/0 on input line 391.
-Package textcomp Info: Setting qzc sub-encoding to TS1/0 on input line 392.
-Package textcomp Info: Setting qhvc sub-encoding to TS1/0 on input line 393.
-Package textcomp Info: Setting futs sub-encoding to TS1/4 on input line 394.
-Package textcomp Info: Setting futx sub-encoding to TS1/4 on input line 395.
-Package textcomp Info: Setting futj sub-encoding to TS1/4 on input line 396.
-Package textcomp Info: Setting hlh sub-encoding to TS1/3 on input line 397.
-Package textcomp Info: Setting hls sub-encoding to TS1/3 on input line 398.
-Package textcomp Info: Setting hlst sub-encoding to TS1/3 on input line 399.
-Package textcomp Info: Setting hlct sub-encoding to TS1/5 on input line 400.
-Package textcomp Info: Setting hlx sub-encoding to TS1/5 on input line 401.
-Package textcomp Info: Setting hlce sub-encoding to TS1/5 on input line 402.
-Package textcomp Info: Setting hlcn sub-encoding to TS1/5 on input line 403.
-Package textcomp Info: Setting hlcw sub-encoding to TS1/5 on input line 404.
-Package textcomp Info: Setting hlcf sub-encoding to TS1/5 on input line 405.
-Package textcomp Info: Setting pplx sub-encoding to TS1/3 on input line 406.
-Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 407.
-Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 408.
-Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 409.
-))
-<<<<<<< HEAD
-("C:\Program Files\MiKTeX 2.9\tex/latex/natbib\natbib.sty"
-=======
-(c:/texlive/2019/texmf-dist/tex/latex/natbib/natbib.sty
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/natbib/natbib.st
+y
 Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip43
-\bibsep=\skip44
+\bibhang=\skip49
+\bibsep=\skip50
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count91
+\c@NAT@ctr=\count190
 )
-\footerskip=\skip45
+\footerskip=\skip51
 
-<<<<<<< HEAD
-("C:\Program Files\MiKTeX 2.9\tex/latex/hyperref\hyperref.sty"
-Package: hyperref 2020/01/14 v7.00d Hypertext links for LaTeX
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hyperre
+f.sty
+Package: hyperref 2021-02-27 v7.00k Hypertext links for LaTeX
 
-("C:\Program Files\MiKTeX 2.9\tex/generic/ltxcmds\ltxcmds.sty"
-Package: ltxcmds 2019/12/15 v1.24 LaTeX kernel commands for general use (HO)
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmd
+s.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
 )
-("C:\Program Files\MiKTeX 2.9\tex/generic/iftex\iftex.sty"
-Package: iftex 2019/11/07 v1.0c TeX engine tests
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/iftex/iftex.st
+y
+Package: iftex 2020/03/06 v1.0d TeX engine tests
 )
-("C:\Program Files\MiKTeX 2.9\tex/latex/pdftexcmds\pdftexcmds.sty"
-Package: pdftexcmds 2019/11/24 v0.31 Utility functions of pdfTeX for LuaTeX (HO
-)
-
-("C:\Program Files\MiKTeX 2.9\tex/generic/infwarerr\infwarerr.sty"
-=======
-(c:/texlive/2019/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2019/11/10 v7.00c Hypertext links for LaTeX
-
-(c:/texlive/2019/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
-Package: ltxcmds 2019/12/15 v1.24 LaTeX kernel commands for general use (HO)
-)
-(c:/texlive/2019/texmf-dist/tex/generic/iftex/iftex.sty
-Package: iftex 2019/11/07 v1.0c TeX engine tests
-)
-(c:/texlive/2019/texmf-dist/tex/latex/pdftexcmds/pdftexcmds.sty
-Package: pdftexcmds 2019/11/24 v0.31 Utility functions of pdfTeX for LuaTeX (HO
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdf
+texcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
 )
 
-(c:/texlive/2019/texmf-dist/tex/generic/infwarerr/infwarerr.sty
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/infwarerr/infw
+arerr.sty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 )
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 )
-<<<<<<< HEAD
-("C:\Program Files\MiKTeX 2.9\tex/generic/kvsetkeys\kvsetkeys.sty"
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/kvsetkeys/kvse
+tkeys.sty
 Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
 )
-("C:\Program Files\MiKTeX 2.9\tex/generic/kvdefinekeys\kvdefinekeys.sty"
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/kvdefinekeys/k
+vdefinekeys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
 )
-("C:\Program Files\MiKTeX 2.9\tex/generic/pdfescape\pdfescape.sty"
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/pdfescape/pdfe
+scape.sty
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
 )
-("C:\Program Files\MiKTeX 2.9\tex/latex/hycolor\hycolor.sty"
-Package: hycolor 2019/12/15 v1.9 Color options for hyperref/bookmark (HO)
-
-("C:\Program Files\MiKTeX 2.9\tex/latex/hycolor\xcolor-patch.sty"
-Package: xcolor-patch 2019/12/15 xcolor patch
-
-("C:\Program Files\MiKTeX 2.9\tex/latex/oberdiek\hopatch.sty"
-Package: hopatch 2016/05/16 v1.3 Wrapper for package hooks (HO)
-)))
-("C:\Program Files\MiKTeX 2.9\tex/latex/letltxmacro\letltxmacro.sty"
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hycolor/hycolor.
+sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/letltxmacro/letl
+txmacro.sty
 Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
 )
-("C:\Program Files\MiKTeX 2.9\tex/latex/auxhook\auxhook.sty"
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/auxhook/auxhook.
+sty
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 )
-("C:\Program Files\MiKTeX 2.9\tex/latex/kvoptions\kvoptions.sty"
-=======
-(c:/texlive/2019/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
-Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/kvoptions/kvopti
+ons.sty
+Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
 )
-(c:/texlive/2019/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
-Package: kvdefinekeys 2019/12/15 v1.5 Define keys (HO)
-)
-(c:/texlive/2019/texmf-dist/tex/generic/pdfescape/pdfescape.sty
-Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
-)
-(c:/texlive/2019/texmf-dist/tex/latex/hycolor/hycolor.sty
-Package: hycolor 2019/12/15 v1.9 Color options for hyperref/bookmark (HO)
+\@linkdim=\dimen141
+\Hy@linkcounter=\count191
+\Hy@pagecounter=\count192
 
-(c:/texlive/2019/texmf-dist/tex/latex/hycolor/xcolor-patch.sty
-Package: xcolor-patch 2019/12/15 xcolor patch
-
-(c:/texlive/2019/texmf-dist/tex/latex/oberdiek/hopatch.sty
-Package: hopatch 2016/05/16 v1.3 Wrapper for package hooks (HO)
-)))
-(c:/texlive/2019/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty
-Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
-)
-(c:/texlive/2019/texmf-dist/tex/latex/auxhook/auxhook.sty
-Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
-)
-(c:/texlive/2019/texmf-dist/tex/latex/kvoptions/kvoptions.sty
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
-Package: kvoptions 2019/11/29 v3.13 Key value format for package options (HO)
-)
-\@linkdim=\dimen105
-\Hy@linkcounter=\count92
-\Hy@pagecounter=\count93
-
-<<<<<<< HEAD
-("C:\Program Files\MiKTeX 2.9\tex/latex/hyperref\pd1enc.def"
-File: pd1enc.def 2020/01/14 v7.00d Hyperref: PDFDocEncoding definition (HO)
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.
+def
+File: pd1enc.def 2021-02-27 v7.00k Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 )
-("C:\Program Files\MiKTeX 2.9\tex/generic/intcalc\intcalc.sty"
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hyperre
+f-langpatches.def
+File: hyperref-langpatches.def 2021-02-27 v7.00k Hyperref: patches for babel la
+nguages
+)
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/intcalc/intcal
+c.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-("C:\Program Files\MiKTeX 2.9\tex/generic/etexcmds\etexcmds.sty"
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/etexcmds/etexc
+mds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
-\Hy@SavedSpaceFactor=\count94
-\pdfmajorversion=\count95
-Package hyperref Info: Hyper figures OFF on input line 4547.
-Package hyperref Info: Link nesting OFF on input line 4552.
-Package hyperref Info: Hyper index ON on input line 4555.
-Package hyperref Info: Plain pages OFF on input line 4562.
-Package hyperref Info: Backreferencing OFF on input line 4567.
-Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4800.
-\c@Hy@tempcnt=\count96
+\Hy@SavedSpaceFactor=\count193
 
-("C:\Program Files\MiKTeX 2.9\tex/latex/url\url.sty"
-\Urlmuskip=\muskip10
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.d
+ef
+File: puenc.def 2021-02-27 v7.00k Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Hyper figures OFF on input line 4192.
+Package hyperref Info: Link nesting OFF on input line 4197.
+Package hyperref Info: Hyper index ON on input line 4200.
+Package hyperref Info: Plain pages OFF on input line 4207.
+Package hyperref Info: Backreferencing OFF on input line 4212.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4445.
+\c@Hy@tempcnt=\count194
+ (c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip16
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 5159.
-\XeTeXLinkMargin=\dimen106
+LaTeX Info: Redefining \url on input line 4804.
+\XeTeXLinkMargin=\dimen142
 
-("C:\Program Files\MiKTeX 2.9\tex/generic/bitset\bitset.sty"
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/bitset/bitset.
+sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 
-("C:\Program Files\MiKTeX 2.9\tex/generic/bigintcalc\bigintcalc.sty"
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/bigintcalc/big
+intcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count97
-\Field@Width=\dimen107
-\Fld@charsize=\dimen108
-Package hyperref Info: Hyper figures OFF on input line 6430.
-Package hyperref Info: Link nesting OFF on input line 6435.
-Package hyperref Info: Hyper index ON on input line 6438.
-Package hyperref Info: backreferencing OFF on input line 6445.
-Package hyperref Info: Link coloring OFF on input line 6450.
-Package hyperref Info: Link coloring with OCG OFF on input line 6455.
-Package hyperref Info: PDF/A mode OFF on input line 6460.
-LaTeX Info: Redefining \ref on input line 6500.
-LaTeX Info: Redefining \pageref on input line 6504.
+\Fld@menulength=\count195
+\Field@Width=\dimen143
+\Fld@charsize=\dimen144
+Package hyperref Info: Hyper figures OFF on input line 6075.
+Package hyperref Info: Link nesting OFF on input line 6080.
+Package hyperref Info: Hyper index ON on input line 6083.
+Package hyperref Info: backreferencing OFF on input line 6090.
+Package hyperref Info: Link coloring OFF on input line 6095.
+Package hyperref Info: Link coloring with OCG OFF on input line 6100.
+Package hyperref Info: PDF/A mode OFF on input line 6105.
+LaTeX Info: Redefining \ref on input line 6145.
+LaTeX Info: Redefining \pageref on input line 6149.
 
-("C:\Program Files\MiKTeX 2.9\tex/generic/atbegshi\atbegshi.sty"
-Package: atbegshi 2019/12/05 v1.19 At begin shipout hook (HO)
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/atbegshi-lt
+x.sty
+Package: atbegshi-ltx 2020/08/17 v1.0a Emulation of the original atbegshi packa
+ge
+with kernel methods
 )
-\Hy@abspage=\count98
-\c@Item=\count99
-\c@Hfootnote=\count100
-)
-Package hyperref Info: Driver (autodetected): hpdftex.
-
-("C:\Program Files\MiKTeX 2.9\tex/latex/hyperref\hpdftex.def"
-File: hpdftex.def 2020/01/14 v7.00d Hyperref driver for pdfTeX
-
-("C:\Program Files\MiKTeX 2.9\tex/latex/atveryend\atveryend.sty"
-Package: atveryend 2019-12-11 v1.11 Hooks at the very end of document (HO)
-Package atveryend Info: \enddocument detected (standard20110627).
-)
-\Fld@listcount=\count101
-\c@bookmark@seq@number=\count102
-
-("C:\Program Files\MiKTeX 2.9\tex/latex/rerunfilecheck\rerunfilecheck.sty"
-Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
-
-("C:\Program Files\MiKTeX 2.9\tex/generic/uniquecounter\uniquecounter.sty"
-=======
-(c:/texlive/2019/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2019/11/10 v7.00c Hyperref: PDFDocEncoding definition (HO)
-Now handling font encoding PD1 ...
-... no UTF-8 mapping file for font encoding PD1
-)
-(c:/texlive/2019/texmf-dist/tex/generic/intcalc/intcalc.sty
-Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
-)
-(c:/texlive/2019/texmf-dist/tex/generic/etexcmds/etexcmds.sty
-Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
-)
-\Hy@SavedSpaceFactor=\count94
-
-(c:/texlive/2019/texmf-dist/tex/latex/latexconfig/hyperref.cfg
-File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
-)
-Package hyperref Info: Hyper figures OFF on input line 4535.
-Package hyperref Info: Link nesting OFF on input line 4540.
-Package hyperref Info: Hyper index ON on input line 4543.
-Package hyperref Info: Plain pages OFF on input line 4550.
-Package hyperref Info: Backreferencing OFF on input line 4555.
-Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4788.
-\c@Hy@tempcnt=\count95
-
-(c:/texlive/2019/texmf-dist/tex/latex/url/url.sty
-\Urlmuskip=\muskip10
-Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
-)
-LaTeX Info: Redefining \url on input line 5147.
-\XeTeXLinkMargin=\dimen106
-
-(c:/texlive/2019/texmf-dist/tex/generic/bitset/bitset.sty
-Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
-
-(c:/texlive/2019/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
-Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
-)
-))
-\Fld@menulength=\count96
-\Field@Width=\dimen107
-\Fld@charsize=\dimen108
-Package hyperref Info: Hyper figures OFF on input line 6418.
-Package hyperref Info: Link nesting OFF on input line 6423.
-Package hyperref Info: Hyper index ON on input line 6426.
-Package hyperref Info: backreferencing OFF on input line 6433.
-Package hyperref Info: Link coloring OFF on input line 6438.
-Package hyperref Info: Link coloring with OCG OFF on input line 6443.
-Package hyperref Info: PDF/A mode OFF on input line 6448.
-LaTeX Info: Redefining \ref on input line 6488.
-LaTeX Info: Redefining \pageref on input line 6492.
-
-(c:/texlive/2019/texmf-dist/tex/generic/atbegshi/atbegshi.sty
-Package: atbegshi 2019/12/05 v1.19 At begin shipout hook (HO)
-)
-\Hy@abspage=\count97
-\c@Item=\count98
-\c@Hfootnote=\count99
+\Hy@abspage=\count196
+\c@Item=\count197
+\c@Hfootnote=\count198
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 
-(c:/texlive/2019/texmf-dist/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2019/11/10 v7.00c Hyperref driver for pdfTeX
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex
+.def
+File: hpdftex.def 2021-02-27 v7.00k Hyperref driver for pdfTeX
 
-(c:/texlive/2019/texmf-dist/tex/latex/atveryend/atveryend.sty
-Package: atveryend 2019-12-11 v1.11 Hooks at the very end of document (HO)
-Package atveryend Info: \enddocument detected (standard20110627).
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/atveryend-l
+tx.sty
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atvery packag
+e
+with kernel methods
 )
-\Fld@listcount=\count100
-\c@bookmark@seq@number=\count101
+\Fld@listcount=\count199
+\c@bookmark@seq@number=\count266
 
-(c:/texlive/2019/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/r
+erunfilecheck.sty
 Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
 
-(c:/texlive/2019/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/uniquecounter/
+uniquecounter.sty
 Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 86.
 )
-\Hy@SectionHShift=\skip46
+\Hy@SectionHShift=\skip52
 )
-\preXLskip=\skip47
-\preLskip=\skip48
-\preMskip=\skip49
-\preSskip=\skip50
-\postMskip=\skip51
-\postSskip=\skip52
+\preXLskip=\skip53
+\preLskip=\skip54
+\preMskip=\skip55
+\preSskip=\skip56
+\postMskip=\skip57
+\postSskip=\skip58
 
 
 Package hyperref Warning: Option `hyperindex' has already been used,
@@ -615,21 +271,13 @@ Package hyperref Warning: Option `hyperindex' has already been used,
 Package hyperref Info: Option `colorlinks' set `true' on input line 466.
 Package hyperref Info: Option `linktocpage' set `true' on input line 466.
 Package hyperref Info: Option `plainpages' set `false' on input line 466.
-<<<<<<< HEAD
-) ("C:\Program Files\MiKTeX 2.9\tex/generic/thumbpdf\thumbpdf.sty"
-Package: thumbpdf 2018/09/07 v3.17 Inclusion of thumbnails (HO)
-
-
-Package thumbpdf Warning: Thumbnail data file `maxlogL.tpt' not found.
-
-) ("C:\Program Files\MiKTeX 2.9\tex/latex/lm\lmodern.sty"
-=======
-) (c:/texlive/2019/texmf-dist/tex/generic/thumbpdf/thumbpdf.sty
+)
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/thumbpdf/thumb
+pdf.sty
 Package: thumbpdf 2018/09/07 v3.17 Inclusion of thumbnails (HO)
 THUMBPDF: Compressed PDF objects of PDF 1.5 are not supported
 )
-(c:/texlive/2019/texmf-dist/tex/latex/lm/lmodern.sty
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/lmodern.sty
 Package: lmodern 2009/10/30 v1.6 Latin Modern Fonts
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
@@ -664,102 +312,71 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
 )
-<<<<<<< HEAD
-("C:\Program Files\MiKTeX 2.9\tex/latex/amsmath\amsmath.sty"
-=======
-(c:/texlive/2019/texmf-dist/tex/latex/amsmath/amsmath.sty
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
-Package: amsmath 2019/11/16 v2.17d AMS math features
-\@mathmargin=\skip53
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.
+sty
+Package: amsmath 2020/09/23 v2.17i AMS math features
+\@mathmargin=\skip59
 
 For additional information on amsmath, use the `?' option.
-<<<<<<< HEAD
-("C:\Program Files\MiKTeX 2.9\tex/latex/amsmath\amstext.sty"
+
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amstext.
+sty
 Package: amstext 2000/06/29 v2.01 AMS text
 
-("C:\Program Files\MiKTeX 2.9\tex/latex/amsmath\amsgen.sty"
-=======
-(c:/texlive/2019/texmf-dist/tex/latex/amsmath/amstext.sty
-Package: amstext 2000/06/29 v2.01 AMS text
-
-(c:/texlive/2019/texmf-dist/tex/latex/amsmath/amsgen.sty
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.s
+ty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks15
-\ex@=\dimen109
+\@emptytoks=\toks16
+\ex@=\dimen145
 ))
-<<<<<<< HEAD
-("C:\Program Files\MiKTeX 2.9\tex/latex/amsmath\amsbsy.sty"
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.s
+ty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen110
+\pmbraise@=\dimen146
 )
-("C:\Program Files\MiKTeX 2.9\tex/latex/amsmath\amsopn.sty"
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.s
+ty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
-\inf@bad=\count103
-LaTeX Info: Redefining \frac on input line 227.
-\uproot@=\count104
-\leftroot@=\count105
-LaTeX Info: Redefining \overline on input line 389.
-\classnum@=\count106
-\DOTSCASE@=\count107
-=======
-(c:/texlive/2019/texmf-dist/tex/latex/amsmath/amsbsy.sty
-Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen110
+\inf@bad=\count267
+LaTeX Info: Redefining \frac on input line 234.
+\uproot@=\count268
+\leftroot@=\count269
+LaTeX Info: Redefining \overline on input line 399.
+\classnum@=\count270
+\DOTSCASE@=\count271
+LaTeX Info: Redefining \ldots on input line 496.
+LaTeX Info: Redefining \dots on input line 499.
+LaTeX Info: Redefining \cdots on input line 620.
+\Mathstrutbox@=\box48
+\strutbox@=\box49
+\big@size=\dimen147
+LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
+\macc@depth=\count272
+\c@MaxMatrixCols=\count273
+\dotsspace@=\muskip17
+\c@parentequation=\count274
+\dspbrk@lvl=\count275
+\tag@help=\toks17
+\row@=\count276
+\column@=\count277
+\maxfields@=\count278
+\andhelp@=\toks18
+\eqnshift@=\dimen148
+\alignsep@=\dimen149
+\tagshift@=\dimen150
+\tagwidth@=\dimen151
+\totwidth@=\dimen152
+\lineht@=\dimen153
+\@envbody=\toks19
+\multlinegap=\skip60
+\multlinetaggap=\skip61
+\mathdisplay@stack=\toks20
+LaTeX Info: Redefining \[ on input line 2923.
+LaTeX Info: Redefining \] on input line 2924.
 )
-(c:/texlive/2019/texmf-dist/tex/latex/amsmath/amsopn.sty
-Package: amsopn 2016/03/08 v2.02 operator names
-)
-\inf@bad=\count102
-LaTeX Info: Redefining \frac on input line 227.
-\uproot@=\count103
-\leftroot@=\count104
-LaTeX Info: Redefining \overline on input line 389.
-\classnum@=\count105
-\DOTSCASE@=\count106
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
-LaTeX Info: Redefining \ldots on input line 486.
-LaTeX Info: Redefining \dots on input line 489.
-LaTeX Info: Redefining \cdots on input line 610.
-\Mathstrutbox@=\box28
-\strutbox@=\box29
-\big@size=\dimen111
-LaTeX Font Info:    Redeclaring font encoding OML on input line 733.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
-<<<<<<< HEAD
-\macc@depth=\count108
-\c@MaxMatrixCols=\count109
-=======
-\macc@depth=\count107
-\c@MaxMatrixCols=\count108
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
-\dotsspace@=\muskip11
-\c@parentequation=\count110
-\dspbrk@lvl=\count111
-\tag@help=\toks16
-\row@=\count112
-\column@=\count113
-\maxfields@=\count114
-\andhelp@=\toks17
-\eqnshift@=\dimen112
-\alignsep@=\dimen113
-\tagshift@=\dimen114
-\tagwidth@=\dimen115
-\totwidth@=\dimen116
-\lineht@=\dimen117
-\@envbody=\toks18
-\multlinegap=\skip54
-\multlinetaggap=\skip55
-\mathdisplay@stack=\toks19
-LaTeX Info: Redefining \[ on input line 2858.
-LaTeX Info: Redefining \] on input line 2859.
-)
-<<<<<<< HEAD
-("C:\Program Files\MiKTeX 2.9\tex/latex/tools\bm.sty"
-=======
-(c:/texlive/2019/texmf-dist/tex/latex/tools/bm.sty
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/tools/bm.sty
 Package: bm 2019/07/24 v1.2d Bold Symbol Support (DPC/FMi)
 \symboldoperators=\mathgroup4
 \symboldletters=\mathgroup5
@@ -767,17 +384,12 @@ Package: bm 2019/07/24 v1.2d Bold Symbol Support (DPC/FMi)
 LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 141.
 LaTeX Info: Redefining \bm on input line 209.
 )
-<<<<<<< HEAD
-("C:\Program Files\MiKTeX 2.9\tex/latex/amsfonts\amssymb.sty"
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb
+.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 
-("C:\Program Files\MiKTeX 2.9\tex/latex/amsfonts\amsfonts.sty"
-=======
-(c:/texlive/2019/texmf-dist/tex/latex/amsfonts/amssymb.sty
-Package: amssymb 2013/01/14 v3.01 AMS font symbols
-
-(c:/texlive/2019/texmf-dist/tex/latex/amsfonts/amsfonts.sty
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/amsfont
+s.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup7
 \symAMSb=\mathgroup8
@@ -785,73 +397,47 @@ LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
-<<<<<<< HEAD
-("C:\Program Files\MiKTeX 2.9\tex/latex/caption\subcaption.sty"
-Package: subcaption 2020/01/22 v1.3d Sub-captions (AR)
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/caption/subcapti
+on.sty
+Package: subcaption 2020/10/07 v1.3j Sub-captions (AR)
 
-("C:\Program Files\MiKTeX 2.9\tex/latex/caption\caption.sty"
-Package: caption 2020/01/03 v3.4h Customizing captions (AR)
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/caption/caption.
+sty
+Package: caption 2020/10/26 v3.5g Customizing captions (AR)
 
-("C:\Program Files\MiKTeX 2.9\tex/latex/caption\caption3.sty"
-Package: caption3 2020/01/03 v1.8h caption3 kernel (AR)
-Package caption3 Info: TeX engine: e-TeX on input line 61.
-=======
-(c:/texlive/2019/texmf-dist/tex/latex/caption/subcaption.sty
-Package: subcaption 2019/09/01 v1.3a Sub-captions (AR)
-
-(c:/texlive/2019/texmf-dist/tex/latex/caption/caption.sty
-Package: caption 2019/10/18 v3.4a Customizing captions (AR)
-
-(c:/texlive/2019/texmf-dist/tex/latex/caption/caption3.sty
-Package: caption3 2019/09/09 v1.8e caption3 kernel (AR)
-Package caption3 Info: TeX engine: e-TeX on input line 64.
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
-\captionmargin=\dimen118
-\captionmargin@=\dimen119
-\captionwidth=\dimen120
-\caption@tempdima=\dimen121
-\caption@indent=\dimen122
-\caption@parindent=\dimen123
-\caption@hangindent=\dimen124
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/caption/caption3
+.sty
+Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
+\captionmargin=\dimen154
+\captionmargin@=\dimen155
+\captionwidth=\dimen156
+\caption@tempdima=\dimen157
+\caption@indent=\dimen158
+\caption@parindent=\dimen159
+\caption@hangindent=\dimen160
 Package caption Info: Standard document class detected.
 )
-<<<<<<< HEAD
-\c@caption@flags=\count115
-\c@continuedfloat=\count116
+\c@caption@flags=\count279
+\c@continuedfloat=\count280
 Package caption Info: hyperref package is loaded.
 )
-\c@subfigure=\count117
-\c@subtable=\count118
+\c@subfigure=\count281
+\c@subtable=\count282
 )
-("C:\Program Files\MiKTeX 2.9\tex/latex/float\float.sty"
-=======
-\c@caption@flags=\count114
-\c@continuedfloat=\count115
-Package caption Info: hyperref package is loaded.
-)
-\c@subfigure=\count116
-\c@subtable=\count117
-)
-(c:/texlive/2019/texmf-dist/tex/latex/float/float.sty
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count119
-\float@exts=\toks20
-\float@box=\box30
-\@float@everytoks=\toks21
-\@floatcapt=\box31
+\c@float@type=\count283
+\float@exts=\toks21
+\float@box=\box50
+\@float@everytoks=\toks22
+\@floatcapt=\box51
 )
-<<<<<<< HEAD
-("C:\Program Files\MiKTeX 2.9\tex/latex/xcolor\xcolor.sty"
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/xcolor/xcolor.st
+y
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
 
-("C:\Program Files\MiKTeX 2.9\tex/latex/graphics-cfg\color.cfg"
-=======
-(c:/texlive/2019/texmf-dist/tex/latex/xcolor/xcolor.sty
-Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
-
-(c:/texlive/2019/texmf-dist/tex/latex/graphics-cfg/color.cfg
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/graphics-cfg/col
+or.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: pdftex.def on input line 225.
@@ -866,185 +452,86 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 )
-<<<<<<< HEAD
-("C:\Program Files\MiKTeX 2.9\tex/latex/framed\framed.sty"
-=======
-(c:/texlive/2019/texmf-dist/tex/latex/framed/framed.sty
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/framed/framed.st
+y
 Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
-\OuterFrameSep=\skip56
-\fb@frw=\dimen125
-\fb@frh=\dimen126
-\FrameRule=\dimen127
-\FrameSep=\dimen128
-<<<<<<< HEAD
-) (maxlogL.aux)
-=======
-) (./maxlogL.aux
-
-LaTeX Warning: Label `fig:norma' multiply defined.
-
-
-LaTeX Warning: Label `sub@fig:norma' multiply defined.
-
+\OuterFrameSep=\skip62
+\fb@frw=\dimen161
+\fb@frh=\dimen162
+\FrameRule=\dimen163
+\FrameSep=\dimen164
 )
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 85
+.
+ (c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmr.fd
+File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/l3backend/l3back
+end-pdftex.def
+File: l3backend-pdftex.def 2021-03-02 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count284
+\l__pdf_internal_box=\box52
+) (./maxlogL.aux)
 \openout1 = `maxlogL.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 85.
 LaTeX Font Info:    ... okay on input line 85.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 85.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 85.
 LaTeX Font Info:    ... okay on input line 85.
 LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 85.
 LaTeX Font Info:    ... okay on input line 85.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 85.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 85.
 LaTeX Font Info:    ... okay on input line 85.
 LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 85.
 LaTeX Font Info:    ... okay on input line 85.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 85.
 LaTeX Font Info:    ... okay on input line 85.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 85.
-LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 8
-5.
-<<<<<<< HEAD
-
-("C:\Program Files\MiKTeX 2.9\tex/latex/base\ts1cmr.fd"
-=======
- (c:/texlive/2019/texmf-dist/tex/latex/base/ts1cmr.fd
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
-File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    ... okay on input line 85.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 85.
 LaTeX Font Info:    ... okay on input line 85.
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 85
-.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
 
-<<<<<<< HEAD
-("C:\Program Files\MiKTeX 2.9\tex/latex/lm\t1lmr.fd"
-File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-("C:\Program Files\MiKTeX 2.9\tex/context/base/mkii\supp-pdf.mkii"
-=======
-(c:/texlive/2019/texmf-dist/tex/latex/lm/t1lmr.fd
-File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-(c:/texlive/2019/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
-[Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count120
-\scratchdimen=\dimen129
-\scratchbox=\box32
-\nofMPsegments=\count121
-\nofMParguments=\count122
-\everyMPshowfont=\toks22
-\MPscratchCnt=\count123
-\MPscratchDim=\dimen130
-\MPnumerator=\count124
-\makeMPintoPDFobject=\count125
-\everyMPtoPDFconversion=\toks23
-<<<<<<< HEAD
-) ("C:\Program Files\MiKTeX 2.9\tex/latex/epstopdf-pkg\epstopdf-base.sty"
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/eps
+topdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
-)
-\AtBeginShipoutBox=\box33
-Package hyperref Info: Link coloring ON on input line 85.
 
-("C:\Program Files\MiKTeX 2.9\tex/latex/hyperref\nameref.sty"
-Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
-
-("C:\Program Files\MiKTeX 2.9\tex/latex/refcount\refcount.sty"
-Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
-=======
-) (c:/texlive/2019/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
-Package: epstopdf-base 2019-12-09 v2.10 Base part for package epstopdf
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-85.
-
-(c:/texlive/2019/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/latexconfig/epst
+opdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\AtBeginShipoutBox=\box33
-Package hyperref Info: Link coloring ON on input line 85.
-
-(c:/texlive/2019/texmf-dist/tex/latex/hyperref/nameref.sty
-Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
-
-(c:/texlive/2019/texmf-dist/tex/latex/refcount/refcount.sty
-Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
-)
-(c:/texlive/2019/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
-Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
-)
-("C:\Program Files\MiKTeX 2.9\tex/generic/gettitlestring\gettitlestring.sty"
-Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
-)
-\c@section@level=\count126
-)
-LaTeX Info: Redefining \ref on input line 85.
-LaTeX Info: Redefining \pageref on input line 85.
-LaTeX Info: Redefining \nameref on input line 85.
-
-<<<<<<< HEAD
-(maxlogL.out) (maxlogL.out)
-=======
-(./maxlogL.out) (./maxlogL.out)
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
-\@outlinefile=\write4
-\openout4 = `maxlogL.out'.
-
 LaTeX Font Info:    Trying to load font information for T1+lmss on input line 8
 5.
-<<<<<<< HEAD
- ("C:\Program Files\MiKTeX 2.9\tex/latex/lm\t1lmss.fd"
-=======
 
-(c:/texlive/2019/texmf-dist/tex/latex/lm/t1lmss.fd
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 8
 5.
-<<<<<<< HEAD
- ("C:\Program Files\MiKTeX 2.9\tex/latex/lm\ot1lmr.fd"
-=======
 
-(c:/texlive/2019/texmf-dist/tex/latex/lm/ot1lmr.fd
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 8
 5.
 
-<<<<<<< HEAD
-("C:\Program Files\MiKTeX 2.9\tex/latex/lm\omllmm.fd"
-=======
-(c:/texlive/2019/texmf-dist/tex/latex/lm/omllmm.fd
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
 85.
 
-<<<<<<< HEAD
-("C:\Program Files\MiKTeX 2.9\tex/latex/lm\omslmsy.fd"
-=======
-(c:/texlive/2019/texmf-dist/tex/latex/lm/omslmsy.fd
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
 85.
 
-<<<<<<< HEAD
-("C:\Program Files\MiKTeX 2.9\tex/latex/lm\omxlmex.fd"
-=======
-(c:/texlive/2019/texmf-dist/tex/latex/lm/omxlmex.fd
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -1056,93 +543,104 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 LaTeX Font Info:    Trying to load font information for U+msa on input line 85.
 
 
-<<<<<<< HEAD
-("C:\Program Files\MiKTeX 2.9\tex/latex/amsfonts\umsa.fd"
-=======
-(c:/texlive/2019/texmf-dist/tex/latex/amsfonts/umsa.fd
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 85.
 
 
-<<<<<<< HEAD
-("C:\Program Files\MiKTeX 2.9\tex/latex/amsfonts\umsb.fd"
-=======
-(c:/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 8
 5.
-
-<<<<<<< HEAD
-("C:\Program Files\MiKTeX 2.9\tex/latex/lm\t1lmtt.fd"
-=======
-(c:/texlive/2019/texmf-dist/tex/latex/lm/t1lmtt.fd
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
+ (c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
+Package hyperref Info: Link coloring ON on input line 85.
+
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/nameref
+.sty
+Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
+
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/refcount/refcoun
+t.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/gettitlestring
+/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count285
+)
+LaTeX Info: Redefining \ref on input line 85.
+LaTeX Info: Redefining \pageref on input line 85.
+LaTeX Info: Redefining \nameref on input line 85.
+ (./maxlogL.out) (./maxlogL.out)
+\@outlinefile=\write4
+\openout4 = `maxlogL.out'.
+
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
 
 
-Package xcolor Warning: Incompatible color definition on input line 103.
+Package xcolor Warning: Incompatible color definition on input line 104.
 
 
-Package xcolor Warning: Incompatible color definition on input line 103.
+Package xcolor Warning: Incompatible color definition on input line 104.
 
 
-Package xcolor Warning: Incompatible color definition on input line 105.
+Package xcolor Warning: Incompatible color definition on input line 106.
 
 
-Package xcolor Warning: Incompatible color definition on input line 105.
+Package xcolor Warning: Incompatible color definition on input line 106.
 
 
-Package xcolor Warning: Incompatible color definition on input line 105.
+Package xcolor Warning: Incompatible color definition on input line 106.
 
 
-Package xcolor Warning: Incompatible color definition on input line 105.
+Package xcolor Warning: Incompatible color definition on input line 106.
 
 
-Package xcolor Warning: Incompatible color definition on input line 105.
+Package xcolor Warning: Incompatible color definition on input line 106.
 
 
-Package xcolor Warning: Incompatible color definition on input line 105.
+Package xcolor Warning: Incompatible color definition on input line 106.
 
 
-Package xcolor Warning: Incompatible color definition on input line 105.
+Package xcolor Warning: Incompatible color definition on input line 106.
 
 
-Package xcolor Warning: Incompatible color definition on input line 105.
+Package xcolor Warning: Incompatible color definition on input line 106.
 
 
-Package xcolor Warning: Incompatible color definition on input line 107.
+Package xcolor Warning: Incompatible color definition on input line 108.
 
 
-Package xcolor Warning: Incompatible color definition on input line 107.
+Package xcolor Warning: Incompatible color definition on input line 108.
 
 
-Package xcolor Warning: Incompatible color definition on input line 107.
+Package xcolor Warning: Incompatible color definition on input line 108.
 
 
-Package xcolor Warning: Incompatible color definition on input line 107.
+Package xcolor Warning: Incompatible color definition on input line 108.
 
 
-Underfull \vbox (badness 1648) has occurred while \output is active []
+Underfull \vbox (badness 1789) has occurred while \output is active []
 
  [1
 
-{c:/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+{c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdf
+tex.map}]
 
-Package xcolor Warning: Incompatible color definition on input line 143.
-
-
-Package xcolor Warning: Incompatible color definition on input line 143.
+Package xcolor Warning: Incompatible color definition on input line 144.
 
 
-Package xcolor Warning: Incompatible color definition on input line 153.
+Package xcolor Warning: Incompatible color definition on input line 144.
+
+
+Package xcolor Warning: Incompatible color definition on input line 154.
 
 
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
@@ -1151,26 +649,18 @@ Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 
 [2]
 
-Package xcolor Warning: Incompatible color definition on input line 172.
+Package xcolor Warning: Incompatible color definition on input line 173.
 
 
-Package xcolor Warning: Incompatible color definition on input line 172.
+Package xcolor Warning: Incompatible color definition on input line 173.
 
 
-Package xcolor Warning: Incompatible color definition on input line 172.
+Package xcolor Warning: Incompatible color definition on input line 173.
 
 
-Package xcolor Warning: Incompatible color definition on input line 172.
+Package xcolor Warning: Incompatible color definition on input line 173.
 
-LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 
-180.
-<<<<<<< HEAD
-("C:\Program Files\MiKTeX 2.9\tex/latex/lm\ts1lmtt.fd"
-=======
-(c:/texlive/2019/texmf-dist/tex/latex/lm/ts1lmtt.fd
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
-File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
+
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 [] \T1/lmr/m/n/10.95 3
  []
@@ -1182,25 +672,16 @@ Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 
 [4]
 
-Package xcolor Warning: Incompatible color definition on input line 305.
+Package xcolor Warning: Incompatible color definition on input line 299.
 
 
-Package xcolor Warning: Incompatible color definition on input line 305.
+Package xcolor Warning: Incompatible color definition on input line 299.
 
 
-Package xcolor Warning: Incompatible color definition on input line 305.
-
-
-Package xcolor Warning: Incompatible color definition on input line 305.
-
-
-Package xcolor Warning: Incompatible color definition on input line 308.
-
-
-Package xcolor Warning: Incompatible color definition on input line 310.
-
-
-Package xcolor Warning: Incompatible color definition on input line 310.
+Overfull \hbox (11.92255pt too wide) in paragraph at lines 299--300
+\T1/lmr/m/n/10.95 (an ex-po-nen-ti-ated ex-po-nen-tial bi-no-mial dis-tri-bu-ti
+on, pro-posed by [][]Bak-ouch, Ris-ti¢, As-gharzadeh,
+ []
 
 
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
@@ -1208,60 +689,21 @@ Overfull \hbox (5.47499pt too wide) has occurred while \output is active
  []
 
 [5]
-<<<<<<< HEAD
 
-Package xcolor Warning: Incompatible color definition on input line 365.
-=======
-<article-norm_a.pdf, id=155, 722.7pt x 722.7pt>
+Package xcolor Warning: Incompatible color definition on input line 305.
+
+<article-norm_a.pdf, id=137, 722.7pt x 722.7pt>
 File: article-norm_a.pdf Graphic file (type pdf)
 <use article-norm_a.pdf>
-Package pdftex.def Info: article-norm_a.pdf  used on input line 316.
+Package pdftex.def Info: article-norm_a.pdf  used on input line 335.
 (pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
-<article-norm_b.pdf, id=156, 722.7pt x 722.7pt>
+<article-norm_b.pdf, id=138, 722.7pt x 722.7pt>
 File: article-norm_b.pdf Graphic file (type pdf)
 <use article-norm_b.pdf>
-Package pdftex.def Info: article-norm_b.pdf  used on input line 320.
+Package pdftex.def Info: article-norm_b.pdf  used on input line 339.
 (pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
 
-
-Package xcolor Warning: Incompatible color definition on input line 329.
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
-
-
-Package xcolor Warning: Incompatible color definition on input line 365.
-
-
-Package xcolor Warning: Incompatible color definition on input line 365.
-
-<<<<<<< HEAD
-<article-PLexample_a.pdf, id=130, 722.7pt x 722.7pt>
-File: article-PLexample_a.pdf Graphic file (type pdf)
-<use article-PLexample_a.pdf>
-Package pdftex.def Info: article-PLexample_a.pdf  used on input line 372.
-(pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
-<article-PLexample_b.pdf, id=131, 722.7pt x 722.7pt>
-File: article-PLexample_b.pdf Graphic file (type pdf)
-<use article-PLexample_b.pdf>
-Package pdftex.def Info: article-PLexample_b.pdf  used on input line 376.
-=======
-<article-EEBa.pdf, id=160, 722.7pt x 722.7pt>
-File: article-EEBa.pdf Graphic file (type pdf)
-<use article-EEBa.pdf>
-Package pdftex.def Info: article-EEBa.pdf  used on input line 337.
-(pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
-<article-EEBb.pdf, id=161, 722.7pt x 722.7pt>
-File: article-EEBb.pdf Graphic file (type pdf)
-<use article-EEBb.pdf>
-Package pdftex.def Info: article-EEBb.pdf  used on input line 341.
-(pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
-<article-EEBc.pdf, id=162, 722.7pt x 722.7pt>
-File: article-EEBc.pdf Graphic file (type pdf)
-<use article-EEBc.pdf>
-Package pdftex.def Info: article-EEBc.pdf  used on input line 346.
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
-(pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
-
-Underfull \vbox (badness 7308) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
@@ -1270,156 +712,165 @@ Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 
 [6]
 
-Package xcolor Warning: Incompatible color definition on input line 384.
+Package xcolor Warning: Incompatible color definition on input line 348.
 
 
-Package xcolor Warning: Incompatible color definition on input line 384.
+Package xcolor Warning: Incompatible color definition on input line 348.
 
 
-Package xcolor Warning: Incompatible color definition on input line 384.
+Package xcolor Warning: Incompatible color definition on input line 348.
 
-
-Package xcolor Warning: Incompatible color definition on input line 384.
-
-
-Package xcolor Warning: Incompatible color definition on input line 386.
-
-
-<<<<<<< HEAD
-Package xcolor Warning: Incompatible color definition on input line 386.
-=======
-Package xcolor Warning: Incompatible color definition on input line 353.
-
-
-Package xcolor Warning: Incompatible color definition on input line 353.
-
-<article-ZIPa.pdf, id=192, 722.7pt x 722.7pt>
-File: article-ZIPa.pdf Graphic file (type pdf)
-<use article-ZIPa.pdf>
-Package pdftex.def Info: article-ZIPa.pdf  used on input line 360.
+<article-EEBa.pdf, id=147, 722.7pt x 722.7pt>
+File: article-EEBa.pdf Graphic file (type pdf)
+<use article-EEBa.pdf>
+Package pdftex.def Info: article-EEBa.pdf  used on input line 356.
 (pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
-<article-ZIPb.pdf, id=193, 722.7pt x 722.7pt>
-File: article-ZIPb.pdf Graphic file (type pdf)
-<use article-ZIPb.pdf>
-Package pdftex.def Info: article-ZIPb.pdf  used on input line 364.
+<article-EEBb.pdf, id=148, 722.7pt x 722.7pt>
+File: article-EEBb.pdf Graphic file (type pdf)
+<use article-EEBb.pdf>
+Package pdftex.def Info: article-EEBb.pdf  used on input line 360.
+(pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
+<article-EEBc.pdf, id=149, 722.7pt x 722.7pt>
+File: article-EEBc.pdf Graphic file (type pdf)
+<use article-EEBc.pdf>
+Package pdftex.def Info: article-EEBc.pdf  used on input line 365.
 (pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
 
 
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 [] \T1/lmr/m/n/10.95 7
  []
 
-[7 <./article-PLexample_a.pdf> <./article-PLexample_b.pdf>]
+[7 <./article-norm_a.pdf> <./article-norm_b.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 431.
-
-
-Package xcolor Warning: Incompatible color definition on input line 431.
+Package xcolor Warning: Incompatible color definition on input line 372.
 
 
-Package xcolor Warning: Incompatible color definition on input line 461.
+Package xcolor Warning: Incompatible color definition on input line 372.
 
 
-Package xcolor Warning: Incompatible color definition on input line 461.
+Package xcolor Warning: Incompatible color definition on input line 372.
 
 
-Package xcolor Warning: Incompatible color definition on input line 461.
+Package xcolor Warning: Incompatible color definition on input line 372.
+
+
+LaTeX Warning: Reference `fig:varnorm' on page 8 undefined on input line 372.
+
+
+LaTeX Warning: Reference `fig:varZIP' on page 8 undefined on input line 372.
+
+
+LaTeX Warning: Reference `fig:varEEB' on page 8 undefined on input line 372.
+
+
+LaTeX Warning: Reference `append:variance' on page 8 undefined on input line 37
+2.
+
+<article-ZIPa.pdf, id=176, 722.7pt x 722.7pt>
+File: article-ZIPa.pdf Graphic file (type pdf)
+<use article-ZIPa.pdf>
+Package pdftex.def Info: article-ZIPa.pdf  used on input line 379.
+(pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
+<article-ZIPb.pdf, id=177, 722.7pt x 722.7pt>
+File: article-ZIPb.pdf Graphic file (type pdf)
+<use article-ZIPb.pdf>
+Package pdftex.def Info: article-ZIPb.pdf  used on input line 383.
+(pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 \T1/lmr/m/n/10.95 8 []
  []
 
-[8]
+[8 <./article-EEBa.pdf> <./article-EEBb.pdf> <./article-EEBc.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 503.
-
-
-Package xcolor Warning: Incompatible color definition on input line 503.
+Package xcolor Warning: Incompatible color definition on input line 423.
 
 
-Package xcolor Warning: Incompatible color definition on input line 503.
+Package xcolor Warning: Incompatible color definition on input line 423.
 
-<article-RetentionPlot.pdf, id=177, 722.7pt x 722.7pt>
-File: article-RetentionPlot.pdf Graphic file (type pdf)
-<use article-RetentionPlot.pdf>
-Package pdftex.def Info: article-RetentionPlot.pdf  used on input line 508.
-(pdftex.def)             Requested size: 265.59494pt x 265.59732pt.
 
-Underfull \vbox (badness 7963) has occurred while \output is active []
+Package xcolor Warning: Incompatible color definition on input line 423.
+
+
+Package xcolor Warning: Incompatible color definition on input line 423.
+
+
+Package xcolor Warning: Incompatible color definition on input line 426.
+
+
+Package xcolor Warning: Incompatible color definition on input line 428.
+
+
+Package xcolor Warning: Incompatible color definition on input line 428.
 
 
 Overfull \hbox (5.47499pt too wide) has occurred while \output is active
 [] \T1/lmr/m/n/10.95 9
  []
 
-[9]
-<<<<<<< HEAD
-Underfull \hbox (badness 10000) in paragraph at lines 516--517
-=======
-<article-PLexample_a.pdf, id=260, 722.7pt x 722.7pt>
-File: article-PLexample_a.pdf Graphic file (type pdf)
-<use article-PLexample_a.pdf>
-Package pdftex.def Info: article-PLexample_a.pdf  used on input line 470.
-(pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
-<article-PLexample_b.pdf, id=261, 722.7pt x 722.7pt>
-File: article-PLexample_b.pdf Graphic file (type pdf)
-<use article-PLexample_b.pdf>
-Package pdftex.def Info: article-PLexample_b.pdf  used on input line 474.
-(pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
-
-
-Package xcolor Warning: Incompatible color definition on input line 482.
-
-
-Package xcolor Warning: Incompatible color definition on input line 482.
-
-
-Package xcolor Warning: Incompatible color definition on input line 482.
-
-
-Package xcolor Warning: Incompatible color definition on input line 482.
-
-
-Package xcolor Warning: Incompatible color definition on input line 484.
-
-
-Package xcolor Warning: Incompatible color definition on input line 484.
-
-
+[9 <./article-ZIPa.pdf> <./article-ZIPb.pdf>]
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 \T1/lmr/m/n/10.95 10 []
  []
 
-[10 <./article-PLexample_a.pdf> <./article-PLexample_b.pdf>]
+[10]
 
-Package xcolor Warning: Incompatible color definition on input line 529.
+Package xcolor Warning: Incompatible color definition on input line 487.
 
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
 
+Package xcolor Warning: Incompatible color definition on input line 487.
+
+
+Package xcolor Warning: Incompatible color definition on input line 487.
+
+<article-PLexample_a.pdf, id=239, 722.7pt x 722.7pt>
+File: article-PLexample_a.pdf Graphic file (type pdf)
+<use article-PLexample_a.pdf>
+Package pdftex.def Info: article-PLexample_a.pdf  used on input line 494.
+(pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
+<article-PLexample_b.pdf, id=240, 722.7pt x 722.7pt>
+File: article-PLexample_b.pdf Graphic file (type pdf)
+<use article-PLexample_b.pdf>
+Package pdftex.def Info: article-PLexample_b.pdf  used on input line 498.
+(pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
+
+Package xcolor Warning: Incompatible color definition on input line 506.
+
+
+Package xcolor Warning: Incompatible color definition on input line 506.
+
+
+Package xcolor Warning: Incompatible color definition on input line 506.
+
+
+Package xcolor Warning: Incompatible color definition on input line 506.
+
+
+Package xcolor Warning: Incompatible color definition on input line 508.
+
+
+Package xcolor Warning: Incompatible color definition on input line 508.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+[] \T1/lmr/m/n/10.95 11
  []
 
+[11 <./article-PLexample_a.pdf> <./article-PLexample_b.pdf>]
 
-Package xcolor Warning: Incompatible color definition on input line 518.
-
-
-<<<<<<< HEAD
-Package xcolor Warning: Incompatible color definition on input line 518.
-=======
-
-Package xcolor Warning: Incompatible color definition on input line 559.
+Package xcolor Warning: Incompatible color definition on input line 553.
 
 
-Package xcolor Warning: Incompatible color definition on input line 601.
-
-
-Package xcolor Warning: Incompatible color definition on input line 601.
-
-
-Package xcolor Warning: Incompatible color definition on input line 601.
+Package xcolor Warning: Incompatible color definition on input line 553.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
@@ -1427,22 +878,51 @@ Overfull \hbox (10.94998pt too wide) has occurred while \output is active
  []
 
 [12]
-<article-RetentionPlot.pdf, id=308, 722.7pt x 722.7pt>
+
+Package xcolor Warning: Incompatible color definition on input line 587.
+
+
+Package xcolor Warning: Incompatible color definition on input line 587.
+
+
+Package xcolor Warning: Incompatible color definition on input line 587.
+
+
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+[] \T1/lmr/m/n/10.95 13
+ []
+
+[13]
+
+Package xcolor Warning: Incompatible color definition on input line 633.
+
+
+Package xcolor Warning: Incompatible color definition on input line 633.
+
+
+Package xcolor Warning: Incompatible color definition on input line 633.
+
+<article-RetentionPlot.pdf, id=287, 722.7pt x 722.7pt>
 File: article-RetentionPlot.pdf Graphic file (type pdf)
 <use article-RetentionPlot.pdf>
-Package pdftex.def Info: article-RetentionPlot.pdf  used on input line 606.
+Package pdftex.def Info: article-RetentionPlot.pdf  used on input line 638.
 (pdftex.def)             Requested size: 265.59494pt x 265.59732pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 674--675
+Underfull \hbox (badness 10000) in paragraph at lines 646--647
 
  []
 
 
-Package xcolor Warning: Incompatible color definition on input line 676.
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+\T1/lmr/m/n/10.95 14 []
+ []
+
+[14 <./article-RetentionPlot.pdf>]
+
+Package xcolor Warning: Incompatible color definition on input line 648.
 
 
-Package xcolor Warning: Incompatible color definition on input line 676.
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
+Package xcolor Warning: Incompatible color definition on input line 648.
 
 (./maxlogL.bbl
 
@@ -1451,12 +931,6 @@ Package xcolor Warning: Incompatible color definition on input line 20.
 
 Package xcolor Warning: Incompatible color definition on input line 21.
 
-
-Overfull \hbox (10.94998pt too wide) has occurred while \output is active
-\T1/lmr/m/n/10.95 10 []
- []
-
-[10 <./article-RetentionPlot.pdf>]
 
 Package xcolor Warning: Incompatible color definition on input line 39.
 
@@ -1507,6 +981,12 @@ Package xcolor Warning: Incompatible color definition on input line 102.
 Package xcolor Warning: Incompatible color definition on input line 103.
 
 
+Overfull \hbox (10.94998pt too wide) has occurred while \output is active
+[] \T1/lmr/m/n/10.95 15
+ []
+
+[15]
+
 Package xcolor Warning: Incompatible color definition on input line 110.
 
 
@@ -1522,164 +1002,64 @@ Package xcolor Warning: Incompatible color definition on input line 127.
 Package xcolor Warning: Incompatible color definition on input line 140.
 
 
-Overfull \hbox (10.94998pt too wide) has occurred while \output is active
-[] \T1/lmr/m/n/10.95 11
- []
+Package xcolor Warning: Incompatible color definition on input line 147.
 
-<<<<<<< HEAD
-[11]
-=======
-[15]
+)
 
-Package xcolor Warning: Incompatible color definition on input line 690.
-
-<article-varnorm_a.pdf, id=362, 722.7pt x 722.7pt>
-File: article-varnorm_a.pdf Graphic file (type pdf)
-<use article-varnorm_a.pdf>
-Package pdftex.def Info: article-varnorm_a.pdf  used on input line 699.
-(pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
-<article-varnorm_b.pdf, id=363, 722.7pt x 722.7pt>
-File: article-varnorm_b.pdf Graphic file (type pdf)
-<use article-varnorm_b.pdf>
-Package pdftex.def Info: article-varnorm_b.pdf  used on input line 703.
-(pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
-<article-varZIPa.pdf, id=364, 722.7pt x 722.7pt>
-File: article-varZIPa.pdf Graphic file (type pdf)
-<use article-varZIPa.pdf>
-Package pdftex.def Info: article-varZIPa.pdf  used on input line 718.
-(pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
-<article-varZIPb.pdf, id=365, 722.7pt x 722.7pt>
-File: article-varZIPb.pdf Graphic file (type pdf)
-<use article-varZIPb.pdf>
-Package pdftex.def Info: article-varZIPb.pdf  used on input line 722.
-(pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
-<article-varEEBa.pdf, id=366, 722.7pt x 722.7pt>
-File: article-varEEBa.pdf Graphic file (type pdf)
-<use article-varEEBa.pdf>
-Package pdftex.def Info: article-varEEBa.pdf  used on input line 738.
-(pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
-<article-varEEBb.pdf, id=367, 722.7pt x 722.7pt>
-File: article-varEEBb.pdf Graphic file (type pdf)
-<use article-varEEBb.pdf>
-Package pdftex.def Info: article-varEEBb.pdf  used on input line 742.
-(pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
-<article-varEEBc.pdf, id=368, 722.7pt x 722.7pt>
-File: article-varEEBc.pdf Graphic file (type pdf)
-<use article-varEEBc.pdf>
-Package pdftex.def Info: article-varEEBc.pdf  used on input line 747.
-(pdftex.def)             Requested size: 216.90276pt x 216.89989pt.
-
-Underfull \vbox (badness 1412) has occurred while \output is active []
+Package xcolor Warning: Incompatible color definition on input line 656.
 
 
 Overfull \hbox (10.94998pt too wide) has occurred while \output is active
 \T1/lmr/m/n/10.95 16 []
  []
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
 
-Package xcolor Warning: Incompatible color definition on input line 147.
+[16] (./maxlogL.aux)
 
-)
+LaTeX Warning: There were undefined references.
 
-Package xcolor Warning: Incompatible color definition on input line 526.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 526.
-
-Overfull \hbox (10.94998pt too wide) has occurred while \output is active
-\T1/lmr/m/n/10.95 12 []
- []
-
-<<<<<<< HEAD
-[12]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 526.
- (maxlogL.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 526.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 526.
 Package rerunfilecheck Info: File `maxlogL.out' has not changed.
-(rerunfilecheck)             Checksum: 1BB384E75F45AA5E1D75B2AC92F5B8F6;736.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 526.
+(rerunfilecheck)             Checksum: FF25B1A7C71FD27A7C60AC2C68238F80;2306.
  ) 
 Here is how much of TeX's memory you used:
- 10049 strings out of 492482
- 147889 string characters out of 3131019
- 238911 words of memory out of 3000000
- 14106 multiletter control sequences out of 15000+200000
- 93156 words of font info for 66 fonts, out of 3000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 48i,17n,46p,754b,507s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/M
-iKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Program Files/MiKTeX 2.9/fonts/e
-nc/dvips/lm/lm-ts1.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-rm.en
-c}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathex.enc}{C:/Program Fil
-es/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}<C:/Program Files/MiKTeX 2.9/fon
-ts/type1/public/lm/lmb10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm
-/lmbo10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx10.pfb><C:/P
-rogram Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Program Files/MiKT
-eX 2.9/fonts/type1/public/lm/lmex10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
-1/public/lm/lmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi6
-.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi8.pfb><C:/Program F
-iles/MiKTeX 2.9/fonts/type1/public/lm/lmmib10.pfb><C:/Program Files/MiKTeX 2.9/
-fonts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public
-/lm/lmr8.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmri10.pfb><C:/
-Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmro10.pfb><C:/Program Files/MiK
-TeX 2.9/fonts/type1/public/lm/lmss10.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
-e1/public/lm/lmssbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lm
-sso10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Pro
-gram Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy8.pfb><C:/Program Files/MiKTeX 
-2.9/fonts/type1/public/lm/lmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
-ublic/lm/lmtto10.pfb>
-Output written on maxlogL.pdf (12 pages, 445602 bytes).
+ 12094 strings out of 480971
+ 183743 string characters out of 5905997
+ 492163 words of memory out of 5000000
+ 29029 multiletter control sequences out of 15000+600000
+ 490406 words of font info for 78 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 86i,17n,88p,762b,517s stack positions out of 5000i,500n,10000p,200000b,80000s
+{c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec
+.enc}{c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm
+-mathit.enc}{c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvip
+s/lm/lm-rm.enc}{c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/d
+vips/lm/lm-mathex.enc}{c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/font
+s/enc/dvips/lm/lm-mathsy.enc}<c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-di
+st/fonts/type1/public/lm/lmb10.pfb><c:/Users/USUARIO/AppData/Roaming/TinyTeX/te
+xmf-dist/fonts/type1/public/lm/lmbo10.pfb><c:/Users/USUARIO/AppData/Roaming/Tin
+yTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/USUARIO/AppData/Roam
+ing/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/USUARIO/AppDa
+ta/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/Users/USUARI
+O/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users
+/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi6.pfb><c:
+/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi8.p
+fb><c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/l
+mmib10.pfb><c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/pub
+lic/lm/lmr10.pfb><c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/fonts/typ
+e1/public/lm/lmr8.pfb><c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/font
+s/type1/public/lm/lmri10.pfb><c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-di
+st/fonts/type1/public/lm/lmro10.pfb><c:/Users/USUARIO/AppData/Roaming/TinyTeX/t
+exmf-dist/fonts/type1/public/lm/lmss10.pfb><c:/Users/USUARIO/AppData/Roaming/Ti
+nyTeX/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/Users/USUARIO/AppData/R
+oaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsso10.pfb><c:/Users/USUARIO/A
+ppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/US
+UARIO/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy8.pfb><c:/Us
+ers/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb
+><c:/Users/USUARIO/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmt
+to10.pfb>
+Output written on maxlogL.pdf (16 pages, 499010 bytes).
 PDF statistics:
- 325 PDF objects out of 1000 (max. 8388607)
- 56 named destinations out of 1000 (max. 500000)
- 72 words of extra memory for PDF output out of 10000 (max. 10000000)
-=======
-[18]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 759.
- (./maxlogL.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 759.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 759.
-Package rerunfilecheck Info: File `maxlogL.out' has not changed.
-(rerunfilecheck)             Checksum: A394AD11CA3DC8D72BA26A2D49AD5F38;1506.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 759.
- ) 
-Here is how much of TeX's memory you used:
- 10190 strings out of 492163
- 150599 string characters out of 6129090
- 242060 words of memory out of 5000000
- 14235 multiletter control sequences out of 15000+600000
- 93156 words of font info for 66 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 48i,17n,46p,752b,549s stack positions out of 5000i,500n,10000p,200000b,80000s
-{c:/texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/texlive/2019/tex
-mf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/2019/texmf-dist/fonts/enc/
-dvips/lm/lm-ts1.enc}{c:/texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c
-:/texlive/2019/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{c:/texlive/2019/tex
-mf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}<c:/texlive/2019/texmf-dist/fonts/type
-1/public/lm/lmb10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/lm/lmbo10.
-pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/20
-19/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2019/texmf-dist/font
-s/type1/public/lm/lmex10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/lm/
-lmmi10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/lm/lmmi6.pfb><c:/texl
-ive/2019/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/texlive/2019/texmf-dist
-/fonts/type1/public/lm/lmmib10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/publ
-ic/lm/lmr10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/
-texlive/2019/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/texlive/2019/texmf
--dist/fonts/type1/public/lm/lmro10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/
-public/lm/lmss10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/lm/lmssbx10
-.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/lm/lmsso10.pfb><c:/texlive/
-2019/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2019/texmf-dist/fo
-nts/type1/public/lm/lmsy8.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/lm
-/lmtt10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/lm/lmtto10.pfb>
-Output written on maxlogL.pdf (18 pages, 578745 bytes).
-PDF statistics:
- 523 PDF objects out of 1000 (max. 8388607)
- 442 compressed objects within 5 object streams
- 85 named destinations out of 1000 (max. 500000)
- 206 words of extra memory for PDF output out of 10000 (max. 10000000)
->>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
+ 430 PDF objects out of 1000 (max. 8388607)
+ 366 compressed objects within 4 object streams
+ 72 named destinations out of 1000 (max. 500000)
+ 139 words of extra memory for PDF output out of 10000 (max. 10000000)
 

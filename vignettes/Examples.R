@@ -5,14 +5,17 @@ knitr::opts_chunk$set(
 )
 
 ## ---- echo=TRUE, warning=FALSE, message=FALSE---------------------------------
-library(RCurl)
-library(foreign)
+if (!require('readr')) install.packages('readr')
+library(readr)
 
-url_data <- "https://raw.githubusercontent.com/Jaimemosg/EstimationTools/master/extra/sim_wei.csv"
-wei_data <- getURL(url_data)
-data <- read.csv(textConnection(wei_data), header = TRUE)
-data$group <- as.factor(data$group)
-head(data)
+urlRemote <- "https://raw.githubusercontent.com/"
+pathGithub <- 'Jaimemosg/EstimationTools/master/extra/'
+filename <- 'sim_wei.csv'
+myURL <- paste0(urlRemote, pathGithub, filename)
+data_sim <- read_csv(myURL)
+
+data_sim$group <- as.factor(data_sim$group)
+head(data_sim)
 
 ## ----example1, message=FALSE, warning=FALSE-----------------------------------
 library(EstimationTools)
@@ -21,7 +24,7 @@ library(EstimationTools)
 formulas <- list(scale.fo = ~ 1, shape.fo = ~ group)
 
 # The model
-fit_wei <- maxlogLreg(formulas, data = data,
+fit_wei <- maxlogLreg(formulas, data = data_sim,
                       y_dist = Surv(Time, status) ~ dweibull,
                       link = list(over = c("shape", "scale"),
                                   fun = rep("log_link", 2)))

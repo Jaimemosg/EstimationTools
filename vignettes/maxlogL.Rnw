@@ -87,6 +87,7 @@ library(EstimationTools)
 }
 
 \begin{document}
+% \SweaveOpts{concordance=TRUE}
 
 %% -- Introduction -------------------------------------------------------------
 

@@ -63,6 +63,41 @@ Variables are first looked for in newdata and then searched for in the usual way
 will be given if the variables found are not of the same length as those
 in \code{newdata} if it is supplied.
 }
+\examples{
+library(EstimationTools)
+
+#--------------------------------------------------------------------------------
+# First example: Predictions from simulated normal distribution
+n <- 1000
+x <- runif(n = n, -5, 6)
+y <- rnorm(n = n, mean = -2 + 3 * x, sd = exp(1 + 0.3* x))
+norm_data <- data.frame(y = y, x = x)
+
+# It does not matter the order of distribution parameters
+formulas <- list(sd.fo = ~ x, mean.fo = ~ x)
+
+norm_mod <- maxlogLreg(formulas, y_dist = y ~ dnorm, data = norm_data,
+                       link = list(over = "sd", fun = "log_link"))
+predict(norm_mod)
+
+
+#--------------------------------------------------------------------------------
+# Second example: Predictions using new values for covariates
+predict(norm_mod, newdata = data.frame(x=0:6))
+
+
+#--------------------------------------------------------------------------------
+# Third example: Predictions for another parameter
+predict(norm_mod, newdata = data.frame(x=0:6), param = "sd",
+       type = "response")
+
+#--------------------------------------------------------------------------------
+# Fourth example: Model terms
+predict(norm_mod, param = "sd", type = "terms")
+
+
+#--------------------------------------------------------------------------------
+}
 \author{
 Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
 }

@@ -182,23 +182,23 @@ test of parameters.</p>
 <span class='va'>theta_1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='maxlogL.html'>maxlogL</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, dist <span class='op'>=</span> <span class='st'>'dnorm'</span>, control <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>trace <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>,
                  link <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>over <span class='op'>=</span> <span class='st'>"sd"</span>, fun <span class='op'>=</span> <span class='st'>"log_link"</span><span class='op'>)</span>,
                  fixed <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>mean <span class='op'>=</span> <span class='fl'>160</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   0:     43505.752:  1.00000
-#&gt;   1:     32480.248:  2.00000
-#&gt;   2:     32248.382:  1.91874
-#&gt;   3:     32107.224:  1.76070
-#&gt;   4:     32098.102:  1.79483
-#&gt;   5:     32097.944:  1.79098
-#&gt;   6:     32097.944:  1.79085
-#&gt;   7:     32097.944:  1.79086</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>theta_1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   0:     43500.179:  1.00000
+#&gt;   1:     32479.493:  2.00000
+#&gt;   2:     32247.372:  1.91868
+#&gt;   3:     32106.098:  1.76055
+#&gt;   4:     32096.956:  1.79472
+#&gt;   5:     32096.798:  1.79086
+#&gt;   6:     32096.798:  1.79074
+#&gt;   7:     32096.798:  1.79074</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>theta_1</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; _______________________________________________________________
 #&gt; Optimization routine: nlminb 
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
-#&gt;        AIC      BIC
-#&gt;   64195.89 64195.89
+#&gt;       AIC     BIC
+#&gt;   64193.6 64193.6
 #&gt; _______________________________________________________________
 #&gt;    Estimate  Std. Error Z value Pr(&gt;|z|)    
-#&gt; sd   5.99458    0.04239   141.4   &lt;2e-16 ***
+#&gt; sd   5.99389    0.04238   141.4   &lt;2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________
@@ -223,10 +223,10 @@ test of parameters.</p>
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
 #&gt;        AIC      BIC
-#&gt;   335.3928 335.3928
+#&gt;   346.5938 346.5938
 #&gt; _______________________________________________________________
 #&gt;      Estimate  Std. Error Z value Pr(&gt;|z|)    
-#&gt; prob    0.2870     0.0143   20.06   &lt;2e-16 ***
+#&gt; prob   0.30200    0.01452    20.8   &lt;2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________
@@ -244,10 +244,10 @@ test of parameters.</p>
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
 #&gt;        AIC      BIC
-#&gt;   340.9402 340.9402
+#&gt;   383.3645 383.3645
 #&gt; _______________________________________________________________
 #&gt;      Estimate  Std. Error Z value Pr(&gt;|z|)    
-#&gt; prob   0.29100    0.01436   20.26   &lt;2e-16 ***
+#&gt; prob    0.3240     0.0148   21.89   &lt;2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________
@@ -271,21 +271,21 @@ test of parameters.</p>
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
 #&gt;        AIC      BIC
-#&gt;   5056.435 5076.066
+#&gt;   5063.918 5083.549
 #&gt; _______________________________________________________________
 #&gt; Fixed effects for g(mean) 
 #&gt; ---------------------------------------------------------------
-#&gt;              Estimate Std. Error Z value  Pr(&gt;|z|)    
-#&gt; (Intercept) -1.944886   0.114731 -16.952 &lt; 2.2e-16 ***
-#&gt; x            3.007250   0.030082  99.967 &lt; 2.2e-16 ***
+#&gt;             Estimate Std. Error Z value  Pr(&gt;|z|)    
+#&gt; (Intercept) -1.80937    0.11234 -16.107 &lt; 2.2e-16 ***
+#&gt; x            3.06060    0.03012 101.612 &lt; 2.2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________
 #&gt; Fixed effects for g(sd) 
 #&gt; ---------------------------------------------------------------
 #&gt;              Estimate Std. Error Z value  Pr(&gt;|z|)    
-#&gt; (Intercept) 1.0047459  0.0224859  44.683 &lt; 2.2e-16 ***
-#&gt; x           0.3045360  0.0071798  42.416 &lt; 2.2e-16 ***
+#&gt; (Intercept) 0.9865345  0.0225348  43.778 &lt; 2.2e-16 ***
+#&gt; x           0.2992159  0.0068306  43.805 &lt; 2.2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________
