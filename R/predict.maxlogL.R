@@ -45,12 +45,50 @@
 #' will be given if the variables found are not of the same length as those
 #' in \code{newdata} if it is supplied.
 #'
+#' @examples
+#' library(EstimationTools)
+#'
+#' #--------------------------------------------------------------------------------
+#' # First example: Predictions from simulated normal distribution
+#' n <- 1000
+#' x <- runif(n = n, -5, 6)
+#' y <- rnorm(n = n, mean = -2 + 3 * x, sd = exp(1 + 0.3* x))
+#' norm_data <- data.frame(y = y, x = x)
+#'
+#' # It does not matter the order of distribution parameters
+#' formulas <- list(sd.fo = ~ x, mean.fo = ~ x)
+#'
+#' norm_mod <- maxlogLreg(formulas, y_dist = y ~ dnorm, data = norm_data,
+#'                        link = list(over = "sd", fun = "log_link"))
+#' predict(norm_mod)
+#'
+#'
+#' #--------------------------------------------------------------------------------
+#' # Second example: Predictions using new values for covariates
+#' predict(norm_mod, newdata = data.frame(x=0:6))
+#'
+#'
+#' #--------------------------------------------------------------------------------
+#' # Third example: Predictions for another parameter
+#' predict(norm_mod, newdata = data.frame(x=0:6), param = "sd",
+#'        type = "response")
+#'
+#' #--------------------------------------------------------------------------------
+#' # Fourth example: Model terms
+#' predict(norm_mod, param = "sd", type = "terms")
+#'
+#'
+#' #--------------------------------------------------------------------------------
 #' @importFrom stats model.matrix formula
 #' @export
 predict.maxlogL <-
   function(object, parameter = NULL, newdata = NULL,
            type = c("link", "response", "terms"), se.fit = FALSE,
            terms = NULL, ...){
+    if (object$outputs$type != "maxlogLreg")
+      stop(paste("'predict' method only useful for models with ",
+                 "covariates. \n Use 'maxlogLreg' in order to ",
+                 "take advantage of this method."))
     # Setting all input options
     type <- match.arg(type)
     call <- object$inputs$call
@@ -63,7 +101,7 @@ predict.maxlogL <-
 
     # Linear predictors computation
     betas_pos <- match(object$outputs$par_names, parameter, nomatch = 0)
-    betas_pos <- betas_pos[which(betas_pos != 0)]
+    betas_pos <- which(betas_pos != 0)
     betas <- all_betas(b_length = object$outputs$b_length,
                        npar = object$outputs$npar,
                        param = object$fit$par)[[betas_pos]]
@@ -93,7 +131,7 @@ predict.maxlogL <-
                                        npar = 1, # because predict takes only one parameter.
                                        par_names = parameter)[[parameter]]
 
-        pred <- LinPred(j = 1, betas = betas, mat = dsgn_mat)
+        pred <- dsgn_mat %*% betas
 
         # Fitted values computation
         if ( parameter == object$inputs$link$over & type == 'link' ){
