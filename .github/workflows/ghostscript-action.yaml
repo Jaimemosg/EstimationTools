@@ -10,5 +10,5 @@ jobs:
               uses: jy95/ghostscript-action@v1
               with:
                 file: 'vignettes/maxlogL.pdf'
-                output: 'vignettes/maxlogL.pdf'
+                output: 'vignettes/maxlogL-compressed.pdf'
                 arbitrary-parameters: '-dCompatibilityLevel=1.4 -dPDFSETTINGS=/printer'
