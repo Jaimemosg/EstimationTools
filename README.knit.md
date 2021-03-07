@@ -6,14 +6,7 @@ output:
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
-)
-```
+
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/Jaimemosg/EstimationTools/workflows/R-CMD-check/badge.svg)](https://github.com/Jaimemosg/EstimationTools/actions)
@@ -41,7 +34,8 @@ _Edit (27/07/2020)_ -- We have implemented new tools and we have performed some 
 You can install the latest version (2.0.2) of `EstimationTools` typing the following command lines
 in `R` console:
 
-``` {r eval=FALSE}
+
+```r
 if (!require('devtools')) install.packages('devtools')
 devtools::install_github('Jaimemosg/EstimationTools', force = TRUE)
 library(EstimationTools)
@@ -50,7 +44,8 @@ library(EstimationTools)
 Or you can install the released version (2.0.0) from  [CRAN](https://cran.r-project.org/package=EstimationTools) if you prefer. You can also type the following command lines
 in `R` console:
 
-```{r eval=FALSE}
+
+```r
 install.packages("EstimationTools")
 ```
 
