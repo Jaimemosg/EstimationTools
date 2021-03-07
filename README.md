@@ -1,6 +1,5 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
 <!-- badges: start -->
 
 [![Lifecycle:
@@ -16,6 +15,8 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 <!-- [![Travis build status](https://travis-ci.org/Jaimemosg/EstimationTools.svg?branch=master)](https://travis-ci.org/Jaimemosg/EstimationTools) -->
 <!-- [![Dependencies](https://tinyverse.netlify.com/badge/EstimationTools)](https://cran.r-project.org/package=EstimationTools) -->
+[![Codecov test
+coverage](https://codecov.io/gh/Jaimemosg/EstimationTools/branch/master/graph/badge.svg)](https://codecov.io/gh/Jaimemosg/EstimationTools?branch=master)
 <!-- badges: end -->
 
 # EstimationTools <img src="man/figure/ETLogo.png" align="right" height="200" align="right"/>
