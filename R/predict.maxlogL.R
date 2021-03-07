@@ -50,7 +50,7 @@
 #' library(EstimationTools)
 #'
 #' #--------------------------------------------------------------------------------
-#' # First example: Predictions from simulated normal distribution
+#' # Example 1: Predictions from simulated normal distribution
 #' n <- 1000
 #' x <- runif(n = n, -5, 6)
 #' y <- rnorm(n = n, mean = -2 + 3 * x, sd = exp(1 + 0.3* x))
@@ -65,17 +65,17 @@
 #'
 #'
 #' #--------------------------------------------------------------------------------
-#' # Second example: Predictions using new values for covariates
+#' # Example 2: Predictions using new values for covariates
 #' predict(norm_mod, newdata = data.frame(x=0:6))
 #'
 #'
 #' #--------------------------------------------------------------------------------
-#' # Third example: Predictions for another parameter
+#' # Example 3: Predictions for another parameter
 #' predict(norm_mod, newdata = data.frame(x=0:6), param = "sd",
 #'        type = "response")
 #'
 #' #--------------------------------------------------------------------------------
-#' # Fourth example: Model terms
+#' # Example 4: Model terms
 #' predict(norm_mod, param = "sd", type = "terms")
 #'
 #'
