@@ -96,7 +96,7 @@
 #' # Example 2: Fitting with censorship
 #' # (data from https://www.itl.nist.gov/div898/handbook/apr/section4/apr413.htm)
 #'
-#' failures = c(55, 187, 216, 240, 244, 335, 361, 373, 375, 386)
+#' failures <- c(55, 187, 216, 240, 244, 335, 361, 373, 375, 386)
 #' fails <- c(failures, rep(500, 10))
 #' status <- c(rep(1, length(failures)), rep(0, 10))
 #' Wei_data <- data.frame(fails = fails, status = status)
