@@ -140,6 +140,7 @@ to a given data set.</p>
     <pre class="usage"><span class='fu'>TTT_hazard_shape</span><span class='op'>(</span>
   <span class='va'>formula</span>,
   data <span class='op'>=</span> <span class='cn'>NULL</span>,
+  silent <span class='op'>=</span> <span class='cn'>TRUE</span>,
   local_reg <span class='op'>=</span> <span class='fu'><a href='loess.options.html'>loess.options</a></span><span class='op'>(</span><span class='op'>)</span>,
   interpolation <span class='op'>=</span> <span class='fu'><a href='interp.options.html'>interp.options</a></span><span class='op'>(</span><span class='op'>)</span>,
   <span class='va'>...</span>
@@ -159,6 +160,10 @@ the left of an operator <code><a href='https://rdrr.io/r/base/tilde.html'>~</a><
       <td><p>an optional data frame containing the response variables. If
 data is not specified, the variables are taken from the
 environment from which <code>TTT_hazard_shape</code> is called.</p></td>
+    </tr>
+    <tr>
+      <th>silent</th>
+      <td><p>logical. If TRUE, warnings of <code>TTT_hazard_shape</code> are suppressed.</p></td>
     </tr>
     <tr>
       <th>local_reg</th>
