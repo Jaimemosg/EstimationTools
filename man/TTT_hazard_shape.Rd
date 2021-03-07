@@ -43,6 +43,8 @@ This function performs a non-parametric estimation of the empirical total
 time on test (TTT) plot. Then, this estimated curve can be used so as to
 get suggestions about initial values and the search region for parameters
 based on hazard shape associated to the  shape of empirical TTT plot.
+
+Use \code{\link{Hazard_Shape}} function to get the results for shape estimation.
 }
 \examples{
 #--------------------------------------------------------------------------------
@@ -55,12 +57,13 @@ curve(hweibull(x, shape = 2.5, scale = pi), from = 0, to = 42,
 
 y <- rweibull(n = 50, shape = 2.5, scale = pi)
 my_initial_guess <- TTT_hazard_shape(formula = y ~ 1)
-Hazard_Shape(my_initial_guess)
-plot(my_initial_guess, par_plot=list(mar=c(3.7,3.7,1,1.5),
-                                     mgp=c(2.5,1,0)))
+my_initial_guess$hazard_type
 
 
 #--------------------------------------------------------------------------------
+}
+\seealso{
+\code{\link{Hazard_Shape}}, \code{\link{plot.HazardShape}}
 }
 \author{
 Jaime Mosquera Gutiérrez \email{jmosquerag@unal.edu.co}
