@@ -9,7 +9,8 @@ Authors@R: c(
       comment = c(ORCID = "0000-0001-7459-3329"))
       )
 Depends: R (>= 3.0.0), DEoptim, survival, stringr, BBmisc
-Imports: Rdpack, utils, stats, numDeriv, boot, RCurl, foreign, matrixStats
+Imports: Rdpack, utils, stats, numDeriv, boot, RCurl, foreign, matrixStats,
+    autoimage, graphics
 RdMacros: Rdpack
 Suggests: gamlss.dist, knitr, rmarkdown, AdequacyModel, readr
 VignetteBuilder: knitr, utils
