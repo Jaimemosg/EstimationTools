@@ -77,7 +77,7 @@
 #' library(EstimationTools)
 #'
 #' #--------------------------------------------------------------------------------
-#' # First example: Estimation in simulated normal distribution
+#' # Example 1: Estimation in simulated normal distribution
 #' n <- 1000
 #' x <- runif(n = n, -5, 6)
 #' y <- rnorm(n = n, mean = -2 + 3 * x, sd = exp(1 + 0.3* x))
@@ -92,7 +92,7 @@
 #'
 #'
 #' #--------------------------------------------------------------------------------
-#' # Second example: Fitting with censorship
+#' # Example 2: Fitting with censorship
 #' # (data from https://www.itl.nist.gov/div898/handbook/apr/section4/apr413.htm)
 #'
 #' failures = c(55, 187, 216, 240, 244, 335, 361, 373, 375, 386)

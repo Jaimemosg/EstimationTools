@@ -17,7 +17,7 @@
 
 - Standard error computation is now performed inside 'maxlogL' and 'maxlogLreg'.
 
-- Standard errror value is now stored in the list case named 'fit'. It can be called typing "objectname$fit$StdE", where 'objectname' is the object where the model is sotored.
+- Standard errror value is now stored in the list case named 'fit'. It can be called typing "objectname$fit$StdE", where 'objectname' is the object where the model is stored.
 
 - The new method (function) 'bootstrap_maxlogL' was created for standard error computation through bootstrap.
 
