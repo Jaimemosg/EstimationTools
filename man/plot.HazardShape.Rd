@@ -43,10 +43,10 @@ the usual color argument of \code{\link[graphics]{plot.default}}.}
 of non-parametric estimate plot.}
 
 \item{par_plot}{some graphical parameters which can be passed to the plot. See
-\strong{Details} section for futher information.}
+\strong{Details} section for further information.}
 
 \item{legend_options}{a list with fur further arguments useful for customization. See
-\strong{Details} section for futher information.
+\strong{Details} section for further information.
 of the legend of the plot.}
 
 \item{...}{further arguments passed to empirical TTT plot.}
@@ -68,7 +68,7 @@ has a value equals to 7.2 using \code{mar} and all new values take it as referen
 \item{\code{xpd}:}{Is set as \code{TRUE}, and cannot be modified.}
 }
 
-On the other hand, \code{legend_options} allows manuy of the parameters of
+On the other hand, \code{legend_options} allows many of the parameters of
 \code{\link[graphics]{legend}} function. The following \emph{has preestablished values}:
 \itemize{
 \item{\code{x, y}:}{legend is always located on the right side, outside the plot.

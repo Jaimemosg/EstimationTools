@@ -2,7 +2,7 @@
 % Please edit documentation in R/interp.options.R
 \name{interp.options}
 \alias{interp.options}
-\title{Configure varios aspects of interpolating function in \code{TTT_hazard_shape}}
+\title{Configure various aspects of interpolating function in \code{TTT_hazard_shape}}
 \usage{
 interp.options(interp.fun = "splinefun", length.out = 10, ...)
 }

@@ -11,7 +11,7 @@ Hazard_Shape(object)
 \code{\link{TTT_hazard_shape}}.}
 }
 \description{
-Thisfunction displays the estimated hazard shape given a
+This function displays the estimated hazard shape given a
 data set.
 }
 \author{

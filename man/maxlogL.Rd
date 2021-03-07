@@ -42,7 +42,7 @@ function. There are three link functions available: \code{\link{log_link}},
 \item{upper}{a numeric vector with upper bounds, with the same length of argument
 \code{start} (for box-constrained optimization).}
 
-\item{optimizer}{a lenght-one character vector with the name of optimization routine.
+\item{optimizer}{a length-one character vector with the name of optimization routine.
 \code{\link{nlminb}}, \code{\link{optim}} and
 \code{\link[DEoptim]{DEoptim}} are available; \code{\link{nlminb}}
 is the default routine.}

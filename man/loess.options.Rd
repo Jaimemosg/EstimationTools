@@ -2,7 +2,7 @@
 % Please edit documentation in R/loess.options.R
 \name{loess.options}
 \alias{loess.options}
-\title{Configure varios aspects of LOESS in \code{TTT_hazard_shape}}
+\title{Configure various aspects of LOESS in \code{TTT_hazard_shape}}
 \usage{
 loess.options(span = 2/3, ...)
 }
