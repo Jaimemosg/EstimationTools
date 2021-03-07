@@ -292,7 +292,7 @@ ISSN 00983500, doi: <a href='https://doi.org/10.1145/355958.355965'>10.1145/3559
     <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://jaimemosg.github.io/EstimationTools/'>EstimationTools</a></span><span class='op'>)</span>
 
 <span class='co'>#--------------------------------------------------------------------------------</span>
-<span class='co'># First example: Estimation in simulated normal distribution</span>
+<span class='co'># Example 1: Estimation in simulated normal distribution</span>
 <span class='va'>n</span> <span class='op'>&lt;-</span> <span class='fl'>1000</span>
 <span class='va'>x</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='va'>n</span>, <span class='op'>-</span><span class='fl'>5</span>, <span class='fl'>6</span><span class='op'>)</span>
 <span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='va'>n</span>, mean <span class='op'>=</span> <span class='op'>-</span><span class='fl'>2</span> <span class='op'>+</span> <span class='fl'>3</span> <span class='op'>*</span> <span class='va'>x</span>, sd <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/Log.html'>exp</a></span><span class='op'>(</span><span class='fl'>1</span> <span class='op'>+</span> <span class='fl'>0.3</span><span class='op'>*</span> <span class='va'>x</span><span class='op'>)</span><span class='op'>)</span>
@@ -331,7 +331,7 @@ ISSN 00983500, doi: <a href='https://doi.org/10.1145/355958.355965'>10.1145/3559
 #&gt; ---</div><div class='input'>
 
 <span class='co'>#--------------------------------------------------------------------------------</span>
-<span class='co'># Second example: Fitting with censorship</span>
+<span class='co'># Example 2: Fitting with censorship</span>
 <span class='co'># (data from https://www.itl.nist.gov/div898/handbook/apr/section4/apr413.htm)</span>
 
 <span class='va'>failures</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>55</span>, <span class='fl'>187</span>, <span class='fl'>216</span>, <span class='fl'>240</span>, <span class='fl'>244</span>, <span class='fl'>335</span>, <span class='fl'>361</span>, <span class='fl'>373</span>, <span class='fl'>375</span>, <span class='fl'>386</span><span class='op'>)</span>
