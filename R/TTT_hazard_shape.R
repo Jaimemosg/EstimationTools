@@ -28,9 +28,10 @@
 #' get suggestions about initial values and the search region for parameters
 #' based on hazard shape associated to the  shape of empirical TTT plot.
 #'
-#' @importFrom stats terms predict na.omit formula
-#' @importFrom survival is.Surv
-#' @importFrom BBmisc is.error
+#' Use \code{\link{Hazard_Shape}} function to get the results for shape estimation.
+#'
+#' @seealso \code{\link{Hazard_Shape}}, \code{\link{plot.HazardShape}}
+#'
 #' @examples
 #' #--------------------------------------------------------------------------------
 #' # Example 1: Increasing hazard and its corresponding TTT plot with simulated data
@@ -42,12 +43,13 @@
 #'
 #' y <- rweibull(n = 50, shape = 2.5, scale = pi)
 #' my_initial_guess <- TTT_hazard_shape(formula = y ~ 1)
-#' Hazard_Shape(my_initial_guess)
-#' plot(my_initial_guess, par_plot=list(mar=c(3.7,3.7,1,1.5),
-#'                                      mgp=c(2.5,1,0)))
+#' my_initial_guess$hazard_type
 #'
 #'
 #' #--------------------------------------------------------------------------------
+#' @importFrom stats terms predict na.omit formula
+#' @importFrom survival is.Surv
+#' @importFrom BBmisc is.error
 #' @export
 TTT_hazard_shape <- function(formula, data=NULL, silent = TRUE,
                              local_reg = loess.options(),
