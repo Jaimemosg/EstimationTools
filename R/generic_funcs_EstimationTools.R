@@ -25,3 +25,9 @@ is.maxlogL <- function(x){
 is.EmpiricalTTT <- function(x){
   inherits(x, c("EmpiricalTTT"))
 }
+#==============================================================================
+# EmpiricalTTT function identification ----------------------------------------
+#==============================================================================
+is.HazardShape <- function(x){
+  inherits(x, c("HazardShape"))
+}
