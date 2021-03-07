@@ -4,6 +4,8 @@
 #' @title Logit link function (for estimation with \code{maxlogL} object)
 #' @family link functions
 #'
+#' @encoding UTF-8
+#' #' @author Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
 #' @description
 #' \code{log_link} object provides a way to implement logit link function that
 #' \code{\link{maxlogL}} needs to perform estimation. See documentation for

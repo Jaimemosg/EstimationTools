@@ -1,5 +1,6 @@
 #' Hazard Shape estimation from TTT plot
 #'
+#' @encoding UTF-8
 #' @author Jaime Mosquera Gutiérrez \email{jmosquerag@unal.edu.co}
 #' @family HazardShape
 #'
@@ -13,6 +14,7 @@
 #' @param data an optional data frame containing the response variables. If
 #'             data is not specified, the variables are taken from the
 #'             environment from which \code{\link{TTT_hazard_shape}} is called.
+#' @param silent  logical. If TRUE, warnings of \code{TTT_hazard_shape} are suppressed.
 #' @param local_reg a list of control parameters for LOESS. See
 #'                  \code{\link{loess.options}}.
 #' @param interpolation a list of control parameters for interpolation function. See
@@ -47,7 +49,7 @@
 #'
 #' #--------------------------------------------------------------------------------
 #' @export
-TTT_hazard_shape <- function(formula, data=NULL,
+TTT_hazard_shape <- function(formula, data=NULL, silent = TRUE,
                              local_reg = loess.options(),
                              interpolation = interp.options(), ...){
   if ( length(attr(terms(formula), "term.labels")) > 0 )
@@ -123,7 +125,7 @@ TTT_hazard_shape <- function(formula, data=NULL,
                             "'summary()' and 'plot()'. Visit ",
                             "'OW distribution' vignette to get further ",
                             "information.")
-      warning(the_warning)
+      if ( !silent ) warning(the_warning)
       criterion <- sapply(g2[,1], criteria, x_val=0, y_val=1, g3=g3)
       control1 <- all(criterion)
       control2 <- all(criterion[2:(criterion[length(g2[,1])] - 1)])

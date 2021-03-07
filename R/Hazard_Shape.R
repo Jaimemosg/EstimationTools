@@ -4,6 +4,7 @@
 #' This function displays the estimated hazard shape given a
 #' data set.
 #'
+#' @encoding UTF-8
 #' @author Jaime Mosquera Gutiérrez \email{jmosquerag@unal.edu.co}
 #'
 #' @param object an object of class \code{HazardShape}, generated with

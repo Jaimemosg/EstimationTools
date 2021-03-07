@@ -1,6 +1,7 @@
 #' @title Empirical Total Time on Test (TTT), analytic version.
 #' @family EmpiricalTTT
 #'
+#' @encoding UTF-8
 #' @author Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
 #'
 #' @description
