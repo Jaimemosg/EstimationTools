@@ -12,7 +12,13 @@ Depends: R (>= 3.0.0), DEoptim, survival, stringr, BBmisc
 Imports: Rdpack, utils, stats, numDeriv, boot, RCurl, foreign, matrixStats,
     autoimage, graphics
 RdMacros: Rdpack
-Suggests: gamlss.dist, knitr, rmarkdown, AdequacyModel, readr
+Suggests: 
+    gamlss.dist,
+    knitr,
+    rmarkdown,
+    AdequacyModel,
+    readr,
+    covr
 VignetteBuilder: knitr, utils
 Description: Routines for parameter estimation for any probability density or
     mass function implemented in R via maximum likelihood (ML) given a data set. 

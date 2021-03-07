@@ -17,3 +17,4 @@ vignettes/.*\.toc
 vignettes/*\.RData
 ^LICENSE\.md$
 ^\.github$
+^codecov\.yml$
