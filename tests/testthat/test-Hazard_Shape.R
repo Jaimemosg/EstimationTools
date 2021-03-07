@@ -36,12 +36,3 @@ test_that("Hazard_Shape test", {
   my_initial_guess <- TTT_hazard_shape(formula = y ~ 1)
   expect_snapshot_output( Hazard_Shape(my_initial_guess) )
 })
-
-# {
-#   cat("--------------------------------------------------------------------\n")
-#   cat("Hazard shape: ")
-#   cat("Unimodal")
-#   cat('\n')
-#   cat("--------------------------------------------------------------------\n")
-#   cat("Successful estimate!")
-# }

@@ -81,7 +81,7 @@ where \eqn{T_{(r)}}{T_(r)} is the \eqn{r^{th}}{rth} order statistic, with
 library(EstimationTools)
 
 #--------------------------------------------------------------------------------
-# First example: Scaled empirical TTT from 'mgus1' data from 'survival' package.
+# Example 1: Scaled empirical TTT from 'mgus1' data from 'survival' package.
 
 TTT_1 <- TTTE_Analytical(Surv(stop, event == 'pcm') ~1, method = 'cens',
                          data = mgus1, subset=(start == 0))
@@ -91,7 +91,7 @@ print(TTT_1$strata)
 
 
 #--------------------------------------------------------------------------------
-# Second example: Scaled empirical TTT using a factor variable with 'aml' data
+# Example 2: Scaled empirical TTT using a factor variable with 'aml' data
 # from 'survival' package.
 
 TTT_2 <- TTTE_Analytical(Surv(time, status) ~ x, method = "cens", data = aml)
@@ -100,7 +100,7 @@ head(TTT_2$phi_n)
 print(TTT_2$strata)
 
 #--------------------------------------------------------------------------------
-# Third example: Non-scaled empirical TTT without a factor (arbitrarily simulated
+# Example 3: Non-scaled empirical TTT without a factor (arbitrarily simulated
 # data).
 
 set.seed(911211)
@@ -112,7 +112,7 @@ print(TTT_3$strata)
 
 
 #--------------------------------------------------------------------------------
-# Fourth example: non-scaled empirical TTT without a factor (arbitrarily simulated
+# Example 4: non-scaled empirical TTT without a factor (arbitrarily simulated
 # data) using the 'response' argument (this is equivalent to Third example).
 
 set.seed(911211)
@@ -123,7 +123,7 @@ head(TTT_4$phi_n)
 print(TTT_4$strata)
 
 #--------------------------------------------------------------------------------
-# Fifth example: empirical TTT with a continuously variant term for the the shape
+# Eample 5: empirical TTT with a continuously variant term for the the shape
 # parameter in Odd Weibull distribution.
 
 qOW <- function(p, mu, sigma, nu, lower.tail=TRUE, log.p = FALSE){
