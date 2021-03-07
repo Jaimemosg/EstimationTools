@@ -2,6 +2,7 @@
 #' @description Utility functions useful for passing data from functions
 #' inside others.
 #'
+#' @encoding UTF-8
 #' @author Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
 #' @param model_frame a model frame build internally in some functions on
 #'        \strong{EstimationTools} package

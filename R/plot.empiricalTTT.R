@@ -1,5 +1,6 @@
 #' @title Plot method for \code{EmpiricalTTT} objects
 #'
+#' @encoding UTF-8
 #' @author Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
 #'
 #' @description

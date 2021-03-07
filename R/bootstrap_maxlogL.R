@@ -1,5 +1,6 @@
 #' @title Bootstrap computation of standard error for \code{maxlogL} class objects.
 #'
+#' @encoding UTF-8
 #' @author Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
 #'
 #' @description \code{bootstrap_maxlogL} computes standard errors of

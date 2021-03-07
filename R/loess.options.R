@@ -1,5 +1,6 @@
 #' Configure various aspects of LOESS in \code{TTT_hazard_shape}
 #'
+#' @encoding UTF-8
 #' @author Jaime Mosquera Gutiérrez \email{jmosquerag@unal.edu.co}
 #'
 #' @description

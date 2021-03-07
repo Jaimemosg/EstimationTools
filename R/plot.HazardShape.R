@@ -1,5 +1,6 @@
 #' Plot of \code{HazardShape} objects
 #'
+#' @encoding UTF-8
 #' @author Jaime Mosquera Gutiérrez \email{jmosquerag@unal.edu.co}
 #'
 #' @description

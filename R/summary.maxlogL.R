@@ -1,5 +1,6 @@
 #' @title Summarize Maximum Likelihood Estimation
 #'
+#' @encoding UTF-8
 #' @author Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
 #'
 #' @description

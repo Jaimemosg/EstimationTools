@@ -1,5 +1,6 @@
 #' @title Predict Method for \code{maxlogL} Fits
 #'
+#' @encoding UTF-8
 #' @author Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
 #'
 #' @description

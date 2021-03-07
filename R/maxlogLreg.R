@@ -1,6 +1,7 @@
 #' @title Maximum Likelihood Estimation for parametric linear regression models
 #' @family maxlogL
 #'
+#' @encoding UTF-8
 #' @author Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
 #'
 #' @description
