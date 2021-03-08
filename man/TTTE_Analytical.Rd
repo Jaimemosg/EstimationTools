@@ -12,6 +12,7 @@ TTTE_Analytical(
   data,
   method = c("Barlow", "censored"),
   partition_method = NULL,
+  silent = FALSE,
   ...
 )
 }
@@ -40,6 +41,8 @@ information can be found in the \strong{Details} section.}
 \code{formula} is numeric, or when the data has several
 covariates. 'quantile-based' method is the only one
 currently available (See the last example).}
+
+\item{silent}{logical. If TRUE, warnings of \code{TTTE_Analytical} are suppressed.}
 
 \item{...}{further arguments passing to \code{\link[survival]{survfit}}.}
 }

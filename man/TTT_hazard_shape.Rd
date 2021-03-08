@@ -8,9 +8,9 @@
 TTT_hazard_shape(
   formula,
   data = NULL,
-  silent = TRUE,
   local_reg = loess.options(),
   interpolation = interp.options(),
+  silent = FALSE,
   ...
 )
 }
@@ -23,13 +23,13 @@ the left of an operator \code{~}. The right side must be
 data is not specified, the variables are taken from the
 environment from which \code{\link{TTT_hazard_shape}} is called.}
 
-\item{silent}{logical. If TRUE, warnings of \code{TTT_hazard_shape} are suppressed.}
-
 \item{local_reg}{a list of control parameters for LOESS. See
 \code{\link{loess.options}}.}
 
 \item{interpolation}{a list of control parameters for interpolation function. See
 \code{\link{interp.options}}.}
+
+\item{silent}{logical. If TRUE, warnings of \code{TTT_hazard_shape} are suppressed.}
 
 \item{...}{further arguments passed to
 \code{\link{TTTE_Analytical}}.}
