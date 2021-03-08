@@ -27,6 +27,7 @@
 #'                         \code{formula} is numeric, or when the data has several
 #'                         covariates. 'quantile-based' method is the only one
 #'                         currently available (See the last example).
+#' @param silent  logical. If TRUE, warnings of \code{TTTE_Analytical} are suppressed.
 #' @param ... further arguments passing to \code{\link[survival]{survfit}}.
 #'
 #' @details When \code{method} argument is set as \code{'Barlow'}, this function
@@ -171,7 +172,8 @@
 #==============================================================================
 TTTE_Analytical <- function(formula, response = NULL, scaled = TRUE, data,
                             method = c('Barlow', 'censored'),
-                            partition_method = NULL, ...){
+                            partition_method = NULL, silent = FALSE, ...){
+  if (silent) options(warn = -1)
   method <- match.arg(method, c('Barlow', 'censored'))
   mycall <- match.call()
   formula_definition <- try(!is.null(formula), silent = TRUE)
@@ -229,6 +231,7 @@ TTTE_Analytical <- function(formula, response = NULL, scaled = TRUE, data,
   TTT <- TTT_formula_selector(inputs, scaled, method)
   TTT$x_var <- inputs$x
   class(TTT) <- "EmpiricalTTT"
+  if (silent) options(warn = 0)
   return(TTT)
 }
 #==============================================================================

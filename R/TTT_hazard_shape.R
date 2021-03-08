@@ -51,9 +51,10 @@
 #' @importFrom survival is.Surv
 #' @importFrom BBmisc is.error
 #' @export
-TTT_hazard_shape <- function(formula, data=NULL, silent = TRUE,
-                             local_reg = loess.options(),
-                             interpolation = interp.options(), ...){
+TTT_hazard_shape <- function(formula, data=NULL, local_reg = loess.options(),
+                             interpolation = interp.options(),
+                             silent = FALSE, ...){
+  if (silent) options(warn = -1)
   if ( length(attr(terms(formula), "term.labels")) > 0 )
     stop('initValuesOW_TTT function only uses response variable.')
   mycall <- match.call()
@@ -127,7 +128,6 @@ TTT_hazard_shape <- function(formula, data=NULL, silent = TRUE,
                             "'summary()' and 'plot()'. Visit ",
                             "'OW distribution' vignette to get further ",
                             "information.")
-      if ( !silent ) warning(the_warning)
       criterion <- sapply(g2[,1], criteria, x_val=0, y_val=1, g3=g3)
       control1 <- all(criterion)
       control2 <- all(criterion[2:(criterion[length(g2[,1])] - 1)])
@@ -149,6 +149,7 @@ TTT_hazard_shape <- function(formula, data=NULL, silent = TRUE,
                  local_reg=g3, interpolation=g4, TTTplot=g2,
                  hazard_type=hazard_type, warning=the_warning)
   class(output) <- "HazardShape"
+  if (silent) options(warn = 0)
   return(output)
 }
 #==============================================================================
