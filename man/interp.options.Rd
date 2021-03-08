@@ -9,13 +9,12 @@ interp.options(interp.fun = "splinefun", length.out = 10, ...)
 }
 \arguments{
 \item{interp.fun}{character. This argument defines the interpolating
-function used. Default value is
-\code{"splinefun"}. Visit the
+function used. Default value is \code{"splinefun"}. Visit the
 \strong{Details} section for further information.}
 
 \item{length.out}{numeric. Number of points interpolated. Default value is 10.}
 
-\item{...}{further arguments passed to the interpolating function function.}
+\item{...}{further arguments passed to the interpolating function.}
 }
 \description{
 This function allows the user to set the parameters of any of the following
@@ -28,6 +27,7 @@ interpolating functions are  recommended:
 \itemize{
 \item \code{\link[stats]{approxfun}}
 \item \code{\link[stats]{splinefun}}
+\item \code{\link{spline}}
 }
 
 The user can also implement a custom interpolating function.

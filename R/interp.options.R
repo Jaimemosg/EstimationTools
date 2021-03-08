@@ -8,11 +8,10 @@
 #' interpolating functions which can be used inside \code{\link{TTT_hazard_shape}}.
 #'
 #' @param interp.fun character. This argument defines the interpolating
-#'                   function used. Default value is
-#'                   \code{"splinefun"}. Visit the
+#'                   function used. Default value is \code{"splinefun"}. Visit the
 #'                   \strong{Details} section for further information.
 #' @param length.out numeric. Number of points interpolated. Default value is 10.
-#' @param ... further arguments passed to the interpolating function function.
+#' @param ... further arguments passed to the interpolating function.
 #'
 #' @details
 #' Each interpolating function has its particular arguments. The following
@@ -21,6 +20,7 @@
 #' \itemize{
 #' \item \code{\link[stats]{approxfun}}
 #' \item \code{\link[stats]{splinefun}}
+#' \item \code{\link{spline}}
 #' }
 #'
 #' The user can also implement a custom interpolating function.
@@ -32,17 +32,18 @@
 interp.options <- function(interp.fun = "splinefun", length.out = 10, ...){
   dots <- substitute(...())
   names_dots <- names(dots)
-  dots_match <- match(c("x", "y"), names_dots)
-  if ( any(!is.na(dots_match)) ){
-    dots_match <- na.omit(dots_match)
+  interp_args <- names(formals(eval(parse(text = interp.fun))))[-c(1,2)]
+  dots_match <- match(names_dots, interp_args)
+  if ( any(is.na(dots_match)) ){
+    dots_match <- which(is.na(dots_match))
     forbidden <- names_dots[dots_match]
-    sentence <- c(" Argument ", " is ")
+    sentence <- c("Argument ", " is ")
     if ( length(forbidden) > 1 ) sentence <- c("Arguments ", " are ")
-    stop(paste0(sentence[1], forbidden, sentence[2], "forbidden ", "for",
-                " 'loess.options' function."))
+    stop(paste0(sentence[1], "'", forbidden, "'", sentence[2], "not available ",
+                "for", " '", interp.fun, "' function."))
   }
-  list_out <- list(interp.fun = interp.fun, length.out = length.out,
-                   passing_args = list(...))
-  if ( length(list_out$passing_args) == 0 ) list_out$passing_args <- NULL
+  list_out <- c(list(interp.fun = interp.fun, length.out = length.out), dots)
+  if ( length(list_out[3:length(list_out)]) == 0 ) list_out$passing_args <- NULL
   return(list_out)
 }
+
