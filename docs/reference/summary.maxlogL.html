@@ -74,7 +74,7 @@ This is a summary method for maxlogL object." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EstimationTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.0</span>
       </span>
     </div>
 
@@ -182,23 +182,23 @@ test of parameters.</p>
 <span class='va'>theta_1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='maxlogL.html'>maxlogL</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, dist <span class='op'>=</span> <span class='st'>'dnorm'</span>, control <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>trace <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>,
                  link <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>over <span class='op'>=</span> <span class='st'>"sd"</span>, fun <span class='op'>=</span> <span class='st'>"log_link"</span><span class='op'>)</span>,
                  fixed <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>mean <span class='op'>=</span> <span class='fl'>160</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   0:     43500.179:  1.00000
-#&gt;   1:     32479.493:  2.00000
-#&gt;   2:     32247.372:  1.91868
-#&gt;   3:     32106.098:  1.76055
-#&gt;   4:     32096.956:  1.79472
-#&gt;   5:     32096.798:  1.79086
-#&gt;   6:     32096.798:  1.79074
-#&gt;   7:     32096.798:  1.79074</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>theta_1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   0:     43507.130:  1.00000
+#&gt;   1:     32480.434:  2.00000
+#&gt;   2:     32248.632:  1.91875
+#&gt;   3:     32107.503:  1.76073
+#&gt;   4:     32098.385:  1.79486
+#&gt;   5:     32098.228:  1.79100
+#&gt;   6:     32098.227:  1.79088
+#&gt;   7:     32098.227:  1.79088</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>theta_1</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; _______________________________________________________________
 #&gt; Optimization routine: nlminb 
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
-#&gt;       AIC     BIC
-#&gt;   64193.6 64193.6
+#&gt;        AIC      BIC
+#&gt;   64196.45 64196.45
 #&gt; _______________________________________________________________
 #&gt;    Estimate  Std. Error Z value Pr(&gt;|z|)    
-#&gt; sd   5.99389    0.04238   141.4   &lt;2e-16 ***
+#&gt; sd   5.99475    0.04239   141.4   &lt;2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________
@@ -223,10 +223,10 @@ test of parameters.</p>
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
 #&gt;        AIC      BIC
-#&gt;   346.5938 346.5938
+#&gt;   370.0744 370.0744
 #&gt; _______________________________________________________________
 #&gt;      Estimate  Std. Error Z value Pr(&gt;|z|)    
-#&gt; prob   0.30200    0.01452    20.8   &lt;2e-16 ***
+#&gt; prob   0.31300    0.01466   21.34   &lt;2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________
@@ -244,10 +244,10 @@ test of parameters.</p>
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
 #&gt;        AIC      BIC
-#&gt;   383.3645 383.3645
+#&gt;   359.2389 359.2389
 #&gt; _______________________________________________________________
 #&gt;      Estimate  Std. Error Z value Pr(&gt;|z|)    
-#&gt; prob    0.3240     0.0148   21.89   &lt;2e-16 ***
+#&gt; prob    0.3160     0.0147   21.49   &lt;2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________
@@ -271,21 +271,21 @@ test of parameters.</p>
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
 #&gt;        AIC      BIC
-#&gt;   5063.918 5083.549
+#&gt;   5135.165 5154.796
 #&gt; _______________________________________________________________
 #&gt; Fixed effects for g(mean) 
 #&gt; ---------------------------------------------------------------
-#&gt;             Estimate Std. Error Z value  Pr(&gt;|z|)    
-#&gt; (Intercept) -1.80937    0.11234 -16.107 &lt; 2.2e-16 ***
-#&gt; x            3.06060    0.03012 101.612 &lt; 2.2e-16 ***
+#&gt;              Estimate Std. Error Z value  Pr(&gt;|z|)    
+#&gt; (Intercept) -2.049420   0.115418 -17.756 &lt; 2.2e-16 ***
+#&gt; x            2.981090   0.030977  96.237 &lt; 2.2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________
 #&gt; Fixed effects for g(sd) 
 #&gt; ---------------------------------------------------------------
 #&gt;              Estimate Std. Error Z value  Pr(&gt;|z|)    
-#&gt; (Intercept) 0.9865345  0.0225348  43.778 &lt; 2.2e-16 ***
-#&gt; x           0.2992159  0.0068306  43.805 &lt; 2.2e-16 ***
+#&gt; (Intercept) 1.0129403  0.0225784  44.863 &lt; 2.2e-16 ***
+#&gt; x           0.2929134  0.0069573  42.102 &lt; 2.2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________
@@ -306,7 +306,7 @@ test of parameters.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Jaime Mosquera, Freddy Hernandez.</p>
+  <p>Developed by Jaime Mosquera.</p>
 </div>
 
 <div class="pkgdown">

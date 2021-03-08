@@ -73,7 +73,7 @@ to a given data set." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EstimationTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.0</span>
       </span>
     </div>
 
@@ -188,6 +188,10 @@ environment from which <code>TTT_hazard_shape</code> is called.</p></td>
 time on test (TTT) plot. Then, this estimated curve can be used so as to
 get suggestions about initial values and the search region for parameters
 based on hazard shape associated to the  shape of empirical TTT plot.</p>
+<p>Use <code><a href='Hazard_Shape.html'>Hazard_Shape</a></code> function to get the results for shape estimation.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='Hazard_Shape.html'>Hazard_Shape</a></code>, <code><a href='plot.HazardShape.html'>plot.HazardShape</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Jaime Mosquera Gutiérrez <a href='mailto:jmosquerag@unal.edu.co'>jmosquerag@unal.edu.co</a></p>
@@ -204,13 +208,8 @@ based on hazard shape associated to the  shape of empirical TTT plot.</p>
 <span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Weibull.html'>rweibull</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>50</span>, shape <span class='op'>=</span> <span class='fl'>2.5</span>, scale <span class='op'>=</span> <span class='va'>pi</span><span class='op'>)</span>
 <span class='va'>my_initial_guess</span> <span class='op'>&lt;-</span> <span class='fu'>TTT_hazard_shape</span><span class='op'>(</span>formula <span class='op'>=</span> <span class='va'>y</span> <span class='op'>~</span> <span class='fl'>1</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='warning'>Warning: Non-parametric estimate for Empirical TTT is irregular.</span>
-#&gt; <span class='warning'>Please, use the 'plot()' method to see the TTT shape and set the search region manually in 'gamlss()' if there is no conincidence between 'summary()' and 'plot()'. Visit 'OW distribution' vignette to get further information.</span></div><div class='input'><span class='fu'><a href='Hazard_Shape.html'>Hazard_Shape</a></span><span class='op'>(</span><span class='va'>my_initial_guess</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; --------------------------------------------------------------------
-#&gt; Hazard shape: Increasing
-#&gt; --------------------------------------------------------------------</div><div class='output co'>#&gt; <span class='warning'>Warning: Non-parametric estimate for Empirical TTT is irregular.</span>
-#&gt; <span class='warning'>Please, use the 'plot()' method to see the TTT shape and set the search region manually in 'gamlss()' if there is no conincidence between 'summary()' and 'plot()'. Visit 'OW distribution' vignette to get further information.</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>my_initial_guess</span>, par_plot<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>mar<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3.7</span>,<span class='fl'>3.7</span>,<span class='fl'>1</span>,<span class='fl'>1.5</span><span class='op'>)</span>,
-                                     mgp<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2.5</span>,<span class='fl'>1</span>,<span class='fl'>0</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='img'><img src='TTT_hazard_shape-2.png' alt='' width='700' height='433' /></div><div class='input'>
+#&gt; <span class='warning'>Please, use the 'plot()' method to see the TTT shape and set the search region manually in 'gamlss()' if there is no conincidence between 'summary()' and 'plot()'. Visit 'OW distribution' vignette to get further information.</span></div><div class='input'><span class='va'>my_initial_guess</span><span class='op'>$</span><span class='va'>hazard_type</span>
+</div><div class='output co'>#&gt; [1] "Increasing"</div><div class='input'>
 
 <span class='co'>#--------------------------------------------------------------------------------</span>
 </div></pre>
@@ -225,7 +224,7 @@ based on hazard shape associated to the  shape of empirical TTT plot.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Jaime Mosquera, Freddy Hernandez.</p>
+  <p>Developed by Jaime Mosquera.</p>
 </div>
 
 <div class="pkgdown">
