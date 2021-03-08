@@ -1,3 +1,7 @@
+# EstimationTools 2.1.0
+
+- Function for hazard shape estimation implemented. A plot method was also implemented.
+
 # EstimationTools 2.0.2
 
 - Empirical TTT with numerical (grouped) covariate.
