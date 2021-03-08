@@ -19,7 +19,8 @@ Suggests:
     AdequacyModel,
     readr,
     covr,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    spelling
 VignetteBuilder: knitr, utils
 Description: Routines for parameter estimation for any probability density or
     mass function implemented in R via maximum likelihood (ML) given a data set. 
@@ -38,3 +39,4 @@ LazyData: true
 RoxygenNote: 7.1.1
 Roxygen: list(markdown = TRUE)
 Config/testthat/edition: 3
+Language: en-US
