@@ -20,6 +20,7 @@ Suggests:
     readr,
     covr,
     testthat (>= 3.0.0),
+    vdiffr,
     spelling
 VignetteBuilder: knitr, utils
 Description: Routines for parameter estimation for any probability density or
