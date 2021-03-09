@@ -82,8 +82,12 @@ plot.EmpiricalTTT <- function(x, add = FALSE, grid = FALSE, type = "l", pch = 1,
                               xlab = "i/n", ylab = expression(phi[n](i/n)), ...){
   matplot(x$`i/n`, x$phi_n, xlab = xlab, ylab = ylab,
           xlim = c(0,1), type = type, pch = pch, add = add, ...)
-  if ( !add ) lines(c(0,1), c(0, max(x$phi_n[nrow(x$phi_n),])),
-                    lty = 2)
+  if ( !add ){
+    endpoint <- x$phi_n[nrow(x$phi_n),]
+    endpoint <- max(endpoint[!is.na(endpoint)])
+    lines(c(0,1), c(0, endpoint),
+          lty = 4, lwd = 2)
+  }
   if ( grid == TRUE )
     grid()
 }
