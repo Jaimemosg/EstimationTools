@@ -25,14 +25,17 @@
 loess.options <- function(span = 2/3, ...){
   dots <- substitute(...())
   names_dots <- names(dots)
-  dots_match <- match(c("data", "subset"), names_dots)
-  if ( any(!is.na(dots_match)) ){
-    dots_match <- na.omit(dots_match)
+  loess_args <- names(formals(eval(parse(text = "loess"))))
+  loess_args <- loess_args[which(loess_args != "data" & loess_args != "subset" &
+                                   loess_args != "...")]
+  dots_match <- match(names_dots, loess_args)
+  if ( any(is.na(dots_match)) ){
+    dots_match <- which(is.na(dots_match))
     forbidden <- names_dots[dots_match]
     sentence <- c(" Argument ", " is ")
     if ( length(forbidden) > 1 ) sentence <- c("Arguments ", " are ")
-    stop(paste0(sentence[1], forbidden, sentence[2], "forbidden ", "for",
-                " 'loess.options' function."))
+    stop(paste0(sentence[1], "'", forbidden, "'", sentence[2], "not available ", "for",
+                " 'loess' function."))
   }
-  return(list(span=span, ...))
+  return(c(list(span=span), dots))
 }
