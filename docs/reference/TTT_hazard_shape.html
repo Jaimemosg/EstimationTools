@@ -140,9 +140,9 @@ to a given data set.</p>
     <pre class="usage"><span class='fu'>TTT_hazard_shape</span><span class='op'>(</span>
   <span class='va'>formula</span>,
   data <span class='op'>=</span> <span class='cn'>NULL</span>,
-  silent <span class='op'>=</span> <span class='cn'>TRUE</span>,
   local_reg <span class='op'>=</span> <span class='fu'><a href='loess.options.html'>loess.options</a></span><span class='op'>(</span><span class='op'>)</span>,
   interpolation <span class='op'>=</span> <span class='fu'><a href='interp.options.html'>interp.options</a></span><span class='op'>(</span><span class='op'>)</span>,
+  silent <span class='op'>=</span> <span class='cn'>FALSE</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
 
@@ -162,10 +162,6 @@ data is not specified, the variables are taken from the
 environment from which <code>TTT_hazard_shape</code> is called.</p></td>
     </tr>
     <tr>
-      <th>silent</th>
-      <td><p>logical. If TRUE, warnings of <code>TTT_hazard_shape</code> are suppressed.</p></td>
-    </tr>
-    <tr>
       <th>local_reg</th>
       <td><p>a list of control parameters for LOESS. See
 <code><a href='loess.options.html'>loess.options</a></code>.</p></td>
@@ -174,6 +170,10 @@ environment from which <code>TTT_hazard_shape</code> is called.</p></td>
       <th>interpolation</th>
       <td><p>a list of control parameters for interpolation function. See
 <code><a href='interp.options.html'>interp.options</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>silent</th>
+      <td><p>logical. If TRUE, warnings of <code>TTT_hazard_shape</code> are suppressed.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -207,8 +207,7 @@ based on hazard shape associated to the  shape of empirical TTT plot.</p>
 </div><div class='img'><img src='TTT_hazard_shape-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Weibull.html'>rweibull</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>50</span>, shape <span class='op'>=</span> <span class='fl'>2.5</span>, scale <span class='op'>=</span> <span class='va'>pi</span><span class='op'>)</span>
 <span class='va'>my_initial_guess</span> <span class='op'>&lt;-</span> <span class='fu'>TTT_hazard_shape</span><span class='op'>(</span>formula <span class='op'>=</span> <span class='va'>y</span> <span class='op'>~</span> <span class='fl'>1</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Non-parametric estimate for Empirical TTT is irregular.</span>
-#&gt; <span class='warning'>Please, use the 'plot()' method to see the TTT shape and set the search region manually in 'gamlss()' if there is no conincidence between 'summary()' and 'plot()'. Visit 'OW distribution' vignette to get further information.</span></div><div class='input'><span class='va'>my_initial_guess</span><span class='op'>$</span><span class='va'>hazard_type</span>
+<span class='va'>my_initial_guess</span><span class='op'>$</span><span class='va'>hazard_type</span>
 </div><div class='output co'>#&gt; [1] "Increasing"</div><div class='input'>
 
 <span class='co'>#--------------------------------------------------------------------------------</span>
