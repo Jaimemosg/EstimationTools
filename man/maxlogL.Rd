@@ -15,6 +15,7 @@ maxlogL(
   optimizer = "nlminb",
   control = NULL,
   silent = FALSE,
+  StdE_Method = c("optim", "numDeriv"),
   ...
 )
 }

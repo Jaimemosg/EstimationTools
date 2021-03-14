@@ -1,4 +1,4 @@
-\begin{thebibliography}{18}
+\begin{thebibliography}{15}
 \newcommand{\enquote}[1]{``#1''}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
@@ -9,28 +9,9 @@
   \urlstyle{rm}\Url}\fi
 \providecommand{\eprint}[2][]{\url{#2}}
 
-\bibitem[{Bakouch \emph{et~al.}(2012)Bakouch, Risti{\'{c}}, Asgharzadeh,
-  Esmaily, and Al-Zahrani}]{Bakouch2012}
-Bakouch HS, Risti{\'{c}} MM, Asgharzadeh A, Esmaily L, Al-Zahrani BM (2012).
-\newblock \enquote{{An exponentiated exponential binomial distribution with
-  application}.}
-\newblock \emph{Statistics and Probability Letters}, \textbf{82}(6),
-  1067--1081.
-\newblock ISSN 01677152.
-\newblock \doi{10.1016/j.spl.2012.03.004}.
-\newblock \urlprefix\url{http://dx.doi.org/10.1016/j.spl.2012.03.004}.
-
 \bibitem[{Canty and Ripley(2017)}]{Canty2017}
 Canty A, Ripley BD (2017).
 \newblock \emph{{boot: Bootstrap R (S-Plus) Functions}}.
-
-\bibitem[{Daniels(1961)}]{Daniels1961}
-Daniels HE (1961).
-\newblock \enquote{{Efficiency of a maximum likelihood estimator}.}
-\newblock In J~Neyman (ed.), \emph{Proceedings of the Fourth Berkeley Symposium
-  on Mathematical Statistics and Probability, Volume 1: Contributions to the
-  Theory of Statistics}, pp. 151--163. University of California Press,
-  Berkeley.
 
 \bibitem[{Davison and Hinkley(1997)}]{Davison1997}
 Davison AC, Hinkley DV (1997).
@@ -63,8 +44,7 @@ Fox PA, Hall AP, Schryer NL (1978).
   104--126.
 \newblock ISSN 00983500.
 \newblock \doi{10.1145/355780.355783}.
-\newblock
-  \urlprefix\url{http://portal.acm.org/citation.cfm?doid=355780.355783}.
+\newblock \urlprefix\url{https://dl.acm.org/doi/10.1145/355780.355783}.
 
 \bibitem[{Ghitany \emph{et~al.}(2013)Ghitany, Al-Mutairi, Balakrishnan, and
   Al-Enezi}]{Ghitany2013}
@@ -75,16 +55,6 @@ Ghitany ME, Al-Mutairi DK, Balakrishnan N, Al-Enezi LJ (2013).
 \newblock ISSN 01679473.
 \newblock \doi{10.1016/j.csda.2013.02.026}.
 \newblock \urlprefix\url{http://dx.doi.org/10.1016/j.csda.2013.02.026}.
-
-\bibitem[{Gurland(1954)}]{Gurland1954}
-Gurland J (1954).
-\newblock \enquote{{On regularity conditions for maximum likelihood
-  estimators}.}
-\newblock \emph{Scandinavian Actuarial Journal}, \textbf{1954}(1), 71--76.
-\newblock ISSN 0346-1238.
-\newblock \doi{10.1080/03461238.1954.10414197}.
-\newblock
-  \urlprefix\url{http://www.tandfonline.com/doi/abs/10.1080/03461238.1954.10414197}.
 
 \bibitem[{Haupt and Haupt(2003)}]{Haupt2003}
 Haupt RL, Haupt SE (2003).

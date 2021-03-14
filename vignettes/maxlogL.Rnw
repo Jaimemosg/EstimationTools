@@ -226,94 +226,94 @@ summary(phat)
 
 As can be seen, the procedure applies the inverse of the link function to return the parameter to the original scale.
 
-<<<<<<< HEAD
-=======
-\section{Simulation Study}
+% <<<<<<< HEAD
+% =======
+% \section{Simulation Study}
+%
+% In this section we simulated ML estimation with some distributions with \code{maxlogL}.
+%
+% \subsection{Existing distributions}
+% We simulated the following two types of random variables: $X \sim \text{NO}(\mu=5,\: \sigma^2=4)$ with sample sizes $n \in \lbrace 3,...,400 \rbrace$ and $Y \sim \text{ZIP}(\lambda=6,\: \pi=0.08)$ with $n \in \lbrace 3,...,500 \rbrace$. We performed 1000 replications of each sample size.
 
-In this section we simulated ML estimation with some distributions with \code{maxlogL}.
-
-\subsection{Existing distributions}
-We simulated the following two types of random variables: $X \sim \text{NO}(\mu=5,\: \sigma^2=4)$ with sample sizes $n \in \lbrace 3,...,400 \rbrace$ and $Y \sim \text{ZIP}(\lambda=6,\: \pi=0.08)$ with $n \in \lbrace 3,...,500 \rbrace$. We performed 1000 replications of each sample size.
-
-\subsection{User-defined distribution}
-Additionally, we simulated $W \sim \text{EEB}(\mu=0.5,\: \sigma=1, \nu=1.5, m=10)$ with $n \in \lbrace 3,...,1000 \rbrace$ (an exponentiated exponential binomial distribution, proposed by \cite{Bakouch2012}). As the previous case, we performed 1000 replications of each sample size. Probability density function of EEB distribution is given by the following expression:
-
-\begin{equation} \label{EEBf}
-  f(w|\mu, \sigma, \nu, m) = \frac{\sigma\nu\mu m}{1-(1-\mu)^m} \left(1 - e^{-\sigma w} \right)^{\nu-1} \left[ 1 - \mu\left(1 - e^{-\sigma w} \right)^\nu \right]^{m-1},
-\end{equation}
-
-with $w>0$, $\mu \in (0,1)$, $\sigma, \nu>0$ and $m$ an integer such that $m \geq 1$. We took this distribution as the user-defined by implementing it as an \proglang{R} function, as is customary. Note that argument \code{size} corresponds to parameter $m$ in equation (\ref{EEBf}):
-
-<<EEBdensity, echo=TRUE, eval=FALSE>>=
-dEEB <- function(x, mu = 0.5, sigma = 1, nu = 1.5, size = 10,
-                 log = FALSE){
-  if (any(x<0))
-    stop(paste("x must greater than zero", "\n", ""))
-  if (any(mu < 0) | any(mu > 1))
-    stop(paste("mu must be between 0 and 1", "\n", ""))
-  if (any(sigma<=0 ))
-    stop(paste("sigma must be greater than zero", "\n", ""))
-  if (any(nu<=0 ))
-    stop(paste("nu must be greater than zero", "\n", ""))
-
-  loglik <- log(sigma * nu * size *  mu) - sigma * x +
-            (nu - 1) * log(1 - exp(-sigma * x)) -
-            log(1 - (1 - mu)^size) +
-            (size - 1) * log(1 - mu * (1 - exp(-sigma * x))^nu)
-  if (log == FALSE)
-    density <- exp(loglik) else density <- loglik
-  return(density)
-}
-@
-
-<<norm_a, echo=FALSE, fig=TRUE, height=10, width=10, include=FALSE, eval=F>>=
-param.val=list(mean=5, sd=2)
-distrib <- 'dnorm'
-
-Parameters1 <- read.table(file=paste0("params_", distrib, "_", "nlminb",
-                                      ".txt"),
-                          header=TRUE)
-Parameters2 <- read.table(file=paste0("params_", distrib, "_", 'optim',
-                                      ".txt"),
-                          header=TRUE)
-Parameters <- rbind(Parameters1, Parameters2)
-
-par(family="serif", cex.lab=2.5, cex.axis=2.5,
-    mar=c(5,4,4,2)+0.1, mai=c(0.9,1.5,0.5,0.5), las=0)
-mu <- aggregate(mean ~ n + method, data=Parameters, FUN=mean)
-plot(mu[mu$method=='nlminb',]$n, mu[mu$method=='nlminb',]$mean,
-     xlab="n", ylab=expression(hat(mu)), type="l", lwd=2)
-lines(mu[mu$method=='optim',]$n, mu[mu$method=='optim',]$mean,
-      lwd=1, col="dodgerblue3")
-legend("bottomright", legend=c('nlminb', 'optim (BFGS)'),
-       col=c(1,"dodgerblue3"), lwd=c(2,1), cex=2.5)
-abline(h=param.val$mean, col=2, lwd=4)
-@
-
-<<norm_b, echo=FALSE, fig=TRUE, height=10, width=10, include=FALSE, eval=F>>=
-par(family="serif", cex.lab=2.5, cex.axis=2.5,
-    mar=c(5,4,4,2)+0.1, mai=c(0.9,1.5,0.5,0.5), las=0)
-sigma <- aggregate(sd ~ n + method, data=Parameters, FUN=mean)
-plot(sigma[sigma$method=='nlminb',]$n, sigma[sigma$method=='nlminb',]$sd,
-     xlab="n", ylab=expression(hat(sigma)), type="l", lwd=2)
-lines(sigma[sigma$method=='optim',]$n, sigma[sigma$method=='optim',]$sd,
-      type="l", lwd=1, col="dodgerblue3")
-legend("bottomright", legend=c('nlminb', 'optim (BFGS)'),
-       col=c(1,"dodgerblue3"), lwd=c(2,1), cex=2.5)
-abline(h=param.val$sd, col=2, lwd=4)
-@
-
-\begin{figure}[H]
-    \begin{subfigure}[h]{0.49\textwidth}
-        \includegraphics[width=\textwidth]{article-norm_a}
-        \caption{\label{fig:norma}}
-    \end{subfigure}
-    \begin{subfigure}[h]{0.49\textwidth}
-        \includegraphics[width=\textwidth]{article-norm_b}
-        \caption{\label{fig:normb}}
-    \end{subfigure}
-\caption{\label{fig:norm} Mean value for (a) location parameter $\hat{\mu}$ and (b) scale parameter $\hat{\sigma}$ versus sample size $n$ in normal distribution based on 1000 replications. Horizontal red lines are the true value of the parameters.}
-\end{figure}
+% \subsection{User-defined distribution}
+% Additionally, we simulated $W \sim \text{EEB}(\mu=0.5,\: \sigma=1, \nu=1.5, m=10)$ with $n \in \lbrace 3,...,1000 \rbrace$ (an exponentiated exponential binomial distribution, proposed by \cite{Bakouch2012}). As the previous case, we performed 1000 replications of each sample size. Probability density function of EEB distribution is given by the following expression:
+%
+% \begin{equation} \label{EEBf}
+%   f(w|\mu, \sigma, \nu, m) = \frac{\sigma\nu\mu m}{1-(1-\mu)^m} \left(1 - e^{-\sigma w} \right)^{\nu-1} \left[ 1 - \mu\left(1 - e^{-\sigma w} \right)^\nu \right]^{m-1},
+% \end{equation}
+%
+% with $w>0$, $\mu \in (0,1)$, $\sigma, \nu>0$ and $m$ an integer such that $m \geq 1$. We took this distribution as the user-defined by implementing it as an \proglang{R} function, as is customary. Note that argument \code{size} corresponds to parameter $m$ in equation (\ref{EEBf}):
+%
+% <<EEBdensity, echo=TRUE, eval=FALSE>>=
+% dEEB <- function(x, mu = 0.5, sigma = 1, nu = 1.5, size = 10,
+%                  log = FALSE){
+%   if (any(x<0))
+%     stop(paste("x must greater than zero", "\n", ""))
+%   if (any(mu < 0) | any(mu > 1))
+%     stop(paste("mu must be between 0 and 1", "\n", ""))
+%   if (any(sigma<=0 ))
+%     stop(paste("sigma must be greater than zero", "\n", ""))
+%   if (any(nu<=0 ))
+%     stop(paste("nu must be greater than zero", "\n", ""))
+%
+%   loglik <- log(sigma * nu * size *  mu) - sigma * x +
+%             (nu - 1) * log(1 - exp(-sigma * x)) -
+%             log(1 - (1 - mu)^size) +
+%             (size - 1) * log(1 - mu * (1 - exp(-sigma * x))^nu)
+%   if (log == FALSE)
+%     density <- exp(loglik) else density <- loglik
+%   return(density)
+% }
+% @
+%
+% <<norm_a, echo=FALSE, fig=TRUE, height=10, width=10, include=FALSE, eval=F>>=
+% param.val=list(mean=5, sd=2)
+% distrib <- 'dnorm'
+%
+% Parameters1 <- read.table(file=paste0("params_", distrib, "_", "nlminb",
+%                                       ".txt"),
+%                           header=TRUE)
+% Parameters2 <- read.table(file=paste0("params_", distrib, "_", 'optim',
+%                                       ".txt"),
+%                           header=TRUE)
+% Parameters <- rbind(Parameters1, Parameters2)
+%
+% par(family="serif", cex.lab=2.5, cex.axis=2.5,
+%     mar=c(5,4,4,2)+0.1, mai=c(0.9,1.5,0.5,0.5), las=0)
+% mu <- aggregate(mean ~ n + method, data=Parameters, FUN=mean)
+% plot(mu[mu$method=='nlminb',]$n, mu[mu$method=='nlminb',]$mean,
+%      xlab="n", ylab=expression(hat(mu)), type="l", lwd=2)
+% lines(mu[mu$method=='optim',]$n, mu[mu$method=='optim',]$mean,
+%       lwd=1, col="dodgerblue3")
+% legend("bottomright", legend=c('nlminb', 'optim (BFGS)'),
+%        col=c(1,"dodgerblue3"), lwd=c(2,1), cex=2.5)
+% abline(h=param.val$mean, col=2, lwd=4)
+% @
+%
+% <<norm_b, echo=FALSE, fig=TRUE, height=10, width=10, include=FALSE, eval=F>>=
+% par(family="serif", cex.lab=2.5, cex.axis=2.5,
+%     mar=c(5,4,4,2)+0.1, mai=c(0.9,1.5,0.5,0.5), las=0)
+% sigma <- aggregate(sd ~ n + method, data=Parameters, FUN=mean)
+% plot(sigma[sigma$method=='nlminb',]$n, sigma[sigma$method=='nlminb',]$sd,
+%      xlab="n", ylab=expression(hat(sigma)), type="l", lwd=2)
+% lines(sigma[sigma$method=='optim',]$n, sigma[sigma$method=='optim',]$sd,
+%       type="l", lwd=1, col="dodgerblue3")
+% legend("bottomright", legend=c('nlminb', 'optim (BFGS)'),
+%        col=c(1,"dodgerblue3"), lwd=c(2,1), cex=2.5)
+% abline(h=param.val$sd, col=2, lwd=4)
+% @
+%
+% \begin{figure}[H]
+%     \begin{subfigure}[h]{0.49\textwidth}
+%         \includegraphics[width=\textwidth]{article-norm_a}
+%         \caption{\label{fig:norma}}
+%     \end{subfigure}
+%     \begin{subfigure}[h]{0.49\textwidth}
+%         \includegraphics[width=\textwidth]{article-norm_b}
+%         \caption{\label{fig:normb}}
+%     \end{subfigure}
+% \caption{\label{fig:norm} Mean value for (a) location parameter $\hat{\mu}$ and (b) scale parameter $\hat{\sigma}$ versus sample size $n$ in normal distribution based on 1000 replications. Horizontal red lines are the true value of the parameters.}
+% \end{figure}
 % {\color{white} Jaime} \nolinebreak[4]
 
 % \section{Results}\label{sec:results}
