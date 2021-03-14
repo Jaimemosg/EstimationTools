@@ -65,9 +65,9 @@
 bootstrap_maxlogL <- function(object, R = 2000, silent = FALSE, ...){
   if (silent) options(warn = -1)
   StdE_Method <- "Bootstrap"
-  warn <- paste0("\n...Bootstrap computation of Standard Error. ",
-                 "Please, wait a few minutes...\n\n")
-  if ( !silent ) cat(warn)
+  msg <- paste0("\n...Bootstrap computation of Standard Error. ",
+                "Please, wait a few minutes...\n\n")
+  if ( !silent ) message(msg)
   n_est <- ifelse( object$outputs$type == "maxlogL", object$outputs$npar,
                    sum(object$outputs$b_length) )
   StdE <- try(bootstrap_MLE(object = object, R = R, ...),
@@ -82,7 +82,7 @@ bootstrap_maxlogL <- function(object, R = 2000, silent = FALSE, ...){
     parent <- parent.frame()
     uptodate(p = parent, object_name, StdE, StdE_Method)
   }
-  if ( !silent ) cat("\n --> Done <--- \n")
+  if ( !silent ) message("\n --> Done <--- \n")
   if (silent) options(warn = 0)
 }
 #==============================================================================
