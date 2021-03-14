@@ -38,15 +38,6 @@ _Edit (27/07/2020)_ -- We have implemented new tools and we have performed some 
 
 ## Installation
 
-You can install the latest version (`r utils::packageVersion("EstimationTools")`) of `EstimationTools` typing the following command lines
-in `R` console:
-
-``` {r eval=FALSE}
-if (!require('devtools')) install.packages('devtools')
-devtools::install_github('Jaimemosg/EstimationTools', force = TRUE)
-library(EstimationTools)
-```
-
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 file <- readtext::readtext('DESCRIPTION')
 text <- file$text
@@ -56,8 +47,16 @@ split2 <- strsplit(split1[[1]][2], split = ' ')
 myversion <- split2[[1]][2]
 ```
 
+You can install the latest version (`r myversion`) of `EstimationTools` typing the following command lines
+in `R` console:
 
-Or you can install the released version (`r myversion`) from  [CRAN](https://cran.r-project.org/package=EstimationTools) if you prefer. You can also type the following command lines
+``` {r eval=FALSE}
+if (!require('devtools')) install.packages('devtools')
+devtools::install_github('Jaimemosg/EstimationTools', force = TRUE)
+library(EstimationTools)
+```
+
+Or you can install the released version ( `r utils::packageVersion("EstimationTools")`) from  [CRAN](https://cran.r-project.org/package=EstimationTools) if you prefer. You can also type the following command lines
 in `R` console:
 
 ```{r eval=FALSE}
