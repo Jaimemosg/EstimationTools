@@ -20,13 +20,13 @@ knitr::opts_chunk$set(
 
 ## Computation of standard errors
 
-Objects of `maxlogL` class (outputs from`maxlogL` and `maxlogLreg`) stores the estimated parameters of probability density/mass functions by Maximum Likelihood. The variance-covariance matrix is computed from Fisher information matrix, which is obtained by means of the Inverse Hessian matrix of estimators:
+Objects of `maxlogL` class (outputs from `maxlogL` and `maxlogLreg`) stores the estimated parameters of probability density/mass functions by Maximum Likelihood. The variance-covariance matrix is computed from Fisher information matrix, which is obtained by means of the Inverse Hessian matrix of estimators:
 
 \begin{equation}
-Var(\hat{\boldsymbol{\theta}}) = I^{-1}(\hat{\boldsymbol{\theta}}) = C(\hat{\boldsymbol{\theta}}),
+Var(\hat{\boldsymbol{\theta}}) = \mathcal{J}^{-1}(\hat{\boldsymbol{\theta}}) = C(\hat{\boldsymbol{\theta}}),
 \end{equation}
 
-where $I(\hat{\boldsymbol{\theta}})$ is the Fisher Information Matrix. Hence, the standard errors can be calculated as the square root of the diagonal elements of matrix $C$, as follows:
+where $\mathcal{J}(\hat{\boldsymbol{\theta}})$ is the observed Fisher Information Matrix. Hence, the standard errors can be calculated as the square root of the diagonal elements of matrix $C$, as follows:
 
 \begin{equation}
 SE(\hat{\boldsymbol{\theta}}) = \sqrt{C_{jj}(\hat{\boldsymbol{\theta}})},
@@ -41,8 +41,8 @@ devtools::install_github('Jaimemosg/EstimationTools', force = TRUE)
 
 In **EstimationTools** Hessian matrix is computed in the following way:
 
-- Firstly, it is estimated through `optim`, with option `hessian = TRUE` in `maxlogL` function.
-- If the previous implementation fails, it is calculated with `hessian` function from **numDeriv** package.
+- If `StdE_Method = optim`, it is estimated through the `optim` function (with option `hessian = TRUE` under the hood in `maxlogL` or `maxlogLreg` function).
+- If the previous implementation fails or if the user chooses `StdE_Method = numDeriv`, it is calculated with `hessian` function from **numDeriv** package.
 - If both of the previous methods fail, then standard errors are computed by bootstrapping with the function `bootstrap_maxlogL`.
 
 Additionally, **EstimationTools** allows implementation of bootstrap for standard error estimation, even if the Hessian computation does not fail.

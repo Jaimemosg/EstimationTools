@@ -55,12 +55,12 @@ library(EstimationTools)
   expressions and it is necessary in some cases to implement distributions
   and constantly build (log-)likelihood functions in computing languages
   in order to get numerical solutions. We present \code{maxlogL}, a function
-  contained in the \pkg{EstimationTools} package for ML parameter estimation
-  of any probability function loaded in \proglang{R} with no need of special
-  structures, given a data set. We show via simulation that the routine
-  has good performance in estimating the parameters of three distributions
-  (normal, ZIP and user-defined). Finally, we present two application
-  examples with real data.
+  contained in the \pkg{EstimationTools} package for maximum likelihood
+  parameter estimation of any probability function loaded in \proglang{R}
+  with no need of special structures, given a data set. %We show via simulation
+  %that the routine has good performance in estimating the parameters of three
+  %distributions (normal, ZIP and user-defined).
+  Finally, we present two application examples with real data.
 }
 
 %% - \Keywords{} with LaTeX markup, at least one required
@@ -142,10 +142,16 @@ The method of ML finds the parameter values that makes data more probable. It is
 It is usual to perform maximization of log-likelihood function, i.e. $l(\boldsymbol{\theta}|\bm{y})=\log L(\boldsymbol{\theta}|\bm{y})$. The variance-covariance matrix of ML estimators is given by
 
 \begin{equation}
-Var(\hat{\boldsymbol{\theta}}) = I^{-1}(\hat{\boldsymbol{\theta}}) = C(\hat{\boldsymbol{\theta}}),
+Var(\hat{\boldsymbol{\theta}}) = \mathcal{J}^{-1}(\hat{\boldsymbol{\theta}}) = C(\hat{\boldsymbol{\theta}}),
 \end{equation}
 
-where $I(\hat{\boldsymbol{\theta}})$ is the Fisher Information Matrix. The standard errors can be calculated as the square root of the diagonal elements of matrix $C$ \citep{Pawitan2013}%. Hence, the standard error of estimates is computed with the following expression
+where $\mathcal{J}(\hat{\boldsymbol{\theta}})$ is the observed Fisher Information Matrix
+
+\begin{equation}
+\mathcal{J}(\hat{\boldsymbol{\theta}}) = \frac{\partial^2}{\partial \bm{\theta}^2} \log(f(y_i|\boldsymbol{\theta})).
+\end{equation}
+
+The standard errors can be calculated as the square root of the diagonal elements of matrix $C$ \citep{Pawitan2013}%. Hence, the standard error of estimates is computed with the following expression
 
 \begin{equation}
 S.E(\hat{\boldsymbol{\theta}}) = \sqrt{C_{jj}(\hat{\boldsymbol{\theta}})}.
@@ -170,7 +176,7 @@ maxlogL(x, dist, optimizer, lower = NULL, upper = NULL)
 
 where the argument \code{x} is a vector with data to be fitted, \code{dist} corresponds to the probability density/mass function of the working distribution, whereas \code{upper} and \code{lower} are limits used when user selects box-constrained algorithms. \code{maxlogL} is a wrapper function specifically developed for ML estimation, which allows to implement any of \code{optim} algorithms for optimization or \code{nlminb} routine for unconstrained or box-constrained optimization through the argument \code{optimizer}.
 
-\pkg{EstimationTools} package provides a \code{summary} method for class \code{maxlogL}, which displays AIC (Akaike Information Criterion), BIC (Bayesian Information Criterion), ML estimates and its standard error. The method also reports the optimization routine selected by the user and the method used for computation of standard error. There are three methods available: \code{hessian} function from \pkg{numDeriv} package, calculation with \code{optim} (setting the argument \code{hessian = TRUE} and bootstrap calculation, with \code{boot} function of \pkg{boot} package \citep{Davison1997, Canty2017}.
+\pkg{EstimationTools} package provides a \code{summary} method for class \code{maxlogL}, which displays AIC (Akaike Information Criterion), BIC (Bayesian Information Criterion), ML estimates and its standard error. The method also reports the optimization routine selected by the user and the method used for computation of standard error. There are three methods available: \code{hessian} function from \pkg{numDeriv} package, calculation with \code{optim} (setting the argument \code{hessian = TRUE}) and bootstrap calculation, with \code{boot} function of \pkg{boot} package \citep{Davison1997, Canty2017}.
 
 Hence, for non-censorship fitting the user must pass a vector with data and specify a probability distribution function available in \proglang{R}. For example, fitting a sample generated from a normal distribution, $Z \sim \text{NO}(\mu=10,\: \sigma^2=1)$, could be done with the next command lines:
 
@@ -181,6 +187,15 @@ fit1 <- maxlogL(x = z, dist = 'dnorm', start=c(2, 3),
                 lower=c(-15, 0), upper=c(15, 10))
 summary(fit1)
 @
+
+\code{maxlogL} also reports the optimization routine selected by the user and the method used for computation of standard error (see the \code{summary} output above). There are three options available:
+
+\begin{itemize}
+  \item If \verb|StdE_Method = optim|, the Hessian matrix is computed with \code{optim} (with option `hessian = TRUE` under the hood).
+  \item If the previous implementation fails or if the user chooses \verb|StdE_Method = numDeriv|, it is calculated with \code{hessian} function from \pkg{numDeriv} package.
+\end{itemize}
+
+Hence, the standard errors are computed with the inverse Hessian (recall section \ref{sec:stdE}). Additionally, then standard errors and estimates can be computed by bootstrapping, even if the Hessian computation does not fail. It can be achieved with the function \verb|bootstrap_maxlogL|, which consist of a implementation of \code{boot} function of \pkg{boot} package \citep{Davison1997,Canty2017}.
 
 The \code{link} argument is a list with entries \code{fun} and \code{over}, which specify the link functions applied and the name of linked parameters in probability function implemented in \proglang{R} respectively. The estimation performed above can be carried out applying logarithm link function to $\sigma$, avoiding problems of estimation in the boundary of parametric space. The usage is illustrated in the following code snippet:
 
@@ -301,138 +316,138 @@ abline(h=param.val$sd, col=2, lwd=4)
 \end{figure}
 % {\color{white} Jaime} \nolinebreak[4]
 
-\section{Results}\label{sec:results}
-
-The results of Monte Carlo study for the three distributions mentioned are presented in Figure \ref{fig:norm} above, and Figures \ref{fig:EEB} and \ref{fig:ZIP} below. All the plots show that the mean estimates tend to the true value of the parameter as the sample size increases, as is expected under regularity conditions.
-
-<<EEBa, echo=FALSE, fig=TRUE, height=10, width=10, include=FALSE, eval=F>>=
-param.val=list(mu = 0.5, sigma = 1, nu = 1.5, size = 10)
-distrib <- 'dEEB'
-
-Parameters1 <- read.table(file=paste0("params_", distrib, "_", "nlminb",
-                                      ".txt"),
-                          header=TRUE)
-Parameters2 <- read.table(file=paste0("params_", distrib, "_", 'optim',
-                                      ".txt"),
-                          header=TRUE)
-Parameters <- rbind(Parameters1, Parameters2)
-
-par(family="serif", cex.lab=2.5, cex.axis=2.5,
-    mar=c(5,4,4,2)+0.1, mai=c(0.9,1.5,0.5,0.5))
-mu <- aggregate(mu ~ n + method, data=Parameters, FUN=mean)
-plot(mu[mu$method=='nlminb',]$n, mu[mu$method=='nlminb',]$mu,
-     xlab="n", ylab=expression(hat(mu)), type="l", lwd=2)
-lines(mu[mu$method=='optim',]$n, mu[mu$method=='optim',]$mu,
-      lwd=1, col="dodgerblue3")
-legend("topright", legend=c('nlminb', 'optim (BFGS)'),
-       col=c(1,"dodgerblue3"), lwd=c(2,1), cex=2.5)
-abline(h=param.val$mu, col=2, lwd=3)
-@
-
-<<EEBb, echo=FALSE, fig=TRUE, height=10, width=10, include=FALSE, eval=F>>=
-par(family="serif", cex.lab=2.5, cex.axis=2.5,
-    mar=c(5,4,4,2)+0.1, mai=c(0.9,1.5,0.5,0.5))
-sigma <- aggregate(sigma ~ n + method, data=Parameters, FUN=mean)
-plot(sigma[sigma$method=='nlminb',]$n[3:nrow(sigma)],
-     sigma[sigma$method=='nlminb',]$sigma[3:nrow(sigma)],
-     xlab="n", ylab=expression(hat(sigma)), type="l", lwd=2)
-lines(sigma[sigma$method=='optim',]$n, sigma[sigma$method=='optim',]$sigma,
-      lwd=1, col="dodgerblue3")
-legend("topright", legend=c('nlminb', 'optim (BFGS)'),
-       col=c(1,"dodgerblue3"), lwd=c(2,1), cex=2.5)
-abline(h=param.val$sigma, col=2, lwd=3)
-@
-
-<<EEBc, echo=FALSE, fig=TRUE, height=10, width=10, include=FALSE, eval=F>>=
-par(family="serif", cex.lab=2.5, cex.axis=2.5,
-    mar=c(5,4,4,2)+0.1, mai=c(0.9,1.5,0.5,0.5))
-nu <- aggregate(nu ~ n + method, data=Parameters, FUN=mean)
-plot(subset(nu, method=="nlminb")$n[4:nrow(nu)], ylim=c(1.48,2),
-     nu[nu$method=='nlminb',]$nu[4:nrow(nu)], xlim=c(1,1000),
-     xlab="n", ylab=expression(hat(nu)), type="l", lwd=2)
-lines(nu[nu$method=='optim',]$n[4:nrow(nu)],
-      nu[nu$method=='optim',]$nu[4:nrow(nu)],
-      type="l", lwd=1, col="dodgerblue3")
-legend("topright", legend=c('nlminb', 'optim (BFGS)'),
-       col=c(1,"dodgerblue3"), lwd=c(2,1), cex=2.5)
-abline(h=param.val$nu, col=2, lwd=3)
-@
-
-\begin{figure}[H]
-  \centering
-    \begin{subfigure}[h]{0.49\textwidth}
-        \includegraphics[width=\textwidth]{article-EEBa}
-        \caption{\label{fig:EEBa}}
-    \end{subfigure}
-    \begin{subfigure}[h]{0.49\textwidth}
-        \includegraphics[width=\textwidth]{article-EEBb}
-        \caption{\label{fig:EEBb}}
-    \end{subfigure}
-    ~
-    \begin{subfigure}[h]{0.49\textwidth}
-        \includegraphics[width=\textwidth]{article-EEBc}
-        \caption{\label{fig:EEBc}}
-    \end{subfigure}
-\caption{\label{fig:EEB} Mean value for (a) proportion of successes $\hat{\mu}$, (b) scale parameter $\hat{\sigma}$ and (c) shape parameter $\hat{\tau}$ versus sample size $n$ in EEB distribution based on 1000 replications. Horizontal red lines are the true value of the parameters.}
-\vspace{1.5cm}
-\end{figure}
-
-Variance of estimated parameters decreases as sample size increases, according to the efficiency property of ML estimators \citep{Gurland1954, Daniels1961}. This results are presented in figures \ref{fig:varnorm}, \ref{fig:varZIP} and \ref{fig:varEEB} of Appendix \ref{append:variance}.
-
-<<ZIPa, echo=FALSE, fig=TRUE, height=10, width=10, include=FALSE, eval=F>>=
-param.val=list(mu=6, sigma=0.08)
-distrib <- 'dZIP'
-
-Parameters1 <- read.table(file=paste0("params_", distrib, "_", "nlminb",
-                                      ".txt"),
-                          header=TRUE)
-Parameters2 <- read.table(file=paste0("params_", distrib, "_", 'optim',
-                                      ".txt"),
-                          header=TRUE)
-Parameters <- rbind(Parameters1, Parameters2)
-
-par(family="serif", cex.lab=2.5, cex.axis=2.5,
-    mar=c(7,6.5,4,2)+0.1, mai=c(1.5,1.5,0.5,0.5), las=0)
-mu <- aggregate(mu ~ n + method, data=Parameters, FUN=mean)
-plot(mu[mu$method=='nlminb',]$n, mu[mu$method=='nlminb',]$mu,
-     xlab="", ylab="", type="l", lwd=2)
-lines(mu[mu$method=='optim',]$n, mu[mu$method=='optim',]$mu,
-      lwd=1, col="dodgerblue3")
-legend("bottomright", legend=c('nlminb', 'optim (BFGS)'),
-       col=c(1,"dodgerblue3"), lwd=c(2,1), cex=2.5)
-abline(h=param.val$mu, col=2, lwd=4)
-title(ylab=expression(hat(lambda)), mgp=c(5,1,0), cex.lab=2.5)
-title(xlab=expression(n), mgp=c(3.5,1,0), cex.lab=2.5)
-# mtext("(a)", side=1, line=6.5, cex=3)
-@
-
-<<ZIPb, echo=FALSE, fig=TRUE, height=10, width=10, include=FALSE, eval=F>>=
-par(family="serif", cex.lab=2, cex.axis=2.5,
-    mar=c(7,6.5,4,2)+0.1, mai=c(1.5,1.5,0.5,0.5), las=0)
-sigma <- aggregate(sigma ~ n + method, data=Parameters, FUN=mean)
-plot(sigma[sigma$method=='nlminb',]$n, sigma[sigma$method=='nlminb',]$sigma, xlab="", ylab="", type="l", lwd=2)
-lines(sigma[sigma$method=='optim',]$n, sigma[sigma$method=='optim',]$sigma,
-      type="l", lwd=1, col="dodgerblue3")
-legend("bottomright", legend=c('nlminb', 'optim (BFGS)'),
-       col=c(1,"dodgerblue3"), lwd=c(2,1), cex=2.5)
-abline(h=param.val$sigma, col=2, lwd=4)
-title(ylab=expression(hat(pi)), mgp=c(5,1,0), cex.lab=2.5)
-title(xlab=expression(n), mgp=c(3.5,1,0), cex.lab=2.5)
-# mtext("(b)", side=1, line=6.5, cex=3)
-@
-
-\begin{figure}[H]
-  \centering
-    \begin{subfigure}[h]{0.49\textwidth}
-        \includegraphics[width=\textwidth]{article-ZIPa}
-        \caption{\label{fig:ZIPa}}
-    \end{subfigure}
-    \begin{subfigure}[h]{0.49\textwidth}
-        \includegraphics[width=\textwidth]{article-ZIPb}
-        \caption{\label{fig:ZIPb}}
-    \end{subfigure}
-\caption{\label{fig:ZIP} Mean value for (a) rate parameter $\hat{\lambda}$ and (b) extra zeros proportion $\hat{\pi}$ versus sample size $n$ in ZIP distribution based on 1000 replications. Horizontal red lines are the true value of the parameters.}
-\end{figure}
+% \section{Results}\label{sec:results}
+%
+% The results of Monte Carlo study for the three distributions mentioned are presented in Figure \ref{fig:norm} above, and Figures \ref{fig:EEB} and \ref{fig:ZIP} below. All the plots show that the mean estimates tend to the true value of the parameter as the sample size increases, as is expected under regularity conditions.
+%
+% <<EEBa, echo=FALSE, fig=TRUE, height=10, width=10, include=FALSE, eval=F>>=
+% param.val=list(mu = 0.5, sigma = 1, nu = 1.5, size = 10)
+% distrib <- 'dEEB'
+%
+% Parameters1 <- read.table(file=paste0("params_", distrib, "_", "nlminb",
+%                                       ".txt"),
+%                           header=TRUE)
+% Parameters2 <- read.table(file=paste0("params_", distrib, "_", 'optim',
+%                                       ".txt"),
+%                           header=TRUE)
+% Parameters <- rbind(Parameters1, Parameters2)
+%
+% par(family="serif", cex.lab=2.5, cex.axis=2.5,
+%     mar=c(5,4,4,2)+0.1, mai=c(0.9,1.5,0.5,0.5))
+% mu <- aggregate(mu ~ n + method, data=Parameters, FUN=mean)
+% plot(mu[mu$method=='nlminb',]$n, mu[mu$method=='nlminb',]$mu,
+%      xlab="n", ylab=expression(hat(mu)), type="l", lwd=2)
+% lines(mu[mu$method=='optim',]$n, mu[mu$method=='optim',]$mu,
+%       lwd=1, col="dodgerblue3")
+% legend("topright", legend=c('nlminb', 'optim (BFGS)'),
+%        col=c(1,"dodgerblue3"), lwd=c(2,1), cex=2.5)
+% abline(h=param.val$mu, col=2, lwd=3)
+% @
+%
+% <<EEBb, echo=FALSE, fig=TRUE, height=10, width=10, include=FALSE, eval=F>>=
+% par(family="serif", cex.lab=2.5, cex.axis=2.5,
+%     mar=c(5,4,4,2)+0.1, mai=c(0.9,1.5,0.5,0.5))
+% sigma <- aggregate(sigma ~ n + method, data=Parameters, FUN=mean)
+% plot(sigma[sigma$method=='nlminb',]$n[3:nrow(sigma)],
+%      sigma[sigma$method=='nlminb',]$sigma[3:nrow(sigma)],
+%      xlab="n", ylab=expression(hat(sigma)), type="l", lwd=2)
+% lines(sigma[sigma$method=='optim',]$n, sigma[sigma$method=='optim',]$sigma,
+%       lwd=1, col="dodgerblue3")
+% legend("topright", legend=c('nlminb', 'optim (BFGS)'),
+%        col=c(1,"dodgerblue3"), lwd=c(2,1), cex=2.5)
+% abline(h=param.val$sigma, col=2, lwd=3)
+% @
+%
+% <<EEBc, echo=FALSE, fig=TRUE, height=10, width=10, include=FALSE, eval=F>>=
+% par(family="serif", cex.lab=2.5, cex.axis=2.5,
+%     mar=c(5,4,4,2)+0.1, mai=c(0.9,1.5,0.5,0.5))
+% nu <- aggregate(nu ~ n + method, data=Parameters, FUN=mean)
+% plot(subset(nu, method=="nlminb")$n[4:nrow(nu)], ylim=c(1.48,2),
+%      nu[nu$method=='nlminb',]$nu[4:nrow(nu)], xlim=c(1,1000),
+%      xlab="n", ylab=expression(hat(nu)), type="l", lwd=2)
+% lines(nu[nu$method=='optim',]$n[4:nrow(nu)],
+%       nu[nu$method=='optim',]$nu[4:nrow(nu)],
+%       type="l", lwd=1, col="dodgerblue3")
+% legend("topright", legend=c('nlminb', 'optim (BFGS)'),
+%        col=c(1,"dodgerblue3"), lwd=c(2,1), cex=2.5)
+% abline(h=param.val$nu, col=2, lwd=3)
+% @
+%
+% \begin{figure}[H]
+%   \centering
+%     \begin{subfigure}[h]{0.49\textwidth}
+%         \includegraphics[width=\textwidth]{article-EEBa}
+%         \caption{\label{fig:EEBa}}
+%     \end{subfigure}
+%     \begin{subfigure}[h]{0.49\textwidth}
+%         \includegraphics[width=\textwidth]{article-EEBb}
+%         \caption{\label{fig:EEBb}}
+%     \end{subfigure}
+%     ~
+%     \begin{subfigure}[h]{0.49\textwidth}
+%         \includegraphics[width=\textwidth]{article-EEBc}
+%         \caption{\label{fig:EEBc}}
+%     \end{subfigure}
+% \caption{\label{fig:EEB} Mean value for (a) proportion of successes $\hat{\mu}$, (b) scale parameter $\hat{\sigma}$ and (c) shape parameter $\hat{\tau}$ versus sample size $n$ in EEB distribution based on 1000 replications. Horizontal red lines are the true value of the parameters.}
+% \vspace{1.5cm}
+% \end{figure}
+%
+% Variance of estimated parameters decreases as sample size increases, according to the efficiency property of ML estimators \citep{Gurland1954, Daniels1961}. This results are presented in figures \ref{fig:varnorm}, \ref{fig:varZIP} and \ref{fig:varEEB} of Appendix \ref{append:variance}.
+%
+% <<ZIPa, echo=FALSE, fig=TRUE, height=10, width=10, include=FALSE, eval=F>>=
+% param.val=list(mu=6, sigma=0.08)
+% distrib <- 'dZIP'
+%
+% Parameters1 <- read.table(file=paste0("params_", distrib, "_", "nlminb",
+%                                       ".txt"),
+%                           header=TRUE)
+% Parameters2 <- read.table(file=paste0("params_", distrib, "_", 'optim',
+%                                       ".txt"),
+%                           header=TRUE)
+% Parameters <- rbind(Parameters1, Parameters2)
+%
+% par(family="serif", cex.lab=2.5, cex.axis=2.5,
+%     mar=c(7,6.5,4,2)+0.1, mai=c(1.5,1.5,0.5,0.5), las=0)
+% mu <- aggregate(mu ~ n + method, data=Parameters, FUN=mean)
+% plot(mu[mu$method=='nlminb',]$n, mu[mu$method=='nlminb',]$mu,
+%      xlab="", ylab="", type="l", lwd=2)
+% lines(mu[mu$method=='optim',]$n, mu[mu$method=='optim',]$mu,
+%       lwd=1, col="dodgerblue3")
+% legend("bottomright", legend=c('nlminb', 'optim (BFGS)'),
+%        col=c(1,"dodgerblue3"), lwd=c(2,1), cex=2.5)
+% abline(h=param.val$mu, col=2, lwd=4)
+% title(ylab=expression(hat(lambda)), mgp=c(5,1,0), cex.lab=2.5)
+% title(xlab=expression(n), mgp=c(3.5,1,0), cex.lab=2.5)
+% # mtext("(a)", side=1, line=6.5, cex=3)
+% @
+%
+% <<ZIPb, echo=FALSE, fig=TRUE, height=10, width=10, include=FALSE, eval=F>>=
+% par(family="serif", cex.lab=2, cex.axis=2.5,
+%     mar=c(7,6.5,4,2)+0.1, mai=c(1.5,1.5,0.5,0.5), las=0)
+% sigma <- aggregate(sigma ~ n + method, data=Parameters, FUN=mean)
+% plot(sigma[sigma$method=='nlminb',]$n, sigma[sigma$method=='nlminb',]$sigma, xlab="", ylab="", type="l", lwd=2)
+% lines(sigma[sigma$method=='optim',]$n, sigma[sigma$method=='optim',]$sigma,
+%       type="l", lwd=1, col="dodgerblue3")
+% legend("bottomright", legend=c('nlminb', 'optim (BFGS)'),
+%        col=c(1,"dodgerblue3"), lwd=c(2,1), cex=2.5)
+% abline(h=param.val$sigma, col=2, lwd=4)
+% title(ylab=expression(hat(pi)), mgp=c(5,1,0), cex.lab=2.5)
+% title(xlab=expression(n), mgp=c(3.5,1,0), cex.lab=2.5)
+% # mtext("(b)", side=1, line=6.5, cex=3)
+% @
+%
+% \begin{figure}[H]
+%   \centering
+%     \begin{subfigure}[h]{0.49\textwidth}
+%         \includegraphics[width=\textwidth]{article-ZIPa}
+%         \caption{\label{fig:ZIPa}}
+%     \end{subfigure}
+%     \begin{subfigure}[h]{0.49\textwidth}
+%         \includegraphics[width=\textwidth]{article-ZIPb}
+%         \caption{\label{fig:ZIPb}}
+%     \end{subfigure}
+% \caption{\label{fig:ZIP} Mean value for (a) rate parameter $\hat{\lambda}$ and (b) extra zeros proportion $\hat{\pi}$ versus sample size $n$ in ZIP distribution based on 1000 replications. Horizontal red lines are the true value of the parameters.}
+% \end{figure}
 
 % >>>>>>> a35a8b6c4df50cfe93d75be77492e41c5bf8026c
 %% -- Illustrations ------------------------------------------------------------
@@ -693,7 +708,7 @@ legend("topright", legend=c("Observed", "Power model", "Exponential model"),
 
 \section{Conclusions} \label{sec:conclussions}
 
-We have implemented classic estimation via maximization of log-likelihood function through basic optimization routines in \proglang{R} such as \code{optim} and \code{nlminb}. With \code{maxlogL}, we enable researchers, developers and users in general to compute ML estimators of any distribution in a fast and reliable way. With our \code{summary} method, it is possible to calculate standard error of estimates through Hessian matrix or bootstrap algorithm. In some cases, it is possible to implement estimation in hierarchical models, with appropriate tuning of initial values. \\
+We have implemented classic estimation via maximization of log-likelihood function through basic optimization routines in \proglang{R} such as \code{optim}, \code{nlminb} and \code{DEoptim}. With \code{maxlogL}, we enable researchers, developers and users in general to compute ML estimators of any distribution in a fast and reliable way. With our \code{summary} method, it is possible to calculate standard error of estimates through Hessian matrix or bootstrap algorithm. In some cases, it is possible to implement estimation in hierarchical models, with appropriate tuning of initial values. \\
 
 In future revisions, we could implement evolutionary algorithms to perform estimation in distributions with regularity issues \citep{Haupt2003}. Furthermore, our routine could be took to develop further work on log-likelihood estimation, such as developing new parametric regression models.
 

@@ -12,46 +12,35 @@
 
 <meta name="author" content="Jaime Mosquera" />
 
-<meta name="date" content="2020-07-31" />
+<meta name="date" content="2021-03-13" />
 
 <title>Bootstrap implementation</title>
 
-<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
-// be compatible with the behavior of Pandoc < 2.8).
-document.addEventListener('DOMContentLoaded', function(e) {
-  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
-  var i, h, a;
-  for (i = 0; i < hs.length; i++) {
-    h = hs[i];
-    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
-    a = h.attributes;
-    while (a.length > 0) h.removeAttribute(a[0].name);
+<script src="data:application/javascript;base64,Ly8gUGFuZG9jIDIuOSBhZGRzIGF0dHJpYnV0ZXMgb24gYm90aCBoZWFkZXIgYW5kIGRpdi4gV2UgcmVtb3ZlIHRoZSBmb3JtZXIgKHRvCi8vIGJlIGNvbXBhdGlibGUgd2l0aCB0aGUgYmVoYXZpb3Igb2YgUGFuZG9jIDwgMi44KS4KZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignRE9NQ29udGVudExvYWRlZCcsIGZ1bmN0aW9uKGUpIHsKICB2YXIgaHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCJkaXYuc2VjdGlvbltjbGFzcyo9J2xldmVsJ10gPiA6Zmlyc3QtY2hpbGQiKTsKICB2YXIgaSwgaCwgYTsKICBmb3IgKGkgPSAwOyBpIDwgaHMubGVuZ3RoOyBpKyspIHsKICAgIGggPSBoc1tpXTsKICAgIGlmICghL15oWzEtNl0kL2kudGVzdChoLnRhZ05hbWUpKSBjb250aW51ZTsgIC8vIGl0IHNob3VsZCBiZSBhIGhlYWRlciBoMS1oNgogICAgYSA9IGguYXR0cmlidXRlczsKICAgIHdoaWxlIChhLmxlbmd0aCA+IDApIGgucmVtb3ZlQXR0cmlidXRlKGFbMF0ubmFtZSk7CiAgfQp9KTsK"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
   }
-});
-</script>
-<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
-// v0.0.1
-// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
-
-document.addEventListener('DOMContentLoaded', function() {
-  const codeList = document.getElementsByClassName("sourceCode");
-  for (var i = 0; i < codeList.length; i++) {
-    var linkList = codeList[i].getElementsByTagName('a');
-    for (var j = 0; j < linkList.length; j++) {
-      if (linkList[j].innerHTML === "") {
-        linkList[j].setAttribute('aria-hidden', 'true');
-      }
-    }
+  .sourceCode {
+    overflow: visible;
   }
-});
-</script>
-
-
-<style type="text/css">code{white-space: pre;}</style>
+</style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
@@ -137,187 +126,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<style type="text/css">body {
-background-color: #fff;
-margin: 1em auto;
-max-width: 700px;
-overflow: visible;
-padding-left: 2em;
-padding-right: 2em;
-font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-font-size: 14px;
-line-height: 1.35;
-}
-#TOC {
-clear: both;
-margin: 0 0 10px 10px;
-padding: 4px;
-width: 400px;
-border: 1px solid #CCCCCC;
-border-radius: 5px;
-background-color: #f6f6f6;
-font-size: 13px;
-line-height: 1.3;
-}
-#TOC .toctitle {
-font-weight: bold;
-font-size: 15px;
-margin-left: 5px;
-}
-#TOC ul {
-padding-left: 40px;
-margin-left: -1.5em;
-margin-top: 5px;
-margin-bottom: 5px;
-}
-#TOC ul ul {
-margin-left: -2em;
-}
-#TOC li {
-line-height: 16px;
-}
-table {
-margin: 1em auto;
-border-width: 1px;
-border-color: #DDDDDD;
-border-style: outset;
-border-collapse: collapse;
-}
-table th {
-border-width: 2px;
-padding: 5px;
-border-style: inset;
-}
-table td {
-border-width: 1px;
-border-style: inset;
-line-height: 18px;
-padding: 5px 5px;
-}
-table, table th, table td {
-border-left-style: none;
-border-right-style: none;
-}
-table thead, table tr.even {
-background-color: #f7f7f7;
-}
-p {
-margin: 0.5em 0;
-}
-blockquote {
-background-color: #f6f6f6;
-padding: 0.25em 0.75em;
-}
-hr {
-border-style: solid;
-border: none;
-border-top: 1px solid #777;
-margin: 28px 0;
-}
-dl {
-margin-left: 0;
-}
-dl dd {
-margin-bottom: 13px;
-margin-left: 13px;
-}
-dl dt {
-font-weight: bold;
-}
-ul {
-margin-top: 0;
-}
-ul li {
-list-style: circle outside;
-}
-ul ul {
-margin-bottom: 0;
-}
-pre, code {
-background-color: #f7f7f7;
-border-radius: 3px;
-color: #333;
-white-space: pre-wrap; 
-}
-pre {
-border-radius: 3px;
-margin: 5px 0px 10px 0px;
-padding: 10px;
-}
-pre:not([class]) {
-background-color: #f7f7f7;
-}
-code {
-font-family: Consolas, Monaco, 'Courier New', monospace;
-font-size: 85%;
-}
-p > code, li > code {
-padding: 2px 0px;
-}
-div.figure {
-text-align: center;
-}
-img {
-background-color: #FFFFFF;
-padding: 2px;
-border: 1px solid #DDDDDD;
-border-radius: 3px;
-border: 1px solid #CCCCCC;
-margin: 0 5px;
-}
-h1 {
-margin-top: 0;
-font-size: 35px;
-line-height: 40px;
-}
-h2 {
-border-bottom: 4px solid #f7f7f7;
-padding-top: 10px;
-padding-bottom: 2px;
-font-size: 145%;
-}
-h3 {
-border-bottom: 2px solid #f7f7f7;
-padding-top: 10px;
-font-size: 120%;
-}
-h4 {
-border-bottom: 1px solid #f7f7f7;
-margin-left: 8px;
-font-size: 105%;
-}
-h5, h6 {
-border-bottom: 1px solid #ccc;
-font-size: 105%;
-}
-a {
-color: #0033dd;
-text-decoration: none;
-}
-a:hover {
-color: #6666ff; }
-a:visited {
-color: #800080; }
-a:visited:hover {
-color: #BB00BB; }
-a[href^="http:"] {
-text-decoration: underline; }
-a[href^="https:"] {
-text-decoration: underline; }
 
-code > span.kw { color: #555; font-weight: bold; } 
-code > span.dt { color: #902000; } 
-code > span.dv { color: #40a070; } 
-code > span.bn { color: #d14; } 
-code > span.fl { color: #d14; } 
-code > span.ch { color: #d14; } 
-code > span.st { color: #d14; } 
-code > span.co { color: #888888; font-style: italic; } 
-code > span.ot { color: #007020; } 
-code > span.al { color: #ff0000; font-weight: bold; } 
-code > span.fu { color: #900; font-weight: bold; } 
-code > span.er { color: #a61717; background-color: #e3d2d2; } 
-</style>
+<link rel="stylesheet" href="data:text/css,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" type="text/css" />
 
 
 
@@ -331,27 +141,27 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">Bootstrap implementation</h1>
 <h4 class="author">Jaime Mosquera</h4>
-<h4 class="date">2020-07-31</h4>
+<h4 class="date">2021-03-13</h4>
 
 
 
 <div id="computation-of-standard-errors" class="section level2">
 <h2>Computation of standard errors</h2>
-<p>Objects of <code>maxlogL</code> class (outputs from<code>maxlogL</code> and <code>maxlogLreg</code>) stores the estimated parameters of probability density/mass functions by Maximum Likelihood. The variance-covariance matrix is computed from Fisher information matrix, which is obtained by means of the Inverse Hessian matrix of estimators:</p>
+<p>Objects of <code>maxlogL</code> class (outputs from <code>maxlogL</code> and <code>maxlogLreg</code>) stores the estimated parameters of probability density/mass functions by Maximum Likelihood. The variance-covariance matrix is computed from Fisher information matrix, which is obtained by means of the Inverse Hessian matrix of estimators:</p>
 <p><span class="math display">\[\begin{equation}
-Var(\hat{\boldsymbol{\theta}}) = I^{-1}(\hat{\boldsymbol{\theta}}) = C(\hat{\boldsymbol{\theta}}),
+Var(\hat{\boldsymbol{\theta}}) = \mathcal{J}^{-1}(\hat{\boldsymbol{\theta}}) = C(\hat{\boldsymbol{\theta}}),
 \end{equation}\]</span></p>
-<p>where <span class="math inline">\(I(\hat{\boldsymbol{\theta}})\)</span> is the Fisher Information Matrix. Hence, the standard errors can be calculated as the square root of the diagonal elements of matrix <span class="math inline">\(C\)</span>, as follows:</p>
+<p>where <span class="math inline">\(\mathcal{J}(\hat{\boldsymbol{\theta}})\)</span> is the observed Fisher Information Matrix. Hence, the standard errors can be calculated as the square root of the diagonal elements of matrix <span class="math inline">\(C\)</span>, as follows:</p>
 <p><span class="math display">\[\begin{equation}
 SE(\hat{\boldsymbol{\theta}}) = \sqrt{C_{jj}(\hat{\boldsymbol{\theta}})},
 \end{equation}\]</span></p>
 <p>To install the package, type the following commands:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">&#39;devtools&#39;</span>)) <span class="kw">install.packages</span>(<span class="st">&#39;devtools&#39;</span>)</span>
-<span id="cb1-2"><a href="#cb1-2"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&#39;Jaimemosg/EstimationTools&#39;</span>, <span class="dt">force =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">&#39;devtools&#39;</span>)) <span class="fu">install.packages</span>(<span class="st">&#39;devtools&#39;</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&#39;Jaimemosg/EstimationTools&#39;</span>, <span class="at">force =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>In <strong>EstimationTools</strong> Hessian matrix is computed in the following way:</p>
 <ul>
-<li>Firstly, it is estimated through <code>optim</code>, with option <code>hessian = TRUE</code> in <code>maxlogL</code> function.</li>
-<li>If the previous implementation fails, it is calculated with <code>hessian</code> function from <strong>numDeriv</strong> package.</li>
+<li>If <code>StdE_Method = optim</code>, it is estimated through the <code>optim</code> function (with option <code>hessian = TRUE</code> under the hood in <code>maxlogL</code> or <code>maxlogLreg</code> function).</li>
+<li>If the previous implementation fails or if the user chooses <code>StdE_Method = numDeriv</code>, it is calculated with <code>hessian</code> function from <strong>numDeriv</strong> package.</li>
 <li>If both of the previous methods fail, then standard errors are computed by bootstrapping with the function <code>bootstrap_maxlogL</code>.</li>
 </ul>
 <p>Additionally, <strong>EstimationTools</strong> allows implementation of bootstrap for standard error estimation, even if the Hessian computation does not fail.</p>
@@ -367,92 +177,92 @@ X &amp;\sim N(\mu, \:\sigma^2) \\
 \end{aligned}
 \]</span></p>
 <p>The following chunk illustrates the fitting with Hessian computation via <code>optim</code>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">library</span>(EstimationTools)</span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a>x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10000</span>, <span class="dt">mean =</span> <span class="dv">160</span>, <span class="dt">sd =</span> <span class="dv">6</span>)</span>
-<span id="cb2-4"><a href="#cb2-4"></a>theta_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">maxlogL</span>(<span class="dt">x =</span> x, <span class="dt">dist =</span> <span class="st">&#39;dnorm&#39;</span>, <span class="dt">control =</span> <span class="kw">list</span>(<span class="dt">trace =</span> <span class="dv">1</span>),</span>
-<span id="cb2-5"><a href="#cb2-5"></a>                   <span class="dt">link =</span> <span class="kw">list</span>(<span class="dt">over =</span> <span class="st">&quot;sd&quot;</span>, <span class="dt">fun =</span> <span class="st">&quot;log_link&quot;</span>),</span>
-<span id="cb2-6"><a href="#cb2-6"></a>                   <span class="dt">fixed =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="dv">160</span>))</span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="co">#&gt;   0:     43274.540:  1.00000</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a><span class="co">#&gt;   1:     32448.956:  2.00000</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="co">#&gt;   2:     32206.289:  1.91645</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a><span class="co">#&gt;   3:     32060.321:  1.75456</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a><span class="co">#&gt;   4:     32050.353:  1.79032</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a><span class="co">#&gt;   5:     32050.174:  1.78621</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a><span class="co">#&gt;   6:     32050.174:  1.78608</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a><span class="co">#&gt;   7:     32050.174:  1.78608</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="kw">summary</span>(theta_<span class="dv">1</span>)</span>
-<span id="cb2-16"><a href="#cb2-16"></a><span class="co">#&gt; _______________________________________________________________</span></span>
-<span id="cb2-17"><a href="#cb2-17"></a><span class="co">#&gt; Optimization routine: nlminb </span></span>
-<span id="cb2-18"><a href="#cb2-18"></a><span class="co">#&gt; Standard Error calculation: Hessian from optim </span></span>
-<span id="cb2-19"><a href="#cb2-19"></a><span class="co">#&gt; _______________________________________________________________</span></span>
-<span id="cb2-20"><a href="#cb2-20"></a><span class="co">#&gt;        AIC      BIC</span></span>
-<span id="cb2-21"><a href="#cb2-21"></a><span class="co">#&gt;   64100.35 64100.35</span></span>
-<span id="cb2-22"><a href="#cb2-22"></a><span class="co">#&gt; _______________________________________________________________</span></span>
-<span id="cb2-23"><a href="#cb2-23"></a><span class="co">#&gt;    Estimate  Std. Error Z value Pr(&gt;|z|)    </span></span>
-<span id="cb2-24"><a href="#cb2-24"></a><span class="co">#&gt; sd   5.96601    0.04219   141.4   &lt;2e-16 ***</span></span>
-<span id="cb2-25"><a href="#cb2-25"></a><span class="co">#&gt; ---</span></span>
-<span id="cb2-26"><a href="#cb2-26"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
-<span id="cb2-27"><a href="#cb2-27"></a><span class="co">#&gt; _______________________________________________________________</span></span>
-<span id="cb2-28"><a href="#cb2-28"></a><span class="co">#&gt; Note: p-values valid under asymptotic normality of estimators </span></span>
-<span id="cb2-29"><a href="#cb2-29"></a><span class="co">#&gt; ---</span></span>
-<span id="cb2-30"><a href="#cb2-30"></a></span>
-<span id="cb2-31"><a href="#cb2-31"></a><span class="co">## Hessian</span></span>
-<span id="cb2-32"><a href="#cb2-32"></a><span class="kw">print</span>(theta_<span class="dv">1</span><span class="op">$</span>fit<span class="op">$</span>hessian)</span>
-<span id="cb2-33"><a href="#cb2-33"></a><span class="co">#&gt;          [,1]</span></span>
-<span id="cb2-34"><a href="#cb2-34"></a><span class="co">#&gt; [1,] 561.9035</span></span>
-<span id="cb2-35"><a href="#cb2-35"></a></span>
-<span id="cb2-36"><a href="#cb2-36"></a><span class="co">## Standard errors</span></span>
-<span id="cb2-37"><a href="#cb2-37"></a><span class="kw">print</span>(theta_<span class="dv">1</span><span class="op">$</span>fit<span class="op">$</span>StdE)</span>
-<span id="cb2-38"><a href="#cb2-38"></a><span class="co">#&gt; [1] 0.04218608</span></span>
-<span id="cb2-39"><a href="#cb2-39"></a><span class="kw">print</span>(theta_<span class="dv">1</span><span class="op">$</span>outputs<span class="op">$</span>StdE_Method)</span>
-<span id="cb2-40"><a href="#cb2-40"></a><span class="co">#&gt; [1] &quot;Hessian from optim&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(EstimationTools)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">10000</span>, <span class="at">mean =</span> <span class="dv">160</span>, <span class="at">sd =</span> <span class="dv">6</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>theta_1 <span class="ot">&lt;-</span> <span class="fu">maxlogL</span>(<span class="at">x =</span> x, <span class="at">dist =</span> <span class="st">&#39;dnorm&#39;</span>, <span class="at">control =</span> <span class="fu">list</span>(<span class="at">trace =</span> <span class="dv">1</span>),</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                   <span class="at">link =</span> <span class="fu">list</span>(<span class="at">over =</span> <span class="st">&quot;sd&quot;</span>, <span class="at">fun =</span> <span class="st">&quot;log_link&quot;</span>),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">fixed =</span> <span class="fu">list</span>(<span class="at">mean =</span> <span class="dv">160</span>))</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   0:     43581.448:  1.00000</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:     32490.492:  2.00000</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:     32262.087:  1.91947</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:     32122.495:  1.76269</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:     32113.636:  1.79630</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:     32113.485:  1.79253</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   6:     32113.485:  1.79241</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   7:     32113.485:  1.79241</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(theta_1)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; _______________________________________________________________</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Optimization routine: nlminb </span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Standard Error calculation: Hessian from optim </span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; _______________________________________________________________</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        AIC      BIC</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   64226.97 64226.97</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; _______________________________________________________________</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Estimate  Std. Error Z value Pr(&gt;|z|)    </span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sd   6.00390    0.04245   141.4   &lt;2e-16 ***</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; _______________________________________________________________</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Note: p-values valid under asymptotic normality of estimators </span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="do">## Hessian</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(theta_1<span class="sc">$</span>fit<span class="sc">$</span>hessian)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          [,1]</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1,] 554.8334</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="do">## Standard errors</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(theta_1<span class="sc">$</span>fit<span class="sc">$</span>StdE)</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.04245401</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(theta_1<span class="sc">$</span>outputs<span class="sc">$</span>StdE_Method)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Hessian from optim&quot;</span></span></code></pre></div>
 <p>Note that Hessian was computed with no issues. Now, lets check the aforementioned feature in <code>maxlogL</code>: the user can implement bootstrap algorithm available in <code>bootstrap_maxlogL</code> function. To illustrate this, we are going to create another object <code>theta_2</code>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Bootstrap</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>theta_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">maxlogL</span>(<span class="dt">x =</span> x, <span class="dt">dist =</span> <span class="st">&#39;dnorm&#39;</span>, <span class="dt">control =</span> <span class="kw">list</span>(<span class="dt">trace =</span> <span class="dv">1</span>),</span>
-<span id="cb3-3"><a href="#cb3-3"></a>                   <span class="dt">link =</span> <span class="kw">list</span>(<span class="dt">over =</span> <span class="st">&quot;sd&quot;</span>, <span class="dt">fun =</span> <span class="st">&quot;log_link&quot;</span>),</span>
-<span id="cb3-4"><a href="#cb3-4"></a>                   <span class="dt">fixed =</span> <span class="kw">list</span>(<span class="dt">mean =</span> <span class="dv">160</span>))</span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#&gt;   0:     43274.540:  1.00000</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="co">#&gt;   1:     32448.956:  2.00000</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="co">#&gt;   2:     32206.289:  1.91645</span></span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="co">#&gt;   3:     32060.321:  1.75456</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="co">#&gt;   4:     32050.353:  1.79032</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="co">#&gt;   5:     32050.174:  1.78621</span></span>
-<span id="cb3-11"><a href="#cb3-11"></a><span class="co">#&gt;   6:     32050.174:  1.78608</span></span>
-<span id="cb3-12"><a href="#cb3-12"></a><span class="co">#&gt;   7:     32050.174:  1.78608</span></span>
-<span id="cb3-13"><a href="#cb3-13"></a><span class="kw">bootstrap_maxlogL</span>(theta_<span class="dv">2</span>, <span class="dt">R =</span> <span class="dv">200</span>)</span>
-<span id="cb3-14"><a href="#cb3-14"></a><span class="co">#&gt; </span></span>
-<span id="cb3-15"><a href="#cb3-15"></a><span class="co">#&gt; ...Bootstrap computation of Standard Error. Please, wait a few minutes...</span></span>
-<span id="cb3-16"><a href="#cb3-16"></a><span class="co">#&gt; </span></span>
-<span id="cb3-17"><a href="#cb3-17"></a><span class="co">#&gt; </span></span>
-<span id="cb3-18"><a href="#cb3-18"></a><span class="co">#&gt;  --&gt; Done &lt;---</span></span>
-<span id="cb3-19"><a href="#cb3-19"></a><span class="kw">summary</span>(theta_<span class="dv">2</span>)</span>
-<span id="cb3-20"><a href="#cb3-20"></a><span class="co">#&gt; _______________________________________________________________</span></span>
-<span id="cb3-21"><a href="#cb3-21"></a><span class="co">#&gt; Optimization routine: nlminb </span></span>
-<span id="cb3-22"><a href="#cb3-22"></a><span class="co">#&gt; Standard Error calculation: Bootstrap </span></span>
-<span id="cb3-23"><a href="#cb3-23"></a><span class="co">#&gt; _______________________________________________________________</span></span>
-<span id="cb3-24"><a href="#cb3-24"></a><span class="co">#&gt;        AIC      BIC</span></span>
-<span id="cb3-25"><a href="#cb3-25"></a><span class="co">#&gt;   64100.35 64100.35</span></span>
-<span id="cb3-26"><a href="#cb3-26"></a><span class="co">#&gt; _______________________________________________________________</span></span>
-<span id="cb3-27"><a href="#cb3-27"></a><span class="co">#&gt;    Estimate  Std. Error Z value Pr(&gt;|z|)    </span></span>
-<span id="cb3-28"><a href="#cb3-28"></a><span class="co">#&gt; sd   5.96601    0.04244   140.6   &lt;2e-16 ***</span></span>
-<span id="cb3-29"><a href="#cb3-29"></a><span class="co">#&gt; ---</span></span>
-<span id="cb3-30"><a href="#cb3-30"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
-<span id="cb3-31"><a href="#cb3-31"></a><span class="co">#&gt; _______________________________________________________________</span></span>
-<span id="cb3-32"><a href="#cb3-32"></a><span class="co">#&gt; Note: p-values valid under asymptotic normality of estimators </span></span>
-<span id="cb3-33"><a href="#cb3-33"></a><span class="co">#&gt; ---</span></span>
-<span id="cb3-34"><a href="#cb3-34"></a></span>
-<span id="cb3-35"><a href="#cb3-35"></a><span class="co">## Hessian</span></span>
-<span id="cb3-36"><a href="#cb3-36"></a><span class="kw">print</span>(theta_<span class="dv">2</span><span class="op">$</span>fit<span class="op">$</span>hessian)</span>
-<span id="cb3-37"><a href="#cb3-37"></a><span class="co">#&gt;          [,1]</span></span>
-<span id="cb3-38"><a href="#cb3-38"></a><span class="co">#&gt; [1,] 561.9035</span></span>
-<span id="cb3-39"><a href="#cb3-39"></a></span>
-<span id="cb3-40"><a href="#cb3-40"></a><span class="co">## Standard errors</span></span>
-<span id="cb3-41"><a href="#cb3-41"></a><span class="kw">print</span>(theta_<span class="dv">2</span><span class="op">$</span>fit<span class="op">$</span>StdE)</span>
-<span id="cb3-42"><a href="#cb3-42"></a><span class="co">#&gt; [1] 0.04244313</span></span>
-<span id="cb3-43"><a href="#cb3-43"></a><span class="kw">print</span>(theta_<span class="dv">2</span><span class="op">$</span>outputs<span class="op">$</span>StdE_Method)</span>
-<span id="cb3-44"><a href="#cb3-44"></a><span class="co">#&gt; [1] &quot;Bootstrap&quot;</span></span></code></pre></div>
-<p>Notice that Standard Errors calculated with <code>optim</code> (<span class="math inline">\(0.042186\)</span>) and those calculated with bootstrap implementation (<span class="math inline">\(0.042443\)</span>) are approximately equals, but no identical.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bootstrap</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>theta_2 <span class="ot">&lt;-</span> <span class="fu">maxlogL</span>(<span class="at">x =</span> x, <span class="at">dist =</span> <span class="st">&#39;dnorm&#39;</span>, <span class="at">control =</span> <span class="fu">list</span>(<span class="at">trace =</span> <span class="dv">1</span>),</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">link =</span> <span class="fu">list</span>(<span class="at">over =</span> <span class="st">&quot;sd&quot;</span>, <span class="at">fun =</span> <span class="st">&quot;log_link&quot;</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">fixed =</span> <span class="fu">list</span>(<span class="at">mean =</span> <span class="dv">160</span>))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   0:     43581.448:  1.00000</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   1:     32490.492:  2.00000</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   2:     32262.087:  1.91947</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   3:     32122.495:  1.76269</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   4:     32113.636:  1.79630</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   5:     32113.485:  1.79253</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   6:     32113.485:  1.79241</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   7:     32113.485:  1.79241</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fu">bootstrap_maxlogL</span>(theta_2, <span class="at">R =</span> <span class="dv">200</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ...Bootstrap computation of Standard Error. Please, wait a few minutes...</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  --&gt; Done &lt;---</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(theta_2)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; _______________________________________________________________</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Optimization routine: nlminb </span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Standard Error calculation: Bootstrap </span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; _______________________________________________________________</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;        AIC      BIC</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   64226.97 64226.97</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; _______________________________________________________________</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Estimate  Std. Error Z value Pr(&gt;|z|)    </span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sd   6.00390    0.04006   149.9   &lt;2e-16 ***</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; _______________________________________________________________</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Note: p-values valid under asymptotic normality of estimators </span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ---</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="do">## Hessian</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(theta_2<span class="sc">$</span>fit<span class="sc">$</span>hessian)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;          [,1]</span></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1,] 554.8334</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="do">## Standard errors</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(theta_2<span class="sc">$</span>fit<span class="sc">$</span>StdE)</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.04005579</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(theta_2<span class="sc">$</span>outputs<span class="sc">$</span>StdE_Method)</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Bootstrap&quot;</span></span></code></pre></div>
+<p>Notice that Standard Errors calculated with <code>optim</code> (<span class="math inline">\(0.042454\)</span>) and those calculated with bootstrap implementation (<span class="math inline">\(0.040056\)</span>) are approximately equals, but no identical.</p>
 </div>
 
 

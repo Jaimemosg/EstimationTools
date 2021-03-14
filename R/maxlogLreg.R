@@ -144,7 +144,8 @@
 maxlogLreg <- function(formulas, y_dist, data = NULL, subset = NULL,
                        fixed = NULL, link = NULL, start = NULL,
                        lower = NULL, upper = NULL, optimizer = 'nlminb',
-                       control = NULL, silent = FALSE, ...){
+                       control = NULL, silent = FALSE, 
+                       StdE_Method = c('optim', 'numDeriv'), ...){
 
   if (silent) options(warn = -1)
   call <- match.call()
@@ -331,7 +332,9 @@ maxlogLreg <- function(formulas, y_dist, data = NULL, subset = NULL,
   names(fit$par) <- regpar_names
 
   # Hessian computation
-  fit$hessian <- try(optim(par = fit$par, fn = minus_lL_LinReg,
+  StdE_method <- match.arg(StdE_method, c('optim', 'numDeriv'))
+  if ( StdE_method == 'optim' ){
+  	fit$hessian <- try(optim(par = fit$par, fn = minus_lL_LinReg,
                            method = 'L-BFGS-B',
                            lower = fit$par - 0.5*fit$par,
                            upper = fit$par + 0.5*fit$par,
@@ -340,10 +343,10 @@ maxlogLreg <- function(formulas, y_dist, data = NULL, subset = NULL,
                            link = link$fun, npar = npar, fixed = fixed,
                            par_names = par_names, b_length = b_length)$hessian,
                      silent = TRUE)
-
-  StdE_Method <- "Hessian from optim"
+  	StdE_computation <- "Hessian from optim"
+  }
   if ( (any(is.na(fit$hessian)) | is.error(fit$hessian)) |
-       any(is.character(fit$hessian)) ){
+       any(is.character(fit$hessian)) | StdE_method == 'numDeriv' ){
     fit$hessian <- try(numDeriv::hessian(minus_lL_LinReg, fit$par,
                                          mat = dsgn_mat, distr = distr,
                                          dist_args = arguments,
@@ -351,11 +354,11 @@ maxlogLreg <- function(formulas, y_dist, data = NULL, subset = NULL,
                                          npar = npar, fixed = fixed,
                                          par_names = par_names,
                                          b_length = b_length), silent = TRUE)
-    StdE_Method <- "numDeriv::hessian"
+    StdE_computation <- "numDeriv::hessian"
   }
   if ( (any(is.na(fit$hessian)) | is.error(fit$hessian)) |
        any(is.character(fit$hessian)) ){
-    StdE_Method <- "'optim' and 'numDeriv' failed"
+    StdE_computation <- paste0("'", StdE_Method, "' failed")
     fit$hessian <- NA
     fit$StdE <- NA
   } else {
@@ -387,7 +390,7 @@ maxlogLreg <- function(formulas, y_dist, data = NULL, subset = NULL,
                  start = start, lower = lower, upper = upper,
                  optimizer = optimizer, data = dsgn_mat$data)
   outputs <- list(npar = npar - length(fixed), n = length(dsgn_mat$y),
-                  StdE_Method = StdE_Method, type = "maxlogLreg",
+                  StdE_Method = StdE_computation, type = "maxlogLreg",
                   b_length = b_length, levels = levels,
                   par_names = par_names, response = dsgn_mat$y,
                   design_matrix = dsgn_mat,
