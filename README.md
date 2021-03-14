@@ -41,7 +41,7 @@ devtools::install_github('Jaimemosg/EstimationTools', force = TRUE)
 library(EstimationTools)
 ```
 
-Or you can install the released version (2.0.0) from
+Or you can install the released version (2.1.1) from
 [CRAN](https://cran.r-project.org/package=EstimationTools) if you
 prefer. You can also type the following command lines in `R` console:
 
