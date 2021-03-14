@@ -73,7 +73,7 @@ of any distribution implemented in R with covariates (linear predictors)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EstimationTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.1</span>
       </span>
     </div>
 
@@ -150,6 +150,7 @@ of any distribution implemented in <code>R</code> with covariates (linear predic
   optimizer <span class='op'>=</span> <span class='st'>"nlminb"</span>,
   control <span class='op'>=</span> <span class='cn'>NULL</span>,
   silent <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  StdE_method <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"optim"</span>, <span class='st'>"numDeriv"</span><span class='op'>)</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
 
@@ -224,6 +225,14 @@ optimizer for further information.</p></td>
     <tr>
       <th>silent</th>
       <td><p>logical. If TRUE, warnings of <code>maxlogL</code> are suppressed.</p></td>
+    </tr>
+    <tr>
+      <th>StdE_method</th>
+      <td><p>a length-one character vector with the routine for Hessian matrix
+computation. The This is needed for standard error estimation. The
+options available are <code>"optim"</code> and <code>"numDeriv"</code>. For
+further information, visit <code><a href='https://rdrr.io/r/stats/optim.html'>optim</a></code> or
+<code><a href='https://rdrr.io/pkg/numDeriv/man/hessian.html'>hessian</a></code>.</p></td>
     </tr>
     <tr>
       <th>...</th>

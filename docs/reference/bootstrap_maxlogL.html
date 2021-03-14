@@ -73,7 +73,7 @@ maxlogL class objects by non-parametric bootstrap." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EstimationTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.1</span>
       </span>
     </div>
 
@@ -217,11 +217,10 @@ class object is replaced.</p>
 <span class='co'>## 'bootstrap_maxlogL' implementation</span>
 <span class='va'>phat2</span> <span class='op'>&lt;-</span> <span class='va'>phat1</span>                   <span class='co'># Copy the first 'maxlogL' object</span>
 <span class='fu'>bootstrap_maxlogL</span><span class='op'>(</span><span class='va'>phat2</span>, R <span class='op'>=</span> <span class='fl'>100</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; 
-#&gt; ...Bootstrap computation of Standard Error. Please, wait a few minutes...
-#&gt; 
-#&gt; 
-#&gt;  --&gt; Done &lt;--- </div><div class='input'>
+</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>...Bootstrap computation of Standard Error. Please, wait a few minutes...</span>
+#&gt; <span class='message'></span></div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'> --&gt; Done &lt;--- </span></div><div class='input'>
 <span class='co'>## Standard error computation method and results</span>
 <span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>phat2</span><span class='op'>$</span><span class='va'>outputs</span><span class='op'>$</span><span class='va'>StdE_Method</span><span class='op'>)</span>   <span class='co'># Bootstrap</span>
 </div><div class='output co'>#&gt; [1] "Bootstrap"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>phat2</span><span class='op'>)</span>
