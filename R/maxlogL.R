@@ -29,6 +29,11 @@
 #'                  is the default routine.
 #' @param control control parameters of the optimization routine. Please, visit documentation of selected
 #'                optimizer for further information.
+#' @param StdE_method a length-one character vector with the routine for Hessian matrix
+#'                    computation. The This is needed for standard error estimation. The
+#'                    options available are \code{"optim"} and \code{"numDeriv"}. For
+#'                    further information, visit \code{\link[stats]{optim}} or
+#'                    \code{\link[numDeriv]{hessian}}.
 #' @param silent  logical. If TRUE, warnings of \code{maxlogL} are suppressed.
 #' @param ... further arguments to be supplied to the optimizer.
 #'
@@ -129,8 +134,9 @@
 #' @export
 maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
                     start = NULL, lower = NULL, upper = NULL,
-                    optimizer = 'nlminb', control = NULL, silent = FALSE, 
-                    StdE_Method = c('optim', 'numDeriv'), ...){
+                    optimizer = 'nlminb', control = NULL,
+                    StdE_method = c('optim', 'numDeriv'),
+                    silent = FALSE, ...){
 
   if (silent) options(warn = -1)
   call <- match.call()
@@ -300,7 +306,7 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
   ## Standard error computation
   if ( (any(is.na(fit$hessian)) | is.error(fit$hessian)) |
        any(is.character(fit$hessian)) ){
-    StdE_computation <- paste0("'", StdE_Method, "' failed")
+    StdE_computation <- paste0("'", StdE_method, "' failed")
     fit$hessian <- NA
     fit$StdE <- NA
   } else {

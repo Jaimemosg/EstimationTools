@@ -18,7 +18,7 @@ maxlogLreg(
   optimizer = "nlminb",
   control = NULL,
   silent = FALSE,
-  StdE_Method = c("optim", "numDeriv"),
+  StdE_method = c("optim", "numDeriv"),
   ...
 )
 }
@@ -67,6 +67,12 @@ is the default routine.}
 optimizer for further information.}
 
 \item{silent}{logical. If TRUE, warnings of \code{maxlogL} are suppressed.}
+
+\item{StdE_method}{a length-one character vector with the routine for Hessian matrix
+computation. The This is needed for standard error estimation. The
+options available are \code{"optim"} and \code{"numDeriv"}. For
+further information, visit \code{\link[stats]{optim}} or
+\code{\link[numDeriv]{hessian}}.}
 
 \item{...}{Further arguments to be supplied to the optimization routine.}
 }
