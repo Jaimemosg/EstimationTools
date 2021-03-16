@@ -1,3 +1,7 @@
+# EstimationTools 2.1.1
+
+- Default value for data (NULL) in order to handle data inside another function (use with 'apply' family).
+
 # EstimationTools 2.1.0
 
 - Function for hazard shape estimation implemented. A plot method was also implemented.
