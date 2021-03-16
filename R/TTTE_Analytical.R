@@ -142,8 +142,8 @@
 #==============================================================================
 # Empirical TTT computation ---------------------------------------------------
 #==============================================================================
-TTTE_Analytical <- function(formula, response = NULL, scaled = TRUE, data,
-                            method = c('Barlow', 'censored'),
+TTTE_Analytical <- function(formula, response = NULL, scaled = TRUE,
+                            data = NULL, method = c('Barlow', 'censored'),
                             partition_method = NULL, silent = FALSE, ...){
   if (silent) options(warn = -1)
   method <- match.arg(method, c('Barlow', 'censored'))
