@@ -6,11 +6,15 @@
 #'
 #' @description
 #' This function can be used so as to estimate hazard shape corresponding
-#' to a given data set.
+#' to a given data set. This is a wrapper for
+#' \code{\link[EstimationTools]{TTTE_Analytical}}.
 #'
-#' @param formula an object of class \code{\link{formula}} with the response on
+#' @param formula An object of class \code{\link[stats]{formula}} with the response on
 #'                the left of an operator \code{~}. The right side must be
 #'                \code{1}.
+#' @param object An alternative way for getting the hazard shape
+#'              estimation in passing directly the \code{EmpiricalTTT} object
+#'              generated with \code{\link{TTTE_Analytical}}.
 #' @param data an optional data frame containing the response variables. If
 #'             data is not specified, the variables are taken from the
 #'             environment from which \code{\link{TTT_hazard_shape}} is called.
@@ -30,11 +34,13 @@
 #'
 #' Use \code{\link{Hazard_Shape}} function to get the results for shape estimation.
 #'
-#' @seealso \code{\link{Hazard_Shape}}, \code{\link{plot.HazardShape}}
+#' @seealso \code{\link{Hazard_Shape}}, \code{\link{plot.HazardShape}},
+#' \code{\link{TTTE_Analytical}}
 #'
 #' @examples
 #' #--------------------------------------------------------------------------------
 #' # Example 1: Increasing hazard and its corresponding TTT plot with simulated data
+#'
 #' hweibull <- function(x, shape, scale){
 #'   dweibull(x, shape, scale)/pweibull(x, shape, scale, lower.tail = FALSE)
 #'   }
@@ -42,8 +48,17 @@
 #'                col = "red", ylab = "Hazard function", las = 1, lwd = 2)
 #'
 #' y <- rweibull(n = 50, shape = 2.5, scale = pi)
-#' my_initial_guess <- TTT_hazard_shape(formula = y ~ 1)
-#' my_initial_guess$hazard_type
+#' my_initial_guess1 <- TTT_hazard_shape(y ~ 1)
+#' my_initial_guess1$hazard_type
+#'
+#'
+#' #--------------------------------------------------------------------------------
+#' # Example 2: Same example using an 'EmpiricalTTT' object
+#'
+#' y <- rweibull(n = 50, shape = 2.5, scale = pi)
+#' TTT_wei <- TTTE_Analytical(y ~ 1)
+#' my_initial_guess2 <- TTT_hazard_shape(TTT_wei)
+#' my_initial_guess2$hazard_type
 #'
 #'
 #' #--------------------------------------------------------------------------------
@@ -51,12 +66,22 @@
 #' @importFrom survival is.Surv
 #' @importFrom BBmisc is.error
 #' @export
-TTT_hazard_shape <- function(formula, data=NULL, local_reg = loess.options(),
-                             interpolation = interp.options(),
-                             silent = FALSE, ...){
+TTT_hazard_shape <- function(object, ...){
+  UseMethod("TTT_hazard_shape")
+}
+#==============================================================================
+# TTT_hazard_shape for formula inputs -----------------------------------------
+#==============================================================================
+#' @rdname TTT_hazard_shape
+#' @method TTT_hazard_shape formula
+#' @export
+TTT_hazard_shape.formula <- function(formula, data=NULL,
+                                     local_reg = loess.options(),
+                                     interpolation = interp.options(),
+                                     silent = FALSE, ...){
   if (silent) options(warn = -1)
   if ( length(attr(terms(formula), "term.labels")) > 0 )
-    stop('initValuesOW_TTT function only uses response variable.')
+    stop("'TTT_hazard_shape' function only uses a response variable.")
   mycall <- match.call()
   id_arg <- match(c('formula', 'data'), names(mycall),
                   nomatch=0)
@@ -65,7 +90,13 @@ TTT_hazard_shape <- function(formula, data=NULL, local_reg = loess.options(),
   modfrm <- eval.parent(temp)
   y <- stats::model.extract(modfrm, 'response')
 
-  method <- if ( is.Surv(y) ){'censored'} else {'Barlow'}
+  if ( is.Surv(y) ){
+    method <- 'censored'
+    data <- as.data.frame(as.matrix(y))
+  } else {
+    method <- 'Barlow'
+    data <- as.data.frame(modfrm)
+  }
 
   dots <- substitute(...())
   args_matches <- match(names(formals(TTTE_Analytical)),
@@ -76,7 +107,7 @@ TTT_hazard_shape <- function(formula, data=NULL, local_reg = loess.options(),
 
   g1 <- do.call("TTTE_Analytical",
                 args = c(list(formula = formula, response = NULL,
-                              method = method,
+                              method = method, data = data,
                               scale = TRUE), TTTE_params, TTTE_dots))
 
   the_warning <- NULL
@@ -145,9 +176,98 @@ TTT_hazard_shape <- function(formula, data=NULL, local_reg = loess.options(),
     }
   }
 
-  output <- list(formula=formula, response=y,
-                 local_reg=g3, interpolation=g4, TTTplot=g2,
-                 hazard_type=hazard_type, warning=the_warning)
+  output <- list(formula = formula, response = y,
+                 local_reg = g3, interpolation = g4, TTTplot = g2,
+                 hazard_type = hazard_type, warning = the_warning)
+  class(output) <- "HazardShape"
+  if (silent) options(warn = 0)
+  return(output)
+}
+#' @export
+#==============================================================================
+# TTT_hazard_shape for 'EmpiricalTTT' inputs ----------------------------------
+#==============================================================================
+#' @rdname TTT_hazard_shape
+#' @method TTT_hazard_shape EmpiricalTTT
+#' @export
+TTT_hazard_shape.EmpiricalTTT <- function(object,
+                                          local_reg = loess.options(),
+                                          interpolation = interp.options(),
+                                          silent = FALSE, ...){
+  if (silent) options(warn = -1)
+  g1 <- object
+  y <- g1$response
+  formula <- g1$formula
+
+  the_warning <- NULL
+
+  g2 <- cbind(g1$`i/n`, g1$phi_n)
+  g3 <- try(do.call("loess",
+                    c(list(formula=g2[,2] ~ g2[,1]),
+                      local_reg)), silent=TRUE)
+  g4 <- do.call(interpolation$interp.fun,
+                list(x = g2[,1], y=predict(g3),
+                     interpolation$passing_args))
+
+  if (is.error(g3) | is.nan(g3$s)){
+    hazard_type <- NA
+    warning(paste0("Problem with LOESS estimation. The sample",
+                   "size may be too small"))
+  } else {
+    lout <- (length(y) - 1)*5
+    dTTT_dp <- g4(seq(0,1,length.out = interpolation$length.out), deriv=1)
+    d2TTT_dp2 <- g4(seq(0,1,length.out = interpolation$length.out), deriv=2)
+
+    target <- diff(sign(d2TTT_dp2))
+    inflex <- which( target != 0 )
+    diff_val <- try(target[inflex], silent = TRUE)
+
+    if ( length(inflex) < 2 ){
+      if ( length(inflex) > 0 ){
+        if (diff_val == 2){
+          # all(nu > 1)"
+          hazard_type <- "Unimodal"
+        }
+        if (diff_val == -2){
+          hazard_type <- "Bathtub"
+        }
+      } else {
+        sign_search <- any(sign(d2TTT_dp2) < 0) # if (is.na(sum(sign_search))){
+        if (sign_search){# negative second derivative
+          hazard_type <- "Increasing"
+        } else { # positive second derivative
+          hazard_type <- "Decreasing"
+        }
+      }
+    } else {
+      the_warning <- paste0("Non-parametric estimate for Empirical TTT",
+                            " is irregular.\nPlease, ",
+                            "use the 'plot()' method to see the TTT ",
+                            "shape and set the search region manually in ",
+                            "'gamlss()' if there is no conincidence between ",
+                            "'summary()' and 'plot()'. Visit ",
+                            "'OW distribution' vignette to get further ",
+                            "information.")
+      criterion <- sapply(g2[,1], criteria, x_val=0, y_val=1, g3=g3)
+      control1 <- all(criterion)
+      control2 <- all(criterion[2:(criterion[length(g2[,1])] - 1)])
+      if ( control1 ){
+        # Decreasing hazard
+        hazard_type <- "Decreasing"
+      } else if ( !control2 ){
+        # Increasing hazard
+        hazard_type <- "Increasing"
+      } else {
+        sigma <- NA;  nu <- NA;
+        sigma.valid <- NA; nu.valid <- NA
+        hazard_type <- NA
+      }
+    }
+  }
+
+  output <- list(formula = object, response = y,
+                 local_reg = g3, interpolation = g4, TTTplot = g2,
+                 hazard_type = hazard_type, warning = the_warning)
   class(output) <- "HazardShape"
   if (silent) options(warn = 0)
   return(output)
