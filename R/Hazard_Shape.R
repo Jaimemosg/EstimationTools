@@ -13,6 +13,7 @@
 #' @examples
 #' #--------------------------------------------------------------------------------
 #' # Example 1: Increasing hazard and its corresponding TTT plot with simulated data
+#'
 #' hweibull <- function(x, shape, scale){
 #'   dweibull(x, shape, scale)/pweibull(x, shape, scale, lower.tail = FALSE)
 #'   }
