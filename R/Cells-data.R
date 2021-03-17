@@ -10,6 +10,6 @@
 #' plot(reduction_cells$status, xlab = "Status", lty = 3, type="h")
 #' points(reduction_cells$status, pch = 16)
 #'
-#' #' @references
+#' @references
 #' \insertRef{Whitmore1983}{EstimationTools}
 "reduction_cells"

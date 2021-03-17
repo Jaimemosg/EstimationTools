@@ -17,5 +17,9 @@ at gauge lengths of 20 mm.
 \examples{
 data(Fibers)
 hist(Fibers$Strenght, main="", xlab="Strength (GPa)")
+
+}
+\references{
+\insertRef{Ghitany2013}{EstimationTools}
 }
 \keyword{datasets}

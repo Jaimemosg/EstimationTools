@@ -7,4 +7,7 @@
 #' @examples
 #' data(Fibers)
 #' hist(Fibers$Strenght, main="", xlab="Strength (GPa)")
+#'
+#' @references
+#' \insertRef{Ghitany2013}{EstimationTools}
 "Fibers"
