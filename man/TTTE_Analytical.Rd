@@ -9,7 +9,7 @@ TTTE_Analytical(
   formula,
   response = NULL,
   scaled = TRUE,
-  data,
+  data = NULL,
   method = c("Barlow", "censored"),
   partition_method = NULL,
   silent = FALSE,
