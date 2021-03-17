@@ -202,6 +202,8 @@ TTTE_Analytical <- function(formula, response = NULL, scaled = TRUE,
 
   TTT <- TTT_formula_selector(inputs, scaled, method)
   TTT$x_var <- inputs$x
+  TTT$response <- y
+  TTT$formula <- formula
   class(TTT) <- "EmpiricalTTT"
   if (silent) options(warn = 0)
   return(TTT)
