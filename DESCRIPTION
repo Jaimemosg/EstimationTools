@@ -8,7 +8,7 @@ Authors@R: c(
       person("Freddy", "Hernandez", , "fhernanb@unal.edu.co", role = c("ctb"), 
       comment = c(ORCID = "0000-0001-7459-3329"))
       )
-Depends: R (>= 3.0.0), DEoptim, survival, stringr, BBmisc
+Depends: R (>= 3.5.0), DEoptim, survival, stringr, BBmisc
 Imports: Rdpack, utils, stats, numDeriv, boot, matrixStats,
     autoimage, graphics
 RdMacros: Rdpack
