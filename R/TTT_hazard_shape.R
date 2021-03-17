@@ -151,12 +151,7 @@ TTT_hazard_shape.formula <- function(formula, data=NULL,
     } else {
       the_warning <- paste0("Non-parametric estimate for Empirical TTT",
                             " is irregular.\nPlease, ",
-                            "use the 'plot()' method to see the TTT ",
-                            "shape and set the search region manually in ",
-                            "'gamlss()' if there is no conincidence between ",
-                            "'summary()' and 'plot()'. Visit ",
-                            "'OW distribution' vignette to get further ",
-                            "information.")
+                            "use the 'plot()' method to see the TTT shape")
       criterion <- sapply(g2[,1], criteria, x_val=0, y_val=1, g3=g3)
       control1 <- all(criterion)
       control2 <- all(criterion[2:(criterion[length(g2[,1])] - 1)])
@@ -240,12 +235,7 @@ TTT_hazard_shape.EmpiricalTTT <- function(object,
     } else {
       the_warning <- paste0("Non-parametric estimate for Empirical TTT",
                             " is irregular.\nPlease, ",
-                            "use the 'plot()' method to see the TTT ",
-                            "shape and set the search region manually in ",
-                            "'gamlss()' if there is no conincidence between ",
-                            "'summary()' and 'plot()'. Visit ",
-                            "'OW distribution' vignette to get further ",
-                            "information.")
+                            "use the 'plot()' method to see the TTT shape")
       criterion <- sapply(g2[,1], criteria, x_val=0, y_val=1, g3=g3)
       control1 <- all(criterion)
       control2 <- all(criterion[2:(criterion[length(g2[,1])] - 1)])
