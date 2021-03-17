@@ -1,6 +1,7 @@
 # EstimationTools 2.1.1
 
 - Default value for data (NULL) in order to handle data inside another function (use with 'apply' family).
+- New data sets and examples for them added.
 
 # EstimationTools 2.1.0
 
