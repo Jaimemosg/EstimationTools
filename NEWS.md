@@ -1,7 +1,8 @@
 # EstimationTools 2.1.1
 
 - Default value for data (NULL) in order to handle data inside another function (use with 'apply' family).
-- New data sets and examples for them added.
+- New data sets and examples for them added. They were also referenced.
+- 'TTT_hazard_shape' was implemented as method for clases 'EmpiricalTTT' and 'formula' objects.
 
 # EstimationTools 2.1.0
 

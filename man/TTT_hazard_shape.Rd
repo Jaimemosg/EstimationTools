@@ -3,9 +3,13 @@
 \encoding{UTF-8}
 \name{TTT_hazard_shape}
 \alias{TTT_hazard_shape}
+\alias{TTT_hazard_shape.formula}
+\alias{TTT_hazard_shape.EmpiricalTTT}
 \title{Hazard Shape estimation from TTT plot}
 \usage{
-TTT_hazard_shape(
+TTT_hazard_shape(object, ...)
+
+\method{TTT_hazard_shape}{formula}(
   formula,
   data = NULL,
   local_reg = loess.options(),
@@ -13,9 +17,24 @@ TTT_hazard_shape(
   silent = FALSE,
   ...
 )
+
+\method{TTT_hazard_shape}{EmpiricalTTT}(
+  object,
+  local_reg = loess.options(),
+  interpolation = interp.options(),
+  silent = FALSE,
+  ...
+)
 }
 \arguments{
-\item{formula}{an object of class \code{\link{formula}} with the response on
+\item{object}{An alternative way for getting the hazard shape
+estimation in passing directly the \code{EmpiricalTTT} object
+generated with \code{\link{TTTE_Analytical}}.}
+
+\item{...}{further arguments passed to
+\code{\link{TTTE_Analytical}}.}
+
+\item{formula}{An object of class \code{\link[stats]{formula}} with the response on
 the left of an operator \code{~}. The right side must be
 \code{1}.}
 
@@ -30,13 +49,11 @@ environment from which \code{\link{TTT_hazard_shape}} is called.}
 \code{\link{interp.options}}.}
 
 \item{silent}{logical. If TRUE, warnings of \code{TTT_hazard_shape} are suppressed.}
-
-\item{...}{further arguments passed to
-\code{\link{TTTE_Analytical}}.}
 }
 \description{
 This function can be used so as to estimate hazard shape corresponding
-to a given data set.
+to a given data set. This is a wrapper for
+\code{\link[EstimationTools]{TTTE_Analytical}}.
 }
 \details{
 This function performs a non-parametric estimation of the empirical total
@@ -49,6 +66,7 @@ Use \code{\link{Hazard_Shape}} function to get the results for shape estimation.
 \examples{
 #--------------------------------------------------------------------------------
 # Example 1: Increasing hazard and its corresponding TTT plot with simulated data
+
 hweibull <- function(x, shape, scale){
   dweibull(x, shape, scale)/pweibull(x, shape, scale, lower.tail = FALSE)
   }
@@ -56,14 +74,24 @@ curve(hweibull(x, shape = 2.5, scale = pi), from = 0, to = 42,
                col = "red", ylab = "Hazard function", las = 1, lwd = 2)
 
 y <- rweibull(n = 50, shape = 2.5, scale = pi)
-my_initial_guess <- TTT_hazard_shape(formula = y ~ 1)
-my_initial_guess$hazard_type
+my_initial_guess1 <- TTT_hazard_shape(y ~ 1)
+my_initial_guess1$hazard_type
+
+
+#--------------------------------------------------------------------------------
+# Example 2: Same example using an 'EmpiricalTTT' object
+
+y <- rweibull(n = 50, shape = 2.5, scale = pi)
+TTT_wei <- TTTE_Analytical(y ~ 1)
+my_initial_guess2 <- TTT_hazard_shape(TTT_wei)
+my_initial_guess2$hazard_type
 
 
 #--------------------------------------------------------------------------------
 }
 \seealso{
-\code{\link{Hazard_Shape}}, \code{\link{plot.HazardShape}}
+\code{\link{Hazard_Shape}}, \code{\link{plot.HazardShape}},
+\code{\link{TTTE_Analytical}}
 }
 \author{
 Jaime Mosquera Gutiérrez \email{jmosquerag@unal.edu.co}
