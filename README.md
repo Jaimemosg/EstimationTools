@@ -32,7 +32,7 @@ objects. You can find out in our
 
 ## Installation
 
-You can install the latest version (2.1.1) of `EstimationTools` typing
+You can install the latest version (2.2.0) of `EstimationTools` typing
 the following command lines in `R` console:
 
 ``` r
@@ -41,7 +41,7 @@ devtools::install_github('Jaimemosg/EstimationTools', force = TRUE)
 library(EstimationTools)
 ```
 
-Or you can install the released version ( 2.1.0) from
+Or you can install the released version (2.1.1) from
 [CRAN](https://cran.r-project.org/package=EstimationTools) if you
 prefer. You can also type the following command lines in `R` console:
 

@@ -1,6 +1,7 @@
 # EstimationTools 2.2.0
 
-- 'TTT_hazard_shape' was implemented as method for clases 'EmpiricalTTT' and 'formula' objects.
+- 'TTT_hazard_shape' was implemented as method for classes 'EmpiricalTTT' and 'formula' objects.
+- 'Hazard_Shape' function deprecated. We implemented a 'print' method for 'TTT_hazard_shape' objects.
 
 # EstimationTools 2.1.1
 
