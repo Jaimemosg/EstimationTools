@@ -5,6 +5,8 @@
 #' @family HazardShape
 #'
 #' @description
+#' `r lifecycle::badge("experimental")`
+#'
 #' This function can be used so as to estimate hazard shape corresponding
 #' to a given data set. This is a wrapper for
 #' \code{\link[EstimationTools]{TTTE_Analytical}}.
@@ -34,7 +36,7 @@
 #'
 #' Use \code{\link{Hazard_Shape}} function to get the results for shape estimation.
 #'
-#' @seealso \code{\link{Hazard_Shape}}, \code{\link{plot.HazardShape}},
+#' @seealso \code{\link{print.HazardShape}}, \code{\link{plot.HazardShape}},
 #' \code{\link{TTTE_Analytical}}
 #'
 #' @examples
