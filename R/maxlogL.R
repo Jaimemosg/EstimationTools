@@ -4,6 +4,8 @@
 #' @author Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
 #'
 #' @description
+#' `r lifecycle::badge("maturing")`
+#'
 #' Function to compute maximum likelihood estimators (MLE)
 #' of any distribution implemented in \code{R}.
 #'

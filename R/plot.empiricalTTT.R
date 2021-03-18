@@ -4,6 +4,8 @@
 #' @author Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
 #'
 #' @description
+#' `r lifecycle::badge("experimental")`
+#'
 #' Draws a TTT plot of an \code{EmpiricalTTT} object, one for each strata.
 #'
 #' TTT plots are graphed in the same order in which they appear in the list

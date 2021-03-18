@@ -4,6 +4,8 @@
 #' @author Jaime Mosquera Gutiérrez \email{jmosquerag@unal.edu.co}
 #'
 #' @description
+#' `r lifecycle::badge("experimental")`
+#'
 #' This function allows the user to set the parameters of any of the following
 #' interpolating functions which can be used inside \code{\link{TTT_hazard_shape}}.
 #'

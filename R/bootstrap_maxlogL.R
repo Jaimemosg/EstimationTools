@@ -3,7 +3,10 @@
 #' @encoding UTF-8
 #' @author Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
 #'
-#' @description \code{bootstrap_maxlogL} computes standard errors of
+#' @description
+#' `r lifecycle::badge("experimental")`
+#'
+#' \code{bootstrap_maxlogL} computes standard errors of
 #' \code{\link{maxlogL}} class objects by non-parametric bootstrap.
 #'
 #' @param object an object of \code{\link{maxlogL}} class whose standard errors

@@ -4,6 +4,8 @@
 #' @author Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
 #'
 #' @description
+#' `r lifecycle::badge("experimental")`
+#'
 #' This function computes predictions and optionally the estimated standard errors
 #' of those predictions from a model fitted with \code{maxlogLreg}.
 #'

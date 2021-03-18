@@ -5,6 +5,8 @@
 #' @author Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
 #'
 #' @description
+#' `r lifecycle::badge("experimental")`
+#'
 #' Function to compute maximum likelihood estimators (MLE) of regression parameters
 #' of any distribution implemented in \code{R} with covariates (linear predictors).
 #'

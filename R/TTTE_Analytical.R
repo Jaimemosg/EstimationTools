@@ -5,6 +5,8 @@
 #' @author Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
 #'
 #' @description
+#' `r lifecycle::badge("experimental")`
+#'
 #' This function allows to compute the TTT curve from a formula
 #' containing a factor type variable (classification variable).
 #'

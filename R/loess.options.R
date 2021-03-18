@@ -4,6 +4,8 @@
 #' @author Jaime Mosquera Gutiérrez \email{jmosquerag@unal.edu.co}
 #'
 #' @description
+#' `r lifecycle::badge("maturing")`
+#'
 #' This function allows the user to set the parameters of \code{loess} function
 #' used inside \code{TTT_hazard_shape}.
 #'

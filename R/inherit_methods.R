@@ -4,6 +4,8 @@
 #' @author Jaime Mosquera Gutiérrez \email{jmosquerag@unal.edu.co}
 #'
 #' @description
+#' `r lifecycle::badge("stable")`
+#'
 #' Checks if an object is any of the classes implemented in \code{EstimationTools}
 #' package.
 #'
