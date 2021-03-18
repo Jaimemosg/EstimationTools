@@ -7,6 +7,8 @@
 #' @encoding UTF-8
 #' @author Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
 #' @description
+#' `r lifecycle::badge("experimental")`
+#'
 #' \code{log_link} object provides a way to implement logit link function that
 #' \code{\link{maxlogL}} needs to perform estimation. See documentation for
 #' \code{\link{maxlogL}} for further information on parameter estimation and implementation
