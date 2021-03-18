@@ -9,8 +9,16 @@ Authors@R: c(
       comment = c(ORCID = "0000-0001-7459-3329"))
       )
 Depends: R (>= 3.5.0), DEoptim, survival, stringr, BBmisc
-Imports: Rdpack, utils, stats, numDeriv, boot, matrixStats,
-    autoimage, graphics
+Imports: 
+    Rdpack,
+    utils,
+    stats,
+    numDeriv,
+    boot,
+    matrixStats,
+    autoimage,
+    graphics,
+    lifecycle
 RdMacros: Rdpack
 Suggests:
     gamlss.dist,
@@ -22,7 +30,6 @@ Suggests:
     testthat (>= 3.0.0),
     vdiffr,
     spelling,
-    lifecycle,
     readtext
 VignetteBuilder: knitr, utils
 Description: Routines for parameter estimation for any probability density or
