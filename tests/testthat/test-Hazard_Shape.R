@@ -34,5 +34,5 @@ test_that("Hazard_Shape test", {
 
   y <- rOW(n = 10000, mu = 0.1, sigma = 0.5, nu = 3)
   my_initial_guess <- TTT_hazard_shape(formula = y ~ 1)
-  expect_snapshot_output( Hazard_Shape(my_initial_guess) )
+  expect_snapshot_output( print(my_initial_guess) )
 })
