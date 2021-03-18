@@ -4,6 +4,8 @@
 #' @author Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
 #'
 #' @description
+#' `r lifecycle::badge("experimental")`
+#'
 #' Displays maximum likelihood estimates computed with \code{\link{maxlogL}} with
 #' its standard errors, AIC and BIC.
 #' This is a \code{summary} method for \code{\link{maxlogL}} object.
