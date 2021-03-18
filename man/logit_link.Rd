@@ -11,6 +11,8 @@ logit_link()
 A list with logit link function, its inverse and its name.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+
 \code{log_link} object provides a way to implement logit link function that
 \code{\link{maxlogL}} needs to perform estimation. See documentation for
 \code{\link{maxlogL}} for further information on parameter estimation and implementation

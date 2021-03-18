@@ -23,6 +23,8 @@ for estimation of standard errors.}
 A modified object of class \code{maxlogL}.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+
 \code{bootstrap_maxlogL} computes standard errors of
 \code{\link{maxlogL}} class objects by non-parametric bootstrap.
 }

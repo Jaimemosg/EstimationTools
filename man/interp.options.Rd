@@ -17,6 +17,8 @@ function used. Default value is \code{"splinefun"}. Visit the
 \item{...}{further arguments passed to the interpolating function.}
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+
 This function allows the user to set the parameters of any of the following
 interpolating functions which can be used inside \code{\link{TTT_hazard_shape}}.
 }

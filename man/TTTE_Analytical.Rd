@@ -59,6 +59,8 @@ considered (number of strata).}
 and the name of each strata (names of the levels of the factor).}
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+
 This function allows to compute the TTT curve from a formula
 containing a factor type variable (classification variable).
 }

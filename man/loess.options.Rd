@@ -13,6 +13,8 @@ loess.options(span = 2/3, ...)
 \item{...}{further arguments passed to \code{\link[stats]{loess}} function.}
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#maturing}{\figure{lifecycle-maturing.svg}{options: alt='[Maturing]'}}}{\strong{[Maturing]}}
+
 This function allows the user to set the parameters of \code{loess} function
 used inside \code{TTT_hazard_shape}.
 }

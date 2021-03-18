@@ -36,6 +36,8 @@ indicating the type of plot for each TTT graph. See \code{\link{plot}}.}
 the examples and \strong{Details} section for further information.}
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+
 Draws a TTT plot of an \code{EmpiricalTTT} object, one for each strata.
 
 TTT plots are graphed in the same order in which they appear in the list

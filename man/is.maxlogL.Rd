@@ -17,6 +17,8 @@ is.HazardShape(x)
 \item{x}{Any object of \code{EstimationTools}.}
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
+
 Checks if an object is any of the classes implemented in \code{EstimationTools}
 package.
 }

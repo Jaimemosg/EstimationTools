@@ -91,6 +91,8 @@ lists:
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+
 Function to compute maximum likelihood estimators (MLE) of regression parameters
 of any distribution implemented in \code{R} with covariates (linear predictors).
 }

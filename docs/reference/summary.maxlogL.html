@@ -40,7 +40,8 @@
 
 
 <meta property="og:title" content="Summarize Maximum Likelihood Estimation — summary.maxlogL" />
-<meta property="og:description" content="Displays maximum likelihood estimates computed with maxlogL with
+<meta property="og:description" content="
+Displays maximum likelihood estimates computed with maxlogL with
 its standard errors, AIC and BIC.
 This is a summary method for maxlogL object." />
 
@@ -74,7 +75,7 @@ This is a summary method for maxlogL object." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EstimationTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.1.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.0</span>
       </span>
     </div>
 
@@ -134,7 +135,8 @@ This is a summary method for maxlogL object." />
     </div>
 
     <div class="ref-description">
-    <p>Displays maximum likelihood estimates computed with <code><a href='maxlogL.html'>maxlogL</a></code> with
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#experimental'><img src='figures/lifecycle-experimental.svg' alt='[Experimental]' /></a></p>
+<p>Displays maximum likelihood estimates computed with <code><a href='maxlogL.html'>maxlogL</a></code> with
 its standard errors, AIC and BIC.
 This is a <code>summary</code> method for <code><a href='maxlogL.html'>maxlogL</a></code> object.</p>
     </div>
@@ -182,23 +184,23 @@ test of parameters.</p>
 <span class='va'>theta_1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='maxlogL.html'>maxlogL</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, dist <span class='op'>=</span> <span class='st'>'dnorm'</span>, control <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>trace <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>,
                  link <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>over <span class='op'>=</span> <span class='st'>"sd"</span>, fun <span class='op'>=</span> <span class='st'>"log_link"</span><span class='op'>)</span>,
                  fixed <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>mean <span class='op'>=</span> <span class='fl'>160</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   0:     43507.130:  1.00000
-#&gt;   1:     32480.434:  2.00000
-#&gt;   2:     32248.632:  1.91875
-#&gt;   3:     32107.503:  1.76073
-#&gt;   4:     32098.385:  1.79486
-#&gt;   5:     32098.228:  1.79100
-#&gt;   6:     32098.227:  1.79088
-#&gt;   7:     32098.227:  1.79088</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>theta_1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   0:     43520.219:  1.00000
+#&gt;   1:     32482.206:  2.00000
+#&gt;   2:     32251.005:  1.91888
+#&gt;   3:     32110.146:  1.76108
+#&gt;   4:     32101.074:  1.79511
+#&gt;   5:     32100.918:  1.79127
+#&gt;   6:     32100.918:  1.79115
+#&gt;   7:     32100.918:  1.79115</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>theta_1</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; _______________________________________________________________
 #&gt; Optimization routine: nlminb 
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
 #&gt;        AIC      BIC
-#&gt;   64196.45 64196.45
+#&gt;   64201.84 64201.84
 #&gt; _______________________________________________________________
 #&gt;    Estimate  Std. Error Z value Pr(&gt;|z|)    
-#&gt; sd   5.99475    0.04239   141.4   &lt;2e-16 ***
+#&gt; sd    5.9964     0.0424   141.4   &lt;2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________
@@ -223,10 +225,10 @@ test of parameters.</p>
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
 #&gt;        AIC      BIC
-#&gt;   370.0744 370.0744
+#&gt;   359.9022 359.9022
 #&gt; _______________________________________________________________
 #&gt;      Estimate  Std. Error Z value Pr(&gt;|z|)    
-#&gt; prob   0.31300    0.01466   21.34   &lt;2e-16 ***
+#&gt; prob   0.31800    0.01473   21.59   &lt;2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________
@@ -244,10 +246,10 @@ test of parameters.</p>
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
 #&gt;        AIC      BIC
-#&gt;   359.2389 359.2389
+#&gt;   350.6295 350.6295
 #&gt; _______________________________________________________________
 #&gt;      Estimate  Std. Error Z value Pr(&gt;|z|)    
-#&gt; prob    0.3160     0.0147   21.49   &lt;2e-16 ***
+#&gt; prob   0.29900    0.01448   20.65   &lt;2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________
@@ -271,21 +273,21 @@ test of parameters.</p>
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
 #&gt;        AIC      BIC
-#&gt;   5135.165 5154.796
+#&gt;   5096.055 5115.686
 #&gt; _______________________________________________________________
 #&gt; Fixed effects for g(mean) 
 #&gt; ---------------------------------------------------------------
-#&gt;              Estimate Std. Error Z value  Pr(&gt;|z|)    
-#&gt; (Intercept) -2.049420   0.115418 -17.756 &lt; 2.2e-16 ***
-#&gt; x            2.981090   0.030977  96.237 &lt; 2.2e-16 ***
+#&gt;             Estimate Std. Error Z value  Pr(&gt;|z|)    
+#&gt; (Intercept) -2.03505    0.11435 -17.796 &lt; 2.2e-16 ***
+#&gt; x            2.99051    0.03043  98.274 &lt; 2.2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________
 #&gt; Fixed effects for g(sd) 
 #&gt; ---------------------------------------------------------------
 #&gt;              Estimate Std. Error Z value  Pr(&gt;|z|)    
-#&gt; (Intercept) 1.0129403  0.0225784  44.863 &lt; 2.2e-16 ***
-#&gt; x           0.2929134  0.0069573  42.102 &lt; 2.2e-16 ***
+#&gt; (Intercept) 0.9972127  0.0225601  44.203 &lt; 2.2e-16 ***
+#&gt; x           0.2976792  0.0069669  42.728 &lt; 2.2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________

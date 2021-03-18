@@ -51,6 +51,8 @@ environment from which \code{\link{TTT_hazard_shape}} is called.}
 \item{silent}{logical. If TRUE, warnings of \code{TTT_hazard_shape} are suppressed.}
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+
 This function can be used so as to estimate hazard shape corresponding
 to a given data set. This is a wrapper for
 \code{\link[EstimationTools]{TTTE_Analytical}}.
@@ -90,7 +92,7 @@ my_initial_guess2$hazard_type
 #--------------------------------------------------------------------------------
 }
 \seealso{
-\code{\link{Hazard_Shape}}, \code{\link{plot.HazardShape}},
+\code{\link{print.HazardShape}}, \code{\link{plot.HazardShape}},
 \code{\link{TTTE_Analytical}}
 }
 \author{

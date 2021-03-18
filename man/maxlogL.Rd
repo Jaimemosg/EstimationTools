@@ -74,6 +74,8 @@ A list with class \code{"maxlogL"} containing the following lists:
 }
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#maturing}{\figure{lifecycle-maturing.svg}{options: alt='[Maturing]'}}}{\strong{[Maturing]}}
+
 Function to compute maximum likelihood estimators (MLE)
 of any distribution implemented in \code{R}.
 }
