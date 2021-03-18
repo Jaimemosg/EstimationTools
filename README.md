@@ -25,10 +25,11 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 The goal of `EstimationTools` is to provide a routine for parameter
 estimation of probability density/mass functions in `R`.
 
-*Edit (27/07/2020)* – We have implemented new tools and we have
-performed some deep modifications in our `summary` method for `maxlogL`
-objects. You can find out in our
+*Edit (17/03/2021)* – We have performed a TTT plot implementation. You
+can find out in our
 [changelog](https://jaimemosg.github.io/EstimationTools/news/index.html).
+
+<!-- _Edit (27/07/2020)_ -- We have implemented new tools and we have performed some deep modifications in our `summary` method for `maxlogL` objects. You can find out in our [changelog](https://jaimemosg.github.io/EstimationTools/news/index.html). -->
 
 ## Installation
 
@@ -41,7 +42,9 @@ devtools::install_github('Jaimemosg/EstimationTools', force = TRUE)
 library(EstimationTools)
 ```
 
-Or you can install the released version (2.1.1) from
+<!-- 2.2.0 -->
+
+Or you can install the released version (2.1.0) from
 [CRAN](https://cran.r-project.org/package=EstimationTools) if you
 prefer. You can also type the following command lines in `R` console:
 
