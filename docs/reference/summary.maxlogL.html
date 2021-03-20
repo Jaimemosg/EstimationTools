@@ -75,7 +75,7 @@ This is a summary method for maxlogL object." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EstimationTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.3.0</span>
       </span>
     </div>
 
@@ -184,23 +184,23 @@ test of parameters.</p>
 <span class='va'>theta_1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='maxlogL.html'>maxlogL</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>x</span>, dist <span class='op'>=</span> <span class='st'>'dnorm'</span>, control <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>trace <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>,
                  link <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>over <span class='op'>=</span> <span class='st'>"sd"</span>, fun <span class='op'>=</span> <span class='st'>"log_link"</span><span class='op'>)</span>,
                  fixed <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>mean <span class='op'>=</span> <span class='fl'>160</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;   0:     43696.840:  1.00000
-#&gt;   1:     32506.109:  2.00000
-#&gt;   2:     32282.906:  1.92059
-#&gt;   3:     32145.695:  1.76571
-#&gt;   4:     32137.224:  1.79854
-#&gt;   5:     32137.083:  1.79488
-#&gt;   6:     32137.082:  1.79477
-#&gt;   7:     32137.082:  1.79477</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>theta_1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;   0:     43673.065:  1.00000
+#&gt;   1:     32502.891:  2.00000
+#&gt;   2:     32278.623:  1.92036
+#&gt;   3:     32140.923:  1.76509
+#&gt;   4:     32132.373:  1.79808
+#&gt;   5:     32132.230:  1.79439
+#&gt;   6:     32132.229:  1.79428
+#&gt;   7:     32132.229:  1.79428</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>theta_1</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; _______________________________________________________________
 #&gt; Optimization routine: nlminb 
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
 #&gt;        AIC      BIC
-#&gt;   64274.16 64274.16
+#&gt;   64264.46 64264.46
 #&gt; _______________________________________________________________
 #&gt;    Estimate  Std. Error Z value Pr(&gt;|z|)    
-#&gt; sd   6.01809    0.04255   141.4   &lt;2e-16 ***
+#&gt; sd   6.01517    0.04253   141.4   &lt;2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________
@@ -225,10 +225,10 @@ test of parameters.</p>
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
 #&gt;        AIC      BIC
-#&gt;   376.4949 376.4949
+#&gt;   344.5187 344.5187
 #&gt; _______________________________________________________________
 #&gt;      Estimate  Std. Error Z value Pr(&gt;|z|)    
-#&gt; prob   0.29900    0.01448   20.65   &lt;2e-16 ***
+#&gt; prob   0.28300    0.01424   19.87   &lt;2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________
@@ -246,10 +246,10 @@ test of parameters.</p>
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
 #&gt;        AIC      BIC
-#&gt;   343.9364 343.9364
+#&gt;   340.7253 340.7253
 #&gt; _______________________________________________________________
 #&gt;      Estimate  Std. Error Z value Pr(&gt;|z|)    
-#&gt; prob    0.2870     0.0143   20.06   &lt;2e-16 ***
+#&gt; prob   0.29900    0.01448   20.65   &lt;2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________
@@ -273,21 +273,21 @@ test of parameters.</p>
 #&gt; Standard Error calculation: Hessian from optim 
 #&gt; _______________________________________________________________
 #&gt;        AIC      BIC
-#&gt;   5064.898 5084.529
+#&gt;   5059.842 5079.473
 #&gt; _______________________________________________________________
 #&gt; Fixed effects for mean
 #&gt; ---------------------------------------------------------------
-#&gt;             Estimate Std. Error Z value  Pr(&gt;|z|)    
-#&gt; (Intercept) -2.10225    0.11147 -18.859 &lt; 2.2e-16 ***
-#&gt; x            2.94368    0.03065  96.041 &lt; 2.2e-16 ***
+#&gt;              Estimate Std. Error Z value  Pr(&gt;|z|)    
+#&gt; (Intercept) -2.120495   0.116016 -18.278 &lt; 2.2e-16 ***
+#&gt; x            2.987766   0.030773  97.090 &lt; 2.2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________
 #&gt; Fixed effects for log(sd) 
 #&gt; ---------------------------------------------------------------
 #&gt;              Estimate Std. Error Z value  Pr(&gt;|z|)    
-#&gt; (Intercept) 0.9868905  0.0225426  43.779 &lt; 2.2e-16 ***
-#&gt; x           0.3048098  0.0071053  42.899 &lt; 2.2e-16 ***
+#&gt; (Intercept) 1.0253740  0.0224432  45.687 &lt; 2.2e-16 ***
+#&gt; x           0.3009163  0.0070918  42.431 &lt; 2.2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 #&gt; _______________________________________________________________

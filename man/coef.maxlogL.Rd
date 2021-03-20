@@ -35,7 +35,7 @@ which extracts model coefficients from objects returned by \code{\link{maxlogLre
 library(EstimationTools)
 
 #--------------------------------------------------------------------------------
-# Example 1: Coefficients from a model using a simulated normal distribution
+# Example 1: coefficients from a model using a simulated normal distribution
 n <- 1000
 x <- runif(n = n, -5, 6)
 y <- rnorm(n = n, mean = -2 + 3 * x, sd = exp(1 + 0.3* x))
@@ -51,6 +51,15 @@ coef(norm_mod, parameter = 'sd')
 a <- coefMany(norm_mod, parameter = c('mean', 'sd'))
 b <- coefMany(norm_mod)
 identical(a, b)
+
+
+#--------------------------------------------------------------------------------
+# Example 2: Parameters in estimation with one fixed parameter
+x <- rnorm(n = 10000, mean = 160, sd = 6)
+theta_1 <- maxlogL(x = x, dist = 'dnorm', control = list(trace = 1),
+                 link = list(over = "sd", fun = "log_link"),
+                 fixed = list(mean = 160))
+coef(theta_1)
 
 
 #--------------------------------------------------------------------------------
