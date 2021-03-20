@@ -54,10 +54,10 @@ logit_link <- function(){
   name <- "logit"
   g <- function(eta) log(eta/(1 - eta))
   g_inv <- function(eta) exp(eta)/(exp(eta) + 1)
-  dg.eta <- function(eta) 1/(eta*(1 - eta))
+  dg.eta <- function(eta) pmax(1/(eta*(1 - eta)), .Machine$double.eps)
   dg_inv.eta <- function(eta) exp(eta)/(exp(eta) + 1)^2
-  out <- list(name = name, g = g, g_inv = g_inv,
-              dg.eta = dg.eta, dg_inv.eta = dg_inv.eta)
+  out <- structure(list(name = name, g = g, g_inv = g_inv,
+                        dg.eta = dg.eta, dg_inv.eta = dg_inv.eta))
   return(out)
 }
 #=============================================================================#
@@ -108,11 +108,11 @@ logit_link <- function(){
 log_link <- function(){
   name <- "log"
   g <- function(eta) log(eta)
-  g_inv <- function(eta) exp(eta)
+  g_inv <- function(eta) pmax(exp(eta), .Machine$double.eps)
   dg.eta <- function(eta) 1/eta
-  dg_inv.eta <- function(eta) exp(eta)
-  out <- list(name = name, g = g, g_inv = g_inv,
-              dg.eta = dg.eta, dg_inv.eta = dg_inv.eta)
+  dg_inv.eta <- function(eta) pmax(exp(eta), .Machine$double.eps)
+  out <- structure(list(name = name, g = g, g_inv = g_inv,
+                        dg.eta = dg.eta, dg_inv.eta = dg_inv.eta))
   return(out)
 }
 #=============================================================================#
@@ -166,8 +166,8 @@ NegInv_link <- function(){
   g_inv <- function(eta) -1/eta
   dg.eta <- function(eta) 1/(eta*eta)
   dg_inv.eta <- function(eta) 1/(eta*eta)
-  out <- list(name = name, g = g, g_inv = g_inv,
-              dg.eta = dg.eta, dg_inv.eta = dg_inv.eta)
+  out <- structure(list(name = name, g = g, g_inv = g_inv,
+                        dg.eta = dg.eta, dg_inv.eta = dg_inv.eta))
   return(out)
 }
 #=============================================================================#
@@ -177,7 +177,7 @@ InvAdd_link <- function(){
   g_inv <- function(eta) -eta
   dg.eta <- function(eta) -1
   dg_inv.eta <- function(eta) -1
-  out <- list(name = name, g = g, g_inv = g_inv,
-              dg.eta = dg.eta, dg_inv.eta = dg_inv.eta)
+  out <- structure(list(name = name, g = g, g_inv = g_inv,
+                        dg.eta = dg.eta, dg_inv.eta = dg_inv.eta))
   return(out)
 }
