@@ -4,7 +4,7 @@
 #' @author Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
 #'
 #' @description
-#' `r lifecycle::badge("experimental")`
+#' `r lifecycle::badge("maturing")`
 #'
 #' Displays maximum likelihood estimates computed with \code{\link{maxlogL}} with
 #' its standard errors, AIC and BIC.
@@ -163,8 +163,17 @@ summary.maxlogL <- function(object, ...){
     res <- data.frame(res)
     colnames(res) <- c('Estimate', 'Std. Error', 'Z value', 'Pr(>|z|)')
     for (i in 1:object$outputs$npar){
-      cat(paste0("Fixed effects for g(", object$outputs$par_names[i],
-                 ") \n"))
+      param_name <- object$outputs$par_names[i]
+      link_index <- match(param_name, object$inputs$link$over, nomatch = 0)
+      if (link_index == 0){
+        fun_note <- paste0("Fixed effects for ", param_name, "\n")
+      } else {
+        link_function <- object$inputs$link$fun[link_index]
+        link_name <- eval(parse(text = paste0(link_function, "()$name")))
+        fun_note <- paste0("Fixed effects for ", link_name,"(",
+                           param_name, ") \n")
+      }
+      cat(fun_note)
       cat("---------------------------------------------------------------\n")
       res_temp <- res[A[i,1]:A[i,2],]
       rownames(res_temp) <- names(object$fit$par)[A[i,1]:A[i,2]]
