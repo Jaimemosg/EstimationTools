@@ -1,3 +1,9 @@
+# EstimationTools 2.3.0 
+
+- New 'coef' method implemented.
+- Link functions updated, precision problems solved.
+- Link functions specified in summary (maxlogLreg) and print methods.
+
 # EstimationTools 2.2.0
 
 - 'TTT_hazard_shape' was implemented as method for classes 'EmpiricalTTT' and 'formula' objects.
