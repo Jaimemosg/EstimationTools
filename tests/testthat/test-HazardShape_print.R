@@ -1,4 +1,4 @@
-test_that("Hazard_Shape test", {
+test_that("HazardShape print test", {
 
   qOW <- function(p, mu, sigma, nu, lower.tail=TRUE, log.p = FALSE){
     if (any(mu<=0 ))
@@ -32,7 +32,8 @@ test_that("Hazard_Shape test", {
     return(r)
   }
 
+  set.seed(123)
   y <- rOW(n = 10000, mu = 0.1, sigma = 0.5, nu = 3)
   my_initial_guess <- TTT_hazard_shape(formula = y ~ 1)
-  expect_warning( Hazard_Shape(my_initial_guess) )
+  expect_snapshot_output( print(my_initial_guess) )
 })
