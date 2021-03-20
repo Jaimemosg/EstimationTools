@@ -22,8 +22,9 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 
 # EstimationTools <img src="man/figure/ETLogo.png" align="right" height="200" align="right"/>
 
-The goal of `EstimationTools` is to provide a routine for parameter
-estimation of probability density/mass functions in `R`.
+The goal of `EstimationTools` is to provide tools and routines for
+maximum likelihood estimation of probability density/mass functions in
+`R`.
 
 *Edit (17/03/2021)* – We have performed a TTT plot implementation. You
 can find out in our
@@ -33,7 +34,7 @@ can find out in our
 
 ## Installation
 
-You can install the latest version (2.2.0) of `EstimationTools` typing
+You can install the latest version (2.3.0) of `EstimationTools` typing
 the following command lines in `R` console:
 
 ``` r
