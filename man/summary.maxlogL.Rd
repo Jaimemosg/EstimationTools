@@ -16,7 +16,7 @@
 A list with information that summarize results of a \code{maxlogL} class object.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#maturing}{\figure{lifecycle-maturing.svg}{options: alt='[Maturing]'}}}{\strong{[Maturing]}}
 
 Displays maximum likelihood estimates computed with \code{\link{maxlogL}} with
 its standard errors, AIC and BIC.

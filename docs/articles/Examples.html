@@ -88,7 +88,7 @@
       <h1 data-toc-skip>Estimation with <code>maxlogL</code> objects</h1>
                         <h4 class="author">Jaime Mosquera</h4>
             
-            <h4 class="date">2021-03-17</h4>
+            <h4 class="date">2021-03-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/Jaimemosg/EstimationTools/blob/master/vignettes/Examples.Rmd"><code>vignettes/Examples.Rmd</code></a></small>
       <div class="hidden name"><code>Examples.Rmd</code></div>
@@ -155,7 +155,7 @@ k &amp;= 500 \quad (\verb|scale|).
 <span class="co">#&gt;        AIC      BIC</span>
 <span class="co">#&gt;   472.4435 477.5101</span>
 <span class="co">#&gt; _______________________________________________________________</span>
-<span class="co">#&gt; Fixed effects for g(shape) </span>
+<span class="co">#&gt; Fixed effects for log(shape) </span>
 <span class="co">#&gt; ---------------------------------------------------------------</span>
 <span class="co">#&gt;             Estimate Std. Error Z value  Pr(&gt;|z|)    </span>
 <span class="co">#&gt; (Intercept)  1.16587    0.19956  5.8422 5.152e-09 ***</span>
@@ -163,7 +163,7 @@ k &amp;= 500 \quad (\verb|scale|).
 <span class="co">#&gt; ---</span>
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 <span class="co">#&gt; _______________________________________________________________</span>
-<span class="co">#&gt; Fixed effects for g(scale) </span>
+<span class="co">#&gt; Fixed effects for log(scale) </span>
 <span class="co">#&gt; ---------------------------------------------------------------</span>
 <span class="co">#&gt;             Estimate Std. Error Z value  Pr(&gt;|z|)    </span>
 <span class="co">#&gt; (Intercept) 6.255290   0.046286  135.14 &lt; 2.2e-16 ***</span>
@@ -193,11 +193,11 @@ X &amp;\sim N(\mu, \:\sigma^2), \\
 <span class="co">#&gt; Standard Error calculation: Hessian from optim </span>
 <span class="co">#&gt; _______________________________________________________________</span>
 <span class="co">#&gt;        AIC      BIC</span>
-<span class="co">#&gt;   64244.36 64258.79</span>
+<span class="co">#&gt;   64174.81 64189.23</span>
 <span class="co">#&gt; _______________________________________________________________</span>
 <span class="co">#&gt;      Estimate  Std. Error Z value Pr(&gt;|z|)    </span>
-<span class="co">#&gt; mean 160.05436    0.06008  2664.1   &lt;2e-16 ***</span>
-<span class="co">#&gt; sd     6.00793    0.04248   141.4   &lt;2e-16 ***</span>
+<span class="co">#&gt; mean 159.94712    0.05987  2671.5   &lt;2e-16 ***</span>
+<span class="co">#&gt; sd     5.98707    0.04233   141.4   &lt;2e-16 ***</span>
 <span class="co">#&gt; ---</span>
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 <span class="co">#&gt; _______________________________________________________________</span>
