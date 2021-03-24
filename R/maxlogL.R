@@ -276,7 +276,7 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
     }
     fit <- DEoptim(fn = ll, lower = lower, upper = upper,
                    control = DEoptimcontrol, ...)
-    fit$par <- fit$optim$bestmem
+    fit$par <- as.numeric(fit$optim$bestmem)
     fit$objective <- -fit$optim$bestval
   }
 

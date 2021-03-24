@@ -327,7 +327,7 @@ maxlogLreg <- function(formulas, y_dist, data = NULL, subset = NULL,
                    distr = distr, dist_args = arguments, over = link$over,
                    link = link$fun, npar = npar, fixed = fixed,
                    par_names = par_names, b_length = b_length)
-    fit$par <- fit$optim$bestmem
+    fit$par <- as.numeric(fit$optim$bestmem)
     fit$objective <- -fit$optim$bestval
   }
 
