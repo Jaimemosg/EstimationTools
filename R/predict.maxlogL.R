@@ -116,6 +116,8 @@ predict.maxlogL <-
                      response = object$outputs$fitted.values[[parameter]],
                      terms = terms_maxlogL(object, parameter, terms = terms,
                                            data = object$inputs$data))
+      pred <- as.numeric(pred)
+      names(pred) <- 1:length(pred)
     } else {
       if ( !inherits(newdata, "data.frame") )
         stop("'newdata' must be a data frame.")
@@ -138,7 +140,7 @@ predict.maxlogL <-
         pred <- dsgn_mat %*% betas
 
         # Fitted values computation
-        if ( parameter == object$inputs$link$over & type == 'link' ){
+        if ( parameter == object$inputs$link$over & type == 'response' ){
           pred <- do.call(what = object$inputs$link$fun,
                           args = list())$g_inv(pred)
         }
@@ -154,17 +156,18 @@ predict.maxlogL <-
                                           A[index,1]:A[index,2]])
         se_index <- which(object$inputs$link$over == parameter)
         X <- object$outputs$design_matrix[[parameter]]
-        if ( type == "link"){
-          var_pred <- X %*% cov_mat %*% t(X)
-        } else if ( type == "response" ){
-          g_eta <- paste0(object$inputs$link$fun[se_index], '()$dg_inv.eta')
-          g_eta <- eval(parse(text = g_eta))
-          var_pred <- t(g_eta(betas)) %*% cov_mat %*% g_eta(betas)
+        var_pred <- X %*% cov_mat %*% t(X)
+
+        if ( type == "response" ){
+          dg_inv.eta <- paste0(object$inputs$link$fun[se_index], '()$dg_inv.eta')
+          dg_inv.eta <- eval(parse(text = dg_inv.eta))
+          var_pred <- diag(dg_inv.eta(pred)) %*% var_pred %*% t(diag(dg_inv.eta(pred)))
         } else {
           stop(paste("Standard Error of prediction is not a valid option for",
                      "'type = terms'."))
         }
         se <- as.numeric(sqrt(diag(var_pred)))
+        names(se) <- 1:length(se)
         pred <- list(fit = pred, se.fit = se)
       } else {
         pred <- as.numeric(pred)
