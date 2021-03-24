@@ -9,7 +9,8 @@
 
 - `TTT_hazard_shape` was implemented as method for classes `EmpiricalTTT` and `formula` objects.
 - `Hazard_Shape` function deprecated. We implemented a 'print' method for `TTT_hazard_shape` objects.
-  - `plot.HazardShape`: More flexibility in plot options enabled.  
+- `plot.HazardShape`: More flexibility in plot options enabled.
+- Bug in `se.fit`(predict method) fixed.  
 
 # EstimationTools 2.1.1
 
