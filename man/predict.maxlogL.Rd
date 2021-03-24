@@ -50,7 +50,7 @@ If \code{se.fit = TRUE}, a list with the following components is obtained:
 }
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#maturing}{\figure{lifecycle-maturing.svg}{options: alt='[Maturing]'}}}{\strong{[Maturing]}}
 
 This function computes predictions and optionally the estimated standard errors
 of those predictions from a model fitted with \code{maxlogLreg}.

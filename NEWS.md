@@ -3,11 +3,13 @@
 - New 'coef' method implemented.
 - Link functions updated, precision problems solved.
 - Link functions specified in summary (maxlogLreg) and print methods.
+- Bug in answer class object in `DEoptim` fixed.
 
 # EstimationTools 2.2.0
 
-- 'TTT_hazard_shape' was implemented as method for classes 'EmpiricalTTT' and 'formula' objects.
-- 'Hazard_Shape' function deprecated. We implemented a 'print' method for 'TTT_hazard_shape' objects.
+- `TTT_hazard_shape` was implemented as method for classes `EmpiricalTTT` and `formula` objects.
+- `Hazard_Shape` function deprecated. We implemented a 'print' method for `TTT_hazard_shape` objects.
+  - `plot.HazardShape`: More flexibility in plot options enabled.  
 
 # EstimationTools 2.1.1
 

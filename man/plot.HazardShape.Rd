@@ -8,7 +8,7 @@
 \method{plot}{HazardShape}(
   x,
   xlab = "i/n",
-  ylab = expression(phi(i/n)),
+  ylab = expression(phi[n](i/n)),
   xlim = c(0, 1),
   ylim = c(0, 1),
   col = 1,
