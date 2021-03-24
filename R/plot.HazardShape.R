@@ -89,7 +89,7 @@
 #' @importFrom graphics par points
 #' @importFrom autoimage reset.par
 #' @export
-plot.HazardShape <- function(x, xlab="i/n", ylab=expression(phi(i/n)),
+plot.HazardShape <- function(x, xlab="i/n", ylab=expression(phi[n](i/n)),
                              xlim=c(0,1), ylim=c(0,1), col=1, lty=NULL, lwd=NA,
                              main="", curve_options=list(col=2, lwd=2, lty=1),
                              par_plot=list(mar=c(5.1,4.1,4.1,2.1)),
@@ -108,9 +108,15 @@ plot.HazardShape <- function(x, xlab="i/n", ylab=expression(phi(i/n)),
       mar <- c(par_plot$mar[1:3], par_plot$mar[4])
     }
   } else {
-    xpd <- TRUE
-    legend_options <- list(pos=1.04)
-    mar <- c(par_plot$mar[1:3], par_plot$mar[4]+7.2)
+    repeated <- match(names(legend_options), names(list(pos=1.04, xpd=TRUE)),
+                      nomatch = 0)
+    legend_options <- c(list(pos = 1.04, xpd = TRUE)[-repeated], legend_options)
+    xpd <- legend_options$xpd
+    if (xpd){
+      mar <- c(par_plot$mar[1:3], par_plot$mar[4]+7.2)
+    } else {
+      mar <- par_plot$mar
+    }
   }
   par_plot$mar <- NULL
   do.call("par", c(list(mar=mar, xpd=xpd), par_plot))
@@ -132,36 +138,47 @@ plot.HazardShape <- function(x, xlab="i/n", ylab=expression(phi(i/n)),
       x <- "topright"; y <- NULL
     } else {
       if (is.numeric(legend_options$pos)){
-        y <- legend_options$pos
-        x <- 1.07
-        legend_options <- within(legend_options, rm(pos))
+        if (length(legend_options$pos) == 1){
+          y <- legend_options$pos
+          x <- 1.07
+          legend_options <- within(legend_options, rm(pos))
+        } else {
+          y <- legend_options$pos[2]
+          x <- legend_options$pos[1]
+        }
       }
       if (is.character(legend_options$pos)){
-        possible_pos <- c("top", "center", "bottom")
-        if (!(legend_options$pos %in% possible_pos))
-          stop((c("Select positions from the following list: \n \n",
-                  "  --> ", paste0(possible_pos, collapse=", "))))
-        if (legend_options$pos == "center") legend_options$pos <- ""
+        if (xpd){
+          possible_pos <- c("top", "center", "bottom")
+          if (!(legend_options$pos %in% possible_pos))
+            stop((c("Select positions from the following list: \n \n",
+                    "  --> ", paste0(possible_pos, collapse=", "))))
+          if (legend_options$pos == "center") legend_options$pos <- ""
 
-        x <- paste0(legend_options$pos, "right")
-        legend_options <- within(legend_options, rm(pos))
-        legend_arguments <- c("y", "inset", "legend", "xpd", "col", "lty", "lwd")
-        match_legend <- match(legend_arguments, legend_options, nomatch=0)
-        match_legend <- which(match_legend != 0)
+          x <- paste0(legend_options$pos, "right")
+          legend_options <- within(legend_options, rm(pos))
+          legend_arguments <- c("y", "inset", "legend", "xpd", "col", "lty", "lwd")
+          match_legend <- match(legend_arguments, legend_options, nomatch=0)
+          match_legend <- which(match_legend != 0)
 
-        if (length(match_legend) > 0)
-          stop(paste0("Argument(s)", legend_arguments[match_legend], "cannot be",
-                      "manipulated. They have default unchangeable values."))
+          if (length(match_legend) > 0)
+            stop(paste0("Argument(s)", legend_arguments[match_legend], "cannot be",
+                        "manipulated. They have unchangeable values."))
+        } else {
+          y <- NULL
+          x <- legend_options$pos
+        }
       }
     }
 
+    legend_options$pos <- NULL
+    if (xpd & is.null(legend_options$inset)) legend_options$inset <- c(-0.41,0)
     do.call("legend", c(list(x=x, y=y, legend=legend_text,
-                             pch=c(plot_options$pch,NA), inset=c(-0.41,0),
+                             pch=c(plot_options$pch,NA),
                              col=c(col, curve_options$col),
                              lty=c(lty,curve_options$lty),
                              pt.cex=plot_options$cex,
-                             lwd=c(lwd,curve_options$lwd), xpd=TRUE),
-                        legend_options))
+                             lwd=c(lwd,curve_options$lwd)), legend_options))
   } else {
     if (legend_options != "NoLegend")
       stop("'NoLegend' option is the only character string valid")
