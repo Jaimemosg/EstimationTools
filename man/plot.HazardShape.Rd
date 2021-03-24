@@ -17,7 +17,7 @@
   main = "",
   curve_options = list(col = 2, lwd = 2, lty = 1),
   par_plot = list(mar = c(5.1, 4.1, 4.1, 2.1)),
-  legend_options = NULL,
+  legend_options = list(pos = 1.04, xpd = TRUE),
   ...
 )
 }
@@ -98,6 +98,8 @@ The possible arguments for \code{...} can be consulted in
 \code{\link[graphics]{plot.default}}  and \code{\link{par}}.
 }
 \examples{
+library(EstimationTools)
+
 #--------------------------------------------------------------------------------
 # Example 1: Increasing hazard and its corresponding TTT plot with simulated data
 hweibull <- function(x, shape, scale){
@@ -108,7 +110,7 @@ curve(hweibull(x, shape = 2.5, scale = pi), from = 0, to = 42,
 
 y <- rweibull(n = 50, shape = 2.5, scale = pi)
 my_initial_guess <- TTT_hazard_shape(formula = y ~ 1)
-plot(my_initial_guess, par_plot=list(mar=c(3.7,3.7,1,1.5),
+plot(my_initial_guess, par_plot=list(mar=c(3.7,3.7,1,2),
                                      mgp=c(2.5,1,0)))
 
 

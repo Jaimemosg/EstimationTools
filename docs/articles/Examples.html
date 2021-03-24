@@ -88,7 +88,7 @@
       <h1 data-toc-skip>Estimation with <code>maxlogL</code> objects</h1>
                         <h4 class="author">Jaime Mosquera</h4>
             
-            <h4 class="date">2021-03-20</h4>
+            <h4 class="date">2021-03-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/Jaimemosg/EstimationTools/blob/master/vignettes/Examples.Rmd"><code>vignettes/Examples.Rmd</code></a></small>
       <div class="hidden name"><code>Examples.Rmd</code></div>
@@ -102,7 +102,7 @@
 <h2 class="hasAnchor">
 <a href="#estimation-in-regression-models" class="anchor"></a>Estimation in regression models</h2>
 <!-- The data is from [NIST](https://www.itl.nist.gov/div898/handbook/apr/section2/apr221.htm#Example). They generated  20 random Weibull failure times with a parameter `shape=1.5` and `scale=500`. The test time is 500 hours, 10 of these failure times are right censored. The observed times are, to the nearest hour: 54, 187, 216, 240, 244, 335, 361, 373, 375, and 386. -->
-<p>We generate data from an hypothetical failure test of approximately 641 hours with 40 experimental units, 20 from group 1 and 20 from group 2. Lets assume a censorship rate of 10%, and regard that the data is right censored. Times from 6 of the 20 experimental units are shown just bellow:</p>
+<p>We generate data from an hypothetical failure test of approximately 641 hours with 40 experimental units, 20 from group 1 and 20 from group 2. Lets assume a censorship rate of 10%, and regard that the data is right censored. Six of the 20 data points are shown just bellow:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="st"><a href="https://readr.tidyverse.org">'readr'</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">'readr'</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org">readr</a></span><span class="op">)</span>
@@ -193,11 +193,11 @@ X &amp;\sim N(\mu, \:\sigma^2), \\
 <span class="co">#&gt; Standard Error calculation: Hessian from optim </span>
 <span class="co">#&gt; _______________________________________________________________</span>
 <span class="co">#&gt;        AIC      BIC</span>
-<span class="co">#&gt;   64058.75 64073.17</span>
+<span class="co">#&gt;   64151.93 64166.36</span>
 <span class="co">#&gt; _______________________________________________________________</span>
 <span class="co">#&gt;      Estimate  Std. Error Z value Pr(&gt;|z|)    </span>
-<span class="co">#&gt; mean 160.00421    0.05952  2688.1   &lt;2e-16 ***</span>
-<span class="co">#&gt; sd     5.95243    0.04209   141.4   &lt;2e-16 ***</span>
+<span class="co">#&gt; mean 159.97930    0.05980  2675.1   &lt;2e-16 ***</span>
+<span class="co">#&gt; sd     5.98022    0.04229   141.4   &lt;2e-16 ***</span>
 <span class="co">#&gt; ---</span>
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 <span class="co">#&gt; _______________________________________________________________</span>
