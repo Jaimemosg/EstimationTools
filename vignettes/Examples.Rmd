@@ -24,7 +24,7 @@ These are basic examples which shows you how to solve a common maximum likelihoo
 
 <!-- The data is from [NIST](https://www.itl.nist.gov/div898/handbook/apr/section2/apr221.htm#Example). They generated  20 random Weibull failure times with a parameter `shape=1.5` and `scale=500`. The test time is 500 hours, 10 of these failure times are right censored. The observed times are, to the nearest hour: 54, 187, 216, 240, 244, 335, 361, 373, 375, and 386. -->
 
-We generate data from an hypothetical failure test of approximately 641 hours with 40 experimental units, 20 from group 1 and 20 from group 2. Lets assume a censorship rate of 10%, and regard that the data is right censored. Times from 6 of the 20 experimental units are shown just bellow:
+We generate data from an hypothetical failure test of approximately 641 hours with 40 experimental units, 20 from group 1 and 20 from group 2. Lets assume a censorship rate of 10%, and regard that the data is right censored. Six of the 20 data points are shown just bellow:
 
 ```{r, echo=TRUE, warning=FALSE, message=FALSE}
 if (!require('readr')) install.packages('readr')
