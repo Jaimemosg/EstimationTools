@@ -70,6 +70,8 @@
 #' \code{\link[graphics]{plot.default}}  and \code{\link{par}}.
 #'
 #' @examples
+#' library(EstimationTools)
+#'
 #' #--------------------------------------------------------------------------------
 #' # Example 1: Increasing hazard and its corresponding TTT plot with simulated data
 #' hweibull <- function(x, shape, scale){
@@ -80,7 +82,7 @@
 #'
 #' y <- rweibull(n = 50, shape = 2.5, scale = pi)
 #' my_initial_guess <- TTT_hazard_shape(formula = y ~ 1)
-#' plot(my_initial_guess, par_plot=list(mar=c(3.7,3.7,1,1.5),
+#' plot(my_initial_guess, par_plot=list(mar=c(3.7,3.7,1,2),
 #'                                      mgp=c(2.5,1,0)))
 #'
 #'
@@ -93,7 +95,7 @@ plot.HazardShape <- function(x, xlab="i/n", ylab=expression(phi[n](i/n)),
                              xlim=c(0,1), ylim=c(0,1), col=1, lty=NULL, lwd=NA,
                              main="", curve_options=list(col=2, lwd=2, lty=1),
                              par_plot=list(mar=c(5.1,4.1,4.1,2.1)),
-                             legend_options=NULL, ...){
+                             legend_options=list(pos = 1.04, xpd = TRUE), ...){
   object <- x
   rm(x)
 
@@ -112,7 +114,7 @@ plot.HazardShape <- function(x, xlab="i/n", ylab=expression(phi[n](i/n)),
                       nomatch = 0)
     legend_options <- c(list(pos = 1.04, xpd = TRUE)[-repeated], legend_options)
     xpd <- legend_options$xpd
-    if (xpd){
+    if (isTRUE(xpd)){
       mar <- c(par_plot$mar[1:3], par_plot$mar[4]+7.2)
     } else {
       mar <- par_plot$mar
