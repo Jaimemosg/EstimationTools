@@ -162,9 +162,6 @@ predict.maxlogL <-
           dg_inv.eta <- paste0(object$inputs$link$fun[se_index], '()$dg_inv.eta')
           dg_inv.eta <- eval(parse(text = dg_inv.eta))
           var_pred <- diag(dg_inv.eta(pred)) %*% var_pred %*% t(diag(dg_inv.eta(pred)))
-        } else {
-          stop(paste("Standard Error of prediction is not a valid option for",
-                     "'type = terms'."))
         }
         se <- as.numeric(sqrt(diag(var_pred)))
         names(se) <- 1:length(se)
@@ -172,6 +169,11 @@ predict.maxlogL <-
       } else {
         pred <- as.numeric(pred)
         names(pred) <- 1:length(pred)
+      }
+    } else {
+      if (se.fit){
+        stop(paste("Standard Error of prediction is not a valid option for",
+                   "'type = terms'."))
       }
     }
 
