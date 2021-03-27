@@ -1,3 +1,8 @@
+# EstimationTools 2.4.0 
+
+- New!!! genetic algorithm (GA::ga) implemented in `maxlogL`.
+- Custom optimization interface enabled. 
+
 # EstimationTools 2.3.0 
 
 - New 'coef' method implemented.
