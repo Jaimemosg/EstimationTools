@@ -130,7 +130,7 @@
 #' @importFrom Rdpack reprompt
 #'
 #' @seealso \code{\link{summary.maxlogL}}, \code{\link{optim}}, \code{\link{nlminb}},
-#'          \code{\link{DEoptim}}, \code{\link{DEoptim.control}},
+#'          \code{\link[DEoptim]{DEoptim}}, \code{\link[DEoptim]{DEoptim.control}},
 #'          \code{\link{maxlogLreg}}, \code{\link{bootstrap_maxlogL}}
 #'
 #==============================================================================

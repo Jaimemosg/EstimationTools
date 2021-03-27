@@ -44,9 +44,10 @@ function. There are three link functions available: \code{\link{log_link}},
 \code{start} (for box-constrained optimization).}
 
 \item{optimizer}{a length-one character vector with the name of optimization routine.
-\code{\link{nlminb}}, \code{\link{optim}} and
-\code{\link[DEoptim]{DEoptim}} are available; \code{\link{nlminb}}
-is the default routine.}
+\code{\link{nlminb}}, \code{\link{optim}},
+\code{\link[DEoptim]{DEoptim}} and \code{\link[GA]{ga}}are available;
+custom optimization routines can also be implemented.
+\code{\link{nlminb}} is the default routine.}
 
 \item{control}{control parameters of the optimization routine. Please, visit documentation of selected
 optimizer for further information.}
@@ -76,7 +77,7 @@ A list with class \code{"maxlogL"} containing the following lists:
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#maturing}{\figure{lifecycle-maturing.svg}{options: alt='[Maturing]'}}}{\strong{[Maturing]}}
 
-Function to compute maximum likelihood estimators (MLE)
+Wrapper function to compute maximum likelihood estimators (MLE)
 of any distribution implemented in \code{R}.
 }
 \details{
@@ -154,7 +155,7 @@ summary(theta_42)
 }
 \seealso{
 \code{\link{summary.maxlogL}}, \code{\link{optim}}, \code{\link{nlminb}},
-\code{\link{DEoptim}}, \code{\link{DEoptim.control}},
+\code{\link[DEoptim]{DEoptim}}, \code{\link[DEoptim]{DEoptim.control}},
 \code{\link{maxlogLreg}}, \code{\link{bootstrap_maxlogL}}
 
 Other maxlogL: 
