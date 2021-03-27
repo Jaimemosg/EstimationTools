@@ -64,6 +64,7 @@
 #' @importFrom DEoptim DEoptim
 #' @importFrom BBmisc is.error
 #' @importFrom numDeriv hessian
+#' @importFrom GA ga
 #'
 #' @examples
 #' library(EstimationTools)
@@ -91,8 +92,9 @@
 #' if (!require('gamlss.dist')) install.packages('gamlss.dist')
 #' library(gamlss.dist)
 #' z <- rZIP(n=1000, mu=6, sigma=0.08)
-#' theta_3  <- maxlogL(x = z, dist='dZIP', start = c(0, 0), lower = c(-Inf, -Inf),
-#'                    upper = c(Inf, Inf), optimizer = 'optim',
+#' theta_3  <- maxlogL(x = z, dist = 'dZIP', start = c(0, 0),
+#'                    lower = c(-Inf, -Inf), upper = c(Inf, Inf),
+#'                    optimizer = 'optim',
 #'                    link = list(over=c("mu", "sigma"),
 #'                    fun = c("log_link", "logit_link")))
 #' summary(theta_3)
@@ -158,11 +160,12 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
   if ( !is.character(dist) ) stop(paste0("'dist' argument must be a character ",
                                          "string \n \n"))
 
-  solvers <- c('nlminb', 'optim', 'DEoptim')
-  if ( !optimizer %in% solvers ){
-    stop(c("Select optimizers from the following list: \n \n",
-           "  --> ",paste0(solvers, collapse=", ")))
-  }
+  solvers <- unique(c('nlminb', 'optim', 'DEoptim', 'ga', optimizer))
+  solvers <- match.arg(optimizer, solvers)
+  # if ( !optimizer %in% solvers ){
+  #   stop(c("Select optimizers from the following list: \n \n",
+  #          "  --> ",paste0(solvers, collapse=", ")))
+  # }
 
   if ( !is.null(link) ){
     if (length(match(link$over, names(arguments)) ) == 0)
@@ -246,21 +249,22 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
   }
 
   # Optimizers
+  fit <- NULL
   if ( optimizer == 'nlminb' ) {
     nlminbcontrol <- control
-    fit <- nlminb(start = start, objective = ll,
-                  lower = lower, upper = upper, control = nlminbcontrol, ...)
-    fit$objective <- -fit$objective
-  }
-
-  if ( optimizer == 'optim' ) {
+    nlminb_fit <- nlminb(start = start, objective = ll,
+                         lower = lower, upper = upper, control = nlminbcontrol,
+                         ...)
+    fit$par <- nlminb_fit$par
+    fit$objective <- -nlminb_fit$objective
+  } else if ( optimizer == 'optim' ) {
     optimcontrol <- control
-    if (npar<2) fit <- optim(par = start, fn = ll, lower = lower, upper=upper)
-    fit <- optim(par = start,fn = ll, control = optimcontrol, ...)
-    fit$objective <- -fit$value
-  }
-
-  if ( optimizer == 'DEoptim' ) {
+    if (npar<2) optim_fit <- optim(par = start, fn = ll, lower = lower,
+                                   upper=upper)
+    optim_fit <- optim(par = start,fn = ll, control = optimcontrol, ...)
+    fit$par <- optim_fit$par
+    fit$objective <- -optim_fit$value
+  } else if ( optimizer == 'DEoptim' ) {
     if (is.null(lower) | is.null(upper)) stop("'lower' and 'upper'
                                                limits must be defined
                                                for 'DEoptim' optimizer", "\n\n")
@@ -274,10 +278,26 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
         warning(warn)
       }
     }
-    fit <- DEoptim(fn = ll, lower = lower, upper = upper,
-                   control = DEoptimcontrol, ...)
-    fit$par <- as.numeric(fit$optim$bestmem)
-    fit$objective <- -fit$optim$bestval
+    DE_fit <- DEoptim(fn = ll, lower = lower, upper = upper,
+                      control = DEoptimcontrol, ...)
+    fit$original_fit <- DE_fit
+    fit$par <- as.numeric(DE_fit$optim$bestmem)
+    fit$objective <- -DE_fit$optim$bestval
+  } else if ( optimizer == 'ga' ) {
+    if (is.null(lower) | is.null(upper)) stop("'lower' and 'upper'
+                                               limits must be defined
+                                               for 'GA::ga' optimizer", "\n\n")
+    plusll <- function(param) -ll(param)
+    dots <- substitute(...())
+    dots <- c(control, dots)
+    ga_fit <- do.call(optimizer, c(list(type = "real-valued", fitness = plusll,
+                                        lower = lower, upper = upper), dots))
+    fit$original_fit <- ga_fit
+    fit$par <- as.numeric(ga_fit@solution)
+    fit$objective <- ga_fit@fitnessValue
+  } else {
+    fit <- do.call(optimizer, c(list(fn, lower, upper, start, control, ...)))
+    # pendiente la lista de outputs de un optimizador S3
   }
 
   # Revert link mapping
