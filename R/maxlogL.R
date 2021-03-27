@@ -6,7 +6,7 @@
 #' @description
 #' `r lifecycle::badge("maturing")`
 #'
-#' Function to compute maximum likelihood estimators (MLE)
+#' Wrapper function to compute maximum likelihood estimators (MLE)
 #' of any distribution implemented in \code{R}.
 #'
 #' @param x a vector with data to be fitted. This argument must be a matrix
@@ -26,9 +26,10 @@
 #' @param upper a numeric vector with upper bounds, with the same length of argument
 #'              `start` (for box-constrained optimization).
 #' @param optimizer a length-one character vector with the name of optimization routine.
-#'                  \code{\link{nlminb}}, \code{\link{optim}} and
-#'                  \code{\link[DEoptim]{DEoptim}} are available; \code{\link{nlminb}}
-#'                  is the default routine.
+#'                  \code{\link{nlminb}}, \code{\link{optim}},
+#'                  \code{\link[DEoptim]{DEoptim}} and \code{\link[GA]{ga}}are available;
+#'                  custom optimization routines can also be implemented.
+#'                  \code{\link{nlminb}} is the default routine.
 #' @param control control parameters of the optimization routine. Please, visit documentation of selected
 #'                optimizer for further information.
 #' @param StdE_method a length-one character vector with the routine for Hessian matrix
