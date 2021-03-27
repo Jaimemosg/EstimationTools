@@ -34,7 +34,7 @@ can find out in our
 
 ## Installation
 
-You can install the latest version (2.3.0) of `EstimationTools` typing
+You can install the latest version (2.4.0) of `EstimationTools` typing
 the following command lines in `R` console:
 
 ``` r
@@ -43,7 +43,7 @@ devtools::install_github('Jaimemosg/EstimationTools', force = TRUE)
 library(EstimationTools)
 ```
 
-<!-- 2.2.0 -->
+<!-- 2.3.0 -->
 
 Or you can install the released version (2.1.0) from
 [CRAN](https://cran.r-project.org/package=EstimationTools) if you

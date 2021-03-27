@@ -117,8 +117,9 @@ summary(theta_2)
 if (!require('gamlss.dist')) install.packages('gamlss.dist')
 library(gamlss.dist)
 z <- rZIP(n=1000, mu=6, sigma=0.08)
-theta_3  <- maxlogL(x = z, dist='dZIP', start = c(0, 0), lower = c(-Inf, -Inf),
-                   upper = c(Inf, Inf), optimizer = 'optim',
+theta_3  <- maxlogL(x = z, dist = 'dZIP', start = c(0, 0),
+                   lower = c(-Inf, -Inf), upper = c(Inf, Inf),
+                   optimizer = 'optim',
                    link = list(over=c("mu", "sigma"),
                    fun = c("log_link", "logit_link")))
 summary(theta_3)
