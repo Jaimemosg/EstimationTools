@@ -1,14 +1,14 @@
 Package: EstimationTools
 Type: Package
 Title: Maximum Likelihood Estimation for Probability Functions from Data Sets
-Version: 2.3.0
+Version: 2.4.0
 Authors@R: c(
       person("Jaime", "Mosquera", email = "jmosquerag@unal.edu.co", role = c("aut", "cre"),
       comment = c(ORCID = "0000-0002-1684-4756")),
       person("Freddy", "Hernandez", , "fhernanb@unal.edu.co", role = c("ctb"), 
       comment = c(ORCID = "0000-0001-7459-3329"))
       )
-Depends: R (>= 3.5.0), DEoptim, survival, stringr, BBmisc
+Depends: R (>= 3.5.0), DEoptim, survival, stringr, BBmisc, GA
 Imports: 
     Rdpack,
     utils,
