@@ -1,11 +1,11 @@
 # EstimationTools 2.4.0 
 
-- New!!! genetic algorithm (GA::ga) implemented in `maxlogL`.
+- New!!! genetic algorithm (`GA::ga`) implemented in `maxlogL`.
 - Custom optimization interface enabled. 
 
 # EstimationTools 2.3.0 
 
-- New 'coef' method implemented.
+- New `coef` method implemented.
 - Link functions updated, precision problems solved.
 - Link functions specified in summary (maxlogLreg) and print methods.
 - Bug in answer class object in `DEoptim` fixed.
@@ -19,7 +19,7 @@
 
 # EstimationTools 2.1.1
 
-- Default value for data (NULL) in order to handle data inside another function (use with 'apply' family) in TTT functions.
+- Default value for data (NULL) in order to handle data inside another function (use with `apply` family) in TTT functions.
 - New data sets and examples for them added. They were also referenced.
 
 # EstimationTools 2.1.0

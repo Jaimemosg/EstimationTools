@@ -76,7 +76,9 @@ curve(hweibull(x, shape = 2.5, scale = pi), from = 0, to = 42,
                col = "red", ylab = "Hazard function", las = 1, lwd = 2)
 
 y <- rweibull(n = 50, shape = 2.5, scale = pi)
-my_initial_guess1 <- TTT_hazard_shape(y ~ 1)
+y <- sort(y)
+status <- c(rep(1, 45), rep(0, 5))
+my_initial_guess1 <- TTT_hazard_shape(Surv(y, status) ~ 1)
 my_initial_guess1$hazard_type
 
 

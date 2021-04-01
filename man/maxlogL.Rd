@@ -24,16 +24,17 @@ maxlogL(
 with hierarchical distributions.}
 
 \item{dist}{a length-one character vector with the name of density/mass function
-of interest. The default value is \code{'dnorm'}, to compute maximum likelihood
-estimators of normal distribution.}
+of interest. The default value is \code{'dnorm'}, to compute maximum
+likelihood estimators of normal distribution.}
 
 \item{fixed}{a list with fixed/known parameters of distribution of interest.
 Fixed parameters must be passed with its name.}
 
-\item{link}{a list with names of parameters to be linked, and names of the link function
-object. For names of parameters, please visit documentation of density/mass
-function. There are three link functions available: \code{\link{log_link}},
-\code{\link{logit_link}} and \code{\link{NegInv_link}}.}
+\item{link}{a list with names of parameters to be linked, and names of the link
+function object. For names of parameters, please visit documentation
+of density/mass function. There are three link functions available:
+\code{\link{log_link}}, \code{\link{logit_link}} and
+\code{\link{NegInv_link}}.}
 
 \item{start}{a numeric vector with initial values for the parameters to be estimated.}
 
@@ -49,8 +50,8 @@ function. There are three link functions available: \code{\link{log_link}},
 custom optimization routines can also be implemented.
 \code{\link{nlminb}} is the default routine.}
 
-\item{control}{control parameters of the optimization routine. Please, visit documentation of selected
-optimizer for further information.}
+\item{control}{control parameters of the optimization routine. Please, visit
+documentation of selected optimizer for further information.}
 
 \item{StdE_method}{a length-one character vector with the routine for Hessian matrix
 computation. The This is needed for standard error estimation. The
