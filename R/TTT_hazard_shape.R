@@ -41,7 +41,31 @@
 #'
 #' @examples
 #' #--------------------------------------------------------------------------------
-#' # Example 1: Increasing hazard and its corresponding TTT plot with simulated data
+#' # Example 1: Increasing hazard and its corresponding TTT statistic with
+#' #            simulated data
+#'
+#' hweibull <- function(x, shape, scale){
+#'   dweibull(x, shape, scale)/pweibull(x, shape, scale, lower.tail = FALSE)
+#'   }
+#' curve(hweibull(x, shape = 2.5, scale = pi), from = 0, to = 42,
+#'                col = "red", ylab = "Hazard function", las = 1, lwd = 2)
+#'
+#' y <- rweibull(n = 50, shape = 2.5, scale = pi)
+#' my_initial_guess1 <- TTT_hazard_shape(Surv(y, status) ~ 1)
+#' my_initial_guess1$hazard_type
+#'
+#'
+#' #--------------------------------------------------------------------------------
+#' # Example 2: Same example using an 'EmpiricalTTT' object
+#'
+#' y <- rweibull(n = 50, shape = 2.5, scale = pi)
+#' TTT_wei <- TTTE_Analytical(y ~ 1)
+#' my_initial_guess2 <- TTT_hazard_shape(TTT_wei)
+#' my_initial_guess2$hazard_type
+#'
+#'
+#' #--------------------------------------------------------------------------------
+#' # Example 3: Increasing hazard with simulated censored data
 #'
 #' hweibull <- function(x, shape, scale){
 #'   dweibull(x, shape, scale)/pweibull(x, shape, scale, lower.tail = FALSE)
@@ -54,15 +78,6 @@
 #' status <- c(rep(1, 45), rep(0, 5))
 #' my_initial_guess1 <- TTT_hazard_shape(Surv(y, status) ~ 1)
 #' my_initial_guess1$hazard_type
-#'
-#'
-#' #--------------------------------------------------------------------------------
-#' # Example 2: Same example using an 'EmpiricalTTT' object
-#'
-#' y <- rweibull(n = 50, shape = 2.5, scale = pi)
-#' TTT_wei <- TTTE_Analytical(y ~ 1)
-#' my_initial_guess2 <- TTT_hazard_shape(TTT_wei)
-#' my_initial_guess2$hazard_type
 #'
 #'
 #' #--------------------------------------------------------------------------------
