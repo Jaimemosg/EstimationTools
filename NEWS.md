@@ -1,7 +1,7 @@
 # EstimationTools 2.4.0 
 
 - New!!! genetic algorithm (`GA::ga`) implemented in `maxlogL`.
-- Custom optimization interface enabled. 
+- Custom optimization interface enabled (tests required). 
 
 # EstimationTools 2.3.0 
 
