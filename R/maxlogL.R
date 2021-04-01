@@ -12,14 +12,15 @@
 #' @param x a vector with data to be fitted. This argument must be a matrix
 #'          with hierarchical distributions.
 #' @param dist a length-one character vector with the name of density/mass function
-#'             of interest. The default value is \code{'dnorm'}, to compute maximum likelihood
-#'             estimators of normal distribution.
+#'             of interest. The default value is \code{'dnorm'}, to compute maximum
+#'             likelihood estimators of normal distribution.
 #' @param fixed a list with fixed/known parameters of distribution of interest.
 #'              Fixed parameters must be passed with its name.
-#' @param link a list with names of parameters to be linked, and names of the link function
-#'             object. For names of parameters, please visit documentation of density/mass
-#'             function. There are three link functions available: \code{\link{log_link}},
-#'             \code{\link{logit_link}} and \code{\link{NegInv_link}}.
+#' @param link a list with names of parameters to be linked, and names of the link
+#'             function object. For names of parameters, please visit documentation
+#'             of density/mass function. There are three link functions available:
+#'             \code{\link{log_link}}, \code{\link{logit_link}} and
+#'             \code{\link{NegInv_link}}.
 #' @param start a numeric vector with initial values for the parameters to be estimated.
 #' @param lower a numeric vector with lower bounds, with the same length of argument
 #'              `start` (for box-constrained optimization).
@@ -30,8 +31,8 @@
 #'                  \code{\link[DEoptim]{DEoptim}} and \code{\link[GA]{ga}}are available;
 #'                  custom optimization routines can also be implemented.
 #'                  \code{\link{nlminb}} is the default routine.
-#' @param control control parameters of the optimization routine. Please, visit documentation of selected
-#'                optimizer for further information.
+#' @param control control parameters of the optimization routine. Please, visit
+#'                documentation of selected optimizer for further information.
 #' @param StdE_method a length-one character vector with the routine for Hessian matrix
 #'                    computation. The This is needed for standard error estimation. The
 #'                    options available are \code{"optim"} and \code{"numDeriv"}. For
@@ -269,16 +270,21 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
     if (is.null(lower) | is.null(upper)) stop("'lower' and 'upper'
                                                limits must be defined
                                                for 'DEoptim' optimizer", "\n\n")
-    DEoptimcontrol <- c(trace = FALSE, control)
+    DEoptimcontrol <- c(control, trace = FALSE)
     trace_arg <- which(names(DEoptimcontrol) == "trace")
     if (length(trace_arg) > 1){
-      if (length(trace_arg) == 2){
-        DEoptimcontrol$trace <- NULL
-      } else {
-        warn <-"Argument 'trace' in 'DEoptim.control' has multiple definitions \n"
-        warning(warn)
-      }
+      control_index <- switch(as.character(call$control[[1]]),
+                              list = trace_arg[2])
+      DEoptimcontrol[[control_index]] <- NULL
     }
+    # if (length(trace_arg) > 1){
+    #   if (length(trace_arg) == 2){
+    #     DEoptimcontrol$trace <- NULL
+    #   } else {
+    #     warn <-"Argument 'trace' in 'DEoptim.control' has multiple definitions \n"
+    #     warning(warn)
+    #   }
+    # }
     DE_fit <- DEoptim(fn = ll, lower = lower, upper = upper,
                       control = DEoptimcontrol, ...)
     fit$original_fit <- DE_fit
@@ -290,7 +296,11 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
                                                for 'GA::ga' optimizer", "\n\n")
     plusll <- function(param) -ll(param)
     dots <- substitute(...())
-    dots <- c(control, dots)
+    dots <- c(monitor = FALSE, control, dots)
+    trace_arg <- which(names(dots) == "monitor")
+    if (length(trace_arg) > 1){
+      dots$monitor <- NULL
+    }
     ga_fit <- do.call(optimizer, c(list(type = "real-valued", fitness = plusll,
                                         lower = lower, upper = upper), dots))
     fit$original_fit <- ga_fit
