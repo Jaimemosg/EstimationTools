@@ -5,6 +5,7 @@
 #' @author Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
 #' @description
 #' `r lifecycle::badge("experimental")`
+#'
 #' This family of functions use quadratures for solving integrals. The user can
 #' create a custom integration routine, see \emph{details} for further
 #' information.
@@ -24,6 +25,9 @@
 #' \code{integrate_stats} uses \code{\link[stats]{integrate}} function from
 #' \strong{stats} package, whereas \code{gauss_quad} uses the implementation of
 #' gaussian quadratures from \strong{gaussquad} package.
+#'
+#' The user can create custom optimization routines through implementation
+#' of a wrapper function using the four arguments showed in emph{Usage} section.
 #'
 #' @seealso \code{\link[gaussquad]{laguerre.quadrature}},
 #' \code{\link[gaussquad]{legendre.quadrature}},
