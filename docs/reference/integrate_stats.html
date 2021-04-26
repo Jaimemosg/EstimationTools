@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Changelog • EstimationTools</title>
+<title>Integration using integrate from stats package. — integrate_stats • EstimationTools</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,10 @@
 
 
 
-<meta property="og:title" content="Changelog" />
+<meta property="og:title" content="Integration using integrate from stats package. — integrate_stats" />
+<meta property="og:description" content="
+This function uses adaptive quadrature from integrate routine from
+stats package." />
 
 
 
@@ -58,7 +61,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-news">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -125,100 +128,68 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1 data-toc-skip>Changelog <small></small></h1>
-      <small>Source: <a href='https://github.com/Jaimemosg/EstimationTools/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
+    <h1>Integration using <code>integrate</code> from <strong>stats</strong> package.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/Jaimemosg/EstimationTools/blob/master/R/integrators.R'><code>R/integrators.R</code></a></small>
+    <div class="hidden name"><code>integrate_stats.Rd</code></div>
     </div>
 
-    <div id="estimationtools-240" class="section level1">
-<h1 class="page-header" data-toc-text="2.4.0">
-<a href="#estimationtools-240" class="anchor"></a>EstimationTools 2.4.0<small> Unreleased </small>
-</h1>
-<ul>
-<li>New!!! genetic algorithm (<code><a href="https://github.com/luca-scr/GA/reference/ga.html">GA::ga</a></code>) implemented in <code>maxlogL</code>.</li>
-<li>Custom optimization interface enabled (tests required).</li>
-</ul>
-</div>
-    <div id="estimationtools-230" class="section level1">
-<h1 class="page-header" data-toc-text="2.3.0">
-<a href="#estimationtools-230" class="anchor"></a>EstimationTools 2.3.0<small> Unreleased </small>
-</h1>
-<ul>
-<li>New <code>coef</code> method implemented.</li>
-<li>Link functions updated, precision problems solved.</li>
-<li>Link functions specified in summary (maxlogLreg) and print methods.</li>
-<li>Bug in answer class object in <code>DEoptim</code> fixed.</li>
-</ul>
-</div>
-    <div id="estimationtools-220" class="section level1">
-<h1 class="page-header" data-toc-text="2.2.0">
-<a href="#estimationtools-220" class="anchor"></a>EstimationTools 2.2.0<small> Unreleased </small>
-</h1>
-<ul>
-<li>
-<code>TTT_hazard_shape</code> was implemented as method for classes <code>EmpiricalTTT</code> and <code>formula</code> objects.</li>
-<li>
-<code>Hazard_Shape</code> function deprecated. We implemented a ‘print’ method for <code>TTT_hazard_shape</code> objects.</li>
-<li>
-<code>plot.HazardShape</code>: More flexibility in plot options enabled.</li>
-<li>Bug in <code>se.fit</code>(predict method) fixed.</li>
-</ul>
-</div>
-    <div id="estimationtools-211" class="section level1">
-<h1 class="page-header" data-toc-text="2.1.1">
-<a href="#estimationtools-211" class="anchor"></a>EstimationTools 2.1.1<small> Unreleased </small>
-</h1>
-<ul>
-<li>Default value for data (NULL) in order to handle data inside another function (use with <code>apply</code> family) in TTT functions.</li>
-<li>New data sets and examples for them added. They were also referenced.</li>
-</ul>
-</div>
-    <div id="estimationtools-210" class="section level1">
-<h1 class="page-header" data-toc-text="2.1.0">
-<a href="#estimationtools-210" class="anchor"></a>EstimationTools 2.1.0<small> 2021-03-10 </small>
-</h1>
-<ul>
-<li>Function for hazard shape estimation implemented. A plot method was also implemented.</li>
-</ul>
-</div>
-    <div id="estimationtools-202" class="section level1">
-<h1 class="page-header" data-toc-text="2.0.2">
-<a href="#estimationtools-202" class="anchor"></a>EstimationTools 2.0.2<small> Unreleased </small>
-</h1>
-<ul>
-<li>Empirical TTT with numerical (grouped) covariate.</li>
-</ul>
-</div>
-    <div id="estimationtools-201" class="section level1">
-<h1 class="page-header" data-toc-text="2.0.1">
-<a href="#estimationtools-201" class="anchor"></a>EstimationTools 2.0.1<small> Unreleased </small>
-</h1>
-<ul>
-<li>Bug fixed. Formula handle with survival objects without factor classification in TTTE_Analytic is fixed.</li>
-</ul>
-</div>
-    <div id="estimationtools-200" class="section level1">
-<h1 class="page-header" data-toc-text="2.0.0">
-<a href="#estimationtools-200" class="anchor"></a>EstimationTools 2.0.0<small> 2020-08-03 </small>
-</h1>
-<ul>
-<li><p>‘EstimationTools’ was build in R 4.0.2.</p></li>
-<li><p>We have implemented noncentrality parameter detection. This parameter must be named <code>ncp</code> in the distribution.</p></li>
-<li><p>We have implemented computation and plots of empirical total time on test (TTT).</p></li>
-<li><p>Standard error computation is now performed inside <code>maxlogL</code> and <code>maxlogLreg</code>.</p></li>
-<li><p>Standard errror value is now stored in the list case named ‘fit’. It can be called typing <code>objectname$fit$StdE</code>, where ‘objectname’ is the object where the model is stored.</p></li>
-<li><p>The new method (function) ‘bootstrap_maxlogL’ was created for standard error computation through bootstrap.</p></li>
-<li><p>‘summary’ method only reports results. It does not perform any computation, bootstrap through ‘summary’ function has been deprecated.</p></li>
-<li><p>We have made a careful spelling check in our documentation.</p></li>
-</ul>
-</div>
-  </div>
+    <div class="ref-description">
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#experimental'><img src='figures/lifecycle-experimental.svg' alt='[Experimental]' /></a>
+This function uses adaptive quadrature from <code>integrate</code> routine from
+<strong>stats</strong> package.</p>
+    </div>
 
+    <pre class="usage"><span class='fu'>integrate_stats</span><span class='op'>(</span><span class='va'>fun</span>, <span class='va'>lower</span>, <span class='va'>upper</span>, add_args <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span>
+
+<span class='fu'>gauss_quad</span><span class='op'>(</span>
+  <span class='va'>fun</span>,
+  <span class='va'>lower</span>,
+  <span class='va'>upper</span>,
+  add_args <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>10</span>, kind <span class='op'>=</span> <span class='st'>"legendre"</span>, normalized <span class='op'>=</span> <span class='cn'>FALSE</span>, weighted <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>fun</th>
+      <td><p>an <strong>R</strong> function which should take a numeric argument x and
+possibly some parameters. The function returns a numerical vector
+value for the given argument <code>x</code>.</p></td>
+    </tr>
+    <tr>
+      <th>lower</th>
+      <td><p>a numeric value for the lower limit of the integral.</p></td>
+    </tr>
+    <tr>
+      <th>upper</th>
+      <td><p>a numeric value for the upper limit of the integral.</p></td>
+    </tr>
+    <tr>
+      <th>add_args</th>
+      <td><p>a list with further arguments for integration routine.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>additional arguments to be passed to <code>fun</code>.</p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>The value of the integral of the function specified in <code>fun</code>
+argument.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Jaime Mosquera Gutiérrez, <a href='mailto:jmosquerag@unal.edu.co'>jmosquerag@unal.edu.co</a></p>
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
     </nav>
   </div>
-
 </div>
 
 

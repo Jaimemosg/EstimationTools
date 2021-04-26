@@ -221,16 +221,18 @@ based on hazard shape associated to the  shape of empirical TTT plot.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>#--------------------------------------------------------------------------------</span>
-<span class='co'># Example 1: Increasing hazard and its corresponding TTT plot with simulated data</span>
+<span class='co'># Example 1: Increasing hazard and its corresponding TTT statistic with</span>
+<span class='co'>#            simulated data</span>
 
 <span class='va'>hweibull</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>shape</span>, <span class='va'>scale</span><span class='op'>)</span><span class='op'>{</span>
   <span class='fu'><a href='https://rdrr.io/r/stats/Weibull.html'>dweibull</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>shape</span>, <span class='va'>scale</span><span class='op'>)</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/stats/Weibull.html'>pweibull</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>shape</span>, <span class='va'>scale</span>, lower.tail <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
   <span class='op'>}</span>
 <span class='fu'><a href='https://rdrr.io/r/graphics/curve.html'>curve</a></span><span class='op'>(</span><span class='fu'>hweibull</span><span class='op'>(</span><span class='va'>x</span>, shape <span class='op'>=</span> <span class='fl'>2.5</span>, scale <span class='op'>=</span> <span class='va'>pi</span><span class='op'>)</span>, from <span class='op'>=</span> <span class='fl'>0</span>, to <span class='op'>=</span> <span class='fl'>42</span>,
                col <span class='op'>=</span> <span class='st'>"red"</span>, ylab <span class='op'>=</span> <span class='st'>"Hazard function"</span>, las <span class='op'>=</span> <span class='fl'>1</span>, lwd <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
-</div><div class='img'><img src='TTT_hazard_shape-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div><div class='input'>
 <span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Weibull.html'>rweibull</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>50</span>, shape <span class='op'>=</span> <span class='fl'>2.5</span>, scale <span class='op'>=</span> <span class='va'>pi</span><span class='op'>)</span>
-<span class='va'>my_initial_guess1</span> <span class='op'>&lt;-</span> <span class='fu'>TTT_hazard_shape</span><span class='op'>(</span><span class='va'>y</span> <span class='op'>~</span> <span class='fl'>1</span><span class='op'>)</span>
+<span class='va'>status</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>48</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>2</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>my_initial_guess1</span> <span class='op'>&lt;-</span> <span class='fu'>TTT_hazard_shape</span><span class='op'>(</span><span class='fu'>Surv</span><span class='op'>(</span><span class='va'>y</span>, <span class='va'>status</span><span class='op'>)</span> <span class='op'>~</span> <span class='fl'>1</span><span class='op'>)</span>
 <span class='va'>my_initial_guess1</span><span class='op'>$</span><span class='va'>hazard_type</span>
 </div><div class='output co'>#&gt; [1] "Increasing"</div><div class='input'>
 
@@ -241,6 +243,22 @@ based on hazard shape associated to the  shape of empirical TTT plot.</p>
 <span class='va'>TTT_wei</span> <span class='op'>&lt;-</span> <span class='fu'><a href='TTTE_Analytical.html'>TTTE_Analytical</a></span><span class='op'>(</span><span class='va'>y</span> <span class='op'>~</span> <span class='fl'>1</span><span class='op'>)</span>
 <span class='va'>my_initial_guess2</span> <span class='op'>&lt;-</span> <span class='fu'>TTT_hazard_shape</span><span class='op'>(</span><span class='va'>TTT_wei</span><span class='op'>)</span>
 <span class='va'>my_initial_guess2</span><span class='op'>$</span><span class='va'>hazard_type</span>
+</div><div class='output co'>#&gt; [1] "Increasing"</div><div class='input'>
+
+<span class='co'>#--------------------------------------------------------------------------------</span>
+<span class='co'># Example 3: Increasing hazard with simulated censored data</span>
+
+<span class='va'>hweibull</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>shape</span>, <span class='va'>scale</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='fu'><a href='https://rdrr.io/r/stats/Weibull.html'>dweibull</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>shape</span>, <span class='va'>scale</span><span class='op'>)</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/stats/Weibull.html'>pweibull</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>shape</span>, <span class='va'>scale</span>, lower.tail <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+  <span class='op'>}</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/curve.html'>curve</a></span><span class='op'>(</span><span class='fu'>hweibull</span><span class='op'>(</span><span class='va'>x</span>, shape <span class='op'>=</span> <span class='fl'>2.5</span>, scale <span class='op'>=</span> <span class='va'>pi</span><span class='op'>)</span>, from <span class='op'>=</span> <span class='fl'>0</span>, to <span class='op'>=</span> <span class='fl'>42</span>,
+               col <span class='op'>=</span> <span class='st'>"red"</span>, ylab <span class='op'>=</span> <span class='st'>"Hazard function"</span>, las <span class='op'>=</span> <span class='fl'>1</span>, lwd <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>
+</div><div class='img'><img src='TTT_hazard_shape-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Weibull.html'>rweibull</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>50</span>, shape <span class='op'>=</span> <span class='fl'>2.5</span>, scale <span class='op'>=</span> <span class='va'>pi</span><span class='op'>)</span>
+<span class='va'>y</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sort.html'>sort</a></span><span class='op'>(</span><span class='va'>y</span><span class='op'>)</span>
+<span class='va'>status</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>45</span><span class='op'>)</span>, <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>5</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>my_initial_guess1</span> <span class='op'>&lt;-</span> <span class='fu'>TTT_hazard_shape</span><span class='op'>(</span><span class='fu'>Surv</span><span class='op'>(</span><span class='va'>y</span>, <span class='va'>status</span><span class='op'>)</span> <span class='op'>~</span> <span class='fl'>1</span><span class='op'>)</span>
+<span class='va'>my_initial_guess1</span><span class='op'>$</span><span class='va'>hazard_type</span>
 </div><div class='output co'>#&gt; [1] "Increasing"</div><div class='input'>
 
 <span class='co'>#--------------------------------------------------------------------------------</span>
