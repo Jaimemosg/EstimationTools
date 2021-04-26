@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Integration using integrate from stats package. — integrate_stats • EstimationTools</title>
+<title>Integration routines — integrate_stats • EstimationTools</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,11 @@
 
 
 
-<meta property="og:title" content="Integration using integrate from stats package. — integrate_stats" />
+<meta property="og:title" content="Integration routines — integrate_stats" />
 <meta property="og:description" content="
-This function uses adaptive quadrature from integrate routine from
-stats package." />
+This family of functions use quadratures for solving integrals. The user can
+create a custom integration routine, see details for further
+information." />
 
 
 
@@ -128,15 +129,16 @@ stats package." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Integration using <code>integrate</code> from <strong>stats</strong> package.</h1>
+    <h1>Integration routines</h1>
     <small class="dont-index">Source: <a href='https://github.com/Jaimemosg/EstimationTools/blob/master/R/integrators.R'><code>R/integrators.R</code></a></small>
     <div class="hidden name"><code>integrate_stats.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#experimental'><img src='figures/lifecycle-experimental.svg' alt='[Experimental]' /></a>
-This function uses adaptive quadrature from <code>integrate</code> routine from
-<strong>stats</strong> package.</p>
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#experimental'><img src='figures/lifecycle-experimental.svg' alt='[Experimental]' /></a></p>
+<p>This family of functions use quadratures for solving integrals. The user can
+create a custom integration routine, see <em>details</em> for further
+information.</p>
     </div>
 
     <pre class="usage"><span class='fu'>integrate_stats</span><span class='op'>(</span><span class='va'>fun</span>, <span class='va'>lower</span>, <span class='va'>upper</span>, add_args <span class='op'>=</span> <span class='cn'>NULL</span>, <span class='va'>...</span><span class='op'>)</span>
@@ -180,6 +182,19 @@ value for the given argument <code>x</code>.</p></td>
 
     <p>The value of the integral of the function specified in <code>fun</code>
 argument.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p><code>integrate_stats</code> uses <code><a href='https://rdrr.io/r/stats/integrate.html'>integrate</a></code> function from
+<strong>stats</strong> package, whereas <code>gauss_quad</code> uses the implementation of
+gaussian quadratures from <strong>gaussquad</strong> package.</p>
+<p>The user can create custom optimization routines through implementation
+of a wrapper function using the four arguments showed in emphUsage section.</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/gaussquad/man/laguerre.quadrature.html'>laguerre.quadrature</a></code>,
+<code><a href='https://rdrr.io/pkg/gaussquad/man/legendre.quadrature.html'>legendre.quadrature</a></code>,
+<code><a href='https://rdrr.io/pkg/gaussquad/man/chebyshev.c.quadrature.html'>chebyshev.c.quadrature</a></code>,
+<code><a href='https://rdrr.io/pkg/gaussquad/man/gegenbauer.quadrature.html'>gegenbauer.quadrature</a></code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Jaime Mosquera Gutiérrez, <a href='mailto:jmosquerag@unal.edu.co'>jmosquerag@unal.edu.co</a></p>

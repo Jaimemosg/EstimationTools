@@ -4,7 +4,7 @@
 \name{integrate_stats}
 \alias{integrate_stats}
 \alias{gauss_quad}
-\title{Integration using \code{integrate} from \strong{stats} package.}
+\title{Integration routines}
 \usage{
 integrate_stats(fun, lower, upper, add_args = NULL, ...)
 
@@ -35,8 +35,24 @@ argument.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
-This function uses adaptive quadrature from \code{integrate} routine from
-\strong{stats} package.
+
+This family of functions use quadratures for solving integrals. The user can
+create a custom integration routine, see \emph{details} for further
+information.
+}
+\details{
+\code{integrate_stats} uses \code{\link[stats]{integrate}} function from
+\strong{stats} package, whereas \code{gauss_quad} uses the implementation of
+gaussian quadratures from \strong{gaussquad} package.
+
+The user can create custom optimization routines through implementation
+of a wrapper function using the four arguments showed in emph{Usage} section.
+}
+\seealso{
+\code{\link[gaussquad]{laguerre.quadrature}},
+\code{\link[gaussquad]{legendre.quadrature}},
+\code{\link[gaussquad]{chebyshev.c.quadrature}},
+\code{\link[gaussquad]{gegenbauer.quadrature}}
 }
 \author{
 Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
