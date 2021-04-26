@@ -1,12 +1,13 @@
-#' @title Integration using \code{integrate} from \strong{stats} package.
+#' @title Integration routines
 #' @family Integration functions
 #'
 #' @encoding UTF-8
 #' @author Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
 #' @description
 #' `r lifecycle::badge("experimental")`
-#' This function uses adaptive quadrature from \code{integrate} routine from
-#' \strong{stats} package.
+#' This family of functions use quadratures for solving integrals. The user can
+#' create a custom integration routine, see \emph{details} for further
+#' information.
 #'
 #' @return The value of the integral of the function specified in \code{fun}
 #' argument.
@@ -18,6 +19,16 @@
 #' @param upper a numeric value for the upper limit of the integral.
 #' @param add_args a list with further arguments for integration routine.
 #' @param ... 	additional arguments to be passed to \code{fun}.
+#'
+#' @details
+#' \code{integrate_stats} uses \code{\link[stats]{integrate}} function from
+#' \strong{stats} package, whereas \code{gauss_quad} uses the implementation of
+#' gaussian quadratures from \strong{gaussquad} package.
+#'
+#' @seealso \code{\link[gaussquad]{laguerre.quadrature}},
+#' \code{\link[gaussquad]{legendre.quadrature}},
+#' \code{\link[gaussquad]{chebyshev.c.quadrature}},
+#' \code{\link[gaussquad]{gegenbauer.quadrature}}
 #'
 #' @importFrom stats integrate
 #' @export
