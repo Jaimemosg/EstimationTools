@@ -30,7 +30,8 @@ Suggests:
     testthat (>= 3.0.0),
     vdiffr,
     spelling,
-    readtext
+    readtext,
+    gaussquad
 VignetteBuilder: knitr, utils
 Description: Routines for parameter estimation for any probability density or
     mass function implemented in R via maximum likelihood (ML) given a data set.
