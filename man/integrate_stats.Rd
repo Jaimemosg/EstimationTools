@@ -46,13 +46,14 @@ information.
 gaussian quadratures from \strong{gaussquad} package.
 
 The user can create custom optimization routines through implementation
-of a wrapper function using the four arguments showed in emph{Usage} section.
+of a wrapper function using the five arguments showed in \emph{Usage}
+section.
 }
 \seealso{
 \code{\link[gaussquad]{laguerre.quadrature}},
 \code{\link[gaussquad]{legendre.quadrature}},
 \code{\link[gaussquad]{chebyshev.c.quadrature}},
-\code{\link[gaussquad]{gegenbauer.quadrature}}
+\code{\link[gaussquad]{gegenbauer.quadrature}}, etc.
 }
 \author{
 Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
