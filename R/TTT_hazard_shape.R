@@ -5,6 +5,7 @@
 #' @family HazardShape
 #'
 #' @description
+#'
 #' `r lifecycle::badge("experimental")`
 #'
 #' This function can be used so as to estimate hazard shape corresponding
