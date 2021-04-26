@@ -51,6 +51,7 @@
 #'                col = "red", ylab = "Hazard function", las = 1, lwd = 2)
 #'
 #' y <- rweibull(n = 50, shape = 2.5, scale = pi)
+#' status <- c(rep(1, 48), rep(0, 2))
 #' my_initial_guess1 <- TTT_hazard_shape(Surv(y, status) ~ 1)
 #' my_initial_guess1$hazard_type
 #'
