@@ -56,3 +56,24 @@ fo_and_data <- function(y, fo, model_frame, data, fo2Surv = TRUE){
   }
   return(list(data = data, fo = fo))
 }
+#==============================================================================
+# Extract arguments from ... when it contains inputs for multiple functions ---
+# (used only for integration routines in 'integration' wrapper)
+#==============================================================================
+#' @export
+#' @keywords internal
+#' @rdname internalfunc
+extract_fun_args <- function(fun, exclude, ...){
+  dots <- substitute(...())
+  args_list <- formals(fun)
+  routine_args <- names(args_list[-1])
+  if ( !missing(exclude) ){
+    routine_args <- routine_args[!(routine_args %in% exclude)]
+    key_args <- routine_args[routine_args %in% names(dots)]
+    routine_input_args <- args_list[key_args]
+    routine_input_args <- dots[key_args]
+  } else {
+  }
+  add_args <- dots[!(names(dots) %in% routine_args)]
+  return(list(routine_input_args, add_args))
+}
