@@ -4,11 +4,14 @@
 \name{formula2Surv}
 \alias{formula2Surv}
 \alias{fo_and_data}
+\alias{extract_fun_args}
 \title{Internal functions for formula and data handle}
 \usage{
 formula2Surv(model_frame)
 
 fo_and_data(y, fo, model_frame, data, fo2Surv = TRUE)
+
+extract_fun_args(fun, exclude, ...)
 }
 \arguments{
 \item{model_frame}{a model frame build internally in some functions on
