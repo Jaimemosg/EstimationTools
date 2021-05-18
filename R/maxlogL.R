@@ -71,7 +71,7 @@
 #' @examples
 #' library(EstimationTools)
 #'
-#' #--------------------------------------------------------------------------------
+#' #----------------------------------------------------------------------------
 #' # Example 1: estimation with one fixed parameter
 #' x <- rnorm(n = 10000, mean = 160, sd = 6)
 #' theta_1 <- maxlogL(x = x, dist = 'dnorm', control = list(trace = 1),
@@ -80,7 +80,7 @@
 #' summary(theta_1)
 #'
 #'
-#' #--------------------------------------------------------------------------------
+#' #----------------------------------------------------------------------------
 #' # Example 2: both parameters of normal distribution mapped with logarithmic
 #' # function
 #' theta_2 <- maxlogL(x = x, dist = "dnorm",
