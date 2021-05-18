@@ -8,8 +8,8 @@ Authors@R: c(
       person("Freddy", "Hernandez", , "fhernanb@unal.edu.co", role = c("ctb"), 
       comment = c(ORCID = "0000-0001-7459-3329"))
       )
-Depends: R (>= 3.5.0), DEoptim, survival, stringr, BBmisc, GA
-Imports: 
+Depends: R (>= 3.5.0), survival, DEoptim, BBmisc, GA, gaussquad
+Imports:
     Rdpack,
     utils,
     stats,
@@ -18,7 +18,7 @@ Imports:
     matrixStats,
     autoimage,
     graphics,
-    lifecycle
+    stringr
 RdMacros: Rdpack
 Suggests:
     gamlss.dist,
@@ -31,7 +31,7 @@ Suggests:
     vdiffr,
     spelling,
     readtext,
-    gaussquad
+    lifecycle
 VignetteBuilder: knitr, utils
 Description: Routines for parameter estimation for any probability density or
     mass function implemented in R via maximum likelihood (ML) given a data set.
