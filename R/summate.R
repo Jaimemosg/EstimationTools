@@ -38,7 +38,7 @@
 summate <- function(fun, lower, upper, tol = 1e-10, ...){
   dots <- substitute(...())
   if ( is.null(dots) ){
-    fun_args <- formas(fun)
+    fun_args <- formals(fun)
     if ( length(fun_args) > 1 )
       stop("Parameters for 'fun' must be defined.")
   }
