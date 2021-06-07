@@ -56,16 +56,14 @@ This function computes predictions and optionally the estimated standard errors
 of those predictions from a model fitted with \code{maxlogLreg}.
 }
 \details{
-This \code{summary} method computes and displays AIC, BIC,
-estimates and standard errors from a estimated model stored i a \code{maxlogL}
-class object. It  also displays and computes Z-score and p values of significance
-test of parameters.
+This \code{predict} method computes predictions for values of any
+distribution parameter in link or original scale.
 }
 \note{
-Variables are first looked for in newdata and then searched for in the usual way
-(which will include the environment of the formula used in the fit). A warning
-will be given if the variables found are not of the same length as those
-in \code{newdata} if it is supplied.
+Variables are first looked for in \code{newdata} argument and then searched
+in the usual way (which will include the environment of the formula used in
+the fit). A warning will be given if the variables found are not of the same
+length as those in \code{newdata} if it is supplied.
 }
 \examples{
 library(EstimationTools)

@@ -8,6 +8,7 @@
 maxlogLreg(
   formulas,
   y_dist,
+  support = NULL,
   data = NULL,
   subset = NULL,
   fixed = NULL,
@@ -32,6 +33,15 @@ the suffix \code{'.fo'}. See the examples below for further illustration.}
 On the left side of \code{~} must be the response, and in the right side
 must be the name o de probability density/mass function. See the section
 \strong{Details} and the examples below for further illustration.}
+
+\item{support}{a list with the following entries:
+\itemize{
+\item interval: a two dimensional atomic vector indicating the
+set of possible values of a random variable having the
+distribution specified in \code{y_dist}.
+\item type: character indicating if distribution has a
+\code{discrete} or a \code{continous} random variable.
+}}
 
 \item{data}{an optional data frame containing the variables in the model. If data is not
 specified, the variables are taken from the environment from which
@@ -121,8 +131,10 @@ norm_data <- data.frame(y = y, x = x)
 
 # It does not matter the order of distribution parameters
 formulas <- list(sd.fo = ~ x, mean.fo = ~ x)
+support <- list(interval = c(-Inf, Inf), type = 'continuous')
 
-norm_mod <- maxlogLreg(formulas, y_dist = y ~ dnorm, data = norm_data,
+norm_mod <- maxlogLreg(formulas, y_dist = y ~ dnorm, support = support,
+                       data = norm_data,
                        link = list(over = "sd", fun = "log_link"))
 summary(norm_mod)
 
@@ -138,6 +150,7 @@ Wei_data <- data.frame(fails = fails, status = status)
 
 # Formulas with linear predictors
 formulas <- list(scale.fo=~1, shape.fo=~1)
+support <- list(interval = c(0, Inf), type = 'continuous')
 
 # Bounds for optimization. Upper bound set with default values (Inf)
 start <- list(
@@ -150,7 +163,7 @@ lower <- list(
 )
 
 mod_weibull <- maxlogLreg(formulas, y_dist = Surv(fails, status) ~ dweibull,
-                          start = start,
+                          support = c(0, Inf), start = start,
                           lower = lower, data = Wei_data)
 summary(mod_weibull)
 
