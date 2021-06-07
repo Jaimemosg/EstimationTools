@@ -18,6 +18,14 @@
 #'               On the left side of \code{~} must be the response, and in the right side
 #'               must be the name o de probability density/mass function. See the section
 #'               \strong{Details} and the examples below for further illustration.
+#' @param support a list with the following entries:
+#'                \itemize{
+#'                \item interval: a two dimensional atomic vector indicating the
+#'                set of possible values of a random variable having the
+#'                distribution specified in \code{y_dist}.
+#'                \item type: character indicating if distribution has a
+#'                \code{discrete} or a \code{continous} random variable.
+#'                }
 #' @param data an optional data frame containing the variables in the model. If data is not
 #'             specified, the variables are taken from the environment from which
 #'             \code{maxlogLreg} is called.
@@ -93,8 +101,10 @@
 #'
 #' # It does not matter the order of distribution parameters
 #' formulas <- list(sd.fo = ~ x, mean.fo = ~ x)
+#' support <- list(interval = c(-Inf, Inf), type = 'continuous')
 #'
-#' norm_mod <- maxlogLreg(formulas, y_dist = y ~ dnorm, data = norm_data,
+#' norm_mod <- maxlogLreg(formulas, y_dist = y ~ dnorm, support = support,
+#'                        data = norm_data,
 #'                        link = list(over = "sd", fun = "log_link"))
 #' summary(norm_mod)
 #'
@@ -110,6 +120,7 @@
 #'
 #' # Formulas with linear predictors
 #' formulas <- list(scale.fo=~1, shape.fo=~1)
+#' support <- list(interval = c(0, Inf), type = 'continuous')
 #'
 #' # Bounds for optimization. Upper bound set with default values (Inf)
 #' start <- list(
@@ -122,7 +133,7 @@
 #' )
 #'
 #' mod_weibull <- maxlogLreg(formulas, y_dist = Surv(fails, status) ~ dweibull,
-#'                           start = start,
+#'                           support = c(0, Inf), start = start,
 #'                           lower = lower, data = Wei_data)
 #' summary(mod_weibull)
 #'
@@ -148,8 +159,8 @@
 # Maximization routine for regression -----------------------------------------
 #==============================================================================
 #' @export
-maxlogLreg <- function(formulas, y_dist, data = NULL, subset = NULL,
-                       fixed = NULL, link = NULL, start = NULL,
+maxlogLreg <- function(formulas, y_dist, support = NULL, data = NULL,
+                       subset = NULL, fixed = NULL, link = NULL, start = NULL,
                        lower = NULL, upper = NULL, optimizer = 'nlminb',
                        control = NULL, silent = FALSE,
                        StdE_method = c('optim', 'numDeriv'), ...){
@@ -384,6 +395,7 @@ maxlogLreg <- function(formulas, y_dist, data = NULL, subset = NULL,
                               dist_args = arguments, npar = npar,
                               link_fun = link$fun)
   names(fitted.values) <- par_names
+  fitted.values <- lapply(fitted.values, function(x) as.numeric(x))
 
   # Coefficients of predictors
   A <- param_index(b_length, npar)
@@ -392,7 +404,7 @@ maxlogLreg <- function(formulas, y_dist, data = NULL, subset = NULL,
 
   # fit stores the following information:
   # fit <- list(par, objective, hessian, StdE)
-  inputs <- list(call = call, distr = distr, y_dist = y_dist,
+  inputs <- list(call = call, distr = distr, y_dist = y_dist, support = support,
                  formulas = formulas, fixed = fixed, link = link,
                  start = start, lower = lower, upper = upper,
                  optimizer = optimizer, data = dsgn_mat$data)
@@ -589,7 +601,7 @@ Surv_transform <- function(y_dist, data){
 # log-likelihood function computation -----------------------------------------
 #==============================================================================
 minus_lL_LinReg <- function(param, mat, distr, dist_args, over, link, npar,
-                            fixed, par_names, b_length){
+                            fixed, par_names, b_length, summation = TRUE){
     # Linear predictor
     betas_list <- all_betas(b_length = b_length, npar = npar,
                             param = param)
@@ -628,7 +640,7 @@ minus_lL_LinReg <- function(param, mat, distr, dist_args, over, link, npar,
     ll <- sum( logf*delta[,1] + logF*delta[,2] + logS*delta[,3] )
 
     # Negative of log-Likelihood function
-    return(as.numeric(-ll)) # Useful when using Rmpfr (momi)
+    return(as.numeric(-ll)) # Useful when using Rmpfr (LuA)
 }
 param_index <- function(b_length, npar){
   b_length_plus <- c(0, as.numeric(b_length))
