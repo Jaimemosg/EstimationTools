@@ -77,3 +77,41 @@ extract_fun_args <- function(fun, exclude, ...){
   add_args <- dots[!(names(dots) %in% routine_args)]
   return(list(routine_input_args, add_args))
 }
+#==============================================================================
+# Saturated model -------------------------------------------------------------
+#==============================================================================
+#' @export
+#' @keywords internal
+#' @rdname internalfunc
+saturated_maxlogL <- function(object, silent = TRUE){
+  if (silent) options(warn = -1)
+  y <- object$outputs$response
+  X <- factor(1:length(y))
+  formulas <- object$inputs$formulas
+  formulas <- sapply(formulas, function(x) formula(~X))
+  maxlogL_call <- object$inputs$call
+  maxlogL_call[['data']] <- data.frame(X, y)
+  maxlogL_call[['formulas']] <- formulas
+  saturated_model <- eval(maxlogL_call)
+  if (silent) options(warn = 0)
+  return(saturated_model)
+}
+#==============================================================================
+# Null model-------------------------------------------------------------------
+#==============================================================================
+#' @export
+#' @keywords internal
+#' @rdname internalfunc
+null_maxlogL <- function(object, silent = TRUE){
+  if (silent) options(warn = -1)
+  X <- 1
+  y <- object$outputs$response
+  formulas <- object$inputs$formulas
+  formulas <- sapply(formulas, function(x) formula(~1))
+  maxlogL_call <- object$inputs$call
+  maxlogL_call[['data']] <- data.frame(X, y)
+  maxlogL_call[['formulas']] <- formulas
+  saturated_model <- eval(maxlogL_call)
+  if (silent) options(warn = 0)
+  return(saturated_model)
+}
