@@ -5,6 +5,8 @@
 \alias{formula2Surv}
 \alias{fo_and_data}
 \alias{extract_fun_args}
+\alias{saturated_maxlogL}
+\alias{null_maxlogL}
 \title{Internal functions for formula and data handle}
 \usage{
 formula2Surv(model_frame)
@@ -12,6 +14,10 @@ formula2Surv(model_frame)
 fo_and_data(y, fo, model_frame, data, fo2Surv = TRUE)
 
 extract_fun_args(fun, exclude, ...)
+
+saturated_maxlogL(object, silent = TRUE)
+
+null_maxlogL(object, silent = TRUE)
 }
 \arguments{
 \item{model_frame}{a model frame build internally in some functions on
