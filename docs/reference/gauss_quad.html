@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Internal functions for formula and data handle — formula2Surv • EstimationTools</title>
+<title>Numerical integration through Gaussian Quadrature — gauss_quad • EstimationTools</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,11 @@
 
 
 
-<meta property="og:title" content="Internal functions for formula and data handle — formula2Surv" />
-<meta property="og:description" content="Utility functions useful for passing data from functions
-inside others." />
+<meta property="og:title" content="Numerical integration through Gaussian Quadrature — gauss_quad" />
+<meta property="og:description" content="
+This family of functions use quadratures for solving integrals. The user can
+create a custom integration routine, see details for further
+information." />
 
 
 
@@ -127,36 +129,83 @@ inside others." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Internal functions for formula and data handle</h1>
-    <small class="dont-index">Source: <a href='https://github.com/Jaimemosg/EstimationTools/blob/master/R/internal.R'><code>R/internal.R</code></a></small>
-    <div class="hidden name"><code>internalfunc.Rd</code></div>
+    <h1>Numerical integration through Gaussian Quadrature</h1>
+    <small class="dont-index">Source: <a href='https://github.com/Jaimemosg/EstimationTools/blob/master/R/gauss_quad.R'><code>R/gauss_quad.R</code></a></small>
+    <div class="hidden name"><code>gauss_quad.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Utility functions useful for passing data from functions
-inside others.</p>
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#experimental'><img src='figures/lifecycle-experimental.svg' alt='[Experimental]' /></a></p>
+<p>This family of functions use quadratures for solving integrals. The user can
+create a custom integration routine, see <em>details</em> for further
+information.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>formula2Surv</span><span class='op'>(</span><span class='va'>model_frame</span><span class='op'>)</span>
-
-<span class='fu'>fo_and_data</span><span class='op'>(</span><span class='va'>y</span>, <span class='va'>fo</span>, <span class='va'>model_frame</span>, <span class='va'>data</span>, fo2Surv <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-
-<span class='fu'>extract_fun_args</span><span class='op'>(</span><span class='va'>fun</span>, <span class='va'>exclude</span>, <span class='va'>...</span><span class='op'>)</span>
-
-<span class='fu'>saturated_maxlogL</span><span class='op'>(</span><span class='va'>object</span>, silent <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-
-<span class='fu'>null_maxlogL</span><span class='op'>(</span><span class='va'>object</span>, silent <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>gauss_quad</span><span class='op'>(</span>
+  <span class='va'>fun</span>,
+  <span class='va'>lower</span>,
+  <span class='va'>upper</span>,
+  kind <span class='op'>=</span> <span class='st'>"legendre"</span>,
+  n <span class='op'>=</span> <span class='fl'>10</span>,
+  normalized <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>model_frame</th>
-      <td><p>a model frame build internally in some functions on
-<strong>EstimationTools</strong> package</p></td>
+      <th>fun</th>
+      <td><p>an <strong>R</strong> function which should take a numeric argument x and
+possibly some parameters. The function returns a numerical vector
+value for the given argument <code>x</code>.</p></td>
+    </tr>
+    <tr>
+      <th>lower</th>
+      <td><p>a numeric value for the lower limit of the integral.</p></td>
+    </tr>
+    <tr>
+      <th>upper</th>
+      <td><p>a numeric value for the upper limit of the integral.</p></td>
+    </tr>
+    <tr>
+      <th>kind</th>
+      <td><p>character specifying the weight (polynomial) function for the
+quadrature.</p></td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td><p>integer with the highest order of the polynomial of the selected
+rule.</p></td>
+    </tr>
+    <tr>
+      <th>normalized</th>
+      <td><p>logical. If TRUE, rules are for orthonormal polynomials,
+otherwise they are for orthogonal polynomials.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>additional arguments to be passed to <code>fun</code> and to the
+quadrature routine specified in argument <code>kind</code>.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>The value of the integral of the function specified in <code>fun</code>
+argument.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p><code>gauss_quad</code> uses the implementation of Gaussian quadratures from
+<strong>gaussquad</strong> package.This is a wrapper that implements <code>rules</code>
+and integration routine in the same place.#'</p>
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/gaussquad/man/laguerre.quadrature.html'>laguerre.quadrature</a></code>,
+<code><a href='https://rdrr.io/pkg/gaussquad/man/legendre.quadrature.html'>legendre.quadrature</a></code>,
+<code><a href='https://rdrr.io/pkg/gaussquad/man/chebyshev.c.quadrature.html'>chebyshev.c.quadrature</a></code>,
+<code><a href='https://rdrr.io/pkg/gaussquad/man/gegenbauer.quadrature.html'>gegenbauer.quadrature</a></code>,
+<code><a href='https://rdrr.io/pkg/gaussquad/man/hermite.h.quadrature.html'>hermite.h.quadrature</a></code>, etc.</p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Jaime Mosquera Gutiérrez, <a href='mailto:jmosquerag@unal.edu.co'>jmosquerag@unal.edu.co</a></p>
