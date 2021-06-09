@@ -49,13 +49,13 @@ library(EstimationTools)
 
 
 #----------------------------------------------------------------------------
-# Example 1: Mean of X ~ N(0,1) using 'integrate'.
+# Example 1: Mean of X ~ N(2,1) using 'integrate'.
 mynorm <- function(x, mu, sigma) x*dnorm(x, mean = mu, sd = sigma)
 i1 <- integration(mynorm, lower = -Inf, upper = Inf, mu = 2, sigma = 1)
 i1
 
 #----------------------------------------------------------------------------
-# Example 2: Mean of X ~ N(0,1) using 'gauss_quad' (Gauss-Hermitie
+# Example 2: Mean of X ~ N(2,1) using 'gauss_quad' (Gauss-Hermitie
 #            quadrature).
 g <- function(x, mu, sigma) sqrt(2)*sigma*x + mu
 i2 <- integration(g, lower = -Inf, upper = Inf, routine = 'gauss_quad',
