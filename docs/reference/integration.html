@@ -199,13 +199,13 @@ passed to <code>fun</code>.</p></li>
 
 
 <span class='co'>#----------------------------------------------------------------------------</span>
-<span class='co'># Example 1: Mean of X ~ N(0,1) using 'integrate'.</span>
+<span class='co'># Example 1: Mean of X ~ N(2,1) using 'integrate'.</span>
 <span class='va'>mynorm</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>mu</span>, <span class='va'>sigma</span><span class='op'>)</span> <span class='va'>x</span><span class='op'>*</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span><span class='op'>(</span><span class='va'>x</span>, mean <span class='op'>=</span> <span class='va'>mu</span>, sd <span class='op'>=</span> <span class='va'>sigma</span><span class='op'>)</span>
 <span class='va'>i1</span> <span class='op'>&lt;-</span> <span class='fu'>integration</span><span class='op'>(</span><span class='va'>mynorm</span>, lower <span class='op'>=</span> <span class='op'>-</span><span class='cn'>Inf</span>, upper <span class='op'>=</span> <span class='cn'>Inf</span>, mu <span class='op'>=</span> <span class='fl'>2</span>, sigma <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
 <span class='va'>i1</span>
 </div><div class='output co'>#&gt; [1] 2</div><div class='input'>
 <span class='co'>#----------------------------------------------------------------------------</span>
-<span class='co'># Example 2: Mean of X ~ N(0,1) using 'gauss_quad' (Gauss-Hermitie</span>
+<span class='co'># Example 2: Mean of X ~ N(2,1) using 'gauss_quad' (Gauss-Hermitie</span>
 <span class='co'>#            quadrature).</span>
 <span class='va'>g</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>mu</span>, <span class='va'>sigma</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>*</span><span class='va'>sigma</span><span class='op'>*</span><span class='va'>x</span> <span class='op'>+</span> <span class='va'>mu</span>
 <span class='va'>i2</span> <span class='op'>&lt;-</span> <span class='fu'>integration</span><span class='op'>(</span><span class='va'>g</span>, lower <span class='op'>=</span> <span class='op'>-</span><span class='cn'>Inf</span>, upper <span class='op'>=</span> <span class='cn'>Inf</span>, routine <span class='op'>=</span> <span class='st'>'gauss_quad'</span>,

@@ -50,7 +50,19 @@ information.
 \details{
 \code{gauss_quad} uses the implementation of Gaussian quadratures from
 \strong{gaussquad} package.This is a wrapper that implements \code{rules}
-and integration routine in the same place.#'
+and integration routine in the same place.
+}
+\examples{
+library(EstimationTools)
+
+#----------------------------------------------------------------------------
+# Example 1: Mean of X ~ N(2,1) (Gauss-Hermitie quadrature).
+g <- function(x, mu, sigma) sqrt(2)*sigma*x + mu
+i2 <- gauss_quad(g, lower = -Inf, upper = Inf, kind = 'hermite.h',
+                 normalized = FALSE, mu = 2, sigma = 1)
+i2 <- i2/sqrt(pi)
+i2
+
 }
 \seealso{
 \code{\link[gaussquad]{laguerre.quadrature}},

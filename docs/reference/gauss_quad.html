@@ -198,7 +198,7 @@ argument.</p>
 
     <p><code>gauss_quad</code> uses the implementation of Gaussian quadratures from
 <strong>gaussquad</strong> package.This is a wrapper that implements <code>rules</code>
-and integration routine in the same place.#'</p>
+and integration routine in the same place.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='https://rdrr.io/pkg/gaussquad/man/laguerre.quadrature.html'>laguerre.quadrature</a></code>,
@@ -210,6 +210,18 @@ and integration routine in the same place.#'</p>
 
     <p>Jaime Mosquera Gutiérrez, <a href='mailto:jmosquerag@unal.edu.co'>jmosquerag@unal.edu.co</a></p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://jaimemosg.github.io/EstimationTools/'>EstimationTools</a></span><span class='op'>)</span>
+
+<span class='co'>#----------------------------------------------------------------------------</span>
+<span class='co'># Example 1: Mean of X ~ N(2,1) (Gauss-Hermitie quadrature).</span>
+<span class='va'>g</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>mu</span>, <span class='va'>sigma</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>*</span><span class='va'>sigma</span><span class='op'>*</span><span class='va'>x</span> <span class='op'>+</span> <span class='va'>mu</span>
+<span class='va'>i2</span> <span class='op'>&lt;-</span> <span class='fu'>gauss_quad</span><span class='op'>(</span><span class='va'>g</span>, lower <span class='op'>=</span> <span class='op'>-</span><span class='cn'>Inf</span>, upper <span class='op'>=</span> <span class='cn'>Inf</span>, kind <span class='op'>=</span> <span class='st'>'hermite.h'</span>,
+                 normalized <span class='op'>=</span> <span class='cn'>FALSE</span>, mu <span class='op'>=</span> <span class='fl'>2</span>, sigma <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+<span class='va'>i2</span> <span class='op'>&lt;-</span> <span class='va'>i2</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='va'>pi</span><span class='op'>)</span>
+<span class='va'>i2</span>
+</div><div class='output co'>#&gt; [1] 2</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
