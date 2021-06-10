@@ -49,6 +49,9 @@
 #' i2 <- i2/sqrt(pi)
 #' i2
 #'
+#'
+#' #----------------------------------------------------------------------------
+#'
 #' @import gaussquad
 #' @export
 gauss_quad <- function(fun, lower, upper, kind = 'legendre',

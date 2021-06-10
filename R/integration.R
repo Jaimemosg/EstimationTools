@@ -55,6 +55,9 @@
 #' i2 <- i2/sqrt(pi)
 #' i2
 #'
+#'
+#' #----------------------------------------------------------------------------
+#'
 #' @seealso \code{\link[stats]{integrate}}, \code{\link{gauss_quad}}
 #'
 #' @export

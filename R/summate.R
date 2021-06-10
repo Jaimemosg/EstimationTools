@@ -34,6 +34,9 @@
 #'
 #' summate(fun = Poisson_integrand, lower = 0, upper = Inf, lambda = 15)
 #'
+#'
+#' #----------------------------------------------------------------------------
+#'
 #' @export
 summate <- function(fun, lower, upper, tol = 1e-10, ...){
   dots <- substitute(...())
