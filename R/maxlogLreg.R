@@ -20,10 +20,10 @@
 #'               \strong{Details} and the examples below for further illustration.
 #' @param support a list with the following entries:
 #'                \itemize{
-#'                \item interval: a two dimensional atomic vector indicating the
+#'                \item \code{interval}: a two dimensional atomic vector indicating the
 #'                set of possible values of a random variable having the
 #'                distribution specified in \code{y_dist}.
-#'                \item type: character indicating if distribution has a
+#'                \item \code{type}: character indicating if distribution has a
 #'                \code{discrete} or a \code{continous} random variable.
 #'                }
 #' @param data an optional data frame containing the variables in the model. If data is not
@@ -627,7 +627,7 @@ minus_lL_LinReg <- function(param, mat, distr, dist_args, over, link, npar,
     }
     y <- mat$y
     delta <- mat$status
-    cdf  <- paste0("p", substring(distr, 2))
+    cdf  <- paste0('p', substring(distr, 2))
 
     logf <- do.call( what = distr, args = c(list(x = y), param,
                                            log = TRUE, fixed) )
