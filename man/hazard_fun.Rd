@@ -27,6 +27,7 @@ A function with the folling input arguments:
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+
 This function take the name of a probability density/mass function as an
 argument and creates a hazard function.
 }
@@ -35,7 +36,7 @@ library(EstimationTools)
 
 #--------------------------------------------------------------------------------
 # Example 1: Hazard function of Weibull distribution.
-hweibull1 <- hazard_fun('dweibull', list(interval=c(0, Inf), type='discrete'))
+hweibull1 <- hazard_fun('dweibull', list(interval=c(0, Inf), type='continuous'))
 hweibull2 <- function(x){
   ans <- dweibull(x, shape = 2, scale = 1)/
     pweibull(x, shape = 2, scale = 1, lower.tail = FALSE)
