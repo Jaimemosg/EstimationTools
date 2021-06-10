@@ -63,6 +63,9 @@ i2 <- gauss_quad(g, lower = -Inf, upper = Inf, kind = 'hermite.h',
 i2 <- i2/sqrt(pi)
 i2
 
+
+#----------------------------------------------------------------------------
+
 }
 \seealso{
 \code{\link[gaussquad]{laguerre.quadrature}},

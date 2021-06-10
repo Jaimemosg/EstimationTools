@@ -64,6 +64,9 @@ i2 <- integration(g, lower = -Inf, upper = Inf, routine = 'gauss_quad',
 i2 <- i2/sqrt(pi)
 i2
 
+
+#----------------------------------------------------------------------------
+
 }
 \seealso{
 \code{\link[stats]{integrate}}, \code{\link{gauss_quad}}

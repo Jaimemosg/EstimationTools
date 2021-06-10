@@ -36,10 +36,10 @@ must be the name o de probability density/mass function. See the section
 
 \item{support}{a list with the following entries:
 \itemize{
-\item interval: a two dimensional atomic vector indicating the
+\item \code{interval}: a two dimensional atomic vector indicating the
 set of possible values of a random variable having the
 distribution specified in \code{y_dist}.
-\item type: character indicating if distribution has a
+\item \code{type}: character indicating if distribution has a
 \code{discrete} or a \code{continous} random variable.
 }}
 
@@ -186,6 +186,7 @@ summary(mod_weibull)
 \code{\link{maxlogL}}, \code{\link{bootstrap_maxlogL}}
 
 Other maxlogL: 
+\code{\link{hazard_fun}()},
 \code{\link{maxlogL}()}
 }
 \author{

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Integration — integration • EstimationTools</title>
+<title>Hazard functions in maxlogL framework — hazard_fun • EstimationTools</title>
 
 
 <!-- jquery -->
@@ -39,11 +39,10 @@
 
 
 
-<meta property="og:title" content="Integration — integration" />
+<meta property="og:title" content="Hazard functions in maxlogL framework — hazard_fun" />
 <meta property="og:description" content="
-This is a wrapper routine for integration in maxlogL framework. It is
-used in integration for compute detectability density functions and in
-computation of mean values." />
+This function take the name of a probability density/mass function as an
+argument and creates a hazard function." />
 
 
 
@@ -129,67 +128,50 @@ computation of mean values." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Integration</h1>
-    <small class="dont-index">Source: <a href='https://github.com/Jaimemosg/EstimationTools/blob/master/R/integration.R'><code>R/integration.R</code></a></small>
-    <div class="hidden name"><code>integration.Rd</code></div>
+    <h1>Hazard functions in <code>maxlogL</code> framework</h1>
+    <small class="dont-index">Source: <a href='https://github.com/Jaimemosg/EstimationTools/blob/master/R/hazard_fun.R'><code>R/hazard_fun.R</code></a></small>
+    <div class="hidden name"><code>hazard_fun.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#experimental'><img src='figures/lifecycle-experimental.svg' alt='[Experimental]' /></a></p>
-<p>This is a wrapper routine for integration in <code>maxlogL</code> framework. It is
-used in integration for compute detectability density functions and in
-computation of mean values.</p>
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#experimental'><img src='figures/lifecycle-experimental.svg' alt='[Experimental]' /></a>
+This function take the name of a probability density/mass function as an
+argument and creates a hazard function.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>integration</span><span class='op'>(</span><span class='va'>fun</span>, <span class='va'>lower</span>, <span class='va'>upper</span>, routine <span class='op'>=</span> <span class='st'>"integrate"</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>hazard_fun</span><span class='op'>(</span><span class='va'>dist</span>, <span class='va'>support</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>fun</th>
-      <td><p>an <strong>R</strong> function which should take a numeric argument x and
-possibly some parameters. The function returns a numerical vector
-value for the given argument <code>x</code>.</p></td>
+      <th>dist</th>
+      <td><p>a length-one character vector with the name of density/mass function
+of interest.</p></td>
     </tr>
     <tr>
-      <th>lower</th>
-      <td><p>a numeric value for the lower limit of the integral.</p></td>
-    </tr>
-    <tr>
-      <th>upper</th>
-      <td><p>a numeric value for the upper limit of the integral.</p></td>
-    </tr>
-    <tr>
-      <th>routine</th>
-      <td><p>a character specifying the integration routine.
-<code>integrate</code> and <code>gauss_quad</code> are available, but the
-custom routines can be defined.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>additional arguments to be passed to <code>fun</code> and to the
-integration routine specified in <code>routine</code> argument.</p></td>
+      <th>support</th>
+      <td><p>a list with the following entries:</p><ul>
+<li><p><code>interval</code>: a two dimensional atomic vector indicating the
+set of possible values of a random variable having the
+distribution specified in <code>y_dist</code>.</p></li>
+<li><p><code>type</code>: character indicating if distribution has a
+<code>discrete</code> or a <code>continous</code> random variable.</p></li>
+</ul></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The user can create custom integration routines through implementation
-of a wrapper function using three arguments</p>
-<ul>
-<li><p>funa function which should take a numeric argument x and possibly
-some parameters.</p></li>
-<li><p>lowera numeric value for the lower limit of the integral.</p></li>
-<li><p>uppera numeric value for the upper limit of the integral.</p></li>
-<li><p>...furthermore, the user must define additional arguments to be
-passed to <code>fun</code>.</p></li>
-</ul>
+    <p>A function with the folling input arguments:</p>
+<dt>x</dt><dd><p>vector of (non-negative) quantiles.</p></dd>
+<dt>...</dt><dd><p>Arguments of the probability density/mass function.</p></dd>
 
-<p>The output must be a numeric atomic value with the result of the integral.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='https://rdrr.io/r/stats/integrate.html'>integrate</a></code>, <code><a href='gauss_quad.html'>gauss_quad</a></code></p></div>
+    <div class='dont-index'><p>Other maxlogL: 
+<code><a href='maxlogLreg.html'>maxlogLreg</a>()</code>,
+<code><a href='maxlogL.html'>maxlogL</a>()</code></p></div>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Jaime Mosquera Gutiérrez, <a href='mailto:jmosquerag@unal.edu.co'>jmosquerag@unal.edu.co</a></p>
@@ -197,25 +179,19 @@ passed to <code>fun</code>.</p></li>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://jaimemosg.github.io/EstimationTools/'>EstimationTools</a></span><span class='op'>)</span>
 
+<span class='co'>#--------------------------------------------------------------------------------</span>
+<span class='co'># Example 1: Hazard function of Weibull distribution.</span>
+<span class='va'>hweibull1</span> <span class='op'>&lt;-</span> <span class='fu'>hazard_fun</span><span class='op'>(</span><span class='st'>'dweibull'</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>interval<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='cn'>Inf</span><span class='op'>)</span>, type<span class='op'>=</span><span class='st'>'discrete'</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>hweibull2</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>{</span>
+  <span class='va'>ans</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Weibull.html'>dweibull</a></span><span class='op'>(</span><span class='va'>x</span>, shape <span class='op'>=</span> <span class='fl'>2</span>, scale <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>/</span>
+    <span class='fu'><a href='https://rdrr.io/r/stats/Weibull.html'>pweibull</a></span><span class='op'>(</span><span class='va'>x</span>, shape <span class='op'>=</span> <span class='fl'>2</span>, scale <span class='op'>=</span> <span class='fl'>1</span>, lower.tail <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+  <span class='va'>ans</span>
+<span class='op'>}</span>
+<span class='fu'>hweibull1</span><span class='op'>(</span><span class='fl'>0.2</span>, shape <span class='op'>=</span> <span class='fl'>2</span>, scale <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 0.4</div><div class='input'><span class='fu'>hweibull2</span><span class='op'>(</span><span class='fl'>0.2</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 0.4</div><div class='input'>
 
-<span class='co'>#----------------------------------------------------------------------------</span>
-<span class='co'># Example 1: Mean of X ~ N(2,1) using 'integrate'.</span>
-<span class='va'>mynorm</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>mu</span>, <span class='va'>sigma</span><span class='op'>)</span> <span class='va'>x</span><span class='op'>*</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>dnorm</a></span><span class='op'>(</span><span class='va'>x</span>, mean <span class='op'>=</span> <span class='va'>mu</span>, sd <span class='op'>=</span> <span class='va'>sigma</span><span class='op'>)</span>
-<span class='va'>i1</span> <span class='op'>&lt;-</span> <span class='fu'>integration</span><span class='op'>(</span><span class='va'>mynorm</span>, lower <span class='op'>=</span> <span class='op'>-</span><span class='cn'>Inf</span>, upper <span class='op'>=</span> <span class='cn'>Inf</span>, mu <span class='op'>=</span> <span class='fl'>2</span>, sigma <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
-<span class='va'>i1</span>
-</div><div class='output co'>#&gt; [1] 2</div><div class='input'>
-<span class='co'>#----------------------------------------------------------------------------</span>
-<span class='co'># Example 2: Mean of X ~ N(2,1) using 'gauss_quad' (Gauss-Hermitie</span>
-<span class='co'>#            quadrature).</span>
-<span class='va'>g</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>mu</span>, <span class='va'>sigma</span><span class='op'>)</span> <span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span><span class='op'>*</span><span class='va'>sigma</span><span class='op'>*</span><span class='va'>x</span> <span class='op'>+</span> <span class='va'>mu</span>
-<span class='va'>i2</span> <span class='op'>&lt;-</span> <span class='fu'>integration</span><span class='op'>(</span><span class='va'>g</span>, lower <span class='op'>=</span> <span class='op'>-</span><span class='cn'>Inf</span>, upper <span class='op'>=</span> <span class='cn'>Inf</span>, routine <span class='op'>=</span> <span class='st'>'gauss_quad'</span>,
-                  kind <span class='op'>=</span> <span class='st'>'hermite.h'</span>, normalized <span class='op'>=</span> <span class='cn'>FALSE</span>,
-                  mu <span class='op'>=</span> <span class='fl'>2</span>, sigma <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span>
-<span class='va'>i2</span> <span class='op'>&lt;-</span> <span class='va'>i2</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/MathFun.html'>sqrt</a></span><span class='op'>(</span><span class='va'>pi</span><span class='op'>)</span>
-<span class='va'>i2</span>
-</div><div class='output co'>#&gt; [1] 2</div><div class='input'>
-
-<span class='co'>#----------------------------------------------------------------------------</span>
+<span class='co'>#--------------------------------------------------------------------------------</span>
 
 </div></pre>
   </div>

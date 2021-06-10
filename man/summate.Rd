@@ -43,6 +43,9 @@ Poisson_integrand <- function(x, lambda) {
 
 summate(fun = Poisson_integrand, lower = 0, upper = Inf, lambda = 15)
 
+
+#----------------------------------------------------------------------------
+
 }
 \author{
 Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
