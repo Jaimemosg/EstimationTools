@@ -42,6 +42,9 @@ residuals.maxlogL <- function(object, parameter = NULL,
 
   y <- object$outputs$response
   support <- object$inputs$support
+  dist <- deparse(object$inputs$y_dist[[3]])
+  delta <- object$inputs$cens
+
   if ( is.null(support) & type %in% c("deviance", "pearson",
                                       "response") ){
     stop(paste0(type, " residuals cannot be computed if a support is",
@@ -49,15 +52,22 @@ residuals.maxlogL <- function(object, parameter = NULL,
                 "specifying the 'suport' argument."))
   }
   if (type == 'deviance'){
-    mean <- moment_integration(object,
-                               support = support)
-    residuals <- sign(y - mean)*sqrt(sum(dev.resids(object)))
+    mean <- moment_integration_maxlogL(object)
+    resid <- sign(y - mean)*sqrt(sum(dev.resids(object)))
   }
   if (type == 'response'){
-    mean <- moment_integration(object,
-                               support = support)
-    residuals <- y - mean
+    mean <- moment_integration_maxlogL(object)
+    resid <- y - mean
   }
+  if (type == 'martingale'){
+    if ( is.Surv(object$inputs$y_dist) ){
+      cumHaz <- hazard_integration_maxlogL(object)
+      delta <-
+      resid <- delta[,2] - cumHaz  # Martingale for right censored data
+    }
+  }
+  names(resid) <- 1:length(y)
+  return(resid)
 }
 
 #==============================================================================
@@ -106,15 +116,16 @@ dev.resids <- function(object){
   return(output)
 }
 #==============================================================================
-# Computation of expected value for a fitted model ----------------------------
+# Computation of expected value (and high order moments) for a fitted model ---
 #==============================================================================
-moment_integration <- function(object, support, ord = 1, routine,
+moment_integration_maxlogL <- function(object, ord = 1, routine,
                                ...){
   parameters <- object$outputs$fitted.values
   par_names <- names(parameters)
   parameters <- matrix(unlist(parameters), nrow = object$outputs$n)
   colnames(parameters) <- par_names
   distr <- object$inputs$distr
+  support <- object$support$type
 
   integrand <- function(distr){
     nm_distr <- as.name(distr)
@@ -145,5 +156,33 @@ moment_integration <- function(object, support, ord = 1, routine,
                           upper = support$interval[2],
                           routine = routine, ...), x))
   result <- apply(parameters, MARGIN = 1, mean_computation)
+  return(result)
+}
+#==============================================================================
+# Computation of cumulative for a fitted model --------------------------------
+#==============================================================================
+hazard_integration_maxlogL <- function(object, routine, ...){
+  parameters <- object$outputs$fitted.values
+  par_names <- names(parameters)
+  parameters <- matrix(unlist(parameters), nrow = object$outputs$n)
+  colnames(parameters) <- par_names
+  distr <- object$inputs$distr
+  support <- object$support$type
+
+  integrand <- hazard_fun(distr, support)
+
+  if ( missing(routine) ){
+    if (support$type == 'continuos'){
+      routine <- 'integrate'
+    } else if (support$type == 'discrete'){
+      routine <- 'summate'
+    }
+  }
+  haz_computation <- function(x)
+    do.call(what = 'integration',
+            args = c(list(fun = integrand, lower = support$interval[1],
+                          upper = support$interval[2],
+                          routine = routine, ...), x))
+  result <- apply(parameters, MARGIN = 1, haz_computation)
   return(result)
 }
