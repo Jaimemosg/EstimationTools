@@ -34,7 +34,7 @@ can find out in our
 
 ## Installation
 
-You can install the latest version (2.4.0) of `EstimationTools` typing
+You can install the latest version (3.0.0) of `EstimationTools` typing
 the following command lines in `R` console:
 
 ``` r
