@@ -7,7 +7,7 @@
 #'
 #' This is a wrapper routine for integration in \code{maxlogL} framework. It is
 #' used in integration for compute detectability density functions and in
-#' computation of mean values.
+#' computation of mean values, but it is also a general purpose integrator.
 #'
 #' @param fun an \strong{R} function which should take a numeric argument x and
 #'            possibly some parameters. The function returns a numerical vector
@@ -55,6 +55,12 @@
 #' i2 <- i2/sqrt(pi)
 #' i2
 #'
+#'
+#' #----------------------------------------------------------------------------
+#' # Example 3: replicating integrate
+#' i3 <- integrate(dnorm, lower=-1.96, upper=1.96)
+#' i4 <- integration(dnorm, lower=-1.96, upper=1.96)
+#' identical(i3, i4)
 #'
 #' #----------------------------------------------------------------------------
 #'
