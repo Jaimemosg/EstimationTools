@@ -70,9 +70,10 @@ extract_fun_args <- function(fun, exclude, ...){
   if ( !missing(exclude) ){
     routine_args <- routine_args[!(routine_args %in% exclude)]
     key_args <- routine_args[routine_args %in% names(dots)]
-    routine_input_args <- args_list[key_args]
+    # routine_input_args <- args_list[key_args]
     routine_input_args <- dots[key_args]
   } else {
+    routine_input_args <- args_list[routine_args]
   }
   add_args <- dots[!(names(dots) %in% routine_args)]
   return(list(routine_input_args, add_args))
