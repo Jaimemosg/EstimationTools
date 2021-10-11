@@ -7,7 +7,7 @@
 #' @description
 #' `r lifecycle::badge("experimental")`
 #'
-#' This function take the name of a probability density/mass function as an
+#' This function takes the name of a probability density/mass function as an
 #' argument and creates a hazard function.
 #'
 #' @param dist a length-one character vector with the name of density/mass function
