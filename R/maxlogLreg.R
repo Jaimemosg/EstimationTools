@@ -274,6 +274,7 @@ maxlogLreg <- function(formulas, y_dist, support = NULL, data = NULL,
                                  y_dist = y_dist, npar = npar,
                                  par_names = par_names)
   levels <- dsgn_mat$levels
+  cens <- dsgn_mat$status
 
   ## Number of regression parameters
   n_betas <- sum(as.numeric(unlist(sapply(dsgn_mat[1:npar], ncol))))
@@ -405,7 +406,7 @@ maxlogLreg <- function(formulas, y_dist, support = NULL, data = NULL,
   # fit stores the following information:
   # fit <- list(par, objective, hessian, StdE)
   inputs <- list(call = call, distr = distr, y_dist = y_dist, support = support,
-                 formulas = formulas, fixed = fixed, link = link,
+                 formulas = formulas, fixed = fixed, link = link, cens = cens,
                  start = start, lower = lower, upper = upper,
                  optimizer = optimizer, data = dsgn_mat$data)
   outputs <- list(npar = npar - length(fixed), n = length(dsgn_mat$y),
