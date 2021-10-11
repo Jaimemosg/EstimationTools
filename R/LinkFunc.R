@@ -18,6 +18,7 @@
 #' @export
 #'
 #' @examples
+#' #--------------------------------------------------------------------------------
 #' # Estimation of proportion in binomial distribution with 'logit' function
 #' # 10 trials, probability of success equals to 30%)
 #' N <- rbinom(n = 100, size = 10, prob = 0.3)
@@ -36,6 +37,8 @@
 #' # Inverse link function
 #' ginv <- logit_link()$g_inv
 #' curve(ginv(x), from = -10, to = 10)
+#'
+#' #--------------------------------------------------------------------------------
 #'
 #' @details \code{logit_link} is part of a family of generic functions with no input arguments that
 #' defines and returns a list with details of the link function:
