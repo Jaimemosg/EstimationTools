@@ -41,7 +41,7 @@
 
 <meta property="og:title" content="Hazard functions in maxlogL framework — hazard_fun" />
 <meta property="og:description" content="
-This function take the name of a probability density/mass function as an
+This function takes the name of a probability density/mass function as an
 argument and creates a hazard function." />
 
 
@@ -74,7 +74,7 @@ argument and creates a hazard function." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EstimationTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.0.0</span>
       </span>
     </div>
 
@@ -134,8 +134,8 @@ argument and creates a hazard function." />
     </div>
 
     <div class="ref-description">
-    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#experimental'><img src='figures/lifecycle-experimental.svg' alt='[Experimental]' /></a>
-This function take the name of a probability density/mass function as an
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#experimental'><img src='figures/lifecycle-experimental.svg' alt='[Experimental]' /></a></p>
+<p>This function takes the name of a probability density/mass function as an
 argument and creates a hazard function.</p>
     </div>
 
@@ -181,7 +181,7 @@ distribution specified in <code>y_dist</code>.</p></li>
 
 <span class='co'>#--------------------------------------------------------------------------------</span>
 <span class='co'># Example 1: Hazard function of Weibull distribution.</span>
-<span class='va'>hweibull1</span> <span class='op'>&lt;-</span> <span class='fu'>hazard_fun</span><span class='op'>(</span><span class='st'>'dweibull'</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>interval<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='cn'>Inf</span><span class='op'>)</span>, type<span class='op'>=</span><span class='st'>'discrete'</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>hweibull1</span> <span class='op'>&lt;-</span> <span class='fu'>hazard_fun</span><span class='op'>(</span><span class='st'>'dweibull'</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>interval<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='cn'>Inf</span><span class='op'>)</span>, type<span class='op'>=</span><span class='st'>'continuous'</span><span class='op'>)</span><span class='op'>)</span>
 <span class='va'>hweibull2</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>{</span>
   <span class='va'>ans</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Weibull.html'>dweibull</a></span><span class='op'>(</span><span class='va'>x</span>, shape <span class='op'>=</span> <span class='fl'>2</span>, scale <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>/</span>
     <span class='fu'><a href='https://rdrr.io/r/stats/Weibull.html'>pweibull</a></span><span class='op'>(</span><span class='va'>x</span>, shape <span class='op'>=</span> <span class='fl'>2</span>, scale <span class='op'>=</span> <span class='fl'>1</span>, lower.tail <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>

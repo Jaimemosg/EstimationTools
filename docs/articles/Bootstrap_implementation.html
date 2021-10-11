@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EstimationTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.0.0</span>
       </span>
     </div>
 
@@ -88,7 +88,7 @@
       <h1 data-toc-skip>Bootstrap implementation</h1>
                         <h4 class="author">Jaime Mosquera</h4>
             
-            <h4 class="date">2021-06-09</h4>
+            <h4 class="date">2021-10-10</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/Jaimemosg/EstimationTools/blob/master/vignettes/Bootstrap_implementation.Rmd"><code>vignettes/Bootstrap_implementation.Rmd</code></a></small>
       <div class="hidden name"><code>Bootstrap_implementation.Rmd</code></div>
@@ -139,38 +139,36 @@ X &amp;\sim N(\mu, \:\sigma^2) \\
 <span class="va">theta_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/maxlogL.html">maxlogL</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, dist <span class="op">=</span> <span class="st">'dnorm'</span>, control <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>trace <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
                    link <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>over <span class="op">=</span> <span class="st">"sd"</span>, fun <span class="op">=</span> <span class="st">"log_link"</span><span class="op">)</span>,
                    fixed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">160</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;   0:     43860.986:  1.00000</span>
-<span class="co">#&gt;   1:     32528.323:  2.00000</span>
-<span class="co">#&gt;   2:     32312.375:  1.92216</span>
-<span class="co">#&gt;   3:     32178.531:  1.76996</span>
-<span class="co">#&gt;   4:     32170.589:  1.80171</span>
-<span class="co">#&gt;   5:     32170.460:  1.79821</span>
-<span class="co">#&gt;   6:     32170.460:  1.79811</span>
-<span class="co">#&gt;   7:     32170.460:  1.79811</span>
+<span class="co">#&gt;   0:     43476.850:  1.00000</span>
+<span class="co">#&gt;   1:     32476.336:  2.00000</span>
+<span class="co">#&gt;   2:     32243.140:  1.91845</span>
+<span class="co">#&gt;   3:     32101.383:  1.75994</span>
+<span class="co">#&gt;   4:     32092.158:  1.79427</span>
+<span class="co">#&gt;   5:     32091.998:  1.79038</span>
+<span class="co">#&gt;   6:     32091.998:  1.79026</span>
+<span class="co">#&gt;   7:     32091.998:  1.79026</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">theta_1</span><span class="op">)</span>
 <span class="co">#&gt; _______________________________________________________________</span>
 <span class="co">#&gt; Optimization routine: nlminb </span>
 <span class="co">#&gt; Standard Error calculation: Hessian from optim </span>
 <span class="co">#&gt; _______________________________________________________________</span>
-<span class="co">#&gt;        AIC      BIC</span>
-<span class="co">#&gt;   64340.92 64340.92</span>
+<span class="co">#&gt;     AIC   BIC</span>
+<span class="co">#&gt;   64184 64184</span>
 <span class="co">#&gt; _______________________________________________________________</span>
 <span class="co">#&gt;    Estimate  Std. Error Z value Pr(&gt;|z|)    </span>
-<span class="co">#&gt; sd    6.0382     0.0427   141.4   &lt;2e-16 ***</span>
+<span class="co">#&gt; sd   5.99102    0.04236   141.4   &lt;2e-16 ***</span>
 <span class="co">#&gt; ---</span>
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 <span class="co">#&gt; _______________________________________________________________</span>
 <span class="co">#&gt; Note: p-values valid under asymptotic normality of estimators </span>
 <span class="co">#&gt; ---</span>
-
 <span class="co">## Hessian</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">theta_1</span><span class="op">$</span><span class="va">fit</span><span class="op">$</span><span class="va">hessian</span><span class="op">)</span>
-<span class="co">#&gt;         [,1]</span>
-<span class="co">#&gt; [1,] 548.547</span>
-
+<span class="co">#&gt;          [,1]</span>
+<span class="co">#&gt; [1,] 557.2229</span>
 <span class="co">## Standard errors</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">theta_1</span><span class="op">$</span><span class="va">fit</span><span class="op">$</span><span class="va">StdE</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.04269658</span>
+<span class="co">#&gt; [1] 0.04236288</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">theta_1</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">StdE_Method</span><span class="op">)</span>
 <span class="co">#&gt; [1] "Hessian from optim"</span></code></pre></div>
 <p>Note that Hessian was computed with no issues. Now, lets check the aforementioned feature in <code>maxlogL</code>: the user can implement bootstrap algorithm available in <code>bootstrap_maxlogL</code> function. To illustrate this, we are going to create another object <code>theta_2</code>:</p>
@@ -179,14 +177,14 @@ X &amp;\sim N(\mu, \:\sigma^2) \\
 <span class="va">theta_2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/maxlogL.html">maxlogL</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, dist <span class="op">=</span> <span class="st">'dnorm'</span>, control <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>trace <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
                    link <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>over <span class="op">=</span> <span class="st">"sd"</span>, fun <span class="op">=</span> <span class="st">"log_link"</span><span class="op">)</span>,
                    fixed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">160</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt;   0:     43860.986:  1.00000</span>
-<span class="co">#&gt;   1:     32528.323:  2.00000</span>
-<span class="co">#&gt;   2:     32312.375:  1.92216</span>
-<span class="co">#&gt;   3:     32178.531:  1.76996</span>
-<span class="co">#&gt;   4:     32170.589:  1.80171</span>
-<span class="co">#&gt;   5:     32170.460:  1.79821</span>
-<span class="co">#&gt;   6:     32170.460:  1.79811</span>
-<span class="co">#&gt;   7:     32170.460:  1.79811</span>
+<span class="co">#&gt;   0:     43476.850:  1.00000</span>
+<span class="co">#&gt;   1:     32476.336:  2.00000</span>
+<span class="co">#&gt;   2:     32243.140:  1.91845</span>
+<span class="co">#&gt;   3:     32101.383:  1.75994</span>
+<span class="co">#&gt;   4:     32092.158:  1.79427</span>
+<span class="co">#&gt;   5:     32091.998:  1.79038</span>
+<span class="co">#&gt;   6:     32091.998:  1.79026</span>
+<span class="co">#&gt;   7:     32091.998:  1.79026</span>
 <span class="fu"><a href="../reference/bootstrap_maxlogL.html">bootstrap_maxlogL</a></span><span class="op">(</span><span class="va">theta_2</span>, R <span class="op">=</span> <span class="fl">200</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; ...Bootstrap computation of Standard Error. Please, wait a few minutes...</span>
@@ -197,28 +195,26 @@ X &amp;\sim N(\mu, \:\sigma^2) \\
 <span class="co">#&gt; Optimization routine: nlminb </span>
 <span class="co">#&gt; Standard Error calculation: Bootstrap </span>
 <span class="co">#&gt; _______________________________________________________________</span>
-<span class="co">#&gt;        AIC      BIC</span>
-<span class="co">#&gt;   64340.92 64340.92</span>
+<span class="co">#&gt;     AIC   BIC</span>
+<span class="co">#&gt;   64184 64184</span>
 <span class="co">#&gt; _______________________________________________________________</span>
 <span class="co">#&gt;    Estimate  Std. Error Z value Pr(&gt;|z|)    </span>
-<span class="co">#&gt; sd   6.03821    0.04292   140.7   &lt;2e-16 ***</span>
+<span class="co">#&gt; sd   5.99102    0.04172   143.6   &lt;2e-16 ***</span>
 <span class="co">#&gt; ---</span>
 <span class="co">#&gt; Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 <span class="co">#&gt; _______________________________________________________________</span>
 <span class="co">#&gt; Note: p-values valid under asymptotic normality of estimators </span>
 <span class="co">#&gt; ---</span>
-
 <span class="co">## Hessian</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">theta_2</span><span class="op">$</span><span class="va">fit</span><span class="op">$</span><span class="va">hessian</span><span class="op">)</span>
-<span class="co">#&gt;         [,1]</span>
-<span class="co">#&gt; [1,] 548.547</span>
-
+<span class="co">#&gt;          [,1]</span>
+<span class="co">#&gt; [1,] 557.2229</span>
 <span class="co">## Standard errors</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">theta_2</span><span class="op">$</span><span class="va">fit</span><span class="op">$</span><span class="va">StdE</span><span class="op">)</span>
-<span class="co">#&gt; [1] 0.04291622</span>
+<span class="co">#&gt; [1] 0.04172029</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">theta_2</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">StdE_Method</span><span class="op">)</span>
 <span class="co">#&gt; [1] "Bootstrap"</span></code></pre></div>
-<p>Notice that Standard Errors calculated with <code>optim</code> (<span class="math inline">\(0.042697\)</span>) and those calculated with bootstrap implementation (<span class="math inline">\(0.042916\)</span>) are approximately equals, but no identical.</p>
+<p>Notice that Standard Errors calculated with <code>optim</code> (<span class="math inline">\(0.042363\)</span>) and those calculated with bootstrap implementation (<span class="math inline">\(0.04172\)</span>) are approximately equals, but no identical.</p>
 </div>
   </div>
 

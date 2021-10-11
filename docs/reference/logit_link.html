@@ -76,7 +76,7 @@ of link objects." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EstimationTools</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.0.0</span>
       </span>
     </div>
 
@@ -171,7 +171,8 @@ in <code>R</code>.</p></li>
     <p>Jaime Mosquera Gutiérrez, <a href='mailto:jmosquerag@unal.edu.co'>jmosquerag@unal.edu.co</a></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Estimation of proportion in binomial distribution with 'logit' function</span>
+    <pre class="examples"><div class='input'><span class='co'>#--------------------------------------------------------------------------------</span>
+<span class='co'># Estimation of proportion in binomial distribution with 'logit' function</span>
 <span class='co'># 10 trials, probability of success equals to 30%)</span>
 <span class='va'>N</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Binomial.html'>rbinom</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>100</span>, size <span class='op'>=</span> <span class='fl'>10</span>, prob <span class='op'>=</span> <span class='fl'>0.3</span><span class='op'>)</span>
 <span class='va'>phat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='maxlogL.html'>maxlogL</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>N</span>, dist <span class='op'>=</span> <span class='st'>'dbinom'</span>, fixed <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>size<span class='op'>=</span><span class='fl'>10</span><span class='op'>)</span>,
@@ -203,6 +204,8 @@ in <code>R</code>.</p></li>
 <span class='va'>ginv</span> <span class='op'>&lt;-</span> <span class='fu'>logit_link</span><span class='op'>(</span><span class='op'>)</span><span class='op'>$</span><span class='va'>g_inv</span>
 <span class='fu'><a href='https://rdrr.io/r/graphics/curve.html'>curve</a></span><span class='op'>(</span><span class='fu'>ginv</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>, from <span class='op'>=</span> <span class='op'>-</span><span class='fl'>10</span>, to <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
 </div><div class='img'><img src='logit_link-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'>#--------------------------------------------------------------------------------</span>
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

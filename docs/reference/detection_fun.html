@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Is return of any object of EstimationTools? — is.maxlogL • EstimationTools</title>
+<title>Detection functions in maxlogL framework — detection_fun • EstimationTools</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,10 @@
 
 
 
-<meta property="og:title" content="Is return of any object of EstimationTools? — is.maxlogL" />
+<meta property="og:title" content="Detection functions in maxlogL framework — detection_fun" />
 <meta property="og:description" content="
-Checks if an object is any of the classes implemented in EstimationTools
-package." />
+This function takes the name of a key function and computes the corresponding
+detection function." />
 
 
 
@@ -128,36 +128,71 @@ package." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Is return of any object of <code>EstimationTools</code>?</h1>
-    <small class="dont-index">Source: <a href='https://github.com/Jaimemosg/EstimationTools/blob/master/R/inherit_methods.R'><code>R/inherit_methods.R</code></a></small>
-    <div class="hidden name"><code>is.maxlogL.Rd</code></div>
+    <h1>Detection functions in <code>maxlogL</code> framework</h1>
+    <small class="dont-index">Source: <a href='https://github.com/Jaimemosg/EstimationTools/blob/master/R/detection_fun.R'><code>R/detection_fun.R</code></a></small>
+    <div class="hidden name"><code>detection_fun.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#stable'><img src='figures/lifecycle-stable.svg' alt='[Stable]' /></a></p>
-<p>Checks if an object is any of the classes implemented in <code>EstimationTools</code>
-package.</p>
+    <p><a href='https://lifecycle.r-lib.org/articles/stages.html#experimental'><img src='figures/lifecycle-experimental.svg' alt='[Experimental]' /></a></p>
+<p>This function takes the name of a key function and computes the corresponding
+detection function.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>is.maxlogL</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
-
-<span class='fu'>is.EmpiricalTTT</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
-
-<span class='fu'>is.HazardShape</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>detection_fun</span><span class='op'>(</span><span class='va'>fun</span>, <span class='va'>support</span>, routine <span class='op'>=</span> <span class='st'>"integrate"</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>Any object of <code>EstimationTools</code>.</p></td>
+      <th>fun</th>
+      <td><p>a detection function. It must exist in Global Environment or loaded
+from a package.</p></td>
+    </tr>
+    <tr>
+      <th>support</th>
+      <td><p>a list with the following entries:</p><ul>
+<li><p><code>interval</code>: a two dimensional atomic vector indicating the
+set of possible values of a random variable having the
+distribution specified in <code>y_dist</code>.</p></li>
+<li><p><code>type</code>: character indicating if distribution has a
+<code>discrete</code> or a <code>continous</code> random variable.</p></li>
+</ul></td>
+    </tr>
+    <tr>
+      <th>routine</th>
+      <td><p>a character specifying the integration routine.
+<code>integrate</code> and <code>gauss_quad</code> are available, but the
+custom routines can be defined.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>further arguments passed to the integration routine.</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A function with the folling input arguments:</p>
+<dt>x</dt><dd><p>vector of (non-negative) quantiles.</p></dd>
+<dt>...</dt><dd><p>Arguments of the probability density/mass function.</p></dd>
+
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
-    <p>Jaime Mosquera Gutiérrez <a href='mailto:jmosquerag@unal.edu.co'>jmosquerag@unal.edu.co</a></p>
+    <p>Jaime Mosquera Gutiérrez, <a href='mailto:jmosquerag@unal.edu.co'>jmosquerag@unal.edu.co</a></p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://jaimemosg.github.io/EstimationTools/'>EstimationTools</a></span><span class='op'>)</span>
+
+<span class='co'>#--------------------------------------------------------------------------------</span>
+<span class='co'># Example 1: Half normal detection function without adjustment term.</span>
+<span class='va'>g</span> <span class='op'>&lt;-</span> <span class='fu'>detection_fun</span><span class='op'>(</span>fun<span class='op'>=</span><span class='va'>half_norm</span>, support<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>interval<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0</span>, <span class='fl'>100</span><span class='op'>)</span>,
+                   type<span class='op'>=</span><span class='st'>'continuous'</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/curve.html'>curve</a></span><span class='op'>(</span><span class='fu'>g</span><span class='op'>(</span><span class='va'>x</span>, sigma<span class='op'>=</span><span class='fl'>4.1058</span><span class='op'>)</span>, to<span class='op'>=</span><span class='fl'>100</span><span class='op'>)</span>
+</div><div class='img'><img src='detection_fun-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'>#--------------------------------------------------------------------------------</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
