@@ -32,12 +32,12 @@
 #'
 #' #----------------------------------------------------------------------------
 #' # Example: Half normal function
-#' half_norm(x=1, sigma=4.1058)
-#' curve(half_norm(x, sigma=4.1058), from=0, to=20, ylab='g(x)')
+#' half_norm_key(x=1, sigma=4.1058)
+#' curve(half_norm_key(x, sigma=4.1058), from=0, to=20, ylab='g(x)')
 #'
 #' #----------------------------------------------------------------------------
 #' @export
-half_norm <- function(x, sigma){
+half_norm_key <- function(x, sigma){
   key <- exp(-x^2 / (2*sigma^2))
   return(key)
 }
@@ -73,12 +73,12 @@ half_norm <- function(x, sigma){
 #'
 #' #----------------------------------------------------------------------------
 #' # Example: Uniform function
-#' uniform(x=1, w=100)
-#' curve(uniform(x, w=100), from=0, to=10, ylab='g(x)')
+#' uniform_key(x=1, w=100)
+#' curve(uniform_key(x, w=100), from=0, to=10, ylab='g(x)')
 #'
 #' #----------------------------------------------------------------------------
 #' @export
-uniform <- function(x, w){
+uniform_key <- function(x, w){
   key <- rep(1/w, length(x))
   return(key)
 }
@@ -115,12 +115,12 @@ uniform <- function(x, w){
 #'
 #' #----------------------------------------------------------------------------
 #' # Example: Hazard rate function
-#' uniform(x=1, w=100)
-#' curve(uniform(x, w=100), from=0, to=10, ylab='g(x)')
+#' hazard_rate_key(x=1, sigma=2, beta=3)
+#' curve(hazard_rate_key(x, sigma=2, beta=3), from=0, to=10, ylab='g(x)')
 #'
 #' #----------------------------------------------------------------------------
 #' @export
-hazard_rate <- function(x, sigma, beta){
+hazard_rate_key <- function(x, sigma, beta){
   key <- 1 - exp(-(x / sigma)^(-beta))
   return(key)
 }
