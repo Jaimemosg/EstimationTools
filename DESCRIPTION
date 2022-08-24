@@ -15,7 +15,6 @@ Imports:
     stats,
     numDeriv,
     boot,
-    matrixStats,
     autoimage,
     graphics,
     stringr
@@ -30,8 +29,8 @@ Suggests:
     testthat (>= 3.0.0),
     vdiffr,
     spelling,
-    readtext,
-    lifecycle
+    lifecycle,
+    matrixStats
 VignetteBuilder: knitr, utils
 Description: Routines for parameter estimation for any probability density or
     mass function implemented in R via maximum likelihood (ML) given a data set.
@@ -47,7 +46,7 @@ URL: https://jaimemosg.github.io/EstimationTools/,
 BugReports: https://github.com/Jaimemosg/EstimationTools/issues
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.1
 Roxygen: list(markdown = TRUE)
 Config/testthat/edition: 3
 Language: en-US
