@@ -12,3 +12,14 @@ jobs:
                 file: 'vignettes/maxlogL.pdf'
                 output: 'vignettes/maxlogL-compressed.pdf'
                 arbitrary-parameters: '-dCompatibilityLevel=1.4 -dPDFSETTINGS=/printer'
+    compress_pdf:
+        runs-on: macOS-latest
+        steps:
+            - name: Set up Git repository
+              uses: actions/checkout@v2
+            - name: Compress PDF
+              uses: jy95/ghostscript-action@v1
+              with:
+                file: 'vignettes/maxlogL.pdf'
+                output: 'vignettes/maxlogL-compressed.pdf'
+                arbitrary-parameters: '-dCompatibilityLevel=1.4 -dPDFSETTINGS=/printer'
