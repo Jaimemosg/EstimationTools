@@ -1,1 +1,1 @@
-utils::globalVariables(c("pos","fn","x"))
+utils::globalVariables(c("pos", "fn", "x"))
