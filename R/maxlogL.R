@@ -269,7 +269,8 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
   } else if ( optimizer == 'DEoptim' ) {
     if (is.null(lower) | is.null(upper)) stop("'lower' and 'upper'
                                                limits must be defined
-                                               for 'DEoptim' optimizer", "\n\n")
+                                               for 'DEoptim' optimizer",
+                                              "\n\n")
     DEoptimcontrol <- c(control, trace = FALSE)
     trace_arg <- which(names(DEoptimcontrol) == "trace")
     if (length(trace_arg) > 1){
@@ -318,27 +319,48 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
 
   # Hessian computation
   StdE_method <- match.arg(StdE_method, c('optim', 'numDeriv'))
+
+  ll.noLink <- try(
+    minus_lL(
+      x = x, dist,
+      dist_args = arguments,
+      over = NULL,
+      link = NULL,
+      npar = npar,
+      fixed = fixed
+    ),
+    silent = TRUE
+  )
+
   if ( StdE_method == 'optim' ){
-    ll.noLink <- minus_lL(x = x, dist, dist_args = arguments, over = NULL,
-                        link = NULL, npar = npar, fixed = fixed)
-    fit$hessian <- try(optim(par = fit$par, fn = ll.noLink, method = 'L-BFGS-B',
-                           lower = fit$par - 0.5*fit$par,
-                           upper = fit$par + 0.5*fit$par,
-                           hessian = TRUE)$hessian, silent = TRUE)
-  # fit$hessian <- try(optimHess(par = fit$par, fn = ll.noLink, method = 'L-BFGS-B',
-  #                              lower = fit$par - 0.5*fit$par,
-  #                              upper = fit$par + 0.5*fit$par), silent = TRUE)
+    # We could also try with optimHess
+    fit$hessian <- try(
+      optim(par = fit$par,
+            fn = ll.noLink,
+            method = 'L-BFGS-B',
+            lower = fit$par - 0.5*fit$par,
+            upper = fit$par + 0.5*fit$par,
+            hessian = TRUE)$hessian,
+      silent = TRUE
+    )
     StdE_computation <- "Hessian from optim"
   }
-  if ( (any(is.na(fit$hessian)) | is.error(fit$hessian)) |
-       any(is.character(fit$hessian)) | StdE_method == 'numDeriv' ){
+  if (
+    any(is.na(fit$hessian) |
+    is.error(fit$hessian)) |
+    any(is.character(fit$hessian)) |
+    StdE_method == 'numDeriv'
+  ){
     fit$hessian <- try(numDeriv::hessian(ll.noLink, fit$par), silent = TRUE)
     StdE_computation <- "numDeriv::hessian"
   }
 
   ## Standard error computation
-  if ( (any(is.na(fit$hessian)) | is.error(fit$hessian)) |
-       any(is.character(fit$hessian)) ){
+  if (
+    any(is.na(fit$hessian) |
+    is.error(fit$hessian)) |
+    any(is.character(fit$hessian))
+  ){
     StdE_computation <- paste0("'", StdE_method, "' failed")
     fit$hessian <- NA
     fit$StdE <- NA
@@ -350,7 +372,10 @@ maxlogL <- function(x, dist = 'dnorm', fixed = NULL, link = NULL,
   names_numeric <- rep("", times = npar)
   j <- 1
   for (i in 1:length(arguments)){
-    if (is.numeric(arguments[[i]]) || is.symbol(arguments[[i]])){
+    if (
+      is.numeric(arguments[[i]]) ||
+      is.symbol(arguments[[i]])
+    ){
       names_numeric[j] <- names(arguments[i])
       j <- j + 1
     }

@@ -1,8 +1,8 @@
-pandoc: 2.11.4
-pkgdown: 1.6.1
+pandoc: '2.18'
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   Bootstrap_implementation: Bootstrap_implementation.html
   Examples: Examples.html
-last_built: 2021-10-11T00:43Z
+last_built: 2022-08-24T06:13Z
 
