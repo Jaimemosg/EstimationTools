@@ -57,7 +57,7 @@ summate <- function(fun, lower, upper, tol = 1e-10, ...){
 
   while (eval(condition)){
     EXi <- try(do.call(what = fun, args = c(list(x, ...))), silent = TRUE)
-    if (is.nan(EXi) | class(EXi) == "try-error"){
+    if ( is.nan(EXi) | inherits(EXi, "try-error") ){
       break
     } else{
       if (abs(EXi - init) < tol & x > lower) break
