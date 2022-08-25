@@ -82,6 +82,7 @@ jobs:
           tinytex::parse_install(text = "! LaTeX Error: File `xcolor.sty' not found.")
         shell: Rscript {0}
 
+      - name: Compact PDF in macOS
         if: runner.os != 'macOS'
         run: |
           tools::compactPDF(paths = "./vignettes/maxlogL.pdf", gs_quality = "ebook")
