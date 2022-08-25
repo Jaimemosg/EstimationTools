@@ -30,7 +30,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: end -->
 
-# EstimationTools <img src="man/figures/ETLogo.png" align="right" height="200"/>
+# EstimationTools <img src="man/figure/ETLogo.png" align="right" height="200"/>
 
 The goal of `EstimationTools` is to provide tools and routines for maximum likelihood estimation of probability density/mass functions in `R`.
 
