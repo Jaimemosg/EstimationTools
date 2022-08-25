@@ -82,17 +82,17 @@ jobs:
           tinytex::parse_install(text = "! LaTeX Error: File `xcolor.sty' not found.")
         shell: Rscript {0}
 
-      - name: Compact PDF in macOS
-        if: runner.os == 'macOS'
-        run: |
-          tools::compactPDF(paths = "./vignettes/maxlogL.pdf", gs_quality = "ebook")
+      # - name: Compact PDF in macOS
+      #   if: runner.os == 'macOS'
+      #   run: |
+      #     tools::compactPDF(paths = "./vignettes/maxlogL.pdf", gs_quality = "ebook")
 
       - name: Check
         env:
           _R_CHECK_CRAN_INCOMING_REMOTE_: false
         run: |
           options(crayon.enabled = TRUE)
-          rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "warning", check_dir = "check")
+          rcmdcheck::rcmdcheck(args = c("--no-manual", "--as-cran"), error_on = "warning", check_dir = "check", build_args = '--compact-vignettes="both"')
         shell: Rscript {0}
 
       - name: Upload check results
