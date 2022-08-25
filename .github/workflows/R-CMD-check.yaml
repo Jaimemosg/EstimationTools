@@ -83,7 +83,7 @@ jobs:
         shell: Rscript {0}
 
       - name: Compact PDF in macOS
-        if: runner.os != 'macOS'
+        if: runner.os == 'macOS'
         run: |
           tools::compactPDF(paths = "./vignettes/maxlogL.pdf", gs_quality = "ebook")
 
