@@ -80,6 +80,7 @@ jobs:
       - name: Install dependencies
         run: |
           install.packages('curl')
+          install.packages('devtools')
           install.packages('spelling')
           remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
