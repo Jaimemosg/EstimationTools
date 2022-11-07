@@ -128,10 +128,13 @@ curve(hweibull(x, shape = 2.5, scale = pi),
 
 y <- rweibull(n = 50, shape = 2.5, scale = pi)
 my_initial_guess <- TTT_hazard_shape(formula = y ~ 1)
-plot(my_initial_guess, par_plot = list(
-  mar = c(3.7, 3.7, 1, 2),
-  mgp = c(2.5, 1, 0)
-))
+
+plot(
+  my_initial_guess, par_plot = list(
+    mar = c(3.7, 3.7, 1, 2),
+    mgp = c(2.5, 1, 0)
+  )
+)
 
 
 #----------------------------------------------------------------------------
