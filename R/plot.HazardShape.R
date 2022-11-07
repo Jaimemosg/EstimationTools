@@ -99,6 +99,7 @@
 #'
 #' y <- rweibull(n = 50, shape = 2.5, scale = pi)
 #' my_initial_guess <- TTT_hazard_shape(formula = y ~ 1)
+#'
 #' plot(
 #'   my_initial_guess, par_plot = list(
 #'     mar = c(3.7, 3.7, 1, 2),
@@ -353,22 +354,38 @@ plot.HazardShape <- function(
     par_plot = lifecycle::deprecated(),
     legend_options = lifecycle::deprecated(),
     ...
-) {
-  if (lifecycle::is_present(par_plot) ||
-      lifecycle::is_present(legend_options)) {
-    lifecycle::deprecate_warn(
-      "4.0.0",
-      "plot.HazardShape(par_plot = , legend_options = )",
-      "plot.HazardShape( )"
-    )
+){
+  is_par_plot <- lifecycle::is_present(par_plot)
+  is_legend_options <- lifecycle::is_present(legend_options)
 
-    plot.HazardShape_old(x, xlab = "i/n", ylab = expression(phi[n](i / n)),
-                         xlim = c(0, 1), ylim = c(0, 1), col = 1,
-                         lty = NULL, lwd = NA, main = "",
-                         curve_options = list(col = 2, lwd = 2, lty = 1),
-                         par_plot = list(mar = c(5.1, 4.1, 4.1, 2.1)),
-                         legend_options = list(pos = 1.04, xpd = TRUE),
-                         ...)
+  if (is_par_plot || is_legend_options){
+    if (is_par_plot){
+      lifecycle::deprecate_warn(
+        "4.0.0",
+        "plot.HazardShape(par_plot =)",
+        "plot.HazardShape( )"
+      )
+    } else {
+      par_plot <- list(mar = c(5.1, 4.1, 4.1, 2.1))
+    }
+
+    if (is_legend_options){
+      lifecycle::deprecate_warn(
+        "4.0.0",
+        "plot.HazardShape(legend_options = )",
+        "plot.HazardShape( )"
+      )
+    } else {
+      legend_options <- list(pos = 1.04, xpd = TRUE)
+    }
+
+      plot.HazardShape_old(x, xlab = "i/n", ylab = expression(phi[n](i / n)),
+                           xlim = c(0, 1), ylim = c(0, 1), col = 1,
+                           lty = NULL, lwd = NA, main = "",
+                           curve_options = curve_options,
+                           legend_options = legend_options,
+                           par_plot = par_plot,
+                           ...)
   } else {
     object <- x
     rm(x)
