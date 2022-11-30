@@ -30,7 +30,8 @@ Suggests:
     vdiffr,
     spelling,
     lifecycle,
-    matrixStats
+    matrixStats,
+    lintr
 VignetteBuilder: knitr, utils
 Description: Routines for parameter estimation for any probability density or
     mass function implemented in R via maximum likelihood (ML) given a data set.

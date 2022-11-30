@@ -18,3 +18,4 @@ vignettes/*\.RData
 ^LICENSE\.md$
 ^\.github$
 ^codecov\.yml$
+.lintr
