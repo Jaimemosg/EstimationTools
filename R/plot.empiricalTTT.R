@@ -76,10 +76,7 @@
 #'
 #' @seealso \code{\link{TTTE_Analytical}}, \code{\link[graphics]{matplot}}
 #' @method plot EmpiricalTTT
-#'
-#==============================================================================
-# plot method -----------------------------------------------------------------
-#==============================================================================
+#' @export
 plot.EmpiricalTTT <- function(x, add = FALSE, grid = FALSE, type = "l", pch = 1,
                               xlab = "i/n", ylab = expression(phi[n](i/n)), ...){
   matplot(x$`i/n`, x$phi_n, xlab = xlab, ylab = ylab,
