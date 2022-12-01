@@ -26,10 +26,7 @@ The goal of `EstimationTools` is to provide tools and routines for
 maximum likelihood estimation of probability density/mass functions in
 `R`.
 
-*Edit (17/03/2021)* – We have performed a TTT plot implementation. You
-can find out in our
-[changelog](https://jaimemosg.github.io/EstimationTools/news/index.html).
-
+<!-- _Edit (17/03/2021)_ -- We have performed a TTT plot implementation. You can find out in our [changelog](https://jaimemosg.github.io/EstimationTools/news/index.html). -->
 <!-- _Edit (27/07/2020)_ -- We have implemented new tools and we have performed some deep modifications in our `summary` method for `maxlogL` objects. You can find out in our [changelog](https://jaimemosg.github.io/EstimationTools/news/index.html). -->
 
 ## Installation
