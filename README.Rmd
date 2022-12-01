@@ -59,7 +59,7 @@ library(EstimationTools)
 ```
 
 <!-- `r utils::packageVersion("EstimationTools")` -->
-Or you can install the released version (2.1.0) from  [CRAN](https://cran.r-project.org/package=EstimationTools) if you prefer. You can also type the following command lines
+Or you can install the released version (4.0.0) from  [CRAN](https://cran.r-project.org/package=EstimationTools) if you prefer. You can also type the following command lines
 in `R` console:
 
 ```{r eval=FALSE}

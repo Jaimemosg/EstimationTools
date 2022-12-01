@@ -1,5 +1,13 @@
 # EstimationTools 4.0.0
 
+- We changed the behaviour of `plot.HazardShape` function, its responsibility was splitted. Now, this function just plots the empirical  TTT function, and we also created the `legend.HazardShape` to customize the legend options.
+- We fixed some examples in the documentation.
+
+# EstimationTools 3.0.0
+
+- From this version, `maxlogLreg` returns the censorship matrix. Check the [documentation](file:///C:/Users/jaime/Documents/R/EstimationTools/docs/reference/maxlogLreg.html) for further information about the censorship matrix.
+- We have implemented a wrapper of integration routines.
+
 # EstimationTools 2.4.0 
 
 - New!!! genetic algorithm (`GA::ga`) implemented in `maxlogL`.

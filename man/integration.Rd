@@ -69,7 +69,7 @@ i2
 # Example 3: replicating integrate
 i3 <- integrate(dnorm, lower=-1.96, upper=1.96)
 i4 <- integration(dnorm, lower=-1.96, upper=1.96)
-identical(i3, i4)
+identical(i3$value, i4)
 
 #----------------------------------------------------------------------------
 

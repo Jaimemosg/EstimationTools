@@ -20,7 +20,7 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 <!-- [![Dependencies](https://tinyverse.netlify.com/badge/EstimationTools)](https://cran.r-project.org/package=EstimationTools) -->
 <!-- badges: end -->
 
-# EstimationTools <img src="man/figure/ETLogo.png" align="right" height="200"/>
+# EstimationTools <img src="man/figures/ETLogo.png" align="right" height="200"/>
 
 The goal of `EstimationTools` is to provide tools and routines for
 maximum likelihood estimation of probability density/mass functions in
@@ -34,7 +34,7 @@ can find out in our
 
 ## Installation
 
-You can install the latest version (3.0.0) of `EstimationTools` typing
+You can install the latest version (4.0.0) of `EstimationTools` typing
 the following command lines in `R` console:
 
 ``` r
@@ -43,9 +43,9 @@ devtools::install_github('Jaimemosg/EstimationTools', force = TRUE)
 library(EstimationTools)
 ```
 
-<!-- 3.0.0 -->
+<!-- 4.0.0 -->
 
-Or you can install the released version (2.1.0) from
+Or you can install the released version (4.0.0) from
 [CRAN](https://cran.r-project.org/package=EstimationTools) if you
 prefer. You can also type the following command lines in `R` console:
 
