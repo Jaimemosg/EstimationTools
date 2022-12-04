@@ -19,3 +19,4 @@ vignettes/*\.RData
 ^\.github$
 ^codecov\.yml$
 .lintr
+^CRAN-SUBMISSION$
