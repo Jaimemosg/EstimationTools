@@ -5,8 +5,9 @@
 [![R-CMD-check](https://github.com/Jaimemosg/EstimationTools/workflows/R-CMD-check/badge.svg)](https://github.com/Jaimemosg/EstimationTools/actions)
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/Jaimemosg/EstimationTools?branch=master&svg=true)](https://ci.appveyor.com/project/Jaimemosg/EstimationTools)
+<!-- [![Codecov test coverage](https://codecov.io/gh/Jaimemosg/EstimationTools/branch/master/graph/badge.svg)](https://codecov.io/gh/Jaimemosg/EstimationTools?branch=master) -->
 [![Codecov test
-coverage](https://codecov.io/gh/Jaimemosg/EstimationTools/branch/master/graph/badge.svg)](https://codecov.io/gh/Jaimemosg/EstimationTools?branch=master)
+coverage](https://codecov.io/gh/Jaimemosg/EstimationTools/branch/master/graph/badge.svg)](https://app.codecov.io/gh/Jaimemosg/EstimationTools?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version-ago/EstimationTools)](https://cran.r-project.org/package=EstimationTools)
 [![CRAN_Download_Badge](http://cranlogs.r-pkg.org/badges/EstimationTools)](https://cran.r-project.org/package=EstimationTools)
 [![Lifecycle:

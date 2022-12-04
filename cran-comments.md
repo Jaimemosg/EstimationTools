@@ -1,5 +1,21 @@
 ## v4.0.0: Submission 8 (current submission)
 
+* Found the following (possibly) invalid URLs:
+  URL: http://doi.wiley.com/10.1002/nav.3800260303
+    From: man/TTTE_Analytical.Rd
+    Status: 503
+    Message: Service Unavailable
+  URL: http://doi.wiley.com/10.2307/3314888
+    From: man/reduction_cells.Rd
+    Status: 503
+    Message: Service Unavailable
+  URL: https://codecov.io/gh/Jaimemosg/EstimationTools?branch=master (moved to https://app.codecov.io/gh/Jaimemosg/EstimationTools?branch=master)
+    From: README.md
+    Status: 200
+    Message: OK
+
+fixed
+
 ----------------------------------------------------------------
 ## v1.2.1: Submission 6 successful (package updated on CRAN)
 
