@@ -56,7 +56,7 @@ of the legend of the plot.}
 \item{...}{further arguments passed to empirical TTT plot.}
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#maturing}{\figure{lifecycle-maturing.svg}{options: alt='[Maturing]'}}}{\strong{[Maturing]}}
 
 Draws the empirical total time on test (TTT) plot and its non-parametric
 (LOESS) estimated curve useful for identifying hazard shape.

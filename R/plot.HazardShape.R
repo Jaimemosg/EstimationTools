@@ -4,7 +4,7 @@
 #' @author Jaime Mosquera Gutiérrez \email{jmosquerag@unal.edu.co}
 #'
 #' @description
-#' `r lifecycle::badge("experimental")`
+#' `r lifecycle::badge("maturing")`
 #'
 #' Draws the empirical total time on test (TTT) plot and its non-parametric
 #' (LOESS) estimated curve useful for identifying hazard shape.
