@@ -1,4 +1,4 @@
-Submission 7 coming soon
+## v4.0.0: Submission 8 (current submission)
 
 ----------------------------------------------------------------
 ## v1.2.1: Submission 6 successful (package updated on CRAN)
@@ -30,10 +30,10 @@ Submission 7 coming soon
 
 ## Test environments
 
-* Local Windows 10 install, R 3.6.0
+* Local Windows 11 install, R 4.2.1
 * win-builder (devel and release)
-* OS X (Travis CI)
-* Linux (Travis CI)
+* OS X (GitHub Actions)
+* Linux (GitHub Actions)
 
 ## R CMD check result
 
@@ -41,6 +41,6 @@ Status: OK
 
 R CMD check results
 
-0 errors | 0 warnings | 1 note
+0 errors | 0 warnings | 0 notes
 
 ----------------------------------------------------------------
