@@ -21,7 +21,9 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 <!-- [![Dependencies](https://tinyverse.netlify.com/badge/EstimationTools)](https://cran.r-project.org/package=EstimationTools) -->
 <!-- badges: end -->
 
-# EstimationTools <img src="man/figures/ETLogo.png" align="right" height="200"/>
+# EstimationTools <img src="man/figures/ETLogo.png" align="right" height="200" style="float:right; height:200px;"/>
+
+<!-- <img src="man/figures/ETLogo.png" align="right" height="200"/> -->
 
 The goal of `EstimationTools` is to provide tools and routines for
 maximum likelihood estimation of probability density/mass functions in
