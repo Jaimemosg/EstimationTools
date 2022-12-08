@@ -199,7 +199,7 @@ ISSN 0010-4620, <a href="https://doi.org/10.1093/comjnl/7.4.308" class="external
 ISSN 00983500, <a href="https://doi.org/10.1145/355780.355783" class="external-link">doi:10.1145/355780.355783</a>
 , <a href="https://dl.acm.org/doi/10.1145/355780.355783" class="external-link">https://dl.acm.org/doi/10.1145/355780.355783</a>.</p>
 <p>Nash JC (1979).
-<em>Compact Numerical Methods for Computers. Linear Algebra and Function Minimisation</em>, 2nd Editio edition.
+<em>Compact Numerical Methods for Computers. Linear Algebra and Function Minimisation</em>, 2nd Edition edition.
 Adam Hilger, Bristol.</p>
 <p>Dennis JE, Gay DM, Walsh RE (1981).
 “An Adaptive Nonlinear Least-Squares Algorithm.”
@@ -231,24 +231,24 @@ ISSN 00983500, <a href="https://doi.org/10.1145/355958.355965" class="external-l
 <span class="r-in"><span><span class="va">theta_1</span> <span class="op">&lt;-</span> <span class="fu">maxlogL</span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, dist <span class="op">=</span> <span class="st">'dnorm'</span>, control <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>trace <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                 link <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>over <span class="op">=</span> <span class="st">"sd"</span>, fun <span class="op">=</span> <span class="st">"log_link"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                 fixed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">160</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0:     43628.001:  1.00000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   1:     32496.792:  2.00000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   2:     32270.496:  1.91993</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   3:     32131.866:  1.76391</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   4:     32123.165:  1.79721</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   5:     32123.018:  1.79348</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   6:     32123.018:  1.79336</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   7:     32123.018:  1.79336</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0:     43533.706:  1.00000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   1:     32484.031:  2.00000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   2:     32253.448:  1.91901</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   3:     32112.869:  1.76143</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   4:     32103.844:  1.79538</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   5:     32103.689:  1.79155</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   6:     32103.689:  1.79143</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   7:     32103.689:  1.79143</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">theta_1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimization routine: nlminb </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Standard Error calculation: Hessian from optim </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        AIC      BIC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   64246.04 64246.04</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   64207.38 64207.38</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Estimate  Std. Error Z value Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sd   6.00963    0.04249   141.4   &lt;2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sd   5.99803    0.04241   141.4   &lt;2e-16 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
@@ -267,12 +267,12 @@ ISSN 00983500, <a href="https://doi.org/10.1145/355958.355965" class="external-l
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimization routine: nlminb </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Standard Error calculation: Hessian from optim </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       AIC      BIC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   64248.9 64263.32</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        AIC      BIC</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   64210.65 64225.07</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Estimate  Std. Error Z value Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> mean 159.93581    0.06009  2661.5   &lt;2e-16 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sd     6.00929    0.04249   141.4   &lt;2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> mean 160.05115    0.05998  2668.5   &lt;2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sd     5.99781    0.04241   141.4   &lt;2e-16 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
@@ -298,11 +298,11 @@ ISSN 00983500, <a href="https://doi.org/10.1145/355958.355965" class="external-l
 <span class="r-out co"><span class="r-pr">#&gt;</span> Standard Error calculation: Hessian from optim </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        AIC      BIC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   4778.242 4788.058</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   4754.237 4764.053</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Estimate  Std. Error Z value Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> mu      6.03356    0.08121  74.292   &lt;2e-16 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sigma   0.07169    0.00830   8.638   &lt;2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> mu     5.970704   0.081704  73.077   &lt;2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sigma  0.091647   0.009254   9.904   &lt;2e-16 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
@@ -322,11 +322,11 @@ ISSN 00983500, <a href="https://doi.org/10.1145/355958.355965" class="external-l
 <span class="r-out co"><span class="r-pr">#&gt;</span> Standard Error calculation: Hessian from optim </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         AIC       BIC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   -477.3894 -472.4817</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   -497.1699 -492.2621</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        Estimate  Std. Error Z value Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> shape1   2.06292    0.08688   23.74   &lt;2e-16 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> shape2   3.04663    0.13330   22.86   &lt;2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> shape1   2.16894    0.09161   23.68   &lt;2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> shape2   3.13713    0.13720   22.87   &lt;2e-16 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
@@ -343,11 +343,11 @@ ISSN 00983500, <a href="https://doi.org/10.1145/355958.355965" class="external-l
 <span class="r-out co"><span class="r-pr">#&gt;</span> Standard Error calculation: Hessian from optim </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         AIC       BIC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   -477.3894 -472.4817</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   -497.1699 -492.2621</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        Estimate  Std. Error Z value Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> shape1   2.06292    0.08688   23.74   &lt;2e-16 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> shape2   3.04663    0.13330   22.86   &lt;2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> shape1   2.16894    0.09161   23.68   &lt;2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> shape2   3.13713    0.13720   22.87   &lt;2e-16 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>

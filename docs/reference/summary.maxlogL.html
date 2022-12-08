@@ -120,24 +120,24 @@ test of parameters.</p>
 <span class="r-in"><span><span class="va">theta_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="maxlogL.html">maxlogL</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, dist <span class="op">=</span> <span class="st">'dnorm'</span>, control <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>trace <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                 link <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>over <span class="op">=</span> <span class="st">"sd"</span>, fun <span class="op">=</span> <span class="st">"log_link"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                 fixed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">160</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0:     43909.220:  1.00000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   1:     32534.851:  2.00000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   2:     32321.001:  1.92262</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   3:     32188.143:  1.77121</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   4:     32180.351:  1.80263</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   5:     32180.226:  1.79918</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   6:     32180.225:  1.79908</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   7:     32180.225:  1.79908</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0:     43442.893:  1.00000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   1:     32471.741:  2.00000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   2:     32236.974:  1.91812</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   3:     32094.511:  1.75904</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   4:     32085.165:  1.79361</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   5:     32085.002:  1.78968</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   6:     32085.002:  1.78956</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   7:     32085.002:  1.78956</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">theta_1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimization routine: nlminb </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Standard Error calculation: Hessian from optim </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        AIC      BIC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   64360.45 64360.45</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     AIC   BIC</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   64170 64170</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Estimate  Std. Error Z value Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sd   6.04411    0.04274   141.4   &lt;2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sd   5.98683    0.04233   141.4   &lt;2e-16 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
@@ -163,11 +163,11 @@ test of parameters.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimization routine: nlminb </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Standard Error calculation: Hessian from optim </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        AIC      BIC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   361.8035 361.8035</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       AIC     BIC</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   347.378 347.378</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Estimate  Std. Error Z value Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> prob   0.29700    0.01445   20.55   &lt;2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> prob   0.29500    0.01442   20.46   &lt;2e-16 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
@@ -186,10 +186,10 @@ test of parameters.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Standard Error calculation: Hessian from optim </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        AIC      BIC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   365.1453 365.1453</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   358.0113 358.0113</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Estimate  Std. Error Z value Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> prob   0.29400    0.01441   20.41   &lt;2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> prob   0.30300    0.01453   20.85   &lt;2e-16 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
@@ -214,21 +214,21 @@ test of parameters.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Standard Error calculation: Hessian from optim </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        AIC      BIC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   5232.472 5252.103</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   5099.463 5119.094</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Fixed effects for mean</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error Z value  Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -1.92220    0.11264 -17.066 &lt; 2.2e-16 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x            3.00029    0.03153  95.157 &lt; 2.2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -1.97313    0.11003 -17.932 &lt; 2.2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x            2.99071    0.03095  96.631 &lt; 2.2e-16 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Fixed effects for log(sd) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              Estimate Std. Error Z value  Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 0.9935044  0.0228767  43.429 &lt; 2.2e-16 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x           0.2936612  0.0071014  41.353 &lt; 2.2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 0.9737038  0.0226725  42.947 &lt; 2.2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x           0.2898067  0.0070934  40.856 &lt; 2.2e-16 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
