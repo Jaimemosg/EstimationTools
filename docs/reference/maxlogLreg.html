@@ -92,22 +92,24 @@ of any distribution implemented in <code>R</code> with covariates (linear predic
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>formulas</dt>
-<dd><p>a list of formula objects. Each element must have an <code>~</code>, with the terms
-on the right separated by <code>+</code> operators. The response variable on the left side is optional.
-Linear predictor of each parameter must be specified with the name of the parameter followed by
-the suffix <code>'.fo'</code>. See the examples below for further illustration.</p></dd>
+<dd><p>a list of formula objects. Each element must have an <code>~</code>,
+with the terms on the right separated by <code>+</code> operators. The response
+variable on the left side is optional. Linear predictor of each parameter must
+be specified with the name of the parameter followed by the suffix <code>'.fo'</code>.
+See the examples below for further illustration.</p></dd>
 
 
 <dt>y_dist</dt>
-<dd><p>a formula object that specifies the distribution of the response variable.
-On the left side of <code>~</code> must be the response, and in the right side
-must be the name o de probability density/mass function. See the section
-<strong>Details</strong> and the examples below for further illustration.</p></dd>
+<dd><p>a formula object that specifies the distribution of the response
+variable. On the left side of <code>~</code> must be the response,
+and in the right side must be the name o de probability
+density/mass function. See the section <strong>Details</strong> and the
+examples below for further illustration.</p></dd>
 
 
 <dt>support</dt>
-<dd><p>a list with the following entries:</p><ul><li><p><code>interval</code>: a two dimensional atomic vector indicating the
-set of possible values of a random variable having the
+<dd><p>a list with the following entries:</p><ul><li><p><code>interval</code>: a two dimensional atomic vector indicating
+the set of possible values of a random variable having the
 distribution specified in <code>y_dist</code>.</p></li>
 <li><p><code>type</code>: character indicating if distribution has a
 <code>discrete</code> or a <code>continous</code> random variable.</p></li>
@@ -115,9 +117,9 @@ distribution specified in <code>y_dist</code>.</p></li>
 
 
 <dt>data</dt>
-<dd><p>an optional data frame containing the variables in the model. If data is not
-specified, the variables are taken from the environment from which
-<code>maxlogLreg</code> is called.</p></dd>
+<dd><p>an optional data frame containing the variables in the model.
+If data is not specified, the variables are taken from the
+environment from which <code>maxlogLreg</code> is called.</p></dd>
 
 
 <dt>subset</dt>
@@ -126,43 +128,47 @@ in the fitting process.</p></dd>
 
 
 <dt>fixed</dt>
-<dd><p>a list with fixed/known parameters of distribution of interest. Fixed parameters
-must be passed with its name and its value (known).</p></dd>
+<dd><p>a list with fixed/known parameters of distribution of interest.
+Fixed parameters must be passed with its name and its value (known).</p></dd>
 
 
 <dt>link</dt>
-<dd><p>a list with names of parameters to be linked, and names of the link function object.
-For names of parameters, please visit documentation of density/mass function.
-There are three link functions available: <code><a href="log_link.html">log_link</a></code>,
-<code><a href="logit_link.html">logit_link</a></code> and <code><a href="NegInv_link.html">NegInv_link</a></code>. Take into account: the order
-used in argument <code>over</code> corresponds to the order in argument <code>link</code>.</p></dd>
+<dd><p>a list with names of parameters to be linked, and names of the
+link function object. For names of parameters, please visit
+documentation of density/mass function. There are three link
+functions available: <code><a href="log_link.html">log_link</a></code>, <code><a href="logit_link.html">logit_link</a></code>
+and <code><a href="NegInv_link.html">NegInv_link</a></code>. Take into account: the order
+used in argument <code>over</code> corresponds to the order in argument
+<code>link</code>.</p></dd>
 
 
 <dt>start</dt>
-<dd><p>a numeric vector with initial values for the parameters to be estimated. Zero is the
-default value.</p></dd>
+<dd><p>a numeric vector with initial values for the parameters to be
+estimated. Zero is the default value.</p></dd>
 
 
 <dt>lower</dt>
 <dd><p>a numeric vector with lower bounds, with the same lenght of
-argument <code>start</code> (for box-constrained optimization). <code>-Inf</code> is the default value.</p></dd>
+argument <code>start</code> (for box-constrained optimization). <code>-Inf</code>
+is the default value.</p></dd>
 
 
 <dt>upper</dt>
 <dd><p>a numeric vector with upper bounds, with the same lenght of
-argument <code>start</code> (for box-constrained optimization). <code>Inf</code> is the default value.</p></dd>
+argument <code>start</code> (for box-constrained optimization). <code>Inf</code>
+is the default value.</p></dd>
 
 
 <dt>optimizer</dt>
-<dd><p>a lenght-one character vector with the name of optimization routine.
-<code><a href="https://rdrr.io/r/stats/nlminb.html" class="external-link">nlminb</a></code>, <code><a href="https://rdrr.io/r/stats/optim.html" class="external-link">optim</a></code> and
+<dd><p>a length-one character vector with the name of optimization
+routine.  <code><a href="https://rdrr.io/r/stats/nlminb.html" class="external-link">nlminb</a></code>, <code><a href="https://rdrr.io/r/stats/optim.html" class="external-link">optim</a></code> and
 <code><a href="https://rdrr.io/pkg/DEoptim/man/DEoptim.html" class="external-link">DEoptim</a></code> are available; <code><a href="https://rdrr.io/r/stats/nlminb.html" class="external-link">nlminb</a></code>
 is the default routine.</p></dd>
 
 
 <dt>control</dt>
-<dd><p>control parameters of the optimization routine. Please, visit documentation of selected
-optimizer for further information.</p></dd>
+<dd><p>control parameters of the optimization routine. Please, visit
+documentation of selected optimizer for further information.</p></dd>
 
 
 <dt>silent</dt>
@@ -170,11 +176,11 @@ optimizer for further information.</p></dd>
 
 
 <dt>StdE_method</dt>
-<dd><p>a length-one character vector with the routine for Hessian matrix
-computation. The This is needed for standard error estimation. The
-options available are <code>"optim"</code> and <code>"numDeriv"</code>. For
-further information, visit <code><a href="https://rdrr.io/r/stats/optim.html" class="external-link">optim</a></code> or
-<code><a href="https://rdrr.io/pkg/numDeriv/man/hessian.html" class="external-link">hessian</a></code>.</p></dd>
+<dd><p>a length-one character vector with the routine for Hessian
+matrix computation. The This is needed for standard error
+estimation. The options available are <code>"optim"</code> and
+<code>"numDeriv"</code>. For further information, visit
+<code><a href="https://rdrr.io/r/stats/optim.html" class="external-link">optim</a></code> or <code><a href="https://rdrr.io/pkg/numDeriv/man/hessian.html" class="external-link">hessian</a></code>.</p></dd>
 
 
 <dt>...</dt>
@@ -194,27 +200,64 @@ lists:</p>
 <dd><p>A list with all input arguments.</p></dd>
 
 <dt>outputs</dt>
-<dd><p>A list with additional information:</p><ul><li><p>Number of parameters.</p></li>
-<li><p>Sample size</p></li>
-<li><p>Standard error computation method.</p></li>
-<li><p>Number of regression parameters.</p></li>
+<dd><p>A list with additional information. The most important outputs
+are:</p><ul><li><p><code>npar</code>: number of parameters.</p></li>
+<li><p><code>n</code>: sample size</p></li>
+<li><p><code>Stde_method</code>: standard error computation method.</p></li>
+<li><p><code>b_lenght</code>: a list with the number of regression parameters.</p></li>
+<li><p><code>design_matrix</code>: a list with the \(\mathbf{X}\) matrix
+for each parameter, the response values (called <code>y</code>) and
+the censorship matrix (called <code>status</code>). See the Details
+section for further information.</p></li>
 </ul></dd>
 
 </dl></div>
     <div id="details">
     <h2>Details</h2>
-    <p><code>maxlogLreg</code> calculates computationally the log-likelihood (log L) function
-corresponding to the distribution specified in argument <code>y_dist</code> with linear
-predictors specified in argument <code>formulas</code>. Then, it maximizes the log L through
-<code><a href="https://rdrr.io/r/stats/optim.html" class="external-link">optim</a></code>, <code><a href="https://rdrr.io/r/stats/nlminb.html" class="external-link">nlminb</a></code> or <code><a href="https://rdrr.io/pkg/DEoptim/man/DEoptim.html" class="external-link">DEoptim</a></code>. <code>maxlogLreg</code>
-generates an S3 object of class <code>maxlogL</code>.</p>
-<p>Noncentrality parameters must be named as <code>ncp</code> in the distribution.</p>
+    <p><code>maxlogLreg</code> computes programmatically the log-likelihood
+(log L) function corresponding for the following model:</p>
+<p>$$
+  y_i \stackrel{\text{iid.}}{\sim} \mathcal{D}(\theta_{i1},\theta_{i2},\dots,
+  \theta_{ij}, \dots, \theta_{ik})
+$$
+$$
+  g(\boldsymbol{\theta}_{j}) = \boldsymbol{\eta}_{j} = \mathbf{X}_j^\top
+  \boldsymbol{\beta}_j,
+$$</p>
+<p>where,</p>
+<ul><li><p>\(g_k(\cdot)\) is the \(k\)-th link function.</p></li>
+<li><p>\(\boldsymbol{\eta}_{j}\) is the value of the linear predictor for the
+$j^th$ for all the observations.</p></li>
+<li><p>\(\boldsymbol{\beta}_j = (\beta_{0j}, \beta_{1j},\dots,
+        \beta_{(p_j-1)j})^\top\) are the fixed effects vector, where \(p_j\)
+is the number of parameters in linear predictor \(j\) and
+\(\mathbf{X}_j\) is a known design matrix of order \(n\times p_j\).
+These terms are specified in <code>formulas</code> argument.</p></li>
+<li><p>\(\mathcal{D}\) is the distribution specified in argument
+<code>y_dist</code>.</p></li>
+</ul><p>Then, <code>maxlogLreg</code> maximizes the log L through <code><a href="https://rdrr.io/r/stats/optim.html" class="external-link">optim</a></code>,
+<code><a href="https://rdrr.io/r/stats/nlminb.html" class="external-link">nlminb</a></code> or <code><a href="https://rdrr.io/pkg/DEoptim/man/DEoptim.html" class="external-link">DEoptim</a></code>. <code>maxlogLreg</code> generates
+an S3 object of class <code>maxlogL</code>.</p>
+<p>Estimation with censorship can be handled with <code>Surv</code> objects
+(see example 2). The output object stores the corresponding censorship matrix,
+defined as follows,</p>
+<p>$$
+  r_{il} = \begin{cases}
+      1, &amp; \text{if sample unit } i \text{ has status } l,\\
+      0, &amp; \text{in other case,}
+    \end{cases}
+$$</p>
+<p>with \(i=1,2,\dots,n\) and \(l=1,2,3\) (\(l=1\): observation status,
+\(l=2\): right censorship status, \(l=3\): left censorship status).</p>
     </div>
     <div id="note">
     <h2>Note</h2>
-    <p>The following generic functions can be used with a <code>maxlogL</code> object:
-<code>summary, print, logLik, AIC</code>.</p>
-    </div>
+    
+<ul><li><p>The following generic functions can be used with a <code>maxlogL</code>
+object: <code>summary, print, logLik, AIC</code>.</p></li>
+<li><p>Noncentrality parameters must be named as <code>ncp</code> in the
+distribution.</p></li>
+</ul></div>
     <div id="references">
     <h2>References</h2>
     <p>Nelder JA, Mead R (1965).
@@ -273,22 +316,22 @@ ISSN 00983500, <a href="https://doi.org/10.1145/355958.355965" class="external-l
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimization routine: nlminb </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Standard Error calculation: Hessian from optim </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        AIC      BIC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   5091.194 5110.825</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       AIC      BIC</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   5061.38 5081.011</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Fixed effects for mean</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              Estimate Std. Error Z value  Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -2.094291   0.112447 -18.625 &lt; 2.2e-16 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x            2.970767   0.029326 101.302 &lt; 2.2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -1.823971   0.111296 -16.389 &lt; 2.2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x            3.047028   0.029559 103.083 &lt; 2.2e-16 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Fixed effects for log(sd) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              Estimate Std. Error Z value  Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 0.9923595  0.0225651  43.977 &lt; 2.2e-16 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x           0.3065064  0.0071296  42.991 &lt; 2.2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 0.9877838  0.0225183  43.866 &lt; 2.2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x           0.3195470  0.0070834  45.112 &lt; 2.2e-16 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>

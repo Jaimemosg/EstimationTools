@@ -24,65 +24,71 @@ maxlogLreg(
 )
 }
 \arguments{
-\item{formulas}{a list of formula objects. Each element must have an \code{~}, with the terms
-on the right separated by \code{+} operators. The response variable on the left side is optional.
-Linear predictor of each parameter must be specified with the name of the parameter followed by
-the suffix \code{'.fo'}. See the examples below for further illustration.}
+\item{formulas}{a list of formula objects. Each element must have an \code{~},
+with the terms on the right separated by \code{+} operators. The response
+variable on the left side is optional. Linear predictor of each parameter must
+be specified with the name of the parameter followed by the suffix \code{'.fo'}.
+See the examples below for further illustration.}
 
-\item{y_dist}{a formula object that specifies the distribution of the response variable.
-On the left side of \code{~} must be the response, and in the right side
-must be the name o de probability density/mass function. See the section
-\strong{Details} and the examples below for further illustration.}
+\item{y_dist}{a formula object that specifies the distribution of the response
+variable. On the left side of \code{~} must be the response,
+and in the right side must be the name o de probability
+density/mass function. See the section \strong{Details} and the
+examples below for further illustration.}
 
 \item{support}{a list with the following entries:
 \itemize{
-\item \code{interval}: a two dimensional atomic vector indicating the
-set of possible values of a random variable having the
+\item \code{interval}: a two dimensional atomic vector indicating
+the set of possible values of a random variable having the
 distribution specified in \code{y_dist}.
 \item \code{type}: character indicating if distribution has a
 \code{discrete} or a \code{continous} random variable.
 }}
 
-\item{data}{an optional data frame containing the variables in the model. If data is not
-specified, the variables are taken from the environment from which
-\code{maxlogLreg} is called.}
+\item{data}{an optional data frame containing the variables in the model.
+If data is not specified, the variables are taken from the
+environment from which \code{maxlogLreg} is called.}
 
 \item{subset}{an optional vector specifying a subset of observations to be used
 in the fitting process.}
 
-\item{fixed}{a list with fixed/known parameters of distribution of interest. Fixed parameters
-must be passed with its name and its value (known).}
+\item{fixed}{a list with fixed/known parameters of distribution of interest.
+Fixed parameters must be passed with its name and its value (known).}
 
-\item{link}{a list with names of parameters to be linked, and names of the link function object.
-For names of parameters, please visit documentation of density/mass function.
-There are three link functions available: \code{\link{log_link}},
-\code{\link{logit_link}} and \code{\link{NegInv_link}}. Take into account: the order
-used in argument \code{over} corresponds to the order in argument \code{link}.}
+\item{link}{a list with names of parameters to be linked, and names of the
+link function object. For names of parameters, please visit
+documentation of density/mass function. There are three link
+functions available: \code{\link{log_link}}, \code{\link{logit_link}}
+and \code{\link{NegInv_link}}. Take into account: the order
+used in argument \code{over} corresponds to the order in argument
+\code{link}.}
 
-\item{start}{a numeric vector with initial values for the parameters to be estimated. Zero is the
-default value.}
+\item{start}{a numeric vector with initial values for the parameters to be
+estimated. Zero is the default value.}
 
 \item{lower}{a numeric vector with lower bounds, with the same lenght of
-argument \code{start} (for box-constrained optimization). \code{-Inf} is the default value.}
+argument \code{start} (for box-constrained optimization). \code{-Inf}
+is the default value.}
 
 \item{upper}{a numeric vector with upper bounds, with the same lenght of
-argument \code{start} (for box-constrained optimization). \code{Inf} is the default value.}
+argument \code{start} (for box-constrained optimization). \code{Inf}
+is the default value.}
 
-\item{optimizer}{a lenght-one character vector with the name of optimization routine.
-\code{\link{nlminb}}, \code{\link{optim}} and
+\item{optimizer}{a length-one character vector with the name of optimization
+routine.  \code{\link{nlminb}}, \code{\link{optim}} and
 \code{\link[DEoptim]{DEoptim}} are available; \code{\link{nlminb}}
 is the default routine.}
 
-\item{control}{control parameters of the optimization routine. Please, visit documentation of selected
-optimizer for further information.}
+\item{control}{control parameters of the optimization routine. Please, visit
+documentation of selected optimizer for further information.}
 
 \item{silent}{logical. If TRUE, warnings of \code{maxlogL} are suppressed.}
 
-\item{StdE_method}{a length-one character vector with the routine for Hessian matrix
-computation. The This is needed for standard error estimation. The
-options available are \code{"optim"} and \code{"numDeriv"}. For
-further information, visit \code{\link[stats]{optim}} or
-\code{\link[numDeriv]{hessian}}.}
+\item{StdE_method}{a length-one character vector with the routine for Hessian
+matrix computation. The This is needed for standard error
+estimation. The options available are \code{"optim"} and
+\code{"numDeriv"}. For further information, visit
+\code{\link[stats]{optim}} or \code{\link[numDeriv]{hessian}}.}
 
 \item{...}{Further arguments to be supplied to the optimization routine.}
 }
@@ -91,12 +97,17 @@ A list with class \code{maxlogL} containing the following
 lists:
 \item{fit}{A list with output information about estimation and method used.}
 \item{inputs}{A list with all input arguments.}
-\item{outputs}{A list with additional information:
+\item{outputs}{A list with additional information. The most important outputs
+are:
 \itemize{
-\item Number of parameters.
-\item Sample size
-\item Standard error computation method.
-\item Number of regression parameters.
+\item \code{npar}: number of parameters.
+\item \code{n}: sample size
+\item \code{Stde_method}: standard error computation method.
+\item \code{b_lenght}: a list with the number of regression parameters.
+\item \code{design_matrix}: a list with the \eqn{\mathbf{X}} matrix
+for each parameter, the response values (called \code{y}) and
+the censorship matrix (called \code{status}). See the Details
+section for further information.
 }
 }
 }
@@ -107,17 +118,58 @@ Function to compute maximum likelihood estimators (MLE) of regression parameters
 of any distribution implemented in \code{R} with covariates (linear predictors).
 }
 \details{
-\code{maxlogLreg} calculates computationally the log-likelihood (log L) function
-corresponding to the distribution specified in argument \code{y_dist} with linear
-predictors specified in argument \code{formulas}. Then, it maximizes the log L through
-\code{\link{optim}}, \code{\link{nlminb}} or \code{\link{DEoptim}}. \code{maxlogLreg}
-generates an S3 object of class \code{maxlogL}.
+\code{maxlogLreg} computes programmatically the log-likelihood
+(log L) function corresponding for the following model:
 
-Noncentrality parameters must be named as \code{ncp} in the distribution.
+\deqn{
+  y_i \stackrel{\text{iid.}}{\sim} \mathcal{D}(\theta_{i1},\theta_{i2},\dots,
+  \theta_{ij}, \dots, \theta_{ik})
+}
+\deqn{
+  g(\boldsymbol{\theta}_{j}) = \boldsymbol{\eta}_{j} = \mathbf{X}_j^\top
+  \boldsymbol{\beta}_j,
+}
+
+where,
+
+\itemize{
+\item \eqn{g_k(\cdot)} is the \eqn{k}-th link function.
+\item \eqn{\boldsymbol{\eta}_{j}} is the value of the linear predictor for the
+$j^{th}$ for all the observations.
+\item \eqn{\boldsymbol{\beta}_j = (\beta_{0j}, \beta_{1j},\dots,
+        \beta_{(p_j-1)j})^\top} are the fixed effects vector, where \eqn{p_j}
+is the number of parameters in linear predictor \eqn{j} and
+\eqn{\mathbf{X}_j} is a known design matrix of order \eqn{n\times p_j}.
+These terms are specified in \code{formulas} argument.
+\item \eqn{\mathcal{D}} is the distribution specified in argument
+\code{y_dist}.
+}
+
+Then, \code{maxlogLreg} maximizes the log L through \code{\link{optim}},
+\code{\link{nlminb}} or \code{\link{DEoptim}}. \code{maxlogLreg} generates
+an S3 object of class \code{maxlogL}.
+
+Estimation with censorship can be handled with \code{Surv} objects
+(see example 2). The output object stores the corresponding censorship matrix,
+defined as follows,
+
+\deqn{
+  r_{il} = \begin{cases}
+      1, & \text{if sample unit } i \text{ has status } l,\\
+      0, & \text{in other case,}
+    \end{cases}
+}
+
+with \eqn{i=1,2,\dots,n} and \eqn{l=1,2,3} (\eqn{l=1}: observation status,
+\eqn{l=2}: right censorship status, \eqn{l=3}: left censorship status).
 }
 \note{
-The following generic functions can be used with a \code{maxlogL} object:
-\code{summary, print, logLik, AIC}.
+\itemize{
+\item The following generic functions can be used with a \code{maxlogL}
+object: \code{summary, print, logLik, AIC}.
+\item Noncentrality parameters must be named as \code{ncp} in the
+distribution.
+}
 }
 \examples{
 library(EstimationTools)
