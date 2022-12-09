@@ -5,7 +5,7 @@
 
 # EstimationTools 3.0.0
 
-- From this version, `maxlogLreg` returns the censorship matrix. Check the [documentation](file:///C:/Users/jaime/Documents/R/EstimationTools/docs/reference/maxlogLreg.html) for further information about the censorship matrix.
+- From this version, `maxlogLreg` returns the censorship matrix. Check the [documentation](https://jaimemosg.github.io/EstimationTools/reference/maxlogLreg.html) for further information about the censorship matrix.
 - We have implemented a wrapper of integration routines.
 
 # EstimationTools 2.4.0 
