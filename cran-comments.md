@@ -1,4 +1,14 @@
-## v4.0.0: Submission 8 (current submission)
+## v4.0.0: Submission 10 (current submission)
+
+----------------------------------------------------------------
+## v4.0.0: Submission 9
+* Found the following (possibly) invalid file URI:
+  URI: /C:/Users/jaime/Documents/R/EstimationTools/docs/reference/maxlogLreg.html
+    From: NEWS.md
+    
+  fixed
+
+## v4.0.0: Submission 8
 
 * Found the following (possibly) invalid URLs:
   URL: http://doi.wiley.com/10.1002/nav.3800260303
@@ -16,7 +26,6 @@
 
 fixed
 
-----------------------------------------------------------------
 ## v1.2.1: Submission 6 successful (package updated on CRAN)
 
 * Derivatives computation in maxlogL corrected.
