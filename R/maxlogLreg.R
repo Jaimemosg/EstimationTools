@@ -86,7 +86,7 @@
 #' (log L) function corresponding for the following model:
 #'
 #' \deqn{
-#'   y_i \stackrel{\text{iid.}}{\sim} \mathcal{D}(\theta_{i1},\theta_{i2},\dots,
+#'   y_i \stackrel{iid.}{\sim} \mathcal{D}(\theta_{i1},\theta_{i2},\dots,
 #'   \theta_{ij}, \dots, \theta_{ik})
 #' }
 #' \deqn{
@@ -115,17 +115,10 @@
 #'
 #' Estimation with censorship can be handled with \code{Surv} objects
 #' (see example 2). The output object stores the corresponding censorship matrix,
-#' defined as follows,
-#'
-#' \deqn{
-#'   r_{il} = \begin{cases}
-#'       1, & \text{if sample unit } i \text{ has status } l,\\
-#'       0, & \text{in other case,}
-#'     \end{cases}
-#' }
-#'
-#' with \eqn{i=1,2,\dots,n} and \eqn{l=1,2,3} (\eqn{l=1}: observation status,
-#' \eqn{l=2}: right censorship status, \eqn{l=3}: left censorship status).
+#' defined as \eqn{r_{il} = 1} if sample unit \eqn{i} has status \eqn{l}, or
+#' \eqn{r_{il} = 0} in other case. \eqn{i=1,2,\dots,n} and \eqn{l=1,2,3}
+#' (\eqn{l=1}: observation status, \eqn{l=2}: right censorship status,
+#' \eqn{l=3}: left censorship status).
 #'
 #' @note
 #' \itemize{
