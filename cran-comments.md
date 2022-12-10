@@ -1,6 +1,16 @@
-## v4.0.0: Submission 10 (current submission)
+## v4.0.0: Submission 11 (current submission)
 
 ----------------------------------------------------------------
+## v4.0.0: Submission 10
+
+* Description updated.
+* checking sizes of PDF files under 'inst/doc' ... WARNING
+  'gs+qpdf' made some significant size reductions:
+     compacted 'maxlogL.pdf' from 416Kb to 108Kb
+  consider running tools::compactPDF(gs_quality = "ebook") on these files
+
+fixed
+
 ## v4.0.0: Submission 9
 * Found the following (possibly) invalid file URI:
   URI: /C:/Users/jaime/Documents/R/EstimationTools/docs/reference/maxlogLreg.html
