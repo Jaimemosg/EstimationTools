@@ -641,7 +641,7 @@ Surv_transform <- function(y_dist, data){
     stop("Response variable must be of class, 'numeric', 'factor' or a Surv' object")
   }
   status <- c(obs, left, right)
-  cens_data <- matrix(c(y,status), nrow = length(y))
+  cens_data <- matrix(c(y, status), nrow = length(y))
   return(cens = cens_data)
 }
 #==============================================================================

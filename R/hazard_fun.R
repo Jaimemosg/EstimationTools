@@ -10,8 +10,8 @@
 #' This function takes the name of a probability density/mass function as an
 #' argument and creates a hazard function.
 #'
-#' @param dist a length-one character vector with the name of density/mass function
-#'             of interest.
+#' @param distr a length-one character vector with the name of density/mass function
+#'              of interest.
 #' @param support a list with the following entries:
 #'                \itemize{
 #'                \item \code{interval}: a two dimensional atomic vector indicating the
@@ -30,12 +30,15 @@
 #'
 #' #--------------------------------------------------------------------------------
 #' # Example 1: Hazard function of Weibull distribution.
-#' hweibull1 <- hazard_fun('dweibull', list(interval=c(0, Inf), type='continuous'))
+#' support <- list(interval=c(0, Inf), type='continuous')
+#'
+#' hweibull1 <- hazard_fun('dweibull', support)
 #' hweibull2 <- function(x){
 #'   ans <- dweibull(x, shape = 2, scale = 1)/
 #'     pweibull(x, shape = 2, scale = 1, lower.tail = FALSE)
 #'   ans
 #' }
+#'
 #' hweibull1(0.2, shape = 2, scale = 1)
 #' hweibull2(0.2)
 #'
@@ -43,12 +46,12 @@
 #' #--------------------------------------------------------------------------------
 #'
 #' @export
-hazard_fun <-  function(dist, support){
+hazard_fun <-  function(distr, support){
   type <- match.arg(support$type, c('continuous', 'discrete'))
   hfun <- function(x, ...){
-    pdf <- do.call(what = dist,
+    pdf <- do.call(what = distr,
                    args = c(list(x = x, log = TRUE), ...))
-    cdf <- do.call(what = paste0('p', substring(dist, 2)),
+    cdf <- do.call(what = paste0('p', substring(distr, 2)),
                    args = c(list(q = x, log.p = TRUE, lower.tail = FALSE), ...))
     hf <- pdf - cdf
     hf <- exp(hf)

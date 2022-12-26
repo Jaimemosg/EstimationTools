@@ -5,10 +5,10 @@
 \alias{hazard_fun}
 \title{Hazard functions in \code{maxlogL} framework}
 \usage{
-hazard_fun(dist, support)
+hazard_fun(distr, support)
 }
 \arguments{
-\item{dist}{a length-one character vector with the name of density/mass function
+\item{distr}{a length-one character vector with the name of density/mass function
 of interest.}
 
 \item{support}{a list with the following entries:
@@ -36,12 +36,15 @@ library(EstimationTools)
 
 #--------------------------------------------------------------------------------
 # Example 1: Hazard function of Weibull distribution.
-hweibull1 <- hazard_fun('dweibull', list(interval=c(0, Inf), type='continuous'))
+support <- list(interval=c(0, Inf), type='continuous')
+
+hweibull1 <- hazard_fun('dweibull', support)
 hweibull2 <- function(x){
   ans <- dweibull(x, shape = 2, scale = 1)/
     pweibull(x, shape = 2, scale = 1, lower.tail = FALSE)
   ans
 }
+
 hweibull1(0.2, shape = 2, scale = 1)
 hweibull2(0.2)
 
