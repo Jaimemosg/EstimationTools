@@ -21,7 +21,7 @@ compute the normalized randomized quantile residuals.}
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 
-\code{residuals.,axlogL} is the \code{maxlogLreg} specific method for the
+\code{residuals.maxlogL} is the \code{maxlogLreg} specific method for the
 generic function residuals which extracts the residuals from a fitted model.
 }
 \details{

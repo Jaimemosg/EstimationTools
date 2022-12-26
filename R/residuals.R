@@ -5,7 +5,7 @@
 #' @description
 #' `r lifecycle::badge("experimental")`
 #'
-#' \code{residuals.,axlogL} is the \code{maxlogLreg} specific method for the
+#' \code{residuals.maxlogL} is the \code{maxlogLreg} specific method for the
 #' generic function residuals which extracts the residuals from a fitted model.
 #'
 #' @aliases residuals.maxlogL
@@ -32,6 +32,7 @@
 #'
 #' \deqn{r^R_i = (y_i - \hat{\mu}_i).}
 #'
+#' @method residuals maxlogL
 #' @export
 residuals.maxlogL <- function(object, parameter = NULL,
                               type = c("deviance", "response"),
@@ -43,37 +44,73 @@ residuals.maxlogL <- function(object, parameter = NULL,
   y <- object$outputs$response
   support <- object$inputs$support
   dist <- deparse(object$inputs$y_dist[[3]])
-  delta <- object$inputs$cens
+  cens <- object$inputs$cens
 
-  if ( is.null(support) & type %in% c("deviance", "pearson",
-                                      "response") ){
+  available_residuals <- c(
+    "deviance",
+    "pearson",
+    "response",
+    "cox-snell",
+    "martingale"
+  )
+
+  if ( is.null(support) & type %in% available_residuals ){
     stop(paste0(type, " residuals cannot be computed if a support is",
                 "not defined. Please, refit your 'maxlogLreg' model",
-                "specifying the 'suport' argument."))
+                "specifying the 'support' argument."))
   }
-  if (type == 'deviance'){
-    mean <- moment_integration_maxlogL(object)
-    resid <- sign(y - mean)*sqrt(sum(dev.resids(object)))
+
+  right_censored_data <- check_right_censorship(
+    cens_matrix = cens, type = type
+  )
+
+  if (right_censored_data){
+    # if ( is.Surv(object$inputs$y_dist) ){
+    cumHaz <- hazard_integration_maxlogL(object)
+    delta <- cens[, 2]
+
+    # Martingale for right censored data
+    mres <- cumHaz
+
+    if (type == "cox-snell") resid <- cumHaz
+
+    if (type == 'martingale') resid <- mres
+
+    if (type == 'deviance'){
+      mean <- moment_integration_maxlogL(object)
+      deviance_i <- -2 * ( mres + delta * log(delta - mres) )
+      resid <- sign(mres) * sqrt(deviance_i)
+    }
+    # }
   }
+
   if (type == 'response'){
     mean <- moment_integration_maxlogL(object)
     resid <- y - mean
   }
-  if (type == 'martingale'){
-    if ( is.Surv(object$inputs$y_dist) ){
-      cumHaz <- hazard_integration_maxlogL(object)
-      delta <-
-      resid <- delta[,2] - cumHaz  # Martingale for right censored data
-    }
-  }
+
   names(resid) <- 1:length(y)
   return(resid)
 }
 
+check_right_censorship <- function(cens_matrix, type){
+  if ( sum(cens_matrix[, 3]) > 0 ){
+    stop(
+      paste0(
+        "'", type, "'",
+        " residuals are not available for left censored data. Please, ",
+        "compute randomized quantile residuals or raw residuals, which are ",
+        "available for any censorship type. Just set residuals = 'rqres' or",
+        "residuals = 'response' respectively.")
+    )
+  } else {
+    return(TRUE)
+  }
+}
 #==============================================================================
 # Deviance for each data point ------------------------------------------------
 #==============================================================================
-# title Deviance of each data point for \code{maxlogLreg} outputs
+# Deviance of each data point for \code{maxlogLreg} outputs
 # This function computes the deviance for each data point from the
 # response variable given a fitted model.
 #
@@ -125,7 +162,7 @@ moment_integration_maxlogL <- function(object, ord = 1, routine,
   parameters <- matrix(unlist(parameters), nrow = object$outputs$n)
   colnames(parameters) <- par_names
   distr <- object$inputs$distr
-  support <- object$support$type
+  support <- object$inputs$support
 
   integrand <- function(distr){
     nm_distr <- as.name(distr)
@@ -144,10 +181,10 @@ moment_integration_maxlogL <- function(object, ord = 1, routine,
   EX <- integrand(distr)
 
   if ( missing(routine) ){
-    if (support$type == 'continuos'){
-      routine <- 'integrate'
-    } else if (support$type == 'discrete'){
-      routine <- 'sumate'
+    if (support$type == "continuous"){
+      routine <- "integrate"
+    } else if (support$type == "discrete"){
+      routine <- "sumate"
     }
   }
   mean_computation <- function(x)
@@ -167,12 +204,12 @@ hazard_integration_maxlogL <- function(object, routine, ...){
   parameters <- matrix(unlist(parameters), nrow = object$outputs$n)
   colnames(parameters) <- par_names
   distr <- object$inputs$distr
-  support <- object$support$type
+  support <- object$inputs$support
 
   integrand <- hazard_fun(distr, support)
 
   if ( missing(routine) ){
-    if (support$type == 'continuos'){
+    if (support$type == 'continuous'){
       routine <- 'integrate'
     } else if (support$type == 'discrete'){
       routine <- 'summate'
