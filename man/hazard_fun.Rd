@@ -5,7 +5,7 @@
 \alias{hazard_fun}
 \title{Hazard functions in \code{maxlogL} framework}
 \usage{
-hazard_fun(distr, support)
+hazard_fun(distr, support, log = FALSE)
 }
 \arguments{
 \item{distr}{a length-one character vector with the name of density/mass function
@@ -19,6 +19,8 @@ distribution specified in \code{y_dist}.
 \item \code{type}: character indicating if distribution has a
 \code{discrete} or a \code{continous} random variable.
 }}
+
+\item{method}{}
 }
 \value{
 A function with the folling input arguments:
@@ -35,18 +37,20 @@ argument and creates a hazard function.
 library(EstimationTools)
 
 #--------------------------------------------------------------------------------
-# Example 1: Hazard function of Weibull distribution.
+# Example 1: Hazard function of the Weibull distribution.
 support <- list(interval=c(0, Inf), type='continuous')
 
+# Hazard function in the 'maxlogL' framework
 hweibull1 <- hazard_fun('dweibull', support)
-hweibull2 <- function(x){
-  ans <- dweibull(x, shape = 2, scale = 1)/
-    pweibull(x, shape = 2, scale = 1, lower.tail = FALSE)
-  ans
+
+# Hazard function from scratch
+hweibull2 <- function(x, shape, scale){
+  shape/scale * (x/scale)^(shape - 1)
 }
 
+# Comparison
 hweibull1(0.2, shape = 2, scale = 1)
-hweibull2(0.2)
+hweibull2(0.2, shape = 2, scale = 1)
 
 
 #--------------------------------------------------------------------------------
@@ -54,6 +58,7 @@ hweibull2(0.2)
 }
 \seealso{
 Other maxlogL: 
+\code{\link{cum_hazard_fun}()},
 \code{\link{maxlogLreg}()},
 \code{\link{maxlogL}()}
 }
