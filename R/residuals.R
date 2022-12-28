@@ -34,10 +34,16 @@
 #'
 #' @method residuals maxlogL
 #' @export
-residuals.maxlogL <- function(object, parameter = NULL,
-                              type = c("deviance", "response"),
-                              ...){
-  type <- match.arg(type)
+residuals.maxlogL <- function(object, parameter = NULL, type = "response", ...){
+  available_residuals <- c(
+    "response",
+    "cox-snell",
+    "martingale",
+    "censored_deviance"
+  )
+
+  type <- match.arg(type, choices = available_residuals)
+
   if ( is.null(parameter) ) parameter <- object$outputs$par_names[1]
   parameter <- match.arg(parameter, choices = object$outputs$par_names)
 
@@ -45,14 +51,6 @@ residuals.maxlogL <- function(object, parameter = NULL,
   support <- object$inputs$support
   dist <- deparse(object$inputs$y_dist[[3]])
   cens <- object$inputs$cens
-
-  available_residuals <- c(
-    "deviance",
-    "pearson",
-    "response",
-    "cox-snell",
-    "martingale"
-  )
 
   if ( is.null(support) & type %in% available_residuals ){
     stop(paste0(type, " residuals cannot be computed if a support is",
@@ -66,18 +64,17 @@ residuals.maxlogL <- function(object, parameter = NULL,
 
   if (right_censored_data){
     # if ( is.Surv(object$inputs$y_dist) ){
-    cumHaz <- hazard_integration_maxlogL(object)
+    cumHaz <- cum_hazard_maxlogL(object)
     delta <- cens[, 2]
 
     # Martingale for right censored data
-    mres <- cumHaz
+    mres <- delta - cumHaz
 
     if (type == "cox-snell") resid <- cumHaz
 
     if (type == 'martingale') resid <- mres
 
-    if (type == 'deviance'){
-      mean <- moment_integration_maxlogL(object)
+    if (type == 'censored_deviance'){
       deviance_i <- -2 * ( mres + delta * log(delta - mres) )
       resid <- sign(mres) * sqrt(deviance_i)
     }
@@ -85,7 +82,7 @@ residuals.maxlogL <- function(object, parameter = NULL,
   }
 
   if (type == 'response'){
-    mean <- moment_integration_maxlogL(object)
+    mean <- moment_integration_maxlogL(object, ord = 1)
     resid <- y - mean
   }
 
@@ -103,8 +100,11 @@ check_right_censorship <- function(cens_matrix, type){
         "available for any censorship type. Just set residuals = 'rqres' or",
         "residuals = 'response' respectively.")
     )
-  } else {
+  }
+  if ( sum(cens_matrix[, 2]) > 0 ){
     return(TRUE)
+  } else {
+    return(FALSE)
   }
 }
 #==============================================================================
@@ -198,28 +198,53 @@ moment_integration_maxlogL <- function(object, ord = 1, routine,
 #==============================================================================
 # Computation of cumulative for a fitted model --------------------------------
 #==============================================================================
-hazard_integration_maxlogL <- function(object, routine, ...){
-  parameters <- object$outputs$fitted.values
-  par_names <- names(parameters)
-  parameters <- matrix(unlist(parameters), nrow = object$outputs$n)
-  colnames(parameters) <- par_names
+cum_hazard_maxlogL <- function(object, routine, ...){
   distr <- object$inputs$distr
   support <- object$inputs$support
 
-  integrand <- hazard_fun(distr, support)
+  Hfun <- cum_hazard_fun(
+    distr = distr,
+    support = support,
+    method = "log_sf"
+  )
 
-  if ( missing(routine) ){
-    if (support$type == 'continuous'){
-      routine <- 'integrate'
-    } else if (support$type == 'discrete'){
-      routine <- 'summate'
-    }
+  parameters <- object$outputs$fitted.values
+  par_names <- names(parameters)
+  parameters <- matrix(unlist(parameters), nrow = object$outputs$n)
+
+  response <- object$outputs$response
+
+  inputs_matrix <- cbind(response, parameters)
+  colnames(inputs_matrix) <- c("x", par_names)
+
+  Hf_i <- function(x){
+    args <- sapply(X = x, FUN = function(x) x, simplify = FALSE)
+    cum_haz <- do.call(
+      what = Hfun,
+      args = args
+    )
+    return(cum_haz)
   }
-  haz_computation <- function(x)
-    do.call(what = 'integration',
-            args = c(list(fun = integrand, lower = support$interval[1],
-                          upper = support$interval[2],
-                          routine = routine, ...), x))
-  result <- apply(parameters, MARGIN = 1, haz_computation)
+
+  result <- apply(
+    inputs_matrix,
+    MARGIN = 1,
+    FUN = Hf_i
+  )
   return(result)
+  # integrand <- hazard_fun(distr, support)
+  #
+  # if ( missing(routine) ){
+  #   if (support$type == 'continuous'){
+  #     routine <- 'integrate'
+  #   } else if (support$type == 'discrete'){
+  #     routine <- 'summate'
+  #   }
+  # }
+  # haz_computation <- function(x)
+  #   do.call(what = 'integration',
+  #           args = c(list(fun = integrand, lower = support$interval[1],
+  #                         upper = support$interval[2],
+  #                         routine = routine, ...), x))
+  # result <- apply(parameters, MARGIN = 1, haz_computation)
 }
