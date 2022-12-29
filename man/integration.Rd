@@ -34,12 +34,12 @@ The user can create custom integration routines through implementation
 of a wrapper function using three arguments
 
 \itemize{
-\item{fun}{a function which should take a numeric argument x and possibly
+\item{\code{fun}: }{a function which should take a numeric argument x and possibly
 some parameters.}
-\item{lower}{a numeric value for the lower limit of the integral.}
-\item{upper}{a numeric value for the upper limit of the integral.}
-\item{...}{furthermore, the user must define additional arguments to be
-passed to \code{fun}.}
+\item{\code{lower}: }{a numeric value for the lower limit of the integral.}
+\item{\code{upper}: }{a numeric value for the upper limit of the integral.}
+\item{\code{...}> }{furthermore, the user must define additional arguments to be
+passed to \code{fun} function.}
 }
 
 The output must be a numeric atomic value with the result of the integral.
