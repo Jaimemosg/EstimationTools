@@ -5,7 +5,12 @@
 \alias{cum_hazard_fun}
 \title{Cumulative hazard functions in \code{maxlogL} framework}
 \usage{
-cum_hazard_fun(distr, support = NULL, method = c("log_sf", "integrate_hf"))
+cum_hazard_fun(
+  distr,
+  support = NULL,
+  method = c("log_sf", "integration"),
+  routine = NULL
+)
 }
 \arguments{
 \item{distr}{a length-one character vector with the name of density/mass function
@@ -19,6 +24,15 @@ distribution specified in \code{y_dist}.
 \item \code{type}: character indicating if distribution has a
 \code{discrete} or a \code{continous} random variable.
 }}
+
+\item{method}{a character or function; if \code{"log_sf"}, the cumulative
+hazard function (CHF) is computed using the expression
+\eqn{H(t) = -\log (S(t))}; if \code{"integrate_hf"}, the CHF is
+computed with the integral of the hazard function.}
+
+\item{routine}{a character specifying the integration routine.
+\code{integrate} and \code{gauss_quad} are available, but the
+custom routines can be defined.}
 }
 \value{
 A function with the folling input arguments:
@@ -42,7 +56,7 @@ support <- list(interval=c(0, Inf), type='continuous')
 Hweibull1 <- cum_hazard_fun(
   distr = 'dweibull',
   support = support,
-  method = "integrate_hf"
+  method = "integration"
  )
 
  Hweibull2 <- cum_hazard_fun(
@@ -52,7 +66,7 @@ Hweibull1 <- cum_hazard_fun(
  )
 
 # Compute cumulative hazard function from scratch
-# Recall h(x) = shape/scale * (x/scale)^(shape - 1)
+# Recall h(x) = shape/scale * (x/scale)^(shape - 1), then H(x) = (x/scale)^shape
 
 Hweibull3 <- function(x, scale, shape){
   (x/scale)^shape

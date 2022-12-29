@@ -5,22 +5,14 @@
 \alias{hazard_fun}
 \title{Hazard functions in \code{maxlogL} framework}
 \usage{
-hazard_fun(distr, support, log = FALSE)
+hazard_fun(distr, log = FALSE)
 }
 \arguments{
 \item{distr}{a length-one character vector with the name of density/mass function
 of interest.}
 
-\item{support}{a list with the following entries:
-\itemize{
-\item \code{interval}: a two dimensional atomic vector indicating the
-set of possible values of a random variable having the
-distribution specified in \code{y_dist}.
-\item \code{type}: character indicating if distribution has a
-\code{discrete} or a \code{continous} random variable.
-}}
-
-\item{method}{}
+\item{log}{logical; if TRUE, the natural logarithm of the hazard values are
+returned.}
 }
 \value{
 A function with the folling input arguments:
@@ -38,10 +30,9 @@ library(EstimationTools)
 
 #--------------------------------------------------------------------------------
 # Example 1: Hazard function of the Weibull distribution.
-support <- list(interval=c(0, Inf), type='continuous')
 
 # Hazard function in the 'maxlogL' framework
-hweibull1 <- hazard_fun('dweibull', support)
+hweibull1 <- hazard_fun('dweibull')
 
 # Hazard function from scratch
 hweibull2 <- function(x, shape, scale){
