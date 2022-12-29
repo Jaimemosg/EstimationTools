@@ -51,7 +51,7 @@ hazard_fun <-  function(
                    args = c(list(x = x, log = log), ...))
     sf <- do.call(what = paste0('p', substring(distr, 2)),
                   args = c(list(q = x, log.p = log, lower.tail = FALSE), ...))
-    hf <- if (log){ pdf - cdf } else { pdf/sf }
+    hf <- if (log){ pdf - sf } else { pdf/sf }
     # hf <- 'empty'
     return(hf)
   }
