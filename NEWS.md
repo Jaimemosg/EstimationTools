@@ -1,3 +1,5 @@
+# EstimationTools (development version)
+
 # EstimationTools 4.0.0
 
 - We changed the behaviour of `plot.HazardShape` function, its responsibility was splitted. Now, this function just plots the empirical  TTT function, and we also created the `legend.HazardShape` to customize the legend options.
