@@ -4,7 +4,7 @@
 \alias{residuals.maxlogL}
 \title{Extract Residuals from \code{maxlogL} model.}
 \usage{
-\method{residuals}{maxlogL}(object, parameter = NULL, type = c("deviance", "response"), ...)
+\method{residuals}{maxlogL}(object, parameter = NULL, type = "response", ...)
 }
 \arguments{
 \item{object}{an object of \code{\link{maxlogL}} class which summary is desired.}
