@@ -2,17 +2,25 @@
 
 # EstimationTools 4.0.1
 
+- We fixed the hazard function routine implemented to compute hazard functions
+for any distribution.
+- We also implemented a routine to compute cumulative hazard functions for any
+distribution.
+- We fixed and updated the documentation.
+
 # EstimationTools 4.0.0
 
-- We changed the behaviour of `plot.HazardShape` function, its responsibility was splitted. Now, this function just plots the empirical  TTT function, and we also created the `legend.HazardShape` to customize the legend options.
+- We changed the behaviour of `plot.HazardShape` function, its responsibility was 
+splitted. Now, this function just plots the empirical TTT function, and we also 
+created the `legend.HazardShape` to customize the legend options.
 - We fixed some examples in the documentation.
 
 # EstimationTools 3.0.0
 
 - **EstimationTools** was build in R 4.2.1.
-
-- From this version, `maxlogLreg` returns the censorship matrix. Check the [documentation](https://jaimemosg.github.io/EstimationTools/reference/maxlogLreg.html) for further information about the censorship matrix.
-- We have implemented a wrapper of integration routines.
+- From this version, `maxlogLreg` returns the censorship matrix. Check the [documentation](https://jaimemosg.github.io/EstimationTools/reference/maxlogLreg.html) 
+for further information about the censorship matrix.
+- We have implemented a wrapper (an API) of integration routines.
 
 # EstimationTools 2.4.0 
 
