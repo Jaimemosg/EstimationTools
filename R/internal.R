@@ -117,3 +117,10 @@ null_maxlogL <- function(object, silent = TRUE){
   if (silent) options(warn = 0)
   return(saturated_model)
 }
+#==============================================================================
+# Identity function for Monte Carlo integrals ---------------------------------
+#==============================================================================
+#' @export
+#' @keywords internal
+#' @rdname internalfunc
+identity <- function(x) x
