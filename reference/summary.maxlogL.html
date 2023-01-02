@@ -16,7 +16,7 @@ This is a summary method for maxlogL object."><!-- mathjax --><script src="https
     
     <a class="navbar-brand me-2" href="../index.html">EstimationTools</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">4.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">4.0.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -115,24 +115,24 @@ test of parameters.</p>
 <span class="r-in"><span><span class="va">theta_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="maxlogL.html">maxlogL</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">x</span>, dist <span class="op">=</span> <span class="st">'dnorm'</span>, control <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>trace <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                 link <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>over <span class="op">=</span> <span class="st">"sd"</span>, fun <span class="op">=</span> <span class="st">"log_link"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>                 fixed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">160</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0:     43345.741:  1.00000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   1:     32458.593:  2.00000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   2:     32219.290:  1.91716</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   3:     32074.806:  1.75646</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   4:     32065.106:  1.79171</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   5:     32064.934:  1.78768</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   6:     32064.933:  1.78755</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   7:     32064.933:  1.78755</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0:     43147.107:  1.00000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   1:     32431.710:  2.00000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   2:     32182.935:  1.91518</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   3:     32034.302:  1.75114</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   4:     32023.841:  1.78781</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   5:     32023.649:  1.78357</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   6:     32023.649:  1.78343</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   7:     32023.649:  1.78343</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">theta_1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Optimization routine: nlminb </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Standard Error calculation: Hessian from optim </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        AIC      BIC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   64129.87 64129.87</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       AIC     BIC</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   64047.3 64047.3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Estimate  Std. Error Z value Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sd   5.97482    0.04225   141.4   &lt;2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sd   5.95021    0.04207   141.4   &lt;2e-16 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
@@ -159,10 +159,10 @@ test of parameters.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Standard Error calculation: Hessian from optim </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        AIC      BIC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   366.7806 366.7806</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   358.2491 358.2491</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Estimate  Std. Error Z value Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> prob   0.30100    0.01451   20.75   &lt;2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> prob   0.29200    0.01438   20.31   &lt;2e-16 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
@@ -181,10 +181,10 @@ test of parameters.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Standard Error calculation: Hessian from optim </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        AIC      BIC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   338.0831 338.0831</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   353.3106 353.3106</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Estimate  Std. Error Z value Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> prob   0.29400    0.01441   20.41   &lt;2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> prob   0.30900    0.01461   21.15   &lt;2e-16 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
@@ -209,21 +209,21 @@ test of parameters.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Standard Error calculation: Hessian from optim </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        AIC      BIC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   5042.923 5062.554</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   4986.431 5006.062</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Fixed effects for mean</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              Estimate Std. Error Z value  Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -1.941740   0.113738 -17.072 &lt; 2.2e-16 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x            3.011202   0.030343  99.240 &lt; 2.2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -2.114459   0.108698 -19.453 &lt; 2.2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x            2.970103   0.028644 103.691 &lt; 2.2e-16 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Fixed effects for log(sd) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              Estimate Std. Error Z value  Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 1.0086566  0.0224753  44.879 &lt; 2.2e-16 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x           0.2874958  0.0072523  39.642 &lt; 2.2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 0.9546857  0.0225056  42.420 &lt; 2.2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x           0.3066417  0.0067639  45.335 &lt; 2.2e-16 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>

@@ -14,7 +14,7 @@ of any distribution implemented in R with covariates (linear predictors)."><!-- 
     
     <a class="navbar-brand me-2" href="../index.html">EstimationTools</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">4.0.0.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">4.0.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -274,8 +274,7 @@ ISSN 00983500, <a href="https://doi.org/10.1145/355958.355965" class="external-l
 <code><a href="https://rdrr.io/pkg/DEoptim/man/DEoptim.html" class="external-link">DEoptim</a></code>, <code><a href="https://rdrr.io/pkg/DEoptim/man/DEoptim.control.html" class="external-link">DEoptim.control</a></code>,
 <code><a href="maxlogL.html">maxlogL</a></code>, <code><a href="bootstrap_maxlogL.html">bootstrap_maxlogL</a></code></p>
 <p>Other maxlogL: 
-<code><a href="cum_hazard_fun.html">cum_hazard_fun</a>()</code>,
-<code><a href="hazard_fun.html">hazard_fun</a>()</code>,
+<code><a href="expected_value.maxlogL.html">expected_value.maxlogL</a>()</code>,
 <code><a href="maxlogL.html">maxlogL</a>()</code></p></div>
     </div>
     <div class="section level2">
@@ -307,21 +306,21 @@ ISSN 00983500, <a href="https://doi.org/10.1145/355958.355965" class="external-l
 <span class="r-out co"><span class="r-pr">#&gt;</span> Standard Error calculation: Hessian from optim </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        AIC      BIC</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   5237.167 5256.798</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   5018.613 5038.244</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Fixed effects for mean</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              Estimate Std. Error Z value  Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -2.104660   0.113098 -18.609 &lt; 2.2e-16 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x            2.990078   0.030757  97.217 &lt; 2.2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) -2.035660   0.110082 -18.492 &lt; 2.2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x            2.997588   0.029471 101.712 &lt; 2.2e-16 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Fixed effects for log(sd) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              Estimate Std. Error Z value  Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 1.0042178  0.0227877  44.069 &lt; 2.2e-16 ***</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> x           0.3075969  0.0070551  43.599 &lt; 2.2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error Z value  Pr(&gt;|z|)    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept) 0.967555   0.022528  42.948 &lt; 2.2e-16 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> x           0.288802   0.006672  43.286 &lt; 2.2e-16 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
@@ -366,14 +365,14 @@ ISSN 00983500, <a href="https://doi.org/10.1145/355958.355965" class="external-l
 <span class="r-out co"><span class="r-pr">#&gt;</span> Fixed effects for shape</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error Z value  Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)   1.7256     0.5034  3.4279 0.0006083 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  1.72563    0.50341  3.4279 0.0006083 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Fixed effects for scale</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Estimate Std. Error Z value  Pr(&gt;|z|)    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)   606.00     124.43  4.8703 1.115e-06 ***</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)   606.00     124.43  4.8701 1.115e-06 ***</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> _______________________________________________________________</span>
