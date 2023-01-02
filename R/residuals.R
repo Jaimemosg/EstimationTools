@@ -10,13 +10,17 @@
 #'
 #' @aliases residuals.maxlogL
 #'
-#' @param object an object of \code{\link{maxlogL}} class which summary is desired.
+#' @param object an object of \code{\link{maxlogL}} class obtained by fitting a
+#'               model with \code{\link{maxlogLreg}}.
+#' @param parameter a character which specifies residuas for a speciic parameter.
 #' @param type a character with the type of residuals to be computed required.
 #'             The default value is \code{type = "rqres"}, which is used to
 #'             compute the normalized randomized quantile residuals.
-#' @param parameter a character which specifies the parameter whose normalized
-#'                  quantile residuals will be computed.
-#' @param ... for extra arguments.
+#' @param routine a character specifying the integration routine.
+#'                \code{integrate} and \code{gauss_quad} are available. Custom
+#'                routines can be defined but they must be compatible with the
+#'                \code{\link{integration}} API.
+#' @param ... further arguments for the integration routine.
 #'
 #' @details
 #' For \code{type = "deviance"}, the residuals are computed using the following
@@ -32,9 +36,17 @@
 #'
 #' \deqn{r^R_i = (y_i - \hat{\mu}_i).}
 #'
+#' @return a vector with the specified residuas of a \code{maxlogLreg} model.
+#'
 #' @method residuals maxlogL
 #' @export
-residuals.maxlogL <- function(object, parameter = NULL, type = "response", ...){
+residuals.maxlogL <- function(
+    object,
+    parameter = NULL,
+    type = "response",
+    routine,
+    ...
+){
   available_residuals <- c(
     "response",
     "cox-snell",
@@ -82,7 +94,12 @@ residuals.maxlogL <- function(object, parameter = NULL, type = "response", ...){
   }
 
   if (type == 'response'){
-    mean <- moment_integration_maxlogL(object, ord = 1)
+    if (missing(routine)) routine <- "monte-carlo"
+    mean <- expected_value.maxlogL(
+      object = object,
+      routine = routine,
+      n = 1e6
+    )
     resid <- y - mean
   }
 
@@ -151,49 +168,6 @@ dev.resids <- function(object){
                  proposed_deviance_i = loglik0_i,
                  saturated_deviance_i = loglikS_i)
   return(output)
-}
-#==============================================================================
-# Computation of expected value (and high order moments) for a fitted model ---
-#==============================================================================
-moment_integration_maxlogL <- function(object, ord = 1, routine,
-                               ...){
-  parameters <- object$outputs$fitted.values
-  par_names <- names(parameters)
-  parameters <- matrix(unlist(parameters), nrow = object$outputs$n)
-  colnames(parameters) <- par_names
-  distr <- object$inputs$distr
-  support <- object$inputs$support
-
-  integrand <- function(distr){
-    nm_distr <- as.name(distr)
-    pars <- formals(args(distr))
-    log_par <- pars[names(pars) == 'log']
-    pars <- sapply(object$outputs$par_names, as.name)
-    distr_call <- as.call(c(nm_distr, as.name('x'), pars, log_par))
-    body_fun <- str2expression(paste('x ^', ord, '*', deparse(distr_call)))
-    func <- function() 'body'
-    formals(func) <- formals(args(distr))
-    formals(func)[object$outputs$par_names] <-
-      sapply(object$outputs$par_names, function(x) x <- bquote())
-    body(func) <- body_fun
-    return(func)
-  }
-  EX <- integrand(distr)
-
-  if ( missing(routine) ){
-    if (support$type == "continuous"){
-      routine <- "integrate"
-    } else if (support$type == "discrete"){
-      routine <- "sumate"
-    }
-  }
-  mean_computation <- function(x)
-    do.call(what = 'integration',
-            args = c(list(fun = EX, lower = support$interval[1],
-                          upper = support$interval[2],
-                          routine = routine, ...), x))
-  result <- apply(parameters, MARGIN = 1, mean_computation)
-  return(result)
 }
 #==============================================================================
 # Computation of cumulative for a fitted model --------------------------------
