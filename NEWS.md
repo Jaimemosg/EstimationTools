@@ -1,5 +1,7 @@
 # EstimationTools 4.0.2
 
+- We implemented two functions to compute expected values.
+
 # EstimationTools 4.0.1
 
 - We fixed the hazard function routine implemented to compute hazard functions
