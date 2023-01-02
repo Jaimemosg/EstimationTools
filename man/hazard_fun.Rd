@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{hazard_fun}
 \alias{hazard_fun}
-\title{Hazard functions in \code{maxlogL} framework}
+\title{Hazard functions for any distribution}
 \usage{
 hazard_fun(distr, log = FALSE)
 }
@@ -28,7 +28,7 @@ argument and creates a hazard function.
 \examples{
 library(EstimationTools)
 
-#--------------------------------------------------------------------------------
+#----------------------------------------------------------------------------
 # Example 1: Hazard function of the Weibull distribution.
 
 # Hazard function in the 'maxlogL' framework
@@ -44,16 +44,15 @@ hweibull1(0.2, shape = 2, scale = 1)
 hweibull2(0.2, shape = 2, scale = 1)
 
 
-#--------------------------------------------------------------------------------
+#----------------------------------------------------------------------------
 
 }
 \seealso{
-Other maxlogL: 
+Other distributions utilities: 
 \code{\link{cum_hazard_fun}()},
-\code{\link{maxlogLreg}()},
-\code{\link{maxlogL}()}
+\code{\link{expected_value}()}
 }
 \author{
 Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
 }
-\concept{maxlogL}
+\concept{distributions utilities}
