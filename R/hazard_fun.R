@@ -1,5 +1,5 @@
-#' @title Hazard functions in \code{maxlogL} framework
-#' @family maxlogL
+#' @title Hazard functions for any distribution
+#' @family distributions utilities
 #'
 #' @encoding UTF-8
 #' @author Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
@@ -22,7 +22,7 @@
 #' @examples
 #' library(EstimationTools)
 #'
-#' #--------------------------------------------------------------------------------
+#' #----------------------------------------------------------------------------
 #' # Example 1: Hazard function of the Weibull distribution.
 #'
 #' # Hazard function in the 'maxlogL' framework
@@ -38,7 +38,7 @@
 #' hweibull2(0.2, shape = 2, scale = 1)
 #'
 #'
-#' #--------------------------------------------------------------------------------
+#' #----------------------------------------------------------------------------
 #'
 #' @export
 hazard_fun <-  function(
@@ -66,8 +66,8 @@ hazard_fun <-  function(
   return(hfun)
 }
 
-#' @title Cumulative hazard functions in \code{maxlogL} framework
-#' @family maxlogL
+#' @title Cumulative hazard functions for any distribution
+#' @family distributions utilities
 #'
 #' @encoding UTF-8
 #' @author Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
@@ -82,9 +82,9 @@ hazard_fun <-  function(
 #'              of interest.
 #' @param support a list with the following entries:
 #'                \itemize{
-#'                \item \code{interval}: a two dimensional atomic vector indicating the
-#'                set of possible values of a random variable having the
-#'                distribution specified in \code{y_dist}.
+#'                \item \code{interval}: a two dimensional atomic vector
+#'                indicating the set of possible values of a random variable
+#'                having the distribution specified in \code{y_dist}.
 #'                \item \code{type}: character indicating if distribution has a
 #'                \code{discrete} or a \code{continous} random variable.
 #'                }
@@ -93,10 +93,12 @@ hazard_fun <-  function(
 #'               \eqn{H(t) = -\log (S(t))}; if \code{"integrate_hf"}, the CHF is
 #'               computed with the integral of the hazard function.
 #' @param routine a character specifying the integration routine.
-#'                \code{integrate} and \code{gauss_quad} are available, but the
-#'                custom routines can be defined.
+#'                \code{integrate} and \code{gauss_quad} are available for
+#'                continuous distributions, and \code{summate} for discrete ones.
+#'                Custom routines can be defined but they must be compatible
+#'                with the \code{\link{integration}} API.
 #'
-#' @return A function with the folling input arguments:
+#' @return A function with the following input arguments:
 #' \item{x}{vector of (non-negative) quantiles.}
 #' \item{...}{Arguments of the probability density/mass function.}
 #'
@@ -121,7 +123,8 @@ hazard_fun <-  function(
 #'  )
 #'
 #' # Compute cumulative hazard function from scratch
-#' # Recall h(x) = shape/scale * (x/scale)^(shape - 1), then H(x) = (x/scale)^shape
+#' # Recall h(x) = shape/scale * (x/scale)^(shape - 1), then
+#' # H(x) = (x/scale)^shape
 #'
 #' Hweibull3 <- function(x, scale, shape){
 #'   (x/scale)^shape
@@ -153,13 +156,7 @@ cum_hazard_fun <- function(
   }
 
   if (method == "integration"){
-    if (is.null(routine)){
-      if (support$type == 'continuous'){
-        routine <- 'integrate'
-      } else if (support$type == 'discrete'){
-        routine <- 'summate'
-      }
-    }
+    routine <- set_custom_integration_routine(support, routine)
     Hfun <- cumhazfun_method[[method]](distr, support, routine)
   }
   return(Hfun)
