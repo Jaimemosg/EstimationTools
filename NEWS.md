@@ -1,3 +1,5 @@
+# EstimationTools (development version)
+
 # EstimationTools 4.0.1
 
 # EstimationTools 4.0.0
@@ -6,6 +8,8 @@
 - We fixed some examples in the documentation.
 
 # EstimationTools 3.0.0
+
+- **EstimationTools** was build in R 4.2.1.
 
 - From this version, `maxlogLreg` returns the censorship matrix. Check the [documentation](https://jaimemosg.github.io/EstimationTools/reference/maxlogLreg.html) for further information about the censorship matrix.
 - We have implemented a wrapper of integration routines.
@@ -64,7 +68,3 @@
 - 'summary' method only reports results. It does not perform any computation, bootstrap through 'summary' function has been deprecated.
 
 - We have made a careful spelling check in our documentation.
-
-# EstimationTools 3.0.0
-
-- **EstimationTools** was build in R 4.2.1.
