@@ -1,7 +1,7 @@
 Package: EstimationTools
 Type: Package
 Title: Maximum Likelihood Estimation for Probability Functions from Data Sets
-Version: 4.0.1.9000
+Version: 4.0.2
 Authors@R: c(
       person("Jaime", "Mosquera", email = "jmosquerag@unal.edu.co", role = c("aut", "cre"),
       comment = c(ORCID = "0000-0002-1684-4756")),
