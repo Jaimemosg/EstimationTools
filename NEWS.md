@@ -1,6 +1,6 @@
 # EstimationTools (development version)
 
-# EstimationTools 4.0.2
+# EstimationTools 4.1.0
 
 - We implemented two functions to compute expected values.
 
