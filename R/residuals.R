@@ -12,8 +12,8 @@
 #'
 #' @param object an object of \code{\link{maxlogL}} class obtained by fitting a
 #'               model with \code{\link{maxlogLreg}}.
-#' @param parameter a character which specifies residuas for a speciic parameter.
-#' @param type a character with the type of residuals to be computed required.
+#' @param parameter a character which specifies residuals for a specific parameter.
+#' @param type a character with the type of residuals to be computed.
 #'             The default value is \code{type = "rqres"}, which is used to
 #'             compute the normalized randomized quantile residuals.
 #' @param routine a character specifying the integration routine.
@@ -36,7 +36,7 @@
 #'
 #' \deqn{r^R_i = (y_i - \hat{\mu}_i).}
 #'
-#' @return a vector with the specified residuas of a \code{maxlogLreg} model.
+#' @return a vector with the specified residuals of a \code{maxlogLreg} model.
 #'
 #' @method residuals maxlogL
 #' @export
