@@ -48,6 +48,7 @@ residuals.maxlogL <- function(
     ...
 ){
   available_residuals <- c(
+    "rqres",
     "response",
     "cox-snell",
     "martingale",
@@ -93,7 +94,7 @@ residuals.maxlogL <- function(
     # }
   }
 
-  if (type == 'response'){
+  if (type == "response"){
     if (missing(routine)) routine <- "monte-carlo"
     mean <- expected_value.maxlogL(
       object = object,
@@ -101,6 +102,17 @@ residuals.maxlogL <- function(
       n = 1e6
     )
     resid <- y - mean
+  }
+
+  if (type == "rqres"){
+    distr <- object$inputs$distr
+    cum_fun <- paste0('p', substring(distr, 2))
+    fitted_parameters <- object$outputs$fitted.values
+    Fyi <- do.call(
+      what = cum_fun,
+      args = c(list(q = y, lower.tail = TRUE, log.p = FALSE), fitted_parameters)
+    )
+    resid <- qnorm(p = Fyi, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)
   }
 
   names(resid) <- 1:length(y)
