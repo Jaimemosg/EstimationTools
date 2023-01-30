@@ -51,7 +51,7 @@ residuals.maxlogL <- function(
     "response",
     "cox-snell",
     "martingale",
-    "censored_deviance"
+    "censored-deviance"
   )
 
   type <- match.arg(type, choices = available_residuals)
@@ -86,7 +86,7 @@ residuals.maxlogL <- function(
 
     if (type == 'martingale') resid <- mres
 
-    if (type == 'censored_deviance'){
+    if (type == 'censored-deviance'){
       deviance_i <- -2 * ( mres + delta * log(delta - mres) )
       resid <- sign(mres) * sqrt(deviance_i)
     }
