@@ -8,7 +8,7 @@ Authors@R: c(
       person("Freddy", "Hernandez", , "fhernanb@unal.edu.co", role = c("ctb"), 
       comment = c(ORCID = "0000-0001-7459-3329"))
       )
-Depends: R (>= 3.5.0), survival, DEoptim, BBmisc, GA, gaussquad
+Depends: R (>= 3.5.0), survival, DEoptim, BBmisc, GA, car
 Imports:
     Rdpack,
     utils,
@@ -17,7 +17,8 @@ Imports:
     boot,
     autoimage,
     graphics,
-    stringr
+    stringr,
+    gaussquad
 RdMacros: Rdpack
 Suggests:
     gamlss.dist,
@@ -55,3 +56,36 @@ RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
 Config/testthat/edition: 3
 Language: en-US
+Collate: 
+    'Cells-data.R'
+    'Fibers-data.R'
+    'Hazard_Shape.R'
+    'LinkFunc.R'
+    'TTTE_Analytical.R'
+    'TTT_hazard_shape.R'
+    'bootstrap_maxlogL.R'
+    'coef.maxlogL.R'
+    'expected_value.R'
+    'gauss_quad.R'
+    'generic_funcs_EstimationTools.R'
+    'globals.R'
+    'hazard_fun.R'
+    'inherit_methods.R'
+    'integration.R'
+    'internal.R'
+    'interp.options.R'
+    'key_functions.R'
+    'legend.HazardShape.R'
+    'loess.options.R'
+    'maxlogL.R'
+    'maxlogLreg.R'
+    'plot.HazardShape.R'
+    'plot.empiricalTTT.R'
+    'residuals.R'
+    'plot.maxlogL.R'
+    'predict.maxlogL.R'
+    'print.HazardShape.R'
+    'summary.maxlogL.R'
+    'summate.R'
+    'utils.R'
+    'zzz.R'
