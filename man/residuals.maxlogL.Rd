@@ -4,15 +4,15 @@
 \alias{residuals.maxlogL}
 \title{Extract Residuals from \code{maxlogL} model.}
 \usage{
-\method{residuals}{maxlogL}(object, parameter = NULL, type = "response", routine, ...)
+\method{residuals}{maxlogL}(object, parameter = NULL, type = "rqres", routine, ...)
 }
 \arguments{
 \item{object}{an object of \code{\link{maxlogL}} class obtained by fitting a
 model with \code{\link{maxlogLreg}}.}
 
-\item{parameter}{a character which specifies residuas for a speciic parameter.}
+\item{parameter}{a character which specifies residuals for a specific parameter.}
 
-\item{type}{a character with the type of residuals to be computed required.
+\item{type}{a character with the type of residuals to be computed.
 The default value is \code{type = "rqres"}, which is used to
 compute the normalized randomized quantile residuals.}
 
@@ -24,7 +24,7 @@ routines can be defined but they must be compatible with the
 \item{...}{further arguments for the integration routine.}
 }
 \value{
-a vector with the specified residuas of a \code{maxlogLreg} model.
+a vector with the specified residuals of a \code{maxlogLreg} model.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
