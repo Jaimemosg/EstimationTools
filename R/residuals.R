@@ -43,7 +43,7 @@
 residuals.maxlogL <- function(
     object,
     parameter = NULL,
-    type = "response",
+    type = "rqres",
     routine,
     ...
 ){
@@ -120,13 +120,13 @@ residuals.maxlogL <- function(
 }
 
 check_right_censorship <- function(cens_matrix, type){
-  if ( sum(cens_matrix[, 3]) > 0 ){
+  if ( sum(cens_matrix[, 2]) > 0 ){
     stop(
       paste0(
         "'", type, "'",
         " residuals are not available for left censored data. Please, ",
         "compute randomized quantile residuals or raw residuals, which are ",
-        "available for any censorship type. Just set residuals = 'rqres' or",
+        "available for any censorship type. Just set residuals = 'rqres' or ",
         "residuals = 'response' respectively.")
     )
   }
