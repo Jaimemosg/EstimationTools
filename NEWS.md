@@ -1,4 +1,9 @@
+# EstimationTools (development version)
+
 # EstimationTools 4.1.1
+
+- Implementation of residuals: Cox-Snell, randomized quantile residuals and
+martingale.
 
 # EstimationTools 4.1.0
 

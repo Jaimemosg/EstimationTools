@@ -33,7 +33,7 @@ maximum likelihood estimation of probability density/mass functions in
 
 ## Installation
 
-You can install the latest version (4.1.0.9000) of `EstimationTools`
+You can install the latest version (4.1.1.9000) of `EstimationTools`
 typing the following command lines in `R` console:
 
 ``` r
@@ -42,7 +42,7 @@ devtools::install_github('Jaimemosg/EstimationTools', force = TRUE)
 library(EstimationTools)
 ```
 
-<!-- 4.0.2 -->
+<!-- 4.1.1 -->
 
 Or you can install the released version (4.0.0) from
 [CRAN](https://cran.r-project.org/package=EstimationTools) if you
