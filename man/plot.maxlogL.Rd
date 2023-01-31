@@ -7,7 +7,7 @@
 \method{plot}{maxlogL}(
   x,
   type = c("rqres", "cox-snell", "martingale"),
-  which.plots = 1:4,
+  which.plots = NULL,
   caption = NULL,
   xvar = NULL,
   ...
@@ -66,6 +66,7 @@ norm_mod <- maxlogLreg(formulas, y_dist = y ~ dnorm, support = support,
                        data = norm_data,
                        link = list(over = "sd", fun = "log_link"))
 plot(norm_mod, type = "rqres")
+plot(norm_mod, type = "rqres", which.plots = 1:3)
 
 }
 \author{

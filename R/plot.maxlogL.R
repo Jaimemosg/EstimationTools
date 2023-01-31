@@ -51,6 +51,7 @@
 #'                        data = norm_data,
 #'                        link = list(over = "sd", fun = "log_link"))
 #' plot(norm_mod, type = "rqres")
+#' plot(norm_mod, type = "rqres", which.plots = 1:3)
 #'
 #' @method plot maxlogL
 #' @importFrom car qqPlot
@@ -59,7 +60,7 @@
 #' @export
 plot.maxlogL <- function(x,
                          type = c("rqres", "cox-snell", "martingale"),
-                         which.plots = 1:4,
+                         which.plots = NULL,
                          caption = NULL,
                          xvar = NULL,
                          ...) {
@@ -85,6 +86,7 @@ plot_rqres <- function(object, which.plots, caption, ...) {
       )
     )
   }
+
   if (is.null(caption)) {
     caption <- c(
       "Residuals against fitted values",
@@ -93,6 +95,9 @@ plot_rqres <- function(object, which.plots, caption, ...) {
       "Normal Q-Q Plot"
     )
   }
+
+  if (is.null(which.plots)) which.plots <- 1:4
+
   names(plots_list) <- caption
   plots_all_names <- names(plots_list[which.plots])
   par(mfrow = c(2, 2))
