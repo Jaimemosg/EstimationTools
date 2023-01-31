@@ -28,7 +28,7 @@ values are used.}
 
 \item{xvar}{an explanatory variable to plot the residuals against.}
 
-\item{...}{further parameters for the \code{\link{residuals}} function.}
+\item{...}{further parameters for the \link{plot} method.}
 }
 \value{
 Returns specified plots related to the residuals of the fitted

@@ -18,7 +18,7 @@
 #' @param caption title of the plots. If \code{caption = NULL}, the default
 #'                 values are used.
 #' @param xvar an explanatory variable to plot the residuals against.
-#' @param ... further parameters for the \code{\link{residuals}} function.
+#' @param ... further parameters for the \link{plot} method.
 #'
 #' @details
 #' If \code{type = "rqres"}, the available subset is \code{1:4}, referring to:
@@ -64,17 +64,17 @@ plot.maxlogL <- function(x,
                          xvar = NULL,
                          ...) {
   type <- match.arg(type)
-  resids <- residuals.maxlogL(object = x, type = type, ...)
-  y <- x$outputs$response
 
   switch(type,
-    rqres = plot_rqres(resids, y, which.plots, caption),
+    rqres = plot_rqres(x, which.plots, caption, ...),
     `cox-snell` = cat("hi"),
     martingale = cat("bye")
   )
 }
 
-plot_rqres <- function(resids, y, which.plots, caption) {
+plot_rqres <- function(object, which.plots, caption, ...) {
+  resids <- residuals.maxlogL(object = object, type = "rqres")
+  y <- object$outputs$response
   n_panels <- length(which.plots)
   if (n_panels > 4) {
     warning(
@@ -98,11 +98,11 @@ plot_rqres <- function(resids, y, which.plots, caption) {
   par(mfrow = c(2, 2))
 
   for (plot_name in plots_all_names) {
-    plots_list[[plot_name]](resids, y, plot_name)
+    plots_list[[plot_name]](resids, y, plot_name, ...)
   }
 }
 
-rqres_vs_fitted_values <- function(resids, y, caption) {
+rqres_vs_fitted_values <- function(resids, y, caption, ...) {
   plot(
     y,
     resids,
@@ -112,7 +112,7 @@ rqres_vs_fitted_values <- function(resids, y, caption) {
   )
 }
 
-rqres_vs_index <- function(resids, y = NULL, caption){
+rqres_vs_index <- function(resids, y = NULL, caption, ...){
   plot(
     resids,
     main = caption,
@@ -121,7 +121,7 @@ rqres_vs_index <- function(resids, y = NULL, caption){
   )
 }
 
-density_estimate <- function(resids, y = NULL, caption){
+density_estimate <- function(resids, y = NULL, caption, ...){
   density_residuals <- density(resids)
   plot(
     density_residuals,
@@ -130,7 +130,7 @@ density_estimate <- function(resids, y = NULL, caption){
   rug(jitter(resids))
 }
 
-norm_qqplot <- function(resids, y = NULL, caption){
+norm_qqplot <- function(resids, y = NULL, caption, ...){
   qqPlot(resids, distribution = "norm",
          xlab = "Theoretical Quantiles",
          ylab = "Sample Quantiles (from quantile residuals)",
