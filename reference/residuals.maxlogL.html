@@ -14,7 +14,7 @@ generic function residuals which extracts the residuals from a fitted model."><!
     
     <a class="navbar-brand me-2" href="../index.html">EstimationTools</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">4.1.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">4.1.1.9000</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -65,7 +65,7 @@ generic function residuals which extracts the residuals from a fitted model.</p>
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for maxlogL</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html" class="external-link">residuals</a></span><span class="op">(</span><span class="va">object</span>, parameter <span class="op">=</span> <span class="cn">NULL</span>, type <span class="op">=</span> <span class="st">"response"</span>, <span class="va">routine</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/residuals.html" class="external-link">residuals</a></span><span class="op">(</span><span class="va">object</span>, parameter <span class="op">=</span> <span class="cn">NULL</span>, type <span class="op">=</span> <span class="st">"rqres"</span>, <span class="va">routine</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -76,11 +76,11 @@ model with <code><a href="maxlogLreg.html">maxlogLreg</a></code>.</p></dd>
 
 
 <dt>parameter</dt>
-<dd><p>a character which specifies residuas for a speciic parameter.</p></dd>
+<dd><p>a character which specifies residuals for a specific parameter.</p></dd>
 
 
 <dt>type</dt>
-<dd><p>a character with the type of residuals to be computed required.
+<dd><p>a character with the type of residuals to be computed.
 The default value is <code>type = "rqres"</code>, which is used to
 compute the normalized randomized quantile residuals.</p></dd>
 
@@ -100,7 +100,7 @@ routines can be defined but they must be compatible with the
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>a vector with the specified residuas of a <code>maxlogLreg</code> model.</p>
+<p>a vector with the specified residuals of a <code>maxlogLreg</code> model.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
