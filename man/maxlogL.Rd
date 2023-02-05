@@ -160,6 +160,7 @@ summary(theta_42)
 \code{\link{maxlogLreg}}, \code{\link{bootstrap_maxlogL}}
 
 Other maxlogL: 
+\code{\link{cum_hazard.maxlogL}()},
 \code{\link{expected_value.maxlogL}()},
 \code{\link{maxlogLreg}()}
 }

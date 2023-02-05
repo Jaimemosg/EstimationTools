@@ -1,4 +1,4 @@
-#' @title Expected value of a given function for \code{maxlogLreg} models.
+#' @title Expected value of a \code{maxlogLreg} model.
 #' @family maxlogL
 #'
 #' @encoding UTF-8

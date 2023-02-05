@@ -231,6 +231,7 @@ summary(mod_weibull)
 \code{\link{maxlogL}}, \code{\link{bootstrap_maxlogL}}
 
 Other maxlogL: 
+\code{\link{cum_hazard.maxlogL}()},
 \code{\link{expected_value.maxlogL}()},
 \code{\link{maxlogL}()}
 }

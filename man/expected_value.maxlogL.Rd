@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{expected_value.maxlogL}
 \alias{expected_value.maxlogL}
-\title{Expected value of a given function for \code{maxlogLreg} models.}
+\title{Expected value of a \code{maxlogLreg} model.}
 \usage{
 expected_value.maxlogL(object, g = identity, routine, ...)
 }
@@ -76,6 +76,7 @@ plot(y, Ey)
 }
 \seealso{
 Other maxlogL: 
+\code{\link{cum_hazard.maxlogL}()},
 \code{\link{maxlogLreg}()},
 \code{\link{maxlogL}()}
 }
