@@ -77,7 +77,7 @@ residuals.maxlogL <- function(
 
   if (right_censored_data){
     # if ( is.Surv(object$inputs$y_dist) ){
-    cumHaz <- cum_hazard_maxlogL(object)
+    cumHaz <- cum_hazard.maxlogL(object)
     delta <- cens[, 2]
 
     # Martingale for right censored data
@@ -180,57 +180,4 @@ dev.resids <- function(object){
                  proposed_deviance_i = loglik0_i,
                  saturated_deviance_i = loglikS_i)
   return(output)
-}
-#==============================================================================
-# Computation of cumulative for a fitted model --------------------------------
-#==============================================================================
-cum_hazard_maxlogL <- function(object, routine, ...){
-  distr <- object$inputs$distr
-  support <- object$inputs$support
-
-  Hfun <- cum_hazard_fun(
-    distr = distr,
-    support = support,
-    method = "log_sf"
-  )
-
-  parameters <- object$outputs$fitted.values
-  par_names <- names(parameters)
-  parameters <- matrix(unlist(parameters), nrow = object$outputs$n)
-
-  response <- object$outputs$response
-
-  inputs_matrix <- cbind(response, parameters)
-  colnames(inputs_matrix) <- c("x", par_names)
-
-  Hf_i <- function(x){
-    args <- sapply(X = x, FUN = function(x) x, simplify = FALSE)
-    cum_haz <- do.call(
-      what = Hfun,
-      args = args
-    )
-    return(cum_haz)
-  }
-
-  result <- apply(
-    inputs_matrix,
-    MARGIN = 1,
-    FUN = Hf_i
-  )
-  return(result)
-  # integrand <- hazard_fun(distr, support)
-  #
-  # if ( missing(routine) ){
-  #   if (support$type == 'continuous'){
-  #     routine <- 'integrate'
-  #   } else if (support$type == 'discrete'){
-  #     routine <- 'summate'
-  #   }
-  # }
-  # haz_computation <- function(x)
-  #   do.call(what = 'integration',
-  #           args = c(list(fun = integrand, lower = support$interval[1],
-  #                         upper = support$interval[2],
-  #                         routine = routine, ...), x))
-  # result <- apply(parameters, MARGIN = 1, haz_computation)
 }

@@ -1,3 +1,56 @@
+#==============================================================================
+# Computation of cumulative for a fitted model --------------------------------
+#==============================================================================
+cum_hazard.maxlogL <- function(object, ...){
+  distr <- object$inputs$distr
+
+  Hfun <- cum_hazard_fun(
+    distr = distr,
+    method = "log_sf",
+    ...
+  )
+
+  parameters <- object$outputs$fitted.values
+  par_names <- names(parameters)
+  parameters <- matrix(unlist(parameters), nrow = object$outputs$n)
+
+  response <- object$outputs$response
+
+  inputs_matrix <- cbind(response, parameters)
+  colnames(inputs_matrix) <- c("x", par_names)
+
+  Hf_i <- function(x){
+    args <- sapply(X = x, FUN = function(x) x, simplify = FALSE)
+    cum_haz <- do.call(
+      what = Hfun,
+      args = args
+    )
+    return(cum_haz)
+  }
+
+  result <- apply(
+    inputs_matrix,
+    MARGIN = 1,
+    FUN = Hf_i
+  )
+  return(result)
+  # integrand <- hazard_fun(distr, support)
+  #
+  # if ( missing(routine) ){
+  #   if (support$type == 'continuous'){
+  #     routine <- 'integrate'
+  #   } else if (support$type == 'discrete'){
+  #     routine <- 'summate'
+  #   }
+  # }
+  # haz_computation <- function(x)
+  #   do.call(what = 'integration',
+  #           args = c(list(fun = integrand, lower = support$interval[1],
+  #                         upper = support$interval[2],
+  #                         routine = routine, ...), x))
+  # result <- apply(parameters, MARGIN = 1, haz_computation)
+}
+
 #' @title Hazard functions for any distribution
 #' @family distributions utilities
 #'
@@ -118,7 +171,6 @@ hazard_fun <-  function(
 #'
 #'  Hweibull2 <- cum_hazard_fun(
 #'   distr = 'dweibull',
-#'   support = support,
 #'   method = "log_sf"
 #'  )
 #'
@@ -164,7 +216,7 @@ cum_hazard_fun <- function(
 #==============================================================================
 # Computation of cumulative hazard functions ----------------------------------
 #==============================================================================
-cumhf_log_sf <- function(distr, support){
+cumhf_log_sf <- function(distr){
   Hfun <- function(x, ...){
     log_sf <- do.call(
       what = paste0('p', substring(distr, 2)),
