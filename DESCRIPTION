@@ -60,6 +60,7 @@ Collate:
     'Cells-data.R'
     'Fibers-data.R'
     'Hazard_Shape.R'
+    'head-neck-cancer-data.R'
     'LinkFunc.R'
     'TTTE_Analytical.R'
     'TTT_hazard_shape.R'
