@@ -63,7 +63,6 @@ Hweibull1 <- cum_hazard_fun(
 
  Hweibull2 <- cum_hazard_fun(
   distr = 'dweibull',
-  support = support,
   method = "log_sf"
  )
 

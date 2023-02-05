@@ -1,3 +1,67 @@
+#' @title Cumuative hazard function of a \code{maxlogLreg} model.
+#' @family maxlogL
+#'
+#' @encoding UTF-8
+#' @author Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
+#'
+#' @description
+#' `r lifecycle::badge("experimental")`
+#'
+#' This function takes a \code{maxlogL} model and computes the cumulative
+#' hazard function (CHF) using the estimated parameters.
+#'
+#'
+#' @param object an object of \code{\link{maxlogL}} class obtained by fitting a
+#'               model with \code{\link{maxlogLreg}}.
+#' @param ... further arguments for \code{\link{cum_hazard_fun}}..
+#'
+#' @return the expected value of the fitted model corresponding to the
+#' distribution specified in the \code{y_dist} argument of
+#' \code{\link{maxlogLreg}}.
+#'
+#' @details
+#' The CHF is computed by default using the following expression
+#'
+#' \deqn{H(x) = -\log \left( S(x|\hat{\theta})) \right),}
+#'
+#' where \eqn{S(x|\hat{\theta})} is the survival function using the
+#' estimated parameters. This method relies on the cdf, i.e, the \code{pXXX}
+#' function stored in \proglang{R} environment, where \code{xxx} is
+#' the name of the distribution.
+#'
+#' Notice that CHF can be computed by integration
+#'
+#' \deqn{H(x) = \int_0^t h(s)ds}
+#'
+#' Just set up a \code{support} and set \code{method = "integration"}.
+#'
+#' @examples
+#' library(EstimationTools)
+#'
+#' #----------------------------------------------------------------------------
+#' # Example 1: cumulative hazard function of a estimated model.
+#' n <- 100
+#' x <- runif(n = n, -5, 6)
+#' y <- rnorm(n = n, mean = -2 + 3 * x, sd = 0.3)
+#' norm_data <- data.frame(y = y, x = x)
+#'
+#' formulas <- list(sd.fo = ~ 1, mean.fo = ~ x)
+#' support <- list(interval = c(-Inf, Inf), type = "continuous")
+#'
+#' norm_mod_maxlogL <- maxlogLreg(
+#'   formulas, y_dist = y ~ dnorm,
+#'   support = support,
+#'   data = norm_data,
+#'   link = list(over = "sd", fun = "log_link")
+#' )
+#'
+#' # Expected value
+#' H <- cum_hazard.maxlogL(object = norm_mod_maxlogL)
+#'
+#'
+#' #----------------------------------------------------------------------------
+#'
+#' @export
 #==============================================================================
 # Computation of cumulative for a fitted model --------------------------------
 #==============================================================================
