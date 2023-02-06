@@ -8,7 +8,7 @@ Authors@R: c(
       person("Freddy", "Hernandez", , "fhernanb@unal.edu.co", role = c("ctb"), 
       comment = c(ORCID = "0000-0001-7459-3329"))
       )
-Depends: R (>= 3.5.0), survival, DEoptim, BBmisc, GA, car
+Depends: R (>= 3.5.0), survival, DEoptim, BBmisc, GA, Rmpfr
 Imports:
     Rdpack,
     utils,
@@ -18,7 +18,8 @@ Imports:
     autoimage,
     graphics,
     stringr,
-    gaussquad
+    gaussquad,
+    car
 RdMacros: Rdpack
 Suggests:
     Rmpfr,
