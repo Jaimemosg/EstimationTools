@@ -15,8 +15,7 @@
 #' data(head_neck_cancer)
 #' par(mfrow = c(1,2))
 #' hist(head_neck_cancer$Time, main="", xlab="Time (Days)")
-#' plot(head_neck_cancer$Therapy, xlab = "Status", lty = 3, type="h")
-#' points(head_neck_cancer$status, pch = 16)
+#' plot(head_neck_cancer$Time, xlab = "Patient (subjects)", lty = 3, type="h")
 #'
 #' @references
 #' \insertRef{Khan2018}{EstimationTools}

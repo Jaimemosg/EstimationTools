@@ -2,7 +2,7 @@
 #'
 #' Survival times, in weeks, of 17 patients with acute leukemia. For these
 #' patients, their white blood cell counts (WBC) were recorded at the time of
-#' diagnosis.
+#' diagnosis. The variables are:
 #'
 #' \itemize{
 #'   \item times: time-to-event (in weeks).
@@ -15,7 +15,7 @@
 #' @examples
 #' data(ALL_colosimo)
 #' par(mfrow = c(1,2))
-#' hist(ALL_colosimo$Time, main="", xlab="Time (Days)")
+#' hist(ALL_colosimo$Time, main="", xlab="Time (Weeks)")
 #' plot(ALL_colosimo$wbc, xlab = "Status", lty = 3, type="h")
 #' points(ALL_colosimo$status, pch = 16)
 #'
