@@ -51,8 +51,8 @@ If \code{type = "rqres"}, the available subset is \code{1:4}, referring to:
 \examples{
 library(EstimationTools)
 
-#--------------------------------------------------------------------------------
-# Example 1: Estimation in simulated normal distribution
+#----------------------------------------------------------------------------
+# Example 1: Quantile residuals for a normal model
 n <- 1000
 x <- runif(n = n, -5, 6)
 y <- rnorm(n = n, mean = -2 + 3 * x, sd = exp(1 + 0.3* x))
@@ -67,6 +67,11 @@ norm_mod <- maxlogLreg(formulas, y_dist = y ~ dnorm, support = support,
                        link = list(over = "sd", fun = "log_link"))
 plot(norm_mod, type = "rqres")
 plot(norm_mod, type = "rqres", which.plots = 1:3)
+
+
+#----------------------------------------------------------------------------
+# Example 2: Cox-Snell residuals for a Weibull model
+
 
 }
 \author{

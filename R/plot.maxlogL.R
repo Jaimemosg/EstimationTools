@@ -36,8 +36,8 @@
 #' @examples
 #' library(EstimationTools)
 #'
-#' #--------------------------------------------------------------------------------
-#' # Example 1: Estimation in simulated normal distribution
+#' #----------------------------------------------------------------------------
+#' # Example 1: Quantile residuals for a normal model
 #' n <- 1000
 #' x <- runif(n = n, -5, 6)
 #' y <- rnorm(n = n, mean = -2 + 3 * x, sd = exp(1 + 0.3* x))
@@ -52,6 +52,11 @@
 #'                        link = list(over = "sd", fun = "log_link"))
 #' plot(norm_mod, type = "rqres")
 #' plot(norm_mod, type = "rqres", which.plots = 1:3)
+#'
+#'
+#' #----------------------------------------------------------------------------
+#' # Example 2: Cox-Snell residuals for a Weibull model
+#'
 #'
 #' @method plot maxlogL
 #' @importFrom car qqPlot
@@ -68,11 +73,13 @@ plot.maxlogL <- function(x,
 
   switch(type,
     rqres = plot_rqres(x, which.plots, caption, ...),
-    `cox-snell` = cat("hi"),
-    martingale = cat("bye")
+    `cox-snell` = plot_cox_snell(x, which.plots, caption, ...),
+    martingale = plot_martinagle()
   )
 }
-
+#==============================================================================
+# Randomized quantile residuals plot ------------------------------------------
+#==============================================================================
 plot_rqres <- function(object, which.plots, caption, ...) {
   resids <- residuals.maxlogL(object = object, type = "rqres")
   y <- object$outputs$response
@@ -98,12 +105,12 @@ plot_rqres <- function(object, which.plots, caption, ...) {
 
   if (is.null(which.plots)) which.plots <- 1:4
 
-  names(plots_list) <- caption
-  plots_all_names <- names(plots_list[which.plots])
+  names(rqres_plots_list) <- caption
+  plots_all_names <- names(rqres_plots_list[which.plots])
   par(mfrow = c(2, 2))
 
   for (plot_name in plots_all_names) {
-    plots_list[[plot_name]](resids, y, plot_name, ...)
+    rqres_plots_list[[plot_name]](resids, y, plot_name, ...)
   }
 }
 
@@ -136,15 +143,67 @@ density_estimate <- function(resids, y = NULL, caption, ...){
 }
 
 norm_qqplot <- function(resids, y = NULL, caption, ...){
-  qqPlot(resids, distribution = "norm",
-         xlab = "Theoretical Quantiles",
-         ylab = "Sample Quantiles (from quantile residuals)",
+  car::qqPlot(resids, distribution = "norm",
+         xlab = "Theoretical normal quantiles",
+         ylab = "Sample quantiles (from quantile residuals)",
          main = caption)
 }
 
-plots_list <- list(
+rqres_plots_list <- list(
   rqres_vs_fitted_values,
   rqres_vs_index,
   density_estimate,
   norm_qqplot
 )
+#==============================================================================
+# Cox-Snell residuals plot ----------------------------------------------------
+#==============================================================================
+plot_cox_snell <- function(object, which.plots, caption, ...) {
+  resids <- residuals.maxlogL(object = object, type = "cox-snell")
+  y <- object$outputs$response
+  n_panels <- length(which.plots)
+  if (n_panels > 4) {
+    warning(
+      paste0(
+        "This plot method only produces at maximum four plots. ",
+        "Please, write another 'plot' statement for the remaining ",
+        n_panels - 4, "plots."
+      )
+    )
+  }
+
+  if (is.null(caption)) {
+    caption <- c(
+      "Residuals against Exp(1)"
+      # "Residuals against index",
+      # "Density estimate plot",
+      # "Normal Q-Q Plot"
+    )
+  }
+
+  if (is.null(which.plots)) which.plots <- 1:4
+
+  names(cox_snell_plots_list) <- caption
+  plots_all_names <- names(cox_snell_plots_list[which.plots])
+  par(mfrow = c(2, 2))
+
+  for (plot_name in plots_all_names) {
+    cox_snell_plots_list[[plot_name]](resids, y, plot_name, ...)
+  }
+}
+
+exp_qqplot <- function(resids, y = NULL, caption, ...){
+  car::qqPlot(resids, distribution = "exp",
+              xlab = "Theoretical exponential quantiles",
+              ylab = "Sample quantiles (from Cox-Snell residuals)",
+              main = caption)
+}
+
+cox_snell_plots_list <- list(
+  exp_qqplot
+  # rqres_vs_index,
+  # density_estimate,
+  # norm_qqplot
+)
+
+plot_martinagle <- function(){}
