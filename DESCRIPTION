@@ -59,6 +59,7 @@ Roxygen: list(markdown = TRUE)
 Config/testthat/edition: 3
 Language: en-US
 Collate: 
+    'ALL-data.R'
     'Cells-data.R'
     'Fibers-data.R'
     'Hazard_Shape.R'
