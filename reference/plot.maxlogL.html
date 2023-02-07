@@ -125,8 +125,8 @@ values are used.</p></dd>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://jaimemosg.github.io/EstimationTools/">EstimationTools</a></span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co">#--------------------------------------------------------------------------------</span></span></span>
-<span class="r-in"><span><span class="co"># Example 1: Estimation in simulated normal distribution</span></span></span>
+<span class="r-in"><span><span class="co">#----------------------------------------------------------------------------</span></span></span>
+<span class="r-in"><span><span class="co"># Example 1: Quantile residuals for a normal model</span></span></span>
 <span class="r-in"><span><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span></span>
 <span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>, <span class="op">-</span><span class="fl">5</span>, <span class="fl">6</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="va">n</span>, mean <span class="op">=</span> <span class="op">-</span><span class="fl">2</span> <span class="op">+</span> <span class="fl">3</span> <span class="op">*</span> <span class="va">x</span>, sd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="fl">0.3</span><span class="op">*</span> <span class="va">x</span><span class="op">)</span><span class="op">)</span></span></span>
@@ -142,6 +142,11 @@ values are used.</p></dd>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">norm_mod</span>, type <span class="op">=</span> <span class="st">"rqres"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plot.maxlogL-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">norm_mod</span>, type <span class="op">=</span> <span class="st">"rqres"</span>, which.plots <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">#----------------------------------------------------------------------------</span></span></span>
+<span class="r-in"><span><span class="co"># Example 2: Cox-Snell residuals for a Weibull model</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-plt img"><img src="plot.maxlogL-2.png" alt="" width="700" height="433"></span>
 </code></pre></div>
