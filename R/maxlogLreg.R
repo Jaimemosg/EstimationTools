@@ -324,8 +324,15 @@ maxlogLreg <- function(formulas, y_dist, support = NULL, data = NULL,
 
   ## Number of regression parameters
   n_betas <- sum(as.numeric(unlist(sapply(dsgn_mat[1:npar], ncol))))
-  b_names <- apply(matrix(1:npar, nrow = npar), MARGIN = 1,
+  par_matrix <- matrix(1:npar, nrow = npar)
+  b_names <- apply(par_matrix, MARGIN = 1,
                    FUN = function(x) colnames(dsgn_mat[[x]]))
+
+  # Patch to build a list when npar == 1
+  if (nrow(par_matrix) == 1){
+    b_names <- list(b_names[,1])
+  }
+
   names(b_names) <- par_names
   b_length <- sapply(dsgn_mat[1:npar], ncol)
 
@@ -455,7 +462,7 @@ maxlogLreg <- function(formulas, y_dist, support = NULL, data = NULL,
                  formulas = formulas, fixed = fixed, link = link, cens = cens,
                  start = start, lower = lower, upper = upper,
                  optimizer = optimizer, data = dsgn_mat$data)
-  outputs <- list(npar = npar - length(fixed), n = length(dsgn_mat$y),
+  outputs <- list(npar = npar, n = length(dsgn_mat$y),
                   StdE_Method = StdE_computation, type = "maxlogLreg",
                   b_length = b_length, levels = levels,
                   par_names = par_names, response = dsgn_mat$y,
