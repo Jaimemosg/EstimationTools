@@ -78,8 +78,9 @@
 #'
 #' @seealso \code{\link{maxlogL}}, \code{\link{maxlogLreg}},
 #' \code{\link{bootstrap_maxlogL}}
-#' @method summary maxlogL
 #'
+#' @method summary maxlogL
+#' @export
 #==============================================================================
 # Summary function ------------------------------------------------------------
 #==============================================================================
