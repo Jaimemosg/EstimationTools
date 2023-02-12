@@ -71,14 +71,14 @@ residuals.maxlogL <- function(
                 "specifying the 'support' argument."))
   }
 
-  right_censored_data <- check_right_censorship(
+  right_censorship <- check_right_censorship(
     cens_matrix = cens, type = type
   )
 
-  if (right_censored_data){
+  if (right_censorship){
     # if ( is.Surv(object$inputs$y_dist) ){
     cumHaz <- cum_hazard.maxlogL(object)
-    delta <- cens[, 2]
+    delta <- cens[, 3]
 
     # Martingale for right censored data
     mres <- delta - cumHaz
@@ -119,8 +119,19 @@ residuals.maxlogL <- function(
   return(resid)
 }
 
-check_right_censorship <- function(cens_matrix, type){
-  if ( sum(cens_matrix[, 2]) > 0 ){
+check_right_censorship <- function(
+    cens_matrix,
+    type
+){
+  choices <- c(
+    "cox-snell",
+    "martingale",
+    "censored-deviance"
+  )
+
+  right_censored_residual <- type %in% choices
+
+  if ( sum(cens_matrix[, 2]) > 0 & right_censored_residual ){
     stop(
       paste0(
         "'", type, "'",
@@ -130,10 +141,11 @@ check_right_censorship <- function(cens_matrix, type){
         "residuals = 'response' respectively.")
     )
   }
-  if ( sum(cens_matrix[, 2]) > 0 ){
+
+  right_censored_data <- sum(cens_matrix[, 3]) > 0 | sum(cens_matrix[, 1]) > 0
+
+  if ( right_censored_data & right_censored_residual ){
     return(TRUE)
-  } else {
-    return(FALSE)
   }
 }
 #==============================================================================
