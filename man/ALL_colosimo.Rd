@@ -26,9 +26,7 @@ diagnosis. The variables are:
 \examples{
 data(ALL_colosimo)
 par(mfrow = c(1,2))
-hist(ALL_colosimo$Time, main="", xlab="Time (Weeks)")
-plot(ALL_colosimo$wbc, xlab = "Status", lty = 3, type="h")
-points(ALL_colosimo$status, pch = 16)
+hist(ALL_colosimo$time, main="", xlab="Time (Weeks)")
 
 }
 \references{
