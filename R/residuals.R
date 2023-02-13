@@ -145,8 +145,11 @@ check_right_censorship <- function(
   right_censored_data <- sum(cens_matrix[, 3]) > 0 | sum(cens_matrix[, 1]) > 0
 
   if ( right_censored_data & right_censored_residual ){
-    return(TRUE)
+    output <- TRUE
+  } else {
+    output <- FALSE
   }
+  return(output)
 }
 #==============================================================================
 # Deviance for each data point ------------------------------------------------
