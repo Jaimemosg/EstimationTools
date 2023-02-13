@@ -74,14 +74,7 @@ cum_hazard.maxlogL <- function(object, ...){
     ...
   )
 
-  parameters <- object$outputs$fitted.values
-  par_names <- names(parameters)
-  parameters <- matrix(unlist(parameters), nrow = object$outputs$n)
-
-  response <- object$outputs$response
-
-  inputs_matrix <- cbind(response, parameters)
-  colnames(inputs_matrix) <- c("x", par_names)
+  inputs_matrix <- create_inputs_matrix(object)
 
   Hf_i <- function(x){
     args <- sapply(X = x, FUN = function(x) x, simplify = FALSE)

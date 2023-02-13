@@ -76,10 +76,12 @@ expected_value.maxlogL <- function(
     routine,
     ...
 ){
-  parameters <- object$outputs$fitted.values
-  par_names <- names(parameters)
-  parameters <- matrix(unlist(parameters), nrow = object$outputs$n)
-  colnames(parameters) <- par_names
+  # parameters <- object$outputs$fitted.values
+  # par_names <- names(parameters)
+  # parameters <- matrix(unlist(parameters), nrow = object$outputs$n)
+  # colnames(parameters) <- par_names
+  parameters <- create_inputs_matrix(object)
+  parameters <- parameters[, !(colnames(parameters) %in% "x")]
   distr <- object$inputs$distr
   support <- object$inputs$support
 
