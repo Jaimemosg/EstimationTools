@@ -37,7 +37,7 @@ Returns specified plots related to the residuals of the fitted
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
 
-Provides plots of Cox-Snell and martingale residuals.
+Provides plots of Cox-Snell, martingale Randomized quantile residuals.
 }
 \details{
 If \code{type = "rqres"}, the available subset is \code{1:4}, referring to:
@@ -70,7 +70,22 @@ plot(norm_mod, type = "rqres", which.plots = 1:3)
 
 
 #----------------------------------------------------------------------------
-# Example 2: Cox-Snell residuals for a Weibull model
+# Example 2: Cox-Snell residuals for an exponential model
+data(ALL_colosimo)
+formulas <- list(scale.fo = ~ lwbc)#, shape.fo = ~ 1)
+support <- list(interval = c(0, Inf), type = 'continuous')
+
+ALL_exp_mode <- maxlogLreg(
+  formulas,
+  fixed = list(shape = 1),
+  y_dist = Surv(times, status) ~ dweibull,
+  data = ALL_colosimo,
+  support = support,
+  link = list(over = "scale", fun = "log_link")
+)
+
+summary(ALL_exp_mode)
+plot(ALL_exp_mode, type = "cox-snell")
 
 
 }

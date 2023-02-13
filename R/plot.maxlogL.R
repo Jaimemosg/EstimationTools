@@ -5,7 +5,7 @@
 #' @description
 #' `r lifecycle::badge("experimental")`
 #'
-#' Provides plots of Cox-Snell and martingale residuals.
+#' Provides plots of Cox-Snell, martingale Randomized quantile residuals.
 #'
 #' @aliases plot.maxlogL
 #'
@@ -55,13 +55,29 @@
 #'
 #'
 #' #----------------------------------------------------------------------------
-#' # Example 2: Cox-Snell residuals for a Weibull model
+#' # Example 2: Cox-Snell residuals for an exponential model
+#' data(ALL_colosimo)
+#' formulas <- list(scale.fo = ~ lwbc)#, shape.fo = ~ 1)
+#' support <- list(interval = c(0, Inf), type = 'continuous')
+#'
+#' ALL_exp_mode <- maxlogLreg(
+#'   formulas,
+#'   fixed = list(shape = 1),
+#'   y_dist = Surv(times, status) ~ dweibull,
+#'   data = ALL_colosimo,
+#'   support = support,
+#'   link = list(over = "scale", fun = "log_link")
+#' )
+#'
+#' summary(ALL_exp_mode)
+#' plot(ALL_exp_mode, type = "cox-snell")
 #'
 #'
 #' @method plot maxlogL
 #' @importFrom car qqPlot
-#' @importFrom graphics rug
-#' @importFrom stats density qnorm
+#' @importFrom graphics rug curve abline
+#' @importFrom survival survfit
+#' @importFrom stats density qnorm pexp
 #' @export
 plot.maxlogL <- function(x,
                          type = c("rqres", "cox-snell", "martingale"),
@@ -174,10 +190,10 @@ plot_cox_snell <- function(object, which.plots, caption, ...) {
 
   if (is.null(caption)) {
     caption <- c(
-      "Residuals against Exp(1)"
-      # "Residuals against index",
-      # "Density estimate plot",
-      # "Normal Q-Q Plot"
+      "Residuals against Exp(1)",
+      "Survival function of Cox-Snell residuals",
+      "Density estimate plot",
+      "Exp(1) survival function against KM of residuals"
     )
   }
 
@@ -196,14 +212,51 @@ exp_qqplot <- function(resids, y = NULL, caption, ...){
   car::qqPlot(resids, distribution = "exp",
               xlab = "Theoretical exponential quantiles",
               ylab = "Sample quantiles (from Cox-Snell residuals)",
-              main = caption)
+              main = caption,
+              ...)
 }
 
+surv_exp_1 <- function(x) pexp(x, rate = 1, lower.tail = FALSE, log.p = FALSE)
+
+survival_residuals_plot<- function(resids, y = NULL, caption, ...){
+  KM <- survfit(Surv(resids) ~ 1)
+
+  plot(
+    KM, conf.int = FALSE,
+    xlab = "Residuals",
+    ylab = "Estimated S(res)",
+    main = caption,
+    ...
+  )
+  curve(surv_exp_1, add = TRUE, lty = 2, from = 0, to = max(resids))
+  legend("topright", lty = c(1, 2), legend = c("Kaplan-Meier", "Exp(1)"))
+}
+
+S_exp_vs_S_KM <- function(resids, y = NULL, caption, ...){
+  KM <- survfit(Surv(resids) ~ 1)
+
+  t_0 <- min(resids)
+  t_end <- max(resids)
+  n_points <- KM$n - 1
+  S_res_exp_1 <- surv_exp_1(resids)
+  S_res_exp_1 <- sort(S_res_exp_1, decreasing = TRUE)[1:n_points]
+  S_res_exp_1[n_points] <- 0
+
+  plot(
+    KM$surv,
+    S_res_exp_1,
+    xlab = "S(res) Kaplan-Meier",
+    ylab = "S(res) Exp(1)",
+    main = caption,
+    ...
+  )
+  abline(a = 0, b = 1, lty = 2)
+}
 cox_snell_plots_list <- list(
-  exp_qqplot
-  # rqres_vs_index,
-  # density_estimate,
-  # norm_qqplot
+  exp_qqplot,
+  survival_residuals_plot,
+  density_estimate,
+  S_exp_vs_S_KM
 )
 
 plot_martinagle <- function(){}
