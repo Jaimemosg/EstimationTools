@@ -57,7 +57,7 @@
 #' #----------------------------------------------------------------------------
 #' # Example 2: Cox-Snell residuals for an exponential model
 #' data(ALL_colosimo)
-#' formulas <- list(scale.fo = ~ lwbc)#, shape.fo = ~ 1)
+#' formulas <- list(scale.fo = ~ lwbc)
 #' support <- list(interval = c(0, Inf), type = 'continuous')
 #'
 #' ALL_exp_mode <- maxlogLreg(
