@@ -74,7 +74,9 @@ cum_hazard.maxlogL <- function(object, ...){
     ...
   )
 
-  inputs_matrix <- create_inputs_matrix(object)
+  inputs_matrix <- create_inputs(
+    object, add_response = TRUE, as_matrix = TRUE
+  )
 
   Hf_i <- function(x){
     args <- sapply(X = x, FUN = function(x) x, simplify = FALSE)

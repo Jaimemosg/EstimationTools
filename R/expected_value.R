@@ -80,8 +80,10 @@ expected_value.maxlogL <- function(
   # par_names <- names(parameters)
   # parameters <- matrix(unlist(parameters), nrow = object$outputs$n)
   # colnames(parameters) <- par_names
-  parameters <- create_inputs_matrix(object)
-  parameters <- parameters[, !(colnames(parameters) %in% "x")]
+  parameters <- create_inputs(
+    object, add_response = FALSE, as_matrix = TRUE
+  )
+
   distr <- object$inputs$distr
   support <- object$inputs$support
 

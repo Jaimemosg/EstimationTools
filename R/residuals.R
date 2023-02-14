@@ -107,10 +107,17 @@ residuals.maxlogL <- function(
   if (type == "rqres"){
     distr <- object$inputs$distr
     cum_fun <- paste0('p', substring(distr, 2))
-    fitted_parameters <- object$outputs$fitted.values
+
+    fitted_parameters <- create_inputs(
+      object, add_response = TRUE, as_matrix = FALSE
+    )# object$outputs$fitted.values
+
+    names(fitted_parameters)[names(fitted_parameters) == "x"] <- "q"
+
     Fyi <- do.call(
       what = cum_fun,
-      args = c(list(q = y, lower.tail = TRUE, log.p = FALSE), fitted_parameters)
+      # args = c(list(q = y, lower.tail = TRUE, log.p = FALSE), fitted_parameters)
+      args = c(list(lower.tail = TRUE, log.p = FALSE), fitted_parameters)
     )
     resid <- qnorm(p = Fyi, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)
   }

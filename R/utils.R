@@ -12,7 +12,7 @@ set_custom_integration_routine<- function(support, routine){
   return(routine)
 }
 
-create_inputs_matrix <- function(object){
+create_inputs <- function(object, add_response, as_matrix = TRUE){
   n_data_points <- object$outputs$n
   parameters <- object$outputs$fitted.values
   par_names <- names(parameters)
@@ -28,11 +28,22 @@ create_inputs_matrix <- function(object){
     }
   }
 
-  parameters <- matrix(unlist(parameters), nrow = n_data_points)
-
   response <- object$outputs$response
 
-  inputs_matrix <- cbind(response, parameters)
-  colnames(inputs_matrix) <- c("x", par_names)
-  return(inputs_matrix)
+  if (add_response){
+    response_list <- list(response)
+    parameters <- c(response_list, parameters)
+    par_names <- c("x", par_names)
+  }
+
+  if (as_matrix){
+    parameters <- matrix(unlist(parameters), nrow = n_data_points)
+    # parameters <- cbind(response, parameters)
+    # colnames(parameters) <- c("x", par_names)
+    colnames(parameters) <- par_names
+  } else{
+    names(parameters) <- par_names
+  }
+
+  return(parameters)
 }
