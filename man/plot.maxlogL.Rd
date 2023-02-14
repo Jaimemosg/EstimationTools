@@ -6,7 +6,7 @@
 \usage{
 \method{plot}{maxlogL}(
   x,
-  type = c("rqres", "cox-snell", "martingale"),
+  type = c("rqres", "cox-snell", "martingale", "censored-deviance"),
   which.plots = NULL,
   caption = NULL,
   xvar = NULL,
@@ -75,7 +75,7 @@ data(ALL_colosimo)
 formulas <- list(scale.fo = ~ lwbc)
 support <- list(interval = c(0, Inf), type = 'continuous')
 
-ALL_exp_mode <- maxlogLreg(
+ALL_exp_model <- maxlogLreg(
   formulas,
   fixed = list(shape = 1),
   y_dist = Surv(times, status) ~ dweibull,
@@ -84,8 +84,10 @@ ALL_exp_mode <- maxlogLreg(
   link = list(over = "scale", fun = "log_link")
 )
 
-summary(ALL_exp_mode)
-plot(ALL_exp_mode, type = "cox-snell")
+summary(ALL_exp_model)
+plot(ALL_exp_model, type = "cox-snell")
+plot(ALL_exp_model, type = "martingale")
+plot(ALL_exp_model, type = "censored-deviance")
 
 
 }

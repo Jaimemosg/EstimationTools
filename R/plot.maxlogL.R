@@ -60,7 +60,7 @@
 #' formulas <- list(scale.fo = ~ lwbc)
 #' support <- list(interval = c(0, Inf), type = 'continuous')
 #'
-#' ALL_exp_mode <- maxlogLreg(
+#' ALL_exp_model <- maxlogLreg(
 #'   formulas,
 #'   fixed = list(shape = 1),
 #'   y_dist = Surv(times, status) ~ dweibull,
@@ -69,8 +69,10 @@
 #'   link = list(over = "scale", fun = "log_link")
 #' )
 #'
-#' summary(ALL_exp_mode)
-#' plot(ALL_exp_mode, type = "cox-snell")
+#' summary(ALL_exp_model)
+#' plot(ALL_exp_model, type = "cox-snell")
+#' plot(ALL_exp_model, type = "martingale")
+#' plot(ALL_exp_model, type = "censored-deviance")
 #'
 #'
 #' @method plot maxlogL
@@ -80,56 +82,90 @@
 #' @importFrom stats density qnorm pexp
 #' @export
 plot.maxlogL <- function(x,
-                         type = c("rqres", "cox-snell", "martingale"),
+                         type = c(
+                           "rqres",
+                           "cox-snell",
+                           "martingale",
+                           "censored-deviance"
+                         ),
                          which.plots = NULL,
                          caption = NULL,
                          xvar = NULL,
                          ...) {
   type <- match.arg(type)
-
-  switch(type,
-    rqres = plot_rqres(x, which.plots, caption, ...),
-    `cox-snell` = plot_cox_snell(x, which.plots, caption, ...),
-    martingale = plot_martinagle()
-  )
+  if (is.null(which.plots)) which.plots <- available_plots[[type]]
+  plot_residuals(x, type, which.plots, caption, xvar, ...)
 }
-#==============================================================================
-# Randomized quantile residuals plot ------------------------------------------
-#==============================================================================
-plot_rqres <- function(object, which.plots, caption, ...) {
-  resids <- residuals.maxlogL(object = object, type = "rqres")
+
+plot_residuals <- function(object, type, which.plots, caption, xvar, ...) {
+  resids <- residuals.maxlogL(object = object, type = type)
   y <- object$outputs$response
   n_panels <- length(which.plots)
+
   if (n_panels > 4) {
     warning(
       paste0(
         "This plot method only produces at maximum four plots. ",
-        "Please, write another 'plot' statement for the remaining ",
-        n_panels - 4, "plots."
+        "Please, write another 'plot' statement choosing the remaining ",
+        n_panels - 4, "plots with the argument 'which.plots'."
       )
     )
   }
 
   if (is.null(caption)) {
-    caption <- c(
-      "Residuals against fitted values",
-      "Residuals against index",
-      "Density estimate plot",
-      "Normal Q-Q Plot"
-    )
+    caption <- all_captions[[type]]
+  } else {
+    n_captions <- length(caption)
+
+    if (n_captions > 4){
+      caption <- caption[1:4]
+      warning(
+        "The first four captions of the input array were selected."
+      )
+      n_captions <- 4
+    }
+
+    caption <- c(caption, rep("", 4 - n_captions))
   }
 
-  if (is.null(which.plots)) which.plots <- 1:4
+  if (length(which.plots) == 1) grid <- c(1, 1)
+  if (length(which.plots) == 2) grid <- c(1, 2)
+  if (length(which.plots) <= 4 & length(which.plots) > 2) grid <- c(2, 2)
 
-  names(rqres_plots_list) <- caption
-  plots_all_names <- names(rqres_plots_list[which.plots])
-  par(mfrow = c(2, 2))
+  # valid_covariate_residuals <- c("martingale")
+  #
+  # if (!is.null(xvar) & any(type %in% valid_covariate_residuals)){
+  #   grid <- c(1, 1)
+  #
+  #   caption <- paste0(
+  #     stringr::str_to_title(type), " residuals against ", xvar, "."
+  #   )
+  # }
+  #
+  # if (!is.null(xvar) & !any(type %in% valid_covariate_residuals)){
+  #   stop(
+  #     paste0(
+  #       "Residuals against covariate plot is only valid for ",
+  #       paste(valid_covariate_residuals, collapse = ", "),
+  #       "."
+  #     )
+  #   )
+  # }
+
+  plots_list <- residuals_plots_list[[type]]
+  names(plots_list) <- caption
+  plots_all_names <- names(plots_list[which.plots])
+
+  par(mfrow = grid)
 
   for (plot_name in plots_all_names) {
-    rqres_plots_list[[plot_name]](resids, y, plot_name, ...)
+    plots_list[[plot_name]](resids, y, plot_name, ...)
   }
 }
 
+#==============================================================================
+# Randomized quantile residuals plot ------------------------------------------
+#==============================================================================
 rqres_vs_fitted_values <- function(resids, y, caption, ...) {
   plot(
     y,
@@ -171,43 +207,16 @@ rqres_plots_list <- list(
   density_estimate,
   norm_qqplot
 )
+
+rqres_captions <- c(
+  "Residuals against fitted values",
+  "Residuals against index",
+  "Density estimate plot",
+  "Normal Q-Q Plot"
+)
 #==============================================================================
 # Cox-Snell residuals plot ----------------------------------------------------
 #==============================================================================
-plot_cox_snell <- function(object, which.plots, caption, ...) {
-  resids <- residuals.maxlogL(object = object, type = "cox-snell")
-  y <- object$outputs$response
-  n_panels <- length(which.plots)
-  if (n_panels > 4) {
-    warning(
-      paste0(
-        "This plot method only produces at maximum four plots. ",
-        "Please, write another 'plot' statement for the remaining ",
-        n_panels - 4, "plots."
-      )
-    )
-  }
-
-  if (is.null(caption)) {
-    caption <- c(
-      "Residuals against Exp(1)",
-      "Survival function of Cox-Snell residuals",
-      "Density estimate plot",
-      "Exp(1) survival function against KM of residuals"
-    )
-  }
-
-  if (is.null(which.plots)) which.plots <- 1:4
-
-  names(cox_snell_plots_list) <- caption
-  plots_all_names <- names(cox_snell_plots_list[which.plots])
-  par(mfrow = c(2, 2))
-
-  for (plot_name in plots_all_names) {
-    cox_snell_plots_list[[plot_name]](resids, y, plot_name, ...)
-  }
-}
-
 exp_qqplot <- function(resids, y = NULL, caption, ...){
   car::qqPlot(resids, distribution = "exp",
               xlab = "Theoretical exponential quantiles",
@@ -252,6 +261,7 @@ S_exp_vs_S_KM <- function(resids, y = NULL, caption, ...){
   )
   abline(a = 0, b = 1, lty = 2)
 }
+
 cox_snell_plots_list <- list(
   exp_qqplot,
   survival_residuals_plot,
@@ -259,4 +269,67 @@ cox_snell_plots_list <- list(
   S_exp_vs_S_KM
 )
 
-plot_martinagle <- function(){}
+cox_snell_captions <- c(
+  "Residuals against Exp(1)",
+  "Survival function of Cox-Snell residuals",
+  "Density estimate plot",
+  "Exp(1) survival function against KM of residuals"
+)
+#==============================================================================
+# Martingale residuals plot ---------------------------------------------------
+#==============================================================================
+residuals_vs_response <- function(resids, y, caption, ...){
+  plot(
+    y,
+    resids,
+    main = caption,
+    ylab = "Residuals",
+    xlab = "Response",
+    ...
+  )
+}
+martingale_plots_list <- list(
+  exp_qqplot,
+  residuals_vs_response
+)
+
+martingale_captions <- c(
+  "Residuals against Exp(1)",
+  "Martingale residuals against response"
+)
+#==============================================================================
+# Censored-deviance residuals plot --------------------------------------------
+#==============================================================================
+censored_deviance_plots_list <- list(
+  exp_qqplot,
+  residuals_vs_response
+)
+
+censored_deviance_captions <- c(
+  "Residuals against Exp(1)",
+  "Censored deviance residuals against response"
+)
+
+#==============================================================================
+# Utility lists ---------------------------------------------------------------
+#==============================================================================
+residuals_plots_list <- list(
+  rqres = rqres_plots_list,
+  `cox-snell` = cox_snell_plots_list,
+  martingale = martingale_plots_list,
+  `censored-deviance` = censored_deviance_plots_list
+)
+
+all_captions <- list(
+  rqres = rqres_captions,
+  `cox-snell` = cox_snell_captions,
+  martingale = martingale_captions,
+  `censored-deviance` = censored_deviance_captions
+)
+
+available_plots <- list(
+  rqres = 1:4,
+  `cox-snell` = 1:4,
+  martingale = 1:2,
+  `censored-deviance` = 1:2
+)
