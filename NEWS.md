@@ -1,9 +1,12 @@
 # EstimationTools (development version)
 
+# EstimationTools 4.2.0
+- Implement plots of residuals (diagnostic plots).
+
 # EstimationTools 4.1.1
 
 - Implementation of residuals: Cox-Snell, randomized quantile residuals and
-martingale.
+martingale residuals.
 
 # EstimationTools 4.1.0
 
