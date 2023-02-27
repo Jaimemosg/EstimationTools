@@ -65,7 +65,11 @@ support <- list(interval = c(-Inf, Inf), type = 'continuous')
 norm_mod <- maxlogLreg(formulas, y_dist = y ~ dnorm, support = support,
                        data = norm_data,
                        link = list(over = "sd", fun = "log_link"))
+
+# Quantile residuals diagnostic plot
 plot(norm_mod, type = "rqres")
+
+# Exclude Q-Q plot
 plot(norm_mod, type = "rqres", which.plots = 1:3)
 
 
@@ -86,9 +90,12 @@ ALL_exp_model <- maxlogLreg(
 
 summary(ALL_exp_model)
 plot(ALL_exp_model, type = "cox-snell")
-plot(ALL_exp_model, type = "martingale")
 plot(ALL_exp_model, type = "censored-deviance")
 
+plot(ALL_exp_model, type = "martingale")
+par(mfrow = c(1, 2))
+plot(ALL_exp_model, type = "martingale", xvar = "lwbc")
+plot(ALL_exp_model, type = "martingale", xvar = "wbc")
 
 }
 \author{
