@@ -7,7 +7,7 @@
 #'
 #' Provides plots of Cox-Snell, martingale Randomized quantile residuals.
 #'
-#' @aliases plot.maxlogL
+# @aliases plot.maxlogL
 #'
 #' @param x a \code{maxlogL} object.
 #' @param type a character with the type of residuals to be plotted.
@@ -50,7 +50,11 @@
 #' norm_mod <- maxlogLreg(formulas, y_dist = y ~ dnorm, support = support,
 #'                        data = norm_data,
 #'                        link = list(over = "sd", fun = "log_link"))
+#'
+#' # Quantile residuals diagnostic plot
 #' plot(norm_mod, type = "rqres")
+#'
+#' # Exclude Q-Q plot
 #' plot(norm_mod, type = "rqres", which.plots = 1:3)
 #'
 #'
@@ -71,13 +75,16 @@
 #'
 #' summary(ALL_exp_model)
 #' plot(ALL_exp_model, type = "cox-snell")
-#' plot(ALL_exp_model, type = "martingale")
 #' plot(ALL_exp_model, type = "censored-deviance")
 #'
+#' plot(ALL_exp_model, type = "martingale")
+#' par(mfrow = c(1, 2))
+#' plot(ALL_exp_model, type = "martingale", xvar = "lwbc")
+#' plot(ALL_exp_model, type = "martingale", xvar = "wbc")
 #'
 #' @method plot maxlogL
 #' @importFrom car qqPlot
-#' @importFrom graphics rug curve abline
+#' @importFrom graphics rug curve abline panel.smooth
 #' @importFrom survival survfit
 #' @importFrom stats density qnorm pexp
 #' @export
@@ -93,13 +100,44 @@ plot.maxlogL <- function(x,
                          xvar = NULL,
                          ...) {
   type <- match.arg(type)
-  if (is.null(which.plots)) which.plots <- available_plots[[type]]
-  plot_residuals(x, type, which.plots, caption, xvar, ...)
+  resid_vs_covaraiate <- as.character(type %in% xvar_valid_types)
+
+  plot_function <- switch (resid_vs_covaraiate,
+    `TRUE` = plot_selector,
+    `FALSE`= plot_residuals_generic
+  )
+  plot_function(x, type, which.plots, xvar, caption, ...)
 }
 
-plot_residuals <- function(object, type, which.plots, caption, xvar, ...) {
+xvar_valid_types <- c("martingale", "censored-deviance")
+
+plot_selector <- function(x, type, which.plots, xvar, caption, ...){
+  if (type %in% xvar_valid_types){
+    if (!is.null(xvar)){
+      if (!is.null(which.plots)) stop(
+        "'which.plots' argument was ignored beacase 'xvar' was defined."
+      )
+      plot_residuals_vs_xvar(x, xvar, type, caption, ...)
+    } else {
+      plot_residuals_generic(x, type, which.plots, xvar, caption, ...)
+    }
+  }
+}
+
+plot_residuals_generic <- function(
+    object, type, which.plots, xvar, caption, ...
+) {
+  if (!is.null(xvar)) stop(
+    paste0(
+      "'xvar' argument was ignored beacase 'type' is not one of (",
+      paste(xvar_valid_types, collapse = ", ")
+    )
+  )
+
+  if (is.null(which.plots)) which.plots <- available_plots[[type]]
   resids <- residuals.maxlogL(object = object, type = type)
   y <- object$outputs$response
+
   n_panels <- length(which.plots)
 
   if (n_panels > 4) {
@@ -107,7 +145,7 @@ plot_residuals <- function(object, type, which.plots, caption, xvar, ...) {
       paste0(
         "This plot method only produces at maximum four plots. ",
         "Please, write another 'plot' statement choosing the remaining ",
-        n_panels - 4, "plots with the argument 'which.plots'."
+        n_panels - 4, " plots with the argument 'which.plots'."
       )
     )
   }
@@ -132,26 +170,6 @@ plot_residuals <- function(object, type, which.plots, caption, xvar, ...) {
   if (length(which.plots) == 2) grid <- c(1, 2)
   if (length(which.plots) <= 4 & length(which.plots) > 2) grid <- c(2, 2)
 
-  # valid_covariate_residuals <- c("martingale")
-  #
-  # if (!is.null(xvar) & any(type %in% valid_covariate_residuals)){
-  #   grid <- c(1, 1)
-  #
-  #   caption <- paste0(
-  #     stringr::str_to_title(type), " residuals against ", xvar, "."
-  #   )
-  # }
-  #
-  # if (!is.null(xvar) & !any(type %in% valid_covariate_residuals)){
-  #   stop(
-  #     paste0(
-  #       "Residuals against covariate plot is only valid for ",
-  #       paste(valid_covariate_residuals, collapse = ", "),
-  #       "."
-  #     )
-  #   )
-  # }
-
   plots_list <- residuals_plots_list[[type]]
   names(plots_list) <- caption
   plots_all_names <- names(plots_list[which.plots])
@@ -174,6 +192,12 @@ rqres_vs_fitted_values <- function(resids, y, caption, ...) {
     xlab = "Fitted values",
     ylab = "Quantile residuals"
   )
+  panel.smooth(
+    y,
+    resids,
+    main = caption,
+    ...
+  )
 }
 
 rqres_vs_index <- function(resids, y = NULL, caption, ...){
@@ -181,7 +205,14 @@ rqres_vs_index <- function(resids, y = NULL, caption, ...){
     resids,
     main = caption,
     xlab = "index",
-    ylab = "Quantile residuals"
+    ylab = "Quantile residuals",
+    ...
+  )
+  panel.smooth(
+    1:length(resids),
+    resids,
+    main = caption,
+    ...
   )
 }
 
@@ -197,7 +228,7 @@ density_estimate <- function(resids, y = NULL, caption, ...){
 norm_qqplot <- function(resids, y = NULL, caption, ...){
   car::qqPlot(resids, distribution = "norm",
          xlab = "Theoretical normal quantiles",
-         ylab = "Sample quantiles (from quantile residuals)",
+         ylab = "Sample quantiles (quantile residuals)",
          main = caption)
 }
 
@@ -220,7 +251,7 @@ rqres_captions <- c(
 exp_qqplot <- function(resids, y = NULL, caption, ...){
   car::qqPlot(resids, distribution = "exp",
               xlab = "Theoretical exponential quantiles",
-              ylab = "Sample quantiles (from Cox-Snell residuals)",
+              ylab = "Sample quantiles (Cox-Snell residuals)",
               main = caption,
               ...)
 }
@@ -242,17 +273,25 @@ survival_residuals_plot<- function(resids, y = NULL, caption, ...){
 }
 
 S_exp_vs_S_KM <- function(resids, y = NULL, caption, ...){
+  S_res_exp_1 <- surv_exp_1(resids)
+  S_res_exp_1 <- sort(S_res_exp_1, decreasing = TRUE)
+
   KM <- survfit(Surv(resids) ~ 1)
 
   t_0 <- min(resids)
   t_end <- max(resids)
-  n_points <- KM$n - 1
-  S_res_exp_1 <- surv_exp_1(resids)
-  S_res_exp_1 <- sort(S_res_exp_1, decreasing = TRUE)[1:n_points]
-  S_res_exp_1[n_points] <- 0
+  n_points <- KM$n
+  surv_func <- KM$surv
+
+  if (length(surv_func) < length(resids)){
+    n_points <- n_points - 1
+    S_res_exp_1[n_points] <- 0
+  }
+
+  S_res_exp_1 <- S_res_exp_1[1:n_points]
 
   plot(
-    KM$surv,
+    surv_func,
     S_res_exp_1,
     xlab = "S(res) Kaplan-Meier",
     ylab = "S(res) Exp(1)",
@@ -273,7 +312,7 @@ cox_snell_captions <- c(
   "Residuals against Exp(1)",
   "Survival function of Cox-Snell residuals",
   "Density estimate plot",
-  "Exp(1) survival function against KM of residuals"
+  "Exp(1) against KM of residuals"
 )
 #==============================================================================
 # Martingale residuals plot ---------------------------------------------------
@@ -287,6 +326,11 @@ residuals_vs_response <- function(resids, y, caption, ...){
     xlab = "Response",
     ...
   )
+  panel.smooth(
+    y,
+    resids,
+    ...
+  )
 }
 martingale_plots_list <- list(
   exp_qqplot,
@@ -296,7 +340,44 @@ martingale_plots_list <- list(
 martingale_captions <- c(
   "Residuals against Exp(1)",
   "Martingale residuals against response"
+
 )
+
+plot_residuals_vs_xvar <- function(x, xvar, type, caption, ...) {
+
+  if (length(xvar) > 1){
+    warning(
+      paste0(
+        "This plot method only produces at maximum one plots. ",
+        "Please, write another 'plot' statement writing a covariate ",
+        "name from your dataset in the argument 'xvar'."
+      )
+    )
+  }
+  resids <- residuals.maxlogL(object = x, type = type)
+  y <- x$outputs$response
+
+  data <- x$inputs$data
+  x <- data[, xvar]
+
+  caption <- paste0(stringr::str_to_title(type), " residuals against ", xvar)
+
+  par(mfrow = c(1, 1))
+
+  plot(
+    x,
+    resids,
+    main = caption,
+    ylab = "Residuals",
+    xlab = xvar,
+    ...
+  )
+  panel.smooth(
+    x,
+    resids,
+    ...
+  )
+}
 #==============================================================================
 # Censored-deviance residuals plot --------------------------------------------
 #==============================================================================
