@@ -65,9 +65,13 @@ residuals.maxlogL <- function(
   dist <- deparse(object$inputs$y_dist[[3]])
   cens <- object$inputs$cens
 
-  if ( is.null(support) & type %in% available_residuals ){
+  if (
+    is.null(support) &
+    type %in% available_residuals &
+    !missing(routine)
+  ){
     stop(paste0(type, " residuals cannot be computed if a support is",
-                "not defined. Please, refit your 'maxlogLreg' model",
+                " not defined. Please, refit your 'maxlogLreg' model",
                 "specifying the 'support' argument."))
   }
 
