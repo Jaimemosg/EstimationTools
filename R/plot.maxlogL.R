@@ -362,8 +362,6 @@ plot_residuals_vs_xvar <- function(x, xvar, type, caption, ...) {
 
   caption <- paste0(stringr::str_to_title(type), " residuals against ", xvar)
 
-  par(mfrow = c(1, 1))
-
   plot(
     x,
     resids,
