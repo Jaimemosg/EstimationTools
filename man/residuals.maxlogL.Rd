@@ -46,6 +46,64 @@ On the other hand, for \code{type = "response"} the computation is simpler
 
 \deqn{r^R_i = (y_i - \hat{\mu}_i).}
 }
+\examples{
+library(EstimationTools)
+
+#----------------------------------------------------------------------------
+# Example 1: Test deviance residuals
+set.seed(123)
+n <- 500
+x <- runif(n = n, min = 0, max = 1)
+y <- rweibull(n = n, shape = 1, scale = exp(4.5 + 0.5*x))
+status <- rep(1, n) # sample(0:1, size = n, replace = TRUE)
+
+distribution <- Surv(y, status) ~ dweibull
+
+formulas <- list(
+  scale.fo = ~ x
+)
+
+fixed <- list(shape = 1)
+
+links <- list(
+  over = "scale",
+  fun = "log_link"
+)
+
+model <- maxlogLreg(
+  formulas = formulas,
+  y_dist = distribution,
+  fixed = fixed,
+  link = links
+)
+
+# Using `residuals` method
+cox_snell_residuals_test <- residuals(model, type = "cox-snell")
+martingale_residuals_test <- residuals(model, type = "martingale")
+deviance_residuals_test <- residuals(model, type = "right-censored-deviance")
+
+# From scratch
+cox_snell_residuals_ref <- -pweibull(
+  q = y,
+  shape = 1,
+  scale = exp(cbind(rep(1, n), x) \%*\% cbind(coef(model))),
+  lower.tail = FALSE,
+  log.p = TRUE
+)
+martingale_residuals_ref <- status - cox_snell_residuals_ref
+deviance_residuals_ref <- sign(martingale_residuals_ref) * (
+  -2 * (martingale_residuals_ref + status*log(status - martingale_residuals_ref))
+)^ 0.5
+
+
+plot(cox_snell_residuals_test, cox_snell_residuals_ref)
+plot(martingale_residuals_test, martingale_residuals_ref)
+plot(deviance_residuals_test, deviance_residuals_ref)
+
+
+#----------------------------------------------------------------------------
+
+}
 \author{
 Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
 }
