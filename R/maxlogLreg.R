@@ -330,7 +330,7 @@ maxlogLreg <- function(formulas, y_dist, support = NULL, data = NULL,
 
   # Patch to build a list when npar == 1
   if (nrow(par_matrix) == 1){
-    b_names <- list(b_names[,1])
+    b_names <- list(b_names[1]) # list(b_names[,1])
   }
 
   names(b_names) <- par_names
@@ -691,7 +691,7 @@ minus_lL_LinReg <- function(param, mat, distr, dist_args, over, link, npar,
     logF <- do.call( what = cdf, args = c(list(q = y), param,
                                           lower.tail = TRUE,
                                           log.p = TRUE, fixed) )
-    ll <- sum( logf*delta[,1] + logF*delta[,2] + logS*delta[,3] )
+    ll <- sum( logf*delta[, 1] + logF*delta[, 2] + logS*delta[, 3] )
 
     # Negative of log-Likelihood function
     return(as.numeric(-ll)) # Useful when using Rmpfr (LuA)
