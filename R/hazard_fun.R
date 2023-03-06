@@ -84,7 +84,7 @@ cum_hazard.maxlogL <- function(object, ...){
       what = Hfun,
       args = args
     )
-    return(cum_haz)
+    return(as.numeric(cum_haz))
   }
 
   result <- apply(

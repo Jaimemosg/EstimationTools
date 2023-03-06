@@ -181,7 +181,13 @@ residuals.maxlogL <- function(
       # args = c(list(q = y, lower.tail = TRUE, log.p = FALSE), fitted_parameters)
       args = c(list(lower.tail = TRUE, log.p = FALSE), fitted_parameters)
     )
-    resid <- qnorm(p = Fyi, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)
+    resid <- qnorm(
+      p = as.numeric(Fyi),
+      mean = 0,
+      sd = 1,
+      lower.tail = TRUE,
+      log.p = FALSE
+    )
   }
 
   names(resid) <- 1:length(y)
