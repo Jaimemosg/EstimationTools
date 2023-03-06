@@ -6,7 +6,8 @@
 \usage{
 \method{plot}{maxlogL}(
   x,
-  type = c("rqres", "cox-snell", "martingale", "censored-deviance"),
+  type = c("rqres", "cox-snell", "martingale", "right-censored-deviance"),
+  parameter = NULL,
   which.plots = NULL,
   caption = NULL,
   xvar = NULL,
@@ -19,6 +20,11 @@
 \item{type}{a character with the type of residuals to be plotted.
 The default value is \code{type = "rqres"}, which is used to
 compute the normalized randomized quantile residuals.}
+
+\item{parameter}{which parameter fitted values are required for
+\code{type = "rqres"}. The default is the first one
+defined in the pdf,e.g, in \code{dnorm}, the default
+parameter is \code{mean}.}
 
 \item{which.plots}{a subset of numbers to specify the plots. See details
 for further information.}
@@ -68,6 +74,7 @@ norm_mod <- maxlogLreg(formulas, y_dist = y ~ dnorm, support = support,
 
 # Quantile residuals diagnostic plot
 plot(norm_mod, type = "rqres")
+plot(norm_mod, type = "rqres", parameter = "sd")
 
 # Exclude Q-Q plot
 plot(norm_mod, type = "rqres", which.plots = 1:3)
@@ -90,12 +97,13 @@ ALL_exp_model <- maxlogLreg(
 
 summary(ALL_exp_model)
 plot(ALL_exp_model, type = "cox-snell")
-plot(ALL_exp_model, type = "censored-deviance")
+plot(ALL_exp_model, type = "right-censored-deviance")
 
 plot(ALL_exp_model, type = "martingale")
-par(mfrow = c(1, 2))
 plot(ALL_exp_model, type = "martingale", xvar = "lwbc")
-plot(ALL_exp_model, type = "martingale", xvar = "wbc")
+
+
+#----------------------------------------------------------------------------
 
 }
 \author{
