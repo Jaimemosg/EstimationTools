@@ -65,7 +65,7 @@
 #'
 #' #----------------------------------------------------------------------------
 #' # Example 2: Cox-Snell residuals for an exponential model
-#' data(ALL_colosimo)
+#' data(ALL_colosimo_table_4_1)
 #' formulas <- list(scale.fo = ~ lwbc)
 #' support <- list(interval = c(0, Inf), type = 'continuous')
 #'
@@ -73,7 +73,7 @@
 #'   formulas,
 #'   fixed = list(shape = 1),
 #'   y_dist = Surv(times, status) ~ dweibull,
-#'   data = ALL_colosimo,
+#'   data = ALL_colosimo_table_4_1,
 #'   support = support,
 #'   link = list(over = "scale", fun = "log_link")
 #' )
@@ -82,7 +82,7 @@
 #' plot(ALL_exp_model, type = "cox-snell")
 #' plot(ALL_exp_model, type = "right-censored-deviance")
 #'
-#' plot(ALL_exp_model, type = "martingale")
+#' plot(ALL_exp_model, type = "martingale", xvar = NULL)
 #' plot(ALL_exp_model, type = "martingale", xvar = "lwbc")
 #'
 #'
@@ -121,14 +121,31 @@ xvar_valid_types <- c("martingale", "right-censored-deviance")
 plot_selector <- function(x, type, parameter, which.plots, xvar, caption, ...){
   if (type %in% xvar_valid_types){
     if (!is.null(xvar)){
-      if (!is.null(which.plots)) stop(
+
+      if (!is.null(which.plots)) warning(
         "'which.plots' argument was ignored beacase 'xvar' was defined."
       )
-      plot_residuals_vs_xvar(x, xvar, type, caption, ...)
+      covariates_vector <- xvar
+
+      if (xvar == "all"){
+        parameters_names <- x$outputs$par_names
+        design_matrixes_list <- x$outputs$design_matrix[parameters_names]
+        covariates_list <- lapply(design_matrixes_list, function(x) colnames(x))
+        covariates_vector <- unique(unlist(covariates_list))
+        covariates_vector <- covariates_vector[covariates_vector != "(Intercept)"]
+        which.plots <- 1:length(covariates_vector)
+      }
+
+      for (xvar in covariates_vector){
+        plot_residuals_vs_xvar(x, xvar, type, caption, ...)
+      }
+
     } else {
+
       plot_residuals_generic(
         x, type, parameter, which.plots, xvar, caption, ...
       )
+
     }
   }
 }
@@ -136,13 +153,6 @@ plot_selector <- function(x, type, parameter, which.plots, xvar, caption, ...){
 plot_residuals_generic <- function(
     object, type, parameter, which.plots, xvar, caption, ...
 ) {
-  if (!is.null(xvar)) stop(
-    paste0(
-      "'xvar' argument was ignored beacase 'type' is not one of (",
-      paste(xvar_valid_types, collapse = ", "),
-      ")"
-    )
-  )
 
   if (is.null(which.plots)) which.plots <- available_plots[[type]]
   resids <- residuals.maxlogL(object = object, type = type)
@@ -214,8 +224,9 @@ rqres_vs_fitted_values <- function(resids, y, caption, parameter, ...) {
     y,
     resids,
     main = caption,
-    xlab = bquote(italic( .(parameter) ) * " fitted values"),
-    ylab = "Quantile residuals"
+    xlab = bquote(italic( .(parameter) ) * " parameter fitted values"),
+    ylab = "Quantile residuals",
+    ...
   )
   panel.smooth(
     y,
@@ -407,12 +418,26 @@ plot_residuals_vs_xvar <- function(x, xvar, type, caption, ...) {
 #==============================================================================
 # Right censored- deviance residuals plot -------------------------------------
 #==============================================================================
+# censored_deviance_plots_list <- list(
+#   residuals_vs_response
+# )
+#
+# censored_deviance_captions <- c(
+#   "Right censored deviance residuals against response"
+# )
+norm_qqplot_deviance <- function(resids, y = NULL, caption, parameter = NULL, ...){
+  car::qqPlot(resids, distribution = "norm",
+              xlab = "Theoretical normal quantiles",
+              ylab = "Sample quantiles (deviance residuals)",
+              main = caption)
+}
+
 censored_deviance_plots_list <- list(
-  residuals_vs_response
+  norm_qqplot_deviance
 )
 
 censored_deviance_captions <- c(
-  "Right censored deviance residuals against response"
+  "Normal Q-Q Plot"
 )
 
 #==============================================================================
@@ -435,6 +460,6 @@ all_captions <- list(
 available_plots <- list(
   rqres = 1:4,
   `cox-snell` = 1:4,
-  martingale = 1:2,
+  martingale = 1,
   `right-censored-deviance` = 1
 )

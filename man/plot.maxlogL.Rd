@@ -82,7 +82,7 @@ plot(norm_mod, type = "rqres", which.plots = 1:3)
 
 #----------------------------------------------------------------------------
 # Example 2: Cox-Snell residuals for an exponential model
-data(ALL_colosimo)
+data(ALL_colosimo_table_4_1)
 formulas <- list(scale.fo = ~ lwbc)
 support <- list(interval = c(0, Inf), type = 'continuous')
 
@@ -90,7 +90,7 @@ ALL_exp_model <- maxlogLreg(
   formulas,
   fixed = list(shape = 1),
   y_dist = Surv(times, status) ~ dweibull,
-  data = ALL_colosimo,
+  data = ALL_colosimo_table_4_1,
   support = support,
   link = list(over = "scale", fun = "log_link")
 )
@@ -99,7 +99,7 @@ summary(ALL_exp_model)
 plot(ALL_exp_model, type = "cox-snell")
 plot(ALL_exp_model, type = "right-censored-deviance")
 
-plot(ALL_exp_model, type = "martingale")
+plot(ALL_exp_model, type = "martingale", xvar = NULL)
 plot(ALL_exp_model, type = "martingale", xvar = "lwbc")
 
 
