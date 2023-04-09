@@ -13,10 +13,10 @@ maxlogLreg(
   subset = NULL,
   fixed = NULL,
   link = NULL,
+  optimizer = "nlminb",
   start = NULL,
   lower = NULL,
   upper = NULL,
-  optimizer = "nlminb",
   control = NULL,
   silent = FALSE,
   StdE_method = c("optim", "numDeriv"),
@@ -63,6 +63,11 @@ and \code{\link{NegInv_link}}. Take into account: the order
 used in argument \code{over} corresponds to the order in argument
 \code{link}.}
 
+\item{optimizer}{a length-one character vector with the name of optimization
+routine.  \code{\link{nlminb}}, \code{\link{optim}} and
+\code{\link[DEoptim]{DEoptim}} are available; \code{\link{nlminb}}
+is the default routine.}
+
 \item{start}{a numeric vector with initial values for the parameters to be
 estimated. Zero is the default value.}
 
@@ -73,11 +78,6 @@ is the default value.}
 \item{upper}{a numeric vector with upper bounds, with the same lenght of
 argument \code{start} (for box-constrained optimization). \code{Inf}
 is the default value.}
-
-\item{optimizer}{a length-one character vector with the name of optimization
-routine.  \code{\link{nlminb}}, \code{\link{optim}} and
-\code{\link[DEoptim]{DEoptim}} are available; \code{\link{nlminb}}
-is the default routine.}
 
 \item{control}{control parameters of the optimization routine. Please, visit
 documentation of selected optimizer for further information.}

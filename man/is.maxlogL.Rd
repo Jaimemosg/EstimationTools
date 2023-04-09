@@ -5,6 +5,7 @@
 \alias{is.maxlogL}
 \alias{is.EmpiricalTTT}
 \alias{is.HazardShape}
+\alias{is.optimizer.config}
 \title{Is return of any object of \code{EstimationTools}?}
 \usage{
 is.maxlogL(x)
@@ -12,9 +13,11 @@ is.maxlogL(x)
 is.EmpiricalTTT(x)
 
 is.HazardShape(x)
+
+is.optimizer.config(x)
 }
 \arguments{
-\item{x}{Any object of \code{EstimationTools}.}
+\item{x}{an object of \code{EstimationTools} package.}
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#stable}{\figure{lifecycle-stable.svg}{options: alt='[Stable]'}}}{\strong{[Stable]}}
