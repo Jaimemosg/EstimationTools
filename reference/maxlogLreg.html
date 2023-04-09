@@ -72,10 +72,10 @@ of any distribution implemented in <code>R</code> with covariates (linear predic
 <span>  subset <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  fixed <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  link <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  optimizer <span class="op">=</span> <span class="st">"nlminb"</span>,</span>
 <span>  start <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  lower <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  upper <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  optimizer <span class="op">=</span> <span class="st">"nlminb"</span>,</span>
 <span>  control <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  silent <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  StdE_method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"optim"</span>, <span class="st">"numDeriv"</span><span class="op">)</span>,</span>
@@ -136,6 +136,13 @@ used in argument <code>over</code> corresponds to the order in argument
 <code>link</code>.</p></dd>
 
 
+<dt>optimizer</dt>
+<dd><p>a length-one character vector with the name of optimization
+routine.  <code><a href="https://rdrr.io/r/stats/nlminb.html" class="external-link">nlminb</a></code>, <code><a href="https://rdrr.io/r/stats/optim.html" class="external-link">optim</a></code> and
+<code><a href="https://rdrr.io/pkg/DEoptim/man/DEoptim.html" class="external-link">DEoptim</a></code> are available; <code><a href="https://rdrr.io/r/stats/nlminb.html" class="external-link">nlminb</a></code>
+is the default routine.</p></dd>
+
+
 <dt>start</dt>
 <dd><p>a numeric vector with initial values for the parameters to be
 estimated. Zero is the default value.</p></dd>
@@ -151,13 +158,6 @@ is the default value.</p></dd>
 <dd><p>a numeric vector with upper bounds, with the same lenght of
 argument <code>start</code> (for box-constrained optimization). <code>Inf</code>
 is the default value.</p></dd>
-
-
-<dt>optimizer</dt>
-<dd><p>a length-one character vector with the name of optimization
-routine.  <code><a href="https://rdrr.io/r/stats/nlminb.html" class="external-link">nlminb</a></code>, <code><a href="https://rdrr.io/r/stats/optim.html" class="external-link">optim</a></code> and
-<code><a href="https://rdrr.io/pkg/DEoptim/man/DEoptim.html" class="external-link">DEoptim</a></code> are available; <code><a href="https://rdrr.io/r/stats/nlminb.html" class="external-link">nlminb</a></code>
-is the default routine.</p></dd>
 
 
 <dt>control</dt>
