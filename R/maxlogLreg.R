@@ -54,6 +54,8 @@
 #' @param upper a numeric vector with upper bounds, with the same lenght of
 #'              argument `start` (for box-constrained optimization). \code{Inf}
 #'              is the default value.
+#' @param inequalities a character vector with the inequality constrains for
+#'                     the distribution parameters.
 #' @param control control parameters of the optimization routine. Please, visit
 #'                documentation of selected optimizer for further information.
 #' @param StdE_method a length-one character vector with the routine for Hessian
@@ -208,7 +210,7 @@
 maxlogLreg <- function(formulas, y_dist, support = NULL, data = NULL,
                        subset = NULL, fixed = NULL, link = NULL,
                        optimizer = 'nlminb', start = NULL,
-                       lower = NULL, upper = NULL,
+                       lower = NULL, upper = NULL, inequalities = NULL,
                        control = NULL, silent = FALSE,
                        StdE_method = c('optim', 'numDeriv'), ...){
 
@@ -358,7 +360,7 @@ maxlogLreg <- function(formulas, y_dist, support = NULL, data = NULL,
                     lower = lower, upper = upper, control = nlminbcontrol, ...,
                     mat = dsgn_mat, distr = distr, dist_args = arguments,
                     over = link$over, link = link$fun, npar = npar, fixed = fixed,
-                    par_names = par_names, b_length = b_length)
+                    par_names = par_names, b_length = b_length, ineqs = inequalities)
       fit$objective <- -fit$objective
     }
 
@@ -688,13 +690,14 @@ Surv_transform <- function(y_dist, data){
 # log-likelihood function computation -----------------------------------------
 #==============================================================================
 minus_lL_LinReg <- function(param, mat, distr, dist_args, over, link, npar,
-                            fixed, par_names, b_length, summation = TRUE){
+                            fixed, par_names, b_length, ineqs = NULL){
   # Linear predictor
   betas_list <- all_betas(b_length = b_length, npar = npar,
                           param = param)
   param <- lapply(X = 1:npar, FUN = LinPred,
                   betas = betas_list, mat = mat[1:npar])
   names(param) <- par_names
+  original_scale_param <- param
 
   if( !is.null(link) & !is.null(over) ){
     linked_params <- link_list(over = over, dist_args = dist_args,
@@ -726,10 +729,32 @@ minus_lL_LinReg <- function(param, mat, distr, dist_args, over, link, npar,
   logF <- do.call( what = cdf, args = c(list(q = y), param,
                                         lower.tail = TRUE,
                                         log.p = TRUE, fixed) )
-  ll <- sum( logf*delta[, 1] + logF*delta[, 2] + logS*delta[, 3] )
+  ll <- -sum( logf*delta[, 1] + logF*delta[, 2] + logS*delta[, 3] )
+
+  if ( !is.null(ineqs) ){
+    # Non-linear constrain body
+    ineqs <- lapply(ineqs, asQuoted)
+    g_ineqs <- eval( bquote( function(){do.call( "rbind", .(ineqs) )} ) )
+
+    # Non-linear constrain parameters
+    ineqs_params <- vector( mode = "list", length = length(par_names) )
+    names(ineqs_params) <- par_names
+    formals(g_ineqs) <- ineqs_params
+
+    eval_g_ineqs <- do.call(
+      what = "g_ineqs",
+
+      args = original_scale_param
+    )
+
+    if ( any(!eval_g_ineqs) ){
+      # power_val <- ceiling(log10(ll))
+      ll <- 1e10  # 10^power_val
+    }
+  }
 
   # Negative of log-Likelihood function
-  return(as.numeric(-ll)) # Useful when using Rmpfr (LuA)
+  return(as.numeric(ll)) # Useful when using Rmpfr (LuA)
 }
 param_index <- function(b_length, npar){
   b_length_plus <- c(0, as.numeric(b_length))
