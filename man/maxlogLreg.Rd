@@ -17,6 +17,7 @@ maxlogLreg(
   start = NULL,
   lower = NULL,
   upper = NULL,
+  inequalities = NULL,
   control = NULL,
   silent = FALSE,
   StdE_method = c("optim", "numDeriv"),
@@ -78,6 +79,9 @@ is the default value.}
 \item{upper}{a numeric vector with upper bounds, with the same lenght of
 argument \code{start} (for box-constrained optimization). \code{Inf}
 is the default value.}
+
+\item{inequalities}{a character vector with the inequality constrains for
+the distribution parameters.}
 
 \item{control}{control parameters of the optimization routine. Please, visit
 documentation of selected optimizer for further information.}

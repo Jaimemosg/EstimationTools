@@ -729,11 +729,15 @@ minus_lL_LinReg <- function(param, mat, distr, dist_args, over, link, npar,
   logF <- do.call( what = cdf, args = c(list(q = y), param,
                                         lower.tail = TRUE,
                                         log.p = TRUE, fixed) )
-  ll <- -sum( logf*delta[, 1] + logF*delta[, 2] + logS*delta[, 3] )
+  ll <- -sum(
+    logf*delta[, 1] +
+      ( if ( all(delta[, 2] > 0) ) logF*delta[, 2] else 0 ) +
+      ( if ( all(delta[, 3] > 0) ) logS*delta[, 3] else 0 )
+  )
 
   if ( !is.null(ineqs) ){
     # Non-linear constrain body
-    ineqs <- lapply(ineqs, asQuoted)
+    ineqs <- lapply(ineqs, BBmisc::asQuoted)
     g_ineqs <- eval( bquote( function(){do.call( "rbind", .(ineqs) )} ) )
 
     # Non-linear constrain parameters
@@ -748,8 +752,7 @@ minus_lL_LinReg <- function(param, mat, distr, dist_args, over, link, npar,
     )
 
     if ( any(!eval_g_ineqs) ){
-      # power_val <- ceiling(log10(ll))
-      ll <- 1e10  # 10^power_val
+      ll <- 1e10
     }
   }
 
