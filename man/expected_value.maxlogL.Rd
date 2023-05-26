@@ -33,7 +33,7 @@ This function takes a \code{maxlogL} model and computes the expected value
 using the estimated parameters. The expected value is computed using the
 following expression
 
-\deqn{\hat{E[g(X)]} = \int_{-\infty}^{\infty} f(x|\hat{\theta}) dx,}
+\deqn{\hat{E[g(X)]} = \int_{-\infty}^{\infty} x f(x|\hat{\theta}) dx,}
 
 where \eqn{f(x|\hat{\theta})} is a probability density function using the
 estimated parameters.
