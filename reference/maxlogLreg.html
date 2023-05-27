@@ -236,7 +236,7 @@ These terms are specified in <code>formulas</code> argument.</p></li>
 <li><p>\(\mathcal{D}\) is the distribution specified in argument
 <code>y_dist</code>.</p></li>
 </ul><p>Then, <code>maxlogLreg</code> maximizes the log L through <code><a href="https://rdrr.io/r/stats/optim.html" class="external-link">optim</a></code>,
-<code><a href="https://rdrr.io/r/stats/nlminb.html" class="external-link">nlminb</a></code> or <code><a href="https://rdrr.io/pkg/DEoptim/man/DEoptim.html" class="external-link">DEoptim</a></code>. <code>maxlogLreg</code> generates
+<code><a href="https://rdrr.io/r/stats/nlminb.html" class="external-link">nlminb</a></code> or <code>DEoptim</code>. <code>maxlogLreg</code> generates
 an S3 object of class <code>maxlogL</code>.</p>
 <p>Estimation with censorship can be handled with <code>Surv</code> objects
 (see example 2). The output object stores the corresponding censorship matrix,
@@ -277,7 +277,7 @@ ISSN 00983500, <a href="https://doi.org/10.1145/355958.355965" class="external-l
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="summary.maxlogL.html">summary.maxlogL</a></code>, <code><a href="https://rdrr.io/r/stats/optim.html" class="external-link">optim</a></code>, <code><a href="https://rdrr.io/r/stats/nlminb.html" class="external-link">nlminb</a></code>,
-<code><a href="https://rdrr.io/pkg/DEoptim/man/DEoptim.html" class="external-link">DEoptim</a></code>, <code><a href="https://rdrr.io/pkg/DEoptim/man/DEoptim.control.html" class="external-link">DEoptim.control</a></code>,
+<code>DEoptim</code>, <code>DEoptim.control</code>,
 <code><a href="maxlogL.html">maxlogL</a></code>, <code><a href="bootstrap_maxlogL.html">bootstrap_maxlogL</a></code></p>
 <p>Other maxlogL: 
 <code><a href="cum_hazard.maxlogL.html">cum_hazard.maxlogL</a>()</code>,
