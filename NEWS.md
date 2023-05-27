@@ -1,4 +1,6 @@
-# EstimationTools (development version)
+# EstimationTools 4.3.0
+- Fix log-likelihood in `maxlogLreg()`.
+- Enable further input arguments for legend in plots of residuals.
 
 # EstimationTools 4.2.0
 - Implement plots of residuals (diagnostic plots).
