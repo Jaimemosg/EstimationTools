@@ -13,7 +13,7 @@ Imports:
     DEoptim,
     BBmisc,
     GA,
-    Rdpack,
+    Rdpack (>= 0.7),
     utils,
     stats,
     numDeriv,
