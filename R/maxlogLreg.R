@@ -717,23 +717,43 @@ minus_lL_LinReg <- function(param, mat, distr, dist_args, over, link, npar,
       }
     }
   }
+  cdf  <- paste0('p', substring(distr, 2))
   y <- mat$y
   delta <- mat$status
-  cdf  <- paste0('p', substring(distr, 2))
 
   logf <- do.call( what = distr, args = c(list(x = y), param,
                                           log = TRUE, fixed) )
-  logS <- do.call( what = cdf, args = c(list(q = y), param,
-                                        lower.tail = FALSE,
-                                        log.p = TRUE, fixed) )
-  logF <- do.call( what = cdf, args = c(list(q = y), param,
-                                        lower.tail = TRUE,
-                                        log.p = TRUE, fixed) )
-  ll <- -sum(
-    logf*delta[, 1] +
-      ( if ( all(delta[, 2] > 0) ) logF*delta[, 2] else 0 ) +
-      ( if ( all(delta[, 3] > 0) ) logS*delta[, 3] else 0 )
-  )
+
+  ll <- logf*delta[, 1]
+
+  if ( any(delta[, 2] > 0) ){
+    logF <- do.call(
+      what = cdf,
+      args = c(
+        list(q = y),
+        param,
+        lower.tail = TRUE,
+        log.p = TRUE,
+        fixed = fixed
+      )
+    )
+    ll <- ll + logF*delta[, 2]
+  }
+
+  if ( any(delta[, 3] > 0) ) {
+    logS <- do.call(
+      what = cdf,
+      args = c(
+        list(q = y),
+        param,
+        lower.tail = FALSE,
+        log.p = TRUE, fixed
+      )
+    )
+    ll <- ll + logS*delta[, 3]
+  }
+
+  ll <- -sum(ll)
 
   if ( !is.null(ineqs) ){
     # Non-linear constrain body
@@ -747,12 +767,11 @@ minus_lL_LinReg <- function(param, mat, distr, dist_args, over, link, npar,
 
     eval_g_ineqs <- do.call(
       what = "g_ineqs",
-
       args = original_scale_param
     )
 
     if ( any(!eval_g_ineqs) ){
-      ll <- 1e10
+      ll <- ll + 1e10
     }
   }
 
