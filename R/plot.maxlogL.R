@@ -295,7 +295,7 @@ exp_qqplot <- function(resids, y = NULL, caption, parameter, ...){
 surv_exp_1 <- function(x) pexp(x, rate = 1, lower.tail = FALSE, log.p = FALSE)
 
 survival_residuals_plot<- function(
-    resids, y = NULL, caption, paramter = NULL,...
+    resids, y = NULL, caption, paramter = NULL, ...
 ){
   KM <- survfit(Surv(resids) ~ 1)
 
@@ -306,8 +306,23 @@ survival_residuals_plot<- function(
     main = caption,
     ...
   )
+
   curve(surv_exp_1, add = TRUE, lty = 2, from = 0, to = max(resids))
-  legend("topright", lty = c(1, 2), legend = c("Kaplan-Meier", "Exp(1)"), ...)
+
+  dots <- list(...)
+  any_invalid_param <- any(!(names(formals(legend)) %in% names(dots)))
+  if (any_invalid_param){
+    legend_args <- dots[names(dots)[names(dots) %in% names(formals(legend))]]
+  }
+
+  do.call(
+    what = "legend",
+    args = c(
+      list(x = "topright", lty = c(1, 2), legend = c("Kaplan-Meier", "Exp(1)")),
+      legend_args
+    )
+  )
+  # legend("topright", lty = c(1, 2), legend = c("Kaplan-Meier", "Exp(1)"), ...)
 }
 
 S_exp_vs_S_KM <- function(resids, y = NULL, caption, parameter = NULL, ...){
