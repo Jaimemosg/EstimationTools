@@ -8,8 +8,11 @@ Authors@R: c(
       person("Freddy", "Hernandez", , "fhernanb@unal.edu.co", role = c("ctb"), 
       comment = c(ORCID = "0000-0001-7459-3329"))
       )
-Depends: R (>= 3.5.0), survival, DEoptim, BBmisc, GA
+Depends: R (>= 3.5.0), survival
 Imports:
+    DEoptim,
+    BBmisc,
+    GA,
     Rdpack,
     utils,
     stats,
