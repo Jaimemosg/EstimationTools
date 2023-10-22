@@ -552,8 +552,10 @@ set_values <- function(input, n_betas, par_names, par_order,
     # Reorder the parameters test[[1]] <- input[[1]][c(3,1,2)]
     input_order <- match(par_names, names(input))
     input <- input[input_order]
-    reg_order <- apply(matrix(1:npar, nrow = npar), MARGIN = 1,
-                       FUN = function(x) match(b_names[[x]], input_names[[x]]))
+    reg_order <- apply(
+      matrix(1:npar, nrow = npar), MARGIN = 1,
+      FUN = function(x) match(b_names[[x]], input_names[input_order][[x]])
+    )
     na_pos <- lapply(lapply(reg_order, is.na), which)
     reg_order <- lapply(lapply(reg_order, na.omit), as.numeric)
     input <- apply(matrix(1:npar, nrow = npar), MARGIN = 1,
