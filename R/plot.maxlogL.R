@@ -232,6 +232,7 @@ rqres_vs_fitted_values <- function(resids, y, caption, parameter, ...) {
     y,
     resids,
     main = caption,
+    lwd = 2,
     ...
   )
 }
@@ -248,6 +249,7 @@ rqres_vs_index <- function(resids, y = NULL, caption, parameter = NULL, ...){
     1:length(resids),
     resids,
     main = caption,
+    lwd = 2,
     ...
   )
 }
@@ -385,6 +387,7 @@ residuals_vs_response <- function(resids, y, caption, parameter = NULL, ...){
   panel.smooth(
     y,
     resids,
+    lwd = 2,
     ...
   )
 }
@@ -427,6 +430,7 @@ plot_residuals_vs_xvar <- function(x, xvar, type, caption, ...) {
   panel.smooth(
     x,
     resids,
+    lwd = 2,
     ...
   )
 }
