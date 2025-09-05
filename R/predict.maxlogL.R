@@ -129,7 +129,7 @@ predict.maxlogL <-
         newdata_modification <- paste0('newdata$', response_char,
                                        ' <- rep(0, nrow(newdata))')
         eval(parse(text = newdata_modification))
-        dsgn_mat <- model.matrix.MLreg(formulas = object$inputs$formulas[fo.name],
+        dsgn_mat <- model_matrix_maxlogL(formulas = object$inputs$formulas[fo.name],
                                        data = newdata,
                                        y_dist = object$inputs$y_dist,
                                        npar = 1, # because predict takes only one parameter.

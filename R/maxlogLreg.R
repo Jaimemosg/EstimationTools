@@ -43,8 +43,8 @@
 #'             used in argument \code{over} corresponds to the order in argument
 #'             \code{link}.
 #' @param optimizer a length-one character vector with the name of optimization
-#'                  routine.  \code{\link{nlminb}}, \code{\link{optim}} and
-#'                  \code{\link[DEoptim]{DEoptim}} are available; \code{\link{nlminb}}
+#'                  routine. \code{\link[stats:nlminb]{nlminb}}, \code{\link[stats:optim]{optim}} and
+#'                  \code{\link[DEoptim:DEoptim]{DEoptim}} are available; \code{\link[stats:nlminb]{nlminb}}
 #'                  is the default routine.
 #' @param start a numeric vector with initial values for the parameters to be
 #'              estimated. Zero is the default value.
@@ -111,9 +111,9 @@
 #'         \code{y_dist}.
 #' }
 #'
-#' Then, \code{maxlogLreg} maximizes the log L through \code{\link{optim}},
-#' \code{\link{nlminb}} or \code{\link{DEoptim}}. \code{maxlogLreg} generates
-#' an S3 object of class \code{maxlogL}.
+#' Then, \code{maxlogLreg} maximizes the log L through
+#' \code{\link[stats:optim]{optim}}, \code{\link[stats:nlminb]{nlminb}} or
+#' \code{\link[DEoptim:DEoptim]{DEoptim}}. \code{maxlogLreg} generates an S3 obj.
 #'
 #' Estimation with censorship can be handled with \code{Surv} objects
 #' (see example 2). The output object stores the corresponding censorship matrix,
@@ -199,9 +199,14 @@
 #'
 #' @importFrom Rdpack reprompt
 #'
-#' @seealso \code{\link{summary.maxlogL}}, \code{\link{optim}}, \code{\link{nlminb}},
-#'          \code{\link{DEoptim}}, \code{\link{DEoptim.control}},
-#'          \code{\link{maxlogL}}, \code{\link{bootstrap_maxlogL}}
+#' @seealso 
+#'   \code{\link{summary.maxlogL}}, 
+#'   \code{\link[stats:optim]{optim}}, 
+#'   \code{\link[stats:nlminb]{nlminb}}, 
+#'   \code{\link[DEoptim:DEoptim]{DEoptim}}, 
+#'   \code{\link[DEoptim:DEoptim.control]{DEoptim.control}}, 
+#'   \code{\link{maxlogL}}, 
+#'   \code{\link{bootstrap_maxlogL}}
 #'
 #==============================================================================
 # Maximization routine for regression -----------------------------------------
@@ -313,7 +318,7 @@ maxlogLreg <- function(formulas, y_dist, support = NULL, data = NULL,
   formulas <- formulas[par_order]
 
   ## Design matrixes
-  dsgn_mat <- model.matrix.MLreg(formulas = formulas, data = data,
+  dsgn_mat <- model_matrix_maxlogL(formulas = formulas, data = data,
                                  y_dist = y_dist, npar = npar,
                                  par_names = par_names)
   levels <- dsgn_mat$levels
@@ -587,7 +592,22 @@ change <- function(x){
 # Design matrix composition ---------------------------------------------------
 #==============================================================================
 #' @export
-model.matrix.MLreg <- function(formulas, data, y_dist, npar, par_names){
+#' @method model.matrix maxlogL
+#' @importFrom stats model.matrix
+model.matrix.maxlogL <- function(object, ...) {
+  # Expect object to contain what the helper needs:
+  # object$formulas, object$data, object$y_dist, object$npar, object$par_names
+  model_matrix_maxlogL(
+    formulas  = object$formulas,
+    data      = object$data,
+    y_dist    = object$y_dist,
+    npar      = object$npar,
+    par_names = object$par_names
+  )
+}
+#' @keywords internal
+#' @noRd
+model_matrix_maxlogL <- function(formulas, data, y_dist, npar, par_names){
   if ( !any(lapply(formulas, class) == "formula") ){
     stop("All elements in argument 'formulas' must be of class formula")
   }
