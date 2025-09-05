@@ -1,5 +1,5 @@
 # EstimationTools 4.3.1
-- Build everuthing in R 4.5.1.
+- Build everything in R 4.5.1.
 - Fix S3 method consistency in `maxlogLreg()`.
 
 # EstimationTools 4.3.0
