@@ -1,6 +1,21 @@
-## v4.0.0: Submission 11 (current submission)
+## v4.3.1 Submission 12 (current submission)
 
 ----------------------------------------------------------------
+## v4.0.0: Submission 11 
+
+* Multiple errors in the documentation
+````
+Result: NOTE 
+  checkRd: (-1) integration.Rd:37-38: Lost braces in \itemize; meant \describe ?
+  checkRd: (-1) integration.Rd:39: Lost braces in \itemize; meant \describe ?
+  checkRd: (-1) integration.Rd:40: Lost braces in \itemize; meant \describe ?
+  checkRd: (-1) integration.Rd:41-42: Lost braces in \itemize; meant \describe ?
+  checkRd: (-1) loess.options.Rd:25-26: Lost braces in \itemize; meant \describe ?
+  checkRd: (-1) loess.options.Rd:27-28: Lost braces in \itemize; meant \describe ?
+  checkRd: (-1) maxlogLreg.Rd:138: Lost braces; missing escapes or markup?
+     138 | $j^{th}$ for all the observations.
+```
+
 ## v4.0.0: Submission 10
 
 * Description updated.
