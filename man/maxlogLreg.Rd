@@ -139,7 +139,7 @@ where,
 \itemize{
 \item \eqn{g_k(\cdot)} is the \eqn{k}-th link function.
 \item \eqn{\boldsymbol{\eta}_{j}} is the value of the linear predictor for the
-$j^{th}$ for all the observations.
+\eqn{j^{th}} for all the observations.
 \item \eqn{\boldsymbol{\beta}_j = (\beta_{0j}, \beta_{1j},\dots,
         \beta_{(p_j-1)j})^\top} are the fixed effects vector, where \eqn{p_j}
 is the number of parameters in linear predictor \eqn{j} and

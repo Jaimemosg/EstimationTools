@@ -101,7 +101,7 @@
 #' \itemize{
 #'   \item \eqn{g_k(\cdot)} is the \eqn{k}-th link function.
 #'   \item \eqn{\boldsymbol{\eta}_{j}} is the value of the linear predictor for the
-#'         $j^{th}$ for all the observations.
+#'         \eqn{j^{th}} for all the observations.
 #'   \item \eqn{\boldsymbol{\beta}_j = (\beta_{0j}, \beta_{1j},\dots,
 #'         \beta_{(p_j-1)j})^\top} are the fixed effects vector, where \eqn{p_j}
 #'         is the number of parameters in linear predictor \eqn{j} and
@@ -553,7 +553,7 @@ set_values <- function(input, n_betas, par_names, par_order,
     input_order <- match(par_names, names(input))
     input <- input[input_order]
     reg_order <- apply(
-      matrix(1:npar, nrow = npar), MARGIN = 1,
+      matrix(par_names, nrow = npar), MARGIN = 1,
       FUN = function(x) match(b_names[[x]], input_names[input_order][[x]])
     )
     na_pos <- lapply(lapply(reg_order, is.na), which)
@@ -586,6 +586,7 @@ change <- function(x){
 #==============================================================================
 # Design matrix composition ---------------------------------------------------
 #==============================================================================
+#' @export
 model.matrix.MLreg <- function(formulas, data, y_dist, npar, par_names){
   if ( !any(lapply(formulas, class) == "formula") ){
     stop("All elements in argument 'formulas' must be of class formula")
