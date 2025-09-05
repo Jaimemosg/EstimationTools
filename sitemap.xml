@@ -1,147 +1,51 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/404.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/articles/Bootstrap_implementation.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/articles/Examples.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/index.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/ALL_colosimo_table_4_1.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/ALL_colosimo_table_4_3.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/Fibers.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/Hazard_Shape.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/NegInv_link.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/TTTE_Analytical.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/TTT_hazard_shape.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/bootstrap_maxlogL.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/coef.maxlogL.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/cum_hazard.maxlogL.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/cum_hazard_fun.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/expected_value.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/expected_value.maxlogL.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/gauss_quad.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/half_norm_key.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/hazard_fun.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/hazard_rate_key.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/head_neck_cancer.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/integration.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/internalfunc.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/interp.options.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/is.maxlogL.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/legend.HazardShape.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/loess.options.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/log_link.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/logit_link.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/maxlogL.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/maxlogLreg.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/plot.EmpiricalTTT.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/plot.HazardShape.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/plot.maxlogL.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/predict.maxlogL.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/print.HazardShape.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/reduction_cells.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/residuals.maxlogL.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/set_optimizer.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/summary.maxlogL.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/summate.html</loc>
-  </url>
-  <url>
-    <loc>https://jaimemosg.github.io/EstimationTools/reference/uniform_key.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://jaimemosg.github.io/EstimationTools/404.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/LICENSE.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/articles/Bootstrap_implementation.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/articles/Examples.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/articles/index.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/authors.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/index.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/news/index.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/ALL_colosimo_table_4_1.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/ALL_colosimo_table_4_3.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/Fibers.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/Hazard_Shape.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/NegInv_link.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/TTTE_Analytical.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/TTT_hazard_shape.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/bootstrap_maxlogL.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/coef.maxlogL.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/cum_hazard.maxlogL.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/cum_hazard_fun.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/expected_value.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/expected_value.maxlogL.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/gauss_quad.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/half_norm_key.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/hazard_fun.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/hazard_rate_key.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/head_neck_cancer.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/index.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/integration.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/internalfunc.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/interp.options.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/is.maxlogL.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/legend.HazardShape.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/loess.options.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/log_link.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/logit_link.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/maxlogL.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/maxlogLreg.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/plot.EmpiricalTTT.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/plot.HazardShape.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/plot.maxlogL.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/predict.maxlogL.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/print.HazardShape.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/reduction_cells.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/residuals.maxlogL.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/set_optimizer.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/summary.maxlogL.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/summate.html</loc></url>
+<url><loc>https://jaimemosg.github.io/EstimationTools/reference/uniform_key.html</loc></url>
 </urlset>
+
