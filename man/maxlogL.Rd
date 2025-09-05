@@ -45,13 +45,15 @@ of density/mass function. There are three link functions available:
 \code{start} (for box-constrained optimization).}
 
 \item{optimizer}{a length-one character vector with the name of optimization routine.
-\code{\link{nlminb}}, \code{\link{optim}},
-\code{\link[DEoptim]{DEoptim}} and \code{\link[GA]{ga}}are available;
+\code{\link[stats:nlminb]{nlminb}}, \code{\link[stats:optim]{optim}},
+\code{\link[DEoptim:DEoptim]{DEoptim}} and \code{\link[GA:ga]{ga}} are available;
 custom optimization routines can also be implemented.
-\code{\link{nlminb}} is the default routine.}
+\code{\link[stats:nlminb]{nlminb}} is the default routine.}
 
-\item{control}{control parameters of the optimization routine. Please, visit
-documentation of selected optimizer for further information.}
+\item{control}{control parameters of the optimization routine. See, e.g.,
+\code{\link[stats:optim]{optim}}'s \code{control} list,
+\code{\link[stats:nlminb]{nlminb}}'s \code{control} list, and
+\code{\link[DEoptim:DEoptim.control]{DEoptim.control}} for DEoptim.}
 
 \item{StdE_method}{a length-one character vector with the routine for Hessian matrix
 computation. The This is needed for standard error estimation. The
@@ -84,7 +86,8 @@ of any distribution implemented in \code{R}.
 \details{
 \code{maxlogL} computes the likelihood function corresponding to
 the distribution specified in argument \code{dist} and maximizes it through
-\code{\link{optim}}, \code{\link{nlminb}} or \code{\link{DEoptim}}. \code{maxlogL}
+\code{\link[stats:optim]{optim}}, \code{\link[stats:nlminb]{nlminb}} or
+\code{\link[DEoptim:DEoptim]{DEoptim}}. \code{maxlogL}
 generates an S3 object of class \code{maxlogL}.
 
 Noncentrality parameters must be named as \code{ncp} in the distribution.

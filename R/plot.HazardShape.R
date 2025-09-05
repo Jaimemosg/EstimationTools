@@ -134,6 +134,7 @@ plot.HazardShape <- function(
   }
 }
 
+#' @export
 plot.HazardShape_old <- function(x, xlab = "i/n", ylab = expression(phi[n](i / n)),
                                  xlim = c(0, 1), ylim = c(0, 1), col = 1,
                                  lty = NULL, lwd = NA, main = "",

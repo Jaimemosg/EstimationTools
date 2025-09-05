@@ -21,7 +21,7 @@ used inside \code{TTT_hazard_shape}.
 \details{
 Please, visit \code{\link[stats]{loess}} to know further possible arguments.
 The following arguments are not available for passing to the LOESS estimation:
-\itemize{
+\describe{
 \item{data}{The only data handled inside \code{TTT_hazard_shape} is the
 computed empirical TTT.}
 \item{subset}{This argument is used in \code{loess} to take a subset of data.

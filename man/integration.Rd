@@ -33,12 +33,12 @@ computation of mean values, but it is also a general purpose integrator.
 The user can create custom integration routines through implementation
 of a wrapper function using three arguments
 
-\itemize{
+\describe{
 \item{\code{fun}: }{a function which should take a numeric argument x and possibly
 some parameters.}
 \item{\code{lower}: }{a numeric value for the lower limit of the integral.}
 \item{\code{upper}: }{a numeric value for the upper limit of the integral.}
-\item{\code{...}> }{furthermore, the user must define additional arguments to be
+\item{\code{...} }{furthermore, the user must define additional arguments to be
 passed to \code{fun} function.}
 }
 
