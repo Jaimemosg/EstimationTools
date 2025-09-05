@@ -70,8 +70,8 @@ H <- cum_hazard.maxlogL(object = norm_mod_maxlogL)
 \seealso{
 Other maxlogL: 
 \code{\link{expected_value.maxlogL}()},
-\code{\link{maxlogLreg}()},
-\code{\link{maxlogL}()}
+\code{\link{maxlogL}()},
+\code{\link{maxlogLreg}()}
 }
 \author{
 Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}

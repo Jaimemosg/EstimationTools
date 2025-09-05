@@ -77,8 +77,8 @@ plot(y, Ey)
 \seealso{
 Other maxlogL: 
 \code{\link{cum_hazard.maxlogL}()},
-\code{\link{maxlogLreg}()},
-\code{\link{maxlogL}()}
+\code{\link{maxlogL}()},
+\code{\link{maxlogLreg}()}
 }
 \author{
 Jaime Mosquera Gutiérrez, \email{jmosquerag@unal.edu.co}
