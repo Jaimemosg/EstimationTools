@@ -1,5 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/Jaimemosg/EstimationTools/workflows/R-CMD-check/badge.svg)](https://github.com/Jaimemosg/EstimationTools/actions)
@@ -17,7 +18,9 @@ developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.re
 [![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
 <!-- [![Travis build status](https://travis-ci.org/Jaimemosg/EstimationTools.svg?branch=master)](https://travis-ci.org/Jaimemosg/EstimationTools) -->
+
 <!-- [![Dependencies](https://tinyverse.netlify.com/badge/EstimationTools)](https://cran.r-project.org/package=EstimationTools) -->
+
 <!-- badges: end -->
 
 # EstimationTools <img src="man/figures/ETLogo.png" align="right" height="200" style="float:right; height:200px;"/>
@@ -29,11 +32,12 @@ maximum likelihood estimation of probability density/mass functions in
 `R`.
 
 <!-- _Edit (17/03/2021)_ -- We have performed a TTT plot implementation. You can find out in our [changelog](https://jaimemosg.github.io/EstimationTools/news/index.html). -->
+
 <!-- _Edit (27/07/2020)_ -- We have implemented new tools and we have performed some deep modifications in our `summary` method for `maxlogL` objects. You can find out in our [changelog](https://jaimemosg.github.io/EstimationTools/news/index.html). -->
 
 ## Installation
 
-You can install the latest version (4.3.0) of `EstimationTools` typing
+You can install the latest version (4.3.1) of `EstimationTools` typing
 the following command lines in `R` console:
 
 ``` r
@@ -42,7 +46,7 @@ devtools::install_github('Jaimemosg/EstimationTools', force = TRUE)
 library(EstimationTools)
 ```
 
-<!-- 4.3.0 -->
+<!-- 4.3.1 -->
 
 Or you can install the released version (4.0.0) from
 [CRAN](https://cran.r-project.org/package=EstimationTools) if you
