@@ -3,7 +3,7 @@ Type: Package
 Title: Maximum Likelihood Estimation for Probability Functions from Data Sets
 Version: 4.3.1
 Authors@R: c(
-      person("Jaime", "Mosquera", email = "jmosquerag@unal.edu.co", role = c("aut", "cre"),
+      person("Jaime", "Mosquera", email = "jmosquerag@unal.edu.co", role = c("aut", "cre", "cph"),
       comment = c(ORCID = "0000-0002-1684-4756")),
       person("Freddy", "Hernandez", , "fhernanb@unal.edu.co", role = c("ctb"), 
       comment = c(ORCID = "0000-0001-7459-3329"))
