@@ -1,3 +1,7 @@
+# EstimationTools 4.3.1
+- Build everuthing in R 4.5.1.
+- Fix S3 method consistency in `maxlogLreg()`.
+
 # EstimationTools 4.3.0
 - Fix log-likelihood in `maxlogLreg()`.
 - Enable further input arguments for legend in plots of residuals.
