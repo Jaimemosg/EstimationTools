@@ -1,4 +1,9 @@
 ## v4.3.1 Submission 12 (current submission)
+* Found the following (possibly) invalid URLs:
+  URL: http://link.springer.com/10.1007/s10985-017-9394-3 (moved to https://link.springer.com/article/10.1007/s10985-017-9394-3)
+    From: man/head_neck_cancer.Rd
+    Status: 301
+    Message: Moved Permanently
 
 ----------------------------------------------------------------
 ## v4.0.0: Submission 11 
